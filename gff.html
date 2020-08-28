@@ -1,0 +1,352 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>MGKit GFF Specifications &mdash; MGKit: Metagenomic framework 0.5.0 documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+  <script type="text/javascript" src="_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+        <script type="text/javascript" src="_static/jquery.js"></script>
+        <script type="text/javascript" src="_static/underscore.js"></script>
+        <script type="text/javascript" src="_static/doctools.js"></script>
+        <script type="text/javascript" src="_static/language_data.js"></script>
+        <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+        <script async="async" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+        <script type="text/x-mathjax-config">MathJax.Hub.Config({"tex2jax": {"inlineMath": [["$", "$"], ["\\(", "\\)"]], "processEscapes": true, "ignoreClass": "document", "processClass": "math|output_area"}})</script>
+    
+    <script type="text/javascript" src="_static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="_static/graphviz.css" type="text/css" />
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Library Reference" href="library.html" />
+    <link rel="prev" title="Examples of the mgkit.db package" href="examples/db/example-annotation-db-package.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="index.html" class="icon icon-home"> MGKit: Metagenomic framework
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                0.5.0
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="introduction.html">Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="install.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="pipeline/index.html">Metagenomic Pipeline</a></li>
+<li class="toctree-l1"><a class="reference internal" href="scripts/index.html">Scripts Details</a></li>
+<li class="toctree-l1"><a class="reference internal" href="examples/index.html">Example Notebooks</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">MGKit GFF Specifications</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#reserved-values">Reserved Values</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="library.html">Library Reference</a></li>
+<li class="toctree-l1"><a class="reference internal" href="changes.html">Changes</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">MGKit: Metagenomic framework</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="index.html">Docs</a> &raquo;</li>
+        
+      <li>MGKit GFF Specifications</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="_sources/gff.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  
+<style>
+/* CSS overrides for sphinx_rtd_theme */
+
+/* 24px margin */
+.nbinput.nblast.container,
+.nboutput.nblast.container {
+    margin-bottom: 19px;  /* padding has already 5px */
+}
+
+/* ... except between code cells! */
+.nblast.container + .nbinput.container {
+    margin-top: -19px;
+}
+
+.admonition > p:before {
+    margin-right: 4px;  /* make room for the exclamation icon */
+}
+
+/* Fix math alignment, see https://github.com/rtfd/sphinx_rtd_theme/pull/686 */
+.math {
+    text-align: unset;
+}
+</style>
+<div class="section" id="mgkit-gff-specifications">
+<span id="gff-specs"></span><h1>MGKit GFF Specifications<a class="headerlink" href="#mgkit-gff-specifications" title="Permalink to this headline">¶</a></h1>
+<p>The GFF produced with MGKit follows the conventions of GFF/GTF files but it provides some additional fields in the 9th column which translate to a
+Python dictionary when an annotation is loaded into an <code class="xref py py-class docutils literal notranslate"><span class="pre">Annotation</span></code> instance.</p>
+<p>The 9th column is a list of <strong>key=value</strong> item, separated by a semicolon (;); each value is also expected to be quoted with double quotes and the values to not include a semicolon or other characters that can make the parsing difficult. MGKit uses <code class="xref py py-func docutils literal notranslate"><span class="pre">urllib.quote()</span></code> to encode those characters and also ” ()/”. The <a class="reference internal" href="api/mgkit.io.gff.html#mgkit.io.gff.from_gff" title="mgkit.io.gff.from_gff"><code class="xref py py-func docutils literal notranslate"><span class="pre">mgkit.io.gff.from_gff()</span></code></a> uses <code class="xref py py-func docutils literal notranslate"><span class="pre">urllib.unquote()</span></code> to set the values.</p>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>As the last column translates to a dictionary in the data structures, duplicate keys are not allowed. <a class="reference internal" href="api/mgkit.io.gff.html#mgkit.io.gff.from_gff" title="mgkit.io.gff.from_gff"><code class="xref py py-func docutils literal notranslate"><span class="pre">mgkit.io.gff.from_gff()</span></code></a> raises an exception if any are found.</p>
+</div>
+<div class="section" id="reserved-values">
+<h2>Reserved Values<a class="headerlink" href="#reserved-values" title="Permalink to this headline">¶</a></h2>
+<p>Any key can be added to a GFF annotation, but MGKit expects a few key to be in the GFF annotation as summarised in the following tables.</p>
+<table class="docutils align-default" id="id1">
+<caption><span class="caption-text">Reserved values, used by the scripts</span><a class="headerlink" href="#id1" title="Permalink to this table">¶</a></caption>
+<colgroup>
+<col style="width: 33%" />
+<col style="width: 33%" />
+<col style="width: 33%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head stub"><p>Key</p></th>
+<th class="head"><p>Value</p></th>
+<th class="head"><p>Explanation</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><th class="stub"><p>gene_id</p></th>
+<td><p>any string</p></td>
+<td><p>used to identify the gene predicted</p></td>
+</tr>
+<tr class="row-odd"><th class="stub"><p>db</p></th>
+<td><p>any string, like UNIPROT-SP, UNIPROT-TR, NCBI-NT</p></td>
+<td><p>identifies the database used to make the gene_id prediction</p></td>
+</tr>
+<tr class="row-even"><th class="stub"><p>taxon_db</p></th>
+<td><p>any string, like UNIPROT-SP, UNIPROT-TR, NCBI-NT</p></td>
+<td><p>identifies the database used to make the taxon_id prediction</p></td>
+</tr>
+<tr class="row-odd"><th class="stub"><p>dbq</p></th>
+<td><p>integer</p></td>
+<td><p>identifies the quality of the database, used when filtering annotations</p></td>
+</tr>
+<tr class="row-even"><th class="stub"><p>taxon_id</p></th>
+<td><p>integer</p></td>
+<td><p>identifies the annotation taxon, NCBI taxonomy is used</p></td>
+</tr>
+<tr class="row-odd"><th class="stub"><p>uid</p></th>
+<td><p>string</p></td>
+<td><p>unique identifier for the annotation, any string is accepted but a value is assigned by using <a class="reference external" href="https://docs.python.org/3/library/uuid.html#uuid.uuid4" title="(in Python v3.8)"><code class="xref py py-func docutils literal notranslate"><span class="pre">uuid.uuid4()</span></code></a></p></td>
+</tr>
+<tr class="row-even"><th class="stub"><p>cov and {any}_cov</p></th>
+<td><p>integer</p></td>
+<td><p>coverage for the annotation over all samples, keys ending with <em>_cov</em> indicates coverage for each sample</p></td>
+</tr>
+<tr class="row-odd"><th class="stub"><p>exp_syn, exp_nonsyn</p></th>
+<td><p>integer</p></td>
+<td><p>used for expected number of synonymous and non-synonymous changes for the annotation</p></td>
+</tr>
+</tbody>
+</table>
+<p>The following keys are added by different scripts and may be used in different scripts or annotation methods.</p>
+<table class="docutils align-default" id="id2">
+<caption><span class="caption-text">Interpreted Values</span><a class="headerlink" href="#id2" title="Permalink to this table">¶</a></caption>
+<colgroup>
+<col style="width: 25%" />
+<col style="width: 25%" />
+<col style="width: 25%" />
+<col style="width: 25%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head stub"><p>Key</p></th>
+<th class="head"><p>Value</p></th>
+<th class="head"><p>Explanation</p></th>
+<th class="head"><p>Used</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><th class="stub"><p>taxon_name</p></th>
+<td><p>string</p></td>
+<td><p>name of the taxon</p></td>
+<td><p>not used</p></td>
+</tr>
+<tr class="row-odd"><th class="stub"><p>lineage</p></th>
+<td><p>string</p></td>
+<td><p>taxon lineage</p></td>
+<td><p>not used</p></td>
+</tr>
+<tr class="row-even"><th class="stub"><p>EC</p></th>
+<td><p>comma separated values</p></td>
+<td><p>list of EC numbers associated to the annotation</p></td>
+<td><p>used by <a class="reference internal" href="api/mgkit.io.gff.html#mgkit.io.gff.Annotation.get_ec" title="mgkit.io.gff.Annotation.get_ec"><code class="xref py py-meth docutils literal notranslate"><span class="pre">mgkit.io.gff.Annotation.get_ec()</span></code></a></p></td>
+</tr>
+<tr class="row-odd"><th class="stub"><p>map_{any}</p></th>
+<td><p>comma separated values</p></td>
+<td><p>list of mapping to a specific db (e.g. eggNOG -&gt; map_EGGNOG)</p></td>
+<td><p>used by <a class="reference internal" href="api/mgkit.io.gff.html#mgkit.io.gff.Annotation.get_mapping" title="mgkit.io.gff.Annotation.get_mapping"><code class="xref py py-meth docutils literal notranslate"><span class="pre">mgkit.io.gff.Annotation.get_mapping()</span></code></a></p></td>
+</tr>
+<tr class="row-even"><th class="stub"><p>counts_{any}</p></th>
+<td><p>float</p></td>
+<td><p>Stores the count data for a sample (e.g. counts_Sample1)</p></td>
+<td><p>used by script <cite>add-gff-info</cite></p></td>
+</tr>
+<tr class="row-odd"><th class="stub"><p>fpkms_{any}</p></th>
+<td><p>float</p></td>
+<td><p>Stores the count data for a sample (e.g. fpkms_Sample1)</p></td>
+<td><p>used by script <cite>add-gff-info</cite></p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="library.html" class="btn btn-neutral float-right" title="Library Reference" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="examples/db/example-annotation-db-package.html" class="btn btn-neutral float-left" title="Examples of the mgkit.db package" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2013-2015, Francesco Rubino
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

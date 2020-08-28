@@ -1,0 +1,3677 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Tutorial - Exploring the Data &mdash; MGKit: Metagenomic framework 0.5.0 documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+  <script type="text/javascript" src="../_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+        <script type="text/javascript" src="../_static/jquery.js"></script>
+        <script type="text/javascript" src="../_static/underscore.js"></script>
+        <script type="text/javascript" src="../_static/doctools.js"></script>
+        <script type="text/javascript" src="../_static/language_data.js"></script>
+        <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+        <script async="async" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+        <script type="text/x-mathjax-config">MathJax.Hub.Config({"tex2jax": {"inlineMath": [["$", "$"], ["\\(", "\\)"]], "processEscapes": true, "ignoreClass": "document", "processClass": "math|output_area"}})</script>
+    
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/graphviz.css" type="text/css" />
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Profile a Community with BLAST" href="blast2lca.html" />
+    <link rel="prev" title="Tutorial" href="tutorial.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../index.html" class="icon icon-home"> MGKit: Metagenomic framework
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                0.5.0
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../introduction.html">Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../install.html">Installation</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">Metagenomic Pipeline</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="tutorial.html">Tutorial</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Tutorial - Exploring the Data</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#Imports">Imports</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#Download-Complete-Data">Download Complete Data</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#Read-Necessary-Data">Read Necessary Data</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#Explore-Count-Data">Explore Count Data</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#Load-Taxa-Table">Load Taxa Table</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#Plots-for-Top40-Taxa">Plots for Top40 Taxa</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#Functional-Categories">Functional Categories</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#Enzyme-Classification">Enzyme Classification</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#Explore-Diversity">Explore Diversity</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#Taxa">Taxa</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#Functional-Categories">Functional Categories</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#Enzyme-Classification">Enzyme Classification</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="blast2lca.html">Profile a Community with BLAST</a></li>
+<li class="toctree-l2"><a class="reference internal" href="gene_prediction.html">Gene Prediction</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../scripts/index.html">Scripts Details</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../examples/index.html">Example Notebooks</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../gff.html">MGKit GFF Specifications</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../library.html">Library Reference</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../changes.html">Changes</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">MGKit: Metagenomic framework</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="index.html">Metagenomic Pipeline</a> &raquo;</li>
+        
+      <li>Tutorial - Exploring the Data</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="../_sources/pipeline/Exploring-Metagenomic-Data.ipynb.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  
+<style>
+/* CSS for nbsphinx extension */
+
+/* remove conflicting styling from Sphinx themes */
+div.nbinput.container,
+div.nbinput.container div.prompt,
+div.nbinput.container div.input_area,
+div.nbinput.container div[class*=highlight],
+div.nbinput.container div[class*=highlight] pre,
+div.nboutput.container,
+div.nboutput.container div.prompt,
+div.nboutput.container div.output_area,
+div.nboutput.container div[class*=highlight],
+div.nboutput.container div[class*=highlight] pre {
+    background: none;
+    border: none;
+    padding: 0 0;
+    margin: 0;
+    box-shadow: none;
+}
+
+/* avoid gaps between output lines */
+div.nboutput.container div[class*=highlight] pre {
+    line-height: normal;
+}
+
+/* input/output containers */
+div.nbinput.container,
+div.nboutput.container {
+    display: -webkit-flex;
+    display: flex;
+    align-items: flex-start;
+    margin: 0;
+    width: 100%;
+}
+@media (max-width: 540px) {
+    div.nbinput.container,
+    div.nboutput.container {
+        flex-direction: column;
+    }
+}
+
+/* input container */
+div.nbinput.container {
+    padding-top: 5px;
+}
+
+/* last container */
+div.nblast.container {
+    padding-bottom: 5px;
+}
+
+/* input prompt */
+div.nbinput.container div.prompt pre {
+    color: #307FC1;
+}
+
+/* output prompt */
+div.nboutput.container div.prompt pre {
+    color: #BF5B3D;
+}
+
+/* all prompts */
+div.nbinput.container div.prompt,
+div.nboutput.container div.prompt {
+    min-width: 5ex;
+    padding-top: 0.4em;
+    padding-right: 0.4em;
+    text-align: right;
+    flex: 0;
+}
+@media (max-width: 540px) {
+    div.nbinput.container div.prompt,
+    div.nboutput.container div.prompt {
+        text-align: left;
+        padding: 0.4em;
+    }
+    div.nboutput.container div.prompt.empty {
+        padding: 0;
+    }
+}
+
+/* disable scrollbars on prompts */
+div.nbinput.container div.prompt pre,
+div.nboutput.container div.prompt pre {
+    overflow: hidden;
+}
+
+/* input/output area */
+div.nbinput.container div.input_area,
+div.nboutput.container div.output_area {
+    padding: 0.4em;
+    -webkit-flex: 1;
+    flex: 1;
+    overflow: auto;
+}
+@media (max-width: 540px) {
+    div.nbinput.container div.input_area,
+    div.nboutput.container div.output_area {
+        width: 100%;
+    }
+}
+
+/* input area */
+div.nbinput.container div.input_area {
+    border: 1px solid #e0e0e0;
+    border-radius: 2px;
+    background: #f5f5f5;
+}
+
+/* override MathJax center alignment in output cells */
+div.nboutput.container div[class*=MathJax] {
+    text-align: left !important;
+}
+
+/* override sphinx.ext.imgmath center alignment in output cells */
+div.nboutput.container div.math p {
+    text-align: left;
+}
+
+/* standard error */
+div.nboutput.container div.output_area.stderr {
+    background: #fdd;
+}
+
+/* ANSI colors */
+.ansi-black-fg { color: #3E424D; }
+.ansi-black-bg { background-color: #3E424D; }
+.ansi-black-intense-fg { color: #282C36; }
+.ansi-black-intense-bg { background-color: #282C36; }
+.ansi-red-fg { color: #E75C58; }
+.ansi-red-bg { background-color: #E75C58; }
+.ansi-red-intense-fg { color: #B22B31; }
+.ansi-red-intense-bg { background-color: #B22B31; }
+.ansi-green-fg { color: #00A250; }
+.ansi-green-bg { background-color: #00A250; }
+.ansi-green-intense-fg { color: #007427; }
+.ansi-green-intense-bg { background-color: #007427; }
+.ansi-yellow-fg { color: #DDB62B; }
+.ansi-yellow-bg { background-color: #DDB62B; }
+.ansi-yellow-intense-fg { color: #B27D12; }
+.ansi-yellow-intense-bg { background-color: #B27D12; }
+.ansi-blue-fg { color: #208FFB; }
+.ansi-blue-bg { background-color: #208FFB; }
+.ansi-blue-intense-fg { color: #0065CA; }
+.ansi-blue-intense-bg { background-color: #0065CA; }
+.ansi-magenta-fg { color: #D160C4; }
+.ansi-magenta-bg { background-color: #D160C4; }
+.ansi-magenta-intense-fg { color: #A03196; }
+.ansi-magenta-intense-bg { background-color: #A03196; }
+.ansi-cyan-fg { color: #60C6C8; }
+.ansi-cyan-bg { background-color: #60C6C8; }
+.ansi-cyan-intense-fg { color: #258F8F; }
+.ansi-cyan-intense-bg { background-color: #258F8F; }
+.ansi-white-fg { color: #C5C1B4; }
+.ansi-white-bg { background-color: #C5C1B4; }
+.ansi-white-intense-fg { color: #A1A6B2; }
+.ansi-white-intense-bg { background-color: #A1A6B2; }
+
+.ansi-default-inverse-fg { color: #FFFFFF; }
+.ansi-default-inverse-bg { background-color: #000000; }
+
+.ansi-bold { font-weight: bold; }
+.ansi-underline { text-decoration: underline; }
+
+/* Some additional styling taken form the Jupyter notebook CSS */
+div.rendered_html table {
+  border: none;
+  border-collapse: collapse;
+  border-spacing: 0;
+  color: black;
+  font-size: 12px;
+  table-layout: fixed;
+}
+div.rendered_html thead {
+  border-bottom: 1px solid black;
+  vertical-align: bottom;
+}
+div.rendered_html tr,
+div.rendered_html th,
+div.rendered_html td {
+  text-align: right;
+  vertical-align: middle;
+  padding: 0.5em 0.5em;
+  line-height: normal;
+  white-space: normal;
+  max-width: none;
+  border: none;
+}
+div.rendered_html th {
+  font-weight: bold;
+}
+div.rendered_html tbody tr:nth-child(odd) {
+  background: #f5f5f5;
+}
+div.rendered_html tbody tr:hover {
+  background: rgba(66, 165, 245, 0.2);
+}
+
+/* CSS overrides for sphinx_rtd_theme */
+
+/* 24px margin */
+.nbinput.nblast.container,
+.nboutput.nblast.container {
+    margin-bottom: 19px;  /* padding has already 5px */
+}
+
+/* ... except between code cells! */
+.nblast.container + .nbinput.container {
+    margin-top: -19px;
+}
+
+.admonition > p:before {
+    margin-right: 4px;  /* make room for the exclamation icon */
+}
+
+/* Fix math alignment, see https://github.com/rtfd/sphinx_rtd_theme/pull/686 */
+.math {
+    text-align: unset;
+}
+</style>
+<div class="section" id="Tutorial---Exploring-the-Data">
+<h1>Tutorial - Exploring the Data<a class="headerlink" href="#Tutorial---Exploring-the-Data" title="Permalink to this headline">¶</a></h1>
+<p>The following section requires that:</p>
+<ul class="simple">
+<li><p>the tutorial has been completed</p></li>
+<li><p>the data from it is in the same directory</p></li>
+</ul>
+<p>In alternative the data required to run this example can be download from <a class="reference external" href="http://files.figshare.com/2598711/tutorial_data.zip">figshare</a> and uncrompressed.</p>
+<div class="section" id="Imports">
+<h2>Imports<a class="headerlink" href="#Imports" title="Permalink to this headline">¶</a></h2>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[1]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython2 notranslate"><div class="highlight"><pre>
+<span></span><span class="kn">from</span> <span class="nn">__future__</span> <span class="kn">import</span> <span class="n">print_function</span>
+
+<span class="c1">#Python Standard Library</span>
+<span class="kn">import</span> <span class="nn">glob</span>
+<span class="kn">import</span> <span class="nn">pickle</span>
+<span class="kn">import</span> <span class="nn">sys</span>
+<span class="kn">import</span> <span class="nn">functools</span>
+<span class="c1">#External Dependencies (install via pip or anaconda)</span>
+
+<span class="c1"># Check if running interactively or not</span>
+<span class="kn">import</span> <span class="nn">matplotlib</span> <span class="k">as</span> <span class="nn">mpl</span> <span class="c1"># http://matplotlib.org</span>
+<span class="c1"># from:</span>
+<span class="c1"># http://stackoverflow.com/questions/15411967/how-can-i-check-if-code-is-executed-in-the-ipython-notebook</span>
+<span class="c1"># and</span>
+<span class="c1"># http://stackoverflow.com/questions/15455029/python-matplotlib-agg-vs-interactive-plotting-and-tight-layout</span>
+<span class="kn">import</span> <span class="nn">__main__</span> <span class="k">as</span> <span class="nn">main</span>
+<span class="k">if</span> <span class="nb">hasattr</span><span class="p">(</span><span class="n">main</span><span class="p">,</span> <span class="s1">&#39;__file__&#39;</span><span class="p">):</span>
+    <span class="c1"># Non interactive, force the use of Agg backend instead</span>
+    <span class="c1"># of the default one</span>
+    <span class="n">mpl</span><span class="o">.</span><span class="n">use</span><span class="p">(</span><span class="s1">&#39;Agg&#39;</span><span class="p">)</span>
+
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="c1"># http://www.numpy.org</span>
+<span class="kn">import</span> <span class="nn">pandas</span> <span class="c1"># http://pandas.pydata.org</span>
+<span class="kn">import</span> <span class="nn">seaborn</span> <span class="c1"># http://stanford.edu/~mwaskom/software/seaborn/</span>
+<span class="kn">import</span> <span class="nn">scipy</span> <span class="c1"># http://www.scipy.org</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+
+
+<span class="c1">#MGKit Import</span>
+<span class="kn">from</span> <span class="nn">mgkit.io</span> <span class="kn">import</span> <span class="n">gff</span><span class="p">,</span> <span class="n">fasta</span>
+<span class="kn">from</span> <span class="nn">mgkit.mappings</span> <span class="kn">import</span> <span class="n">eggnog</span>
+<span class="kn">import</span> <span class="nn">mgkit.counts</span><span class="o">,</span> <span class="nn">mgkit.taxon</span><span class="o">,</span> <span class="nn">mgkit.snps</span><span class="o">,</span> <span class="nn">mgkit.plots</span>
+<span class="kn">import</span> <span class="nn">mgkit.snps</span>
+<span class="kn">import</span> <span class="nn">mgkit.mappings.enzyme</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area stderr docutils container">
+<div class="highlight"><pre>
+/home/frubino/mgkit/dev-env/local/lib/python2.7/site-packages/statsmodels/compat/pandas.py:56: FutureWarning: The pandas.core.datetools module is deprecated and will be removed in a future version. Please use the pandas.tseries module instead.
+  from pandas.core import datetools
+</pre></div></div>
+</div>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[2]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython2 notranslate"><div class="highlight"><pre>
+<span></span><span class="n">mgkit</span><span class="o">.</span><span class="n">logger</span><span class="o">.</span><span class="n">config_log</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[3]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython2 notranslate"><div class="highlight"><pre>
+<span></span><span class="n">mgkit</span><span class="o">.</span><span class="n">cite</span><span class="p">(</span><span class="n">sys</span><span class="o">.</span><span class="n">stdout</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+
+ _|      _|    _|_|_|  _|    _|  _|    _|
+ _|_|  _|_|  _|        _|  _|        _|_|_|_|
+ _|  _|  _|  _|  _|_|  _|_|      _|    _|
+ _|      _|  _|    _|  _|  _|    _|    _|
+ _|      _|    _|_|_|  _|    _|  _|      _|_|
+
+
+MGKit Version: 0.3.4
+
+Rubino, F. and Creevey, C.J. (2014).
+MGkit: Metagenomic Framework For The Study Of Microbial Communities.
+
+Available at: http://figshare.com/articles/MGkit_Metagenomic_Framework_For_The_Study_Of_Microbial_Communities/1269288
+
+[doi:10.6084/m9.figshare.1269288]
+
+</pre></div></div>
+</div>
+</div>
+<div class="section" id="Download-Complete-Data">
+<h2>Download Complete Data<a class="headerlink" href="#Download-Complete-Data" title="Permalink to this headline">¶</a></h2>
+<p>If the tutorial can’t be completed, the download data can be downloaded from: %%</p>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[4]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython2 notranslate"><div class="highlight"><pre>
+<span></span><span class="c1"># the following variable is used to indicate where the tutorial data is stored</span>
+<span class="n">data_dir</span> <span class="o">=</span> <span class="s1">&#39;tutorial-data/&#39;</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="Read-Necessary-Data">
+<h2>Read Necessary Data<a class="headerlink" href="#Read-Necessary-Data" title="Permalink to this headline">¶</a></h2>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[5]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython2 notranslate"><div class="highlight"><pre>
+<span></span><span class="c1"># Keeps a list of the count data file outputted by</span>
+<span class="c1"># htseq-count</span>
+<span class="n">counts</span> <span class="o">=</span> <span class="n">glob</span><span class="o">.</span><span class="n">glob</span><span class="p">(</span><span class="s1">&#39;</span><span class="si">{}</span><span class="s1">*-counts.txt&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">data_dir</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[6]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython2 notranslate"><div class="highlight"><pre>
+<span></span><span class="c1"># This file contains the SNPs information and it is the output</span>
+<span class="c1"># of the snp_parser script</span>
+<span class="n">snp_data</span> <span class="o">=</span> <span class="n">pickle</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="nb">open</span><span class="p">(</span><span class="s1">&#39;</span><span class="si">{}</span><span class="s1">snp_data.pickle&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">data_dir</span><span class="p">),</span> <span class="s1">&#39;r&#39;</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[7]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython2 notranslate"><div class="highlight"><pre>
+<span></span><span class="c1"># Taxonomy needs to be download beforehand. It is loaded into an an</span>
+<span class="c1"># instance of mgkit.taxon.UniprotTaxonomy. It is used in filtering</span>
+<span class="c1"># data and to map taxon IDs to different levels in the taxonomy</span>
+<span class="n">taxonomy</span> <span class="o">=</span> <span class="n">mgkit</span><span class="o">.</span><span class="n">taxon</span><span class="o">.</span><span class="n">UniprotTaxonomy</span><span class="p">(</span><span class="s1">&#39;</span><span class="si">{}</span><span class="s1">/taxonomy.pickle&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">data_dir</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area stderr docutils container">
+<div class="highlight"><pre>
+2018-05-22 14:06:05,570 - <span class="ansi-green-fg">INFO</span> - mgkit.taxon-&gt;load_data: Loading taxonomy from file tutorial-data//taxonomy.pickle
+</pre></div></div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[8]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython2 notranslate"><div class="highlight"><pre>
+<span></span><span class="c1"># Loads all annotations in a dictionary, with the unique ID (uid) as key</span>
+<span class="c1"># and the mgkit.io.gff.Annotation instance that represent the line in the</span>
+<span class="c1"># GFF file as value</span>
+<span class="n">annotations</span> <span class="o">=</span> <span class="p">{</span><span class="n">x</span><span class="o">.</span><span class="n">uid</span><span class="p">:</span> <span class="n">x</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">gff</span><span class="o">.</span><span class="n">parse_gff</span><span class="p">(</span><span class="s1">&#39;</span><span class="si">{}</span><span class="s1">assembly.uniprot.gff&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">data_dir</span><span class="p">))}</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area stderr docutils container">
+<div class="highlight"><pre>
+2018-05-22 14:06:14,637 - <span class="ansi-green-fg">INFO</span> - mgkit.io.gff-&gt;parse_gff: Loading GFF from file (tutorial-data/assembly.uniprot.gff)
+2018-05-22 14:06:15,578 - <span class="ansi-green-fg">INFO</span> - mgkit.io.gff-&gt;parse_gff: Read 9136 line from file (tutorial-data/assembly.uniprot.gff)
+</pre></div></div>
+</div>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[9]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython2 notranslate"><div class="highlight"><pre>
+<span></span><span class="c1"># Used to extract the sample ID from the count file names</span>
+<span class="n">file_name_to_sample</span> <span class="o">=</span> <span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">x</span><span class="o">.</span><span class="n">rsplit</span><span class="p">(</span><span class="s1">&#39;/&#39;</span><span class="p">)[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">&#39;-&#39;</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[10]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython2 notranslate"><div class="highlight"><pre>
+<span></span><span class="c1"># Used to rename the DataFrame columns</span>
+<span class="n">sample_names</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s1">&#39;SRR001326&#39;</span><span class="p">:</span> <span class="s1">&#39;50m&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;SRR001325&#39;</span><span class="p">:</span> <span class="s1">&#39;01m&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;SRR001323&#39;</span><span class="p">:</span> <span class="s1">&#39;32m&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;SRR001322&#39;</span><span class="p">:</span> <span class="s1">&#39;16m&#39;</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="Explore-Count-Data">
+<h2>Explore Count Data<a class="headerlink" href="#Explore-Count-Data" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="Load-Taxa-Table">
+<h3>Load Taxa Table<a class="headerlink" href="#Load-Taxa-Table" title="Permalink to this headline">¶</a></h3>
+<p>Build a pandas.DataFrame instance. It is NOT required, but it is easier to manipulate. load_sample_counts_to_taxon returns a pandas.Series instance.</p>
+<p>The DataFrame will have the sample names as columns names and the different taxon IDs as rows names. There are 3 different function to map counts and annotations to a pandas.Series instance:</p>
+<ul class="simple">
+<li><p>mgkit.counts.load_sample_counts</p></li>
+<li><p>mgkit.counts.load_sample_counts_to_taxon</p></li>
+<li><p>mgkit.counts.load_sample_counts_to_genes</p></li>
+</ul>
+<p>The three differs primarly by the index for the pandas.Series they return, which is (gene_id, taxon_id), taxon_id and gene_id, respectively. Another change is the possibility to map a gene_id to another and a taxon_id to a different rank. In this contexts, as it is interesting to assess the abundance of each organism, mgkit.counts.load_sample_counts_to_taxon can be used. It provides a <strong>rank</strong> parameter that can be changed to map all counts to the <em>order</em> level in this case, but can be changed
+to any rank in mgkit.taxon.TAXON_RANKS, for example <em>genus</em>, <em>phylum</em>.</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[11]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython2 notranslate"><div class="highlight"><pre>
+<span></span><span class="n">taxa_counts</span> <span class="o">=</span> <span class="n">pandas</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">({</span>
+    <span class="c1"># Get the sample names</span>
+    <span class="n">file_name_to_sample</span><span class="p">(</span><span class="n">file_name</span><span class="p">):</span> <span class="n">mgkit</span><span class="o">.</span><span class="n">counts</span><span class="o">.</span><span class="n">load_sample_counts_to_taxon</span><span class="p">(</span>
+        <span class="c1"># A function accept a uid as only parameter and returns only the</span>
+        <span class="c1"># gene_id and taxon_id, so we set it to a lambda that does</span>
+        <span class="c1"># exactly that</span>
+        <span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="p">(</span><span class="n">annotations</span><span class="p">[</span><span class="n">x</span><span class="p">]</span><span class="o">.</span><span class="n">gene_id</span><span class="p">,</span> <span class="n">annotations</span><span class="p">[</span><span class="n">x</span><span class="p">]</span><span class="o">.</span><span class="n">taxon_id</span><span class="p">),</span>
+        <span class="c1"># An iterator that yields (uid, count) is needed and MGKit</span>
+        <span class="c1"># has a function that does that for htseq-count files.</span>
+        <span class="c1"># This can be adapted to any count data file format</span>
+        <span class="n">mgkit</span><span class="o">.</span><span class="n">counts</span><span class="o">.</span><span class="n">load_htseq_counts</span><span class="p">(</span><span class="n">file_name</span><span class="p">),</span>
+        <span class="c1"># A mgkit.taxon.UniprotTaxonomy instance is necessary to filter</span>
+        <span class="c1"># the data and map it to a different rank</span>
+        <span class="n">taxonomy</span><span class="p">,</span>
+        <span class="c1"># A taxonomic rank to map each taxon_id to. Must be lowercase</span>
+        <span class="n">rank</span><span class="o">=</span><span class="s1">&#39;order&#39;</span><span class="p">,</span>
+        <span class="c1"># If False, any taxon_id that can not be resolved at the taxonomic</span>
+        <span class="c1"># rank requested is excluded from the results</span>
+        <span class="n">include_higher</span><span class="o">=</span><span class="kc">False</span>
+    <span class="p">)</span>
+    <span class="c1"># iterate over all count files</span>
+    <span class="k">for</span> <span class="n">file_name</span> <span class="ow">in</span> <span class="n">counts</span>
+<span class="p">})</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area stderr docutils container">
+<div class="highlight"><pre>
+2018-05-22 14:06:15,644 - <span class="ansi-green-fg">INFO</span> - mgkit.counts.func-&gt;load_htseq_counts: Loading HTSeq-count file tutorial-data/SRR001322-counts.txt
+2018-05-22 14:06:15,733 - <span class="ansi-green-fg">INFO</span> - mgkit.counts.func-&gt;load_htseq_counts: Loading HTSeq-count file tutorial-data/SRR001323-counts.txt
+2018-05-22 14:06:15,837 - <span class="ansi-green-fg">INFO</span> - mgkit.counts.func-&gt;load_htseq_counts: Loading HTSeq-count file tutorial-data/SRR001325-counts.txt
+2018-05-22 14:06:15,921 - <span class="ansi-green-fg">INFO</span> - mgkit.counts.func-&gt;load_htseq_counts: Loading HTSeq-count file tutorial-data/SRR001326-counts.txt
+</pre></div></div>
+</div>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[12]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython2 notranslate"><div class="highlight"><pre>
+<span></span><span class="c1"># This is an alternative if the counts are stored in the annotations</span>
+<span class="c1"># ann_func = functools.partial(</span>
+<span class="c1">#     taxonomy.get_ranked_id,</span>
+<span class="c1">#     rank=&#39;order&#39;,</span>
+<span class="c1">#     it=True,</span>
+<span class="c1">#     include_higher=False</span>
+<span class="c1"># )</span>
+<span class="c1"># taxa_counts = mgkit.counts.func.from_gff(annotations.values(), sample_names, ann_func=lambda x: ann_func(x.taxon_id))</span>
+<span class="c1"># taxa_counts = taxa_counts[taxa_counts.index.notnull()]</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="Scaling-(DESeq-method)-and-Rename-Rows/Columns">
+<h4>Scaling (DESeq method) and Rename Rows/Columns<a class="headerlink" href="#Scaling-(DESeq-method)-and-Rename-Rows/Columns" title="Permalink to this headline">¶</a></h4>
+<p>Because each sample has different yields in total DNA from the sequencing, the table should be scaled. The are a few approaches, RPKM, scaling by the minimum. MGKit offers mgkit.counts.scaling.scale_factor_deseq and mgkit.counts.scaling.scale_rpkm that scale using the DESeq method and RPKM respectively.</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[12]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython2 notranslate"><div class="highlight"><pre>
+<span></span><span class="c1"># the DESeq method doesn&#39;t require information about the gene length</span>
+<span class="n">taxa_counts</span> <span class="o">=</span> <span class="n">mgkit</span><span class="o">.</span><span class="n">counts</span><span class="o">.</span><span class="n">scale_deseq</span><span class="p">(</span><span class="n">taxa_counts</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area stderr docutils container">
+<div class="highlight"><pre>
+/home/frubino/mgkit/dev-env/local/lib/python2.7/site-packages/scipy/stats/stats.py:305: RuntimeWarning: divide by zero encountered in log
+  log_a = np.log(np.array(a, dtype=dtype))
+</pre></div></div>
+</div>
+<p>One of the powers of pandas data structures is the metadata associated and the possibility to modify them with ease. In this case, the columns are named after the sample IDs from ENA and the row names are the taxon IDs. To make it easier to analyse, columns and rows can be renamed and sorted by name and the rows sorted in descending order by the first colum (1 meter).</p>
+<p>To rename the columns the dictionary <strong>sample_name</strong> can be supplied and for the rows the name of each taxon ID can be accessed through the taxonomy instance, because it works as a dictionary and the returned object has a <strong>s_name</strong> attribute with the scientific name (lowercase).</p>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[13]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython2 notranslate"><div class="highlight"><pre>
+<span></span><span class="n">taxa_counts</span> <span class="o">=</span> <span class="n">taxa_counts</span><span class="o">.</span><span class="n">rename</span><span class="p">(</span>
+    <span class="n">index</span><span class="o">=</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">taxonomy</span><span class="p">[</span><span class="n">x</span><span class="p">]</span><span class="o">.</span><span class="n">s_name</span><span class="p">,</span>
+    <span class="n">columns</span><span class="o">=</span><span class="n">sample_names</span>
+<span class="p">)</span><span class="o">.</span><span class="n">sort_index</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="s1">&#39;columns&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[14]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython2 notranslate"><div class="highlight"><pre>
+<span></span><span class="n">taxa_counts</span> <span class="o">=</span> <span class="n">taxa_counts</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">taxa_counts</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="s1">&#39;columns&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">sort_values</span><span class="p">(</span><span class="n">ascending</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span><span class="o">.</span><span class="n">index</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[15]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython2 notranslate"><div class="highlight"><pre>
+<span></span><span class="c1"># the *describe* method of a pandas.Series or pandas.DataFrame</span>
+<span class="c1"># gives some insights into the data</span>
+<span class="n">taxa_counts</span><span class="o">.</span><span class="n">describe</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[15]:
+</pre></div>
+</div>
+<div class="output_area rendered_html docutils container">
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>01m</th>
+      <th>16m</th>
+      <th>32m</th>
+      <th>50m</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>count</th>
+      <td>194.000000</td>
+      <td>194.000000</td>
+      <td>194.000000</td>
+      <td>194.000000</td>
+    </tr>
+    <tr>
+      <th>mean</th>
+      <td>27.781155</td>
+      <td>33.622739</td>
+      <td>30.885116</td>
+      <td>34.487249</td>
+    </tr>
+    <tr>
+      <th>std</th>
+      <td>69.125920</td>
+      <td>93.515885</td>
+      <td>86.123968</td>
+      <td>92.818806</td>
+    </tr>
+    <tr>
+      <th>min</th>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+    </tr>
+    <tr>
+      <th>25%</th>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.713044</td>
+      <td>0.000000</td>
+    </tr>
+    <tr>
+      <th>50%</th>
+      <td>5.345444</td>
+      <td>3.198502</td>
+      <td>4.278267</td>
+      <td>3.465247</td>
+    </tr>
+    <tr>
+      <th>75%</th>
+      <td>19.711325</td>
+      <td>19.990636</td>
+      <td>17.826111</td>
+      <td>21.441218</td>
+    </tr>
+    <tr>
+      <th>max</th>
+      <td>529.198964</td>
+      <td>722.861412</td>
+      <td>713.044453</td>
+      <td>738.097692</td>
+    </tr>
+  </tbody>
+</table>
+</div></div>
+</div>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[16]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython2 notranslate"><div class="highlight"><pre>
+<span></span><span class="c1">#Save a CSV to disk, but Excel and other file formats are available</span>
+<span class="n">taxa_counts</span><span class="o">.</span><span class="n">to_csv</span><span class="p">(</span><span class="s1">&#39;</span><span class="si">{}</span><span class="s1">taxa_counts.csv&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">data_dir</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[17]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython2 notranslate"><div class="highlight"><pre>
+<span></span><span class="c1"># This will give an idea of the counts for each order</span>
+<span class="n">taxa_counts</span><span class="o">.</span><span class="n">head</span><span class="p">(</span><span class="n">n</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[17]:
+</pre></div>
+</div>
+<div class="output_area rendered_html docutils container">
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>01m</th>
+      <th>16m</th>
+      <th>32m</th>
+      <th>50m</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>Methanococcales</th>
+      <td>529.198964</td>
+      <td>722.861412</td>
+      <td>713.044453</td>
+      <td>738.097692</td>
+    </tr>
+    <tr>
+      <th>Thermococcales</th>
+      <td>354.135670</td>
+      <td>637.568030</td>
+      <td>577.566007</td>
+      <td>595.156237</td>
+    </tr>
+    <tr>
+      <th>Bacillales</th>
+      <td>525.189881</td>
+      <td>554.406983</td>
+      <td>440.661472</td>
+      <td>528.450225</td>
+    </tr>
+    <tr>
+      <th>Methanobacteriales</th>
+      <td>163.036044</td>
+      <td>358.232204</td>
+      <td>290.922137</td>
+      <td>330.931125</td>
+    </tr>
+    <tr>
+      <th>Archaeoglobales</th>
+      <td>208.472319</td>
+      <td>313.453179</td>
+      <td>278.087337</td>
+      <td>274.620855</td>
+    </tr>
+    <tr>
+      <th>Dehalococcoidales</th>
+      <td>203.126875</td>
+      <td>229.225964</td>
+      <td>286.643870</td>
+      <td>253.829370</td>
+    </tr>
+    <tr>
+      <th>Clostridiales</th>
+      <td>225.845012</td>
+      <td>217.498124</td>
+      <td>205.356802</td>
+      <td>206.182219</td>
+    </tr>
+    <tr>
+      <th>Enterobacterales</th>
+      <td>199.117792</td>
+      <td>165.255928</td>
+      <td>146.887157</td>
+      <td>252.963059</td>
+    </tr>
+    <tr>
+      <th>Methanosarcinales</th>
+      <td>146.999712</td>
+      <td>238.821470</td>
+      <td>213.913336</td>
+      <td>129.080465</td>
+    </tr>
+    <tr>
+      <th>Desulfurococcales</th>
+      <td>66.818051</td>
+      <td>197.240946</td>
+      <td>249.565558</td>
+      <td>182.791799</td>
+    </tr>
+  </tbody>
+</table>
+</div></div>
+</div>
+</div>
+</div>
+<div class="section" id="Plots-for-Top40-Taxa">
+<h3>Plots for Top40 Taxa<a class="headerlink" href="#Plots-for-Top40-Taxa" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="Distribution-of-Each-Taxon-Over-Depth">
+<h4>Distribution of Each Taxon Over Depth<a class="headerlink" href="#Distribution-of-Each-Taxon-Over-Depth" title="Permalink to this headline">¶</a></h4>
+<p>How to visualise the data depends on the question we want to ask and the experimental design. As a starting point, it may be interesting to visualise the variation of a taxonomic order abundance over the samples. This can be done using boxplots, among other methods.</p>
+<p>MGKit offers a few functions to make complex plots, with a starting point in mgkit.plots.boxplot.boxplot_dataframe. However, as the data produced is in fact a pandas DataFrame, which is widely supported, a host of different specialised libraries tht offer similar functions can be used.</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[18]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython2 notranslate"><div class="highlight"><pre>
+<span></span><span class="c1"># A matplotlib Figure instance and a single axis can be returned</span>
+<span class="c1"># by this MGKit function. It is an helper function, the axis is</span>
+<span class="c1"># needed to plot and the figure object to save the file to disk</span>
+<span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">mgkit</span><span class="o">.</span><span class="n">plots</span><span class="o">.</span><span class="n">get_single_figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">15</span><span class="p">,</span> <span class="mi">10</span><span class="p">))</span>
+<span class="c1"># The return value of mgkit.plots.boxplot.boxplot_dataframe is</span>
+<span class="c1"># passed to the **_** special variable, as it is not needed and</span>
+<span class="c1"># it would be printed, otherwise</span>
+<span class="n">_</span> <span class="o">=</span> <span class="n">mgkit</span><span class="o">.</span><span class="n">plots</span><span class="o">.</span><span class="n">boxplot</span><span class="o">.</span><span class="n">boxplot_dataframe</span><span class="p">(</span>
+    <span class="c1"># The full dataframe can be passed</span>
+    <span class="n">taxa_counts</span><span class="p">,</span>
+    <span class="c1"># this variable is used to tell the function</span>
+    <span class="c1"># which rows and in which order they need to</span>
+    <span class="c1"># be plot. In this case only the first 40 are</span>
+    <span class="c1"># plot</span>
+    <span class="n">taxa_counts</span><span class="o">.</span><span class="n">index</span><span class="p">[:</span><span class="mi">40</span><span class="p">],</span>
+    <span class="c1"># A matplotlib axis instance</span>
+    <span class="n">ax</span><span class="p">,</span>
+    <span class="c1"># a dictionary with options related to the labels</span>
+    <span class="c1"># on both the X and Y axes. In this case it changes</span>
+    <span class="c1"># the size of the labels</span>
+    <span class="n">fonts</span><span class="o">=</span><span class="nb">dict</span><span class="p">(</span><span class="n">fontsize</span><span class="o">=</span><span class="mi">14</span><span class="p">),</span>
+    <span class="c1"># The default is to use the same colors for all</span>
+    <span class="c1"># boxes. A dictionary can be passed to change this</span>
+    <span class="c1"># in this case, the &#39;hls&#39; palette from seaborn is</span>
+    <span class="c1"># used.</span>
+    <span class="n">data_colours</span><span class="o">=</span><span class="p">{</span>
+        <span class="n">x</span><span class="p">:</span> <span class="n">color</span>
+        <span class="k">for</span> <span class="n">x</span><span class="p">,</span> <span class="n">color</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="n">taxa_counts</span><span class="o">.</span><span class="n">index</span><span class="p">[:</span><span class="mi">40</span><span class="p">],</span> <span class="n">seaborn</span><span class="o">.</span><span class="n">color_palette</span><span class="p">(</span><span class="s1">&#39;hls&#39;</span><span class="p">,</span> <span class="mi">40</span><span class="p">))</span>
+    <span class="p">}</span>
+<span class="p">)</span>
+<span class="c1"># Adds labels to the axes</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s1">&#39;Order&#39;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">16</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s1">&#39;Counts&#39;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">16</span><span class="p">)</span>
+<span class="c1"># Ensure the correct layout before writing to disk</span>
+<span class="n">fig</span><span class="o">.</span><span class="n">set_tight_layout</span><span class="p">(</span><span class="kc">True</span><span class="p">)</span>
+<span class="c1"># Saves a PDF file, or any other supported format by matplotlib</span>
+<span class="n">fig</span><span class="o">.</span><span class="n">savefig</span><span class="p">(</span><span class="s1">&#39;</span><span class="si">{}</span><span class="s1">taxa_counts-boxplot_top40_taxa.pdf&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">data_dir</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area stderr docutils container">
+<div class="highlight"><pre>
+2018-05-22 14:06:28,310 - <span class="ansi-blue-fg">DEBUG</span> - matplotlib.font_manager-&gt;findfont: findfont: Matching :family=sans-serif:style=normal:variant=normal:weight=normal:stretch=normal:size=14.0 to DejaVu Sans (u&#39;/home/frubino/mgkit/dev-env/local/lib/python2.7/site-packages/matplotlib/mpl-data/fonts/ttf/DejaVuSans.ttf&#39;) with score of 0.050000
+2018-05-22 14:06:28,357 - <span class="ansi-blue-fg">DEBUG</span> - matplotlib.font_manager-&gt;findfont: findfont: Matching :family=sans-serif:style=normal:variant=normal:weight=normal:stretch=normal:size=16.0 to DejaVu Sans (u&#39;/home/frubino/mgkit/dev-env/local/lib/python2.7/site-packages/matplotlib/mpl-data/fonts/ttf/DejaVuSans.ttf&#39;) with score of 0.050000
+2018-05-22 14:06:28,386 - <span class="ansi-blue-fg">DEBUG</span> - matplotlib.backends.backend_pdf-&gt;fontName: Assigning font /F1 = u&#39;/home/frubino/mgkit/dev-env/local/lib/python2.7/site-packages/matplotlib/mpl-data/fonts/ttf/DejaVuSans.ttf&#39;
+2018-05-22 14:06:28,537 - <span class="ansi-blue-fg">DEBUG</span> - matplotlib.backends.backend_pdf-&gt;writeFonts: Embedding font /home/frubino/mgkit/dev-env/local/lib/python2.7/site-packages/matplotlib/mpl-data/fonts/ttf/DejaVuSans.ttf.
+2018-05-22 14:06:28,538 - <span class="ansi-blue-fg">DEBUG</span> - matplotlib.backends.backend_pdf-&gt;writeFonts: Writing TrueType font.
+/home/frubino/mgkit/dev-env/local/lib/python2.7/site-packages/matplotlib/figure.py:2267: UserWarning: This figure includes Axes that are not compatible with tight_layout, so results might be incorrect.
+  warnings.warn(&#34;This figure includes Axes that are not compatible &#34;
+</pre></div></div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<img alt="../_images/pipeline_Exploring-Metagenomic-Data_33_1.png" src="../_images/pipeline_Exploring-Metagenomic-Data_33_1.png" />
+</div>
+</div>
+</div>
+<div class="section" id="Distribution-of-Taxa-at-Each-Depth">
+<h4>Distribution of Taxa at Each Depth<a class="headerlink" href="#Distribution-of-Taxa-at-Each-Depth" title="Permalink to this headline">¶</a></h4>
+<p>Seaborn offers a KDE plot, which is useful to display the distribution of taxa counts for each sampling depth.</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[19]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython2 notranslate"><div class="highlight"><pre>
+<span></span><span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">mgkit</span><span class="o">.</span><span class="n">plots</span><span class="o">.</span><span class="n">get_single_figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mi">10</span><span class="p">))</span>
+<span class="c1"># iterate over the columns, which are the samples and assign a color to each one</span>
+<span class="k">for</span> <span class="n">column</span><span class="p">,</span> <span class="n">color</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="n">taxa_counts</span><span class="o">.</span><span class="n">columns</span><span class="p">,</span> <span class="n">seaborn</span><span class="o">.</span><span class="n">color_palette</span><span class="p">(</span><span class="s1">&#39;Set1&#39;</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">taxa_counts</span><span class="o">.</span><span class="n">columns</span><span class="p">))):</span>
+    <span class="n">seaborn</span><span class="o">.</span><span class="n">kdeplot</span><span class="p">(</span>
+        <span class="c1"># The data can transformed with the sqrt function of numpy</span>
+        <span class="n">numpy</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">taxa_counts</span><span class="p">[</span><span class="n">column</span><span class="p">]),</span>
+        <span class="c1"># Assign the color</span>
+        <span class="n">color</span><span class="o">=</span><span class="n">color</span><span class="p">,</span>
+        <span class="c1"># Assign the label to the sample name to appear</span>
+        <span class="c1"># in the legend</span>
+        <span class="n">label</span><span class="o">=</span><span class="n">column</span><span class="p">,</span>
+        <span class="c1"># Add a shade under the KDE function</span>
+        <span class="n">shade</span><span class="o">=</span><span class="kc">True</span>
+    <span class="p">)</span>
+<span class="c1"># Adds a legend</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s1">&#39;Counts&#39;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">16</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s1">&#39;Frequency&#39;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">16</span><span class="p">)</span>
+<span class="n">fig</span><span class="o">.</span><span class="n">set_tight_layout</span><span class="p">(</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">fig</span><span class="o">.</span><span class="n">savefig</span><span class="p">(</span><span class="s1">&#39;</span><span class="si">{}</span><span class="s1">taxa_counts-distribution_top40_taxa.pdf&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">data_dir</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area stderr docutils container">
+<div class="highlight"><pre>
+2018-05-22 14:06:32,367 - <span class="ansi-blue-fg">DEBUG</span> - matplotlib.font_manager-&gt;findfont: findfont: Matching :family=sans-serif:style=normal:variant=normal:weight=normal:stretch=normal:size=10.0 to DejaVu Sans (u&#39;/home/frubino/mgkit/dev-env/local/lib/python2.7/site-packages/matplotlib/mpl-data/fonts/ttf/DejaVuSans.ttf&#39;) with score of 0.050000
+2018-05-22 14:06:32,404 - <span class="ansi-blue-fg">DEBUG</span> - matplotlib.backends.backend_pdf-&gt;fontName: Assigning font /F1 = u&#39;/home/frubino/mgkit/dev-env/local/lib/python2.7/site-packages/matplotlib/mpl-data/fonts/ttf/DejaVuSans.ttf&#39;
+2018-05-22 14:06:32,461 - <span class="ansi-blue-fg">DEBUG</span> - matplotlib.backends.backend_pdf-&gt;writeFonts: Embedding font /home/frubino/mgkit/dev-env/local/lib/python2.7/site-packages/matplotlib/mpl-data/fonts/ttf/DejaVuSans.ttf.
+2018-05-22 14:06:32,463 - <span class="ansi-blue-fg">DEBUG</span> - matplotlib.backends.backend_pdf-&gt;writeFonts: Writing TrueType font.
+</pre></div></div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<img alt="../_images/pipeline_Exploring-Metagenomic-Data_36_1.png" src="../_images/pipeline_Exploring-Metagenomic-Data_36_1.png" />
+</div>
+</div>
+</div>
+<div class="section" id="Heatmap-of-the-Table">
+<h4>Heatmap of the Table<a class="headerlink" href="#Heatmap-of-the-Table" title="Permalink to this headline">¶</a></h4>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[20]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython2 notranslate"><div class="highlight"><pre>
+<span></span><span class="c1"># An heatmap can be created to provide information on the table</span>
+<span class="n">clfig</span> <span class="o">=</span> <span class="n">seaborn</span><span class="o">.</span><span class="n">clustermap</span><span class="p">(</span><span class="n">taxa_counts</span><span class="o">.</span><span class="n">iloc</span><span class="p">[:</span><span class="mi">40</span><span class="p">],</span> <span class="n">cbar</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">cmap</span><span class="o">=</span><span class="s1">&#39;Blues&#39;</span><span class="p">)</span>
+<span class="n">clfig</span><span class="o">.</span><span class="n">fig</span><span class="o">.</span><span class="n">set_tight_layout</span><span class="p">(</span><span class="kc">True</span><span class="p">)</span>
+<span class="k">for</span> <span class="n">text</span> <span class="ow">in</span> <span class="n">clfig</span><span class="o">.</span><span class="n">ax_heatmap</span><span class="o">.</span><span class="n">get_yticklabels</span><span class="p">():</span>
+    <span class="n">text</span><span class="o">.</span><span class="n">set_rotation</span><span class="p">(</span><span class="s1">&#39;horizontal&#39;</span><span class="p">)</span>
+<span class="n">clfig</span><span class="o">.</span><span class="n">savefig</span><span class="p">(</span><span class="s1">&#39;</span><span class="si">{}</span><span class="s1">taxa_counts-heatmap-top40.pdf&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">data_dir</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area stderr docutils container">
+<div class="highlight"><pre>
+2018-05-22 14:06:34,833 - <span class="ansi-blue-fg">DEBUG</span> - matplotlib.backends.backend_pdf-&gt;fontName: Assigning font /F1 = u&#39;/home/frubino/mgkit/dev-env/local/lib/python2.7/site-packages/matplotlib/mpl-data/fonts/ttf/DejaVuSans.ttf&#39;
+2018-05-22 14:06:34,936 - <span class="ansi-blue-fg">DEBUG</span> - matplotlib.backends.backend_pdf-&gt;writeFonts: Embedding font /home/frubino/mgkit/dev-env/local/lib/python2.7/site-packages/matplotlib/mpl-data/fonts/ttf/DejaVuSans.ttf.
+2018-05-22 14:06:34,938 - <span class="ansi-blue-fg">DEBUG</span> - matplotlib.backends.backend_pdf-&gt;writeFonts: Writing TrueType font.
+2018-05-22 14:06:35,020 - <span class="ansi-blue-fg">DEBUG</span> - matplotlib.backends.backend_pdf-&gt;fontName: Assigning font /F1 = u&#39;/home/frubino/mgkit/dev-env/local/lib/python2.7/site-packages/matplotlib/mpl-data/fonts/ttf/DejaVuSans.ttf&#39;
+2018-05-22 14:06:35,129 - <span class="ansi-blue-fg">DEBUG</span> - matplotlib.backends.backend_pdf-&gt;writeFonts: Embedding font /home/frubino/mgkit/dev-env/local/lib/python2.7/site-packages/matplotlib/mpl-data/fonts/ttf/DejaVuSans.ttf.
+2018-05-22 14:06:35,131 - <span class="ansi-blue-fg">DEBUG</span> - matplotlib.backends.backend_pdf-&gt;writeFonts: Writing TrueType font.
+</pre></div></div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<img alt="../_images/pipeline_Exploring-Metagenomic-Data_38_1.png" src="../_images/pipeline_Exploring-Metagenomic-Data_38_1.png" />
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="Functional-Categories">
+<h3>Functional Categories<a class="headerlink" href="#Functional-Categories" title="Permalink to this headline">¶</a></h3>
+<p>Besides looking at specific taxa, it is possible to map each gene_id to functional categories. <a class="reference external" href="http://eggnog.embl.de/">eggNOG</a> provides this. <strong>v3 must be used</strong>, as the mappings in Uniprot points to that version.</p>
+<div class="section" id="Load-Necessary-Data">
+<h4>Load Necessary Data<a class="headerlink" href="#Load-Necessary-Data" title="Permalink to this headline">¶</a></h4>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[21]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython2 notranslate"><div class="highlight"><pre>
+<span></span><span class="n">eg</span> <span class="o">=</span> <span class="n">eggnog</span><span class="o">.</span><span class="n">NOGInfo</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[39]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython2 notranslate"><div class="highlight"><pre>
+<span></span><span class="c1">#Build mapping Uniprot IDs -&gt; eggNOG functional categories</span>
+<span class="n">fc_map</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="c1"># An Annotation instance provide a method to access the list of IDs for the</span>
+    <span class="c1"># specific mapping. For example eggnog mappings are store into the</span>
+    <span class="c1"># map_EGGNOG attribute</span>
+    <span class="n">annotation</span><span class="o">.</span><span class="n">gene_id</span><span class="p">:</span> <span class="n">eg</span><span class="o">.</span><span class="n">get_nogs_funccat</span><span class="p">(</span><span class="n">annotation</span><span class="o">.</span><span class="n">get_mapping</span><span class="p">(</span><span class="s1">&#39;eggnog&#39;</span><span class="p">))</span>
+    <span class="k">for</span> <span class="n">annotation</span> <span class="ow">in</span> <span class="n">annotations</span><span class="o">.</span><span class="n">itervalues</span><span class="p">()</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[41]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython2 notranslate"><div class="highlight"><pre>
+<span></span><span class="c1"># Just a few to speed up the analysis, but other can be used</span>
+<span class="c1"># Should have been downloaded by the full tutorial script</span>
+<span class="n">eg</span><span class="o">.</span><span class="n">load_members</span><span class="p">(</span><span class="s1">&#39;</span><span class="si">{}</span><span class="s1">COG.members.txt.gz&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">data_dir</span><span class="p">))</span>
+<span class="n">eg</span><span class="o">.</span><span class="n">load_members</span><span class="p">(</span><span class="s1">&#39;</span><span class="si">{}</span><span class="s1">NOG.members.txt.gz&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">data_dir</span><span class="p">))</span>
+<span class="n">eg</span><span class="o">.</span><span class="n">load_funccat</span><span class="p">(</span><span class="s1">&#39;</span><span class="si">{}</span><span class="s1">COG.funccat.txt.gz&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">data_dir</span><span class="p">))</span>
+<span class="n">eg</span><span class="o">.</span><span class="n">load_funccat</span><span class="p">(</span><span class="s1">&#39;</span><span class="si">{}</span><span class="s1">NOG.funccat.txt.gz&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">data_dir</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area stderr docutils container">
+<div class="highlight"><pre>
+2018-05-22 14:09:38,473 - <span class="ansi-green-fg">INFO</span> - mgkit.mappings.eggnog-&gt;load_members: Reading Members from tutorial-data/COG.members.txt.gz
+2018-05-22 14:09:56,921 - <span class="ansi-green-fg">INFO</span> - mgkit.mappings.eggnog-&gt;load_members: Reading Members from tutorial-data/NOG.members.txt.gz
+2018-05-22 14:10:03,884 - <span class="ansi-green-fg">INFO</span> - mgkit.mappings.eggnog-&gt;load_funccat: Reading Functional Categories from tutorial-data/COG.funccat.txt.gz
+2018-05-22 14:10:03,896 - <span class="ansi-green-fg">INFO</span> - mgkit.mappings.eggnog-&gt;load_funccat: Reading Functional Categories from tutorial-data/NOG.funccat.txt.gz
+</pre></div></div>
+</div>
+</div>
+<div class="section" id="Build-FC-Table">
+<h4>Build FC Table<a class="headerlink" href="#Build-FC-Table" title="Permalink to this headline">¶</a></h4>
+<p>As mentioned above, mgkit.counts.load_sample_counts_to_genes works in the same way as mgkit.counts.load_sample_counts_to_taxon, with the difference of giving <strong>gene_id</strong> as the only index.</p>
+<p>In this case, however, as a mapping to functional categories is wanted, to the <strong>gene_map</strong> parameter a dictionary where for each <em>gene_id</em> an iterable of <em>mappings</em> is assigned. These are the values used in the index of the returned pandas.Series, which ends up as rows in the <strong>fc_counts</strong> DataFrame.</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[45]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython2 notranslate"><div class="highlight"><pre>
+<span></span><span class="n">fc_counts</span> <span class="o">=</span> <span class="n">pandas</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">({</span>
+    <span class="n">file_name_to_sample</span><span class="p">(</span><span class="n">file_name</span><span class="p">):</span> <span class="n">mgkit</span><span class="o">.</span><span class="n">counts</span><span class="o">.</span><span class="n">load_sample_counts_to_genes</span><span class="p">(</span>
+        <span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="p">(</span><span class="n">annotations</span><span class="p">[</span><span class="n">x</span><span class="p">]</span><span class="o">.</span><span class="n">gene_id</span><span class="p">,</span> <span class="n">annotations</span><span class="p">[</span><span class="n">x</span><span class="p">]</span><span class="o">.</span><span class="n">taxon_id</span><span class="p">),</span>
+        <span class="n">mgkit</span><span class="o">.</span><span class="n">counts</span><span class="o">.</span><span class="n">load_htseq_counts</span><span class="p">(</span><span class="n">file_name</span><span class="p">),</span>
+        <span class="n">taxonomy</span><span class="p">,</span>
+        <span class="n">gene_map</span><span class="o">=</span><span class="n">fc_map</span>
+    <span class="p">)</span>
+    <span class="k">for</span> <span class="n">file_name</span> <span class="ow">in</span> <span class="n">counts</span>
+<span class="p">})</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area stderr docutils container">
+<div class="highlight"><pre>
+2018-05-22 14:10:11,210 - <span class="ansi-green-fg">INFO</span> - mgkit.counts.func-&gt;load_htseq_counts: Loading HTSeq-count file tutorial-data/SRR001322-counts.txt
+2018-05-22 14:10:11,293 - <span class="ansi-green-fg">INFO</span> - mgkit.counts.func-&gt;load_htseq_counts: Loading HTSeq-count file tutorial-data/SRR001323-counts.txt
+2018-05-22 14:10:11,370 - <span class="ansi-green-fg">INFO</span> - mgkit.counts.func-&gt;load_htseq_counts: Loading HTSeq-count file tutorial-data/SRR001325-counts.txt
+2018-05-22 14:10:11,445 - <span class="ansi-green-fg">INFO</span> - mgkit.counts.func-&gt;load_htseq_counts: Loading HTSeq-count file tutorial-data/SRR001326-counts.txt
+</pre></div></div>
+</div>
+</div>
+<div class="section" id="Scale-the-Table-and-Rename-Rows/Columns">
+<h4>Scale the Table and Rename Rows/Columns<a class="headerlink" href="#Scale-the-Table-and-Rename-Rows/Columns" title="Permalink to this headline">¶</a></h4>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[46]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython2 notranslate"><div class="highlight"><pre>
+<span></span><span class="n">fc_counts</span> <span class="o">=</span> <span class="n">mgkit</span><span class="o">.</span><span class="n">counts</span><span class="o">.</span><span class="n">scale_deseq</span><span class="p">(</span><span class="n">fc_counts</span><span class="p">)</span><span class="o">.</span><span class="n">rename</span><span class="p">(</span>
+    <span class="n">columns</span><span class="o">=</span><span class="n">sample_names</span><span class="p">,</span>
+    <span class="n">index</span><span class="o">=</span><span class="n">eggnog</span><span class="o">.</span><span class="n">EGGNOG_CAT</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[47]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython2 notranslate"><div class="highlight"><pre>
+<span></span><span class="n">fc_counts</span><span class="o">.</span><span class="n">describe</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[47]:
+</pre></div>
+</div>
+<div class="output_area rendered_html docutils container">
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>16m</th>
+      <th>32m</th>
+      <th>01m</th>
+      <th>50m</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>count</th>
+      <td>23.000000</td>
+      <td>23.000000</td>
+      <td>23.000000</td>
+      <td>23.000000</td>
+    </tr>
+    <tr>
+      <th>mean</th>
+      <td>288.923364</td>
+      <td>289.089215</td>
+      <td>255.206073</td>
+      <td>287.413551</td>
+    </tr>
+    <tr>
+      <th>std</th>
+      <td>288.130525</td>
+      <td>286.446124</td>
+      <td>205.412833</td>
+      <td>283.111728</td>
+    </tr>
+    <tr>
+      <th>min</th>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>3.471907</td>
+    </tr>
+    <tr>
+      <th>25%</th>
+      <td>66.085234</td>
+      <td>78.138939</td>
+      <td>111.201303</td>
+      <td>69.004160</td>
+    </tr>
+    <tr>
+      <th>50%</th>
+      <td>209.794392</td>
+      <td>232.510989</td>
+      <td>220.994995</td>
+      <td>223.070050</td>
+    </tr>
+    <tr>
+      <th>75%</th>
+      <td>356.650467</td>
+      <td>388.026535</td>
+      <td>344.864801</td>
+      <td>376.701953</td>
+    </tr>
+    <tr>
+      <th>max</th>
+      <td>1103.518503</td>
+      <td>1147.308320</td>
+      <td>734.773169</td>
+      <td>1177.844584</td>
+    </tr>
+  </tbody>
+</table>
+</div></div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[49]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython2 notranslate"><div class="highlight"><pre>
+<span></span><span class="n">fc_counts</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[49]:
+</pre></div>
+</div>
+<div class="output_area rendered_html docutils container">
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>16m</th>
+      <th>32m</th>
+      <th>01m</th>
+      <th>50m</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>RNA processing and modification</th>
+      <td>4.195888</td>
+      <td>3.049324</td>
+      <td>25.337006</td>
+      <td>45.134796</td>
+    </tr>
+    <tr>
+      <th>Chromatin structure and dynamics</th>
+      <td>27.273271</td>
+      <td>21.345271</td>
+      <td>12.668503</td>
+      <td>68.570171</td>
+    </tr>
+    <tr>
+      <th>Energy production and conversion</th>
+      <td>832.883737</td>
+      <td>735.649521</td>
+      <td>609.495751</td>
+      <td>703.061248</td>
+    </tr>
+    <tr>
+      <th>Cell cycle control, cell division, chromosome partitioning</th>
+      <td>73.428037</td>
+      <td>97.578382</td>
+      <td>121.054583</td>
+      <td>52.078611</td>
+    </tr>
+    <tr>
+      <th>Amino acid transport and metabolism</th>
+      <td>676.586915</td>
+      <td>658.654079</td>
+      <td>609.495751</td>
+      <td>574.600674</td>
+    </tr>
+    <tr>
+      <th>Nucleotide transport and metabolism</th>
+      <td>336.719999</td>
+      <td>374.304575</td>
+      <td>271.669007</td>
+      <td>291.640221</td>
+    </tr>
+    <tr>
+      <th>Carbohydrate transport and metabolism</th>
+      <td>333.573084</td>
+      <td>354.483966</td>
+      <td>285.745121</td>
+      <td>275.148661</td>
+    </tr>
+    <tr>
+      <th>Coenzyme transport and metabolism</th>
+      <td>323.083364</td>
+      <td>304.170113</td>
+      <td>368.794196</td>
+      <td>374.098022</td>
+    </tr>
+    <tr>
+      <th>Lipid transport and metabolism</th>
+      <td>232.871775</td>
+      <td>238.609637</td>
+      <td>243.516778</td>
+      <td>243.901495</td>
+    </tr>
+    <tr>
+      <th>Translation, ribosomal structure and biogenesis</th>
+      <td>1103.518503</td>
+      <td>1147.308320</td>
+      <td>734.773169</td>
+      <td>1177.844584</td>
+    </tr>
+    <tr>
+      <th>Transcription</th>
+      <td>290.565233</td>
+      <td>276.726193</td>
+      <td>237.886332</td>
+      <td>365.418254</td>
+    </tr>
+    <tr>
+      <th>Replication, recombination and repair</th>
+      <td>528.681868</td>
+      <td>554.214717</td>
+      <td>439.174767</td>
+      <td>451.347962</td>
+    </tr>
+    <tr>
+      <th>Cell wall/membrane/envelope biogenesis</th>
+      <td>206.647476</td>
+      <td>174.573824</td>
+      <td>216.772161</td>
+      <td>199.634675</td>
+    </tr>
+    <tr>
+      <th>Cell motility</th>
+      <td>27.273271</td>
+      <td>19.058278</td>
+      <td>33.782674</td>
+      <td>33.851097</td>
+    </tr>
+    <tr>
+      <th>Posttranslational modification, protein turnover, chaperones</th>
+      <td>376.580934</td>
+      <td>401.748495</td>
+      <td>320.935407</td>
+      <td>379.305883</td>
+    </tr>
+    <tr>
+      <th>Inorganic ion transport and metabolism</th>
+      <td>186.717009</td>
+      <td>200.493082</td>
+      <td>190.027544</td>
+      <td>173.595370</td>
+    </tr>
+    <tr>
+      <th>Secondary metabolites biosynthesis, transport and catabolism</th>
+      <td>58.742430</td>
+      <td>86.143415</td>
+      <td>106.978469</td>
+      <td>96.345430</td>
+    </tr>
+    <tr>
+      <th>General function prediction only</th>
+      <td>577.983550</td>
+      <td>563.362690</td>
+      <td>494.071613</td>
+      <td>675.285989</td>
+    </tr>
+    <tr>
+      <th>Function unknown</th>
+      <td>209.794392</td>
+      <td>232.510989</td>
+      <td>220.994995</td>
+      <td>223.070050</td>
+    </tr>
+    <tr>
+      <th>Signal transduction mechanisms</th>
+      <td>35.665047</td>
+      <td>38.116555</td>
+      <td>115.424138</td>
+      <td>46.870750</td>
+    </tr>
+    <tr>
+      <th>Intracellular trafficking, secretion, and vesicular transport</th>
+      <td>87.064673</td>
+      <td>96.816051</td>
+      <td>121.054583</td>
+      <td>86.797685</td>
+    </tr>
+    <tr>
+      <th>Defense mechanisms</th>
+      <td>115.386916</td>
+      <td>70.134462</td>
+      <td>90.087132</td>
+      <td>69.438148</td>
+    </tr>
+    <tr>
+      <th>Cytoskeleton</th>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>3.471907</td>
+    </tr>
+  </tbody>
+</table>
+</div></div>
+</div>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[48]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython2 notranslate"><div class="highlight"><pre>
+<span></span><span class="c1">#Save table to disk</span>
+<span class="n">fc_counts</span><span class="o">.</span><span class="n">to_csv</span><span class="p">(</span><span class="s1">&#39;</span><span class="si">{}</span><span class="s1">fc_counts.csv&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">data_dir</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="Heatmap-to-Explore-Functional-Categories">
+<h4>Heatmap to Explore Functional Categories<a class="headerlink" href="#Heatmap-to-Explore-Functional-Categories" title="Permalink to this headline">¶</a></h4>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[50]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython2 notranslate"><div class="highlight"><pre>
+<span></span><span class="n">clfig</span> <span class="o">=</span> <span class="n">seaborn</span><span class="o">.</span><span class="n">clustermap</span><span class="p">(</span><span class="n">fc_counts</span><span class="p">,</span> <span class="n">cbar</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">cmap</span><span class="o">=</span><span class="s1">&#39;Greens&#39;</span><span class="p">)</span>
+<span class="n">clfig</span><span class="o">.</span><span class="n">fig</span><span class="o">.</span><span class="n">set_tight_layout</span><span class="p">(</span><span class="kc">True</span><span class="p">)</span>
+<span class="k">for</span> <span class="n">text</span> <span class="ow">in</span> <span class="n">clfig</span><span class="o">.</span><span class="n">ax_heatmap</span><span class="o">.</span><span class="n">get_yticklabels</span><span class="p">():</span>
+    <span class="n">text</span><span class="o">.</span><span class="n">set_rotation</span><span class="p">(</span><span class="s1">&#39;horizontal&#39;</span><span class="p">)</span>
+<span class="n">clfig</span><span class="o">.</span><span class="n">savefig</span><span class="p">(</span><span class="s1">&#39;</span><span class="si">{}</span><span class="s1">fc_counts-heatmap.pdf&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">data_dir</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area stderr docutils container">
+<div class="highlight"><pre>
+2018-05-22 14:10:17,521 - <span class="ansi-blue-fg">DEBUG</span> - matplotlib.backends.backend_pdf-&gt;fontName: Assigning font /F1 = u&#39;/home/frubino/mgkit/dev-env/local/lib/python2.7/site-packages/matplotlib/mpl-data/fonts/ttf/DejaVuSans.ttf&#39;
+2018-05-22 14:10:17,626 - <span class="ansi-blue-fg">DEBUG</span> - matplotlib.backends.backend_pdf-&gt;writeFonts: Embedding font /home/frubino/mgkit/dev-env/local/lib/python2.7/site-packages/matplotlib/mpl-data/fonts/ttf/DejaVuSans.ttf.
+2018-05-22 14:10:17,627 - <span class="ansi-blue-fg">DEBUG</span> - matplotlib.backends.backend_pdf-&gt;writeFonts: Writing TrueType font.
+2018-05-22 14:10:17,693 - <span class="ansi-blue-fg">DEBUG</span> - matplotlib.backends.backend_pdf-&gt;fontName: Assigning font /F1 = u&#39;/home/frubino/mgkit/dev-env/local/lib/python2.7/site-packages/matplotlib/mpl-data/fonts/ttf/DejaVuSans.ttf&#39;
+2018-05-22 14:10:17,798 - <span class="ansi-blue-fg">DEBUG</span> - matplotlib.backends.backend_pdf-&gt;writeFonts: Embedding font /home/frubino/mgkit/dev-env/local/lib/python2.7/site-packages/matplotlib/mpl-data/fonts/ttf/DejaVuSans.ttf.
+2018-05-22 14:10:17,799 - <span class="ansi-blue-fg">DEBUG</span> - matplotlib.backends.backend_pdf-&gt;writeFonts: Writing TrueType font.
+</pre></div></div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<img alt="../_images/pipeline_Exploring-Metagenomic-Data_54_1.png" src="../_images/pipeline_Exploring-Metagenomic-Data_54_1.png" />
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="Enzyme-Classification">
+<h3>Enzyme Classification<a class="headerlink" href="#Enzyme-Classification" title="Permalink to this headline">¶</a></h3>
+<p>Enzyme classification number were added the <em>add-gff-info</em> script, so they can be used in a similar way to functional categories. The specificity level requested is <strong>2</strong>.</p>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[51]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython2 notranslate"><div class="highlight"><pre>
+<span></span><span class="n">ec_map</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="c1"># EC numbers are store into the EC attribute in a GFF file and</span>
+    <span class="c1"># an Annotation instance provide a get_ec method that returns</span>
+    <span class="c1"># a list. A level of specificity can be used to the mapping</span>
+    <span class="c1"># less specific, as it ranges from 1 to 4 included. Right</span>
+    <span class="c1"># now a list is returned, so it is a good idea to convert</span>
+    <span class="c1"># the list into a set so if any duplicate appears (as effect</span>
+    <span class="c1"># of the change in level) it won&#39;t inflate the number later.</span>
+    <span class="c1"># In later versions (0.2) a set will be returned instead of</span>
+    <span class="c1"># a list.</span>
+    <span class="c1"># We also want to remove any hanging &quot;.-&quot; to use the labels</span>
+    <span class="c1"># from expasy</span>
+    <span class="n">annotation</span><span class="o">.</span><span class="n">gene_id</span><span class="p">:</span> <span class="nb">set</span><span class="p">(</span><span class="n">x</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s1">&#39;.-&#39;</span><span class="p">,</span> <span class="s1">&#39;&#39;</span><span class="p">)</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">annotation</span><span class="o">.</span><span class="n">get_ec</span><span class="p">(</span><span class="n">level</span><span class="o">=</span><span class="mi">2</span><span class="p">))</span>
+    <span class="k">for</span> <span class="n">annotation</span> <span class="ow">in</span> <span class="n">annotations</span><span class="o">.</span><span class="n">itervalues</span><span class="p">()</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[52]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython2 notranslate"><div class="highlight"><pre>
+<span></span><span class="c1"># The only difference with the functional categories is the mapping</span>
+<span class="c1"># used.</span>
+<span class="n">ec_counts</span> <span class="o">=</span> <span class="n">pandas</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">({</span>
+    <span class="n">file_name_to_sample</span><span class="p">(</span><span class="n">file_name</span><span class="p">):</span> <span class="n">mgkit</span><span class="o">.</span><span class="n">counts</span><span class="o">.</span><span class="n">load_sample_counts_to_genes</span><span class="p">(</span>
+        <span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="p">(</span><span class="n">annotations</span><span class="p">[</span><span class="n">x</span><span class="p">]</span><span class="o">.</span><span class="n">gene_id</span><span class="p">,</span> <span class="n">annotations</span><span class="p">[</span><span class="n">x</span><span class="p">]</span><span class="o">.</span><span class="n">taxon_id</span><span class="p">),</span>
+        <span class="n">mgkit</span><span class="o">.</span><span class="n">counts</span><span class="o">.</span><span class="n">load_htseq_counts</span><span class="p">(</span><span class="n">file_name</span><span class="p">),</span>
+        <span class="n">taxonomy</span><span class="p">,</span>
+        <span class="n">gene_map</span><span class="o">=</span><span class="n">ec_map</span>
+    <span class="p">)</span>
+    <span class="k">for</span> <span class="n">file_name</span> <span class="ow">in</span> <span class="n">counts</span>
+<span class="p">})</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area stderr docutils container">
+<div class="highlight"><pre>
+2018-05-22 14:10:20,682 - <span class="ansi-green-fg">INFO</span> - mgkit.counts.func-&gt;load_htseq_counts: Loading HTSeq-count file tutorial-data/SRR001322-counts.txt
+2018-05-22 14:10:20,768 - <span class="ansi-green-fg">INFO</span> - mgkit.counts.func-&gt;load_htseq_counts: Loading HTSeq-count file tutorial-data/SRR001323-counts.txt
+2018-05-22 14:10:20,844 - <span class="ansi-green-fg">INFO</span> - mgkit.counts.func-&gt;load_htseq_counts: Loading HTSeq-count file tutorial-data/SRR001325-counts.txt
+2018-05-22 14:10:20,922 - <span class="ansi-green-fg">INFO</span> - mgkit.counts.func-&gt;load_htseq_counts: Loading HTSeq-count file tutorial-data/SRR001326-counts.txt
+</pre></div></div>
+</div>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[53]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython2 notranslate"><div class="highlight"><pre>
+<span></span><span class="c1"># This file contains the names of each enzyme class and can be downloaded</span>
+<span class="c1"># from ftp://ftp.expasy.org/databases/enzyme/enzclass.txt</span>
+<span class="c1"># It should be downloaded at the end of the tutorial script</span>
+<span class="n">ec_names</span> <span class="o">=</span> <span class="n">mgkit</span><span class="o">.</span><span class="n">mappings</span><span class="o">.</span><span class="n">enzyme</span><span class="o">.</span><span class="n">parse_expasy_file</span><span class="p">(</span><span class="s1">&#39;</span><span class="si">{}</span><span class="s1">enzclass.txt&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">data_dir</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[54]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython2 notranslate"><div class="highlight"><pre>
+<span></span><span class="c1"># Rename columns and row. Rows will include the full label the enzyme class</span>
+<span class="n">ec_counts</span> <span class="o">=</span> <span class="n">mgkit</span><span class="o">.</span><span class="n">counts</span><span class="o">.</span><span class="n">scale_deseq</span><span class="p">(</span><span class="n">ec_counts</span><span class="p">)</span><span class="o">.</span><span class="n">rename</span><span class="p">(</span>
+    <span class="n">index</span><span class="o">=</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="s2">&quot;</span><span class="si">{}</span><span class="s2"> </span><span class="si">{}</span><span class="s2"> [EC </span><span class="si">{}</span><span class="s2">.-]&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span>
+        <span class="c1"># A name of the second level doesn&#39;t include the first level</span>
+        <span class="c1"># definition, so if it is level 2, we add the level 1 label</span>
+        <span class="s1">&#39;&#39;</span> <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">x</span><span class="p">)</span> <span class="o">==</span> <span class="mi">1</span> <span class="k">else</span> <span class="n">ec_names</span><span class="p">[</span><span class="n">x</span><span class="p">[</span><span class="mi">0</span><span class="p">]]</span> <span class="o">+</span> <span class="s2">&quot; - &quot;</span><span class="p">,</span>
+        <span class="c1"># The EC label for the specific class (e.g. 3.2)</span>
+        <span class="n">ec_names</span><span class="p">[</span><span class="n">x</span><span class="p">],</span>
+        <span class="c1"># The EC number</span>
+        <span class="n">x</span>
+    <span class="p">),</span>
+    <span class="n">columns</span><span class="o">=</span><span class="n">sample_names</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[55]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython2 notranslate"><div class="highlight"><pre>
+<span></span><span class="n">plot_order</span> <span class="o">=</span> <span class="n">ec_counts</span><span class="o">.</span><span class="n">median</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span><span class="o">.</span><span class="n">sort_values</span><span class="p">(</span><span class="n">ascending</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">inplace</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span><span class="o">.</span><span class="n">index</span>
+</pre></div>
+</div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[56]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython2 notranslate"><div class="highlight"><pre>
+<span></span><span class="n">ec_counts</span><span class="o">.</span><span class="n">describe</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[56]:
+</pre></div>
+</div>
+<div class="output_area rendered_html docutils container">
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>16m</th>
+      <th>32m</th>
+      <th>01m</th>
+      <th>50m</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>count</th>
+      <td>59.000000</td>
+      <td>59.000000</td>
+      <td>59.000000</td>
+      <td>59.000000</td>
+    </tr>
+    <tr>
+      <th>mean</th>
+      <td>74.276636</td>
+      <td>78.371254</td>
+      <td>79.636608</td>
+      <td>80.406521</td>
+    </tr>
+    <tr>
+      <th>std</th>
+      <td>98.400500</td>
+      <td>108.265549</td>
+      <td>108.003831</td>
+      <td>115.948168</td>
+    </tr>
+    <tr>
+      <th>min</th>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+    </tr>
+    <tr>
+      <th>25%</th>
+      <td>4.786284</td>
+      <td>6.764489</td>
+      <td>5.672632</td>
+      <td>3.995495</td>
+    </tr>
+    <tr>
+      <th>50%</th>
+      <td>36.375758</td>
+      <td>42.090153</td>
+      <td>34.035791</td>
+      <td>37.291289</td>
+    </tr>
+    <tr>
+      <th>75%</th>
+      <td>96.204307</td>
+      <td>105.225384</td>
+      <td>127.229027</td>
+      <td>121.640634</td>
+    </tr>
+    <tr>
+      <th>max</th>
+      <td>465.226796</td>
+      <td>537.401066</td>
+      <td>546.193404</td>
+      <td>674.794758</td>
+    </tr>
+  </tbody>
+</table>
+</div></div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[57]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython2 notranslate"><div class="highlight"><pre>
+<span></span><span class="n">ec_counts</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[57]:
+</pre></div>
+</div>
+<div class="output_area rendered_html docutils container">
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>16m</th>
+      <th>32m</th>
+      <th>01m</th>
+      <th>50m</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>Oxidoreductases [EC 1.-]</th>
+      <td>30.632217</td>
+      <td>18.038637</td>
+      <td>47.001806</td>
+      <td>64.815812</td>
+    </tr>
+    <tr>
+      <th>Oxidoreductases -  Acting on the CH-OH group of donors [EC 1.1.-]</th>
+      <td>159.861883</td>
+      <td>134.538169</td>
+      <td>215.560008</td>
+      <td>161.595587</td>
+    </tr>
+    <tr>
+      <th>Oxidoreductases -  Acting on a peroxide as acceptor [EC 1.11.-]</th>
+      <td>6.700797</td>
+      <td>14.280588</td>
+      <td>0.000000</td>
+      <td>3.551551</td>
+    </tr>
+    <tr>
+      <th>Oxidoreductases -  Acting on hydrogen as donors [EC 1.12.-]</th>
+      <td>65.093461</td>
+      <td>81.173867</td>
+      <td>51.864062</td>
+      <td>46.170168</td>
+    </tr>
+    <tr>
+      <th>Oxidoreductases -  Acting on single donors with incorporation of molecular oxygen (oxygenases). The oxygen incorporated need not be derived from O(2) [EC 1.13.-]</th>
+      <td>0.000000</td>
+      <td>7.516099</td>
+      <td>6.483008</td>
+      <td>3.551551</td>
+    </tr>
+    <tr>
+      <th>Oxidoreductases -  Acting on paired donors, with incorporation or reduction of molecular oxygen. The oxygen incorporated need not be derived from O(2) [EC 1.14.-]</th>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>1.775776</td>
+    </tr>
+    <tr>
+      <th>Oxidoreductases -  Acting on superoxide as acceptor [EC 1.15.-]</th>
+      <td>4.786284</td>
+      <td>3.006440</td>
+      <td>0.000000</td>
+      <td>2.663664</td>
+    </tr>
+    <tr>
+      <th>Oxidoreductases -  Oxidizing metal ions [EC 1.16.-]</th>
+      <td>14.358852</td>
+      <td>10.522538</td>
+      <td>3.241504</td>
+      <td>11.542542</td>
+    </tr>
+    <tr>
+      <th>Oxidoreductases -  Acting on CH or CH(2) groups [EC 1.17.-]</th>
+      <td>54.563637</td>
+      <td>61.632010</td>
+      <td>102.107372</td>
+      <td>43.506504</td>
+    </tr>
+    <tr>
+      <th>Oxidoreductases -  Acting on iron-sulfur proteins as donors [EC 1.18.-]</th>
+      <td>36.375758</td>
+      <td>15.783808</td>
+      <td>11.345264</td>
+      <td>37.291289</td>
+    </tr>
+    <tr>
+      <th>Oxidoreductases -  Acting on the aldehyde or oxo group of donors [EC 1.2.-]</th>
+      <td>150.289315</td>
+      <td>145.812317</td>
+      <td>153.971434</td>
+      <td>139.398391</td>
+    </tr>
+    <tr>
+      <th>Oxidoreductases -  Catalyzing the reaction X-H + Y-H = 'X-Y' [EC 1.21.-]</th>
+      <td>0.957257</td>
+      <td>6.012879</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+    </tr>
+    <tr>
+      <th>Oxidoreductases -  Acting on the CH-CH group of donors [EC 1.3.-]</th>
+      <td>28.717703</td>
+      <td>42.090153</td>
+      <td>98.865868</td>
+      <td>63.927924</td>
+    </tr>
+    <tr>
+      <th>Oxidoreductases -  Acting on the CH-NH(2) group of donors [EC 1.4.-]</th>
+      <td>36.375758</td>
+      <td>71.402939</td>
+      <td>30.794287</td>
+      <td>36.403401</td>
+    </tr>
+    <tr>
+      <th>Oxidoreductases -  Acting on the CH-NH group of donors [EC 1.5.-]</th>
+      <td>0.957257</td>
+      <td>9.019319</td>
+      <td>16.207519</td>
+      <td>2.663664</td>
+    </tr>
+    <tr>
+      <th>Oxidoreductases -  Acting on NADH or NADPH [EC 1.6.-]</th>
+      <td>71.794259</td>
+      <td>83.428697</td>
+      <td>53.484814</td>
+      <td>59.488485</td>
+    </tr>
+    <tr>
+      <th>Oxidoreductases -  Acting on other nitrogenous compounds as donors [EC 1.7.-]</th>
+      <td>8.615311</td>
+      <td>0.000000</td>
+      <td>9.724512</td>
+      <td>1.775776</td>
+    </tr>
+    <tr>
+      <th>Oxidoreductases -  Acting on a sulfur group of donors [EC 1.8.-]</th>
+      <td>125.400639</td>
+      <td>102.970554</td>
+      <td>111.831884</td>
+      <td>128.743737</td>
+    </tr>
+    <tr>
+      <th>Oxidoreductases -  Acting on a heme group of donors [EC 1.9.-]</th>
+      <td>1.914514</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+    </tr>
+    <tr>
+      <th>Oxidoreductases -  Other oxidoreductases [EC 1.97.-]</th>
+      <td>1.914514</td>
+      <td>6.012879</td>
+      <td>4.862256</td>
+      <td>6.215215</td>
+    </tr>
+    <tr>
+      <th>Transferases [EC 2.-]</th>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>9.724512</td>
+      <td>0.000000</td>
+    </tr>
+    <tr>
+      <th>Transferases -  Transferring one-carbon groups [EC 2.1.-]</th>
+      <td>192.408613</td>
+      <td>223.228135</td>
+      <td>222.043016</td>
+      <td>198.886876</td>
+    </tr>
+    <tr>
+      <th>Transferases -  Transferring molybdenum- or tungsten-containing groups [EC 2.10.-]</th>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>3.241504</td>
+      <td>0.000000</td>
+    </tr>
+    <tr>
+      <th>Transferases -  Transferring aldehyde or ketonic groups [EC 2.2.-]</th>
+      <td>27.760447</td>
+      <td>23.299906</td>
+      <td>21.069775</td>
+      <td>25.748747</td>
+    </tr>
+    <tr>
+      <th>Transferases -  Acyltransferases [EC 2.3.-]</th>
+      <td>107.212760</td>
+      <td>126.270460</td>
+      <td>87.520605</td>
+      <td>146.501494</td>
+    </tr>
+    <tr>
+      <th>Transferases -  Glycosyltransferases [EC 2.4.-]</th>
+      <td>82.324083</td>
+      <td>106.728603</td>
+      <td>129.660155</td>
+      <td>150.053045</td>
+    </tr>
+    <tr>
+      <th>Transferases -  Transferring alkyl or aryl groups, other than methyl groups [EC 2.5.-]</th>
+      <td>79.452313</td>
+      <td>96.957675</td>
+      <td>147.488427</td>
+      <td>114.537531</td>
+    </tr>
+    <tr>
+      <th>Transferases -  Transferring nitrogenous groups [EC 2.6.-]</th>
+      <td>85.195854</td>
+      <td>103.722164</td>
+      <td>144.246923</td>
+      <td>66.591588</td>
+    </tr>
+    <tr>
+      <th>Transferases -  Transferring phosphorus-containing groups [EC 2.7.-]</th>
+      <td>465.226796</td>
+      <td>537.401066</td>
+      <td>546.193404</td>
+      <td>674.794758</td>
+    </tr>
+    <tr>
+      <th>Transferases -  Transferring sulfur-containing groups [EC 2.8.-]</th>
+      <td>53.606380</td>
+      <td>60.880401</td>
+      <td>61.588574</td>
+      <td>71.031027</td>
+    </tr>
+    <tr>
+      <th>Hydrolases [EC 3.-]</th>
+      <td>2.871770</td>
+      <td>12.777368</td>
+      <td>3.241504</td>
+      <td>1.775776</td>
+    </tr>
+    <tr>
+      <th>Hydrolases -  Acting on ester bonds [EC 3.1.-]</th>
+      <td>189.536843</td>
+      <td>239.763553</td>
+      <td>152.350682</td>
+      <td>227.299287</td>
+    </tr>
+    <tr>
+      <th>Hydrolases -  Acting on carbon-sulfur bonds [EC 3.13.-]</th>
+      <td>0.000000</td>
+      <td>1.503220</td>
+      <td>6.483008</td>
+      <td>0.000000</td>
+    </tr>
+    <tr>
+      <th>Hydrolases -  Glycosylases [EC 3.2.-]</th>
+      <td>39.247528</td>
+      <td>24.051516</td>
+      <td>47.001806</td>
+      <td>31.963962</td>
+    </tr>
+    <tr>
+      <th>Hydrolases -  Acting on ether bonds [EC 3.3.-]</th>
+      <td>11.487081</td>
+      <td>9.019319</td>
+      <td>11.345264</td>
+      <td>9.766766</td>
+    </tr>
+    <tr>
+      <th>Hydrolases -  Acting on peptide bonds (peptidases) [EC 3.4.-]</th>
+      <td>156.990112</td>
+      <td>190.157300</td>
+      <td>163.695946</td>
+      <td>233.514502</td>
+    </tr>
+    <tr>
+      <th>Hydrolases -  Acting on carbon-nitrogen bonds, other than peptide bonds [EC 3.5.-]</th>
+      <td>203.895695</td>
+      <td>153.328416</td>
+      <td>149.109179</td>
+      <td>191.783773</td>
+    </tr>
+    <tr>
+      <th>Hydrolases -  Acting on acid anhydrides [EC 3.6.-]</th>
+      <td>331.210847</td>
+      <td>338.224447</td>
+      <td>398.704977</td>
+      <td>350.715697</td>
+    </tr>
+    <tr>
+      <th>Hydrolases -  Acting on carbon-carbon bonds [EC 3.7.-]</th>
+      <td>8.615311</td>
+      <td>1.503220</td>
+      <td>27.552783</td>
+      <td>4.439439</td>
+    </tr>
+    <tr>
+      <th>Hydrolases -  Acting on phosphorus-nitrogen bonds [EC 3.9.-]</th>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>4.439439</td>
+    </tr>
+    <tr>
+      <th>Lyases [EC 4.-]</th>
+      <td>2.871770</td>
+      <td>4.509659</td>
+      <td>12.966016</td>
+      <td>15.094093</td>
+    </tr>
+    <tr>
+      <th>Lyases -  Carbon-carbon lyases [EC 4.1.-]</th>
+      <td>123.486125</td>
+      <td>131.531730</td>
+      <td>134.522411</td>
+      <td>107.434429</td>
+    </tr>
+    <tr>
+      <th>Lyases -  Carbon-oxygen lyases [EC 4.2.-]</th>
+      <td>201.981181</td>
+      <td>171.367053</td>
+      <td>225.284520</td>
+      <td>133.183176</td>
+    </tr>
+    <tr>
+      <th>Lyases -  Carbon-nitrogen lyases [EC 4.3.-]</th>
+      <td>50.734609</td>
+      <td>46.599813</td>
+      <td>27.552783</td>
+      <td>39.067065</td>
+    </tr>
+    <tr>
+      <th>Lyases -  Carbon-sulfur lyases [EC 4.4.-]</th>
+      <td>13.401595</td>
+      <td>13.528978</td>
+      <td>0.000000</td>
+      <td>1.775776</td>
+    </tr>
+    <tr>
+      <th>Lyases -  Phosphorus-oxygen lyases [EC 4.6.-]</th>
+      <td>15.316109</td>
+      <td>9.019319</td>
+      <td>4.862256</td>
+      <td>6.215215</td>
+    </tr>
+    <tr>
+      <th>Lyases -  Other lyases [EC 4.99.-]</th>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>3.241504</td>
+      <td>0.000000</td>
+    </tr>
+    <tr>
+      <th>Isomerases -  Racemases and epimerases [EC 5.1.-]</th>
+      <td>71.794259</td>
+      <td>51.861082</td>
+      <td>43.760302</td>
+      <td>31.076074</td>
+    </tr>
+    <tr>
+      <th>Isomerases -  Cis-trans-isomerases [EC 5.2.-]</th>
+      <td>4.786284</td>
+      <td>9.770928</td>
+      <td>1.620752</td>
+      <td>14.206205</td>
+    </tr>
+    <tr>
+      <th>Isomerases -  Intramolecular oxidoreductases [EC 5.3.-]</th>
+      <td>76.580543</td>
+      <td>50.357862</td>
+      <td>34.035791</td>
+      <td>78.134130</td>
+    </tr>
+    <tr>
+      <th>Isomerases -  Intramolecular transferases [EC 5.4.-]</th>
+      <td>71.794259</td>
+      <td>92.448016</td>
+      <td>48.622558</td>
+      <td>85.237233</td>
+    </tr>
+    <tr>
+      <th>Isomerases -  Intramolecular lyases [EC 5.5.-]</th>
+      <td>13.401595</td>
+      <td>5.261269</td>
+      <td>19.449023</td>
+      <td>15.981981</td>
+    </tr>
+    <tr>
+      <th>Isomerases -  Other isomerases [EC 5.99.-]</th>
+      <td>84.238597</td>
+      <td>75.160988</td>
+      <td>59.967822</td>
+      <td>55.936934</td>
+    </tr>
+    <tr>
+      <th>Ligases [EC 6.-]</th>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>3.241504</td>
+      <td>0.000000</td>
+    </tr>
+    <tr>
+      <th>Ligases -  Forming carbon-oxygen bonds [EC 6.1.-]</th>
+      <td>386.731740</td>
+      <td>450.214320</td>
+      <td>333.874900</td>
+      <td>338.285267</td>
+    </tr>
+    <tr>
+      <th>Ligases -  Forming carbon-sulfur bonds [EC 6.2.-]</th>
+      <td>146.460288</td>
+      <td>129.276900</td>
+      <td>124.797899</td>
+      <td>190.895886</td>
+    </tr>
+    <tr>
+      <th>Ligases -  Forming carbon-nitrogen bonds [EC 6.3.-]</th>
+      <td>218.254546</td>
+      <td>222.476525</td>
+      <td>270.665574</td>
+      <td>198.886876</td>
+    </tr>
+    <tr>
+      <th>Ligases -  Forming carbon-carbon bonds [EC 6.4.-]</th>
+      <td>19.145136</td>
+      <td>19.541857</td>
+      <td>32.415039</td>
+      <td>6.215215</td>
+    </tr>
+    <tr>
+      <th>Ligases -  Forming phosphoric ester bonds [EC 6.5.-]</th>
+      <td>44.991069</td>
+      <td>78.919038</td>
+      <td>68.071581</td>
+      <td>107.434429</td>
+    </tr>
+  </tbody>
+</table>
+</div></div>
+</div>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[58]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython2 notranslate"><div class="highlight"><pre>
+<span></span><span class="n">ec_counts</span><span class="o">.</span><span class="n">to_csv</span><span class="p">(</span><span class="s1">&#39;</span><span class="si">{}</span><span class="s1">ec_counts.csv&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">data_dir</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[59]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython2 notranslate"><div class="highlight"><pre>
+<span></span><span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">mgkit</span><span class="o">.</span><span class="n">plots</span><span class="o">.</span><span class="n">get_single_figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">15</span><span class="p">,</span> <span class="mi">12</span><span class="p">))</span>
+<span class="n">_</span> <span class="o">=</span> <span class="n">mgkit</span><span class="o">.</span><span class="n">plots</span><span class="o">.</span><span class="n">boxplot</span><span class="o">.</span><span class="n">boxplot_dataframe</span><span class="p">(</span>
+    <span class="n">ec_counts</span><span class="p">,</span>
+    <span class="n">plot_order</span><span class="p">,</span>
+    <span class="n">ax</span><span class="p">,</span>
+    <span class="c1"># a dictionary with options related to the labels</span>
+    <span class="c1"># on both the X and Y axes. In this case it changes</span>
+    <span class="c1"># the size of the labels and the rotation - the default</span>
+    <span class="c1"># is &#39;vertical&#39;, as the box_vert=True by default</span>
+    <span class="n">fonts</span><span class="o">=</span><span class="nb">dict</span><span class="p">(</span><span class="n">fontsize</span><span class="o">=</span><span class="mi">12</span><span class="p">,</span> <span class="n">rotation</span><span class="o">=</span><span class="s1">&#39;horizontal&#39;</span><span class="p">),</span>
+    <span class="n">data_colours</span><span class="o">=</span><span class="p">{</span>
+        <span class="n">x</span><span class="p">:</span> <span class="n">color</span>
+        <span class="k">for</span> <span class="n">x</span><span class="p">,</span> <span class="n">color</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="n">plot_order</span><span class="p">,</span> <span class="n">seaborn</span><span class="o">.</span><span class="n">color_palette</span><span class="p">(</span><span class="s1">&#39;hls&#39;</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">plot_order</span><span class="p">)))</span>
+    <span class="p">},</span>
+    <span class="c1"># Changes the direction of the boxplot. The rotation of</span>
+    <span class="c1"># the labels must be set to &#39;horizontal&#39; in the *fonts*</span>
+    <span class="c1"># dictionary</span>
+    <span class="n">box_vert</span><span class="o">=</span><span class="kc">False</span>
+<span class="p">)</span>
+<span class="c1"># Adds labels to the axes</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s1">&#39;Counts&#39;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">16</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s1">&#39;Enzyme Class&#39;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">16</span><span class="p">)</span>
+<span class="c1"># Ensure the correct layout before writing to disk</span>
+<span class="n">fig</span><span class="o">.</span><span class="n">set_tight_layout</span><span class="p">(</span><span class="kc">True</span><span class="p">)</span>
+<span class="c1"># Saves a PDF file, or any other supported format by matplotlib</span>
+<span class="n">fig</span><span class="o">.</span><span class="n">savefig</span><span class="p">(</span><span class="s1">&#39;</span><span class="si">{}</span><span class="s1">ec_counts-boxplot.pdf&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">data_dir</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area stderr docutils container">
+<div class="highlight"><pre>
+2018-05-22 14:10:25,953 - <span class="ansi-blue-fg">DEBUG</span> - matplotlib.font_manager-&gt;findfont: findfont: Matching :family=sans-serif:style=normal:variant=normal:weight=normal:stretch=normal:size=12.0 to DejaVu Sans (u&#39;/home/frubino/mgkit/dev-env/local/lib/python2.7/site-packages/matplotlib/mpl-data/fonts/ttf/DejaVuSans.ttf&#39;) with score of 0.050000
+2018-05-22 14:10:26,264 - <span class="ansi-blue-fg">DEBUG</span> - matplotlib.backends.backend_pdf-&gt;fontName: Assigning font /F1 = u&#39;/home/frubino/mgkit/dev-env/local/lib/python2.7/site-packages/matplotlib/mpl-data/fonts/ttf/DejaVuSans.ttf&#39;
+2018-05-22 14:10:26,958 - <span class="ansi-blue-fg">DEBUG</span> - matplotlib.backends.backend_pdf-&gt;writeFonts: Embedding font /home/frubino/mgkit/dev-env/local/lib/python2.7/site-packages/matplotlib/mpl-data/fonts/ttf/DejaVuSans.ttf.
+2018-05-22 14:10:26,960 - <span class="ansi-blue-fg">DEBUG</span> - matplotlib.backends.backend_pdf-&gt;writeFonts: Writing TrueType font.
+</pre></div></div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<img alt="../_images/pipeline_Exploring-Metagenomic-Data_65_1.png" src="../_images/pipeline_Exploring-Metagenomic-Data_65_1.png" />
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="Explore-Diversity">
+<h2>Explore Diversity<a class="headerlink" href="#Explore-Diversity" title="Permalink to this headline">¶</a></h2>
+<p>Diversity in metagenomic samples can be analysed using pN/pS values. The data required to do this was produced in the tutorial by the <em>snp_parser</em> script. Here are some examples of how to calculate diversity estimates from this data.</p>
+<p>The complete toolset to map diversity estimates can be found in the <strong>mgkit.snps</strong> package, with the <em>mgkit.snps.funcs.combine_sample_snps</em> function building the final pandas DataFrame. As the use of the function requires the initialisation of different functions, a few easier to use ones are available in the <strong>mgkit.snps.conv_func</strong> module:</p>
+<ul class="simple">
+<li><p>get_rank_dataframe</p></li>
+<li><p>get_gene_map_dataframe</p></li>
+<li><p>get_full_dataframe</p></li>
+<li><p>get_gene_taxon_dataframe</p></li>
+</ul>
+<p>The first is used to get diversity estimates for taxa, the second for genes/functions. The other two provides functionality to return estimates tied to both taxon and function.</p>
+<div class="section" id="Taxa">
+<h3>Taxa<a class="headerlink" href="#Taxa" title="Permalink to this headline">¶</a></h3>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[60]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython2 notranslate"><div class="highlight"><pre>
+<span></span><span class="c1"># Sets the minimum coverage for an annotation to be</span>
+<span class="c1"># included into the table (defaults to 4)</span>
+<span class="n">mgkit</span><span class="o">.</span><span class="n">consts</span><span class="o">.</span><span class="n">DEFAULT_SNP_FILTER</span><span class="p">[</span><span class="s1">&#39;min_cov&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="mi">2</span>
+</pre></div>
+</div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[61]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython2 notranslate"><div class="highlight"><pre>
+<span></span><span class="c1"># To get diversity estimates for taxa *mgkit.snps.conv_func.get_rank_dataframe* can be used</span>
+<span class="c1"># It is also imported and accesible from the *mgkit.snps* package</span>
+<span class="n">pnps</span> <span class="o">=</span> <span class="n">mgkit</span><span class="o">.</span><span class="n">snps</span><span class="o">.</span><span class="n">get_rank_dataframe</span><span class="p">(</span><span class="n">snp_data</span><span class="p">,</span> <span class="n">taxonomy</span><span class="p">,</span> <span class="n">min_num</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span> <span class="n">rank</span><span class="o">=</span><span class="s1">&#39;order&#39;</span><span class="p">,</span> <span class="n">index_type</span><span class="o">=</span><span class="s1">&#39;taxon&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area stderr docutils container">
+<div class="highlight"><pre>
+2018-05-22 14:10:34,437 - <span class="ansi-green-fg">INFO</span> - mgkit.snps.funcs-&gt;combine_sample_snps: Analysing SNP from sample SRR001322
+2018-05-22 14:10:34,491 - <span class="ansi-green-fg">INFO</span> - mgkit.snps.funcs-&gt;combine_sample_snps: Analysing SNP from sample SRR001323
+2018-05-22 14:10:34,552 - <span class="ansi-green-fg">INFO</span> - mgkit.snps.funcs-&gt;combine_sample_snps: Analysing SNP from sample SRR001325
+2018-05-22 14:10:34,610 - <span class="ansi-green-fg">INFO</span> - mgkit.snps.funcs-&gt;combine_sample_snps: Analysing SNP from sample SRR001326
+</pre></div></div>
+</div>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[62]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython2 notranslate"><div class="highlight"><pre>
+<span></span><span class="n">pnps</span> <span class="o">=</span> <span class="n">pnps</span><span class="o">.</span><span class="n">rename</span><span class="p">(</span>
+    <span class="n">columns</span><span class="o">=</span><span class="n">sample_names</span><span class="p">,</span>
+    <span class="n">index</span><span class="o">=</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">taxonomy</span><span class="p">[</span><span class="n">x</span><span class="p">]</span><span class="o">.</span><span class="n">s_name</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[63]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython2 notranslate"><div class="highlight"><pre>
+<span></span><span class="n">pnps</span><span class="o">.</span><span class="n">describe</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[63]:
+</pre></div>
+</div>
+<div class="output_area rendered_html docutils container">
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>16m</th>
+      <th>32m</th>
+      <th>01m</th>
+      <th>50m</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>count</th>
+      <td>83.000000</td>
+      <td>83.000000</td>
+      <td>86.0</td>
+      <td>75.000000</td>
+    </tr>
+    <tr>
+      <th>mean</th>
+      <td>0.027889</td>
+      <td>0.035167</td>
+      <td>0.0</td>
+      <td>0.020063</td>
+    </tr>
+    <tr>
+      <th>std</th>
+      <td>0.086763</td>
+      <td>0.136137</td>
+      <td>0.0</td>
+      <td>0.100393</td>
+    </tr>
+    <tr>
+      <th>min</th>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.0</td>
+      <td>0.000000</td>
+    </tr>
+    <tr>
+      <th>25%</th>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.0</td>
+      <td>0.000000</td>
+    </tr>
+    <tr>
+      <th>50%</th>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.0</td>
+      <td>0.000000</td>
+    </tr>
+    <tr>
+      <th>75%</th>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.0</td>
+      <td>0.000000</td>
+    </tr>
+    <tr>
+      <th>max</th>
+      <td>0.360621</td>
+      <td>0.882326</td>
+      <td>0.0</td>
+      <td>0.604127</td>
+    </tr>
+  </tbody>
+</table>
+</div></div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[64]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython2 notranslate"><div class="highlight"><pre>
+<span></span><span class="n">pnps</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[64]:
+</pre></div>
+</div>
+<div class="output_area rendered_html docutils container">
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>16m</th>
+      <th>32m</th>
+      <th>01m</th>
+      <th>50m</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>Rubrobacterales</th>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.0</td>
+      <td>0.000000</td>
+    </tr>
+    <tr>
+      <th>Sphaerobacterales</th>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.0</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>Bifidobacteriales</th>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.0</td>
+      <td>0.000000</td>
+    </tr>
+    <tr>
+      <th>Micrococcales</th>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.0</td>
+      <td>0.000000</td>
+    </tr>
+    <tr>
+      <th>Neisseriales</th>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.0</td>
+      <td>0.000000</td>
+    </tr>
+    <tr>
+      <th>Micromonosporales</th>
+      <td>0.000000</td>
+      <td>NaN</td>
+      <td>0.0</td>
+      <td>0.000000</td>
+    </tr>
+    <tr>
+      <th>Pseudonocardiales</th>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.0</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>Streptomycetales</th>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.0</td>
+      <td>0.000000</td>
+    </tr>
+    <tr>
+      <th>Streptosporangiales</th>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.0</td>
+      <td>0.000000</td>
+    </tr>
+    <tr>
+      <th>Haloferacales</th>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.0</td>
+      <td>0.000000</td>
+    </tr>
+    <tr>
+      <th>Bacteroidales</th>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.0</td>
+      <td>0.000000</td>
+    </tr>
+    <tr>
+      <th>Mycoplasmatales</th>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.0</td>
+      <td>0.000000</td>
+    </tr>
+    <tr>
+      <th>Corynebacteriales</th>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.0</td>
+      <td>0.000000</td>
+    </tr>
+    <tr>
+      <th>Schizosaccharomycetales</th>
+      <td>0.306546</td>
+      <td>NaN</td>
+      <td>0.0</td>
+      <td>0.000000</td>
+    </tr>
+    <tr>
+      <th>Clostridiales</th>
+      <td>NaN</td>
+      <td>0.000000</td>
+      <td>0.0</td>
+      <td>0.000000</td>
+    </tr>
+    <tr>
+      <th>Rhodocyclales</th>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.0</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>Thiotrichales</th>
+      <td>NaN</td>
+      <td>0.000000</td>
+      <td>0.0</td>
+      <td>0.000000</td>
+    </tr>
+    <tr>
+      <th>Pseudomonadales</th>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.0</td>
+      <td>0.000000</td>
+    </tr>
+    <tr>
+      <th>Legionellales</th>
+      <td>0.314474</td>
+      <td>0.000000</td>
+      <td>0.0</td>
+      <td>0.000000</td>
+    </tr>
+    <tr>
+      <th>Chlamydiales</th>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.0</td>
+      <td>0.000000</td>
+    </tr>
+    <tr>
+      <th>Chroococcales</th>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.0</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>Methanobacteriales</th>
+      <td>0.301844</td>
+      <td>0.304830</td>
+      <td>0.0</td>
+      <td>0.000000</td>
+    </tr>
+    <tr>
+      <th>Planctomycetales</th>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.0</td>
+      <td>0.000000</td>
+    </tr>
+    <tr>
+      <th>Synechococcales</th>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.0</td>
+      <td>0.397696</td>
+    </tr>
+    <tr>
+      <th>Desulfovibrionales</th>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.0</td>
+      <td>0.000000</td>
+    </tr>
+    <tr>
+      <th>Cenarchaeales</th>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>NaN</td>
+      <td>0.000000</td>
+    </tr>
+    <tr>
+      <th>Oscillatoriales</th>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.0</td>
+      <td>0.000000</td>
+    </tr>
+    <tr>
+      <th>Methanococcales</th>
+      <td>0.099162</td>
+      <td>0.147193</td>
+      <td>NaN</td>
+      <td>0.604127</td>
+    </tr>
+    <tr>
+      <th>Spirochaetales</th>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.0</td>
+      <td>0.000000</td>
+    </tr>
+    <tr>
+      <th>Nostocales</th>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.0</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>...</th>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+    </tr>
+    <tr>
+      <th>Herpetosiphonales</th>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.0</td>
+      <td>0.000000</td>
+    </tr>
+    <tr>
+      <th>Thermomicrobiales</th>
+      <td>0.000000</td>
+      <td>NaN</td>
+      <td>0.0</td>
+      <td>0.000000</td>
+    </tr>
+    <tr>
+      <th>Nitrospirales</th>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.0</td>
+      <td>0.000000</td>
+    </tr>
+    <tr>
+      <th>Campylobacterales</th>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.0</td>
+      <td>0.000000</td>
+    </tr>
+    <tr>
+      <th>Acidithiobacillales</th>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.0</td>
+      <td>0.000000</td>
+    </tr>
+    <tr>
+      <th>Parachlamydiales</th>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.0</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>Thermotogales</th>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.0</td>
+      <td>0.000000</td>
+    </tr>
+    <tr>
+      <th>Methanopyrales</th>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.0</td>
+      <td>0.000000</td>
+    </tr>
+    <tr>
+      <th>Solibacterales</th>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.0</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>Cellvibrionales</th>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.0</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>Natranaerobiales</th>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.0</td>
+      <td>0.000000</td>
+    </tr>
+    <tr>
+      <th>Gloeobacterales</th>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.0</td>
+      <td>0.000000</td>
+    </tr>
+    <tr>
+      <th>Methanocellales</th>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.0</td>
+      <td>0.000000</td>
+    </tr>
+    <tr>
+      <th>Aquificales</th>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.0</td>
+      <td>0.000000</td>
+    </tr>
+    <tr>
+      <th>Petrotogales</th>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.0</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>Eurotiales</th>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.0</td>
+      <td>0.000000</td>
+    </tr>
+    <tr>
+      <th>Chlorobiales</th>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.0</td>
+      <td>0.000000</td>
+    </tr>
+    <tr>
+      <th>Onygenales</th>
+      <td>NaN</td>
+      <td>0.000000</td>
+      <td>0.0</td>
+      <td>0.000000</td>
+    </tr>
+    <tr>
+      <th>Chromatiales</th>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.0</td>
+      <td>0.000000</td>
+    </tr>
+    <tr>
+      <th>Xanthomonadales</th>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.0</td>
+      <td>0.000000</td>
+    </tr>
+    <tr>
+      <th>Oceanospirillales</th>
+      <td>NaN</td>
+      <td>0.649600</td>
+      <td>0.0</td>
+      <td>0.000000</td>
+    </tr>
+    <tr>
+      <th>Flavobacteriales</th>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.0</td>
+      <td>0.000000</td>
+    </tr>
+    <tr>
+      <th>Alteromonadales</th>
+      <td>0.269426</td>
+      <td>NaN</td>
+      <td>0.0</td>
+      <td>0.000000</td>
+    </tr>
+    <tr>
+      <th>Vibrionales</th>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.0</td>
+      <td>0.000000</td>
+    </tr>
+    <tr>
+      <th>Aeromonadales</th>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.0</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>Pasteurellales</th>
+      <td>0.299672</td>
+      <td>0.000000</td>
+      <td>0.0</td>
+      <td>0.000000</td>
+    </tr>
+    <tr>
+      <th>Syntrophobacterales</th>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.0</td>
+      <td>0.000000</td>
+    </tr>
+    <tr>
+      <th>Rickettsiales</th>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.0</td>
+      <td>0.000000</td>
+    </tr>
+    <tr>
+      <th>Methanosarcinales</th>
+      <td>0.059651</td>
+      <td>NaN</td>
+      <td>0.0</td>
+      <td>0.000000</td>
+    </tr>
+    <tr>
+      <th>Cytophagales</th>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.0</td>
+      <td>NaN</td>
+    </tr>
+  </tbody>
+</table>
+<p>90 rows × 4 columns</p>
+</div></div>
+</div>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[65]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython2 notranslate"><div class="highlight"><pre>
+<span></span><span class="n">pnps</span><span class="o">.</span><span class="n">to_csv</span><span class="p">(</span><span class="s1">&#39;</span><span class="si">{}</span><span class="s1">pnps-taxa.csv&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">data_dir</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[66]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython2 notranslate"><div class="highlight"><pre>
+<span></span><span class="c1">#sort the DataFrame to plot them by mean value</span>
+<span class="n">plot_order</span> <span class="o">=</span> <span class="n">pnps</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span><span class="o">.</span><span class="n">sort_values</span><span class="p">(</span><span class="n">inplace</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">ascending</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span><span class="o">.</span><span class="n">index</span><span class="p">[:</span><span class="mi">10</span><span class="p">]</span>
+
+<span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">mgkit</span><span class="o">.</span><span class="n">plots</span><span class="o">.</span><span class="n">get_single_figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">15</span><span class="p">,</span> <span class="mi">10</span><span class="p">))</span>
+<span class="n">_</span> <span class="o">=</span> <span class="n">mgkit</span><span class="o">.</span><span class="n">plots</span><span class="o">.</span><span class="n">boxplot</span><span class="o">.</span><span class="n">boxplot_dataframe</span><span class="p">(</span>
+    <span class="n">pnps</span><span class="p">,</span>
+    <span class="n">plot_order</span><span class="p">,</span>
+    <span class="n">ax</span><span class="p">,</span>
+    <span class="n">fonts</span><span class="o">=</span><span class="nb">dict</span><span class="p">(</span><span class="n">fontsize</span><span class="o">=</span><span class="mi">14</span><span class="p">,</span> <span class="n">rotation</span><span class="o">=</span><span class="s1">&#39;horizontal&#39;</span><span class="p">),</span>
+    <span class="n">data_colours</span><span class="o">=</span><span class="p">{</span>
+        <span class="n">x</span><span class="p">:</span> <span class="n">color</span>
+        <span class="k">for</span> <span class="n">x</span><span class="p">,</span> <span class="n">color</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="n">plot_order</span><span class="p">,</span> <span class="n">seaborn</span><span class="o">.</span><span class="n">color_palette</span><span class="p">(</span><span class="s1">&#39;hls&#39;</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">pnps</span><span class="o">.</span><span class="n">index</span><span class="p">)))</span>
+    <span class="p">},</span>
+    <span class="n">box_vert</span><span class="o">=</span><span class="kc">False</span>
+<span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s1">&#39;pN/pS&#39;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">16</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s1">&#39;Order&#39;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">16</span><span class="p">)</span>
+<span class="n">fig</span><span class="o">.</span><span class="n">set_tight_layout</span><span class="p">(</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">fig</span><span class="o">.</span><span class="n">savefig</span><span class="p">(</span><span class="s1">&#39;</span><span class="si">{}</span><span class="s1">pnps-taxa-boxplot.pdf&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">data_dir</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area stderr docutils container">
+<div class="highlight"><pre>
+/home/frubino/mgkit/dev-env/local/lib/python2.7/site-packages/numpy/core/fromnumeric.py:52: FutureWarning: reshape is deprecated and will raise in a subsequent release. Please use .values.reshape(...) instead
+  return getattr(obj, method)(*args, **kwds)
+2018-05-22 14:10:34,970 - <span class="ansi-blue-fg">DEBUG</span> - matplotlib.backends.backend_pdf-&gt;fontName: Assigning font /F1 = u&#39;/home/frubino/mgkit/dev-env/local/lib/python2.7/site-packages/matplotlib/mpl-data/fonts/ttf/DejaVuSans.ttf&#39;
+2018-05-22 14:10:35,015 - <span class="ansi-blue-fg">DEBUG</span> - matplotlib.backends.backend_pdf-&gt;writeFonts: Embedding font /home/frubino/mgkit/dev-env/local/lib/python2.7/site-packages/matplotlib/mpl-data/fonts/ttf/DejaVuSans.ttf.
+2018-05-22 14:10:35,016 - <span class="ansi-blue-fg">DEBUG</span> - matplotlib.backends.backend_pdf-&gt;writeFonts: Writing TrueType font.
+</pre></div></div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<img alt="../_images/pipeline_Exploring-Metagenomic-Data_75_1.png" src="../_images/pipeline_Exploring-Metagenomic-Data_75_1.png" />
+</div>
+</div>
+</div>
+<div class="section" id="Functional-Categories">
+<h3>Functional Categories<a class="headerlink" href="#Functional-Categories" title="Permalink to this headline">¶</a></h3>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[67]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython2 notranslate"><div class="highlight"><pre>
+<span></span><span class="c1"># To get diversity estimates of functions, *mgkit.snps.conv_func.get_gene_map_dataframe* can be used</span>
+<span class="c1"># This is available in the *mgkit.snps* package as well</span>
+<span class="n">fc_pnps</span> <span class="o">=</span> <span class="n">mgkit</span><span class="o">.</span><span class="n">snps</span><span class="o">.</span><span class="n">get_gene_map_dataframe</span><span class="p">(</span><span class="n">snp_data</span><span class="p">,</span> <span class="n">taxonomy</span><span class="p">,</span> <span class="n">min_num</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span> <span class="n">gene_map</span><span class="o">=</span><span class="n">fc_map</span><span class="p">,</span> <span class="n">index_type</span><span class="o">=</span><span class="s1">&#39;gene&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area stderr docutils container">
+<div class="highlight"><pre>
+2018-05-22 14:10:38,138 - <span class="ansi-green-fg">INFO</span> - mgkit.snps.funcs-&gt;combine_sample_snps: Analysing SNP from sample SRR001322
+2018-05-22 14:10:38,174 - <span class="ansi-green-fg">INFO</span> - mgkit.snps.funcs-&gt;combine_sample_snps: Analysing SNP from sample SRR001323
+2018-05-22 14:10:38,215 - <span class="ansi-green-fg">INFO</span> - mgkit.snps.funcs-&gt;combine_sample_snps: Analysing SNP from sample SRR001325
+2018-05-22 14:10:38,256 - <span class="ansi-green-fg">INFO</span> - mgkit.snps.funcs-&gt;combine_sample_snps: Analysing SNP from sample SRR001326
+</pre></div></div>
+</div>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[68]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython2 notranslate"><div class="highlight"><pre>
+<span></span><span class="n">fc_pnps</span> <span class="o">=</span> <span class="n">fc_pnps</span><span class="o">.</span><span class="n">rename</span><span class="p">(</span>
+    <span class="n">columns</span><span class="o">=</span><span class="n">sample_names</span><span class="p">,</span>
+    <span class="n">index</span><span class="o">=</span><span class="n">eggnog</span><span class="o">.</span><span class="n">EGGNOG_CAT</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[69]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython2 notranslate"><div class="highlight"><pre>
+<span></span><span class="n">fc_pnps</span><span class="o">.</span><span class="n">describe</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[69]:
+</pre></div>
+</div>
+<div class="output_area rendered_html docutils container">
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>16m</th>
+      <th>32m</th>
+      <th>01m</th>
+      <th>50m</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>count</th>
+      <td>18.000000</td>
+      <td>15.000000</td>
+      <td>18.0</td>
+      <td>19.000000</td>
+    </tr>
+    <tr>
+      <th>mean</th>
+      <td>0.106591</td>
+      <td>0.195602</td>
+      <td>0.0</td>
+      <td>0.085110</td>
+    </tr>
+    <tr>
+      <th>std</th>
+      <td>0.149325</td>
+      <td>0.257863</td>
+      <td>0.0</td>
+      <td>0.173999</td>
+    </tr>
+    <tr>
+      <th>min</th>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.0</td>
+      <td>0.000000</td>
+    </tr>
+    <tr>
+      <th>25%</th>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.0</td>
+      <td>0.000000</td>
+    </tr>
+    <tr>
+      <th>50%</th>
+      <td>0.000000</td>
+      <td>0.076031</td>
+      <td>0.0</td>
+      <td>0.000000</td>
+    </tr>
+    <tr>
+      <th>75%</th>
+      <td>0.275874</td>
+      <td>0.225485</td>
+      <td>0.0</td>
+      <td>0.127011</td>
+    </tr>
+    <tr>
+      <th>max</th>
+      <td>0.410372</td>
+      <td>0.761215</td>
+      <td>0.0</td>
+      <td>0.701625</td>
+    </tr>
+  </tbody>
+</table>
+</div></div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[70]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython2 notranslate"><div class="highlight"><pre>
+<span></span><span class="n">fc_pnps</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[70]:
+</pre></div>
+</div>
+<div class="output_area rendered_html docutils container">
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>16m</th>
+      <th>32m</th>
+      <th>01m</th>
+      <th>50m</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>RNA processing and modification</th>
+      <td>NaN</td>
+      <td>0.000000</td>
+      <td>0.0</td>
+      <td>0.000000</td>
+    </tr>
+    <tr>
+      <th>Energy production and conversion</th>
+      <td>0.300669</td>
+      <td>0.214854</td>
+      <td>NaN</td>
+      <td>0.201721</td>
+    </tr>
+    <tr>
+      <th>Chromatin structure and dynamics</th>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.0</td>
+      <td>0.000000</td>
+    </tr>
+    <tr>
+      <th>Amino acid transport and metabolism</th>
+      <td>NaN</td>
+      <td>0.060911</td>
+      <td>0.0</td>
+      <td>0.000000</td>
+    </tr>
+    <tr>
+      <th>Cell cycle control, cell division, chromosome partitioning</th>
+      <td>0.000000</td>
+      <td>NaN</td>
+      <td>0.0</td>
+      <td>0.000000</td>
+    </tr>
+    <tr>
+      <th>Nucleotide transport and metabolism</th>
+      <td>0.060956</td>
+      <td>0.236117</td>
+      <td>0.0</td>
+      <td>0.000000</td>
+    </tr>
+    <tr>
+      <th>Lipid transport and metabolism</th>
+      <td>0.000000</td>
+      <td>NaN</td>
+      <td>0.0</td>
+      <td>0.000000</td>
+    </tr>
+    <tr>
+      <th>Coenzyme transport and metabolism</th>
+      <td>0.410372</td>
+      <td>0.761215</td>
+      <td>0.0</td>
+      <td>0.302295</td>
+    </tr>
+    <tr>
+      <th>Transcription</th>
+      <td>0.306611</td>
+      <td>0.076031</td>
+      <td>0.0</td>
+      <td>0.000000</td>
+    </tr>
+    <tr>
+      <th>Translation, ribosomal structure and biogenesis</th>
+      <td>0.029312</td>
+      <td>0.048914</td>
+      <td>NaN</td>
+      <td>0.701625</td>
+    </tr>
+    <tr>
+      <th>Cell wall/membrane/envelope biogenesis</th>
+      <td>0.000000</td>
+      <td>0.601078</td>
+      <td>0.0</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>Replication, recombination and repair</th>
+      <td>0.306580</td>
+      <td>0.148139</td>
+      <td>0.0</td>
+      <td>0.000000</td>
+    </tr>
+    <tr>
+      <th>Posttranslational modification, protein turnover, chaperones</th>
+      <td>0.302645</td>
+      <td>NaN</td>
+      <td>0.0</td>
+      <td>0.102591</td>
+    </tr>
+    <tr>
+      <th>Cell motility</th>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.0</td>
+      <td>0.000000</td>
+    </tr>
+    <tr>
+      <th>Secondary metabolites biosynthesis, transport and catabolism</th>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.0</td>
+      <td>0.000000</td>
+    </tr>
+    <tr>
+      <th>Inorganic ion transport and metabolism</th>
+      <td>0.000000</td>
+      <td>NaN</td>
+      <td>0.0</td>
+      <td>0.157425</td>
+    </tr>
+    <tr>
+      <th>Function unknown</th>
+      <td>0.000000</td>
+      <td>NaN</td>
+      <td>0.0</td>
+      <td>0.000000</td>
+    </tr>
+    <tr>
+      <th>General function prediction only</th>
+      <td>0.201490</td>
+      <td>0.149640</td>
+      <td>0.0</td>
+      <td>0.151431</td>
+    </tr>
+    <tr>
+      <th>Signal transduction mechanisms</th>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.0</td>
+      <td>0.000000</td>
+    </tr>
+    <tr>
+      <th>Defense mechanisms</th>
+      <td>0.000000</td>
+      <td>0.637127</td>
+      <td>0.0</td>
+      <td>0.000000</td>
+    </tr>
+  </tbody>
+</table>
+</div></div>
+</div>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[71]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython2 notranslate"><div class="highlight"><pre>
+<span></span><span class="n">fc_pnps</span><span class="o">.</span><span class="n">to_csv</span><span class="p">(</span><span class="s1">&#39;</span><span class="si">{}</span><span class="s1">pnps-fc.csv&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">data_dir</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[72]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython2 notranslate"><div class="highlight"><pre>
+<span></span><span class="c1">#sort the DataFrame to plot them by median value</span>
+<span class="n">plot_order</span> <span class="o">=</span> <span class="n">fc_pnps</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span><span class="o">.</span><span class="n">sort_values</span><span class="p">(</span><span class="n">inplace</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">ascending</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span><span class="o">.</span><span class="n">index</span>
+
+<span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">mgkit</span><span class="o">.</span><span class="n">plots</span><span class="o">.</span><span class="n">get_single_figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">15</span><span class="p">,</span> <span class="mi">10</span><span class="p">))</span>
+<span class="n">_</span> <span class="o">=</span> <span class="n">mgkit</span><span class="o">.</span><span class="n">plots</span><span class="o">.</span><span class="n">boxplot</span><span class="o">.</span><span class="n">boxplot_dataframe</span><span class="p">(</span>
+    <span class="n">fc_pnps</span><span class="p">,</span>
+    <span class="n">plot_order</span><span class="p">,</span>
+    <span class="n">ax</span><span class="p">,</span>
+    <span class="n">fonts</span><span class="o">=</span><span class="nb">dict</span><span class="p">(</span><span class="n">fontsize</span><span class="o">=</span><span class="mi">14</span><span class="p">,</span> <span class="n">rotation</span><span class="o">=</span><span class="s1">&#39;horizontal&#39;</span><span class="p">),</span>
+    <span class="n">data_colours</span><span class="o">=</span><span class="p">{</span>
+        <span class="n">x</span><span class="p">:</span> <span class="n">color</span>
+        <span class="k">for</span> <span class="n">x</span><span class="p">,</span> <span class="n">color</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="n">plot_order</span><span class="p">,</span> <span class="n">seaborn</span><span class="o">.</span><span class="n">color_palette</span><span class="p">(</span><span class="s1">&#39;hls&#39;</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">fc_pnps</span><span class="o">.</span><span class="n">index</span><span class="p">)))</span>
+    <span class="p">},</span>
+    <span class="n">box_vert</span><span class="o">=</span><span class="kc">False</span>
+<span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s1">&#39;pN/pS&#39;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">16</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s1">&#39;Functional Category&#39;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">16</span><span class="p">)</span>
+<span class="n">fig</span><span class="o">.</span><span class="n">set_tight_layout</span><span class="p">(</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">fig</span><span class="o">.</span><span class="n">savefig</span><span class="p">(</span><span class="s1">&#39;</span><span class="si">{}</span><span class="s1">pnps-fc-boxplot.pdf&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">data_dir</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area stderr docutils container">
+<div class="highlight"><pre>
+2018-05-22 14:10:38,683 - <span class="ansi-blue-fg">DEBUG</span> - matplotlib.backends.backend_pdf-&gt;fontName: Assigning font /F1 = u&#39;/home/frubino/mgkit/dev-env/local/lib/python2.7/site-packages/matplotlib/mpl-data/fonts/ttf/DejaVuSans.ttf&#39;
+2018-05-22 14:10:38,777 - <span class="ansi-blue-fg">DEBUG</span> - matplotlib.backends.backend_pdf-&gt;writeFonts: Embedding font /home/frubino/mgkit/dev-env/local/lib/python2.7/site-packages/matplotlib/mpl-data/fonts/ttf/DejaVuSans.ttf.
+2018-05-22 14:10:38,778 - <span class="ansi-blue-fg">DEBUG</span> - matplotlib.backends.backend_pdf-&gt;writeFonts: Writing TrueType font.
+</pre></div></div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<img alt="../_images/pipeline_Exploring-Metagenomic-Data_82_1.png" src="../_images/pipeline_Exploring-Metagenomic-Data_82_1.png" />
+</div>
+</div>
+</div>
+<div class="section" id="Enzyme-Classification">
+<h3>Enzyme Classification<a class="headerlink" href="#Enzyme-Classification" title="Permalink to this headline">¶</a></h3>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[73]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython2 notranslate"><div class="highlight"><pre>
+<span></span><span class="n">ec_map</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="c1"># Using only the first level</span>
+    <span class="n">annotation</span><span class="o">.</span><span class="n">gene_id</span><span class="p">:</span> <span class="nb">set</span><span class="p">(</span><span class="n">x</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s1">&#39;.-&#39;</span><span class="p">,</span> <span class="s1">&#39;&#39;</span><span class="p">)</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">annotation</span><span class="o">.</span><span class="n">get_ec</span><span class="p">(</span><span class="n">level</span><span class="o">=</span><span class="mi">1</span><span class="p">))</span>
+    <span class="k">for</span> <span class="n">annotation</span> <span class="ow">in</span> <span class="n">annotations</span><span class="o">.</span><span class="n">itervalues</span><span class="p">()</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[74]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython2 notranslate"><div class="highlight"><pre>
+<span></span><span class="n">ec_pnps</span> <span class="o">=</span> <span class="n">mgkit</span><span class="o">.</span><span class="n">snps</span><span class="o">.</span><span class="n">get_gene_map_dataframe</span><span class="p">(</span><span class="n">snp_data</span><span class="p">,</span> <span class="n">taxonomy</span><span class="p">,</span> <span class="n">min_num</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span> <span class="n">gene_map</span><span class="o">=</span><span class="n">ec_map</span><span class="p">,</span> <span class="n">index_type</span><span class="o">=</span><span class="s1">&#39;gene&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area stderr docutils container">
+<div class="highlight"><pre>
+2018-05-22 14:10:42,201 - <span class="ansi-green-fg">INFO</span> - mgkit.snps.funcs-&gt;combine_sample_snps: Analysing SNP from sample SRR001322
+2018-05-22 14:10:42,238 - <span class="ansi-green-fg">INFO</span> - mgkit.snps.funcs-&gt;combine_sample_snps: Analysing SNP from sample SRR001323
+2018-05-22 14:10:42,277 - <span class="ansi-green-fg">INFO</span> - mgkit.snps.funcs-&gt;combine_sample_snps: Analysing SNP from sample SRR001325
+2018-05-22 14:10:42,319 - <span class="ansi-green-fg">INFO</span> - mgkit.snps.funcs-&gt;combine_sample_snps: Analysing SNP from sample SRR001326
+</pre></div></div>
+</div>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[75]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython2 notranslate"><div class="highlight"><pre>
+<span></span><span class="c1"># Rename columns and row. Rows will include the full label the enzyme class</span>
+<span class="n">ec_pnps</span> <span class="o">=</span> <span class="n">ec_pnps</span><span class="o">.</span><span class="n">rename</span><span class="p">(</span>
+    <span class="n">index</span><span class="o">=</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="s2">&quot;</span><span class="si">{}</span><span class="s2"> </span><span class="si">{}</span><span class="s2"> [EC </span><span class="si">{}</span><span class="s2">.-]&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span>
+        <span class="c1"># A name of the second level doesn&#39;t include the first level</span>
+        <span class="c1"># definition, so if it is level 2, we add the level 1 label</span>
+        <span class="s1">&#39;&#39;</span> <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">x</span><span class="p">)</span> <span class="o">==</span> <span class="mi">1</span> <span class="k">else</span> <span class="n">ec_names</span><span class="p">[</span><span class="n">x</span><span class="p">[</span><span class="mi">0</span><span class="p">]]</span> <span class="o">+</span> <span class="s2">&quot; - &quot;</span><span class="p">,</span>
+        <span class="c1"># The EC label for the specific class (e.g. 3.2)</span>
+        <span class="n">ec_names</span><span class="p">[</span><span class="n">x</span><span class="p">],</span>
+        <span class="c1"># The EC number</span>
+        <span class="n">x</span>
+    <span class="p">),</span>
+    <span class="n">columns</span><span class="o">=</span><span class="n">sample_names</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[76]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython2 notranslate"><div class="highlight"><pre>
+<span></span><span class="n">ec_pnps</span><span class="o">.</span><span class="n">describe</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[76]:
+</pre></div>
+</div>
+<div class="output_area rendered_html docutils container">
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>16m</th>
+      <th>32m</th>
+      <th>01m</th>
+      <th>50m</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>count</th>
+      <td>3.000000</td>
+      <td>3.000000</td>
+      <td>2.0</td>
+      <td>3.000000</td>
+    </tr>
+    <tr>
+      <th>mean</th>
+      <td>0.351120</td>
+      <td>0.187620</td>
+      <td>0.0</td>
+      <td>0.173303</td>
+    </tr>
+    <tr>
+      <th>std</th>
+      <td>0.248257</td>
+      <td>0.139590</td>
+      <td>0.0</td>
+      <td>0.185190</td>
+    </tr>
+    <tr>
+      <th>min</th>
+      <td>0.100278</td>
+      <td>0.100437</td>
+      <td>0.0</td>
+      <td>0.000000</td>
+    </tr>
+    <tr>
+      <th>25%</th>
+      <td>0.228326</td>
+      <td>0.107119</td>
+      <td>0.0</td>
+      <td>0.075732</td>
+    </tr>
+    <tr>
+      <th>50%</th>
+      <td>0.356374</td>
+      <td>0.113802</td>
+      <td>0.0</td>
+      <td>0.151464</td>
+    </tr>
+    <tr>
+      <th>75%</th>
+      <td>0.476541</td>
+      <td>0.231211</td>
+      <td>0.0</td>
+      <td>0.259954</td>
+    </tr>
+    <tr>
+      <th>max</th>
+      <td>0.596708</td>
+      <td>0.348620</td>
+      <td>0.0</td>
+      <td>0.368444</td>
+    </tr>
+  </tbody>
+</table>
+</div></div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[77]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython2 notranslate"><div class="highlight"><pre>
+<span></span><span class="n">ec_pnps</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[77]:
+</pre></div>
+</div>
+<div class="output_area rendered_html docutils container">
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>16m</th>
+      <th>32m</th>
+      <th>01m</th>
+      <th>50m</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>Oxidoreductases [EC 1.-]</th>
+      <td>0.100278</td>
+      <td>0.113802</td>
+      <td>NaN</td>
+      <td>0.151464</td>
+    </tr>
+    <tr>
+      <th>Transferases [EC 2.-]</th>
+      <td>0.356374</td>
+      <td>0.348620</td>
+      <td>0.0</td>
+      <td>0.368444</td>
+    </tr>
+    <tr>
+      <th>Isomerases [EC 5.-]</th>
+      <td>0.596708</td>
+      <td>0.100437</td>
+      <td>0.0</td>
+      <td>0.000000</td>
+    </tr>
+  </tbody>
+</table>
+</div></div>
+</div>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[78]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython2 notranslate"><div class="highlight"><pre>
+<span></span><span class="n">ec_pnps</span><span class="o">.</span><span class="n">to_csv</span><span class="p">(</span><span class="s1">&#39;</span><span class="si">{}</span><span class="s1">pnps-ec.csv&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">data_dir</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[79]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython2 notranslate"><div class="highlight"><pre>
+<span></span><span class="c1">#sort the DataFrame to plot them by median value</span>
+<span class="n">plot_order</span> <span class="o">=</span> <span class="n">ec_pnps</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span><span class="o">.</span><span class="n">sort_values</span><span class="p">(</span><span class="n">inplace</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">ascending</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span><span class="o">.</span><span class="n">index</span>
+
+<span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">mgkit</span><span class="o">.</span><span class="n">plots</span><span class="o">.</span><span class="n">get_single_figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">15</span><span class="p">,</span> <span class="mi">10</span><span class="p">))</span>
+<span class="n">_</span> <span class="o">=</span> <span class="n">mgkit</span><span class="o">.</span><span class="n">plots</span><span class="o">.</span><span class="n">boxplot</span><span class="o">.</span><span class="n">boxplot_dataframe</span><span class="p">(</span>
+    <span class="n">ec_pnps</span><span class="p">,</span>
+    <span class="n">plot_order</span><span class="p">,</span>
+    <span class="n">ax</span><span class="p">,</span>
+    <span class="n">fonts</span><span class="o">=</span><span class="nb">dict</span><span class="p">(</span><span class="n">fontsize</span><span class="o">=</span><span class="mi">14</span><span class="p">,</span> <span class="n">rotation</span><span class="o">=</span><span class="s1">&#39;horizontal&#39;</span><span class="p">),</span>
+    <span class="n">data_colours</span><span class="o">=</span><span class="p">{</span>
+        <span class="n">x</span><span class="p">:</span> <span class="n">color</span>
+        <span class="k">for</span> <span class="n">x</span><span class="p">,</span> <span class="n">color</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="n">plot_order</span><span class="p">,</span> <span class="n">seaborn</span><span class="o">.</span><span class="n">color_palette</span><span class="p">(</span><span class="s1">&#39;hls&#39;</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">plot_order</span><span class="p">)))</span>
+    <span class="p">},</span>
+    <span class="n">box_vert</span><span class="o">=</span><span class="kc">False</span>
+<span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s1">&#39;pN/pS&#39;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">16</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s1">&#39;Enzyme Class&#39;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">16</span><span class="p">)</span>
+<span class="n">fig</span><span class="o">.</span><span class="n">set_tight_layout</span><span class="p">(</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">fig</span><span class="o">.</span><span class="n">savefig</span><span class="p">(</span><span class="s1">&#39;</span><span class="si">{}</span><span class="s1">pnps-ec-boxplot.pdf&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">data_dir</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area stderr docutils container">
+<div class="highlight"><pre>
+2018-05-22 14:10:43,431 - <span class="ansi-blue-fg">DEBUG</span> - matplotlib.backends.backend_pdf-&gt;fontName: Assigning font /F1 = u&#39;/home/frubino/mgkit/dev-env/local/lib/python2.7/site-packages/matplotlib/mpl-data/fonts/ttf/DejaVuSans.ttf&#39;
+2018-05-22 14:10:43,455 - <span class="ansi-blue-fg">DEBUG</span> - matplotlib.backends.backend_pdf-&gt;writeFonts: Embedding font /home/frubino/mgkit/dev-env/local/lib/python2.7/site-packages/matplotlib/mpl-data/fonts/ttf/DejaVuSans.ttf.
+2018-05-22 14:10:43,456 - <span class="ansi-blue-fg">DEBUG</span> - matplotlib.backends.backend_pdf-&gt;writeFonts: Writing TrueType font.
+</pre></div></div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<img alt="../_images/pipeline_Exploring-Metagenomic-Data_90_1.png" src="../_images/pipeline_Exploring-Metagenomic-Data_90_1.png" />
+</div>
+</div>
+</div>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="blast2lca.html" class="btn btn-neutral float-right" title="Profile a Community with BLAST" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="tutorial.html" class="btn btn-neutral float-left" title="Tutorial" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2013-2015, Francesco Rubino
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

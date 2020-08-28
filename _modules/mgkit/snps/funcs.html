@@ -1,0 +1,599 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>mgkit.snps.funcs &mdash; MGKit: Metagenomic framework 0.5.0 documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+  <script type="text/javascript" src="../../../_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../../../" src="../../../_static/documentation_options.js"></script>
+        <script type="text/javascript" src="../../../_static/jquery.js"></script>
+        <script type="text/javascript" src="../../../_static/underscore.js"></script>
+        <script type="text/javascript" src="../../../_static/doctools.js"></script>
+        <script type="text/javascript" src="../../../_static/language_data.js"></script>
+        <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+        <script async="async" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+        <script type="text/x-mathjax-config">MathJax.Hub.Config({"tex2jax": {"inlineMath": [["$", "$"], ["\\(", "\\)"]], "processEscapes": true, "ignoreClass": "document", "processClass": "math|output_area"}})</script>
+    
+    <script type="text/javascript" src="../../../_static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="../../../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../../../_static/graphviz.css" type="text/css" />
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../../../index.html" class="icon icon-home"> MGKit: Metagenomic framework
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                0.5.0
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../introduction.html">Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../install.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../pipeline/index.html">Metagenomic Pipeline</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../scripts/index.html">Scripts Details</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../examples/index.html">Example Notebooks</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../gff.html">MGKit GFF Specifications</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../library.html">Library Reference</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../changes.html">Changes</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../index.html">MGKit: Metagenomic framework</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../../../index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="../../index.html">Module code</a> &raquo;</li>
+        
+          <li><a href="../../mgkit.html">mgkit</a> &raquo;</li>
+        
+      <li>mgkit.snps.funcs</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <h1>Source code for mgkit.snps.funcs</h1><div class="highlight"><pre>
+<span></span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">Functions used in SNPs manipulation</span>
+<span class="sd">&quot;&quot;&quot;</span>
+<span class="kn">from</span> <span class="nn">builtins</span> <span class="kn">import</span> <span class="nb">zip</span>
+<span class="kn">import</span> <span class="nn">logging</span>
+<span class="kn">import</span> <span class="nn">itertools</span>
+<span class="kn">import</span> <span class="nn">functools</span>
+<span class="kn">import</span> <span class="nn">csv</span>
+<span class="kn">import</span> <span class="nn">copy</span>
+<span class="kn">from</span> <span class="nn">future.utils</span> <span class="kn">import</span> <span class="n">viewitems</span><span class="p">,</span> <span class="n">viewvalues</span>
+<span class="kn">from</span> <span class="nn">.filter</span> <span class="kn">import</span> <span class="n">pipe_filters</span>
+
+<span class="kn">import</span> <span class="nn">pandas</span>
+<span class="kn">import</span> <span class="nn">numpy</span>
+<span class="kn">import</span> <span class="nn">scipy.stats</span>
+
+<span class="n">LOG</span> <span class="o">=</span> <span class="n">logging</span><span class="o">.</span><span class="n">getLogger</span><span class="p">(</span><span class="vm">__name__</span><span class="p">)</span>
+
+
+<div class="viewcode-block" id="build_rank_matrix"><a class="viewcode-back" href="../../../api/mgkit.snps.funcs.html#mgkit.snps.funcs.build_rank_matrix">[docs]</a><span class="k">def</span> <span class="nf">build_rank_matrix</span><span class="p">(</span><span class="n">dataframe</span><span class="p">,</span> <span class="n">taxonomy</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">taxon_rank</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Make a rank matrix from a :class:`pandas.Series` with the pN/pS values of a</span>
+<span class="sd">    dataset.</span>
+
+<span class="sd">    :param dataframe: :class:`pandas.Series` instance with a MultiIndex</span>
+<span class="sd">        (gene-taxon)</span>
+<span class="sd">    :param taxonomy: :class:`taxon.Taxonomy` instance with the full</span>
+<span class="sd">        taxonomy</span>
+<span class="sd">    :param str taxon_rank: taxon rank to limit the specifity of the taxa</span>
+<span class="sd">        included</span>
+
+<span class="sd">    :return: :class:`pandas.DataFrame` instance</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">if</span> <span class="n">taxon_rank</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="n">taxon_index</span> <span class="o">=</span> <span class="nb">sorted</span><span class="p">(</span><span class="nb">set</span><span class="p">(</span><span class="n">dataframe</span><span class="o">.</span><span class="n">index</span><span class="o">.</span><span class="n">get_level_values</span><span class="p">(</span><span class="s1">&#39;taxon&#39;</span><span class="p">)))</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">taxon_index</span> <span class="o">=</span> <span class="nb">sorted</span><span class="p">(</span>
+            <span class="nb">set</span><span class="p">(</span>
+                <span class="n">taxonomy</span><span class="o">.</span><span class="n">get_ranked_taxon</span><span class="p">(</span><span class="n">taxon_id</span><span class="p">,</span> <span class="n">taxon_rank</span><span class="p">)</span><span class="o">.</span><span class="n">taxon_id</span>
+                <span class="k">for</span> <span class="n">taxon_id</span> <span class="ow">in</span> <span class="nb">set</span><span class="p">(</span><span class="n">dataframe</span><span class="o">.</span><span class="n">index</span><span class="o">.</span><span class="n">get_level_values</span><span class="p">(</span><span class="s1">&#39;taxon&#39;</span><span class="p">))</span>
+                <span class="k">if</span> <span class="n">taxonomy</span><span class="o">.</span><span class="n">get_ranked_taxon</span><span class="p">(</span>
+                    <span class="n">taxon_id</span><span class="p">,</span> <span class="n">taxon_rank</span>
+                <span class="p">)</span><span class="o">.</span><span class="n">rank</span> <span class="o">==</span> <span class="n">taxon_rank</span>
+            <span class="p">)</span>
+        <span class="p">)</span>
+
+    <span class="n">gene_index</span> <span class="o">=</span> <span class="nb">sorted</span><span class="p">(</span><span class="nb">set</span><span class="p">(</span><span class="n">dataframe</span><span class="o">.</span><span class="n">index</span><span class="o">.</span><span class="n">get_level_values</span><span class="p">(</span><span class="s1">&#39;gene&#39;</span><span class="p">)))</span>
+
+    <span class="c1"># print taxon_index</span>
+    <span class="n">rank_matrix</span> <span class="o">=</span> <span class="n">pandas</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">index</span><span class="o">=</span><span class="n">gene_index</span><span class="p">,</span> <span class="n">columns</span><span class="o">=</span><span class="n">taxon_index</span><span class="p">)</span>
+
+    <span class="k">for</span> <span class="n">gene_id</span> <span class="ow">in</span> <span class="n">rank_matrix</span><span class="o">.</span><span class="n">index</span><span class="p">:</span>
+        <span class="n">gene_array</span> <span class="o">=</span> <span class="n">dataframe</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">gene_id</span><span class="p">]</span>
+        <span class="c1"># print gene_id, type(gene_array)</span>
+        <span class="n">iterator</span> <span class="o">=</span> <span class="nb">zip</span><span class="p">(</span><span class="n">gene_array</span><span class="o">.</span><span class="n">index</span><span class="p">,</span> <span class="n">scipy</span><span class="o">.</span><span class="n">stats</span><span class="o">.</span><span class="n">rankdata</span><span class="p">(</span><span class="n">gene_array</span><span class="p">))</span>
+        <span class="k">for</span> <span class="n">taxon_id</span><span class="p">,</span> <span class="n">rank</span> <span class="ow">in</span> <span class="n">iterator</span><span class="p">:</span>
+            <span class="k">if</span> <span class="n">taxon_rank</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+                <span class="n">taxon_id</span> <span class="o">=</span> <span class="n">taxonomy</span><span class="o">.</span><span class="n">get_ranked_taxon</span><span class="p">(</span>
+                    <span class="n">taxon_id</span><span class="p">,</span> <span class="n">taxon_rank</span>
+                <span class="p">)</span><span class="o">.</span><span class="n">taxon_id</span>
+                <span class="k">if</span> <span class="n">taxonomy</span><span class="p">[</span><span class="n">taxon_id</span><span class="p">]</span><span class="o">.</span><span class="n">rank</span> <span class="o">!=</span> <span class="n">taxon_rank</span><span class="p">:</span>
+                    <span class="k">continue</span>
+
+            <span class="n">old_value</span> <span class="o">=</span> <span class="n">rank_matrix</span><span class="o">.</span><span class="n">get_value</span><span class="p">(</span><span class="n">gene_id</span><span class="p">,</span> <span class="n">taxon_id</span><span class="p">)</span>
+            <span class="k">if</span> <span class="n">numpy</span><span class="o">.</span><span class="n">isnan</span><span class="p">(</span><span class="n">old_value</span><span class="p">)</span> <span class="ow">or</span> <span class="n">old_value</span> <span class="o">&gt;</span> <span class="n">rank</span><span class="p">:</span>
+                <span class="n">rank_matrix</span><span class="o">.</span><span class="n">set_value</span><span class="p">(</span><span class="n">gene_id</span><span class="p">,</span> <span class="n">taxon_id</span><span class="p">,</span> <span class="n">rank</span><span class="p">)</span>
+
+    <span class="k">return</span> <span class="n">rank_matrix</span></div>
+
+
+<div class="viewcode-block" id="group_rank_matrix"><a class="viewcode-back" href="../../../api/mgkit.snps.funcs.html#mgkit.snps.funcs.group_rank_matrix">[docs]</a><span class="k">def</span> <span class="nf">group_rank_matrix</span><span class="p">(</span><span class="n">dataframe</span><span class="p">,</span> <span class="n">gene_map</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Group a rank matrix using a mapping, in the form map_id-&gt;ko_ids.</span>
+
+<span class="sd">    :param dataframe: instance of a rank matrix from :func:`build_rank_matrix`</span>
+<span class="sd">    :param dict gene_map: dictionary with the mapping</span>
+
+<span class="sd">    :return: :class:`pandas.DataFrame` instance</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">rank_matrix</span> <span class="o">=</span> <span class="n">pandas</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span>
+        <span class="n">index</span><span class="o">=</span><span class="nb">list</span><span class="p">(</span><span class="n">gene_map</span><span class="o">.</span><span class="n">keys</span><span class="p">()),</span>
+        <span class="n">columns</span><span class="o">=</span><span class="n">dataframe</span><span class="o">.</span><span class="n">columns</span>
+    <span class="p">)</span>
+
+    <span class="k">for</span> <span class="n">mapping_id</span><span class="p">,</span> <span class="n">gene_ids</span> <span class="ow">in</span> <span class="n">viewitems</span><span class="p">(</span><span class="n">gene_map</span><span class="p">):</span>
+        <span class="n">mapped_matrix</span> <span class="o">=</span> <span class="n">dataframe</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">gene_ids</span><span class="p">]</span>
+        <span class="c1"># we only use the minimum rank among the genes with a set function</span>
+        <span class="c1"># min() will return only those</span>
+        <span class="k">for</span> <span class="n">taxon_id</span><span class="p">,</span> <span class="n">rank</span> <span class="ow">in</span> <span class="n">mapped_matrix</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span><span class="o">.</span><span class="n">dropna</span><span class="p">()</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+            <span class="n">rank_matrix</span><span class="o">.</span><span class="n">set_value</span><span class="p">(</span><span class="n">mapping_id</span><span class="p">,</span> <span class="n">taxon_id</span><span class="p">,</span> <span class="n">rank</span><span class="p">)</span>
+
+    <span class="k">return</span> <span class="n">rank_matrix</span></div>
+
+
+<div class="viewcode-block" id="write_sign_genes_table"><a class="viewcode-back" href="../../../api/mgkit.snps.funcs.html#mgkit.snps.funcs.write_sign_genes_table">[docs]</a><span class="k">def</span> <span class="nf">write_sign_genes_table</span><span class="p">(</span><span class="n">out_file</span><span class="p">,</span> <span class="n">dataframe</span><span class="p">,</span> <span class="n">sign_genes</span><span class="p">,</span> <span class="n">taxonomy</span><span class="p">,</span>
+                           <span class="n">gene_names</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Write a table with the list of significant genes found in a dataframe, the</span>
+<span class="sd">    significant gene list is the result of</span>
+<span class="sd">    :func:`wilcoxon_pairwise_test_dataframe`.</span>
+
+<span class="sd">    :out_file: the file name or file object to write the file</span>
+<span class="sd">    :dataframe: the dataframe which was tested for significant genes</span>
+<span class="sd">    :sign_genes: gene list that are significant</span>
+<span class="sd">    :taxonomy: taxonomy object</span>
+<span class="sd">    :gene_names: dictionary with the name of the the genes. Optional</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">out_file</span><span class="p">,</span> <span class="nb">str</span><span class="p">):</span>
+        <span class="n">out_file</span> <span class="o">=</span> <span class="nb">open</span><span class="p">(</span><span class="n">out_file</span><span class="p">,</span> <span class="s1">&#39;w&#39;</span><span class="p">)</span>
+
+    <span class="n">out_file</span> <span class="o">=</span> <span class="n">csv</span><span class="o">.</span><span class="n">writer</span><span class="p">(</span><span class="n">out_file</span><span class="p">)</span>
+
+    <span class="n">taxon_ids</span> <span class="o">=</span> <span class="nb">sorted</span><span class="p">(</span><span class="nb">set</span><span class="p">(</span><span class="n">dataframe</span><span class="o">.</span><span class="n">index</span><span class="o">.</span><span class="n">get_level_values</span><span class="p">(</span><span class="s1">&#39;taxon&#39;</span><span class="p">)),</span>
+                       <span class="n">key</span><span class="o">=</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">taxonomy</span><span class="p">[</span><span class="n">x</span><span class="p">]</span><span class="o">.</span><span class="n">s_name</span><span class="p">)</span>
+
+    <span class="n">genes</span> <span class="o">=</span> <span class="nb">set</span><span class="p">(</span><span class="n">dataframe</span><span class="o">.</span><span class="n">index</span><span class="o">.</span><span class="n">get_level_values</span><span class="p">(</span><span class="s1">&#39;gene&#39;</span><span class="p">))</span>
+
+    <span class="n">header</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;gene_id&#39;</span><span class="p">,</span> <span class="s1">&#39;gene_name&#39;</span><span class="p">,</span> <span class="s1">&#39;significant&#39;</span><span class="p">,</span> <span class="s1">&#39;number of taxa&#39;</span><span class="p">]</span>
+
+    <span class="k">for</span> <span class="n">taxon_id</span> <span class="ow">in</span> <span class="n">taxon_ids</span><span class="p">:</span>
+        <span class="n">header</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">taxonomy</span><span class="p">[</span><span class="n">taxon_id</span><span class="p">]</span><span class="o">.</span><span class="n">s_name</span> <span class="o">+</span> <span class="s1">&#39;_mean&#39;</span><span class="p">)</span>
+        <span class="n">header</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">taxonomy</span><span class="p">[</span><span class="n">taxon_id</span><span class="p">]</span><span class="o">.</span><span class="n">s_name</span> <span class="o">+</span> <span class="s1">&#39;_stdev&#39;</span><span class="p">)</span>
+
+    <span class="n">out_file</span><span class="o">.</span><span class="n">writerow</span><span class="p">(</span><span class="n">header</span><span class="p">)</span>
+
+    <span class="k">for</span> <span class="n">gene</span> <span class="ow">in</span> <span class="n">genes</span><span class="p">:</span>
+        <span class="n">values</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;&#39;</span><span class="p">]</span> <span class="o">*</span> <span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">taxon_ids</span><span class="p">)</span> <span class="o">*</span> <span class="mi">2</span><span class="p">)</span>
+
+        <span class="n">dataframe_gene</span> <span class="o">=</span> <span class="n">dataframe</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">gene</span><span class="p">]</span>
+
+        <span class="k">for</span> <span class="n">taxon_id</span><span class="p">,</span> <span class="n">series</span> <span class="ow">in</span> <span class="n">dataframe_gene</span><span class="o">.</span><span class="n">iterrows</span><span class="p">():</span>
+            <span class="n">value_idx</span> <span class="o">=</span> <span class="n">taxon_ids</span><span class="o">.</span><span class="n">index</span><span class="p">(</span><span class="n">taxon_id</span><span class="p">)</span> <span class="o">*</span> <span class="mi">2</span>
+
+            <span class="n">values</span><span class="p">[</span><span class="n">value_idx</span><span class="p">]</span> <span class="o">=</span> <span class="n">series</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span>
+            <span class="n">values</span><span class="p">[</span><span class="n">value_idx</span> <span class="o">+</span> <span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="n">series</span><span class="o">.</span><span class="n">std</span><span class="p">()</span>
+
+        <span class="n">out_file</span><span class="o">.</span><span class="n">writerow</span><span class="p">(</span>
+            <span class="p">[</span>
+                <span class="n">gene</span><span class="p">,</span>
+                <span class="s1">&#39;&#39;</span> <span class="k">if</span> <span class="n">gene_names</span> <span class="ow">is</span> <span class="kc">None</span> <span class="k">else</span> <span class="n">gene_names</span><span class="p">[</span><span class="n">gene</span><span class="p">],</span>
+                <span class="s1">&#39;Y&#39;</span> <span class="k">if</span> <span class="n">gene</span> <span class="ow">in</span> <span class="n">sign_genes</span> <span class="k">else</span> <span class="s1">&#39;N&#39;</span><span class="p">,</span>
+                <span class="nb">len</span><span class="p">(</span><span class="n">dataframe_gene</span><span class="p">)</span>
+            <span class="p">]</span> <span class="o">+</span> <span class="n">values</span>
+        <span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="order_ratios"><a class="viewcode-back" href="../../../api/mgkit.snps.funcs.html#mgkit.snps.funcs.order_ratios">[docs]</a><span class="k">def</span> <span class="nf">order_ratios</span><span class="p">(</span><span class="n">ratios</span><span class="p">,</span> <span class="n">aggr_func</span><span class="o">=</span><span class="n">numpy</span><span class="o">.</span><span class="n">median</span><span class="p">,</span> <span class="n">reverse</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+                 <span class="n">key_filter</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Given a dictionary of id-&gt;iterable where iterable contains the values of</span>
+<span class="sd">    interest, the function uses aggr_func to sort (ascending by default) it and</span>
+<span class="sd">    return a list with the key in the sorted order.</span>
+
+<span class="sd">    :param dict ratios: dictionary instance id-&gt;iterable</span>
+<span class="sd">    :param function aggr_func: any function returning a value that can be used</span>
+<span class="sd">        as a key in sorting</span>
+<span class="sd">    :param bool reverse: the default is ascending sorting (False), set to True</span>
+<span class="sd">        to reverse key_filter: list of keys to use for ordering, if None, every</span>
+<span class="sd">        key is used</span>
+
+<span class="sd">    :return: iterable with the sort order</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="k">if</span> <span class="n">key_filter</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="n">key_filter</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">ratios</span><span class="o">.</span><span class="n">keys</span><span class="p">())</span>
+
+    <span class="n">order</span> <span class="o">=</span> <span class="p">[</span>
+        <span class="p">(</span>
+            <span class="n">aggr_func</span><span class="p">(</span>
+                <span class="p">[</span><span class="n">ratio</span> <span class="k">for</span> <span class="n">ratio</span> <span class="ow">in</span> <span class="n">ratios</span><span class="p">[</span><span class="n">key</span><span class="p">]</span> <span class="k">if</span> <span class="ow">not</span> <span class="n">numpy</span><span class="o">.</span><span class="n">isnan</span><span class="p">(</span><span class="n">ratio</span><span class="p">)]</span>
+            <span class="p">)</span> <span class="k">if</span> <span class="p">[</span><span class="n">ratio</span> <span class="k">for</span> <span class="n">ratio</span> <span class="ow">in</span> <span class="n">ratios</span><span class="p">[</span><span class="n">key</span><span class="p">]</span> <span class="k">if</span> <span class="ow">not</span> <span class="n">numpy</span><span class="o">.</span><span class="n">isnan</span><span class="p">(</span><span class="n">ratio</span><span class="p">)]</span>
+            <span class="k">else</span> <span class="mi">0</span><span class="p">,</span>
+            <span class="n">key</span>
+        <span class="p">)</span>
+        <span class="k">for</span> <span class="n">key</span> <span class="ow">in</span> <span class="n">key_filter</span>
+    <span class="p">]</span>
+
+    <span class="n">order</span><span class="o">.</span><span class="n">sort</span><span class="p">(</span><span class="n">key</span><span class="o">=</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">x</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">reverse</span><span class="o">=</span><span class="n">reverse</span><span class="p">)</span>
+    <span class="c1"># print order</span>
+
+    <span class="c1"># for x, y in order: print y, x, ratios[y]</span>
+
+    <span class="k">return</span> <span class="p">[</span><span class="n">x</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">order</span><span class="p">]</span></div>
+
+
+<div class="viewcode-block" id="combine_sample_snps"><a class="viewcode-back" href="../../../api/mgkit.snps.funcs.html#mgkit.snps.funcs.combine_sample_snps">[docs]</a><span class="k">def</span> <span class="nf">combine_sample_snps</span><span class="p">(</span><span class="n">snps_data</span><span class="p">,</span> <span class="n">min_num</span><span class="p">,</span> <span class="n">filters</span><span class="p">,</span> <span class="n">index_type</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+                        <span class="n">gene_func</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">taxon_func</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">use_uid</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+                        <span class="n">flag_values</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">haplotypes</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">store_uids</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    .. versionchanged:: 0.2.2</span>
+<span class="sd">        added *use_uid* argument</span>
+
+<span class="sd">    .. versionchanged:: 0.3.1</span>
+<span class="sd">        added *haplotypes*</span>
+
+<span class="sd">    .. versionchanged:: 0.4.0</span>
+<span class="sd">        added *store_uids*</span>
+
+<span class="sd">    Combine a dictionary sample-&gt;gene_index-&gt;GeneSyn into a</span>
+<span class="sd">    :class:`pandas.DataFrame`. The dictionary is first filtered with the</span>
+<span class="sd">    functions in `filters`, mapped to different taxa and genes using</span>
+<span class="sd">    `taxon_func` and `gene_func` respectively. The returned DataFrame is also</span>
+<span class="sd">    filtered for each row having at least a `min_num` of not NaN values.</span>
+
+<span class="sd">    Arguments:</span>
+<span class="sd">        snps_data (dict): dictionary with the `GeneSNP` instances</span>
+<span class="sd">        min_num (int): the minimum number of not NaN values necessary in a row</span>
+<span class="sd">            to be returned</span>
+<span class="sd">        filters (iterable): iterable containing filter functions, a list can be</span>
+<span class="sd">            found in :mod:`mgkit.snps.filter`</span>
+<span class="sd">        index_type (str, None): if `None`, each row index for the DataFrame</span>
+<span class="sd">            will be a MultiIndex with `gene` and `taxon` as elements. If the</span>
+<span class="sd">            equals &#39;gene&#39;, the row index will be gene based and if &#39;taxon&#39; will</span>
+<span class="sd">            be taxon based</span>
+<span class="sd">        gene_func (func): a function to map a gene_id to a gene_map. See</span>
+<span class="sd">            :func:`.mapper.map_gene_id` for an example</span>
+<span class="sd">        taxon_func (func): a function to map a taxon_id to a list of IDs. See</span>
+<span class="sd">            :mod:`.mapper.map_taxon_id_to_rank` or</span>
+<span class="sd">            :mod:`.mapper.map_taxon_id_to_ancestor` for examples</span>
+<span class="sd">        use_uid (bool): if True, uses the `GeneSNP.uid` instead of</span>
+<span class="sd">            `GeneSNP.gene_id`</span>
+<span class="sd">        flag_values (bool): if True,</span>
+<span class="sd">            :meth:`mgkit.snps.classes.GeneSNP.calc_ratio_flag` will be used,</span>
+<span class="sd">            instead of :meth:`mgkit.snps.classes.GeneSNP.calc_ratio`</span>
+<span class="sd">        haplotypes (bool): if *flag_values* is False, and *haplotypes* is</span>
+<span class="sd">            True, the 0/0 case will be returned as 0 instead of NaN</span>
+<span class="sd">        store_uids (bool): if True a dictionary with the uid used for each</span>
+<span class="sd">            cell (e.g. gene/taxon/sample)</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        DataFrame: :class:`pandas.DataFrame` with the pN/pS values for the</span>
+<span class="sd">        input SNPs, with the columns being the samples. if *store_uids* is True</span>
+<span class="sd">        the return value is a tuple (DataFrame, dict)</span>
+
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">sample_dict</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">((</span><span class="n">sample</span><span class="p">,</span> <span class="p">{})</span> <span class="k">for</span> <span class="n">sample</span> <span class="ow">in</span> <span class="n">snps_data</span><span class="p">)</span>
+    <span class="n">multi_index</span> <span class="o">=</span> <span class="nb">set</span><span class="p">()</span>
+
+    <span class="k">if</span> <span class="n">gene_func</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="n">gene_func</span> <span class="o">=</span> <span class="n">functools</span><span class="o">.</span><span class="n">partial</span><span class="p">(</span><span class="n">itertools</span><span class="o">.</span><span class="n">repeat</span><span class="p">,</span> <span class="n">times</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">taxon_func</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="n">taxon_func</span> <span class="o">=</span> <span class="n">functools</span><span class="o">.</span><span class="n">partial</span><span class="p">(</span><span class="n">itertools</span><span class="o">.</span><span class="n">repeat</span><span class="p">,</span> <span class="n">times</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+
+    <span class="k">if</span> <span class="n">store_uids</span><span class="p">:</span>
+        <span class="n">uids_dict</span> <span class="o">=</span> <span class="p">{}</span>
+
+    <span class="k">for</span> <span class="n">sample</span><span class="p">,</span> <span class="n">genes_dict</span> <span class="ow">in</span> <span class="n">viewitems</span><span class="p">(</span><span class="n">snps_data</span><span class="p">):</span>
+
+        <span class="n">LOG</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s1">&#39;Analysing SNP from sample </span><span class="si">%s</span><span class="s1">&#39;</span><span class="p">,</span> <span class="n">sample</span><span class="p">)</span>
+
+        <span class="k">for</span> <span class="n">gene_syn</span> <span class="ow">in</span> <span class="n">pipe_filters</span><span class="p">(</span><span class="n">viewvalues</span><span class="p">(</span><span class="n">genes_dict</span><span class="p">),</span> <span class="o">*</span><span class="n">filters</span><span class="p">):</span>
+
+            <span class="n">iter_func</span> <span class="o">=</span> <span class="n">itertools</span><span class="o">.</span><span class="n">product</span><span class="p">(</span>
+                <span class="n">gene_func</span><span class="p">(</span><span class="n">gene_syn</span><span class="o">.</span><span class="n">uid</span> <span class="k">if</span> <span class="n">use_uid</span> <span class="k">else</span> <span class="n">gene_syn</span><span class="o">.</span><span class="n">gene_id</span><span class="p">),</span>
+                <span class="n">taxon_func</span><span class="p">(</span><span class="n">gene_syn</span><span class="o">.</span><span class="n">taxon_id</span><span class="p">)</span>
+            <span class="p">)</span>
+
+            <span class="k">for</span> <span class="n">gene_id</span><span class="p">,</span> <span class="n">taxon_id</span> <span class="ow">in</span> <span class="n">iter_func</span><span class="p">:</span>
+
+                <span class="k">if</span> <span class="n">index_type</span> <span class="o">==</span> <span class="s1">&#39;gene&#39;</span><span class="p">:</span>
+                    <span class="n">key</span> <span class="o">=</span> <span class="n">gene_id</span>
+                <span class="k">elif</span> <span class="n">index_type</span> <span class="o">==</span> <span class="s1">&#39;taxon&#39;</span><span class="p">:</span>
+                    <span class="n">key</span> <span class="o">=</span> <span class="n">taxon_id</span>
+                <span class="k">else</span><span class="p">:</span>
+                    <span class="n">key</span> <span class="o">=</span> <span class="p">(</span><span class="n">gene_id</span><span class="p">,</span> <span class="n">taxon_id</span><span class="p">)</span>
+
+                <span class="k">if</span> <span class="n">store_uids</span><span class="p">:</span>
+                    <span class="k">try</span><span class="p">:</span>
+                        <span class="n">uids_dict</span><span class="p">[</span><span class="n">key</span><span class="p">]</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">gene_syn</span><span class="o">.</span><span class="n">uid</span><span class="p">)</span>
+                    <span class="k">except</span> <span class="ne">KeyError</span><span class="p">:</span>
+                        <span class="n">uids_dict</span><span class="p">[</span><span class="n">key</span><span class="p">]</span> <span class="o">=</span> <span class="nb">set</span><span class="p">([</span><span class="n">gene_syn</span><span class="o">.</span><span class="n">uid</span><span class="p">])</span>
+
+                <span class="c1"># we don&#39;t care about info about ids and so on, only syn/nonsyn</span>
+                <span class="c1"># and coverage, to use the calc_ratio method</span>
+                <span class="k">try</span><span class="p">:</span>
+                    <span class="n">sample_dict</span><span class="p">[</span><span class="n">sample</span><span class="p">][</span><span class="n">key</span><span class="p">]</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">gene_syn</span><span class="p">)</span>
+                <span class="k">except</span> <span class="ne">KeyError</span><span class="p">:</span>
+                    <span class="c1"># Needed with the new GeneSNP, because copies the</span>
+                    <span class="c1"># references and the number of SNPs raises (the original</span>
+                    <span class="c1"># data structure is modified)</span>
+                    <span class="n">sample_dict</span><span class="p">[</span><span class="n">sample</span><span class="p">][</span><span class="n">key</span><span class="p">]</span> <span class="o">=</span> <span class="n">copy</span><span class="o">.</span><span class="n">deepcopy</span><span class="p">(</span><span class="n">gene_syn</span><span class="p">)</span>
+
+                <span class="n">multi_index</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">key</span><span class="p">)</span>
+
+    <span class="k">if</span> <span class="n">index_type</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="n">multi_index</span> <span class="o">=</span> <span class="n">pandas</span><span class="o">.</span><span class="n">MultiIndex</span><span class="o">.</span><span class="n">from_tuples</span><span class="p">(</span>
+            <span class="nb">sorted</span><span class="p">(</span><span class="n">multi_index</span><span class="p">),</span>
+            <span class="n">names</span><span class="o">=</span><span class="p">(</span><span class="s1">&#39;gene&#39;</span><span class="p">,</span> <span class="s1">&#39;taxon&#39;</span><span class="p">)</span>
+        <span class="p">)</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">multi_index</span> <span class="o">=</span> <span class="n">pandas</span><span class="o">.</span><span class="n">Index</span><span class="p">(</span><span class="n">multi_index</span><span class="p">)</span>
+
+    <span class="c1"># we already satisfied a minimum coverage filter or at least if doesn&#39;t</span>
+    <span class="c1"># matter in the calculation anymore, using haplotypes=True, the special</span>
+    <span class="c1"># case where syn=nonsyn=0 will result in a 0 as pN/pS for a GeneSyn</span>
+    <span class="c1"># instance</span>
+    <span class="n">sample_dict</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">(</span>
+        <span class="p">(</span>
+            <span class="n">sample</span><span class="p">,</span>
+            <span class="nb">dict</span><span class="p">(</span>
+                <span class="p">(</span><span class="n">key</span><span class="p">,</span> <span class="n">gene</span><span class="o">.</span><span class="n">calc_ratio_flag</span><span class="p">()</span> <span class="k">if</span> <span class="n">flag_values</span> <span class="k">else</span> <span class="n">gene</span><span class="o">.</span><span class="n">calc_ratio</span><span class="p">(</span><span class="n">haplotypes</span><span class="o">=</span><span class="n">haplotypes</span><span class="p">))</span>
+                <span class="k">for</span> <span class="n">key</span><span class="p">,</span> <span class="n">gene</span> <span class="ow">in</span> <span class="n">viewitems</span><span class="p">(</span><span class="n">row_dict</span><span class="p">)</span>
+            <span class="p">)</span>
+        <span class="p">)</span>
+        <span class="k">for</span> <span class="n">sample</span><span class="p">,</span> <span class="n">row_dict</span> <span class="ow">in</span> <span class="n">viewitems</span><span class="p">(</span><span class="n">sample_dict</span><span class="p">)</span>
+    <span class="p">)</span>
+    <span class="n">dataframe</span> <span class="o">=</span> <span class="n">pandas</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">sample_dict</span><span class="p">,</span> <span class="n">index</span><span class="o">=</span><span class="n">multi_index</span><span class="p">,</span>
+                                 <span class="n">columns</span><span class="o">=</span><span class="nb">sorted</span><span class="p">(</span><span class="n">sample_dict</span><span class="o">.</span><span class="n">keys</span><span class="p">()))</span>
+
+    <span class="n">dataframe</span> <span class="o">=</span> <span class="n">dataframe</span><span class="p">[</span><span class="n">dataframe</span><span class="o">.</span><span class="n">count</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span> <span class="o">&gt;=</span> <span class="n">min_num</span><span class="p">]</span>
+    <span class="k">if</span> <span class="n">store_uids</span><span class="p">:</span>
+        <span class="k">return</span> <span class="p">(</span><span class="n">dataframe</span><span class="p">,</span> <span class="n">uids_dict</span><span class="p">)</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">dataframe</span></div>
+
+
+<div class="viewcode-block" id="significance_test"><a class="viewcode-back" href="../../../api/mgkit.snps.funcs.html#mgkit.snps.funcs.significance_test">[docs]</a><span class="k">def</span> <span class="nf">significance_test</span><span class="p">(</span><span class="n">dataframe</span><span class="p">,</span> <span class="n">taxon_id1</span><span class="p">,</span> <span class="n">taxon_id2</span><span class="p">,</span>
+                      <span class="n">test_func</span><span class="o">=</span><span class="n">scipy</span><span class="o">.</span><span class="n">stats</span><span class="o">.</span><span class="n">ks_2samp</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    .. versionadded:: 0.1.11</span>
+
+<span class="sd">    Perform a statistical test on each gene distribution in two different taxa.</span>
+
+<span class="sd">    For each gene common to the two taxa, the distribution of values in all</span>
+<span class="sd">    samples (columns) between the two specified taxa is tested.</span>
+
+<span class="sd">    Arguments:</span>
+<span class="sd">        dataframe: :class:`pandas.DataFrame` instance</span>
+<span class="sd">        taxon_id1: the first taxon ID</span>
+<span class="sd">        taxon_id2: the second taxon ID</span>
+<span class="sd">        test_func: function used to test,</span>
+<span class="sd">          defaults to :func:`scipy.stats.ks_2samp`</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        pandas.Series: with all pvalues from the tests</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">LOG</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;Performing </span><span class="si">%s</span><span class="s2"> test&quot;</span><span class="p">,</span> <span class="n">test_func</span><span class="o">.</span><span class="vm">__name__</span><span class="p">)</span>
+
+    <span class="n">gene_ids</span> <span class="o">=</span> <span class="nb">set</span><span class="p">(</span>
+        <span class="n">dataframe</span><span class="o">.</span><span class="n">select</span><span class="p">(</span>
+            <span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">x</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">==</span> <span class="n">taxon_id1</span>
+        <span class="p">)</span><span class="o">.</span><span class="n">index</span><span class="o">.</span><span class="n">get_level_values</span><span class="p">(</span><span class="s1">&#39;gene&#39;</span><span class="p">)</span> <span class="o">&amp;</span>
+        <span class="n">dataframe</span><span class="o">.</span><span class="n">select</span><span class="p">(</span>
+            <span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">x</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">==</span> <span class="n">taxon_id2</span>
+        <span class="p">)</span><span class="o">.</span><span class="n">index</span><span class="o">.</span><span class="n">get_level_values</span><span class="p">(</span><span class="s1">&#39;gene&#39;</span><span class="p">)</span>
+    <span class="p">)</span>
+    <span class="n">LOG</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;Number of genes to be tested: </span><span class="si">%d</span><span class="s2">&quot;</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">gene_ids</span><span class="p">))</span>
+
+    <span class="n">sign_genes</span> <span class="o">=</span> <span class="p">{}</span>
+
+    <span class="k">for</span> <span class="n">gene_id</span> <span class="ow">in</span> <span class="n">gene_ids</span><span class="p">:</span>
+        <span class="n">tx1_vals</span> <span class="o">=</span> <span class="n">dataframe</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">gene_id</span><span class="p">]</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">taxon_id1</span><span class="p">]</span><span class="o">.</span><span class="n">dropna</span><span class="p">()</span>
+        <span class="n">tx2_vals</span> <span class="o">=</span> <span class="n">dataframe</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">gene_id</span><span class="p">]</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">taxon_id2</span><span class="p">]</span><span class="o">.</span><span class="n">dropna</span><span class="p">()</span>
+
+        <span class="n">pvalue</span> <span class="o">=</span> <span class="n">test_func</span><span class="p">(</span><span class="n">tx1_vals</span><span class="p">,</span> <span class="n">tx2_vals</span><span class="p">)[</span><span class="mi">1</span><span class="p">]</span>
+
+        <span class="n">sign_genes</span><span class="p">[</span><span class="n">gene_id</span><span class="p">]</span> <span class="o">=</span> <span class="n">pvalue</span>
+
+    <span class="k">return</span> <span class="n">pandas</span><span class="o">.</span><span class="n">Series</span><span class="p">(</span><span class="n">sign_genes</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="flat_sample_snps"><a class="viewcode-back" href="../../../api/mgkit.snps.funcs.html#mgkit.snps.funcs.flat_sample_snps">[docs]</a><span class="k">def</span> <span class="nf">flat_sample_snps</span><span class="p">(</span><span class="n">snps_data</span><span class="p">,</span> <span class="n">min_cov</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    .. versionadded:: 0.1.11</span>
+
+<span class="sd">    Adds all the values of a gene across all samples into one instance of</span>
+<span class="sd">    :class:`classes.GeneSNP`, giving the average gene among all samples.</span>
+
+<span class="sd">    Arguments:</span>
+<span class="sd">        snps_data (dict): dictionary with the instances of</span>
+<span class="sd">            :class:`classes.GeneSNP`</span>
+<span class="sd">        min_cov (int): minimum coverage required for the each instance to be</span>
+<span class="sd">            added</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        dict: the dictionary with only one key (`all_samples`), which can be</span>
+<span class="sd">        used with :func:`combine_sample_snps`</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">samples</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">snps_data</span><span class="o">.</span><span class="n">keys</span><span class="p">())</span>
+    <span class="n">gene_ids</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">snps_data</span><span class="p">[</span><span class="n">samples</span><span class="p">[</span><span class="mi">0</span><span class="p">]]</span><span class="o">.</span><span class="n">keys</span><span class="p">())</span>
+    <span class="n">new_data</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;all_samples&#39;</span><span class="p">:</span> <span class="p">{}}</span>
+
+    <span class="k">for</span> <span class="n">gene_id</span> <span class="ow">in</span> <span class="n">gene_ids</span><span class="p">:</span>
+        <span class="k">for</span> <span class="n">sample</span> <span class="ow">in</span> <span class="n">samples</span><span class="p">:</span>
+            <span class="n">gene_syn</span> <span class="o">=</span> <span class="n">snps_data</span><span class="p">[</span><span class="n">sample</span><span class="p">][</span><span class="n">gene_id</span><span class="p">]</span>
+
+            <span class="k">if</span> <span class="n">gene_syn</span><span class="o">.</span><span class="n">coverage</span> <span class="o">&lt;</span> <span class="n">min_cov</span><span class="p">:</span>
+                <span class="k">continue</span>
+
+            <span class="k">try</span><span class="p">:</span>
+                <span class="n">new_data</span><span class="p">[</span><span class="s1">&#39;all_samples&#39;</span><span class="p">][</span><span class="n">gene_id</span><span class="p">]</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">gene_syn</span><span class="p">)</span>
+            <span class="k">except</span> <span class="ne">KeyError</span><span class="p">:</span>
+                <span class="n">new_data</span><span class="p">[</span><span class="s1">&#39;all_samples&#39;</span><span class="p">][</span><span class="n">gene_id</span><span class="p">]</span> <span class="o">=</span> <span class="n">copy</span><span class="o">.</span><span class="n">deepcopy</span><span class="p">(</span><span class="n">gene_syn</span><span class="p">)</span>
+
+    <span class="k">return</span> <span class="n">new_data</span></div>
+</pre></div>
+
+           </div>
+           
+          </div>
+          <footer>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2013-2015, Francesco Rubino
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

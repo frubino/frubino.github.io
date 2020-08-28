@@ -1,0 +1,574 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>mgkit.net.uniprot module &mdash; MGKit: Metagenomic framework 0.5.0 documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+  <script type="text/javascript" src="../_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+        <script type="text/javascript" src="../_static/jquery.js"></script>
+        <script type="text/javascript" src="../_static/underscore.js"></script>
+        <script type="text/javascript" src="../_static/doctools.js"></script>
+        <script type="text/javascript" src="../_static/language_data.js"></script>
+        <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+        <script async="async" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+        <script type="text/x-mathjax-config">MathJax.Hub.Config({"tex2jax": {"inlineMath": [["$", "$"], ["\\(", "\\)"]], "processEscapes": true, "ignoreClass": "document", "processClass": "math|output_area"}})</script>
+    
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/graphviz.css" type="text/css" />
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="mgkit.net.utils module" href="mgkit.net.utils.html" />
+    <link rel="prev" title="mgkit.net.pfam module" href="mgkit.net.pfam.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../index.html" class="icon icon-home"> MGKit: Metagenomic framework
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                0.5.0
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../introduction.html">Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../install.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../pipeline/index.html">Metagenomic Pipeline</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../scripts/index.html">Scripts Details</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../examples/index.html">Example Notebooks</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../gff.html">MGKit GFF Specifications</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../library.html">Library Reference</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="mgkit.html">mgkit package</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mgkit.align.html">mgkit.align module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mgkit.consts.html">mgkit.consts module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mgkit.counts.html">mgkit.counts package</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mgkit.counts.func.html">mgkit.counts.func module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mgkit.counts.glm.html">mgkit.counts.glm module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mgkit.counts.scaling.html">mgkit.counts.scaling module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mgkit.db.html">mgkit.db package</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mgkit.db.dbm.html">mgkit.db.dbm module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mgkit.db.mongo.html">mgkit.db.mongo module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mgkit.filter.html">mgkit.filter package</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mgkit.filter.common.html">mgkit.filter.common module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mgkit.filter.gff.html">mgkit.filter.gff module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mgkit.filter.lists.html">mgkit.filter.lists module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mgkit.filter.reads.html">mgkit.filter.reads module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mgkit.filter.taxon.html">mgkit.filter.taxon module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mgkit.graphs.html">mgkit.graphs module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mgkit.io.html">mgkit.io package</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mgkit.io.blast.html">mgkit.io.blast module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mgkit.io.fasta.html">mgkit.io.fasta module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mgkit.io.fastq.html">mgkit.io.fastq module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mgkit.io.gff.html">mgkit.io.gff module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mgkit.io.glimmer.html">mgkit.io.glimmer module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mgkit.io.snpdat.html">mgkit.io.snpdat module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mgkit.io.uniprot.html">mgkit.io.uniprot module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mgkit.io.utils.html">mgkit.io.utils module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mgkit.kegg.html">mgkit.kegg module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mgkit.logger.html">mgkit.logger module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mgkit.mappings.html">mgkit.mappings package</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mgkit.mappings.cazy.html">mgkit.mappings.cazy module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mgkit.mappings.eggnog.html">mgkit.mappings.eggnog module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mgkit.mappings.enzyme.html">mgkit.mappings.enzyme module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mgkit.mappings.go.html">mgkit.mappings.go module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mgkit.mappings.pandas_map.html">mgkit.mappings.pandas_map module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mgkit.mappings.taxon.html">mgkit.mappings.taxon module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mgkit.mappings.utils.html">mgkit.mappings.utils module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mgkit.net.html">mgkit.net package</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mgkit.net.embl.html">mgkit.net.embl module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mgkit.net.pfam.html">mgkit.net.pfam module</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">mgkit.net.uniprot module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mgkit.net.utils.html">mgkit.net.utils module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mgkit.plots.html">mgkit.plots package</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mgkit.plots.abund.html">mgkit.plots.abund module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mgkit.plots.boxplot.html">mgkit.plots.boxplot module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mgkit.plots.colors.html">mgkit.plots.colors module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mgkit.plots.heatmap.html">mgkit.plots.heatmap module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mgkit.plots.unused.html">mgkit.plots.unused module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mgkit.plots.utils.html">mgkit.plots.utils module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mgkit.simple_cache.html">mgkit.simple_cache module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mgkit.snps.html">mgkit.snps package</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mgkit.snps.classes.html">mgkit.snps.classes module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mgkit.snps.conv_func.html">mgkit.snps.conv_func module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mgkit.snps.filter.html">mgkit.snps.filter module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mgkit.snps.funcs.html">mgkit.snps.funcs module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mgkit.snps.mapper.html">mgkit.snps.mapper module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mgkit.taxon.html">mgkit.taxon module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mgkit.utils.html">mgkit.utils package</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mgkit.utils.common.html">mgkit.utils.common module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mgkit.utils.dictionary.html">mgkit.utils.dictionary module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mgkit.utils.sequence.html">mgkit.utils.sequence module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mgkit.utils.trans_tables.html">mgkit.utils.trans_tables module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mgkit.workflow.html">mgkit.workflow package</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mgkit.workflow.add_gff_info.html">mgkit.workflow.add_gff_info module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mgkit.workflow.blast2gff.html">mgkit.workflow.blast2gff module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mgkit.workflow.extract_gff_info.html">mgkit.workflow.extract_gff_info module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mgkit.workflow.fasta_utils.html">mgkit.workflow.fasta_utils module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mgkit.workflow.fastq_utils.html">mgkit.workflow.fastq_utils module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mgkit.workflow.filter_gff.html">mgkit.workflow.filter_gff module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mgkit.workflow.hmmer2gff.html">mgkit.workflow.hmmer2gff module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mgkit.workflow.json2gff.html">mgkit.workflow.json2gff module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mgkit.workflow.sampling_utils.html">mgkit.workflow.sampling_utils module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mgkit.workflow.snp_parser.html">mgkit.workflow.snp_parser module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mgkit.workflow.taxon_utils.html">mgkit.workflow.taxon_utils module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mgkit.workflow.utils.html">mgkit.workflow.utils module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="modules.html">mgkit</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../changes.html">Changes</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">MGKit: Metagenomic framework</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="../library.html">Library Reference</a> &raquo;</li>
+        
+          <li><a href="mgkit.html">mgkit package</a> &raquo;</li>
+        
+          <li><a href="mgkit.net.html">mgkit.net package</a> &raquo;</li>
+        
+      <li>mgkit.net.uniprot module</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="../_sources/api/mgkit.net.uniprot.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  
+<style>
+/* CSS overrides for sphinx_rtd_theme */
+
+/* 24px margin */
+.nbinput.nblast.container,
+.nboutput.nblast.container {
+    margin-bottom: 19px;  /* padding has already 5px */
+}
+
+/* ... except between code cells! */
+.nblast.container + .nbinput.container {
+    margin-top: -19px;
+}
+
+.admonition > p:before {
+    margin-right: 4px;  /* make room for the exclamation icon */
+}
+
+/* Fix math alignment, see https://github.com/rtfd/sphinx_rtd_theme/pull/686 */
+.math {
+    text-align: unset;
+}
+</style>
+<div class="section" id="module-mgkit.net.uniprot">
+<span id="mgkit-net-uniprot-module"></span><h1>mgkit.net.uniprot module<a class="headerlink" href="#module-mgkit.net.uniprot" title="Permalink to this headline">¶</a></h1>
+<p>Contains function and constants for Uniprot access</p>
+<dl class="data">
+<dt id="mgkit.net.uniprot.UNIPROT_GET">
+<code class="sig-prename descclassname">mgkit.net.uniprot.</code><code class="sig-name descname">UNIPROT_GET</code><em class="property"> = 'http://www.uniprot.org/uniprot/'</em><a class="headerlink" href="#mgkit.net.uniprot.UNIPROT_GET" title="Permalink to this definition">¶</a></dt>
+<dd><p>URL to Uniprot REST API</p>
+</dd></dl>
+
+<dl class="data">
+<dt id="mgkit.net.uniprot.UNIPROT_MAP">
+<code class="sig-prename descclassname">mgkit.net.uniprot.</code><code class="sig-name descname">UNIPROT_MAP</code><em class="property"> = 'http://www.uniprot.org/mapping/'</em><a class="headerlink" href="#mgkit.net.uniprot.UNIPROT_MAP" title="Permalink to this definition">¶</a></dt>
+<dd><p>URL to Uniprot mapping REST API</p>
+</dd></dl>
+
+<dl class="data">
+<dt id="mgkit.net.uniprot.UNIPROT_TAXONOMY">
+<code class="sig-prename descclassname">mgkit.net.uniprot.</code><code class="sig-name descname">UNIPROT_TAXONOMY</code><em class="property"> = 'http://www.uniprot.org/taxonomy/'</em><a class="headerlink" href="#mgkit.net.uniprot.UNIPROT_TAXONOMY" title="Permalink to this definition">¶</a></dt>
+<dd><p>URL to Uniprot REST API - Taxonomy</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="mgkit.net.uniprot.get_gene_info">
+<code class="sig-prename descclassname">mgkit.net.uniprot.</code><code class="sig-name descname">get_gene_info</code><span class="sig-paren">(</span><em class="sig-param">gene_ids</em>, <em class="sig-param">columns</em>, <em class="sig-param">max_req=50</em>, <em class="sig-param">contact=None</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/mgkit/net/uniprot.html#get_gene_info"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#mgkit.net.uniprot.get_gene_info" title="Permalink to this definition">¶</a></dt>
+<dd><div class="versionadded">
+<p><span class="versionmodified added">New in version 0.1.12.</span></p>
+</div>
+<p>Get informations about a list of genes. it uses <a class="reference internal" href="#mgkit.net.uniprot.query_uniprot" title="mgkit.net.uniprot.query_uniprot"><code class="xref py py-func docutils literal notranslate"><span class="pre">query_uniprot()</span></code></a> to
+send the request and format the response in a dictionary.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>gene_ids</strong> (<em>iterable</em><em>, </em><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.8)"><em>str</em></a>) – gene id(s) to get informations for</p></li>
+<li><p><strong>columns</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.8)"><em>list</em></a>) – list of columns</p></li>
+<li><p><strong>max_req</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.8)"><em>int</em></a>) – number of maximum <em>gene_ids</em> per request</p></li>
+<li><p><strong>contact</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.8)"><em>str</em></a>) – email address to be passed in the query (requested
+Uniprot API)</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>dictionary where the keys are the <em>gene_ids</em> requested and the
+values are dictionaries with the names of the <em>columns</em> requested as
+keys and the corresponding values, which can be lists if the values are
+are semicolon separated strings.</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.8)">dict</a></p>
+</dd>
+</dl>
+<p class="rubric">Example</p>
+<p>To get the taxonomy ids for some genes:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">uniprot</span><span class="o">.</span><span class="n">get_gene_info</span><span class="p">([</span><span class="s1">&#39;Q09575&#39;</span><span class="p">,</span> <span class="s1">&#39;Q8DQI6&#39;</span><span class="p">],</span> <span class="p">[</span><span class="s1">&#39;organism-id&#39;</span><span class="p">])</span>
+<span class="go">{&#39;Q09575&#39;: {&#39;organism-id&#39;: &#39;6239&#39;}, &#39;Q8DQI6&#39;: {&#39;organism-id&#39;: &#39;171101&#39;}}</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="function">
+<dt id="mgkit.net.uniprot.get_gene_info_iter">
+<code class="sig-prename descclassname">mgkit.net.uniprot.</code><code class="sig-name descname">get_gene_info_iter</code><span class="sig-paren">(</span><em class="sig-param">gene_ids</em>, <em class="sig-param">columns</em>, <em class="sig-param">contact=None</em>, <em class="sig-param">max_req=50</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/mgkit/net/uniprot.html#get_gene_info_iter"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#mgkit.net.uniprot.get_gene_info_iter" title="Permalink to this definition">¶</a></dt>
+<dd><div class="versionadded">
+<p><span class="versionmodified added">New in version 0.3.3.</span></p>
+</div>
+<p>Alternative function to <a class="reference internal" href="#mgkit.net.uniprot.get_gene_info" title="mgkit.net.uniprot.get_gene_info"><code class="xref py py-func docutils literal notranslate"><span class="pre">get_gene_info()</span></code></a>, returning an iterator to
+avoid connections timeouts when updating a dictionary</p>
+<p>This funciton’s parameters are the same as <a class="reference internal" href="#mgkit.net.uniprot.get_gene_info" title="mgkit.net.uniprot.get_gene_info"><code class="xref py py-func docutils literal notranslate"><span class="pre">get_gene_info()</span></code></a></p>
+</dd></dl>
+
+<dl class="function">
+<dt id="mgkit.net.uniprot.get_ko_to_eggnog_mappings">
+<code class="sig-prename descclassname">mgkit.net.uniprot.</code><code class="sig-name descname">get_ko_to_eggnog_mappings</code><span class="sig-paren">(</span><em class="sig-param">ko_ids</em>, <em class="sig-param">contact=None</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/mgkit/net/uniprot.html#get_ko_to_eggnog_mappings"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#mgkit.net.uniprot.get_ko_to_eggnog_mappings" title="Permalink to this definition">¶</a></dt>
+<dd><div class="versionadded">
+<p><span class="versionmodified added">New in version 0.1.14.</span></p>
+</div>
+<p>It’s not possible to map in one go KO IDs to eggNOG IDs via the API in
+Uniprot. This function uses <a class="reference internal" href="#mgkit.net.uniprot.query_uniprot" title="mgkit.net.uniprot.query_uniprot"><code class="xref py py-func docutils literal notranslate"><span class="pre">query_uniprot()</span></code></a> to get all Uniprot IDs
+requested and the return a dictionary with all their eggNOG IDs they map
+to.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>ko_ids</strong> (<em>iterable</em>) – an iterable of KO IDs</p></li>
+<li><p><strong>contact</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.8)"><em>str</em></a>) – email address to be passed in the query (requested
+Uniprot API)</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>The format of the resulting dictionary is
+ko_id -&gt; {eggnog_id1, ..}</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.8)">dict</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="function">
+<dt id="mgkit.net.uniprot.get_mappings">
+<code class="sig-prename descclassname">mgkit.net.uniprot.</code><code class="sig-name descname">get_mappings</code><span class="sig-paren">(</span><em class="sig-param">entry_ids</em>, <em class="sig-param">db_from='ID'</em>, <em class="sig-param">db_to='EMBL'</em>, <em class="sig-param">out_format='tab'</em>, <em class="sig-param">contact=None</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/mgkit/net/uniprot.html#get_mappings"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#mgkit.net.uniprot.get_mappings" title="Permalink to this definition">¶</a></dt>
+<dd><p>Gets mapping of genes using Uniprot REST API. The db_from and db_to values
+are the ones accepted by Uniprot API. The same applies to out_format, the
+only processed formats are ‘list’, which returns a list of the mappings
+(should be used with one gene only) and ‘tab’, which returns a dictionary
+with the mapping. All other values returns a string with the newline
+stripped.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>entry_ids</strong> (<em>iterable</em>) – iterable of ids to be mapped (there’s a limit)
+to the maximum length of a HTTP request, so it should be less than 50</p></li>
+<li><p><strong>db_from</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.8)"><em>str</em></a>) – string that identify the DB for elements in entry_ids</p></li>
+<li><p><strong>db_to</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.8)"><em>str</em></a>) – string that identify the DB to which map entry_ids</p></li>
+<li><p><strong>out_format</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.8)"><em>str</em></a>) – format of the mapping; ‘list’ and ‘tab’ are
+processed</p></li>
+<li><p><strong>contact</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.8)"><em>str</em></a>) – email address to be passed in the query (requested
+Uniprot API)</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>tuple, dict or str depending on out_format value</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="function">
+<dt id="mgkit.net.uniprot.get_sequences_by_ko">
+<code class="sig-prename descclassname">mgkit.net.uniprot.</code><code class="sig-name descname">get_sequences_by_ko</code><span class="sig-paren">(</span><em class="sig-param">ko_id</em>, <em class="sig-param">taxonomy</em>, <em class="sig-param">contact=None</em>, <em class="sig-param">reviewed=True</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/mgkit/net/uniprot.html#get_sequences_by_ko"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#mgkit.net.uniprot.get_sequences_by_ko" title="Permalink to this definition">¶</a></dt>
+<dd><p>Gets sequences from Uniprot, restricting to the taxon id passed.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>ko_id</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.8)"><em>str</em></a>) – KO id of the sequences to download</p></li>
+<li><p><strong>taxonomy</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.8)"><em>int</em></a>) – id of the taxon</p></li>
+<li><p><strong>contact</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.8)"><em>str</em></a>) – email address to be passed in the query (requested by
+Uniprot API)</p></li>
+<li><p><strong>reviewed</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.8)"><em>bool</em></a>) – if the sequences requested must be reviewed</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>string with the fasta file downloaded</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="function">
+<dt id="mgkit.net.uniprot.get_uniprot_ec_mappings">
+<code class="sig-prename descclassname">mgkit.net.uniprot.</code><code class="sig-name descname">get_uniprot_ec_mappings</code><span class="sig-paren">(</span><em class="sig-param">gene_ids</em>, <em class="sig-param">contact=None</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/mgkit/net/uniprot.html#get_uniprot_ec_mappings"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#mgkit.net.uniprot.get_uniprot_ec_mappings" title="Permalink to this definition">¶</a></dt>
+<dd><div class="versionadded">
+<p><span class="versionmodified added">New in version 0.1.14.</span></p>
+</div>
+<p>Shortcut to download EC mapping of Uniprot IDs. Uses <a class="reference internal" href="#mgkit.net.uniprot.get_gene_info" title="mgkit.net.uniprot.get_gene_info"><code class="xref py py-func docutils literal notranslate"><span class="pre">get_gene_info()</span></code></a>
+passing the correct column (<em>ec</em>).</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="mgkit.net.uniprot.ko_to_mapping">
+<code class="sig-prename descclassname">mgkit.net.uniprot.</code><code class="sig-name descname">ko_to_mapping</code><span class="sig-paren">(</span><em class="sig-param">ko_id</em>, <em class="sig-param">query</em>, <em class="sig-param">columns</em>, <em class="sig-param">contact=None</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/mgkit/net/uniprot.html#ko_to_mapping"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#mgkit.net.uniprot.ko_to_mapping" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns the mappings to the supplied KO. Can be used for any id, the
+query format is free as well as the columns returned. The only
+restriction is using a tab format, that is parsed.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>ko_id</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.8)"><em>str</em></a>) – id used in the query</p></li>
+<li><p><strong>query</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.8)"><em>str</em></a>) – query passed to the Uniprot API, ko_id is replaced
+using <code class="xref py py-func docutils literal notranslate"><span class="pre">str.format()</span></code></p></li>
+<li><p><strong>column</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.8)"><em>str</em></a>) – column used in the results table used to map the ids</p></li>
+<li><p><strong>contact</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.8)"><em>str</em></a>) – email address to be passed in the query (requested
+Uniprot API)</p></li>
+</ul>
+</dd>
+</dl>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>each mapping in the column is separated by a ;</p>
+</div>
+</dd></dl>
+
+<dl class="function">
+<dt id="mgkit.net.uniprot.parse_uniprot_response">
+<code class="sig-prename descclassname">mgkit.net.uniprot.</code><code class="sig-name descname">parse_uniprot_response</code><span class="sig-paren">(</span><em class="sig-param">data</em>, <em class="sig-param">simple=True</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/mgkit/net/uniprot.html#parse_uniprot_response"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#mgkit.net.uniprot.parse_uniprot_response" title="Permalink to this definition">¶</a></dt>
+<dd><div class="versionadded">
+<p><span class="versionmodified added">New in version 0.1.12.</span></p>
+</div>
+<p>Parses raw response from a Uniprot query (tab format only) from functions
+like <a class="reference internal" href="#mgkit.net.uniprot.query_uniprot" title="mgkit.net.uniprot.query_uniprot"><code class="xref py py-func docutils literal notranslate"><span class="pre">query_uniprot()</span></code></a> into a dictionary. It requires that the first
+column is the entry id (or any other unique id).</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>data</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.8)"><em>str</em></a>) – string response from Uniprot</p></li>
+<li><p><strong>simple</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.8)"><em>bool</em></a>) – if True and the number of columns is 1, the dictionary
+returned has a simplified structure</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>The format of the resulting dictionary is
+entry_id -&gt; {column1 -&gt; value, column2 -&gt; value, ..} unless there’s
+only one column and <em>simple</em> is True, in which case the value is
+equal to the value of the only column.</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.8)">dict</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="function">
+<dt id="mgkit.net.uniprot.query_uniprot">
+<code class="sig-prename descclassname">mgkit.net.uniprot.</code><code class="sig-name descname">query_uniprot</code><span class="sig-paren">(</span><em class="sig-param">query</em>, <em class="sig-param">columns=None</em>, <em class="sig-param">format='tab'</em>, <em class="sig-param">limit=None</em>, <em class="sig-param">contact=None</em>, <em class="sig-param">baseurl='http://www.uniprot.org/uniprot/'</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/mgkit/net/uniprot.html#query_uniprot"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#mgkit.net.uniprot.query_uniprot" title="Permalink to this definition">¶</a></dt>
+<dd><div class="versionadded">
+<p><span class="versionmodified added">New in version 0.1.12.</span></p>
+</div>
+<div class="versionchanged">
+<p><span class="versionmodified changed">Changed in version 0.1.13: </span>added <em>baseurl</em> and made <em>columns</em> a default argument</p>
+</div>
+<p>Queries Uniprot, returning the raw response in tbe format specified. More
+informations at the <a class="reference external" href="http://www.uniprot.org/faq/28">page</a></p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>query</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.8)"><em>str</em></a>) – query to submit, as put in the input box</p></li>
+<li><p><strong>columns</strong> (<a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.8)"><em>None</em></a><em>, </em><em>iterable</em>) – list of columns to return</p></li>
+<li><p><strong>format</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.8)"><em>str</em></a>) – response format</p></li>
+<li><p><strong>limit</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.8)"><em>int</em></a><em>, </em><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.8)"><em>None</em></a>) – number of entries to return or <em>None</em> to request all
+entries</p></li>
+<li><p><strong>contact</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.8)"><em>str</em></a>) – email address to be passed in the query (requested
+Uniprot API)</p></li>
+<li><p><strong>baseurl</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.8)"><em>str</em></a>) – base url for the REST API, can be either
+<a class="reference internal" href="#mgkit.net.uniprot.UNIPROT_GET" title="mgkit.net.uniprot.UNIPROT_GET"><code class="xref py py-data docutils literal notranslate"><span class="pre">UNIPROT_GET</span></code></a> or <a class="reference internal" href="#mgkit.net.uniprot.UNIPROT_TAXONOMY" title="mgkit.net.uniprot.UNIPROT_TAXONOMY"><code class="xref py py-data docutils literal notranslate"><span class="pre">UNIPROT_TAXONOMY</span></code></a></p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>raw response from the query</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.8)">str</a></p>
+</dd>
+</dl>
+<p class="rubric">Example</p>
+<p>To get the taxonomy ids for some genes:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">uniprot</span><span class="o">.</span><span class="n">query_uniprot</span><span class="p">(</span><span class="s1">&#39;Q09575 OR Q8DQI6&#39;</span><span class="p">,</span> <span class="p">[</span><span class="s1">&#39;id&#39;</span><span class="p">,</span> <span class="s1">&#39;organism-id&#39;</span><span class="p">])</span>
+<span class="go">&#39;Entry\tOrganism ID\nQ8DQI6\t171101\nQ09575\t6239\n&#39;</span>
+</pre></div>
+</div>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>because of limits in the length of URLs, it’s advised to limit the
+length of the query string.</p>
+</div>
+</dd></dl>
+
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="mgkit.net.utils.html" class="btn btn-neutral float-right" title="mgkit.net.utils module" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="mgkit.net.pfam.html" class="btn btn-neutral float-left" title="mgkit.net.pfam module" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2013-2015, Francesco Rubino
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

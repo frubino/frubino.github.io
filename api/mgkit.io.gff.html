@@ -1,0 +1,1777 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>mgkit.io.gff module &mdash; MGKit: Metagenomic framework 0.5.0 documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+  <script type="text/javascript" src="../_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+        <script type="text/javascript" src="../_static/jquery.js"></script>
+        <script type="text/javascript" src="../_static/underscore.js"></script>
+        <script type="text/javascript" src="../_static/doctools.js"></script>
+        <script type="text/javascript" src="../_static/language_data.js"></script>
+        <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+        <script async="async" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+        <script type="text/x-mathjax-config">MathJax.Hub.Config({"tex2jax": {"inlineMath": [["$", "$"], ["\\(", "\\)"]], "processEscapes": true, "ignoreClass": "document", "processClass": "math|output_area"}})</script>
+    
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/graphviz.css" type="text/css" />
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="mgkit.io.glimmer module" href="mgkit.io.glimmer.html" />
+    <link rel="prev" title="mgkit.io.fastq module" href="mgkit.io.fastq.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../index.html" class="icon icon-home"> MGKit: Metagenomic framework
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                0.5.0
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../introduction.html">Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../install.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../pipeline/index.html">Metagenomic Pipeline</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../scripts/index.html">Scripts Details</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../examples/index.html">Example Notebooks</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../gff.html">MGKit GFF Specifications</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../library.html">Library Reference</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="mgkit.html">mgkit package</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mgkit.align.html">mgkit.align module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mgkit.consts.html">mgkit.consts module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mgkit.counts.html">mgkit.counts package</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mgkit.counts.func.html">mgkit.counts.func module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mgkit.counts.glm.html">mgkit.counts.glm module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mgkit.counts.scaling.html">mgkit.counts.scaling module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mgkit.db.html">mgkit.db package</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mgkit.db.dbm.html">mgkit.db.dbm module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mgkit.db.mongo.html">mgkit.db.mongo module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mgkit.filter.html">mgkit.filter package</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mgkit.filter.common.html">mgkit.filter.common module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mgkit.filter.gff.html">mgkit.filter.gff module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mgkit.filter.lists.html">mgkit.filter.lists module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mgkit.filter.reads.html">mgkit.filter.reads module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mgkit.filter.taxon.html">mgkit.filter.taxon module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mgkit.graphs.html">mgkit.graphs module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mgkit.io.html">mgkit.io package</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mgkit.io.blast.html">mgkit.io.blast module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mgkit.io.fasta.html">mgkit.io.fasta module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mgkit.io.fastq.html">mgkit.io.fastq module</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">mgkit.io.gff module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mgkit.io.glimmer.html">mgkit.io.glimmer module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mgkit.io.snpdat.html">mgkit.io.snpdat module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mgkit.io.uniprot.html">mgkit.io.uniprot module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mgkit.io.utils.html">mgkit.io.utils module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mgkit.kegg.html">mgkit.kegg module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mgkit.logger.html">mgkit.logger module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mgkit.mappings.html">mgkit.mappings package</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mgkit.mappings.cazy.html">mgkit.mappings.cazy module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mgkit.mappings.eggnog.html">mgkit.mappings.eggnog module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mgkit.mappings.enzyme.html">mgkit.mappings.enzyme module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mgkit.mappings.go.html">mgkit.mappings.go module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mgkit.mappings.pandas_map.html">mgkit.mappings.pandas_map module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mgkit.mappings.taxon.html">mgkit.mappings.taxon module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mgkit.mappings.utils.html">mgkit.mappings.utils module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mgkit.net.html">mgkit.net package</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mgkit.net.embl.html">mgkit.net.embl module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mgkit.net.pfam.html">mgkit.net.pfam module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mgkit.net.uniprot.html">mgkit.net.uniprot module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mgkit.net.utils.html">mgkit.net.utils module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mgkit.plots.html">mgkit.plots package</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mgkit.plots.abund.html">mgkit.plots.abund module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mgkit.plots.boxplot.html">mgkit.plots.boxplot module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mgkit.plots.colors.html">mgkit.plots.colors module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mgkit.plots.heatmap.html">mgkit.plots.heatmap module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mgkit.plots.unused.html">mgkit.plots.unused module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mgkit.plots.utils.html">mgkit.plots.utils module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mgkit.simple_cache.html">mgkit.simple_cache module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mgkit.snps.html">mgkit.snps package</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mgkit.snps.classes.html">mgkit.snps.classes module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mgkit.snps.conv_func.html">mgkit.snps.conv_func module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mgkit.snps.filter.html">mgkit.snps.filter module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mgkit.snps.funcs.html">mgkit.snps.funcs module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mgkit.snps.mapper.html">mgkit.snps.mapper module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mgkit.taxon.html">mgkit.taxon module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mgkit.utils.html">mgkit.utils package</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mgkit.utils.common.html">mgkit.utils.common module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mgkit.utils.dictionary.html">mgkit.utils.dictionary module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mgkit.utils.sequence.html">mgkit.utils.sequence module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mgkit.utils.trans_tables.html">mgkit.utils.trans_tables module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mgkit.workflow.html">mgkit.workflow package</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mgkit.workflow.add_gff_info.html">mgkit.workflow.add_gff_info module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mgkit.workflow.blast2gff.html">mgkit.workflow.blast2gff module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mgkit.workflow.extract_gff_info.html">mgkit.workflow.extract_gff_info module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mgkit.workflow.fasta_utils.html">mgkit.workflow.fasta_utils module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mgkit.workflow.fastq_utils.html">mgkit.workflow.fastq_utils module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mgkit.workflow.filter_gff.html">mgkit.workflow.filter_gff module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mgkit.workflow.hmmer2gff.html">mgkit.workflow.hmmer2gff module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mgkit.workflow.json2gff.html">mgkit.workflow.json2gff module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mgkit.workflow.sampling_utils.html">mgkit.workflow.sampling_utils module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mgkit.workflow.snp_parser.html">mgkit.workflow.snp_parser module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mgkit.workflow.taxon_utils.html">mgkit.workflow.taxon_utils module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mgkit.workflow.utils.html">mgkit.workflow.utils module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="modules.html">mgkit</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../changes.html">Changes</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">MGKit: Metagenomic framework</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="../library.html">Library Reference</a> &raquo;</li>
+        
+          <li><a href="mgkit.html">mgkit package</a> &raquo;</li>
+        
+          <li><a href="mgkit.io.html">mgkit.io package</a> &raquo;</li>
+        
+      <li>mgkit.io.gff module</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="../_sources/api/mgkit.io.gff.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  
+<style>
+/* CSS overrides for sphinx_rtd_theme */
+
+/* 24px margin */
+.nbinput.nblast.container,
+.nboutput.nblast.container {
+    margin-bottom: 19px;  /* padding has already 5px */
+}
+
+/* ... except between code cells! */
+.nblast.container + .nbinput.container {
+    margin-top: -19px;
+}
+
+.admonition > p:before {
+    margin-right: 4px;  /* make room for the exclamation icon */
+}
+
+/* Fix math alignment, see https://github.com/rtfd/sphinx_rtd_theme/pull/686 */
+.math {
+    text-align: unset;
+}
+</style>
+<div class="section" id="module-mgkit.io.gff">
+<span id="mgkit-io-gff-module"></span><h1>mgkit.io.gff module<a class="headerlink" href="#module-mgkit.io.gff" title="Permalink to this headline">¶</a></h1>
+<p>This modules define classes and function related to manipulation of GFF/GTF
+files.</p>
+<dl class="class">
+<dt id="mgkit.io.gff.Annotation">
+<em class="property">class </em><code class="sig-prename descclassname">mgkit.io.gff.</code><code class="sig-name descname">Annotation</code><span class="sig-paren">(</span><em class="sig-param">seq_id='None'</em>, <em class="sig-param">start=1</em>, <em class="sig-param">end=1</em>, <em class="sig-param">strand='+'</em>, <em class="sig-param">source='None'</em>, <em class="sig-param">feat_type='None'</em>, <em class="sig-param">score=0.0</em>, <em class="sig-param">phase=0</em>, <em class="sig-param">uid=None</em>, <em class="sig-param">**kwd</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/mgkit/io/gff.html#Annotation"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#mgkit.io.gff.Annotation" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#mgkit.io.gff.GenomicRange" title="mgkit.io.gff.GenomicRange"><code class="xref py py-class docutils literal notranslate"><span class="pre">mgkit.io.gff.GenomicRange</span></code></a></p>
+<div class="versionadded">
+<p><span class="versionmodified added">New in version 0.1.12.</span></p>
+</div>
+<div class="versionchanged">
+<p><span class="versionmodified changed">Changed in version 0.2.1: </span>using __slots__ for better memory usage</p>
+</div>
+<p>Alternative implementation for an Annotation. When initialised, If <em>uid</em> is
+None, a unique id is added using <cite>uuid.uuid4</cite>.</p>
+<dl class="method">
+<dt id="mgkit.io.gff.Annotation.add_exp_syn_count">
+<code class="sig-name descname">add_exp_syn_count</code><span class="sig-paren">(</span><em class="sig-param">seq</em>, <em class="sig-param">syn_matrix=None</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/mgkit/io/gff.html#Annotation.add_exp_syn_count"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#mgkit.io.gff.Annotation.add_exp_syn_count" title="Permalink to this definition">¶</a></dt>
+<dd><div class="versionadded">
+<p><span class="versionmodified added">New in version 0.1.13.</span></p>
+</div>
+<p>Adds expected synonymous/non-synonymous values for an annotation.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>seq</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.8)"><em>str</em></a>) – sequence corresponding to the annotation seq_id
+syn_matrix (None, dict): matrix that determines the return
+values. Defaults to the one defined in the called function
+<code class="xref py py-func docutils literal notranslate"><span class="pre">mgkit.utils.sequnce.get_seq_expected_syn_count()</span></code>.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="mgkit.io.gff.Annotation.add_gc_content">
+<code class="sig-name descname">add_gc_content</code><span class="sig-paren">(</span><em class="sig-param">seq</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/mgkit/io/gff.html#Annotation.add_gc_content"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#mgkit.io.gff.Annotation.add_gc_content" title="Permalink to this definition">¶</a></dt>
+<dd><p>Adds GC content information for an annotation. The formula is:</p>
+<div class="math notranslate nohighlight" id="equation-gc-content-gff">
+<span class="eqno">(1)<a class="headerlink" href="#equation-gc-content-gff" title="Permalink to this equation">¶</a></span>\[\frac {(G + C)}{(G + C + A + T)}\]</div>
+<p>Modifies the instances of the annotation. gc_ratio will be added to its
+attributes.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>seq</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.8)"><em>str</em></a>) – nucleotide sequence referred in the GFF</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="mgkit.io.gff.Annotation.add_gc_ratio">
+<code class="sig-name descname">add_gc_ratio</code><span class="sig-paren">(</span><em class="sig-param">seq</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/mgkit/io/gff.html#Annotation.add_gc_ratio"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#mgkit.io.gff.Annotation.add_gc_ratio" title="Permalink to this definition">¶</a></dt>
+<dd><p>Adds GC content information for an annotation. The formula is:</p>
+<div class="math notranslate nohighlight" id="equation-gc-ratio-gff">
+<span class="eqno">(2)<a class="headerlink" href="#equation-gc-ratio-gff" title="Permalink to this equation">¶</a></span>\[\frac {(A + T)}{(G + C)}\]</div>
+<p>Modifies the instances of the annotation. gc_ratio will be added to its
+attributes.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>seq</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.8)"><em>str</em></a>) – nucleotide sequence referred in the GFF</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="mgkit.io.gff.Annotation.attr">
+<code class="sig-name descname">attr</code><a class="headerlink" href="#mgkit.io.gff.Annotation.attr" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="mgkit.io.gff.Annotation.bitscore">
+<em class="property">property </em><code class="sig-name descname">bitscore</code><a class="headerlink" href="#mgkit.io.gff.Annotation.bitscore" title="Permalink to this definition">¶</a></dt>
+<dd><p>bitscore of the annotation</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="mgkit.io.gff.Annotation.counts">
+<em class="property">property </em><code class="sig-name descname">counts</code><a class="headerlink" href="#mgkit.io.gff.Annotation.counts" title="Permalink to this definition">¶</a></dt>
+<dd><div class="versionadded">
+<p><span class="versionmodified added">New in version 0.2.2.</span></p>
+</div>
+<p>Returns the sample counts for the annotation</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="mgkit.io.gff.Annotation.coverage">
+<em class="property">property </em><code class="sig-name descname">coverage</code><a class="headerlink" href="#mgkit.io.gff.Annotation.coverage" title="Permalink to this definition">¶</a></dt>
+<dd><div class="versionadded">
+<p><span class="versionmodified added">New in version 0.1.13.</span></p>
+</div>
+<p>Return the total coverage for the annotation</p>
+<dl class="field-list simple">
+<dt class="field-odd">Return float</dt>
+<dd class="field-odd"><p>coverage</p>
+</dd>
+<dt class="field-even">Raises</dt>
+<dd class="field-even"><p><a class="reference internal" href="#mgkit.io.gff.AttributeNotFound" title="mgkit.io.gff.AttributeNotFound"><strong>AttributeNotFound</strong></a> – if no coverage attribute is found</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="mgkit.io.gff.Annotation.db">
+<em class="property">property </em><code class="sig-name descname">db</code><a class="headerlink" href="#mgkit.io.gff.Annotation.db" title="Permalink to this definition">¶</a></dt>
+<dd><p>db used for the gene_id prediction</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="mgkit.io.gff.Annotation.dbq">
+<em class="property">property </em><code class="sig-name descname">dbq</code><a class="headerlink" href="#mgkit.io.gff.Annotation.dbq" title="Permalink to this definition">¶</a></dt>
+<dd><p>db quality of the annotation</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="mgkit.io.gff.Annotation.del_attr">
+<code class="sig-name descname">del_attr</code><span class="sig-paren">(</span><em class="sig-param">attr</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/mgkit/io/gff.html#Annotation.del_attr"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#mgkit.io.gff.Annotation.del_attr" title="Permalink to this definition">¶</a></dt>
+<dd><div class="versionadded">
+<p><span class="versionmodified added">New in version 0.4.4.</span></p>
+</div>
+<p>Removes attributes from the Annotation</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="mgkit.io.gff.Annotation.exp_nonsyn">
+<em class="property">property </em><code class="sig-name descname">exp_nonsyn</code><a class="headerlink" href="#mgkit.io.gff.Annotation.exp_nonsyn" title="Permalink to this definition">¶</a></dt>
+<dd><div class="versionadded">
+<p><span class="versionmodified added">New in version 0.1.13.</span></p>
+</div>
+<p>Returns the expected number of non-synonymous changes</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="mgkit.io.gff.Annotation.exp_syn">
+<em class="property">property </em><code class="sig-name descname">exp_syn</code><a class="headerlink" href="#mgkit.io.gff.Annotation.exp_syn" title="Permalink to this definition">¶</a></dt>
+<dd><div class="versionadded">
+<p><span class="versionmodified added">New in version 0.1.13.</span></p>
+</div>
+<p>Returns the expected number of synonymous changes</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="mgkit.io.gff.Annotation.feat_type">
+<code class="sig-name descname">feat_type</code><a class="headerlink" href="#mgkit.io.gff.Annotation.feat_type" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="mgkit.io.gff.Annotation.fpkms">
+<em class="property">property </em><code class="sig-name descname">fpkms</code><a class="headerlink" href="#mgkit.io.gff.Annotation.fpkms" title="Permalink to this definition">¶</a></dt>
+<dd><div class="versionadded">
+<p><span class="versionmodified added">New in version 0.2.2.</span></p>
+</div>
+<p>Returns the sample fpkms for the annotation</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="mgkit.io.gff.Annotation.gene_id">
+<em class="property">property </em><code class="sig-name descname">gene_id</code><a class="headerlink" href="#mgkit.io.gff.Annotation.gene_id" title="Permalink to this definition">¶</a></dt>
+<dd><p>gene_id of the annotation, or <em>ko</em> if available</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="mgkit.io.gff.Annotation.get_aa_seq">
+<code class="sig-name descname">get_aa_seq</code><span class="sig-paren">(</span><em class="sig-param">seq</em>, <em class="sig-param">start=0</em>, <em class="sig-param">tbl=None</em>, <em class="sig-param">snp=None</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/mgkit/io/gff.html#Annotation.get_aa_seq"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#mgkit.io.gff.Annotation.get_aa_seq" title="Permalink to this definition">¶</a></dt>
+<dd><div class="versionadded">
+<p><span class="versionmodified added">New in version 0.1.16.</span></p>
+</div>
+<p>Returns a translated aminoacid sequence of the annotation. The snp
+parameter is passed to <a class="reference internal" href="#mgkit.io.gff.Annotation.get_nuc_seq" title="mgkit.io.gff.Annotation.get_nuc_seq"><code class="xref py py-meth docutils literal notranslate"><span class="pre">Annotation.get_nuc_seq()</span></code></a></p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>seq</strong> (<em>seq</em>) – chromosome/contig sequence</p></li>
+<li><p><strong>start</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.8)"><em>int</em></a>) – position (0-based) from where the correct occurs
+(frame). If None, the phase attribute is used</p></li>
+<li><p><strong>tbl</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.8)"><em>dict</em></a>) – dictionary with the translation for each codon,
+passed to <a class="reference internal" href="mgkit.utils.sequence.html#mgkit.utils.sequence.translate_sequence" title="mgkit.utils.sequence.translate_sequence"><code class="xref py py-func docutils literal notranslate"><span class="pre">mgkit.utils.sequence.translate_sequence()</span></code></a></p></li>
+<li><p><strong>snp</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#tuple" title="(in Python v3.8)"><em>tuple</em></a>) – first element is the position of the SNP and the
+second element is the change</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>aminoacid sequence</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.8)">str</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="mgkit.io.gff.Annotation.get_attr">
+<code class="sig-name descname">get_attr</code><span class="sig-paren">(</span><em class="sig-param">attr</em>, <em class="sig-param">conv=&lt;class 'str'&gt;</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/mgkit/io/gff.html#Annotation.get_attr"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#mgkit.io.gff.Annotation.get_attr" title="Permalink to this definition">¶</a></dt>
+<dd><div class="versionchanged">
+<p><span class="versionmodified changed">Changed in version 0.3.4: </span>any GFF attribute can be returned</p>
+</div>
+<div class="versionchanged">
+<p><span class="versionmodified changed">Changed in version 0.3.3: </span>added <em>seq_id</em> as special attribute, in addition do <em>length</em></p>
+</div>
+<div class="versionadded">
+<p><span class="versionmodified added">New in version 0.1.13.</span></p>
+</div>
+<p>Generic method to get an attribute and convert it to a specific
+datatype. The order for the lookup is:</p>
+<ul class="simple">
+<li><p>length</p></li>
+<li><p>self.attr (dictionary)</p></li>
+<li><p>getattr(self) of the first 8 columns of a GFF (seq_id, source, …)</p></li>
+</ul>
+</dd></dl>
+
+<dl class="method">
+<dt id="mgkit.io.gff.Annotation.get_ec">
+<code class="sig-name descname">get_ec</code><span class="sig-paren">(</span><em class="sig-param">level=4</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/mgkit/io/gff.html#Annotation.get_ec"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#mgkit.io.gff.Annotation.get_ec" title="Permalink to this definition">¶</a></dt>
+<dd><div class="versionadded">
+<p><span class="versionmodified added">New in version 0.1.13.</span></p>
+</div>
+<div class="versionchanged">
+<p><span class="versionmodified changed">Changed in version 0.2.0: </span>returns a <em>set</em> instead of a list</p>
+</div>
+<p>Returns the EC values associated with the annotation, cutting them at
+the desired level.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>level</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.8)"><em>int</em></a>) – level of classification desired (between 1 and 4)</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>list of all EC numbers associated, at the desired level, if
+none are found an empty set is returned</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#set" title="(in Python v3.8)">set</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="mgkit.io.gff.Annotation.get_mapping">
+<code class="sig-name descname">get_mapping</code><span class="sig-paren">(</span><em class="sig-param">db</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/mgkit/io/gff.html#Annotation.get_mapping"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#mgkit.io.gff.Annotation.get_mapping" title="Permalink to this definition">¶</a></dt>
+<dd><div class="versionadded">
+<p><span class="versionmodified added">New in version 0.1.13.</span></p>
+</div>
+<p>Returns the mappings, to a particular db, associated with the
+annotation.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>db</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.8)"><em>str</em></a>) – database to which the mappings come from</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>list of all mappings associated, to the specified db, if
+none are found an empty list is returned</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.8)">list</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="mgkit.io.gff.Annotation.get_mappings">
+<code class="sig-name descname">get_mappings</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/mgkit/io/gff.html#Annotation.get_mappings"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#mgkit.io.gff.Annotation.get_mappings" title="Permalink to this definition">¶</a></dt>
+<dd><div class="versionadded">
+<p><span class="versionmodified added">New in version 0.2.1.</span></p>
+</div>
+<p>Return a dictionary where the keys are the mapping DBs (lowercase) and
+and the values are the mapping IDs for that DB</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="mgkit.io.gff.Annotation.get_nuc_seq">
+<code class="sig-name descname">get_nuc_seq</code><span class="sig-paren">(</span><em class="sig-param">seq</em>, <em class="sig-param">reverse=False</em>, <em class="sig-param">snp=None</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/mgkit/io/gff.html#Annotation.get_nuc_seq"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#mgkit.io.gff.Annotation.get_nuc_seq" title="Permalink to this definition">¶</a></dt>
+<dd><div class="versionadded">
+<p><span class="versionmodified added">New in version 0.1.13.</span></p>
+</div>
+<div class="versionchanged">
+<p><span class="versionmodified changed">Changed in version 0.1.16: </span>added <em>snp</em> parameter</p>
+</div>
+<p>Returns the nucleotidic sequence that the annotation covers. if the
+annotation’s strand is <em>-</em>, and <em>reverse</em> is True, the reverse
+complement is returned.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>seq</strong> (<em>seq</em>) – chromosome/contig sequence</p></li>
+<li><p><strong>reverse</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.8)"><em>bool</em></a>) – if True and the strand is ‘-‘, a reverse complement
+is returned</p></li>
+<li><p><strong>snp</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#tuple" title="(in Python v3.8)"><em>tuple</em></a>) – first element is the position of the SNP relative to
+the Annotation and the second element is the change</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>nucleotide sequence with requested transformations</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.8)">str</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="mgkit.io.gff.Annotation.get_number_of_samples">
+<code class="sig-name descname">get_number_of_samples</code><span class="sig-paren">(</span><em class="sig-param">min_cov=4</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/mgkit/io/gff.html#Annotation.get_number_of_samples"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#mgkit.io.gff.Annotation.get_number_of_samples" title="Permalink to this definition">¶</a></dt>
+<dd><div class="versionadded">
+<p><span class="versionmodified added">New in version 0.1.13.</span></p>
+</div>
+<p>Returns the number of sample that have at least a minimum coverage of
+<cite>min_cov</cite>.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>min_cov</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.8)"><em>int</em></a>) – minimum coverage</p>
+</dd>
+<dt class="field-even">Return int</dt>
+<dd class="field-even"><p>number of samples passing the filter</p>
+</dd>
+<dt class="field-odd">Raises</dt>
+<dd class="field-odd"><p><a class="reference internal" href="#mgkit.io.gff.AttributeNotFound" title="mgkit.io.gff.AttributeNotFound"><strong>AttributeNotFound</strong></a> – if no sample coverage attribute is found</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="mgkit.io.gff.Annotation.has_attr">
+<code class="sig-name descname">has_attr</code><span class="sig-paren">(</span><em class="sig-param">attr</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/mgkit/io/gff.html#Annotation.has_attr"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#mgkit.io.gff.Annotation.has_attr" title="Permalink to this definition">¶</a></dt>
+<dd><div class="versionadded">
+<p><span class="versionmodified added">New in version 0.4.4.</span></p>
+</div>
+<p>Tests if an attributes is present in the Annotation</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>attr</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.8)"><em>str</em></a>) – attribute to test</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>True if the attributes is present</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.8)">bool</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="mgkit.io.gff.Annotation.is_syn">
+<code class="sig-name descname">is_syn</code><span class="sig-paren">(</span><em class="sig-param">seq</em>, <em class="sig-param">pos</em>, <em class="sig-param">change</em>, <em class="sig-param">tbl=None</em>, <em class="sig-param">abs_pos=True</em>, <em class="sig-param">start=0</em>, <em class="sig-param">strict=True</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/mgkit/io/gff.html#Annotation.is_syn"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#mgkit.io.gff.Annotation.is_syn" title="Permalink to this definition">¶</a></dt>
+<dd><div class="versionadded">
+<p><span class="versionmodified added">New in version 0.1.16.</span></p>
+</div>
+<div class="versionchanged">
+<p><span class="versionmodified changed">Changed in version 0.4.4: </span>added <em>strict</em> parameter</p>
+</div>
+<p>Return if a SNP is synonymous or non-synonymous.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>seq</strong> (<em>seq</em>) – reference sequence of the annotation</p></li>
+<li><p><strong>pos</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.8)"><em>int</em></a>) – position of the SNP on the reference (1-based index)</p></li>
+<li><p><strong>change</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.8)"><em>str</em></a>) – nucleotidic change</p></li>
+<li><p><strong>tbl</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.8)"><em>dict</em></a>) – dictionary with the translation table. Defaults to the
+universal genetic code</p></li>
+<li><p><strong>abs_pos</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.8)"><em>bool</em></a>) – if True the <em>pos</em> is referred to the reference and
+not a position relative to the annotation</p></li>
+<li><p><strong>start</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.8)"><em>int</em></a><em> or </em><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.8)"><em>None</em></a>) – phase to be used to get the start position of
+the codon. if None, the Annotation phase will be used</p></li>
+<li><p><strong>strict</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.8)"><em>bool</em></a>) – if a variant codon is not found, a KeyError is
+raised, otherwise <em>False</em> is returned</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>True if the SNP is synonymous, false if it’s non-synonymous.
+Behaviour in case of variant codons not found in the translation
+table changes based on <em>strict</em></p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.8)">bool</a></p>
+</dd>
+<dt class="field-even">Raises</dt>
+<dd class="field-even"><p><a class="reference external" href="https://docs.python.org/3/library/exceptions.html#KeyError" title="(in Python v3.8)"><strong>KeyError</strong></a> – if the variant codon is not found and <em>strict</em> is True</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="mgkit.io.gff.Annotation.length">
+<em class="property">property </em><code class="sig-name descname">length</code><a class="headerlink" href="#mgkit.io.gff.Annotation.length" title="Permalink to this definition">¶</a></dt>
+<dd><div class="versionchanged">
+<p><span class="versionmodified changed">Changed in version 0.2.0.</span></p>
+</div>
+<p>Length of the annotation, uses <cite>len(self)</cite></p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="mgkit.io.gff.Annotation.phase">
+<code class="sig-name descname">phase</code><a class="headerlink" href="#mgkit.io.gff.Annotation.phase" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="mgkit.io.gff.Annotation.region">
+<em class="property">property </em><code class="sig-name descname">region</code><a class="headerlink" href="#mgkit.io.gff.Annotation.region" title="Permalink to this definition">¶</a></dt>
+<dd><div class="versionadded">
+<p><span class="versionmodified added">New in version 0.1.13.</span></p>
+</div>
+<p>Return the <em>region</em> covered by the annotation, to use in samtools</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="mgkit.io.gff.Annotation.sample_coverage">
+<em class="property">property </em><code class="sig-name descname">sample_coverage</code><a class="headerlink" href="#mgkit.io.gff.Annotation.sample_coverage" title="Permalink to this definition">¶</a></dt>
+<dd><div class="versionadded">
+<p><span class="versionmodified added">New in version 0.1.13.</span></p>
+</div>
+<p>Returns a dictionary with the coverage for each sample, the returned
+dictionary has the sample id (stripped of the <em>_cov</em>) suffix and as
+values the coverage (converted via <code class="xref py py-func docutils literal notranslate"><span class="pre">int()</span></code>).</p>
+<dl class="field-list simple">
+<dt class="field-odd">Return dict</dt>
+<dd class="field-odd"><p>dictionary with the samples’ coverage</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="mgkit.io.gff.Annotation.score">
+<code class="sig-name descname">score</code><a class="headerlink" href="#mgkit.io.gff.Annotation.score" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="mgkit.io.gff.Annotation.set_attr">
+<code class="sig-name descname">set_attr</code><span class="sig-paren">(</span><em class="sig-param">attr</em>, <em class="sig-param">value</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/mgkit/io/gff.html#Annotation.set_attr"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#mgkit.io.gff.Annotation.set_attr" title="Permalink to this definition">¶</a></dt>
+<dd><div class="versionadded">
+<p><span class="versionmodified added">New in version 0.1.13.</span></p>
+</div>
+<div class="versionchanged">
+<p><span class="versionmodified changed">Changed in version 0.4.4: </span>a standard attribute can now be set</p>
+</div>
+<p>Generic method to set an attribute</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="mgkit.io.gff.Annotation.set_mapping">
+<code class="sig-name descname">set_mapping</code><span class="sig-paren">(</span><em class="sig-param">db</em>, <em class="sig-param">values</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/mgkit/io/gff.html#Annotation.set_mapping"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#mgkit.io.gff.Annotation.set_mapping" title="Permalink to this definition">¶</a></dt>
+<dd><div class="versionadded">
+<p><span class="versionmodified added">New in version 0.1.13.</span></p>
+</div>
+<p>Set mappings to a particular db, associated with the
+annotation.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>db</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.8)"><em>str</em></a>) – database to which the mappings come from</p></li>
+<li><p><strong>mappings</strong> (<em>iterable</em>) – iterable of mappings</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="mgkit.io.gff.Annotation.source">
+<code class="sig-name descname">source</code><a class="headerlink" href="#mgkit.io.gff.Annotation.source" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="mgkit.io.gff.Annotation.taxon_db">
+<em class="property">property </em><code class="sig-name descname">taxon_db</code><a class="headerlink" href="#mgkit.io.gff.Annotation.taxon_db" title="Permalink to this definition">¶</a></dt>
+<dd><p>db used for the taxon_id prediction</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="mgkit.io.gff.Annotation.taxon_id">
+<em class="property">property </em><code class="sig-name descname">taxon_id</code><a class="headerlink" href="#mgkit.io.gff.Annotation.taxon_id" title="Permalink to this definition">¶</a></dt>
+<dd><div class="versionchanged">
+<p><span class="versionmodified changed">Changed in version 0.3.1: </span>if taxon_id is set to “None” as a string, it’s converted to <em>None</em></p>
+</div>
+<p>taxon_id of the annotation</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="mgkit.io.gff.Annotation.to_dict">
+<code class="sig-name descname">to_dict</code><span class="sig-paren">(</span><em class="sig-param">exclude_attr=None</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/mgkit/io/gff.html#Annotation.to_dict"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#mgkit.io.gff.Annotation.to_dict" title="Permalink to this definition">¶</a></dt>
+<dd><div class="versionadded">
+<p><span class="versionmodified added">New in version 0.3.1.</span></p>
+</div>
+<p>Return a dictionary representation of the Annotation.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>exclude_attr</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.8)"><em>str</em></a><em>,</em><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.8)"><em>list</em></a>) – attributes to exclude from the dictionary,
+can be either a single attribute (string) or a list of strings</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>dictionary with the annotation</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.8)">dict</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="mgkit.io.gff.Annotation.to_file">
+<code class="sig-name descname">to_file</code><span class="sig-paren">(</span><em class="sig-param">file_handle</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/mgkit/io/gff.html#Annotation.to_file"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#mgkit.io.gff.Annotation.to_file" title="Permalink to this definition">¶</a></dt>
+<dd><p>Writes the GFF annotation to <em>file_handle</em></p>
+</dd></dl>
+
+<dl class="method">
+<dt id="mgkit.io.gff.Annotation.to_gff">
+<code class="sig-name descname">to_gff</code><span class="sig-paren">(</span><em class="sig-param">sep='='</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/mgkit/io/gff.html#Annotation.to_gff"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#mgkit.io.gff.Annotation.to_gff" title="Permalink to this definition">¶</a></dt>
+<dd><p>Format the Annotation as a GFF string.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>sep</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.8)"><em>str</em></a>) – separator key -&gt; value</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>annotation formatted as GFF</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.8)">str</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="mgkit.io.gff.Annotation.to_gtf">
+<code class="sig-name descname">to_gtf</code><span class="sig-paren">(</span><em class="sig-param">gene_id_attr='uid'</em>, <em class="sig-param">sep=' '</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/mgkit/io/gff.html#Annotation.to_gtf"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#mgkit.io.gff.Annotation.to_gtf" title="Permalink to this definition">¶</a></dt>
+<dd><div class="versionadded">
+<p><span class="versionmodified added">New in version 0.1.15.</span></p>
+</div>
+<div class="versionchanged">
+<p><span class="versionmodified changed">Changed in version 0.1.16: </span>added <em>gene_id_attr</em> parameter</p>
+</div>
+<div class="versionchanged">
+<p><span class="versionmodified changed">Changed in version 0.2.2: </span>added <em>sep</em> argument, default to a space, now</p>
+</div>
+<p>Simple conversion to a valid GTF. gene_id and transcript_id are set to
+<em>uid</em> or the attribute specified using the <em>gene_id_attr</em> parameter.
+It’s written to be used with <em>SNPDat</em>.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="mgkit.io.gff.Annotation.to_json">
+<code class="sig-name descname">to_json</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/mgkit/io/gff.html#Annotation.to_json"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#mgkit.io.gff.Annotation.to_json" title="Permalink to this definition">¶</a></dt>
+<dd><div class="versionadded">
+<p><span class="versionmodified added">New in version 0.2.1.</span></p>
+</div>
+<div class="versionchanged">
+<p><span class="versionmodified changed">Changed in version 0.3.1: </span>now <a class="reference internal" href="#mgkit.io.gff.Annotation.to_dict" title="mgkit.io.gff.Annotation.to_dict"><code class="xref py py-meth docutils literal notranslate"><span class="pre">Annotation.to_dict()</span></code></a> is used</p>
+</div>
+<p>Returns a json representation of the Annotation</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="mgkit.io.gff.Annotation.to_mongodb">
+<code class="sig-name descname">to_mongodb</code><span class="sig-paren">(</span><em class="sig-param">lineage_func=None</em>, <em class="sig-param">indent=None</em>, <em class="sig-param">raw=False</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/mgkit/io/gff.html#Annotation.to_mongodb"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#mgkit.io.gff.Annotation.to_mongodb" title="Permalink to this definition">¶</a></dt>
+<dd><div class="versionadded">
+<p><span class="versionmodified added">New in version 0.2.1.</span></p>
+</div>
+<div class="versionchanged">
+<p><span class="versionmodified changed">Changed in version 0.2.2: </span>added handling of <em>counts_</em> and <em>fpkms_</em></p>
+</div>
+<div class="versionchanged">
+<p><span class="versionmodified changed">Changed in version 0.2.6: </span>added <em>indent</em> parameter</p>
+</div>
+<div class="versionchanged">
+<p><span class="versionmodified changed">Changed in version 0.3.4: </span>added <em>raw</em></p>
+</div>
+<p>Returns a MongoDB document that represent the Annotation.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>lineage</strong> (<em>func</em>) – function used to populate the lineage key, returns
+a list of taxon_id</p></li>
+<li><p><strong>indent</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.8)"><em>int</em></a>) – the amount of indent to put in the record, None (the
+default) is for the most compact - one line for the record</p></li>
+<li><p><strong>raw</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.8)"><em>bool</em></a>) – if True, the method returns a string, which is the
+json dump, if False, the value returned is the dictionary</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>the MongoDB document, with Annotation.uid as _id, as
+a string if <em>raw</em> is True, a dictionary if it is False</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.8)">str</a> or <a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.8)">dict</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="mgkit.io.gff.Annotation.uid">
+<em class="property">property </em><code class="sig-name descname">uid</code><a class="headerlink" href="#mgkit.io.gff.Annotation.uid" title="Permalink to this definition">¶</a></dt>
+<dd><div class="versionadded">
+<p><span class="versionmodified added">New in version 0.1.13.</span></p>
+</div>
+<p>uid of the annotation</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="exception">
+<dt id="mgkit.io.gff.AttributeNotFound">
+<em class="property">exception </em><code class="sig-prename descclassname">mgkit.io.gff.</code><code class="sig-name descname">AttributeNotFound</code><a class="reference internal" href="../_modules/mgkit/io/gff.html#AttributeNotFound"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#mgkit.io.gff.AttributeNotFound" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference external" href="https://docs.python.org/3/library/exceptions.html#Exception" title="(in Python v3.8)"><code class="xref py py-class docutils literal notranslate"><span class="pre">Exception</span></code></a></p>
+<p>Raised if an attribute is not found in a GFF file</p>
+</dd></dl>
+
+<dl class="exception">
+<dt id="mgkit.io.gff.DuplicateKeyError">
+<em class="property">exception </em><code class="sig-prename descclassname">mgkit.io.gff.</code><code class="sig-name descname">DuplicateKeyError</code><a class="reference internal" href="../_modules/mgkit/io/gff.html#DuplicateKeyError"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#mgkit.io.gff.DuplicateKeyError" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference external" href="https://docs.python.org/3/library/exceptions.html#Exception" title="(in Python v3.8)"><code class="xref py py-class docutils literal notranslate"><span class="pre">Exception</span></code></a></p>
+<div class="versionadded">
+<p><span class="versionmodified added">New in version 0.1.12.</span></p>
+</div>
+<p>Raised if a GFF annotation contains duplicate keys</p>
+</dd></dl>
+
+<dl class="class">
+<dt id="mgkit.io.gff.GenomicRange">
+<em class="property">class </em><code class="sig-prename descclassname">mgkit.io.gff.</code><code class="sig-name descname">GenomicRange</code><span class="sig-paren">(</span><em class="sig-param">seq_id='None'</em>, <em class="sig-param">start=1</em>, <em class="sig-param">end=1</em>, <em class="sig-param">strand='+'</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/mgkit/io/gff.html#GenomicRange"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#mgkit.io.gff.GenomicRange" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference external" href="https://docs.python.org/3/library/functions.html#object" title="(in Python v3.8)"><code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></a></p>
+<p>Defines a genomic range</p>
+<div class="versionchanged">
+<p><span class="versionmodified changed">Changed in version 0.2.1: </span>using __slots__ for better memory usage</p>
+</div>
+<dl class="method">
+<dt id="mgkit.io.gff.GenomicRange.__contains__">
+<code class="sig-name descname">__contains__</code><span class="sig-paren">(</span><em class="sig-param">pos</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/mgkit/io/gff.html#GenomicRange.__contains__"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#mgkit.io.gff.GenomicRange.__contains__" title="Permalink to this definition">¶</a></dt>
+<dd><div class="versionchanged">
+<p><span class="versionmodified changed">Changed in version 0.2.3: </span>a range or a subclass are accepted</p>
+</div>
+<div class="versionadded">
+<p><span class="versionmodified added">New in version 0.1.16.</span></p>
+</div>
+<p>Tests if the position is inside the range of the GenomicRange</p>
+<p>Pos is 1-based as <a class="reference internal" href="#mgkit.io.gff.GenomicRange.start" title="mgkit.io.gff.GenomicRange.start"><code class="xref py py-attr docutils literal notranslate"><span class="pre">GenomicRange.start</span></code></a> and
+<a class="reference internal" href="#mgkit.io.gff.GenomicRange.end" title="mgkit.io.gff.GenomicRange.end"><code class="xref py py-attr docutils literal notranslate"><span class="pre">GenomicRange.end</span></code></a></p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="mgkit.io.gff.GenomicRange.end">
+<code class="sig-name descname">end</code><a class="headerlink" href="#mgkit.io.gff.GenomicRange.end" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="mgkit.io.gff.GenomicRange.expand_from_list">
+<code class="sig-name descname">expand_from_list</code><span class="sig-paren">(</span><em class="sig-param">others</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/mgkit/io/gff.html#GenomicRange.expand_from_list"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#mgkit.io.gff.GenomicRange.expand_from_list" title="Permalink to this definition">¶</a></dt>
+<dd><p>Expand the <a class="reference internal" href="#mgkit.io.gff.GenomicRange" title="mgkit.io.gff.GenomicRange"><code class="xref py py-class docutils literal notranslate"><span class="pre">GenomicRange</span></code></a> range instance with a list of
+<a class="reference internal" href="#mgkit.io.gff.GenomicRange" title="mgkit.io.gff.GenomicRange"><code class="xref py py-class docutils literal notranslate"><span class="pre">GenomicRange</span></code></a></p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>others</strong> (<em>iterable</em>) – iterable of <a class="reference internal" href="#mgkit.io.gff.GenomicRange" title="mgkit.io.gff.GenomicRange"><code class="xref py py-class docutils literal notranslate"><span class="pre">GenomicRange</span></code></a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="mgkit.io.gff.GenomicRange.get_range">
+<code class="sig-name descname">get_range</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/mgkit/io/gff.html#GenomicRange.get_range"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#mgkit.io.gff.GenomicRange.get_range" title="Permalink to this definition">¶</a></dt>
+<dd><div class="versionadded">
+<p><span class="versionmodified added">New in version 0.1.13.</span></p>
+</div>
+<p>Returns the start and end position as a tuple</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="mgkit.io.gff.GenomicRange.get_relative_pos">
+<code class="sig-name descname">get_relative_pos</code><span class="sig-paren">(</span><em class="sig-param">pos</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/mgkit/io/gff.html#GenomicRange.get_relative_pos"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#mgkit.io.gff.GenomicRange.get_relative_pos" title="Permalink to this definition">¶</a></dt>
+<dd><div class="versionadded">
+<p><span class="versionmodified added">New in version 0.1.16.</span></p>
+</div>
+<p>Given an absolute position (referred to the reference), convert the
+position to a coordinate relative to the GenomicRange</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>the position relative to the GenomicRange</p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.8)">int</a></p>
+</dd>
+<dt class="field-odd">Raises</dt>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/exceptions.html#ValueError" title="(in Python v3.8)"><strong>ValueError</strong></a> – if the position is not in the range</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="mgkit.io.gff.GenomicRange.intersect">
+<code class="sig-name descname">intersect</code><span class="sig-paren">(</span><em class="sig-param">other</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/mgkit/io/gff.html#GenomicRange.intersect"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#mgkit.io.gff.GenomicRange.intersect" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return an instance of <a class="reference internal" href="#mgkit.io.gff.GenomicRange" title="mgkit.io.gff.GenomicRange"><code class="xref py py-class docutils literal notranslate"><span class="pre">GenomicRange</span></code></a> that represent the
+intersection of the current instance and another.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="mgkit.io.gff.GenomicRange.seq_id">
+<code class="sig-name descname">seq_id</code><a class="headerlink" href="#mgkit.io.gff.GenomicRange.seq_id" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="mgkit.io.gff.GenomicRange.start">
+<code class="sig-name descname">start</code><a class="headerlink" href="#mgkit.io.gff.GenomicRange.start" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="mgkit.io.gff.GenomicRange.strand">
+<code class="sig-name descname">strand</code><a class="headerlink" href="#mgkit.io.gff.GenomicRange.strand" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="mgkit.io.gff.GenomicRange.union">
+<code class="sig-name descname">union</code><span class="sig-paren">(</span><em class="sig-param">other</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/mgkit/io/gff.html#GenomicRange.union"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#mgkit.io.gff.GenomicRange.union" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return the union of two <a class="reference internal" href="#mgkit.io.gff.GenomicRange" title="mgkit.io.gff.GenomicRange"><code class="xref py py-class docutils literal notranslate"><span class="pre">GenomicRange</span></code></a></p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="function">
+<dt id="mgkit.io.gff.annotate_sequence">
+<code class="sig-prename descclassname">mgkit.io.gff.</code><code class="sig-name descname">annotate_sequence</code><span class="sig-paren">(</span><em class="sig-param">name</em>, <em class="sig-param">seq</em>, <em class="sig-param">window=None</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/mgkit/io/gff.html#annotate_sequence"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#mgkit.io.gff.annotate_sequence" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="function">
+<dt id="mgkit.io.gff.annotation_coverage">
+<code class="sig-prename descclassname">mgkit.io.gff.</code><code class="sig-name descname">annotation_coverage</code><span class="sig-paren">(</span><em class="sig-param">annotations</em>, <em class="sig-param">seqs</em>, <em class="sig-param">strand=True</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/mgkit/io/gff.html#annotation_coverage"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#mgkit.io.gff.annotation_coverage" title="Permalink to this definition">¶</a></dt>
+<dd><div class="versionadded">
+<p><span class="versionmodified added">New in version 0.1.12.</span></p>
+</div>
+<p>Given a list of annotations and a dictionary where the keys are the
+sequence names referred in the annotations and the values are the sequences
+themselves, returns a number which indicated how much the sequence length
+is “covered” in annotations. If <em>strand</em> is True the coverage is strand
+specific.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>annotations</strong> (<em>iterable</em>) – iterable of <a class="reference internal" href="#mgkit.io.gff.Annotation" title="mgkit.io.gff.Annotation"><code class="xref py py-class docutils literal notranslate"><span class="pre">Annotation</span></code></a> instances</p></li>
+<li><p><strong>seqs</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.8)"><em>dict</em></a>) – dictionary in which the keys are the sequence names and
+the values are the sequences</p></li>
+<li><p><strong>strand</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.8)"><em>bool</em></a>) – if True, the values are strand specific (the
+annotations) are grouped by (seq_id, strand) instead of seq_id</p></li>
+</ul>
+</dd>
+<dt class="field-even">Yields</dt>
+<dd class="field-even"><p><em>tuple</em> – the first element is the key, (seq_id, strand) if <em>strand</em> is
+True or seq_id if <em>strand</em> is False, and the coverage is the second
+value.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="function">
+<dt id="mgkit.io.gff.annotation_coverage_sorted">
+<code class="sig-prename descclassname">mgkit.io.gff.</code><code class="sig-name descname">annotation_coverage_sorted</code><span class="sig-paren">(</span><em class="sig-param">annotations</em>, <em class="sig-param">seqs</em>, <em class="sig-param">strand=True</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/mgkit/io/gff.html#annotation_coverage_sorted"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#mgkit.io.gff.annotation_coverage_sorted" title="Permalink to this definition">¶</a></dt>
+<dd><div class="versionadded">
+<p><span class="versionmodified added">New in version 0.3.1.</span></p>
+</div>
+<p>Given a list of annotations and a dictionary where the keys are the
+sequence names referred in the annotations and the values are the sequences
+themselves, returns a number which indicated how much the sequence length
+is “covered” in annotations. If <em>strand</em> is True the coverage is strand
+specific.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>It differs from <a class="reference internal" href="#mgkit.io.gff.annotation_coverage" title="mgkit.io.gff.annotation_coverage"><code class="xref py py-func docutils literal notranslate"><span class="pre">annotation_coverage()</span></code></a> because it assumes the
+annotations are correctly sorted and in the values yielded</p>
+</div>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>annotations</strong> (<em>iterable</em>) – iterable of <a class="reference internal" href="#mgkit.io.gff.Annotation" title="mgkit.io.gff.Annotation"><code class="xref py py-class docutils literal notranslate"><span class="pre">Annotation</span></code></a> instances</p></li>
+<li><p><strong>seqs</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.8)"><em>dict</em></a>) – dictionary in which the keys are the sequence names and
+the values are the sequences</p></li>
+<li><p><strong>strand</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.8)"><em>bool</em></a>) – if True, the values are strand specific (the
+annotations) are grouped by (seq_id, strand) instead of seq_id</p></li>
+</ul>
+</dd>
+<dt class="field-even">Yields</dt>
+<dd class="field-even"><p><em>tuple</em> – the first element is the seq_id, the second the strand (if
+strand is True, else it’s set to <em>None</em>), and the third element is the
+coverage.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="function">
+<dt id="mgkit.io.gff.annotation_elongation">
+<code class="sig-prename descclassname">mgkit.io.gff.</code><code class="sig-name descname">annotation_elongation</code><span class="sig-paren">(</span><em class="sig-param">ann1</em>, <em class="sig-param">annotations</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/mgkit/io/gff.html#annotation_elongation"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#mgkit.io.gff.annotation_elongation" title="Permalink to this definition">¶</a></dt>
+<dd><div class="versionadded">
+<p><span class="versionmodified added">New in version 0.1.12.</span></p>
+</div>
+<p>Given an <a class="reference internal" href="#mgkit.io.gff.Annotation" title="mgkit.io.gff.Annotation"><code class="xref py py-class docutils literal notranslate"><span class="pre">Annotation</span></code></a> instance and a list of the instances of the
+same class, returns the longest overlapping range that can be found and the
+annotations that are included in it.</p>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>annotations are not checked for seq_id and strand</p>
+</div>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>ann1</strong> (<a class="reference internal" href="#mgkit.io.gff.Annotation" title="mgkit.io.gff.Annotation"><em>Annotation</em></a>) – annotation to elongate</p></li>
+<li><p><strong>annotations</strong> (<em>iterable</em>) – iterable of <a class="reference internal" href="#mgkit.io.gff.Annotation" title="mgkit.io.gff.Annotation"><code class="xref py py-class docutils literal notranslate"><span class="pre">Annotation</span></code></a> instances</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>the first element is the longest range found, while the the
+second element is a set with the annotations used</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#tuple" title="(in Python v3.8)">tuple</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="function">
+<dt id="mgkit.io.gff.convert_gff_to_gtf">
+<code class="sig-prename descclassname">mgkit.io.gff.</code><code class="sig-name descname">convert_gff_to_gtf</code><span class="sig-paren">(</span><em class="sig-param">file_in</em>, <em class="sig-param">file_out</em>, <em class="sig-param">gene_id_attr='uid'</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/mgkit/io/gff.html#convert_gff_to_gtf"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#mgkit.io.gff.convert_gff_to_gtf" title="Permalink to this definition">¶</a></dt>
+<dd><div class="versionadded">
+<p><span class="versionmodified added">New in version 0.1.16.</span></p>
+</div>
+<p>Function that uses <a class="reference internal" href="#mgkit.io.gff.Annotation.to_gtf" title="mgkit.io.gff.Annotation.to_gtf"><code class="xref py py-meth docutils literal notranslate"><span class="pre">Annotation.to_gtf()</span></code></a> to convert a GFF into GTF.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>file_in</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.8)"><em>str</em></a><em>, </em><em>file</em>) – either file name or file handle of a GFF file</p></li>
+<li><p><strong>file_out</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.8)"><em>str</em></a>) – file name to which write the converted annotations</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="function">
+<dt id="mgkit.io.gff.diff_gff">
+<code class="sig-prename descclassname">mgkit.io.gff.</code><code class="sig-name descname">diff_gff</code><span class="sig-paren">(</span><em class="sig-param">files</em>, <em class="sig-param">key_func=None</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/mgkit/io/gff.html#diff_gff"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#mgkit.io.gff.diff_gff" title="Permalink to this definition">¶</a></dt>
+<dd><div class="versionadded">
+<p><span class="versionmodified added">New in version 0.1.12.</span></p>
+</div>
+<p>Returns a simple diff made between a list of gff files. The annotations are
+grouped using <em>key_func</em>, so it depends on it to find similar annotations.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>files</strong> (<em>iterable</em>) – an iterable of file handles, pointing to GFF files</p></li>
+<li><p><strong>key_func</strong> (<em>func</em>) – function used to group annotations, defaults to this
+key: <em>(x.seq_id, x.strand, x.start, x.end, x.gene_id, x.bitscore)</em></p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>the returned dictionary keys are determined by key_func and as
+values lists. The lists elements are tuple whose first element is the
+index of the file, relative to <em>files</em> and the second element is the
+line number in which the annotation is. Can be used with the
+<a class="reference external" href="https://docs.python.org/3/library/linecache.html#module-linecache" title="(in Python v3.8)"><code class="xref py py-mod docutils literal notranslate"><span class="pre">linecache</span></code></a> module.</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.8)">dict</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="function">
+<dt id="mgkit.io.gff.elongate_annotations">
+<code class="sig-prename descclassname">mgkit.io.gff.</code><code class="sig-name descname">elongate_annotations</code><span class="sig-paren">(</span><em class="sig-param">annotations</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/mgkit/io/gff.html#elongate_annotations"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#mgkit.io.gff.elongate_annotations" title="Permalink to this definition">¶</a></dt>
+<dd><div class="versionadded">
+<p><span class="versionmodified added">New in version 0.1.12.</span></p>
+</div>
+<p>Given an iterable of <a class="reference internal" href="#mgkit.io.gff.Annotation" title="mgkit.io.gff.Annotation"><code class="xref py py-class docutils literal notranslate"><span class="pre">Annotation</span></code></a> instances, tries to find the all
+possible longest ranges and returns them.</p>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>annotations are not checked for seq_id and strand</p>
+</div>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>annotations</strong> (<em>iterable</em>) – iterable of <a class="reference internal" href="#mgkit.io.gff.Annotation" title="mgkit.io.gff.Annotation"><code class="xref py py-class docutils literal notranslate"><span class="pre">Annotation</span></code></a> instances</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>set with the all ranges found</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#set" title="(in Python v3.8)">set</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="function">
+<dt id="mgkit.io.gff.extract_nuc_seqs">
+<code class="sig-prename descclassname">mgkit.io.gff.</code><code class="sig-name descname">extract_nuc_seqs</code><span class="sig-paren">(</span><em class="sig-param">annotations</em>, <em class="sig-param">seqs</em>, <em class="sig-param">name_func=&lt;function &lt;lambda&gt;&gt;</em>, <em class="sig-param">reverse=False</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/mgkit/io/gff.html#extract_nuc_seqs"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#mgkit.io.gff.extract_nuc_seqs" title="Permalink to this definition">¶</a></dt>
+<dd><div class="versionadded">
+<p><span class="versionmodified added">New in version 0.1.13.</span></p>
+</div>
+<p>Extract the nucleotidic sequences from a list of annotations. Internally
+uses the method <a class="reference internal" href="#mgkit.io.gff.Annotation.get_nuc_seq" title="mgkit.io.gff.Annotation.get_nuc_seq"><code class="xref py py-meth docutils literal notranslate"><span class="pre">Annotation.get_nuc_seq()</span></code></a>.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>annotations</strong> (<em>iterable</em>) – iterable of <a class="reference internal" href="#mgkit.io.gff.Annotation" title="mgkit.io.gff.Annotation"><code class="xref py py-class docutils literal notranslate"><span class="pre">Annotation</span></code></a> instances</p></li>
+<li><p><strong>seqs</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.8)"><em>dict</em></a>) – dictionary with the sequences referenced in the
+annotations</p></li>
+<li><p><strong>name_func</strong> (<em>func</em>) – function used to extract the sequence name to be
+used, defaults to the uid of the annotation</p></li>
+<li><p><strong>reverse</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.8)"><em>bool</em></a>) – if True the annotations on the <em>-</em> strand are reverse
+complemented</p></li>
+</ul>
+</dd>
+<dt class="field-even">Yields</dt>
+<dd class="field-even"><p><em>tuple</em> – tuple whose first element is the sequence name and the second is
+the sequence to which the annotation refers.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="function">
+<dt id="mgkit.io.gff.from_aa_blast_frag">
+<code class="sig-prename descclassname">mgkit.io.gff.</code><code class="sig-name descname">from_aa_blast_frag</code><span class="sig-paren">(</span><em class="sig-param">hit</em>, <em class="sig-param">parent_ann</em>, <em class="sig-param">aa_seqs</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/mgkit/io/gff.html#from_aa_blast_frag"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#mgkit.io.gff.from_aa_blast_frag" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="function">
+<dt id="mgkit.io.gff.from_gff">
+<code class="sig-prename descclassname">mgkit.io.gff.</code><code class="sig-name descname">from_gff</code><span class="sig-paren">(</span><em class="sig-param">line</em>, <em class="sig-param">strict=True</em>, <em class="sig-param">encoding='ascii'</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/mgkit/io/gff.html#from_gff"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#mgkit.io.gff.from_gff" title="Permalink to this definition">¶</a></dt>
+<dd><div class="versionadded">
+<p><span class="versionmodified added">New in version 0.1.12.</span></p>
+</div>
+<div class="versionchanged">
+<p><span class="versionmodified changed">Changed in version 0.2.6: </span>added <em>strict</em> parameter</p>
+</div>
+<div class="versionchanged">
+<p><span class="versionmodified changed">Changed in version 0.4.0: </span>added <em>encoding</em> parameter</p>
+</div>
+<p>Parse GFF line and returns an <a class="reference internal" href="#mgkit.io.gff.Annotation" title="mgkit.io.gff.Annotation"><code class="xref py py-class docutils literal notranslate"><span class="pre">Annotation</span></code></a> instance</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>line</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.8)"><em>str</em></a>) – GFF line</p></li>
+<li><p><strong>strict</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.8)"><em>bool</em></a>) – if True duplicate keys raise an exception</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>instance of <a class="reference internal" href="#mgkit.io.gff.Annotation" title="mgkit.io.gff.Annotation"><code class="xref py py-class docutils literal notranslate"><span class="pre">Annotation</span></code></a> for the line</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p><a class="reference internal" href="#mgkit.io.gff.Annotation" title="mgkit.io.gff.Annotation">Annotation</a></p>
+</dd>
+<dt class="field-even">Raises</dt>
+<dd class="field-even"><p><a class="reference internal" href="#mgkit.io.gff.DuplicateKeyError" title="mgkit.io.gff.DuplicateKeyError"><strong>DuplicateKeyError</strong></a> – if the attribute column has duplicate keys</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="function">
+<dt id="mgkit.io.gff.from_glimmer3">
+<code class="sig-prename descclassname">mgkit.io.gff.</code><code class="sig-name descname">from_glimmer3</code><span class="sig-paren">(</span><em class="sig-param">header</em>, <em class="sig-param">line</em>, <em class="sig-param">feat_type='CDS'</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/mgkit/io/gff.html#from_glimmer3"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#mgkit.io.gff.from_glimmer3" title="Permalink to this definition">¶</a></dt>
+<dd><div class="versionadded">
+<p><span class="versionmodified added">New in version 0.1.12.</span></p>
+</div>
+<p>Parses the line of a GLIMMER3 ouput and returns an instance of a GFF
+annotation.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>header</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.8)"><em>str</em></a>) – the seq_id to which the ORF belongs</p></li>
+<li><p><strong>line</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.8)"><em>str</em></a>) – the prediction line for the orf</p></li>
+<li><p><strong>feat_type</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.8)"><em>str</em></a>) – the feature type to use</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>instance of annotation</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p><a class="reference internal" href="#mgkit.io.gff.Annotation" title="mgkit.io.gff.Annotation">Annotation</a></p>
+</dd>
+</dl>
+<p class="rubric">Example</p>
+<p>Assuming a GLIMMER3 output like this:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">&gt;</span><span class="n">sequence0001</span>
+<span class="n">orf00001</span>       <span class="mi">66</span>      <span class="mi">611</span>  <span class="o">+</span><span class="mi">3</span>     <span class="mf">6.08</span>
+</pre></div>
+</div>
+<p>The code used is:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">header</span> <span class="o">=</span> <span class="s1">&#39;sequence0001&#39;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">line</span> <span class="o">=</span> <span class="s1">&#39;orf00001       66      611  +3     6.08&#39;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">from_glimmer3</span><span class="p">(</span><span class="n">header</span><span class="p">,</span> <span class="n">line</span><span class="p">)</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="function">
+<dt id="mgkit.io.gff.from_hmmer">
+<code class="sig-prename descclassname">mgkit.io.gff.</code><code class="sig-name descname">from_hmmer</code><span class="sig-paren">(</span><em class="sig-param">line</em>, <em class="sig-param">aa_seqs</em>, <em class="sig-param">feat_type='gene'</em>, <em class="sig-param">source='HMMER'</em>, <em class="sig-param">db='CUSTOM'</em>, <em class="sig-param">custom_profiles=True</em>, <em class="sig-param">noframe=False</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/mgkit/io/gff.html#from_hmmer"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#mgkit.io.gff.from_hmmer" title="Permalink to this definition">¶</a></dt>
+<dd><div class="versionadded">
+<p><span class="versionmodified added">New in version 0.1.15: </span>first implementation to move old scripts to new GFF specs</p>
+</div>
+<div class="versionchanged">
+<p><span class="versionmodified changed">Changed in version 0.2.1: </span>removed compatibility with old scripts</p>
+</div>
+<div class="versionchanged">
+<p><span class="versionmodified changed">Changed in version 0.2.2: </span>taxon_id and taxon_name are not saved for non-custom profiles</p>
+</div>
+<div class="versionchanged">
+<p><span class="versionmodified changed">Changed in version 0.3.1: </span>added support for non mgkit-translated sequences (<em>noframe</em>)</p>
+</div>
+<p>Parse HMMER results (one line), it won’t parse commented lines (starting
+with <em>#</em>)</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>line</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.8)"><em>str</em></a>) – HMMER domain table line</p></li>
+<li><p><strong>aa_seqs</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.8)"><em>dict</em></a>) – dictionary with amino-acid sequences (name-&gt;seq),
+used to get the correct nucleotide positions</p></li>
+<li><p><strong>feat_type</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.8)"><em>str</em></a>) – string to be used in the ‘feature type’ column</p></li>
+<li><p><strong>source</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.8)"><em>str</em></a>) – string to be used in the ‘source’ column</p></li>
+<li><p><strong>custom_profiles</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.8)"><em>bool</em></a>) – if True, the profile name contains gene,
+taxonomy and reviewed information in the form
+KOID_TAXONID_TAXON-NAME(-nr)</p></li>
+<li><p><strong>noframe</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.8)"><em>bool</em></a>) – if True, the sequence is assumed to be in frame f0</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>A <a class="reference internal" href="#mgkit.io.gff.Annotation" title="mgkit.io.gff.Annotation"><code class="xref py py-class docutils literal notranslate"><span class="pre">Annotation</span></code></a> instance</p>
+</dd>
+</dl>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>if <cite>custom_profiles</cite> is False, gene_id, taxon_id and taxon_name will
+be equal to the profile name</p>
+</div>
+</dd></dl>
+
+<dl class="function">
+<dt id="mgkit.io.gff.from_json">
+<code class="sig-prename descclassname">mgkit.io.gff.</code><code class="sig-name descname">from_json</code><span class="sig-paren">(</span><em class="sig-param">line</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/mgkit/io/gff.html#from_json"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#mgkit.io.gff.from_json" title="Permalink to this definition">¶</a></dt>
+<dd><div class="versionadded">
+<p><span class="versionmodified added">New in version 0.2.1.</span></p>
+</div>
+<p>Returns an Annotation from a json representation</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="mgkit.io.gff.from_mongodb">
+<code class="sig-prename descclassname">mgkit.io.gff.</code><code class="sig-name descname">from_mongodb</code><span class="sig-paren">(</span><em class="sig-param">record</em>, <em class="sig-param">lineage=True</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/mgkit/io/gff.html#from_mongodb"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#mgkit.io.gff.from_mongodb" title="Permalink to this definition">¶</a></dt>
+<dd><div class="versionadded">
+<p><span class="versionmodified added">New in version 0.2.1.</span></p>
+</div>
+<div class="versionchanged">
+<p><span class="versionmodified changed">Changed in version 0.2.2: </span>added handling of <em>counts_</em> and <em>fpkms_</em></p>
+</div>
+<div class="versionchanged">
+<p><span class="versionmodified changed">Changed in version 0.2.6: </span>better handling of missing attributes and added <em>lineage</em> parameter</p>
+</div>
+<p>Returns a <a class="reference internal" href="#mgkit.io.gff.Annotation" title="mgkit.io.gff.Annotation"><code class="xref py py-class docutils literal notranslate"><span class="pre">Annotation</span></code></a> instance from a MongoDB record (created)
+using <a class="reference internal" href="#mgkit.io.gff.Annotation.to_mongodb" title="mgkit.io.gff.Annotation.to_mongodb"><code class="xref py py-meth docutils literal notranslate"><span class="pre">Annotation.to_mongodb()</span></code></a>. The actual record returned by pymongo
+is a dictionary that is copied, manipulated and passed to the
+<code class="xref py py-meth docutils literal notranslate"><span class="pre">Annotation.__init__()</span></code>.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>record</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.8)"><em>dict</em></a>) – a dictionary with the full record from a MongoDB query</p></li>
+<li><p><strong>lineage</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.8)"><em>bool</em></a>) – indicates if the lineage information in the record
+should be kept in the annotation</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>instance of <a class="reference internal" href="#mgkit.io.gff.Annotation" title="mgkit.io.gff.Annotation"><code class="xref py py-class docutils literal notranslate"><span class="pre">Annotation</span></code></a> object</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p><a class="reference internal" href="#mgkit.io.gff.Annotation" title="mgkit.io.gff.Annotation">Annotation</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="function">
+<dt id="mgkit.io.gff.from_nuc_blast">
+<code class="sig-prename descclassname">mgkit.io.gff.</code><code class="sig-name descname">from_nuc_blast</code><span class="sig-paren">(</span><em class="sig-param">hit</em>, <em class="sig-param">db</em>, <em class="sig-param">feat_type='CDS'</em>, <em class="sig-param">seq_len=None</em>, <em class="sig-param">to_nuc=False</em>, <em class="sig-param">**kwd</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/mgkit/io/gff.html#from_nuc_blast"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#mgkit.io.gff.from_nuc_blast" title="Permalink to this definition">¶</a></dt>
+<dd><div class="versionadded">
+<p><span class="versionmodified added">New in version 0.1.12.</span></p>
+</div>
+<div class="versionchanged">
+<p><span class="versionmodified changed">Changed in version 0.1.16: </span>added <em>to_nuc</em> parameter</p>
+</div>
+<div class="versionchanged">
+<p><span class="versionmodified changed">Changed in version 0.2.3: </span>removed <em>to_nuc</em>, the hit can include the subject end/start and evalue</p>
+</div>
+<p>Returns an instance of <a class="reference internal" href="#mgkit.io.gff.Annotation" title="mgkit.io.gff.Annotation"><code class="xref py py-class docutils literal notranslate"><span class="pre">Annotation</span></code></a></p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>hit</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#tuple" title="(in Python v3.8)"><em>tuple</em></a>) – a BLAST hit, from <a class="reference internal" href="mgkit.io.blast.html#mgkit.io.blast.parse_blast_tab" title="mgkit.io.blast.parse_blast_tab"><code class="xref py py-func docutils literal notranslate"><span class="pre">mgkit.io.blast.parse_blast_tab()</span></code></a></p></li>
+<li><p><strong>db</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.8)"><em>str</em></a>) – db used with BLAST</p></li>
+</ul>
+</dd>
+<dt class="field-even">Keyword Arguments</dt>
+<dd class="field-even"><ul class="simple">
+<li><p><strong>feat_type</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.8)"><em>str</em></a>) – feature type in the GFF</p></li>
+<li><p><strong>seq_len</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.8)"><em>int</em></a>) – sequence length, if supplied, the phase for strand ‘-‘
+can be assigned, otherwise is assigned a 0</p></li>
+<li><p><strong>**kwd</strong> – any additional column</p></li>
+</ul>
+</dd>
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>instance of <a class="reference internal" href="#mgkit.io.gff.Annotation" title="mgkit.io.gff.Annotation"><code class="xref py py-class docutils literal notranslate"><span class="pre">Annotation</span></code></a></p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p><a class="reference internal" href="#mgkit.io.gff.Annotation" title="mgkit.io.gff.Annotation">Annotation</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="function">
+<dt id="mgkit.io.gff.from_nuc_blast_frag">
+<code class="sig-prename descclassname">mgkit.io.gff.</code><code class="sig-name descname">from_nuc_blast_frag</code><span class="sig-paren">(</span><em class="sig-param">hit</em>, <em class="sig-param">parent_ann</em>, <em class="sig-param">db='NCBI-NT'</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/mgkit/io/gff.html#from_nuc_blast_frag"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#mgkit.io.gff.from_nuc_blast_frag" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="function">
+<dt id="mgkit.io.gff.from_prodigal_frag">
+<code class="sig-prename descclassname">mgkit.io.gff.</code><code class="sig-name descname">from_prodigal_frag</code><span class="sig-paren">(</span><em class="sig-param">main_gff</em>, <em class="sig-param">blast_gff</em>, <em class="sig-param">attr='ID'</em>, <em class="sig-param">split_func=None</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/mgkit/io/gff.html#from_prodigal_frag"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#mgkit.io.gff.from_prodigal_frag" title="Permalink to this definition">¶</a></dt>
+<dd><div class="versionchanged">
+<p><span class="versionmodified changed">Changed in version 0.3.3: </span>fixed a bug for the strand, also the code is tested</p>
+</div>
+<div class="versionadded">
+<p><span class="versionmodified added">New in version 0.2.6: </span><em>experimental</em></p>
+</div>
+<p>Reads the GFF given in output by PRODIGAL and the resulting GFF from using
+BLAST (or other software) on the aa or nucleotide file output by PRODIGAL.</p>
+<p>It then integrates the two outputs, so to the PRODIGAL GFF is added the
+information from the the output of the gene prediction software used.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>main_gff</strong> (<em>file</em>) – GFF file from PRODIGAL</p></li>
+<li><p><strong>blast_gff</strong> (<em>file</em>) – GFF with the returned annotations</p></li>
+<li><p><strong>attr</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.8)"><em>str</em></a>) – attribute in the PRODIGAL GFF that is used to identify an
+annotation</p></li>
+<li><p><strong>split_func</strong> (<em>func</em>) – function to rename the headers from the predicted
+sequences back to their parent sequence</p></li>
+</ul>
+</dd>
+<dt class="field-even">Yields</dt>
+<dd class="field-even"><p><em>annotation</em> – annotation for each <em>blast_gff</em> back translated</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="function">
+<dt id="mgkit.io.gff.from_sequence">
+<code class="sig-prename descclassname">mgkit.io.gff.</code><code class="sig-name descname">from_sequence</code><span class="sig-paren">(</span><em class="sig-param">name</em>, <em class="sig-param">seq</em>, <em class="sig-param">feat_type='SEQUENCE'</em>, <em class="sig-param">**kwd</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/mgkit/io/gff.html#from_sequence"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#mgkit.io.gff.from_sequence" title="Permalink to this definition">¶</a></dt>
+<dd><div class="versionadded">
+<p><span class="versionmodified added">New in version 0.1.12.</span></p>
+</div>
+<p>Returns an instance of <a class="reference internal" href="#mgkit.io.gff.Annotation" title="mgkit.io.gff.Annotation"><code class="xref py py-class docutils literal notranslate"><span class="pre">Annotation</span></code></a> for the full length of a
+sequence</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>name</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.8)"><em>str</em></a>) – name of the sequence</p></li>
+<li><p><strong>seq</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.8)"><em>str</em></a>) – sequence, to get the length of the annotation</p></li>
+</ul>
+</dd>
+<dt class="field-even">Keyword Arguments</dt>
+<dd class="field-even"><ul class="simple">
+<li><p><strong>feat_type</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.8)"><em>str</em></a>) – feature type in the GFF</p></li>
+<li><p><strong>**kwd</strong> – any additional column</p></li>
+</ul>
+</dd>
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>instance of <a class="reference internal" href="#mgkit.io.gff.Annotation" title="mgkit.io.gff.Annotation"><code class="xref py py-class docutils literal notranslate"><span class="pre">Annotation</span></code></a></p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p><a class="reference internal" href="#mgkit.io.gff.Annotation" title="mgkit.io.gff.Annotation">Annotation</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="function">
+<dt id="mgkit.io.gff.get_annotation_map">
+<code class="sig-prename descclassname">mgkit.io.gff.</code><code class="sig-name descname">get_annotation_map</code><span class="sig-paren">(</span><em class="sig-param">annotations</em>, <em class="sig-param">key_func</em>, <em class="sig-param">value_func</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/mgkit/io/gff.html#get_annotation_map"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#mgkit.io.gff.get_annotation_map" title="Permalink to this definition">¶</a></dt>
+<dd><div class="versionadded">
+<p><span class="versionmodified added">New in version 0.1.15.</span></p>
+</div>
+<p>Applies two functions to an iterable of annotations with an iterator
+returned with the applied functions. Useful to build a dictionary</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>annotations</strong> (<em>iterable</em>) – iterable of annotations</p></li>
+<li><p><strong>key_func</strong> (<em>func</em>) – function that accept an annotation as argument and
+returns one value, the first of the returned tuple</p></li>
+<li><p><strong>value_func</strong> (<em>func</em>) – function that accept an annotation as argument and
+returns one value, the second of the returned tuple</p></li>
+</ul>
+</dd>
+<dt class="field-even">Yields</dt>
+<dd class="field-even"><p><em>tuple</em> – a tuple where the first value is the result of <em>key_func</em> on
+the passed annotation and the second is the value returned by
+<em>value_func</em> on the same annotation</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="function">
+<dt id="mgkit.io.gff.group_annotations">
+<code class="sig-prename descclassname">mgkit.io.gff.</code><code class="sig-name descname">group_annotations</code><span class="sig-paren">(</span><em class="sig-param">annotations</em>, <em class="sig-param">key_func=&lt;function &lt;lambda&gt;&gt;</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/mgkit/io/gff.html#group_annotations"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#mgkit.io.gff.group_annotations" title="Permalink to this definition">¶</a></dt>
+<dd><div class="versionadded">
+<p><span class="versionmodified added">New in version 0.1.12.</span></p>
+</div>
+<p>Group <a class="reference internal" href="#mgkit.io.gff.Annotation" title="mgkit.io.gff.Annotation"><code class="xref py py-class docutils literal notranslate"><span class="pre">Annotation</span></code></a> instances in a dictionary by using a key function
+that returns the key to be used in the dictionary.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>annotations</strong> (<em>iterable</em>) – iterable with <a class="reference internal" href="#mgkit.io.gff.Annotation" title="mgkit.io.gff.Annotation"><code class="xref py py-class docutils literal notranslate"><span class="pre">Annotation</span></code></a> instances</p></li>
+<li><p><strong>key_func</strong> (<em>func</em>) – function used to extract the key used in the
+dictionary, defaults to a function that returns
+(ann.seq_id, ann.strand)</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>dictionary whose keys are returned by <em>key_func</em> and the values
+are lists of annotations</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.8)">dict</a></p>
+</dd>
+</dl>
+<p class="rubric">Example</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">ann</span> <span class="o">=</span> <span class="p">[</span><span class="n">Annotation</span><span class="p">(</span><span class="n">seq_id</span><span class="o">=</span><span class="s1">&#39;seq1&#39;</span><span class="p">,</span> <span class="n">strand</span><span class="o">=</span><span class="s1">&#39;+&#39;</span><span class="p">,</span> <span class="n">start</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span> <span class="n">end</span><span class="o">=</span><span class="mi">15</span><span class="p">),</span>
+<span class="gp">... </span><span class="n">Annotation</span><span class="p">(</span><span class="n">seq_id</span><span class="o">=</span><span class="s1">&#39;seq1&#39;</span><span class="p">,</span> <span class="n">strand</span><span class="o">=</span><span class="s1">&#39;+&#39;</span><span class="p">,</span> <span class="n">start</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">end</span><span class="o">=</span><span class="mi">5</span><span class="p">),</span>
+<span class="gp">... </span><span class="n">Annotation</span><span class="p">(</span><span class="n">seq_id</span><span class="o">=</span><span class="s1">&#39;seq1&#39;</span><span class="p">,</span> <span class="n">strand</span><span class="o">=</span><span class="s1">&#39;-&#39;</span><span class="p">,</span> <span class="n">start</span><span class="o">=</span><span class="mi">30</span><span class="p">,</span> <span class="n">end</span><span class="o">=</span><span class="mi">100</span><span class="p">)]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">group_annotations</span><span class="p">(</span><span class="n">ann</span><span class="p">)</span>
+<span class="go">{(&#39;seq1&#39;, &#39;+&#39;): [seq1(+):10-15, seq1(+):1-5], (&#39;seq1&#39;, &#39;-&#39;): [seq1(-):30-100]}</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="function">
+<dt id="mgkit.io.gff.group_annotations_by_ancestor">
+<code class="sig-prename descclassname">mgkit.io.gff.</code><code class="sig-name descname">group_annotations_by_ancestor</code><span class="sig-paren">(</span><em class="sig-param">annotations</em>, <em class="sig-param">ancestors</em>, <em class="sig-param">taxonomy</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/mgkit/io/gff.html#group_annotations_by_ancestor"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#mgkit.io.gff.group_annotations_by_ancestor" title="Permalink to this definition">¶</a></dt>
+<dd><div class="versionadded">
+<p><span class="versionmodified added">New in version 0.1.13.</span></p>
+</div>
+<p>Group annotations by the ancestors provided.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>annotations</strong> (<em>iterable</em>) – annotations to group</p></li>
+<li><p><strong>ancestors</strong> (<em>iterable</em>) – list of ancestors accepted</p></li>
+<li><p><strong>taxonomy</strong> – taxonomy class</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>grouped annotations</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.8)">dict</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="function">
+<dt id="mgkit.io.gff.group_annotations_sorted">
+<code class="sig-prename descclassname">mgkit.io.gff.</code><code class="sig-name descname">group_annotations_sorted</code><span class="sig-paren">(</span><em class="sig-param">annotations</em>, <em class="sig-param">key_func=&lt;function &lt;lambda&gt;&gt;</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/mgkit/io/gff.html#group_annotations_sorted"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#mgkit.io.gff.group_annotations_sorted" title="Permalink to this definition">¶</a></dt>
+<dd><div class="versionadded">
+<p><span class="versionmodified added">New in version 0.1.13.</span></p>
+</div>
+<p>Group <a class="reference internal" href="#mgkit.io.gff.Annotation" title="mgkit.io.gff.Annotation"><code class="xref py py-class docutils literal notranslate"><span class="pre">Annotation</span></code></a> instances by using a key function that returns a
+key. Assumes that the annotations are already sorted to return an iterator
+and save memory. One way to sort them is using: <cite>sort -s -k 1,1 -k 7,7</cite> on
+the file.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>annotations</strong> (<em>iterable</em>) – iterable with <a class="reference internal" href="#mgkit.io.gff.Annotation" title="mgkit.io.gff.Annotation"><code class="xref py py-class docutils literal notranslate"><span class="pre">Annotation</span></code></a> instances</p></li>
+<li><p><strong>key_func</strong> (<em>func</em>) – function used to extract the key used in the
+dictionary, defaults to a function that returns
+(ann.seq_id, ann.strand)</p></li>
+</ul>
+</dd>
+<dt class="field-even">Yields</dt>
+<dd class="field-even"><p><em>list</em> – a list of the grouped annotations by <em>key_func</em> values</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="function">
+<dt id="mgkit.io.gff.load_gff_base_info">
+<code class="sig-prename descclassname">mgkit.io.gff.</code><code class="sig-name descname">load_gff_base_info</code><span class="sig-paren">(</span><em class="sig-param">files</em>, <em class="sig-param">taxonomy=None</em>, <em class="sig-param">exclude_ids=None</em>, <em class="sig-param">include_taxa=None</em>, <em class="sig-param">encoding='ascii'</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/mgkit/io/gff.html#load_gff_base_info"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#mgkit.io.gff.load_gff_base_info" title="Permalink to this definition">¶</a></dt>
+<dd><p>This function is useful if the number of annotations in a GFF is high or
+there are memory constraints on the system. It returns a dictionary that
+can be used with functions like
+<a class="reference internal" href="mgkit.counts.func.html#mgkit.counts.func.load_sample_counts" title="mgkit.counts.func.load_sample_counts"><code class="xref py py-func docutils literal notranslate"><span class="pre">mgkit.counts.func.load_sample_counts()</span></code></a>.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>files</strong> (<em>iterable</em><em>, </em><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.8)"><em>str</em></a>) – file name or list of paths of GFF files</p></li>
+<li><p><strong>taxonomy</strong> – taxonomy pickle file, needed if include_taxa is not None</p></li>
+<li><p><strong>exclude_ids</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#set" title="(in Python v3.8)"><em>set</em></a><em>, </em><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.8)"><em>list</em></a>) – a list of gene_id to exclude from the
+dictionary</p></li>
+<li><p><strong>include_taxa</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.8)"><em>int</em></a><em>, </em><em>iterable</em>) – a taxon_id or list thereof to be passed
+to <code class="xref py py-meth docutils literal notranslate"><span class="pre">mgkit.taxon.taxonomy.is_ancestor()</span></code>, so only the taxa that
+have the those taxon_id(s) as ancestor(s) are kept</p></li>
+<li><p><strong>encoding</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.8)"><em>str</em></a>) – passed to <a class="reference internal" href="#mgkit.io.gff.parse_gff" title="mgkit.io.gff.parse_gff"><code class="xref py py-func docutils literal notranslate"><span class="pre">parse_gff()</span></code></a></p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>dictionary where the key is <a class="reference internal" href="#mgkit.io.gff.Annotation.uid" title="mgkit.io.gff.Annotation.uid"><code class="xref py py-attr docutils literal notranslate"><span class="pre">Annotation.uid</span></code></a> and the value
+is a tuple (<a class="reference internal" href="#mgkit.io.gff.Annotation.gene_id" title="mgkit.io.gff.Annotation.gene_id"><code class="xref py py-attr docutils literal notranslate"><span class="pre">Annotation.gene_id</span></code></a>, <a class="reference internal" href="#mgkit.io.gff.Annotation.taxon_id" title="mgkit.io.gff.Annotation.taxon_id"><code class="xref py py-attr docutils literal notranslate"><span class="pre">Annotation.taxon_id</span></code></a>)</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.8)">dict</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="function">
+<dt id="mgkit.io.gff.load_gff_mappings">
+<code class="sig-prename descclassname">mgkit.io.gff.</code><code class="sig-name descname">load_gff_mappings</code><span class="sig-paren">(</span><em class="sig-param">files</em>, <em class="sig-param">map_db</em>, <em class="sig-param">taxonomy=None</em>, <em class="sig-param">exclude_ids=None</em>, <em class="sig-param">include_taxa=None</em>, <em class="sig-param">encoding='ascii'</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/mgkit/io/gff.html#load_gff_mappings"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#mgkit.io.gff.load_gff_mappings" title="Permalink to this definition">¶</a></dt>
+<dd><p>This function is useful if the number of annotations in a GFF is high or
+there are memory constraints on the system. It returns a dictionary that
+can be used with functions like
+<a class="reference internal" href="mgkit.counts.func.html#mgkit.counts.func.load_sample_counts" title="mgkit.counts.func.load_sample_counts"><code class="xref py py-func docutils literal notranslate"><span class="pre">mgkit.counts.func.load_sample_counts()</span></code></a>.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>files</strong> (<em>iterable</em><em>, </em><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.8)"><em>str</em></a>) – file name or list of paths of GFF files</p></li>
+<li><p><strong>map_db</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.8)"><em>str</em></a>) – any kind mapping in the GFF, as passed to
+<a class="reference internal" href="#mgkit.io.gff.Annotation.get_mapping" title="mgkit.io.gff.Annotation.get_mapping"><code class="xref py py-meth docutils literal notranslate"><span class="pre">Annotation.get_mapping()</span></code></a></p></li>
+<li><p><strong>taxonomy</strong> – taxonomy pickle file, needed if include_taxa is not None</p></li>
+<li><p><strong>exclude_ids</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#set" title="(in Python v3.8)"><em>set</em></a><em>, </em><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.8)"><em>list</em></a>) – a list of gene_id to exclude from the
+dictionary</p></li>
+<li><p><strong>include_taxa</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.8)"><em>int</em></a><em>, </em><em>iterable</em>) – a taxon_id or list thereof to be passed
+to <code class="xref py py-meth docutils literal notranslate"><span class="pre">mgkit.taxon.taxonomy.is_ancestor()</span></code>, so only the taxa that
+have the those taxon_id(s) as ancestor(s) are kept</p></li>
+<li><p><strong>encoding</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.8)"><em>str</em></a>) – passed to <a class="reference internal" href="#mgkit.io.gff.parse_gff" title="mgkit.io.gff.parse_gff"><code class="xref py py-func docutils literal notranslate"><span class="pre">parse_gff()</span></code></a></p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>dictionary where the key is <a class="reference internal" href="#mgkit.io.gff.Annotation.gene_id" title="mgkit.io.gff.Annotation.gene_id"><code class="xref py py-attr docutils literal notranslate"><span class="pre">Annotation.gene_id</span></code></a> and the
+value is a list of mappings, as returned by
+<a class="reference internal" href="#mgkit.io.gff.Annotation.get_mapping" title="mgkit.io.gff.Annotation.get_mapping"><code class="xref py py-meth docutils literal notranslate"><span class="pre">Annotation.get_mapping()</span></code></a></p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.8)">dict</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="function">
+<dt id="mgkit.io.gff.parse_gff">
+<code class="sig-prename descclassname">mgkit.io.gff.</code><code class="sig-name descname">parse_gff</code><span class="sig-paren">(</span><em class="sig-param">file_handle</em>, <em class="sig-param">gff_type=&lt;function from_gff&gt;</em>, <em class="sig-param">strict=True</em>, <em class="sig-param">encoding='ascii'</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/mgkit/io/gff.html#parse_gff"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#mgkit.io.gff.parse_gff" title="Permalink to this definition">¶</a></dt>
+<dd><div class="versionchanged">
+<p><span class="versionmodified changed">Changed in version 0.4.0: </span>In some cases ASCII decoding is not enough, so it is parametrised now</p>
+</div>
+<div class="versionchanged">
+<p><span class="versionmodified changed">Changed in version 0.3.4: </span>added decoding from binary for compatibility with Python3</p>
+</div>
+<div class="versionchanged">
+<p><span class="versionmodified changed">Changed in version 0.2.6: </span>added <em>strict</em> parameter</p>
+</div>
+<div class="versionchanged">
+<p><span class="versionmodified changed">Changed in version 0.2.3: </span>correctly handling of GFF with comments of appended sequences</p>
+</div>
+<div class="versionchanged">
+<p><span class="versionmodified changed">Changed in version 0.1.12: </span>added <em>gff_type</em> parameter</p>
+</div>
+<p>Parse a GFF file and returns generator of <code class="xref py py-class docutils literal notranslate"><span class="pre">GFFKegg</span></code> instances</p>
+<p>Accepts a file handle or a string with the file name</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>file_handle</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.8)"><em>str</em></a><em>, </em><em>file</em>) – file name or file handle to read from</p></li>
+<li><p><strong>gff_type</strong> (<em>class</em>) – class/function used to parse a GFF annotation</p></li>
+<li><p><strong>strict</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.8)"><em>bool</em></a>) – if True duplicate keys raise an exception</p></li>
+<li><p><strong>encoding</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.8)"><em>str</em></a>) – encoding of the file, if ascii fails, use utf8</p></li>
+</ul>
+</dd>
+<dt class="field-even">Yields</dt>
+<dd class="field-even"><p><em>Annotation</em> – an iterator of <a class="reference internal" href="#mgkit.io.gff.Annotation" title="mgkit.io.gff.Annotation"><code class="xref py py-class docutils literal notranslate"><span class="pre">Annotation</span></code></a> instances</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="function">
+<dt id="mgkit.io.gff.parse_gff_files">
+<code class="sig-prename descclassname">mgkit.io.gff.</code><code class="sig-name descname">parse_gff_files</code><span class="sig-paren">(</span><em class="sig-param">files</em>, <em class="sig-param">strict=True</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/mgkit/io/gff.html#parse_gff_files"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#mgkit.io.gff.parse_gff_files" title="Permalink to this definition">¶</a></dt>
+<dd><div class="versionadded">
+<p><span class="versionmodified added">New in version 0.1.15.</span></p>
+</div>
+<div class="versionchanged">
+<p><span class="versionmodified changed">Changed in version 0.2.6: </span>added <em>strict</em> parameter</p>
+</div>
+<p>Function that returns an iterator of annotations from multiple GFF files.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>files</strong> (<em>iterable</em><em>, </em><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.8)"><em>str</em></a>) – iterable of file names of GFF files, or a single
+file name</p></li>
+<li><p><strong>strict</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.8)"><em>bool</em></a>) – if True duplicate keys raise an exception</p></li>
+</ul>
+</dd>
+<dt class="field-even">Yields</dt>
+<dd class="field-even"><p><a class="reference internal" href="#mgkit.io.gff.Annotation" title="mgkit.io.gff.Annotation"><code class="xref py py-class docutils literal notranslate"><span class="pre">Annotation</span></code></a> – iterator of annotations</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="function">
+<dt id="mgkit.io.gff.split_gff_file">
+<code class="sig-prename descclassname">mgkit.io.gff.</code><code class="sig-name descname">split_gff_file</code><span class="sig-paren">(</span><em class="sig-param">file_handle</em>, <em class="sig-param">name_mask</em>, <em class="sig-param">num_files=2</em>, <em class="sig-param">encoding='ascii'</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/mgkit/io/gff.html#split_gff_file"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#mgkit.io.gff.split_gff_file" title="Permalink to this definition">¶</a></dt>
+<dd><div class="versionadded">
+<p><span class="versionmodified added">New in version 0.1.14.</span></p>
+</div>
+<div class="versionchanged">
+<p><span class="versionmodified changed">Changed in version 0.2.6: </span>now accept a file object as sole input</p>
+</div>
+<div class="versionchanged">
+<p><span class="versionmodified changed">Changed in version 0.4.0: </span>added <em>encoding</em> parameter</p>
+</div>
+<p>Splits a GFF, or a list of them, into a number of files. It is assured that
+annotations for the same sequence are kept in the same file, which is
+useful for cases like filtering, even when the annotations are from
+different GFF files.</p>
+<p>Internally, a structure is kept to check if a sequence ID is already been
+stored to a file, in which case the annotation is written to that file,
+otherwise a random file handles (among the open ones) is chosen.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>file_handle</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.8)"><em>str</em></a><em>, </em><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.8)"><em>list</em></a>) – a single or list of file handles (or file
+names), from which the GFF annotations are read</p></li>
+<li><p><strong>name_mask</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.8)"><em>str</em></a>) – a string used as template for the output file names
+on which the function applies <code class="xref py py-func docutils literal notranslate"><span class="pre">string.format()</span></code></p></li>
+<li><p><strong>num_files</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.8)"><em>int</em></a>) – the number of files to split the records</p></li>
+</ul>
+</dd>
+</dl>
+<p class="rubric">Example</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">glob</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">files</span> <span class="o">=</span> <span class="n">glob</span><span class="o">.</span><span class="n">glob</span><span class="p">(</span><span class="s1">&#39;*.gff&#39;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">name_mask</span> <span class="o">=</span> <span class="s1">&#39;split-file-</span><span class="si">{0}</span><span class="s1">.gff&#39;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">split_gff_file</span><span class="p">(</span><span class="n">files</span><span class="p">,</span> <span class="n">name_mask</span><span class="p">,</span> <span class="mi">5</span><span class="p">)</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="function">
+<dt id="mgkit.io.gff.write_gff">
+<code class="sig-prename descclassname">mgkit.io.gff.</code><code class="sig-name descname">write_gff</code><span class="sig-paren">(</span><em class="sig-param">annotations</em>, <em class="sig-param">file_handle</em>, <em class="sig-param">verbose=True</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/mgkit/io/gff.html#write_gff"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#mgkit.io.gff.write_gff" title="Permalink to this definition">¶</a></dt>
+<dd><div class="versionchanged">
+<p><span class="versionmodified changed">Changed in version 0.1.12: </span>added <em>verbose</em> argument</p>
+</div>
+<p>Write a GFF to file</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>annotations</strong> (<em>iterable</em>) – iterable that returns <code class="xref py py-class docutils literal notranslate"><span class="pre">GFFKegg</span></code>
+or <a class="reference internal" href="#mgkit.io.gff.Annotation" title="mgkit.io.gff.Annotation"><code class="xref py py-class docutils literal notranslate"><span class="pre">Annotation</span></code></a> instances</p></li>
+<li><p><strong>file_handle</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.8)"><em>str</em></a><em>, </em><em>file</em>) – file name or file handle to write to</p></li>
+<li><p><strong>verbose</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.8)"><em>bool</em></a>) – if True, a message is logged</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="mgkit.io.glimmer.html" class="btn btn-neutral float-right" title="mgkit.io.glimmer module" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="mgkit.io.fastq.html" class="btn btn-neutral float-left" title="mgkit.io.fastq module" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2013-2015, Francesco Rubino
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

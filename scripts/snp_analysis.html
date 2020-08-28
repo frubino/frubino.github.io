@@ -1,0 +1,452 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>snp_parser - SNPs analysis &mdash; MGKit: Metagenomic framework 0.5.0 documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+  <script type="text/javascript" src="../_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+        <script type="text/javascript" src="../_static/jquery.js"></script>
+        <script type="text/javascript" src="../_static/underscore.js"></script>
+        <script type="text/javascript" src="../_static/doctools.js"></script>
+        <script type="text/javascript" src="../_static/language_data.js"></script>
+        <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+        <script async="async" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+        <script type="text/x-mathjax-config">MathJax.Hub.Config({"tex2jax": {"inlineMath": [["$", "$"], ["\\(", "\\)"]], "processEscapes": true, "ignoreClass": "document", "processClass": "math|output_area"}})</script>
+    
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/graphviz.css" type="text/css" />
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Download Taxonomy" href="download-taxonomy.html" />
+    <link rel="prev" title="hmmer2gff - Convert HMMER output to GFF" href="hmmer2gff.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../index.html" class="icon icon-home"> MGKit: Metagenomic framework
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                0.5.0
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../introduction.html">Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../install.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../pipeline/index.html">Metagenomic Pipeline</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">Scripts Details</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="blast2gff.html">blast2gff - Convert BLAST output to GFF</a></li>
+<li class="toctree-l2"><a class="reference internal" href="filter-gff.html">filter-gff - Filter GFF annotations</a></li>
+<li class="toctree-l2"><a class="reference internal" href="add-gff-info.html">add-gff-info - Add informations to GFF annotations</a></li>
+<li class="toctree-l2"><a class="reference internal" href="get-gff-info.html">get-gff-info - Extract informations to GFF annotations</a></li>
+<li class="toctree-l2"><a class="reference internal" href="hmmer2gff.html">hmmer2gff - Convert HMMER output to GFF</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">snp_parser - SNPs analysis</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#overview">Overview</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#module-mgkit.workflow.snp_parser">Script Reference</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#changes">Changes</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#options">Options</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#Named Arguments">Named Arguments</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="download-taxonomy.html">Download Taxonomy</a></li>
+<li class="toctree-l2"><a class="reference internal" href="download-taxonomy.html#download-accession-taxonid">Download Accession/TaxonID</a></li>
+<li class="toctree-l2"><a class="reference internal" href="taxon_utils.html">taxon-utils - Taxonomy Utilities</a></li>
+<li class="toctree-l2"><a class="reference internal" href="fasta-utils.html">fasta-utils - Fasta Utilities</a></li>
+<li class="toctree-l2"><a class="reference internal" href="fastq-utils.html">fastq-utils - Fastq Utilities</a></li>
+<li class="toctree-l2"><a class="reference internal" href="json2gff.html">json2gff - Convert JSON to GFF</a></li>
+<li class="toctree-l2"><a class="reference internal" href="sampling-utils.html">sampling-utils - Resampling Utilities</a></li>
+<li class="toctree-l2"><a class="reference internal" href="edit_gff.html">edit-gff - GFF Viewer and Editor</a></li>
+<li class="toctree-l2"><a class="reference internal" href="pnps_gen.html">pnps-gen - pN/pS Table Generation</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../examples/index.html">Example Notebooks</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../gff.html">MGKit GFF Specifications</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../library.html">Library Reference</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../changes.html">Changes</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">MGKit: Metagenomic framework</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="index.html">Scripts Details</a> &raquo;</li>
+        
+      <li>snp_parser - SNPs analysis</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="../_sources/scripts/snp_analysis.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  
+<style>
+/* CSS overrides for sphinx_rtd_theme */
+
+/* 24px margin */
+.nbinput.nblast.container,
+.nboutput.nblast.container {
+    margin-bottom: 19px;  /* padding has already 5px */
+}
+
+/* ... except between code cells! */
+.nblast.container + .nbinput.container {
+    margin-top: -19px;
+}
+
+.admonition > p:before {
+    margin-right: 4px;  /* make room for the exclamation icon */
+}
+
+/* Fix math alignment, see https://github.com/rtfd/sphinx_rtd_theme/pull/686 */
+.math {
+    text-align: unset;
+}
+</style>
+<div class="section" id="snp-parser-snps-analysis">
+<span id="snp-parser"></span><h1>snp_parser - SNPs analysis<a class="headerlink" href="#snp-parser-snps-analysis" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="overview">
+<h2>Overview<a class="headerlink" href="#overview" title="Permalink to this headline">¶</a></h2>
+<div><svg height="640" viewBox="0 0 736 640" width="736" xmlns="http://www.w3.org/2000/svg" xmlns:inkspace="http://www.inkscape.org/namespaces/inkscape" xmlns:xlink="http://www.w3.org/1999/xlink">
+  <defs id="defs_block">
+    <filter height="1.504" id="filter_blur" inkspace:collect="always" width="1.1575" x="-0.07875" y="-0.252">
+      <feGaussianBlur id="feGaussianBlur3780" inkspace:collect="always" stdDeviation="4.2" />
+    </filter>
+  </defs>
+  <title>blockdiag</title>
+  <desc />
+  <rect fill="rgb(0,0,0)" height="80" stroke="rgb(0,0,0)" style="filter:url(#filter_blur);opacity:0.7;fill-opacity:1" width="160" x="75" y="54" />
+  <rect fill="rgb(0,0,0)" height="80" stroke="rgb(0,0,0)" style="filter:url(#filter_blur);opacity:0.7;fill-opacity:1" width="160" x="71" y="50" />
+  <rect fill="rgb(0,0,0)" height="80" stroke="rgb(0,0,0)" style="filter:url(#filter_blur);opacity:0.7;fill-opacity:1" width="160" x="67" y="46" />
+  <rect fill="rgb(0,0,0)" height="80" stroke="rgb(0,0,0)" style="filter:url(#filter_blur);opacity:0.7;fill-opacity:1" width="160" x="515" y="46" />
+  <rect fill="rgb(0,0,0)" height="80" stroke="rgb(0,0,0)" style="filter:url(#filter_blur);opacity:0.7;fill-opacity:1" width="160" x="75" y="294" />
+  <rect fill="rgb(0,0,0)" height="80" stroke="rgb(0,0,0)" style="filter:url(#filter_blur);opacity:0.7;fill-opacity:1" width="160" x="71" y="290" />
+  <rect fill="rgb(0,0,0)" height="80" stroke="rgb(0,0,0)" style="filter:url(#filter_blur);opacity:0.7;fill-opacity:1" width="160" x="67" y="286" />
+  <rect fill="rgb(0,0,0)" height="80" stroke="rgb(0,0,0)" style="filter:url(#filter_blur);opacity:0.7;fill-opacity:1" width="160" x="67" y="406" />
+  <rect fill="rgb(0,0,0)" height="80" stroke="rgb(0,0,0)" style="filter:url(#filter_blur);opacity:0.7;fill-opacity:1" width="160" x="67" y="166" />
+  <rect fill="rgb(0,0,0)" height="80" stroke="rgb(0,0,0)" style="filter:url(#filter_blur);opacity:0.7;fill-opacity:1" width="160" x="291" y="166" />
+  <rect fill="rgb(0,0,0)" height="80" stroke="rgb(0,0,0)" style="filter:url(#filter_blur);opacity:0.7;fill-opacity:1" width="160" x="67" y="526" />
+  <rect fill="rgb(0,0,0)" height="80" stroke="rgb(0,0,0)" style="filter:url(#filter_blur);opacity:0.7;fill-opacity:1" width="160" x="291" y="286" />
+  <rect fill="rgb(77,175,74)" height="80" stroke="rgb(0,0,0)" width="160" x="72" y="48" />
+  <rect fill="rgb(77,175,74)" height="80" stroke="rgb(0,0,0)" width="160" x="68" y="44" />
+  <rect fill="rgb(77,175,74)" height="80" stroke="rgb(0,0,0)" width="160" x="64" y="40" />
+  <text fill="rgb(255,255,255)" font-family="sans-serif" font-size="16" font-style="normal" font-weight="normal" text-anchor="middle" textLength="87" x="144.5" y="88">Alignments</text>
+  <rect fill="rgb(77,175,74)" height="80" stroke="rgb(0,0,0)" width="160" x="512" y="40" />
+  <text fill="rgb(255,255,255)" font-family="sans-serif" font-size="16" font-style="normal" font-weight="normal" text-anchor="middle" textLength="69" x="592.5" y="88">Assembly</text>
+  <rect fill="rgb(77,175,74)" height="80" stroke="rgb(0,0,0)" width="160" x="72" y="288" />
+  <rect fill="rgb(77,175,74)" height="80" stroke="rgb(0,0,0)" width="160" x="68" y="284" />
+  <rect fill="rgb(77,175,74)" height="80" stroke="rgb(0,0,0)" width="160" x="64" y="280" />
+  <text fill="rgb(255,255,255)" font-family="sans-serif" font-size="16" font-style="normal" font-weight="normal" text-anchor="middle" textLength="78" x="144.0" y="328">VCF files</text>
+  <rect fill="rgb(55,126,184)" height="80" stroke="rgb(0,0,0)" width="160" x="64" y="400" />
+  <text fill="rgb(255,255,255)" font-family="sans-serif" font-size="16" font-style="normal" font-weight="normal" text-anchor="middle" textLength="78" x="144.0" y="448">VCF Merge</text>
+  <rect fill="rgb(55,126,184)" height="80" stroke="rgb(0,0,0)" width="160" x="64" y="160" />
+  <text fill="rgb(255,255,255)" font-family="sans-serif" font-size="16" font-style="normal" font-weight="normal" text-anchor="middle" textLength="104" x="144.0" y="208">SNPs Calling</text>
+  <rect fill="rgb(228,26,28)" height="80" stroke="rgb(0,0,0)" width="160" x="288" y="160" />
+  <text fill="rgb(255,255,255)" font-family="sans-serif" font-size="16" font-style="normal" font-weight="normal" text-anchor="middle" textLength="130" x="368.0" y="208">Add Information</text>
+  <rect fill="rgb(228,26,28)" height="80" stroke="rgb(0,0,0)" width="160" x="64" y="520" />
+  <text fill="rgb(255,255,255)" font-family="sans-serif" font-size="16" font-style="normal" font-weight="normal" text-anchor="middle" textLength="87" x="144.5" y="568">snp_parser</text>
+  <rect fill="rgb(152,78,163)" height="80" stroke="rgb(0,0,0)" width="160" x="288" y="280" />
+  <text fill="rgb(255,255,255)" font-family="sans-serif" font-size="16" font-style="normal" font-weight="normal" text-anchor="middle" textLength="26" x="368.0" y="328">GFF</text>
+  <path d="M 144 128 L 144 140" fill="none" stroke="rgb(0,0,0)" />
+  <path d="M 144 140 L 368 140" fill="none" stroke="rgb(0,0,0)" />
+  <path d="M 368 140 L 368 152" fill="none" stroke="rgb(0,0,0)" />
+  <polygon fill="rgb(0,0,0)" points="368,159 364,152 372,152 368,159" stroke="rgb(0,0,0)" />
+  <path d="M 144 128 L 144 152" fill="none" stroke="rgb(0,0,0)" />
+  <polygon fill="rgb(0,0,0)" points="144,159 140,152 148,152 144,159" stroke="rgb(0,0,0)" />
+  <path d="M 144 368 L 144 392" fill="none" stroke="rgb(0,0,0)" />
+  <polygon fill="rgb(0,0,0)" points="144,399 140,392 148,392 144,399" stroke="rgb(0,0,0)" />
+  <path d="M 592 120 L 592 140" fill="none" stroke="rgb(0,0,0)" />
+  <path d="M 368 140 L 592 140" fill="none" stroke="rgb(0,0,0)" />
+  <path d="M 368 140 L 368 152" fill="none" stroke="rgb(0,0,0)" />
+  <polygon fill="rgb(0,0,0)" points="368,159 364,152 372,152 368,159" stroke="rgb(0,0,0)" />
+  <path d="M 144 480 L 144 512" fill="none" stroke="rgb(0,0,0)" />
+  <polygon fill="rgb(0,0,0)" points="144,519 140,512 148,512 144,519" stroke="rgb(0,0,0)" />
+  <path d="M 144 240 L 144 272" fill="none" stroke="rgb(0,0,0)" />
+  <polygon fill="rgb(0,0,0)" points="144,279 140,272 148,272 144,279" stroke="rgb(0,0,0)" />
+  <path d="M 368 240 L 368 272" fill="none" stroke="rgb(0,0,0)" />
+  <polygon fill="rgb(0,0,0)" points="368,279 364,272 372,272 368,279" stroke="rgb(0,0,0)" />
+  <path d="M 368 360 L 368 500" fill="none" stroke="rgb(0,0,0)" />
+  <path d="M 144 500 L 368 500" fill="none" stroke="rgb(0,0,0)" />
+  <path d="M 144 500 L 144 512" fill="none" stroke="rgb(0,0,0)" />
+  <polygon fill="rgb(0,0,0)" points="144,519 140,512 148,512 144,519" stroke="rgb(0,0,0)" />
+</svg>
+</div>
+<p>The workflow starts with a number of alignments passed to the SNP calling
+software, which produces one VCF file per alignment/sample. These VCF files are
+used by <a class="reference external" href="http://code.google.com/p/snpdat/">SNPDat</a> along a GTF file and the
+reference genome to integrate the information in VCF files with
+synonymous/non-synonymous information.</p>
+<p>All VCF files are merged into a VCF that includes information about all the SNPs called among all samples. This merged VCF is passed, along with the results from SNPDat and the GFF file to snp_parser.py which integrates information from all data sources and output files in a format that can be later used by the rest of the pipeline. <a class="footnote-reference brackets" href="#id2" id="id1">1</a></p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>The GFF file passed to the parser must have per sample coverage information.</p>
+</div>
+<dl class="footnote brackets">
+<dt class="label" id="id2"><span class="brackets"><a class="fn-backref" href="#id1">1</a></span></dt>
+<dd><p>This step is done separately because it’s both time consuming and can
+helps to paralellise later steps</p>
+</dd>
+</dl>
+</div>
+<div class="section" id="module-mgkit.workflow.snp_parser">
+<span id="script-reference"></span><h2>Script Reference<a class="headerlink" href="#module-mgkit.workflow.snp_parser" title="Permalink to this headline">¶</a></h2>
+<p>This script parses results of SNPs analysis from any tool for SNP calling <a class="footnote-reference brackets" href="#id4" id="id3">2</a>
+and integrates them into a format that can be later used for other scripts in
+the pipeline.</p>
+<p>It integrates coverage and expected number of syn/nonsyn change and taxonomy
+from a GFF file, SNP data from a VCF file.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>The script accept gzipped VCF files</p>
+</div>
+<dl class="footnote brackets">
+<dt class="label" id="id4"><span class="brackets"><a class="fn-backref" href="#id3">2</a></span></dt>
+<dd><p>GATK pipeline was tested, but it is possible to use samtools and
+bcftools</p>
+</dd>
+</dl>
+<div class="section" id="changes">
+<h3>Changes<a class="headerlink" href="#changes" title="Permalink to this headline">¶</a></h3>
+<div class="versionchanged">
+<p><span class="versionmodified changed">Changed in version 0.2.1: </span>added <em>-s</em> option for VCF files generated using bcftools</p>
+</div>
+<div class="versionchanged">
+<p><span class="versionmodified changed">Changed in version 0.1.16: </span>reworkked internals and removed SNPDat, syn/nonsyn evaluation is internal</p>
+</div>
+<div class="versionchanged">
+<p><span class="versionmodified changed">Changed in version 0.1.13: </span>reworked the internals and the classes used, including options -m and -s</p>
+</div>
+</div>
+</div>
+<div class="section" id="options">
+<h2>Options<a class="headerlink" href="#options" title="Permalink to this headline">¶</a></h2>
+<p><p>SNPs analysis, requires a vcf file and SNPDat results</p>
+</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">usage</span><span class="p">:</span> <span class="n">snp_parser</span> <span class="p">[</span><span class="o">-</span><span class="n">h</span><span class="p">]</span> <span class="p">[</span><span class="o">-</span><span class="n">o</span> <span class="n">OUTPUT_FILE</span><span class="p">]</span> <span class="p">[</span><span class="o">-</span><span class="n">q</span> <span class="n">MIN_QUAL</span><span class="p">]</span> <span class="p">[</span><span class="o">-</span><span class="n">f</span> <span class="n">MIN_FREQ</span><span class="p">]</span>
+                  <span class="p">[</span><span class="o">-</span><span class="n">r</span> <span class="n">MIN_READS</span><span class="p">]</span> <span class="o">-</span><span class="n">g</span> <span class="n">GFF_FILE</span> <span class="o">-</span><span class="n">p</span> <span class="n">VCF_FILE</span> <span class="o">-</span><span class="n">a</span> <span class="n">REFERENCE</span> <span class="o">-</span><span class="n">m</span>
+                  <span class="n">SAMPLES_ID</span> <span class="p">[</span><span class="o">-</span><span class="n">c</span> <span class="n">COV_SUFF</span><span class="p">]</span> <span class="p">[</span><span class="o">-</span><span class="n">s</span><span class="p">]</span> <span class="p">[</span><span class="o">-</span><span class="n">v</span> <span class="o">|</span> <span class="o">--</span><span class="n">quiet</span><span class="p">]</span> <span class="p">[</span><span class="o">--</span><span class="n">cite</span><span class="p">]</span>
+                  <span class="p">[</span><span class="o">--</span><span class="n">manual</span><span class="p">]</span> <span class="p">[</span><span class="o">--</span><span class="n">version</span><span class="p">]</span>
+</pre></div>
+</div>
+<div class="section" id="Named Arguments">
+<h3>Named Arguments<a class="headerlink" href="#Named Arguments" title="Permalink to this headline">¶</a></h3>
+<dl class="option-list">
+<dt><kbd>-o, --output-file</kbd></dt>
+<dd><p>Ouput file</p>
+<p>Default: snp_data.pickle</p>
+</dd>
+<dt><kbd>-q, --min-qual</kbd></dt>
+<dd><p>Minimum SNP quality (Phred score)</p>
+<p>Default: 30</p>
+</dd>
+<dt><kbd>-f, --min-freq</kbd></dt>
+<dd><p>Minimum allele frequency</p>
+<p>Default: 0.01</p>
+</dd>
+<dt><kbd>-r, --min-reads</kbd></dt>
+<dd><p>Minimum number of reads to accept the SNP</p>
+<p>Default: 4</p>
+</dd>
+<dt><kbd>-g, --gff-file</kbd></dt>
+<dd><p>GFF file with annotations</p>
+</dd>
+<dt><kbd>-p, --vcf-file</kbd></dt>
+<dd><p>Merged VCF file</p>
+</dd>
+<dt><kbd>-a, --reference</kbd></dt>
+<dd><p>Fasta file with the GFF Reference</p>
+</dd>
+<dt><kbd>-m, --samples-id</kbd></dt>
+<dd><p>the ids of the samples used in the analysis</p>
+</dd>
+<dt><kbd>-c, --cov-suff</kbd></dt>
+<dd><p>Per sample coverage suffix in the GFF</p>
+<p>Default: “_cov”</p>
+</dd>
+<dt><kbd>-s, --bcftools-vcf</kbd></dt>
+<dd><p>bcftools call was used to produce the VCF file</p>
+<p>Default: False</p>
+</dd>
+<dt><kbd>-v, --verbose</kbd></dt>
+<dd><p>more verbose - includes debug messages</p>
+<p>Default: 20</p>
+</dd>
+<dt><kbd>--quiet</kbd></dt>
+<dd><p>less verbose - only error and critical messages</p>
+</dd>
+<dt><kbd>--cite</kbd></dt>
+<dd><p>Show citation for the framework</p>
+</dd>
+<dt><kbd>--manual</kbd></dt>
+<dd><p>Show the script manual</p>
+</dd>
+<dt><kbd>--version</kbd></dt>
+<dd><p>show program’s version number and exit</p>
+</dd>
+</dl>
+</div>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="download-taxonomy.html" class="btn btn-neutral float-right" title="Download Taxonomy" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="hmmer2gff.html" class="btn btn-neutral float-left" title="hmmer2gff - Convert HMMER output to GFF" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2013-2015, Francesco Rubino
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

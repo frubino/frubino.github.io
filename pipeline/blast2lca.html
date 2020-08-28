@@ -1,0 +1,561 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Profile a Community with BLAST &mdash; MGKit: Metagenomic framework 0.5.0 documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+  <script type="text/javascript" src="../_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+        <script type="text/javascript" src="../_static/jquery.js"></script>
+        <script type="text/javascript" src="../_static/underscore.js"></script>
+        <script type="text/javascript" src="../_static/doctools.js"></script>
+        <script type="text/javascript" src="../_static/language_data.js"></script>
+        <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+        <script async="async" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+        <script type="text/x-mathjax-config">MathJax.Hub.Config({"tex2jax": {"inlineMath": [["$", "$"], ["\\(", "\\)"]], "processEscapes": true, "ignoreClass": "document", "processClass": "math|output_area"}})</script>
+    
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/graphviz.css" type="text/css" />
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Gene Prediction" href="gene_prediction.html" />
+    <link rel="prev" title="Tutorial - Exploring the Data" href="Exploring-Metagenomic-Data.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../index.html" class="icon icon-home"> MGKit: Metagenomic framework
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                0.5.0
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../introduction.html">Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../install.html">Installation</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">Metagenomic Pipeline</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="tutorial.html">Tutorial</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Exploring-Metagenomic-Data.html">Tutorial - Exploring the Data</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Profile a Community with BLAST</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#considerations">Considerations</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#requirements">Requirements</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#macos-x">MacOS X</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#download-data">Download Data</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#assembly">Assembly</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#ncbi-nt">NCBI nt</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id-to-taxonomy">ID to Taxonomy</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#ncbi-taxonomy">NCBI Taxonomy</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#community-profiling">Community Profiling</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#blast">BLAST</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#convert-into-a-gff">Convert into a GFF</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#adding-the-taxonomic-information">Adding the Taxonomic Information</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#filter-the-gff">Filter the GFF</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#getting-the-profile">Getting the Profile</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="gene_prediction.html">Gene Prediction</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../scripts/index.html">Scripts Details</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../examples/index.html">Example Notebooks</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../gff.html">MGKit GFF Specifications</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../library.html">Library Reference</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../changes.html">Changes</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">MGKit: Metagenomic framework</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="index.html">Metagenomic Pipeline</a> &raquo;</li>
+        
+      <li>Profile a Community with BLAST</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="../_sources/pipeline/blast2lca.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  
+<style>
+/* CSS overrides for sphinx_rtd_theme */
+
+/* 24px margin */
+.nbinput.nblast.container,
+.nboutput.nblast.container {
+    margin-bottom: 19px;  /* padding has already 5px */
+}
+
+/* ... except between code cells! */
+.nblast.container + .nbinput.container {
+    margin-top: -19px;
+}
+
+.admonition > p:before {
+    margin-right: 4px;  /* make room for the exclamation icon */
+}
+
+/* Fix math alignment, see https://github.com/rtfd/sphinx_rtd_theme/pull/686 */
+.math {
+    text-align: unset;
+}
+</style>
+<div class="section" id="profile-a-community-with-blast">
+<span id="blast2lca"></span><h1>Profile a Community with BLAST<a class="headerlink" href="#profile-a-community-with-blast" title="Permalink to this headline">¶</a></h1>
+<div><svg height="240" viewBox="0 0 616 240" width="616" xmlns="http://www.w3.org/2000/svg" xmlns:inkspace="http://www.inkscape.org/namespaces/inkscape" xmlns:xlink="http://www.w3.org/1999/xlink">
+  <defs id="defs_block">
+    <filter height="1.504" id="filter_blur" inkspace:collect="always" width="1.1575" x="-0.07875" y="-0.252">
+      <feGaussianBlur id="feGaussianBlur3780" inkspace:collect="always" stdDeviation="4.2" />
+    </filter>
+  </defs>
+  <title>blockdiag</title>
+  <desc />
+  <rect fill="rgb(0,0,0)" height="60" stroke="rgb(0,0,0)" style="filter:url(#filter_blur);opacity:0.7;fill-opacity:1" width="120" x="67" y="46" />
+  <rect fill="rgb(0,0,0)" height="60" stroke="rgb(0,0,0)" style="filter:url(#filter_blur);opacity:0.7;fill-opacity:1" width="120" x="251" y="46" />
+  <rect fill="rgb(0,0,0)" height="60" stroke="rgb(0,0,0)" style="filter:url(#filter_blur);opacity:0.7;fill-opacity:1" width="120" x="435" y="46" />
+  <rect fill="rgb(0,0,0)" height="60" stroke="rgb(0,0,0)" style="filter:url(#filter_blur);opacity:0.7;fill-opacity:1" width="120" x="67" y="146" />
+  <rect fill="rgb(0,0,0)" height="60" stroke="rgb(0,0,0)" style="filter:url(#filter_blur);opacity:0.7;fill-opacity:1" width="120" x="251" y="146" />
+  <rect fill="rgb(55,126,184)" height="60" stroke="rgb(0,0,0)" width="120" x="64" y="40" />
+  <text fill="rgb(255,255,255)" font-family="sans-serif" font-size="14" font-style="normal" font-weight="normal" text-anchor="middle" textLength="45" x="124.5" y="77">BLAST+</text>
+  <rect fill="rgb(228,26,28)" height="60" stroke="rgb(0,0,0)" width="120" x="248" y="40" />
+  <text fill="rgb(255,255,255)" font-family="sans-serif" font-size="14" font-style="normal" font-weight="normal" text-anchor="middle" textLength="68" x="308.0" y="77">blast2gff</text>
+  <rect fill="rgb(228,26,28)" height="60" stroke="rgb(0,0,0)" width="120" x="432" y="40" />
+  <text fill="rgb(255,255,255)" font-family="sans-serif" font-size="14" font-style="normal" font-weight="normal" text-anchor="middle" textLength="76" x="492.0" y="77">GFF filter</text>
+  <rect fill="rgb(228,26,28)" height="60" stroke="rgb(0,0,0)" width="120" x="64" y="140" />
+  <text fill="rgb(255,255,255)" font-family="sans-serif" font-size="14" font-style="normal" font-weight="normal" text-anchor="middle" textLength="91" x="124.5" y="177">Add Taxonomy</text>
+  <rect fill="rgb(228,26,28)" height="60" stroke="rgb(0,0,0)" width="120" x="248" y="140" />
+  <text fill="rgb(255,255,255)" font-family="sans-serif" font-size="14" font-style="normal" font-weight="normal" text-anchor="middle" textLength="61" x="308.5" y="169">Taxonomy</text>
+  <text fill="rgb(255,255,255)" font-family="sans-serif" font-size="14" font-style="normal" font-weight="normal" text-anchor="middle" textLength="99" x="308.5" y="185">Profile (LCA)</text>
+  <path d="M 184 70 L 240 70" fill="none" stroke="rgb(0,0,0)" />
+  <polygon fill="rgb(0,0,0)" points="247,70 240,66 240,74 247,70" stroke="rgb(0,0,0)" />
+  <path d="M 368 70 L 424 70" fill="none" stroke="rgb(0,0,0)" />
+  <polygon fill="rgb(0,0,0)" points="431,70 424,66 424,74 431,70" stroke="rgb(0,0,0)" />
+  <path d="M 492 100 L 492 120" fill="none" stroke="rgb(0,0,0)" />
+  <path d="M 124 120 L 492 120" fill="none" stroke="rgb(0,0,0)" />
+  <path d="M 124 120 L 124 132" fill="none" stroke="rgb(0,0,0)" />
+  <polygon fill="rgb(0,0,0)" points="124,139 120,132 128,132 124,139" stroke="rgb(0,0,0)" />
+  <path d="M 184 170 L 240 170" fill="none" stroke="rgb(0,0,0)" />
+  <polygon fill="rgb(0,0,0)" points="247,170 240,166 240,174 247,170" stroke="rgb(0,0,0)" />
+</svg>
+</div>
+<p>The above diagram shows the process of getting a community profile from a BLAST run against a DB of choice. The choice of DB is up to the user, but any DB that provides a NCBI <em>taxon_id</em> can be used. Such DBs include the ones provided by NCBI (e.g. nt, nr, viral) as well as Uniprot (SwissProt, TrEMBL).</p>
+<p>The community profile will use an assembly and we want to assign each of its contigs to taxon. This can be done a BLAST output and a series of scripts that ends with the <em>lca</em> command of the <em>taxon_utils</em> script (<a class="reference internal" href="../scripts/taxon_utils.html#taxon-utils"><span class="std std-ref">taxon-utils - Taxonomy Utilities</span></a>). <em>lca</em> stands for <em>last common ancestor</em>, which indicates that given a number of taxa, we try to resolve the taxon they all have in common. This can be of any level, from a specific strain to a kingdom, such as Bacteria.</p>
+<p>There a cases when there’s no <em>lca</em> that can be resolved and this is due to the way NCBI taxonomy is structured, with multiple top levels, such as <em>cellular organisms</em>, <em>viruses</em> and so on.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Other DB may provide the <em>taxon_id</em> from NCBI, but this should be checked by the user</p>
+</div>
+<div class="section" id="considerations">
+<h2>Considerations<a class="headerlink" href="#considerations" title="Permalink to this headline">¶</a></h2>
+<p>Since the assembly of a metagenome is a time consuming process, the assembly from the <span class="xref std std-ref">hmmer-tutorial</span> tutorial will be used. We’ll try to use all results from the <em>nt</em> DB from NCBI, as well as separate <em>viruses</em> and <em>cellular organisms</em> and resolve the <em>lca</em> for those annotations separately.</p>
+<p>Another thing to consider is how to filter the annotations. That’s up to the user to decide which suits the specific task, but these options will be examined:</p>
+<blockquote>
+<div><ol class="arabic simple">
+<li><p>filter based on a static threshold, such as &gt; 50 bitscore (using <em>filter-gff values</em>)</p></li>
+<li><p>filter based on a dynamically chosen value, keeping only the X top options (using <em>filter-gff sequence</em>)</p></li>
+<li><p>filter based on overlap (using <em>filter-gff overlap</em>)</p></li>
+</ol>
+</div></blockquote>
+<p>The results may differ, and they are listed from the fastest to the slowest.</p>
+</div>
+<div class="section" id="requirements">
+<h2>Requirements<a class="headerlink" href="#requirements" title="Permalink to this headline">¶</a></h2>
+<p>MGKit should be installed and its scripts can be run from the command line. Refer to the installation for this, but it’s assumed that it was installed with:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ pip install mgkit<span class="o">[</span>full<span class="o">]</span>
+</pre></div>
+</div>
+<p>Moreover, the tutorial makes use of UNIX command line utilities, so a version of GNU/Linux, <em>BSD or MacOS X should be used to run this tutorial. *BASH</em> is expected to be the shell running.</p>
+<p>The following should be installed as well:</p>
+<blockquote>
+<div><ul class="simple">
+<li><p>BLAST+ (blastn will be used)</p></li>
+<li><p>ncftp (used to download the <em>NCBI nt</em> DB)</p></li>
+</ul>
+</div></blockquote>
+<div class="section" id="macos-x">
+<h3>MacOS X<a class="headerlink" href="#macos-x" title="Permalink to this headline">¶</a></h3>
+<p>The software requirements can be installed with <em>homebrew</em>, using the following command:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ brew install ncftp blast
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="download-data">
+<h2>Download Data<a class="headerlink" href="#download-data" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="assembly">
+<h3>Assembly<a class="headerlink" href="#assembly" title="Permalink to this headline">¶</a></h3>
+<p>TODO</p>
+</div>
+<div class="section" id="ncbi-nt">
+<h3>NCBI nt<a class="headerlink" href="#ncbi-nt" title="Permalink to this headline">¶</a></h3>
+<p>We’ll be using the NCBI nt which will be stored in the <em>ncbi-nt</em> directory. If a copy is already somewhere, just create a symbolic link to that directory, for example:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ ln -s path-to-the-db ncbi-nt
+</pre></div>
+</div>
+<p>Otherwise, a copy can be downloaded and prepared with the following commands:</p>
+<div class="highlight-bash notranslate"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>1
+2
+3
+4
+5
+6</pre></div></td><td class="code"><div class="highlight"><pre><span></span>$ mkdir ncbi-nt
+<span class="nb">cd</span> ncbi-nt
+ncftpget ftp://ftp.ncbi.nlm.nih.gov/blast/db/nt*.gz
+<span class="k">for</span> x in *.tar.gz<span class="p">;</span> <span class="k">do</span> tar xfvz <span class="nv">$x</span> <span class="p">;</span><span class="k">done</span>
+rm *.tar.gz
+<span class="nb">cd</span> ..
+</pre></div>
+</td></tr></table></div>
+</div>
+<div class="section" id="id-to-taxonomy">
+<h3>ID to Taxonomy<a class="headerlink" href="#id-to-taxonomy" title="Permalink to this headline">¶</a></h3>
+<p>The following file contains the <em>taxon_id</em> for all the IDs in the <em>NCBI nt</em> DB. It will be used to add taxonomic information before running the <em>lca</em> step:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ wget ftp://ftp.ncbi.nih.gov/pub/taxonomy/accession2taxid/nucl_gb.accession2taxid.gz
+</pre></div>
+</div>
+</div>
+<div class="section" id="ncbi-taxonomy">
+<h3>NCBI Taxonomy<a class="headerlink" href="#ncbi-taxonomy" title="Permalink to this headline">¶</a></h3>
+<p>This can be installed using the following script included in MGKit:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ download-taxonomy.sh
+</pre></div>
+</div>
+<p>Which will create a file called <em>taxonomy.pickle</em></p>
+</div>
+</div>
+<div class="section" id="community-profiling">
+<h2>Community Profiling<a class="headerlink" href="#community-profiling" title="Permalink to this headline">¶</a></h2>
+<p>To make the tutorial faster, we’ll filter the assembly file to include only contigs of at least 500bp:</p>
+<div class="highlight-bash notranslate"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>1
+2
+3
+4
+5
+6
+7</pre></div></td><td class="code"><div class="highlight"><pre><span></span>$ python - <span class="s">&lt;&lt;END</span>
+<span class="s">from mgkit.io import fasta</span>
+<span class="s">with open(&#39;final-contigs-filt.fa&#39;, &#39;w&#39;) as f:</span>
+<span class="s">    for name, seq in fasta.load_fasta(&#39;final-contigs.fa&#39;):</span>
+<span class="s">        if len(seq) &gt;= 500:</span>
+<span class="s">            fasta.write_fasta_sequence(f, name, seq)</span>
+<span class="s">END</span>
+</pre></div>
+</td></tr></table></div>
+<div class="section" id="blast">
+<h3>BLAST<a class="headerlink" href="#blast" title="Permalink to this headline">¶</a></h3>
+<p>The <em>blastn</em> command will be used to search for similar sequences in the <em>NCBI nt</em> DB. The following command will create a tab separated file with the results:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ blastn -query final-contigs-filt.fa -db ncbi-nt/nt -outfmt <span class="m">6</span> -out assembly-nt.tab -evalue <span class="m">0</span>.001
+</pre></div>
+</div>
+</div>
+<div class="section" id="convert-into-a-gff">
+<h3>Convert into a GFF<a class="headerlink" href="#convert-into-a-gff" title="Permalink to this headline">¶</a></h3>
+<p>The following command will create a GFF file from the BLAST output:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ blast2gff blastdb -i <span class="m">3</span> -r assembly-nt.tab assembly-nt.gff
+</pre></div>
+</div>
+<p>We’re using the <em>blastdb</em> command of the <em>blast2gff</em> command, since it gives more control over the way the header file is formatted:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>gi<span class="p">|</span><span class="m">118501159</span><span class="p">|</span>gb<span class="p">|</span>CP000482.1<span class="p">|</span>
+</pre></div>
+</div>
+<p>At the moment, the header format of the <em>NCBI nt</em> DB is a <em>|</em> (pipe) list that contains two type of identifiers. The first element is <em>gi</em>, to indicate that the following element (second) is the GI identifier that it’s being retired in September 2016. The third is indicates the DB from where the other ID originates from (GenBank in this case) and the fourth is the identifier that we’ll use.</p>
+<blockquote>
+<div><p>By default <em>blast2gff blastdb</em> used the second element (<cite>118501159</cite>) of the header as <em>gene_id</em>, so we use:</p>
+<blockquote>
+<div><ol class="arabic simple">
+<li><p><cite>-i 3</cite> to instead use the fourth element (<cite>CP000482.1</cite>) as <em>gene_id</em></p></li>
+<li><p><cite>-r</cite> will remove the versioning information from the <em>gene_id</em>, so <cite>CP000482.1</cite> will become <cite>CP000482</cite></p></li>
+</ol>
+</div></blockquote>
+</div></blockquote>
+<p>The reason for this is that the file containing the <em>taxon_id</em> for each identifier is better used with a fourth element of the header without the versioning information.</p>
+</div>
+<div class="section" id="adding-the-taxonomic-information">
+<h3>Adding the Taxonomic Information<a class="headerlink" href="#adding-the-taxonomic-information" title="Permalink to this headline">¶</a></h3>
+<p>The <em>add-gff-info addtaxa</em> command allows to insert taxonomic information (in the GFF <em>taxon_id</em> attribute) into the GFF file. This step integrates the content of the <em>nucl_gb.accession2taxid.gz</em> file with the GFF file. The structure of this file is:</p>
+<blockquote>
+<div><p>ACCESSION ACCESSION.VERSION TAXONID GI</p>
+</div></blockquote>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>this command has to load all the GFF in memory, so a high memory machine should be used (~30GB). The GFF can be split into smaller files to save memory and the subsection here will describe the process.</p>
+</div>
+<p>Since we used the <cite>ACCESSION</cite> as <em>gene_id</em>, we need to edit the file to pass it to the <em>add-gff-info addtaxa</em> command <cite>-t</cite> option. This can be don on the fly and the following command adds information to the GFF file created:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ add-gff-info addtaxa -t &lt;<span class="o">(</span>gunzip -c nucl_gb.accession2taxid.gz <span class="p">|</span> cut -f <span class="m">1</span>,3<span class="o">)</span> -e assembly-nt.gff assembly-nt-taxa.gff<span class="p">;</span> mv assembly-nt-taxa.gff assembly-nt.gff
+</pre></div>
+</div>
+<p>The <cite>-t</cite> option is the file that can contains the <em>taxon_id</em> for each <em>gene_id</em>, the script accept a tab separated file. After the this we rename the output file to keep less files around. The <cite>-e</cite> option was used to remove from the output file any annotation for which a <em>taxon_id</em> was not found. Since we need them for the LCA later, it makes sense to remove them before filtering.</p>
+<div class="section" id="reduce-memory-usage">
+<h4>Reduce Memory Usage<a class="headerlink" href="#reduce-memory-usage" title="Permalink to this headline">¶</a></h4>
+<p>First we need to split the <em>assembly-nt.gff</em> file, with a good option being using the <cite>split</cite> command in Unix. The following command will create the files:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ split -l <span class="m">1000000</span> -d assembly-nt.gff split-gff
+</pre></div>
+</div>
+<p>This command will create 12 GFF files (of at most 1 milion lines each), whose names start with <em>split-gff</em>. Since we split the files we can use a loop to add the taxonomic information to all of them:</p>
+<div class="highlight-bash notranslate"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>1
+2
+3</pre></div></td><td class="code"><div class="highlight"><pre><span></span>$ <span class="k">for</span> x in split-gff*<span class="p">;</span> <span class="k">do</span>
+add-gff-info addtaxa -t &lt;<span class="o">(</span>gunzip -c nucl_gb.accession2taxid.gz <span class="p">|</span> cut -f <span class="m">1</span>,3<span class="o">)</span> -e <span class="nv">$x</span> <span class="nv">$x</span>-taxa<span class="p">;</span>
+<span class="k">done</span>
+</pre></div>
+</td></tr></table></div>
+<p>This reduces the memory usage to ~2.5GB, but it takes longer to re-read the <em>nucl_gb.accession2taxid.gz</em> 12 times. There are way to parallelise it, but they are beyond the scope of this tutorial.</p>
+<p>After the command has finished running, the content of the files can be concatenated into a single file again and delete the split files:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ cat split-gff*-taxa &gt; assembly-nt.gff<span class="p">;</span> rm split-gff*
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="filter-the-gff">
+<h3>Filter the GFF<a class="headerlink" href="#filter-the-gff" title="Permalink to this headline">¶</a></h3>
+<p>As mentioned we’ll provide three different way to filter a GFF, before passing it to the script that will output the <em>lca</em> information. This way we can compare the different filtering strategies.</p>
+<div class="section" id="filter-by-value">
+<h4>Filter by Value<a class="headerlink" href="#filter-by-value" title="Permalink to this headline">¶</a></h4>
+<p>Let’s assume a scenario where we’re working on reads or very short contigs. We may decide to use a threshold, so the filtering is fast, but doesn’t compromise the quality of the assignment. This can achieved using the <em>filter-gff values</em> command:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ filter-gff values -b <span class="m">50</span> assembly-nt.gff assembly-nt_filt-value.gff
+</pre></div>
+</div>
+<p>The command will read the GFF file and keep only the hits that are greater than or equal to 50, which we’re assuming is a good compromise for the assignment. This filtering strategy has the advantage of operating on a per-annotation basis, so the memory usage is low and no grouping or calculation is required.</p>
+</div>
+<div class="section" id="filter-dynamically">
+<h4>Filter Dynamically<a class="headerlink" href="#filter-dynamically" title="Permalink to this headline">¶</a></h4>
+<p>While the above can be give good results, we can think of cases where the number of hits that pass that threshold may be high (e.g. a conserved sequence in multiple organisms). In this case a more sensible choice would be to keep only the hits that are in the top 5-10% of the hits on that contig, all those over the median, mean or any other threshold based on the distribution of a sequence’s hits. The <em>filter-gff sequence</em> command can be used to filter the GFF:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ filter-gff sequence -t -q .95 -c ge assembly-nt.gff assembly-nt_filt-sequence.gff
+</pre></div>
+</div>
+<p>The options used will keep only the hits that have a bitscore (evalue and identity can also be used) greater than or equal to the top 5% of the bitscore distribution for that contig.</p>
+<p>This threshold will include also contigs that have only one hit (that’s the reason to use <cite>-c ge</cite> instead of <cite>-c gt</cite>). We also assume that the input GFF is sorted (<cite>-t</cite> option) by contig name, to use less memory.</p>
+</div>
+<div class="section" id="filter-ovelaps">
+<h4>Filter Ovelaps<a class="headerlink" href="#filter-ovelaps" title="Permalink to this headline">¶</a></h4>
+<p>Let’s assume that in some cases the we think there may be cases where the contig contains regions that different rates of conservation. The first filter may keep too many taxa with similar sequences in a portion of the contig, while the second one may not provide enough coverage of the contig, keeping only the very best hits.</p>
+<p>In this case, we can use the <em>filter-gff overlap</em> command to keep of all overlapping hits only the best one. And since we want to make sure that we still have good homology, we could still filter by value the hits, before that filter.</p>
+<p>The following command will make that type of filtering:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ filter-gff values -b <span class="m">50</span> assembly-nt.gff <span class="p">|</span> sort -s -k <span class="m">1</span>,1 -k <span class="m">7</span>,7 <span class="p">|</span> filter-gff overlap -t -s <span class="m">1</span> - assembly-nt_filt-overlap.gff
+</pre></div>
+</div>
+<p>We just chained the filtering from the <em>values</em> command, keeping only annotations with at least 50 bitscore and passing it to the sort command. This passage is not necessary it the the <cite>-t</cite> option is not used with <em>filter-gff overlap</em>, but it uses less memory by pre-sorting the GFF by contig/strand first, since the <em>filter-gff overlap</em> works on each strand separately. We also used the <cite>-s</cite> options to trigger the filter for annotations that overlap for as much as 1 bp.</p>
+<p>More information about this type of filter can be found in <span class="xref std std-ref">simple-tutorial</span> and <a class="reference internal" href="../scripts/filter-gff.html#filter-gff"><span class="std std-ref">filter-gff - Filter GFF annotations</span></a>.</p>
+</div>
+</div>
+<div class="section" id="getting-the-profile">
+<h3>Getting the Profile<a class="headerlink" href="#getting-the-profile" title="Permalink to this headline">¶</a></h3>
+<p>We’ll have 3 GFF files ending in <em>final.gff</em>, one per each type of filtering, that contain the <em>taxon_id</em> for each annotation they contain.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>these files are available at <a class="reference external" href="http://bitbucket.org">this page</a> if you want to skip</p>
+</div>
+<p>Since the filtered files are available now, we can create a file that contains the LCA assignments. We can ouput 2 type of files (see <a class="reference internal" href="../scripts/taxon_utils.html#taxon-utils"><span class="std std-ref">taxon-utils - Taxonomy Utilities</span></a>), but for the purpose of this tutorial, we’ll get a GFF file that we can also use in a assembly viewer. The command to create them is:</p>
+<div class="highlight-bash notranslate"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>1
+2
+3</pre></div></td><td class="code"><div class="highlight"><pre><span></span>$ <span class="k">for</span> x in *filt-*.gff<span class="p">;</span> <span class="k">do</span>
+taxon_utils lca -v -t taxonomy.pickle -r final-contigs-filt.fa -s -n <span class="sb">`</span>basename <span class="nv">$x</span> .gff<span class="sb">`</span>-nolca.tab -ft LCA-<span class="sb">`</span><span class="nb">echo</span> <span class="nv">$x</span> <span class="p">|</span> egrep -o <span class="s1">&#39;value|overlap|sequence&#39;</span> <span class="p">|</span> tr <span class="o">[</span>:lower:<span class="o">]</span> <span class="o">[</span>:upper:<span class="o">]</span><span class="sb">`</span> <span class="nv">$x</span> <span class="sb">`</span>basename <span class="nv">$x</span> .gff<span class="sb">`</span>-lca.gff<span class="p">;</span>
+<span class="k">done</span>
+</pre></div>
+</td></tr></table></div>
+<p>The options used are:</p>
+<blockquote>
+<div><ul class="simple">
+<li><p><cite>-t</cite> to direct the script to the taxonomy that we already downloaded</p></li>
+<li><p><cite>-r</cite> to output a GFF with one annotation per contig that covers the whole sequence</p></li>
+<li><p><cite>-s</cite> indicates that the input is sorted by reference sequence</p></li>
+<li><p><cite>-n</cite> outputs a tab separated file with the contigs that could not be assigned</p></li>
+<li><p><cite>-ft</cite> is used to change the <em>feature type</em> column in the GFF, from the dafault <em>LCA</em> to one which includes the type of filtering used</p></li>
+</ul>
+</div></blockquote>
+<p>The file ending in <em>-nolca.tab</em> contain the contigs that could not be assigned, while the files ending in <em>-lca.gff</em> contain the taxonomic assignments, with the <em>taxon_id</em> pointing to the assigned taxon identifier, <em>taxon_name</em> for the taxon scientific name (or common name if none is found) and <em>lineage</em> contains the whole lineage of the taxon.</p>
+<div class="section" id="using-krona">
+<h4>Using Krona<a class="headerlink" href="#using-krona" title="Permalink to this headline">¶</a></h4>
+<p>Besides having a file with the assignments and a GFF that can be used in Tablet, a quick profile can be produced using <a class="reference external" href="https://github.com/marbl/Krona/wiki">Krona</a> and its associated <em>Krona Tools</em>. To produce a file that can be used with Krona Tools the <strong>-k</strong> can be used with the <em>taxon_utils lca</em> command. An additional option is to give the tool the total number of sequences in the assembly with the <strong>-kt</strong> option, to have a complete profile of the assembly:</p>
+<div class="highlight-bash notranslate"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>1
+2
+3</pre></div></td><td class="code"><div class="highlight"><pre><span></span>$ <span class="k">for</span> x in *filt-<span class="o">{</span>overlap,sequence,value<span class="o">}</span>.gff<span class="p">;</span> <span class="k">do</span>
+taxon_utils lca -v -t taxonomy.pickle -k -kt <span class="sb">`</span>grep -c <span class="s1">&#39;&gt;&#39;</span> final-contigs-filt.fa<span class="sb">`</span> -s <span class="nv">$x</span> <span class="sb">`</span>basename <span class="nv">$x</span> .gff<span class="sb">`</span>-lca.krona<span class="p">;</span>
+<span class="k">done</span>
+</pre></div>
+</td></tr></table></div>
+<p>To the <em>-kt</em> option was passed the total number of sequences (just used grep to count how many headers are in the fasta file).</p>
+<p>The produced files with <strong>krona</strong> extension can be the be used with the <strong>ktImportText</strong> (or <strong>ImportText</strong> if Krona Tools were not installed). The <strong>-q</strong> option of the script must be used:</p>
+<div class="highlight-bash notranslate"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>1
+2
+3</pre></div></td><td class="code"><div class="highlight"><pre><span></span>$ <span class="k">for</span> x in *.krona<span class="p">;</span> <span class="k">do</span>
+ktImportText -q -o <span class="sb">`</span>basename <span class="nv">$x</span> .krona<span class="sb">`</span>.html <span class="nv">$x</span><span class="p">;</span>
+<span class="k">done</span>
+</pre></div>
+</td></tr></table></div>
+<p>This will create an HTML file for each one that can be read in a web browser.</p>
+</div>
+<div class="section" id="using-tablet">
+<h4>Using Tablet<a class="headerlink" href="#using-tablet" title="Permalink to this headline">¶</a></h4>
+<p>The GFF created can be used in software such as <a class="reference external" href="https://ics.hutton.ac.uk/tablet/">Tablet</a>. The image below shows a contig with the features loaded from the filtered (overlap) GFF and the GFF LCA file produced by <em>taxon_utils lca</em>.</p>
+<img alt="example of a contig in Tablet with both the LCA GFF and CDS from the overlap filtering loaded" src="../_images/lca-tablet.png" />
+</div>
+</div>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="gene_prediction.html" class="btn btn-neutral float-right" title="Gene Prediction" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="Exploring-Metagenomic-Data.html" class="btn btn-neutral float-left" title="Tutorial - Exploring the Data" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2013-2015, Francesco Rubino
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

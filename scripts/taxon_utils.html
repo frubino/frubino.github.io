@@ -1,0 +1,767 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>taxon-utils - Taxonomy Utilities &mdash; MGKit: Metagenomic framework 0.5.0 documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+  <script type="text/javascript" src="../_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+        <script type="text/javascript" src="../_static/jquery.js"></script>
+        <script type="text/javascript" src="../_static/underscore.js"></script>
+        <script type="text/javascript" src="../_static/doctools.js"></script>
+        <script type="text/javascript" src="../_static/language_data.js"></script>
+        <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+        <script async="async" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+        <script type="text/x-mathjax-config">MathJax.Hub.Config({"tex2jax": {"inlineMath": [["$", "$"], ["\\(", "\\)"]], "processEscapes": true, "ignoreClass": "document", "processClass": "math|output_area"}})</script>
+    
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/graphviz.css" type="text/css" />
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="fasta-utils - Fasta Utilities" href="fasta-utils.html" />
+    <link rel="prev" title="Download Taxonomy" href="download-taxonomy.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../index.html" class="icon icon-home"> MGKit: Metagenomic framework
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                0.5.0
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../introduction.html">Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../install.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../pipeline/index.html">Metagenomic Pipeline</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">Scripts Details</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="blast2gff.html">blast2gff - Convert BLAST output to GFF</a></li>
+<li class="toctree-l2"><a class="reference internal" href="filter-gff.html">filter-gff - Filter GFF annotations</a></li>
+<li class="toctree-l2"><a class="reference internal" href="add-gff-info.html">add-gff-info - Add informations to GFF annotations</a></li>
+<li class="toctree-l2"><a class="reference internal" href="get-gff-info.html">get-gff-info - Extract informations to GFF annotations</a></li>
+<li class="toctree-l2"><a class="reference internal" href="hmmer2gff.html">hmmer2gff - Convert HMMER output to GFF</a></li>
+<li class="toctree-l2"><a class="reference internal" href="snp_analysis.html">snp_parser - SNPs analysis</a></li>
+<li class="toctree-l2"><a class="reference internal" href="download-taxonomy.html">Download Taxonomy</a></li>
+<li class="toctree-l2"><a class="reference internal" href="download-taxonomy.html#download-accession-taxonid">Download Accession/TaxonID</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">taxon-utils - Taxonomy Utilities</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#module-mgkit.workflow.taxon_utils">Overview</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#last-common-ancestor-lca-and-lca-line">Last Common Ancestor (lca and lca_line)</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#filter-by-taxon">Filter by Taxon</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#convert-taxa-tables-to-hdf5">Convert Taxa Tables to HDF5</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#extract-taxonomy">Extract taxonomy</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#changes">Changes</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#options">Options</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#taxon-utils">taxon-utils</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="fasta-utils.html">fasta-utils - Fasta Utilities</a></li>
+<li class="toctree-l2"><a class="reference internal" href="fastq-utils.html">fastq-utils - Fastq Utilities</a></li>
+<li class="toctree-l2"><a class="reference internal" href="json2gff.html">json2gff - Convert JSON to GFF</a></li>
+<li class="toctree-l2"><a class="reference internal" href="sampling-utils.html">sampling-utils - Resampling Utilities</a></li>
+<li class="toctree-l2"><a class="reference internal" href="edit_gff.html">edit-gff - GFF Viewer and Editor</a></li>
+<li class="toctree-l2"><a class="reference internal" href="pnps_gen.html">pnps-gen - pN/pS Table Generation</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../examples/index.html">Example Notebooks</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../gff.html">MGKit GFF Specifications</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../library.html">Library Reference</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../changes.html">Changes</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">MGKit: Metagenomic framework</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="index.html">Scripts Details</a> &raquo;</li>
+        
+      <li>taxon-utils - Taxonomy Utilities</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="../_sources/scripts/taxon_utils.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  
+<style>
+/* CSS overrides for sphinx_rtd_theme */
+
+/* 24px margin */
+.nbinput.nblast.container,
+.nboutput.nblast.container {
+    margin-bottom: 19px;  /* padding has already 5px */
+}
+
+/* ... except between code cells! */
+.nblast.container + .nbinput.container {
+    margin-top: -19px;
+}
+
+.admonition > p:before {
+    margin-right: 4px;  /* make room for the exclamation icon */
+}
+
+/* Fix math alignment, see https://github.com/rtfd/sphinx_rtd_theme/pull/686 */
+.math {
+    text-align: unset;
+}
+</style>
+<div class="section" id="taxon-utils-taxonomy-utilities">
+<span id="taxon-utils"></span><h1>taxon-utils - Taxonomy Utilities<a class="headerlink" href="#taxon-utils-taxonomy-utilities" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="module-mgkit.workflow.taxon_utils">
+<span id="overview"></span><h2>Overview<a class="headerlink" href="#module-mgkit.workflow.taxon_utils" title="Permalink to this headline">¶</a></h2>
+<p>The script contains commands used to access functionality related to
+taxonomy, without the need to write ad-hoc code for functionality that
+can be part of a workflow. One example is access to the the last common
+ancestor function contained in the <a class="reference internal" href="../api/mgkit.taxon.html#module-mgkit.taxon" title="mgkit.taxon"><code class="xref py py-mod docutils literal notranslate"><span class="pre">mgkit.taxon</span></code></a>.</p>
+<div class="section" id="last-common-ancestor-lca-and-lca-line">
+<h3>Last Common Ancestor (lca and lca_line)<a class="headerlink" href="#last-common-ancestor-lca-and-lca-line" title="Permalink to this headline">¶</a></h3>
+<p>These commands expose the functionality of
+<code class="xref py py-func docutils literal notranslate"><span class="pre">last_common_ancestor_multiple()</span></code>, making it accessible via the command
+line. They differ in the input file format and the choice of output files.</p>
+<p>the <em>lca</em> command can be used to define the last common ancestor of contigs
+from the annotation in a GFF file. The command uses the <em>taxon_ids</em> from all
+annotations belonging to a contig/sequence, if they have a <strong>bitscore</strong> higher
+or equal to the one passed (50 by default). The default output of the command
+is a tab separated file where the first column is the contig/sequence name,
+the taxon_id of the last common ancestor, its scientific/common name and its
+lineage.</p>
+<p>For example:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">contig_21</span>   <span class="mi">172788</span>  <span class="n">uncultured</span> <span class="n">phototrophic</span> <span class="n">eukaryote</span>   <span class="n">cellular</span> <span class="n">organisms</span><span class="p">,</span><span class="n">environmental</span> <span class="n">samples</span>
+</pre></div>
+</div>
+<p>If the <em>-r</em> is used, by passing the fasta file containing the nucleotide
+sequences the output file is a GFF where for each an annotation for the full
+contig length contains the same information of the tab separated file format.</p>
+<p>The <strong>lca_line</strong> command accept as input a file where each line consist of a
+list of taxon_ids. The separator for the list can be changed and it defaults to
+TAB. The last common ancestor for all taxa on a line is searched. The ouput of
+this command is the same as the tab separated file of the <strong>lca</strong> command, with
+the difference that instead of the first column, which in this command becames
+a list of all <em>taxon_ids</em> that were used to find the last common ancestor for
+that line. The list of <em>taxon_ids</em> is separated by semicolon “;”.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Both also accept the <em>-n</em> option, to report the config/line and the
+taxon_ids that had no common ancestors. These are treated as errors and do
+not appear in the output file.</p>
+</div>
+<div class="section" id="krona-output">
+<h4>Krona Output<a class="headerlink" href="#krona-output" title="Permalink to this headline">¶</a></h4>
+<div class="versionadded">
+<p><span class="versionmodified added">New in version 0.3.0.</span></p>
+</div>
+<p>The <em>lca</em> command supports the writing of a file compatible with Krona. The
+output file can be used with the <em>ktImportText/ImportText.pl</em> script included
+with <a class="reference external" href="https://github.com/marbl/Krona/wiki">KronaTools</a>. Specifically, the
+output from <em>taxon_utils</em> will be a file with all the lineages found (tab
+separated), that can be used with:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ ktImportText -q taxon_utils_ouput
+</pre></div>
+</div>
+<p>Note the use of <em>-q</em> to make the script count the lineages. Sequences with no
+LCA found will be marked as <em>No LCA</em> in the graph, the <em>-n</em> is not required.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Please note that the output won’t include any sequence that didn’t have a
+hit with the software used. If that’s important, the <strong>-kt</strong> option can be
+used to add a number of <em>Unknown</em> lines at the end, to read the total
+supplied.</p>
+</div>
+</div>
+</div>
+<div class="section" id="filter-by-taxon">
+<h3>Filter by Taxon<a class="headerlink" href="#filter-by-taxon" title="Permalink to this headline">¶</a></h3>
+<p>The <strong>filter</strong> command of this script allows to filter a GFF file using the
+<em>taxon_id</em> attribute to include only some annotations, or exclude some. The
+filter is based on the <cite>mgkit.taxon.is_ancestor</cite> function, and the
+<cite>mgkit.filter.taxon.filter_taxon_by_id_list</cite>. It can also filter a table (tab
+separated values) when the first element is an ID and the second is a taxon_id.
+An example of a table of this sort is the output of the <cite>download-ncbi-taxa.sh</cite>
+and <cite>download-uniprot-taxa.sh</cite>, where each accession of a database is associated
+to a taxon_id.</p>
+<p>Multiple taxon_id can be passed, either for inclusion or exclusion. If both
+exclusion and inclusion is used, the first check is on the inclusion and then on
+the exclusion. In alternative to passing taxon_id, taxon_names can be passed,
+with values such as ‘cellular organisms’ that needs to be quoted. Example:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ taxon-utils filter -i 2 -in archaea -en prevotella -t taxonomy.pickle in.gff out.gff
+</pre></div>
+</div>
+<p>Which will keep only line that are from Bacteria (taxon_id=2) and exclude those
+from the genus <em>Prevotella</em>. It will be also include Archaea.</p>
+<p>Multiple inclusion and exclusion flags can be put:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ taxon-utils filter -i 2 -i 2172 -t taxonomy in.gff out.gff
+</pre></div>
+</div>
+<p>In particular, the inclusion flag is tested first and then the exclusion is
+tested. So a line like this one:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nb">printf</span> <span class="s2">&quot;TEST\t838\nTEST\t1485&quot;</span> <span class="p">|</span> taxon-utils filter -p -t taxonomy.pickle -i <span class="m">2</span> -i <span class="m">1485</span> -e <span class="m">838</span>
+</pre></div>
+</div>
+<p>Will produce <strong>TEST 1485</strong>, because both Prevotella (838) and Clostridium (1485)
+are Bacteria (2) OR Prevotella, but Prevotella must be excluded according to
+the exclusion option. This line also illustrate that a tab-separated file, where
+the second column contains taxon IDs, can be filtered. In particular it can be
+applied to files produced by <cite>download-ncbi-taxa.sh</cite> or
+<cite>download-uniprot-taxa.sh</cite> (see <a class="reference internal" href="download-taxonomy.html#download-taxonomy"><span class="std std-ref">Download Taxonomy</span></a>).</p>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>Annotations with no taxon_id are not included in the output of both filters</p>
+</div>
+</div>
+<div class="section" id="convert-taxa-tables-to-hdf5">
+<h3>Convert Taxa Tables to HDF5<a class="headerlink" href="#convert-taxa-tables-to-hdf5" title="Permalink to this headline">¶</a></h3>
+<p>This command is used to convert the taxa tables download from Uniprot and NCBI,
+using the scripts mentioned in <span class="xref std std-ref">download-data</span>,
+<cite>download-uniprot-taxa.sh</cite> and <cite>download-ncbi-taxa</cite> into a HDF5 file that can
+be used with the <em>addtaxa</em> command in <a class="reference internal" href="add-gff-info.html#add-gff-info"><span class="std std-ref">add-gff-info - Add informations to GFF annotations</span></a>.</p>
+<p>The advantage is a faster lookup of the IDs. The other is a smaller memory
+footprint when a great number of annotations are kept in memory.</p>
+</div>
+<div class="section" id="extract-taxonomy">
+<h3>Extract taxonomy<a class="headerlink" href="#extract-taxonomy" title="Permalink to this headline">¶</a></h3>
+<p>This command allows to print the taxonomy in a file created with MGKit. The
+default behaviour is to print the scientific name, taxon_id, rank and lineage
+(only ranked taxa) in a tab separated file (or standard output).</p>
+<p>Besides the option to change the column separator, it is possible to only
+print specific taxa (case insensitive search, but need the correct name) and
+print headers for the output table.</p>
+</div>
+<div class="section" id="changes">
+<h3>Changes<a class="headerlink" href="#changes" title="Permalink to this headline">¶</a></h3>
+<div class="versionchanged">
+<p><span class="versionmodified changed">Changed in version 0.5.0: </span>added <em>get</em> command to taxon-utils to print the taxonomy or search in it</p>
+</div>
+<div class="versionchanged">
+<p><span class="versionmodified changed">Changed in version 0.3.4: </span>changed interface and behaviour for <em>filter</em>, also now can filter tables;
+<em>lca</em> has changed the interface and allows the output of a 2 column table</p>
+</div>
+<div class="versionchanged">
+<p><span class="versionmodified changed">Changed in version 0.3.1: </span>added <em>to_hdf</em> command</p>
+</div>
+<div class="versionchanged">
+<p><span class="versionmodified changed">Changed in version 0.3.1: </span>added <em>-j</em> option to <em>lca</em>, which outputs a JSON file with the LCA results</p>
+</div>
+<div class="versionchanged">
+<p><span class="versionmodified changed">Changed in version 0.3.0: </span>added <em>-k</em> and <em>-kt</em> options for Krona output, lineage now includes the LCA
+also added <em>-a</em> option to select between lineages with only ranked taxa.
+Now it defaults to all components.</p>
+</div>
+<div class="versionchanged">
+<p><span class="versionmodified changed">Changed in version 0.2.6: </span>added <em>feat-type</em> option to <em>lca</em> command, added phylum output to nolca</p>
+</div>
+<div class="versionadded">
+<p><span class="versionmodified added">New in version 0.2.5.</span></p>
+</div>
+</div>
+</div>
+<div class="section" id="options">
+<h2>Options<a class="headerlink" href="#options" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="taxon-utils">
+<h3>taxon-utils<a class="headerlink" href="#taxon-utils" title="Permalink to this headline">¶</a></h3>
+<p>Main function</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>taxon-utils <span class="o">[</span>OPTIONS<span class="o">]</span> COMMAND <span class="o">[</span>ARGS<span class="o">]</span>...
+</pre></div>
+</div>
+<p class="rubric">Options</p>
+<dl class="option">
+<dt id="cmdoption-taxon-utils-version">
+<code class="sig-name descname">--version</code><code class="sig-prename descclassname"></code><a class="headerlink" href="#cmdoption-taxon-utils-version" title="Permalink to this definition">¶</a></dt>
+<dd><p>Show the version and exit.</p>
+</dd></dl>
+
+<dl class="option">
+<dt id="cmdoption-taxon-utils-cite">
+<code class="sig-name descname">--cite</code><code class="sig-prename descclassname"></code><a class="headerlink" href="#cmdoption-taxon-utils-cite" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<div class="section" id="taxon-utils-filter">
+<h4>filter<a class="headerlink" href="#taxon-utils-filter" title="Permalink to this headline">¶</a></h4>
+<p>Filter a GFF file or a table based on taxonomy</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>taxon-utils filter <span class="o">[</span>OPTIONS<span class="o">]</span> <span class="o">[</span>INPUT_FILE<span class="o">]</span> <span class="o">[</span>OUTPUT_FILE<span class="o">]</span>
+</pre></div>
+</div>
+<p class="rubric">Options</p>
+<dl class="option">
+<dt id="cmdoption-taxon-utils-filter-v">
+<code class="sig-name descname">-v</code><code class="sig-prename descclassname"></code><code class="sig-prename descclassname">, </code><code class="sig-name descname">--verbose</code><code class="sig-prename descclassname"></code><a class="headerlink" href="#cmdoption-taxon-utils-filter-v" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="option">
+<dt id="cmdoption-taxon-utils-filter-p">
+<code class="sig-name descname">-p</code><code class="sig-prename descclassname"></code><code class="sig-prename descclassname">, </code><code class="sig-name descname">--table</code><code class="sig-prename descclassname"></code><a class="headerlink" href="#cmdoption-taxon-utils-filter-p" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="option">
+<dt id="cmdoption-taxon-utils-filter-t">
+<code class="sig-name descname">-t</code><code class="sig-prename descclassname"></code><code class="sig-prename descclassname">, </code><code class="sig-name descname">--taxonomy</code><code class="sig-prename descclassname"> &lt;taxonomy&gt;</code><a class="headerlink" href="#cmdoption-taxon-utils-filter-t" title="Permalink to this definition">¶</a></dt>
+<dd><p>Taxonomy file  [required]</p>
+</dd></dl>
+
+<dl class="option">
+<dt id="cmdoption-taxon-utils-filter-i">
+<code class="sig-name descname">-i</code><code class="sig-prename descclassname"></code><code class="sig-prename descclassname">, </code><code class="sig-name descname">--include-taxon-id</code><code class="sig-prename descclassname"> &lt;include_taxon_id&gt;</code><a class="headerlink" href="#cmdoption-taxon-utils-filter-i" title="Permalink to this definition">¶</a></dt>
+<dd><p>Include only taxon_ids</p>
+</dd></dl>
+
+<dl class="option">
+<dt id="cmdoption-taxon-utils-filter-in">
+<code class="sig-name descname">-in</code><code class="sig-prename descclassname"></code><code class="sig-prename descclassname">, </code><code class="sig-name descname">--include-taxon-name</code><code class="sig-prename descclassname"> &lt;include_taxon_name&gt;</code><a class="headerlink" href="#cmdoption-taxon-utils-filter-in" title="Permalink to this definition">¶</a></dt>
+<dd><p>Include only taxon_names</p>
+</dd></dl>
+
+<dl class="option">
+<dt id="cmdoption-taxon-utils-filter-e">
+<code class="sig-name descname">-e</code><code class="sig-prename descclassname"></code><code class="sig-prename descclassname">, </code><code class="sig-name descname">--exclude-taxon-id</code><code class="sig-prename descclassname"> &lt;exclude_taxon_id&gt;</code><a class="headerlink" href="#cmdoption-taxon-utils-filter-e" title="Permalink to this definition">¶</a></dt>
+<dd><p>Exclude taxon_ids</p>
+</dd></dl>
+
+<dl class="option">
+<dt id="cmdoption-taxon-utils-filter-en">
+<code class="sig-name descname">-en</code><code class="sig-prename descclassname"></code><code class="sig-prename descclassname">, </code><code class="sig-name descname">--exclude-taxon-name</code><code class="sig-prename descclassname"> &lt;exclude_taxon_name&gt;</code><a class="headerlink" href="#cmdoption-taxon-utils-filter-en" title="Permalink to this definition">¶</a></dt>
+<dd><p>Exclude taxon_names</p>
+</dd></dl>
+
+<dl class="option">
+<dt id="cmdoption-taxon-utils-filter-progress">
+<code class="sig-name descname">--progress</code><code class="sig-prename descclassname"></code><a class="headerlink" href="#cmdoption-taxon-utils-filter-progress" title="Permalink to this definition">¶</a></dt>
+<dd><p>Shows Progress Bar</p>
+</dd></dl>
+
+<p class="rubric">Arguments</p>
+<dl class="option">
+<dt id="cmdoption-taxon-utils-filter-arg-input-file">
+<code class="sig-name descname">INPUT_FILE</code><code class="sig-prename descclassname"></code><a class="headerlink" href="#cmdoption-taxon-utils-filter-arg-input-file" title="Permalink to this definition">¶</a></dt>
+<dd><p>Optional argument</p>
+</dd></dl>
+
+<dl class="option">
+<dt id="cmdoption-taxon-utils-filter-arg-output-file">
+<code class="sig-name descname">OUTPUT_FILE</code><code class="sig-prename descclassname"></code><a class="headerlink" href="#cmdoption-taxon-utils-filter-arg-output-file" title="Permalink to this definition">¶</a></dt>
+<dd><p>Optional argument</p>
+</dd></dl>
+
+</div>
+<div class="section" id="taxon-utils-get">
+<h4>get<a class="headerlink" href="#taxon-utils-get" title="Permalink to this headline">¶</a></h4>
+<p>Extract the taxonomy as a CSV file</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>taxon-utils get <span class="o">[</span>OPTIONS<span class="o">]</span> TAXONOMY_FILE <span class="o">[</span>OUTPUT_FILE<span class="o">]</span>
+</pre></div>
+</div>
+<p class="rubric">Options</p>
+<dl class="option">
+<dt id="cmdoption-taxon-utils-get-v">
+<code class="sig-name descname">-v</code><code class="sig-prename descclassname"></code><code class="sig-prename descclassname">, </code><code class="sig-name descname">--verbose</code><code class="sig-prename descclassname"></code><a class="headerlink" href="#cmdoption-taxon-utils-get-v" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="option">
+<dt id="cmdoption-taxon-utils-get-d">
+<code class="sig-name descname">-d</code><code class="sig-prename descclassname"></code><code class="sig-prename descclassname">, </code><code class="sig-name descname">--header</code><code class="sig-prename descclassname"></code><a class="headerlink" href="#cmdoption-taxon-utils-get-d" title="Permalink to this definition">¶</a></dt>
+<dd><p>Include header in the output</p>
+</dd></dl>
+
+<dl class="option">
+<dt id="cmdoption-taxon-utils-get-s">
+<code class="sig-name descname">-s</code><code class="sig-prename descclassname"></code><code class="sig-prename descclassname">, </code><code class="sig-name descname">--separator</code><code class="sig-prename descclassname"> &lt;separator&gt;</code><a class="headerlink" href="#cmdoption-taxon-utils-get-s" title="Permalink to this definition">¶</a></dt>
+<dd><p>column separator</p>
+</dd></dl>
+
+<dl class="option">
+<dt id="cmdoption-taxon-utils-get-o">
+<code class="sig-name descname">-o</code><code class="sig-prename descclassname"></code><code class="sig-prename descclassname">, </code><code class="sig-name descname">--only-names</code><code class="sig-prename descclassname"> &lt;only_names&gt;</code><a class="headerlink" href="#cmdoption-taxon-utils-get-o" title="Permalink to this definition">¶</a></dt>
+<dd><p>Only get matched taxon names</p>
+</dd></dl>
+
+<p class="rubric">Arguments</p>
+<dl class="option">
+<dt id="cmdoption-taxon-utils-get-arg-taxonomy-file">
+<code class="sig-name descname">TAXONOMY_FILE</code><code class="sig-prename descclassname"></code><a class="headerlink" href="#cmdoption-taxon-utils-get-arg-taxonomy-file" title="Permalink to this definition">¶</a></dt>
+<dd><p>Required argument</p>
+</dd></dl>
+
+<dl class="option">
+<dt id="cmdoption-taxon-utils-get-arg-output-file">
+<code class="sig-name descname">OUTPUT_FILE</code><code class="sig-prename descclassname"></code><a class="headerlink" href="#cmdoption-taxon-utils-get-arg-output-file" title="Permalink to this definition">¶</a></dt>
+<dd><p>Optional argument</p>
+</dd></dl>
+
+</div>
+<div class="section" id="taxon-utils-lca">
+<h4>lca<a class="headerlink" href="#taxon-utils-lca" title="Permalink to this headline">¶</a></h4>
+<p>Finds the last common ancestor for each sequence
+in a GFF file</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>taxon-utils lca <span class="o">[</span>OPTIONS<span class="o">]</span> <span class="o">[</span>GFF_FILE<span class="o">]</span> <span class="o">[</span>OUTPUT_FILE<span class="o">]</span>
+</pre></div>
+</div>
+<p class="rubric">Options</p>
+<dl class="option">
+<dt id="cmdoption-taxon-utils-lca-v">
+<code class="sig-name descname">-v</code><code class="sig-prename descclassname"></code><code class="sig-prename descclassname">, </code><code class="sig-name descname">--verbose</code><code class="sig-prename descclassname"></code><a class="headerlink" href="#cmdoption-taxon-utils-lca-v" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="option">
+<dt id="cmdoption-taxon-utils-lca-t">
+<code class="sig-name descname">-t</code><code class="sig-prename descclassname"></code><code class="sig-prename descclassname">, </code><code class="sig-name descname">--taxonomy</code><code class="sig-prename descclassname"> &lt;taxonomy&gt;</code><a class="headerlink" href="#cmdoption-taxon-utils-lca-t" title="Permalink to this definition">¶</a></dt>
+<dd><p>Taxonomy file  [required]</p>
+</dd></dl>
+
+<dl class="option">
+<dt id="cmdoption-taxon-utils-lca-n">
+<code class="sig-name descname">-n</code><code class="sig-prename descclassname"></code><code class="sig-prename descclassname">, </code><code class="sig-name descname">--no-lca</code><code class="sig-prename descclassname"> &lt;no_lca&gt;</code><a class="headerlink" href="#cmdoption-taxon-utils-lca-n" title="Permalink to this definition">¶</a></dt>
+<dd><p>File to which write records with no LCA</p>
+</dd></dl>
+
+<dl class="option">
+<dt id="cmdoption-taxon-utils-lca-a">
+<code class="sig-name descname">-a</code><code class="sig-prename descclassname"></code><code class="sig-prename descclassname">, </code><code class="sig-name descname">--only-ranked</code><code class="sig-prename descclassname"></code><a class="headerlink" href="#cmdoption-taxon-utils-lca-a" title="Permalink to this definition">¶</a></dt>
+<dd><p>If set, only taxa that have a rank will be used in the lineageself. This is not advised for lineages such as Viruses, where the top levels have no rank</p>
+</dd></dl>
+
+<dl class="option">
+<dt id="cmdoption-taxon-utils-lca-b">
+<code class="sig-name descname">-b</code><code class="sig-prename descclassname"></code><code class="sig-prename descclassname">, </code><code class="sig-name descname">--bitscore</code><code class="sig-prename descclassname"> &lt;bitscore&gt;</code><a class="headerlink" href="#cmdoption-taxon-utils-lca-b" title="Permalink to this definition">¶</a></dt>
+<dd><p>Minimum bitscore accepted  [default: 0]</p>
+</dd></dl>
+
+<dl class="option">
+<dt id="cmdoption-taxon-utils-lca-m">
+<code class="sig-name descname">-m</code><code class="sig-prename descclassname"></code><code class="sig-prename descclassname">, </code><code class="sig-name descname">--rename</code><code class="sig-prename descclassname"></code><a class="headerlink" href="#cmdoption-taxon-utils-lca-m" title="Permalink to this definition">¶</a></dt>
+<dd><p>Emulates BLAST behaviour for headers (keep left of first space)</p>
+</dd></dl>
+
+<dl class="option">
+<dt id="cmdoption-taxon-utils-lca-s">
+<code class="sig-name descname">-s</code><code class="sig-prename descclassname"></code><code class="sig-prename descclassname">, </code><code class="sig-name descname">--sorted</code><code class="sig-prename descclassname"></code><a class="headerlink" href="#cmdoption-taxon-utils-lca-s" title="Permalink to this definition">¶</a></dt>
+<dd><p>If the GFF file is sorted (all of a sequence annotations are contiguos) can use less memory, <cite>sort -s -k 1,1</cite> can be used</p>
+</dd></dl>
+
+<dl class="option">
+<dt id="cmdoption-taxon-utils-lca-ft">
+<code class="sig-name descname">-ft</code><code class="sig-prename descclassname"></code><code class="sig-prename descclassname">, </code><code class="sig-name descname">--feat-type</code><code class="sig-prename descclassname"> &lt;feat_type&gt;</code><a class="headerlink" href="#cmdoption-taxon-utils-lca-ft" title="Permalink to this definition">¶</a></dt>
+<dd><p>Feature type used if the output is a GFF (default is <em>LCA</em>)  [default: LCA]</p>
+</dd></dl>
+
+<dl class="option">
+<dt id="cmdoption-taxon-utils-lca-r">
+<code class="sig-name descname">-r</code><code class="sig-prename descclassname"></code><code class="sig-prename descclassname">, </code><code class="sig-name descname">--reference</code><code class="sig-prename descclassname"> &lt;reference&gt;</code><a class="headerlink" href="#cmdoption-taxon-utils-lca-r" title="Permalink to this definition">¶</a></dt>
+<dd><p>Reference file for the GFF, if supplied a GFF file is the output</p>
+</dd></dl>
+
+<dl class="option">
+<dt id="cmdoption-taxon-utils-lca-p">
+<code class="sig-name descname">-p</code><code class="sig-prename descclassname"></code><code class="sig-prename descclassname">, </code><code class="sig-name descname">--simple-table</code><code class="sig-prename descclassname"></code><a class="headerlink" href="#cmdoption-taxon-utils-lca-p" title="Permalink to this definition">¶</a></dt>
+<dd><p>Uses a 2 column table format (seq_id taxon_id) TAB separated</p>
+</dd></dl>
+
+<dl class="option">
+<dt id="cmdoption-taxon-utils-lca-kt">
+<code class="sig-name descname">-kt</code><code class="sig-prename descclassname"></code><code class="sig-prename descclassname">, </code><code class="sig-name descname">--krona-total</code><code class="sig-prename descclassname"> &lt;krona_total&gt;</code><a class="headerlink" href="#cmdoption-taxon-utils-lca-kt" title="Permalink to this definition">¶</a></dt>
+<dd><p>Total number of raw sequences (used to output correct percentages in Krona</p>
+</dd></dl>
+
+<dl class="option">
+<dt id="cmdoption-taxon-utils-lca-f">
+<code class="sig-name descname">-f</code><code class="sig-prename descclassname"></code><code class="sig-prename descclassname">, </code><code class="sig-name descname">--out-format</code><code class="sig-prename descclassname"> &lt;out_format&gt;</code><a class="headerlink" href="#cmdoption-taxon-utils-lca-f" title="Permalink to this definition">¶</a></dt>
+<dd><p>Format of output file  [default: tab]</p>
+<dl class="field-list simple">
+<dt class="field-odd">Options</dt>
+<dd class="field-odd"><p>krona|json|tab|gff</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="option">
+<dt id="cmdoption-taxon-utils-lca-progress">
+<code class="sig-name descname">--progress</code><code class="sig-prename descclassname"></code><a class="headerlink" href="#cmdoption-taxon-utils-lca-progress" title="Permalink to this definition">¶</a></dt>
+<dd><p>Shows Progress Bar</p>
+</dd></dl>
+
+<p class="rubric">Arguments</p>
+<dl class="option">
+<dt id="cmdoption-taxon-utils-lca-arg-gff-file">
+<code class="sig-name descname">GFF_FILE</code><code class="sig-prename descclassname"></code><a class="headerlink" href="#cmdoption-taxon-utils-lca-arg-gff-file" title="Permalink to this definition">¶</a></dt>
+<dd><p>Optional argument</p>
+</dd></dl>
+
+<dl class="option">
+<dt id="cmdoption-taxon-utils-lca-arg-output-file">
+<code class="sig-name descname">OUTPUT_FILE</code><code class="sig-prename descclassname"></code><a class="headerlink" href="#cmdoption-taxon-utils-lca-arg-output-file" title="Permalink to this definition">¶</a></dt>
+<dd><p>Optional argument</p>
+</dd></dl>
+
+</div>
+<div class="section" id="taxon-utils-lca-line">
+<h4>lca_line<a class="headerlink" href="#taxon-utils-lca-line" title="Permalink to this headline">¶</a></h4>
+<p>Finds the last common ancestor for all IDs in
+a text file line</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>taxon-utils lca_line <span class="o">[</span>OPTIONS<span class="o">]</span> <span class="o">[</span>INPUT_FILE<span class="o">]</span> <span class="o">[</span>OUTPUT_FILE<span class="o">]</span>
+</pre></div>
+</div>
+<p class="rubric">Options</p>
+<dl class="option">
+<dt id="cmdoption-taxon-utils-lca-line-v">
+<code class="sig-name descname">-v</code><code class="sig-prename descclassname"></code><code class="sig-prename descclassname">, </code><code class="sig-name descname">--verbose</code><code class="sig-prename descclassname"></code><a class="headerlink" href="#cmdoption-taxon-utils-lca-line-v" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="option">
+<dt id="cmdoption-taxon-utils-lca-line-t">
+<code class="sig-name descname">-t</code><code class="sig-prename descclassname"></code><code class="sig-prename descclassname">, </code><code class="sig-name descname">--taxonomy</code><code class="sig-prename descclassname"> &lt;taxonomy&gt;</code><a class="headerlink" href="#cmdoption-taxon-utils-lca-line-t" title="Permalink to this definition">¶</a></dt>
+<dd><p>Taxonomy file  [required]</p>
+</dd></dl>
+
+<dl class="option">
+<dt id="cmdoption-taxon-utils-lca-line-n">
+<code class="sig-name descname">-n</code><code class="sig-prename descclassname"></code><code class="sig-prename descclassname">, </code><code class="sig-name descname">--no-lca</code><code class="sig-prename descclassname"> &lt;no_lca&gt;</code><a class="headerlink" href="#cmdoption-taxon-utils-lca-line-n" title="Permalink to this definition">¶</a></dt>
+<dd><p>File to which write records with no LCA</p>
+</dd></dl>
+
+<dl class="option">
+<dt id="cmdoption-taxon-utils-lca-line-a">
+<code class="sig-name descname">-a</code><code class="sig-prename descclassname"></code><code class="sig-prename descclassname">, </code><code class="sig-name descname">--only-ranked</code><code class="sig-prename descclassname"></code><a class="headerlink" href="#cmdoption-taxon-utils-lca-line-a" title="Permalink to this definition">¶</a></dt>
+<dd><p>If set, only taxa that have a rank will be used in the lineageself. This is not advised for lineages such as Viruses, where the top levels have no rank</p>
+</dd></dl>
+
+<dl class="option">
+<dt id="cmdoption-taxon-utils-lca-line-s">
+<code class="sig-name descname">-s</code><code class="sig-prename descclassname"></code><code class="sig-prename descclassname">, </code><code class="sig-name descname">--separator</code><code class="sig-prename descclassname"> &lt;separator&gt;</code><a class="headerlink" href="#cmdoption-taxon-utils-lca-line-s" title="Permalink to this definition">¶</a></dt>
+<dd><p>separator for taxon_ids (defaults to TAB)</p>
+</dd></dl>
+
+<p class="rubric">Arguments</p>
+<dl class="option">
+<dt id="cmdoption-taxon-utils-lca-line-arg-input-file">
+<code class="sig-name descname">INPUT_FILE</code><code class="sig-prename descclassname"></code><a class="headerlink" href="#cmdoption-taxon-utils-lca-line-arg-input-file" title="Permalink to this definition">¶</a></dt>
+<dd><p>Optional argument</p>
+</dd></dl>
+
+<dl class="option">
+<dt id="cmdoption-taxon-utils-lca-line-arg-output-file">
+<code class="sig-name descname">OUTPUT_FILE</code><code class="sig-prename descclassname"></code><a class="headerlink" href="#cmdoption-taxon-utils-lca-line-arg-output-file" title="Permalink to this definition">¶</a></dt>
+<dd><p>Optional argument</p>
+</dd></dl>
+
+</div>
+<div class="section" id="taxon-utils-to-hdf">
+<h4>to_hdf<a class="headerlink" href="#taxon-utils-to-hdf" title="Permalink to this headline">¶</a></h4>
+<p>Convert a taxa table to HDF5, with the input as
+tabular format, defaults to stdin. Output file, defaults to
+(taxa-table.hf5)</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>taxon-utils to_hdf <span class="o">[</span>OPTIONS<span class="o">]</span> <span class="o">[</span>INPUT_FILE<span class="o">]</span> <span class="o">[</span>OUTPUT_FILE<span class="o">]</span>
+</pre></div>
+</div>
+<p class="rubric">Options</p>
+<dl class="option">
+<dt id="cmdoption-taxon-utils-to-hdf-v">
+<code class="sig-name descname">-v</code><code class="sig-prename descclassname"></code><code class="sig-prename descclassname">, </code><code class="sig-name descname">--verbose</code><code class="sig-prename descclassname"></code><a class="headerlink" href="#cmdoption-taxon-utils-to-hdf-v" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="option">
+<dt id="cmdoption-taxon-utils-to-hdf-n">
+<code class="sig-name descname">-n</code><code class="sig-prename descclassname"></code><code class="sig-prename descclassname">, </code><code class="sig-name descname">--table-name</code><code class="sig-prename descclassname"> &lt;table_name&gt;</code><a class="headerlink" href="#cmdoption-taxon-utils-to-hdf-n" title="Permalink to this definition">¶</a></dt>
+<dd><p>Name of the table/storage to use  [default: taxa]</p>
+</dd></dl>
+
+<dl class="option">
+<dt id="cmdoption-taxon-utils-to-hdf-w">
+<code class="sig-name descname">-w</code><code class="sig-prename descclassname"></code><code class="sig-prename descclassname">, </code><code class="sig-name descname">--overwrite</code><code class="sig-prename descclassname"></code><a class="headerlink" href="#cmdoption-taxon-utils-to-hdf-w" title="Permalink to this definition">¶</a></dt>
+<dd><p>Overwrite the file, instead of appending to it</p>
+</dd></dl>
+
+<dl class="option">
+<dt id="cmdoption-taxon-utils-to-hdf-s">
+<code class="sig-name descname">-s</code><code class="sig-prename descclassname"></code><code class="sig-prename descclassname">, </code><code class="sig-name descname">--index-size</code><code class="sig-prename descclassname"> &lt;index_size&gt;</code><a class="headerlink" href="#cmdoption-taxon-utils-to-hdf-s" title="Permalink to this definition">¶</a></dt>
+<dd><p>Maximum number of characters for the gene_id  [default: 12]</p>
+</dd></dl>
+
+<dl class="option">
+<dt id="cmdoption-taxon-utils-to-hdf-c">
+<code class="sig-name descname">-c</code><code class="sig-prename descclassname"></code><code class="sig-prename descclassname">, </code><code class="sig-name descname">--chunk-size</code><code class="sig-prename descclassname"> &lt;chunk_size&gt;</code><a class="headerlink" href="#cmdoption-taxon-utils-to-hdf-c" title="Permalink to this definition">¶</a></dt>
+<dd><p>Chunk size to use when reading the input file  [default: 5000000]</p>
+</dd></dl>
+
+<dl class="option">
+<dt id="cmdoption-taxon-utils-to-hdf-progress">
+<code class="sig-name descname">--progress</code><code class="sig-prename descclassname"></code><a class="headerlink" href="#cmdoption-taxon-utils-to-hdf-progress" title="Permalink to this definition">¶</a></dt>
+<dd><p>Shows Progress Bar</p>
+</dd></dl>
+
+<p class="rubric">Arguments</p>
+<dl class="option">
+<dt id="cmdoption-taxon-utils-to-hdf-arg-input-file">
+<code class="sig-name descname">INPUT_FILE</code><code class="sig-prename descclassname"></code><a class="headerlink" href="#cmdoption-taxon-utils-to-hdf-arg-input-file" title="Permalink to this definition">¶</a></dt>
+<dd><p>Optional argument</p>
+</dd></dl>
+
+<dl class="option">
+<dt id="cmdoption-taxon-utils-to-hdf-arg-output-file">
+<code class="sig-name descname">OUTPUT_FILE</code><code class="sig-prename descclassname"></code><a class="headerlink" href="#cmdoption-taxon-utils-to-hdf-arg-output-file" title="Permalink to this definition">¶</a></dt>
+<dd><p>Optional argument</p>
+</dd></dl>
+
+</div>
+</div>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="fasta-utils.html" class="btn btn-neutral float-right" title="fasta-utils - Fasta Utilities" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="download-taxonomy.html" class="btn btn-neutral float-left" title="Download Taxonomy" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2013-2015, Francesco Rubino
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

@@ -1,0 +1,1244 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>mgkit.workflow.add_gff_info &mdash; MGKit: Metagenomic framework 0.5.0 documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+  <script type="text/javascript" src="../../../_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../../../" src="../../../_static/documentation_options.js"></script>
+        <script type="text/javascript" src="../../../_static/jquery.js"></script>
+        <script type="text/javascript" src="../../../_static/underscore.js"></script>
+        <script type="text/javascript" src="../../../_static/doctools.js"></script>
+        <script type="text/javascript" src="../../../_static/language_data.js"></script>
+        <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+        <script async="async" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+        <script type="text/x-mathjax-config">MathJax.Hub.Config({"tex2jax": {"inlineMath": [["$", "$"], ["\\(", "\\)"]], "processEscapes": true, "ignoreClass": "document", "processClass": "math|output_area"}})</script>
+    
+    <script type="text/javascript" src="../../../_static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="../../../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../../../_static/graphviz.css" type="text/css" />
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../../../index.html" class="icon icon-home"> MGKit: Metagenomic framework
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                0.5.0
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../introduction.html">Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../install.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../pipeline/index.html">Metagenomic Pipeline</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../scripts/index.html">Scripts Details</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../examples/index.html">Example Notebooks</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../gff.html">MGKit GFF Specifications</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../library.html">Library Reference</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../changes.html">Changes</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../index.html">MGKit: Metagenomic framework</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../../../index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="../../index.html">Module code</a> &raquo;</li>
+        
+          <li><a href="../../mgkit.html">mgkit</a> &raquo;</li>
+        
+      <li>mgkit.workflow.add_gff_info</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <h1>Source code for mgkit.workflow.add_gff_info</h1><div class="highlight"><pre>
+<span></span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">Add more information to GFF annotations: gene mappings, coverage, taxonomy,</span>
+<span class="sd">etc..</span>
+
+<span class="sd">Uniprot Command</span>
+<span class="sd">***************</span>
+
+<span class="sd">If the *gene_id* of an annotation is a Uniprot ID, the script queries Uniprot</span>
+<span class="sd">for the requested information. At the moment the information that can be added</span>
+<span class="sd">is the taxon_id, taxon_name, lineage and mapping to EC, KO, eggNOG IDs.</span>
+
+<span class="sd">It&#39;s also possible to add mappings to other databases using the *-m* option</span>
+<span class="sd">with the correct identifier for the mapping, which can be found at `this page</span>
+<span class="sd">&lt;http://www.uniprot.org/faq/28&gt;`_; for example if it&#39;s we want to add the</span>
+<span class="sd">mappings of uniprot IDs to *BioCyc*, in the *abbreviation* column of the</span>
+<span class="sd">mappings we find that it&#39;s identifier is *REACTOME_ID*, so we pass</span>
+<span class="sd">*-m REACTOME* to the script (leaving *_ID* out). Mapped IDs are separated by</span>
+<span class="sd">commas.</span>
+
+<span class="sd">The taxonomy IDs are not overwritten if they are found in the annotations, the</span>
+<span class="sd">*-f* is provided to force the overwriting of those values.</span>
+
+<span class="sd">See also :ref:`gff-specs` for more informations about the GFF specifications</span>
+<span class="sd">used.</span>
+
+<span class="sd">.. note::</span>
+
+<span class="sd">    As the script needs to query Uniprot a lot, it is recommended to split</span>
+<span class="sd">    the GFF in several files, so an error in the connection doesn&#39;t waste time.</span>
+
+<span class="sd">    However, a cache is kept to reduce the number of connections</span>
+
+<span class="sd">Coverage Command</span>
+<span class="sd">****************</span>
+
+<span class="sd">Adds coverage information from BAM alignment files to a GFF file, using the</span>
+<span class="sd">function :func:`mgkit.align.add_coverage_info`, the user needs to supply for</span>
+<span class="sd">each sample a BAM file, using the `-a` option, whose parameter is in the form</span>
+<span class="sd">`sample,samplealg.bam`. More samples can be supplied adding more `-a`</span>
+<span class="sd">arguments.</span>
+
+<span class="sd">.. hint::</span>
+
+<span class="sd">    As an example, to add coverage for `sample1`, `sample2` the command line</span>
+<span class="sd">    is::</span>
+
+<span class="sd">        add-gff-info coverage -a sample1,sample1.bam -a sample2,sample2.bam \\</span>
+<span class="sd">        inputgff outputgff</span>
+
+<span class="sd">A total coverage for the annotation is also calculated and stored in the</span>
+<span class="sd">`cov` attribute, while each sample coverage is stored into `sample_cov` as per</span>
+<span class="sd">:ref:`gff-specs`.</span>
+
+<span class="sd">Adding Coverage from samtools depth</span>
+<span class="sd">***********************************</span>
+
+<span class="sd">The *cov_samtools* allows the use of the output of *samtools* **depth**</span>
+<span class="sd">command. The command work similarly to *coverage*, accepting compressed *depth*</span>
+<span class="sd">files as well. If only one *depth* file is passed and no sample is passed, the</span>
+<span class="sd">attribute in the GFF will be *cov*, otherwise the attribute will be</span>
+<span class="sd">*sample1_cov*, *sample2_cov*, etc.</span>
+
+<span class="sd">.. note::</span>
+
+<span class="sd">    From version 0.4.2 the behaviour is different in the following ways:</span>
+
+<span class="sd">    * the GFF file is loaded in memory to get information that helps reduce</span>
+<span class="sd">        the memory size</span>
+<span class="sd">    * the depth file is scanned and each time a sequence in the GFF file is</span>
+<span class="sd">        found, coverage data is added, this way memory is freed more often</span>
+<span class="sd">    * the GFF file is written at the very end, so chaining multiple commands</span>
+<span class="sd">        (one for each sample) doesn&#39;t give any advantage now</span>
+<span class="sd">    * there&#39;s no need to use the `-aa` option of `samtools depth`, since some</span>
+<span class="sd">        assumptions are made when scanning the fils (see next point)</span>
+<span class="sd">    * when the depth file is scanned completely, the sequences in the GFF file</span>
+<span class="sd">        with coverage information are set coverage 0.0, instead of raising an</span>
+<span class="sd">        error</span>
+<span class="sd">    * average coverage is only calculated if requested, with the `-m` option</span>
+
+<span class="sd">The GFF file is first loaded in memory to get information about the maximum</span>
+<span class="sd">array size for each sequence, then the script proceeds for each depth file, to</span>
+<span class="sd">scan it until a) all sequences in the GFF are found or b) until the end of the</span>
+<span class="sd">file. If b) is the case, all sequences with not found in the depth file are set</span>
+<span class="sd">to a coverage of 0.0. A warning with the number of sequences lacking coverage</span>
+<span class="sd">is printed, for diagnostic purposes. If the the mean coverage is requested with</span>
+<span class="sd">the `-m` option, coverage is then calculated</span>
+
+<span class="sd">To create samtools *depth* files, you can use this command::</span>
+
+<span class="sd">    $ samtools depth [bam_file] &gt; [depth_file]</span>
+
+<span class="sd">    where [bam_file] is the alignment to be used and [depth_file] where the</span>
+<span class="sd">    file will be stored (by redirection). You could create a gzipped file, as</span>
+<span class="sd">    the file can be huge (and in my experience compressing reduces by ~10x the</span>
+<span class="sd">    file size)::</span>
+
+<span class="sd">    $ samtools depth [bam_file] | gzip &gt; [depth_file.gz]</span>
+
+<span class="sd">.. warning::</span>
+
+<span class="sd">    if version &lt; 0.4.2:</span>
+
+<span class="sd">    The *-aa* options must be used to pass information about all base</span>
+<span class="sd">    pairs and sequences coverage in the BAM/SAM file.</span>
+
+<span class="sd">    $ samtools depth -aa bam_file</span>
+
+<span class="sd">Uniprot Offline Mappings</span>
+<span class="sd">************************</span>
+
+<span class="sd">Similar to the *uniprot* command, it uses the `idmapping &lt;ftp://ftp.uniprot.org/pub/databases/uniprot/current_release/knowledgebase/idmapping/idmapping.dat.gz&gt;`_</span>
+<span class="sd">file provided by Uniprot, which speeds up the process of adding mappings and</span>
+<span class="sd">taxonomy IDs from Uniprot gene IDs. It&#39;s not possible tough to add *EC*</span>
+<span class="sd">mappings with this command, as those are not included in the file.</span>
+
+<span class="sd">Kegg Information</span>
+<span class="sd">****************</span>
+
+<span class="sd">The *kegg* command allows to add information to each annotation. Right now the</span>
+<span class="sd">information that can be added is restricted to the pathway(s) (reference KO) a</span>
+<span class="sd">KO is part of and both the KO and pathway(s) descriptions. This information is</span>
+<span class="sd">stored in keys starting with **ko_**.</span>
+
+<span class="sd">Expected Aminoacidic Changes</span>
+<span class="sd">****************************</span>
+
+<span class="sd">Some scripts, like :ref:`snp-parser`, require information about the expected</span>
+<span class="sd">number of synonymous and non-synonymous changes of an annotation. This can be</span>
+<span class="sd">done using :meth:`mgkit.io.gff.Annotation.add_exp_syn_count` by the user of the</span>
+<span class="sd">command `exp_syn` of this script. The attributes added to each annotation are</span>
+<span class="sd">explained in the :ref:`gff-specs`</span>
+
+<span class="sd">Adding Count Data</span>
+<span class="sd">*****************</span>
+
+<span class="sd">Count data on a per-sample basis can be added with the *counts* command. The</span>
+<span class="sd">accepted inputs are from HTSeq-count and featureCounts. The ouput produced by</span>
+<span class="sd">featureCounts, is the one from using its **-f** option must be used.</span>
+
+<span class="sd">This script accept by default a tab separated file, with a uid in the first</span>
+<span class="sd">column and the other columns are the counts for each sample, in the same order</span>
+<span class="sd">as they are passed to the **-s** option. To use the featureCounts file format,</span>
+<span class="sd">this script **-e** option must be used.</span>
+
+<span class="sd">The sample names must be provided in the same order as the columns in the input</span>
+<span class="sd">files. If the counts are FPKMS the *-f* option can be used.</span>
+
+<span class="sd">Adding Taxonomy from a Table</span>
+<span class="sd">****************************</span>
+
+<span class="sd">There are cases where it may needed or preferred to add the taxonomy from a</span>
+<span class="sd">*gene_id* already provided in the GFF file. For such cases the *addtaxa*</span>
+<span class="sd">command can be used. It works in a similar way to the *taxonomy* command, only</span>
+<span class="sd">it expect three different type of inputs:</span>
+
+<span class="sd">    * *GI-Taxa* table from NCBI (e.g. gi_taxid_nucl.dmp, )</span>
+<span class="sd">    * tab separated table</span>
+<span class="sd">    * dictionary</span>
+<span class="sd">    * HDF5</span>
+
+<span class="sd">The first two are tab separated files, where on each line, the first column is</span>
+<span class="sd">the *gene_id* that is found in the first column, while the second if the</span>
+<span class="sd">*taxon_id*.</span>
+
+<span class="sd">The third option is a serialised Python *dict*/hash table, whose keys are the</span>
+<span class="sd">*gene_id* and the value is that gene corresponding *taxon_id*. The serialised</span>
+<span class="sd">formats accepted are msgpack, json and pickle. The *msgpack* module must be</span>
+<span class="sd">importable. The option to use json and msgpack allow to integrate this script</span>
+<span class="sd">with other languages without resorting to a text file.</span>
+
+<span class="sd">The last option is a HDF5 created using the *to_hdf* command in</span>
+<span class="sd">:ref:`taxon-utils`. This requires `pandas` installed and `pytables` and it</span>
+<span class="sd">provides faster lookup of IDs in the table.</span>
+
+<span class="sd">While the default is to look for the *gene_id* attribute in the GFF annotation,</span>
+<span class="sd">another attribute can be specified, using the **-gene-attr** option.</span>
+
+<span class="sd">.. note::</span>
+
+<span class="sd">    the dictionary content is loaded after the table files and its keys and</span>
+<span class="sd">    corresponding values takes precedence over the text files.</span>
+
+<span class="sd">.. warning::</span>
+
+<span class="sd">    from September 2016 NCBI will retire the GI. In that case the same</span>
+<span class="sd">    kind of table can be built from the *nucl_gb.accession2taxid.gz* file</span>
+<span class="sd">    The format is different, but some information can be found in</span>
+<span class="sd">    :func:`mgkit.io.blast.parse_accession_taxa_table`</span>
+
+
+<span class="sd">Adding information from Pfam</span>
+<span class="sd">****************************</span>
+
+<span class="sd">Adds the Pfam description for the annotation, by downloading the list from</span>
+<span class="sd">Pfam.</span>
+
+<span class="sd">The options allow to specify in which attribute the ID/ACCESSION is stored</span>
+<span class="sd">(defaults to *gene_id*) and which one between ID/ACCESSION is the value of that</span>
+<span class="sd">attribute (defaults to *ID*). if no description is found for the family, a</span>
+<span class="sd">warning message is logged.</span>
+
+<span class="sd">Changes</span>
+<span class="sd">*******</span>
+
+<span class="sd">.. versionchanged:: 0.4.2</span>
+<span class="sd">    added *-m* option for *cov_samtools* command, to calculate the average</span>
+<span class="sd">    coverage for an annotation (*cov* attribute). Fixed loading compressed</span>
+<span class="sd">    files</span>
+
+<span class="sd">.. versionchanged:: 0.3.4</span>
+<span class="sd">    removed the *taxonomy* command, since a similar result can be obtained with</span>
+<span class="sd">    *taxon-utils lca* and *add-gff-info addtaxa*. Removed *eggnog* command and</span>
+<span class="sd">    added option to verbose the logging in *cov_samtools* (now is quiet), also</span>
+<span class="sd">    changed the interface</span>
+
+<span class="sd">.. versionchanged:: 0.3.3</span>
+<span class="sd">    changed how *addtaxa* *-a* works, to allow the use of *seq_id* as key to</span>
+<span class="sd">    add the taxon_id</span>
+
+<span class="sd">.. versionchanged:: 0.3.0</span>
+<span class="sd">    added *cov_samtools* command, *--split* option to *exp_syn*, *-c* option to</span>
+<span class="sd">    *addtaxa*. *kegg* now does not skip annotations when the attribute is not</span>
+<span class="sd">    found.</span>
+
+<span class="sd">.. versionchanged:: 0.2.6</span>
+<span class="sd">    added *skip-no-taxon* option to *addtaxa*</span>
+
+<span class="sd">.. versionchanged:: 0.2.5</span>
+<span class="sd">    if a dictionary is supplied to *addtaxa*, the GFF is not preloaded</span>
+
+<span class="sd">.. versionchanged:: 0.2.3</span>
+<span class="sd">    added *pfam* command, renamed *gitaxa* to *addtaxa* and made it general</span>
+
+<span class="sd">.. versionchanged:: 0.2.2</span>
+<span class="sd">    added *eggnog*, *gitaxa* and *counts* command</span>
+
+<span class="sd">.. versionchanged:: 0.2.1</span>
+
+<span class="sd">* added *-d* to *uniprot* command</span>
+<span class="sd">* added cache to *uniprot* command</span>
+<span class="sd">* added *kegg* command (cached)</span>
+
+<span class="sd">.. versionchanged:: 0.1.16</span>
+<span class="sd">    added *exp_syn* command</span>
+
+<span class="sd">.. versionchanged:: 0.1.15</span>
+<span class="sd">    *taxonomy* command *-b* option changed</span>
+
+<span class="sd">.. versionchanged:: 0.1.13</span>
+
+<span class="sd">* added *--force-taxon-id* option to the *uniprot* command</span>
+<span class="sd">* added *coverage* command</span>
+<span class="sd">* added *taxonomy* command</span>
+<span class="sd">* added *unipfile* command</span>
+
+<span class="sd">.. versionadded:: 0.1.12</span>
+<span class="sd">&quot;&quot;&quot;</span>
+<span class="kn">from</span> <span class="nn">__future__</span> <span class="kn">import</span> <span class="n">division</span>
+<span class="kn">from</span> <span class="nn">builtins</span> <span class="kn">import</span> <span class="nb">zip</span>
+<span class="kn">from</span> <span class="nn">future.utils</span> <span class="kn">import</span> <span class="n">viewitems</span>
+<span class="kn">import</span> <span class="nn">logging</span>
+<span class="kn">import</span> <span class="nn">itertools</span>
+<span class="kn">import</span> <span class="nn">pysam</span>
+<span class="kn">import</span> <span class="nn">json</span>
+<span class="kn">import</span> <span class="nn">pickle</span>
+<span class="kn">from</span> <span class="nn">tqdm</span> <span class="kn">import</span> <span class="n">tqdm</span>
+<span class="kn">import</span> <span class="nn">click</span>
+<span class="kn">import</span> <span class="nn">msgpack</span>
+<span class="kn">import</span> <span class="nn">mgkit</span>
+<span class="kn">import</span> <span class="nn">mgkit.counts.func</span>
+<span class="kn">from</span> <span class="nn">.</span> <span class="kn">import</span> <span class="n">utils</span>
+<span class="kn">from</span> <span class="nn">..</span> <span class="kn">import</span> <span class="n">align</span>
+<span class="kn">from</span> <span class="nn">..</span> <span class="kn">import</span> <span class="n">logger</span>
+<span class="kn">from</span> <span class="nn">..</span> <span class="kn">import</span> <span class="n">taxon</span>
+<span class="kn">from</span> <span class="nn">..</span> <span class="kn">import</span> <span class="n">kegg</span>
+<span class="kn">from</span> <span class="nn">..io</span> <span class="kn">import</span> <span class="n">gff</span><span class="p">,</span> <span class="n">blast</span><span class="p">,</span> <span class="n">fasta</span><span class="p">,</span> <span class="n">open_file</span>
+<span class="kn">from</span> <span class="nn">..io</span> <span class="kn">import</span> <span class="n">uniprot</span> <span class="k">as</span> <span class="n">uniprot_io</span>
+<span class="kn">from</span> <span class="nn">..net</span> <span class="kn">import</span> <span class="n">uniprot</span> <span class="k">as</span> <span class="n">uniprot_net</span>
+<span class="kn">from</span> <span class="nn">..net</span> <span class="kn">import</span> <span class="n">pfam</span>
+<span class="kn">from</span> <span class="nn">..utils.dictionary</span> <span class="kn">import</span> <span class="n">cache_dict_file</span><span class="p">,</span> <span class="n">HDFDict</span>
+
+
+<span class="n">LOG</span> <span class="o">=</span> <span class="n">logging</span><span class="o">.</span><span class="n">getLogger</span><span class="p">(</span><span class="vm">__name__</span><span class="p">)</span>
+
+
+<span class="nd">@click</span><span class="o">.</span><span class="n">group</span><span class="p">()</span>
+<span class="nd">@click</span><span class="o">.</span><span class="n">version_option</span><span class="p">()</span>
+<span class="nd">@utils</span><span class="o">.</span><span class="n">cite_option</span>
+<span class="k">def</span> <span class="nf">main</span><span class="p">():</span>
+    <span class="s2">&quot;Main function&quot;</span>
+    <span class="k">pass</span>
+
+
+<span class="nd">@main</span><span class="o">.</span><span class="n">command</span><span class="p">(</span><span class="s1">&#39;kegg&#39;</span><span class="p">,</span> <span class="n">help</span><span class="o">=</span><span class="s2">&quot;&quot;&quot;Adds information and mapping from Kegg&quot;&quot;&quot;</span><span class="p">)</span>
+<span class="nd">@click</span><span class="o">.</span><span class="n">option</span><span class="p">(</span><span class="s1">&#39;-v&#39;</span><span class="p">,</span> <span class="s1">&#39;--verbose&#39;</span><span class="p">,</span> <span class="n">is_flag</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="nd">@click</span><span class="o">.</span><span class="n">option</span><span class="p">(</span><span class="s1">&#39;-c&#39;</span><span class="p">,</span> <span class="s1">&#39;--email&#39;</span><span class="p">,</span> <span class="n">help</span><span class="o">=</span><span class="s1">&#39;Contact email&#39;</span><span class="p">,</span> <span class="n">required</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="nd">@click</span><span class="o">.</span><span class="n">option</span><span class="p">(</span><span class="s1">&#39;-d&#39;</span><span class="p">,</span> <span class="s1">&#39;--description&#39;</span><span class="p">,</span> <span class="n">default</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">is_flag</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+              <span class="n">help</span><span class="o">=</span><span class="s1">&#39;Add Kegg description&#39;</span><span class="p">)</span>
+<span class="nd">@click</span><span class="o">.</span><span class="n">option</span><span class="p">(</span><span class="s1">&#39;-p&#39;</span><span class="p">,</span> <span class="s1">&#39;--pathways&#39;</span><span class="p">,</span> <span class="n">is_flag</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">default</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+              <span class="n">help</span><span class="o">=</span><span class="s1">&#39;Add pathways ID involved&#39;</span><span class="p">)</span>
+<span class="nd">@click</span><span class="o">.</span><span class="n">option</span><span class="p">(</span><span class="s1">&#39;-m&#39;</span><span class="p">,</span> <span class="s1">&#39;--kegg-id&#39;</span><span class="p">,</span> <span class="n">default</span><span class="o">=</span><span class="s1">&#39;gene_id&#39;</span><span class="p">,</span>
+              <span class="n">help</span><span class="o">=</span><span class="s2">&quot;&quot;&quot;In which attribute the Kegg ID is stored (defaults to *gene_id*)&quot;&quot;&quot;</span><span class="p">)</span>
+<span class="nd">@click</span><span class="o">.</span><span class="n">argument</span><span class="p">(</span><span class="s1">&#39;input-file&#39;</span><span class="p">,</span> <span class="nb">type</span><span class="o">=</span><span class="n">click</span><span class="o">.</span><span class="n">File</span><span class="p">(</span><span class="s1">&#39;rb&#39;</span><span class="p">,</span> <span class="n">lazy</span><span class="o">=</span><span class="kc">False</span><span class="p">),</span> <span class="n">default</span><span class="o">=</span><span class="s1">&#39;-&#39;</span><span class="p">)</span>
+<span class="nd">@click</span><span class="o">.</span><span class="n">argument</span><span class="p">(</span><span class="s1">&#39;output-file&#39;</span><span class="p">,</span> <span class="nb">type</span><span class="o">=</span><span class="n">click</span><span class="o">.</span><span class="n">File</span><span class="p">(</span><span class="s1">&#39;wb&#39;</span><span class="p">,</span> <span class="n">lazy</span><span class="o">=</span><span class="kc">False</span><span class="p">),</span> <span class="n">default</span><span class="o">=</span><span class="s1">&#39;-&#39;</span><span class="p">)</span>
+<span class="k">def</span> <span class="nf">kegg_command</span><span class="p">(</span><span class="n">verbose</span><span class="p">,</span> <span class="n">email</span><span class="p">,</span> <span class="n">description</span><span class="p">,</span> <span class="n">pathways</span><span class="p">,</span> <span class="n">kegg_id</span><span class="p">,</span> <span class="n">input_file</span><span class="p">,</span>
+                 <span class="n">output_file</span><span class="p">):</span>
+    <span class="n">mgkit</span><span class="o">.</span><span class="n">logger</span><span class="o">.</span><span class="n">config_log</span><span class="p">(</span><span class="n">level</span><span class="o">=</span><span class="n">logging</span><span class="o">.</span><span class="n">DEBUG</span> <span class="k">if</span> <span class="n">verbose</span> <span class="k">else</span> <span class="n">logging</span><span class="o">.</span><span class="n">INFO</span><span class="p">)</span>
+    <span class="n">LOG</span><span class="o">.</span><span class="n">info</span><span class="p">(</span>
+        <span class="s1">&#39;Writing to file (</span><span class="si">%s</span><span class="s1">)&#39;</span><span class="p">,</span>
+        <span class="nb">getattr</span><span class="p">(</span><span class="n">output_file</span><span class="p">,</span> <span class="s1">&#39;name&#39;</span><span class="p">,</span> <span class="nb">repr</span><span class="p">(</span><span class="n">output_file</span><span class="p">))</span>
+    <span class="p">)</span>
+
+    <span class="n">kegg_client</span> <span class="o">=</span> <span class="n">kegg</span><span class="o">.</span><span class="n">KeggClientRest</span><span class="p">()</span>
+
+    <span class="n">LOG</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s1">&#39;Retrieving KO names&#39;</span><span class="p">)</span>
+    <span class="n">ko_names</span> <span class="o">=</span> <span class="n">kegg_client</span><span class="o">.</span><span class="n">get_ids_names</span><span class="p">(</span><span class="s1">&#39;ko&#39;</span><span class="p">)</span>
+
+    <span class="k">if</span> <span class="n">pathways</span><span class="p">:</span>
+        <span class="n">LOG</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s1">&#39;Retrieving Pathways names&#39;</span><span class="p">)</span>
+        <span class="c1"># Changes the names of the keys to *ko* instead of *map*</span>
+        <span class="n">path_names</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">(</span>
+            <span class="p">(</span><span class="n">path_id</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s1">&#39;map&#39;</span><span class="p">,</span> <span class="s1">&#39;ko&#39;</span><span class="p">),</span> <span class="n">name</span><span class="p">)</span>
+            <span class="k">for</span> <span class="n">path_id</span><span class="p">,</span> <span class="n">name</span> <span class="ow">in</span> <span class="n">viewitems</span><span class="p">(</span><span class="n">kegg_client</span><span class="o">.</span><span class="n">get_ids_names</span><span class="p">(</span><span class="s1">&#39;path&#39;</span><span class="p">))</span>
+        <span class="p">)</span>
+
+    <span class="n">ko_cache</span> <span class="o">=</span> <span class="p">{}</span>
+
+    <span class="k">for</span> <span class="n">annotation</span> <span class="ow">in</span> <span class="n">gff</span><span class="o">.</span><span class="n">parse_gff</span><span class="p">(</span><span class="n">input_file</span><span class="p">,</span> <span class="n">gff_type</span><span class="o">=</span><span class="n">gff</span><span class="o">.</span><span class="n">from_gff</span><span class="p">):</span>
+        <span class="k">try</span><span class="p">:</span>
+            <span class="n">ko_id</span> <span class="o">=</span> <span class="n">annotation</span><span class="o">.</span><span class="n">attr</span><span class="p">[</span><span class="n">kegg_id</span><span class="p">]</span>
+        <span class="k">except</span> <span class="ne">KeyError</span><span class="p">:</span>
+            <span class="n">annotation</span><span class="o">.</span><span class="n">to_file</span><span class="p">(</span><span class="n">output_file</span><span class="p">)</span>
+            <span class="k">continue</span>
+        <span class="c1"># if more than one KO is defined</span>
+        <span class="k">if</span> <span class="s1">&#39;,&#39;</span> <span class="ow">in</span> <span class="n">ko_id</span><span class="p">:</span>
+            <span class="n">LOG</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span>
+                <span class="s1">&#39;More than one KO assigned, skipping annotation: </span><span class="si">%s</span><span class="s1">&#39;</span><span class="p">,</span>
+                <span class="n">annotation</span><span class="o">.</span><span class="n">uid</span>
+            <span class="p">)</span>
+            <span class="n">annotation</span><span class="o">.</span><span class="n">to_file</span><span class="p">(</span><span class="n">output_file</span><span class="p">)</span>
+            <span class="k">continue</span>
+        <span class="k">try</span><span class="p">:</span>
+            <span class="n">ko_info</span> <span class="o">=</span> <span class="n">ko_cache</span><span class="p">[</span><span class="n">ko_id</span><span class="p">]</span>
+        <span class="k">except</span> <span class="ne">KeyError</span><span class="p">:</span>
+            <span class="n">ko_info</span> <span class="o">=</span> <span class="p">{}</span>
+            <span class="k">if</span> <span class="n">pathways</span><span class="p">:</span>
+                <span class="n">ko_info</span><span class="p">[</span><span class="s1">&#39;pathway&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">kegg_client</span><span class="o">.</span><span class="n">link_ids</span><span class="p">(</span><span class="s1">&#39;path&#39;</span><span class="p">,</span> <span class="n">ko_id</span><span class="p">)</span>
+                <span class="c1"># If left empty, no pathway will be saved</span>
+                <span class="k">if</span> <span class="n">ko_info</span><span class="p">[</span><span class="s1">&#39;pathway&#39;</span><span class="p">]:</span>
+                    <span class="n">ko_info</span><span class="p">[</span><span class="s1">&#39;pathway&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span>
+                        <span class="n">path_id</span>
+                        <span class="k">for</span> <span class="n">path_id</span> <span class="ow">in</span> <span class="n">ko_info</span><span class="p">[</span><span class="s1">&#39;pathway&#39;</span><span class="p">][</span><span class="n">ko_id</span><span class="p">]</span>
+                        <span class="k">if</span> <span class="n">path_id</span><span class="o">.</span><span class="n">startswith</span><span class="p">(</span><span class="s1">&#39;ko&#39;</span><span class="p">)</span>
+                    <span class="p">)</span>
+            <span class="n">ko_cache</span><span class="p">[</span><span class="n">ko_id</span><span class="p">]</span> <span class="o">=</span> <span class="n">ko_info</span>
+        <span class="k">if</span> <span class="n">description</span><span class="p">:</span>
+            <span class="n">annotation</span><span class="o">.</span><span class="n">attr</span><span class="p">[</span><span class="s1">&#39;ko_description&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">ko_names</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">ko_id</span><span class="p">,</span> <span class="n">ko_id</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">pathways</span> <span class="ow">and</span> <span class="n">ko_info</span><span class="p">[</span><span class="s1">&#39;pathway&#39;</span><span class="p">]:</span>
+            <span class="n">annotation</span><span class="o">.</span><span class="n">attr</span><span class="p">[</span><span class="s1">&#39;ko_pathway&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="s1">&#39;,&#39;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">ko_info</span><span class="p">[</span><span class="s1">&#39;pathway&#39;</span><span class="p">])</span>
+            <span class="n">annotation</span><span class="o">.</span><span class="n">attr</span><span class="p">[</span><span class="s1">&#39;ko_pathway_names&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="s1">&#39;,&#39;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span>
+                <span class="n">path_names</span><span class="p">[</span><span class="n">path_id</span><span class="p">]</span>
+                <span class="k">for</span> <span class="n">path_id</span> <span class="ow">in</span> <span class="n">ko_info</span><span class="p">[</span><span class="s1">&#39;pathway&#39;</span><span class="p">]</span>
+            <span class="p">)</span>
+
+        <span class="n">annotation</span><span class="o">.</span><span class="n">to_file</span><span class="p">(</span><span class="n">output_file</span><span class="p">)</span>
+
+
+<div class="viewcode-block" id="add_uniprot_info"><a class="viewcode-back" href="../../../api/mgkit.workflow.add_gff_info.html#mgkit.workflow.add_gff_info.add_uniprot_info">[docs]</a><span class="k">def</span> <span class="nf">add_uniprot_info</span><span class="p">(</span><span class="n">annotations</span><span class="p">,</span> <span class="n">email</span><span class="p">,</span> <span class="n">force_taxon_id</span><span class="p">,</span> <span class="n">taxon_id</span><span class="p">,</span> <span class="n">lineage</span><span class="p">,</span>
+                     <span class="n">eggnog</span><span class="p">,</span> <span class="n">enzymes</span><span class="p">,</span> <span class="n">kegg_orthologs</span><span class="p">,</span> <span class="n">protein_names</span><span class="p">,</span> <span class="n">mapping</span><span class="p">,</span>
+                     <span class="n">info_cache</span><span class="p">):</span>
+    <span class="n">columns</span> <span class="o">=</span> <span class="p">[]</span>
+
+    <span class="k">if</span> <span class="n">taxon_id</span><span class="p">:</span>
+        <span class="n">columns</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s1">&#39;organism&#39;</span><span class="p">)</span>
+        <span class="n">columns</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s1">&#39;organism-id&#39;</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">eggnog</span><span class="p">:</span>
+        <span class="n">columns</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s1">&#39;database(EGGNOG)&#39;</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">kegg_orthologs</span><span class="p">:</span>
+        <span class="n">columns</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s1">&#39;database(KO)&#39;</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">enzymes</span><span class="p">:</span>
+        <span class="n">columns</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s1">&#39;ec&#39;</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">lineage</span><span class="p">:</span>
+        <span class="n">columns</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s1">&#39;lineage(ALL)&#39;</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">mapping</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="k">for</span> <span class="n">db</span> <span class="ow">in</span> <span class="n">mapping</span><span class="p">:</span>
+            <span class="n">columns</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s1">&#39;database(</span><span class="si">{0}</span><span class="s1">)&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">db</span><span class="p">))</span>
+    <span class="k">if</span> <span class="n">protein_names</span><span class="p">:</span>
+        <span class="n">columns</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s1">&#39;protein names&#39;</span><span class="p">)</span>
+
+    <span class="k">if</span> <span class="ow">not</span> <span class="n">columns</span><span class="p">:</span>
+        <span class="k">return</span>
+
+    <span class="n">LOG</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;Retrieving gene information from Uniprot&quot;</span><span class="p">)</span>
+
+    <span class="n">gene_ids</span> <span class="o">=</span> <span class="nb">set</span><span class="p">(</span>
+        <span class="n">x</span><span class="o">.</span><span class="n">gene_id</span>
+        <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">annotations</span>
+        <span class="k">if</span> <span class="n">x</span><span class="o">.</span><span class="n">gene_id</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">info_cache</span>
+    <span class="p">)</span>
+
+    <span class="c1"># It may be that all gene_ids are already cached. In which case there&#39;s no</span>
+    <span class="c1"># point querying Uniprot (it will probably give an error)</span>
+    <span class="k">if</span> <span class="n">gene_ids</span><span class="p">:</span>
+        <span class="n">data</span> <span class="o">=</span> <span class="n">uniprot_net</span><span class="o">.</span><span class="n">get_gene_info</span><span class="p">(</span>
+            <span class="n">gene_ids</span><span class="p">,</span>
+            <span class="n">columns</span><span class="o">=</span><span class="n">columns</span><span class="p">,</span>
+            <span class="n">contact</span><span class="o">=</span><span class="n">email</span>
+        <span class="p">)</span>
+
+        <span class="n">info_cache</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
+
+    <span class="k">for</span> <span class="n">annotation</span> <span class="ow">in</span> <span class="n">annotations</span><span class="p">:</span>
+        <span class="k">try</span><span class="p">:</span>
+            <span class="n">gene_info</span> <span class="o">=</span> <span class="n">info_cache</span><span class="p">[</span><span class="n">annotation</span><span class="o">.</span><span class="n">gene_id</span><span class="p">]</span>
+        <span class="k">except</span> <span class="ne">KeyError</span><span class="p">:</span>
+            <span class="c1"># no data was found</span>
+            <span class="k">continue</span>
+
+        <span class="k">for</span> <span class="n">column</span><span class="p">,</span> <span class="n">values</span> <span class="ow">in</span> <span class="n">viewitems</span><span class="p">(</span><span class="n">gene_info</span><span class="p">):</span>
+            <span class="c1"># nothing found</span>
+            <span class="k">if</span> <span class="ow">not</span> <span class="n">values</span><span class="p">:</span>
+                <span class="k">continue</span>
+
+            <span class="k">if</span> <span class="n">column</span> <span class="o">==</span> <span class="s1">&#39;organism-id&#39;</span><span class="p">:</span>
+                <span class="k">if</span> <span class="p">(</span><span class="n">annotation</span><span class="o">.</span><span class="n">taxon_id</span> <span class="ow">and</span> <span class="n">force_taxon_id</span><span class="p">)</span> <span class="ow">or</span> \
+                   <span class="p">(</span><span class="n">annotation</span><span class="o">.</span><span class="n">taxon_id</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">):</span>
+                    <span class="n">annotation</span><span class="o">.</span><span class="n">attr</span><span class="p">[</span><span class="s1">&#39;taxon_id&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">values</span><span class="p">)</span>
+                    <span class="n">annotation</span><span class="o">.</span><span class="n">attr</span><span class="p">[</span><span class="s1">&#39;taxon_db&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="s1">&#39;UNIPROT&#39;</span>
+                    <span class="c1"># test with a try/expect maybe</span>
+                    <span class="k">if</span> <span class="s1">&#39;organism&#39;</span> <span class="ow">in</span> <span class="n">columns</span><span class="p">:</span>
+                        <span class="n">annotation</span><span class="o">.</span><span class="n">attr</span><span class="p">[</span><span class="s1">&#39;taxon_name&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">gene_info</span><span class="p">[</span><span class="s1">&#39;organism&#39;</span><span class="p">]</span>
+            <span class="k">elif</span> <span class="n">column</span><span class="o">.</span><span class="n">startswith</span><span class="p">(</span><span class="s1">&#39;lineage&#39;</span><span class="p">):</span>
+                <span class="n">annotation</span><span class="o">.</span><span class="n">attr</span><span class="p">[</span><span class="s1">&#39;lineage&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">gene_info</span><span class="p">[</span><span class="s1">&#39;lineage(ALL)&#39;</span><span class="p">]</span>
+            <span class="k">elif</span> <span class="n">column</span><span class="o">.</span><span class="n">startswith</span><span class="p">(</span><span class="s1">&#39;database&#39;</span><span class="p">):</span>
+                <span class="n">annotation</span><span class="o">.</span><span class="n">attr</span><span class="p">[</span>
+                    <span class="s1">&#39;map_</span><span class="si">{0}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span>
+                        <span class="n">column</span><span class="p">[:</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">&#39;(&#39;</span><span class="p">)[</span><span class="mi">1</span><span class="p">]</span>
+                    <span class="p">)</span>
+                <span class="p">]</span> <span class="o">=</span> <span class="s1">&#39;,&#39;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">values</span><span class="p">)</span>
+            <span class="k">elif</span> <span class="n">column</span> <span class="o">==</span> <span class="s1">&#39;ec&#39;</span><span class="p">:</span>
+                <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">values</span><span class="p">,</span> <span class="nb">list</span><span class="p">):</span>
+                    <span class="n">annotation</span><span class="o">.</span><span class="n">attr</span><span class="p">[</span><span class="s1">&#39;EC&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="s1">&#39;,&#39;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span>
+                        <span class="n">x</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">&#39;-&#39;</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span>
+                        <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">values</span>
+                    <span class="p">)</span>
+                <span class="k">else</span><span class="p">:</span>
+                    <span class="n">annotation</span><span class="o">.</span><span class="n">attr</span><span class="p">[</span><span class="s1">&#39;EC&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">values</span>
+            <span class="k">elif</span> <span class="n">column</span> <span class="o">==</span> <span class="s1">&#39;protein names&#39;</span><span class="p">:</span>
+                <span class="n">annotation</span><span class="o">.</span><span class="n">attr</span><span class="p">[</span><span class="s1">&#39;uniprot_description&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">values</span></div>
+
+
+<span class="nd">@main</span><span class="o">.</span><span class="n">command</span><span class="p">(</span><span class="s1">&#39;uniprot&#39;</span><span class="p">,</span> <span class="n">help</span><span class="o">=</span><span class="s2">&quot;&quot;&quot;Adds information from GFF whose gene_id is</span>
+<span class="s2">              from Uniprot&quot;&quot;&quot;</span><span class="p">)</span>
+<span class="nd">@click</span><span class="o">.</span><span class="n">option</span><span class="p">(</span><span class="s1">&#39;-v&#39;</span><span class="p">,</span> <span class="s1">&#39;--verbose&#39;</span><span class="p">,</span> <span class="n">is_flag</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="nd">@click</span><span class="o">.</span><span class="n">option</span><span class="p">(</span><span class="s1">&#39;-c&#39;</span><span class="p">,</span> <span class="s1">&#39;--email&#39;</span><span class="p">,</span> <span class="n">help</span><span class="o">=</span><span class="s1">&#39;Contact email&#39;</span><span class="p">,</span> <span class="n">required</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="nd">@click</span><span class="o">.</span><span class="n">option</span><span class="p">(</span><span class="s1">&#39;--buffer&#39;</span><span class="p">,</span> <span class="nb">type</span><span class="o">=</span><span class="n">click</span><span class="o">.</span><span class="n">INT</span><span class="p">,</span> <span class="n">default</span><span class="o">=</span><span class="mi">50</span><span class="p">,</span> <span class="n">show_default</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+              <span class="n">help</span><span class="o">=</span><span class="s1">&#39;Number of annotations to keep in memory&#39;</span><span class="p">)</span>
+<span class="nd">@click</span><span class="o">.</span><span class="n">option</span><span class="p">(</span><span class="s1">&#39;-f&#39;</span><span class="p">,</span> <span class="s1">&#39;--force-taxon-id&#39;</span><span class="p">,</span> <span class="n">default</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">is_flag</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+              <span class="n">help</span><span class="o">=</span><span class="s1">&#39;Overwrite taxon_id if already present&#39;</span><span class="p">)</span>
+<span class="nd">@click</span><span class="o">.</span><span class="n">option</span><span class="p">(</span><span class="s1">&#39;-t&#39;</span><span class="p">,</span> <span class="s1">&#39;--taxon-id&#39;</span><span class="p">,</span> <span class="n">default</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">is_flag</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+              <span class="n">help</span><span class="o">=</span><span class="s2">&quot;&quot;&quot;Add taxonomic ids to annotations, if taxon_id is found, it won&#39;t be Overwritten.&quot;&quot;&quot;</span><span class="p">)</span>
+<span class="nd">@click</span><span class="o">.</span><span class="n">option</span><span class="p">(</span><span class="s1">&#39;-l&#39;</span><span class="p">,</span> <span class="s1">&#39;--lineage&#39;</span><span class="p">,</span> <span class="n">default</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">is_flag</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+              <span class="n">help</span><span class="o">=</span><span class="s1">&#39;Add taxonomic lineage to annotations&#39;</span><span class="p">)</span>
+<span class="nd">@click</span><span class="o">.</span><span class="n">option</span><span class="p">(</span><span class="s1">&#39;-e&#39;</span><span class="p">,</span> <span class="s1">&#39;--eggnog&#39;</span><span class="p">,</span> <span class="n">default</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">is_flag</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+              <span class="n">help</span><span class="o">=</span><span class="s1">&#39;Add eggNOG mappings to annotations&#39;</span><span class="p">)</span>
+<span class="nd">@click</span><span class="o">.</span><span class="n">option</span><span class="p">(</span><span class="s1">&#39;-ec&#39;</span><span class="p">,</span> <span class="s1">&#39;--enzymes&#39;</span><span class="p">,</span> <span class="n">default</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">is_flag</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+              <span class="n">help</span><span class="o">=</span><span class="s1">&#39;Add EC mappings to annotations&#39;</span><span class="p">)</span>
+<span class="nd">@click</span><span class="o">.</span><span class="n">option</span><span class="p">(</span><span class="s1">&#39;-ko&#39;</span><span class="p">,</span> <span class="s1">&#39;--kegg_orthologs&#39;</span><span class="p">,</span> <span class="n">default</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">is_flag</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+              <span class="n">help</span><span class="o">=</span><span class="s1">&#39;Add KO mappings to annotations&#39;</span><span class="p">)</span>
+<span class="nd">@click</span><span class="o">.</span><span class="n">option</span><span class="p">(</span><span class="s1">&#39;-d&#39;</span><span class="p">,</span> <span class="s1">&#39;--protein-names&#39;</span><span class="p">,</span> <span class="n">default</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">is_flag</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+              <span class="n">help</span><span class="o">=</span><span class="s1">&#39;Add Uniprot description&#39;</span><span class="p">)</span>
+<span class="nd">@click</span><span class="o">.</span><span class="n">option</span><span class="p">(</span><span class="s1">&#39;-m&#39;</span><span class="p">,</span> <span class="s1">&#39;--mapping&#39;</span><span class="p">,</span> <span class="n">multiple</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">default</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+              <span class="n">help</span><span class="o">=</span><span class="s1">&#39;Add any DB mappings to annotations&#39;</span><span class="p">)</span>
+<span class="nd">@click</span><span class="o">.</span><span class="n">argument</span><span class="p">(</span><span class="s1">&#39;input-file&#39;</span><span class="p">,</span> <span class="nb">type</span><span class="o">=</span><span class="n">click</span><span class="o">.</span><span class="n">File</span><span class="p">(</span><span class="s1">&#39;rb&#39;</span><span class="p">,</span> <span class="n">lazy</span><span class="o">=</span><span class="kc">False</span><span class="p">),</span> <span class="n">default</span><span class="o">=</span><span class="s1">&#39;-&#39;</span><span class="p">)</span>
+<span class="nd">@click</span><span class="o">.</span><span class="n">argument</span><span class="p">(</span><span class="s1">&#39;output-file&#39;</span><span class="p">,</span> <span class="nb">type</span><span class="o">=</span><span class="n">click</span><span class="o">.</span><span class="n">File</span><span class="p">(</span><span class="s1">&#39;wb&#39;</span><span class="p">,</span> <span class="n">lazy</span><span class="o">=</span><span class="kc">False</span><span class="p">),</span> <span class="n">default</span><span class="o">=</span><span class="s1">&#39;-&#39;</span><span class="p">)</span>
+<span class="k">def</span> <span class="nf">uniprot_command</span><span class="p">(</span><span class="n">verbose</span><span class="p">,</span> <span class="n">email</span><span class="p">,</span> <span class="n">buffer</span><span class="p">,</span> <span class="n">force_taxon_id</span><span class="p">,</span> <span class="n">taxon_id</span><span class="p">,</span> <span class="n">lineage</span><span class="p">,</span>
+                    <span class="n">eggnog</span><span class="p">,</span> <span class="n">enzymes</span><span class="p">,</span> <span class="n">kegg_orthologs</span><span class="p">,</span> <span class="n">protein_names</span><span class="p">,</span> <span class="n">mapping</span><span class="p">,</span>
+                    <span class="n">input_file</span><span class="p">,</span> <span class="n">output_file</span><span class="p">):</span>
+    <span class="n">mgkit</span><span class="o">.</span><span class="n">logger</span><span class="o">.</span><span class="n">config_log</span><span class="p">(</span><span class="n">level</span><span class="o">=</span><span class="n">logging</span><span class="o">.</span><span class="n">DEBUG</span> <span class="k">if</span> <span class="n">verbose</span> <span class="k">else</span> <span class="n">logging</span><span class="o">.</span><span class="n">INFO</span><span class="p">)</span>
+
+    <span class="n">LOG</span><span class="o">.</span><span class="n">info</span><span class="p">(</span>
+        <span class="s1">&#39;Writing to file (</span><span class="si">%s</span><span class="s1">)&#39;</span><span class="p">,</span>
+        <span class="nb">getattr</span><span class="p">(</span><span class="n">output_file</span><span class="p">,</span> <span class="s1">&#39;name&#39;</span><span class="p">,</span> <span class="nb">repr</span><span class="p">(</span><span class="n">output_file</span><span class="p">))</span>
+    <span class="p">)</span>
+
+    <span class="k">if</span> <span class="n">buffer</span> <span class="o">&lt;</span> <span class="mi">1</span><span class="p">:</span>
+        <span class="n">buffer</span> <span class="o">=</span> <span class="mi">1</span>
+
+    <span class="n">ann_buffer</span> <span class="o">=</span> <span class="p">[]</span>
+
+    <span class="n">info_cache</span> <span class="o">=</span> <span class="p">{}</span>
+
+    <span class="k">for</span> <span class="n">annotation</span> <span class="ow">in</span> <span class="n">gff</span><span class="o">.</span><span class="n">parse_gff</span><span class="p">(</span><span class="n">input_file</span><span class="p">,</span> <span class="n">gff_type</span><span class="o">=</span><span class="n">gff</span><span class="o">.</span><span class="n">from_gff</span><span class="p">):</span>
+
+        <span class="n">ann_buffer</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">annotation</span><span class="p">)</span>
+
+        <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">ann_buffer</span><span class="p">)</span> <span class="o">==</span> <span class="n">buffer</span><span class="p">:</span>
+
+            <span class="n">add_uniprot_info</span><span class="p">(</span><span class="n">ann_buffer</span><span class="p">,</span> <span class="n">email</span><span class="p">,</span> <span class="n">force_taxon_id</span><span class="p">,</span> <span class="n">taxon_id</span><span class="p">,</span>
+                             <span class="n">lineage</span><span class="p">,</span> <span class="n">eggnog</span><span class="p">,</span> <span class="n">enzymes</span><span class="p">,</span> <span class="n">kegg_orthologs</span><span class="p">,</span>
+                             <span class="n">protein_names</span><span class="p">,</span> <span class="n">mapping</span><span class="p">,</span> <span class="n">info_cache</span><span class="p">)</span>
+
+            <span class="k">for</span> <span class="n">annotation</span> <span class="ow">in</span> <span class="n">ann_buffer</span><span class="p">:</span>
+                <span class="n">annotation</span><span class="o">.</span><span class="n">to_file</span><span class="p">(</span><span class="n">output_file</span><span class="p">)</span>
+
+            <span class="n">ann_buffer</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">add_uniprot_info</span><span class="p">(</span><span class="n">ann_buffer</span><span class="p">,</span> <span class="n">email</span><span class="p">,</span> <span class="n">force_taxon_id</span><span class="p">,</span> <span class="n">taxon_id</span><span class="p">,</span> <span class="n">lineage</span><span class="p">,</span>
+                         <span class="n">eggnog</span><span class="p">,</span> <span class="n">enzymes</span><span class="p">,</span> <span class="n">kegg_orthologs</span><span class="p">,</span> <span class="n">protein_names</span><span class="p">,</span>
+                         <span class="n">mapping</span><span class="p">,</span> <span class="n">info_cache</span><span class="p">)</span>
+
+        <span class="k">for</span> <span class="n">annotation</span> <span class="ow">in</span> <span class="n">ann_buffer</span><span class="p">:</span>
+            <span class="n">annotation</span><span class="o">.</span><span class="n">to_file</span><span class="p">(</span><span class="n">output_file</span><span class="p">)</span>
+
+
+<div class="viewcode-block" id="split_sample_alg"><a class="viewcode-back" href="../../../api/mgkit.workflow.add_gff_info.html#mgkit.workflow.add_gff_info.split_sample_alg">[docs]</a><span class="k">def</span> <span class="nf">split_sample_alg</span><span class="p">(</span><span class="n">ctx</span><span class="p">,</span> <span class="n">param</span><span class="p">,</span> <span class="n">values</span><span class="p">):</span>
+    <span class="s2">&quot;Split sample/alignment option&quot;</span>
+
+    <span class="n">new_values</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="k">for</span> <span class="n">value</span> <span class="ow">in</span> <span class="n">values</span><span class="p">:</span>
+        <span class="k">try</span><span class="p">:</span>
+            <span class="n">sample</span><span class="p">,</span> <span class="n">bam_file_name</span> <span class="o">=</span> <span class="n">value</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">&#39;,&#39;</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+        <span class="k">except</span> <span class="ne">ValueError</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="n">click</span><span class="o">.</span><span class="n">BadParameter</span><span class="p">(</span>
+                <span class="s2">&quot;Can&#39;t get get both sample and bam file from &#39;</span><span class="si">%s</span><span class="s2">&#39;&quot;</span> <span class="o">%</span> <span class="n">value</span>
+            <span class="p">)</span>
+        <span class="n">new_values</span><span class="o">.</span><span class="n">append</span><span class="p">((</span><span class="n">sample</span><span class="p">,</span> <span class="n">bam_file_name</span><span class="p">))</span>
+
+    <span class="k">return</span> <span class="n">new_values</span></div>
+
+
+<span class="nd">@main</span><span class="o">.</span><span class="n">command</span><span class="p">(</span><span class="s1">&#39;coverage&#39;</span><span class="p">,</span> <span class="n">help</span><span class="o">=</span><span class="s2">&quot;&quot;&quot;Adds coverage information from BAM Alignment</span>
+<span class="s2">              files&quot;&quot;&quot;</span><span class="p">)</span>
+<span class="nd">@click</span><span class="o">.</span><span class="n">option</span><span class="p">(</span><span class="s1">&#39;-v&#39;</span><span class="p">,</span> <span class="s1">&#39;--verbose&#39;</span><span class="p">,</span> <span class="n">is_flag</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="nd">@click</span><span class="o">.</span><span class="n">option</span><span class="p">(</span><span class="s1">&#39;-a&#39;</span><span class="p">,</span> <span class="s1">&#39;--sample-alignment&#39;</span><span class="p">,</span> <span class="n">multiple</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">required</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+              <span class="n">callback</span><span class="o">=</span><span class="n">split_sample_alg</span><span class="p">,</span>
+              <span class="n">help</span><span class="o">=</span><span class="s1">&#39;sample name and correspondent alignment file separated by comma&#39;</span><span class="p">)</span>
+<span class="nd">@click</span><span class="o">.</span><span class="n">argument</span><span class="p">(</span><span class="s1">&#39;input-file&#39;</span><span class="p">,</span> <span class="nb">type</span><span class="o">=</span><span class="n">click</span><span class="o">.</span><span class="n">File</span><span class="p">(</span><span class="s1">&#39;rb&#39;</span><span class="p">,</span> <span class="n">lazy</span><span class="o">=</span><span class="kc">False</span><span class="p">),</span> <span class="n">default</span><span class="o">=</span><span class="s1">&#39;-&#39;</span><span class="p">)</span>
+<span class="nd">@click</span><span class="o">.</span><span class="n">argument</span><span class="p">(</span><span class="s1">&#39;output-file&#39;</span><span class="p">,</span> <span class="nb">type</span><span class="o">=</span><span class="n">click</span><span class="o">.</span><span class="n">File</span><span class="p">(</span><span class="s1">&#39;wb&#39;</span><span class="p">,</span> <span class="n">lazy</span><span class="o">=</span><span class="kc">False</span><span class="p">),</span> <span class="n">default</span><span class="o">=</span><span class="s1">&#39;-&#39;</span><span class="p">)</span>
+<span class="k">def</span> <span class="nf">coverage_command</span><span class="p">(</span><span class="n">verbose</span><span class="p">,</span> <span class="n">sample_alignment</span><span class="p">,</span> <span class="n">input_file</span><span class="p">,</span> <span class="n">output_file</span><span class="p">):</span>
+    <span class="n">mgkit</span><span class="o">.</span><span class="n">logger</span><span class="o">.</span><span class="n">config_log</span><span class="p">(</span><span class="n">level</span><span class="o">=</span><span class="n">logging</span><span class="o">.</span><span class="n">DEBUG</span> <span class="k">if</span> <span class="n">verbose</span> <span class="k">else</span> <span class="n">logging</span><span class="o">.</span><span class="n">INFO</span><span class="p">)</span>
+    <span class="n">samples</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="n">bam_files</span> <span class="o">=</span> <span class="p">[]</span>
+
+    <span class="k">for</span> <span class="n">sample</span><span class="p">,</span> <span class="n">bam_file_name</span> <span class="ow">in</span> <span class="n">sample_alignment</span><span class="p">:</span>
+        <span class="n">samples</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">sample</span><span class="p">)</span>
+        <span class="n">bam_files</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">pysam</span><span class="o">.</span><span class="n">Samfile</span><span class="p">(</span><span class="n">bam_file_name</span><span class="p">,</span> <span class="s1">&#39;rb&#39;</span><span class="p">))</span>
+
+    <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">samples</span><span class="p">)</span> <span class="o">!=</span> <span class="nb">len</span><span class="p">(</span><span class="nb">set</span><span class="p">(</span><span class="n">samples</span><span class="p">)):</span>
+        <span class="n">utils</span><span class="o">.</span><span class="n">exit_script</span><span class="p">(</span><span class="s2">&quot;There are duplicate sample names&quot;</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+
+    <span class="n">annotations</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">gff</span><span class="o">.</span><span class="n">parse_gff</span><span class="p">(</span><span class="n">input_file</span><span class="p">))</span>
+
+    <span class="n">align</span><span class="o">.</span><span class="n">add_coverage_info</span><span class="p">(</span><span class="n">annotations</span><span class="p">,</span> <span class="n">bam_files</span><span class="p">,</span> <span class="n">samples</span><span class="p">)</span>
+
+    <span class="n">gff</span><span class="o">.</span><span class="n">write_gff</span><span class="p">(</span><span class="n">annotations</span><span class="p">,</span> <span class="n">output_file</span><span class="p">)</span>
+
+
+<span class="nd">@main</span><span class="o">.</span><span class="n">command</span><span class="p">(</span><span class="s1">&#39;exp_syn&#39;</span><span class="p">,</span> <span class="n">help</span><span class="o">=</span><span class="s2">&quot;&quot;&quot;Adds expected synonymous and non-synonymous</span>
+<span class="s2">              changes information&quot;&quot;&quot;</span><span class="p">)</span>
+<span class="nd">@click</span><span class="o">.</span><span class="n">option</span><span class="p">(</span><span class="s1">&#39;-v&#39;</span><span class="p">,</span> <span class="s1">&#39;--verbose&#39;</span><span class="p">,</span> <span class="n">is_flag</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="nd">@click</span><span class="o">.</span><span class="n">option</span><span class="p">(</span><span class="s1">&#39;-r&#39;</span><span class="p">,</span> <span class="s1">&#39;--reference&#39;</span><span class="p">,</span> <span class="n">required</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="nb">type</span><span class="o">=</span><span class="n">click</span><span class="o">.</span><span class="n">File</span><span class="p">(</span><span class="s1">&#39;rb&#39;</span><span class="p">,</span> <span class="n">lazy</span><span class="o">=</span><span class="kc">False</span><span class="p">),</span>
+              <span class="n">help</span><span class="o">=</span><span class="s1">&#39;reference sequence in fasta format&#39;</span><span class="p">)</span>
+<span class="nd">@click</span><span class="o">.</span><span class="n">option</span><span class="p">(</span><span class="s1">&#39;-s&#39;</span><span class="p">,</span> <span class="s1">&#39;--split&#39;</span><span class="p">,</span> <span class="n">default</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">is_flag</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+              <span class="n">help</span><span class="o">=</span><span class="s1">&#39;&#39;&#39;Split the sequence header of the reference at the first space, to emulate BLAST behaviour&#39;&#39;&#39;</span><span class="p">)</span>
+<span class="nd">@click</span><span class="o">.</span><span class="n">option</span><span class="p">(</span><span class="s1">&#39;--progress&#39;</span><span class="p">,</span> <span class="n">default</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">is_flag</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+              <span class="n">help</span><span class="o">=</span><span class="s2">&quot;Shows Progress Bar&quot;</span><span class="p">)</span>
+<span class="nd">@click</span><span class="o">.</span><span class="n">argument</span><span class="p">(</span><span class="s1">&#39;input-file&#39;</span><span class="p">,</span> <span class="nb">type</span><span class="o">=</span><span class="n">click</span><span class="o">.</span><span class="n">File</span><span class="p">(</span><span class="s1">&#39;rb&#39;</span><span class="p">,</span> <span class="n">lazy</span><span class="o">=</span><span class="kc">False</span><span class="p">),</span> <span class="n">default</span><span class="o">=</span><span class="s1">&#39;-&#39;</span><span class="p">)</span>
+<span class="nd">@click</span><span class="o">.</span><span class="n">argument</span><span class="p">(</span><span class="s1">&#39;output-file&#39;</span><span class="p">,</span> <span class="nb">type</span><span class="o">=</span><span class="n">click</span><span class="o">.</span><span class="n">File</span><span class="p">(</span><span class="s1">&#39;wb&#39;</span><span class="p">,</span> <span class="n">lazy</span><span class="o">=</span><span class="kc">False</span><span class="p">),</span> <span class="n">default</span><span class="o">=</span><span class="s1">&#39;-&#39;</span><span class="p">)</span>
+<span class="k">def</span> <span class="nf">exp_syn_command</span><span class="p">(</span><span class="n">verbose</span><span class="p">,</span> <span class="n">reference</span><span class="p">,</span> <span class="n">split</span><span class="p">,</span> <span class="n">progress</span><span class="p">,</span> <span class="n">input_file</span><span class="p">,</span>
+                    <span class="n">output_file</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    .. versionadded:: 0.1.16</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">mgkit</span><span class="o">.</span><span class="n">logger</span><span class="o">.</span><span class="n">config_log</span><span class="p">(</span><span class="n">level</span><span class="o">=</span><span class="n">logging</span><span class="o">.</span><span class="n">DEBUG</span> <span class="k">if</span> <span class="n">verbose</span> <span class="k">else</span> <span class="n">logging</span><span class="o">.</span><span class="n">INFO</span><span class="p">)</span>
+
+    <span class="n">LOG</span><span class="o">.</span><span class="n">info</span><span class="p">(</span>
+        <span class="s1">&#39;Writing to file (</span><span class="si">%s</span><span class="s1">)&#39;</span><span class="p">,</span>
+        <span class="nb">getattr</span><span class="p">(</span><span class="n">output_file</span><span class="p">,</span> <span class="s1">&#39;name&#39;</span><span class="p">,</span> <span class="nb">repr</span><span class="p">(</span><span class="n">output_file</span><span class="p">))</span>
+    <span class="p">)</span>
+
+    <span class="n">seqs</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">(</span>
+        <span class="p">(</span>
+            <span class="n">seq_id</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">&#39; &#39;</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span> <span class="k">if</span> <span class="n">split</span> <span class="k">else</span> <span class="n">seq_id</span><span class="p">,</span>
+            <span class="n">seq</span>
+        <span class="p">)</span>
+        <span class="k">for</span> <span class="n">seq_id</span><span class="p">,</span> <span class="n">seq</span> <span class="ow">in</span> <span class="n">fasta</span><span class="o">.</span><span class="n">load_fasta</span><span class="p">(</span><span class="n">reference</span><span class="p">)</span>
+    <span class="p">)</span>
+
+    <span class="n">iterator</span> <span class="o">=</span> <span class="n">gff</span><span class="o">.</span><span class="n">parse_gff</span><span class="p">(</span><span class="n">input_file</span><span class="p">)</span>
+
+    <span class="k">if</span> <span class="n">progress</span><span class="p">:</span>
+        <span class="n">iterator</span> <span class="o">=</span> <span class="n">tqdm</span><span class="p">(</span><span class="n">iterator</span><span class="p">)</span>
+
+    <span class="k">for</span> <span class="n">annotation</span> <span class="ow">in</span> <span class="n">iterator</span><span class="p">:</span>
+        <span class="n">curr_seq</span> <span class="o">=</span> <span class="n">seqs</span><span class="p">[</span><span class="n">annotation</span><span class="o">.</span><span class="n">seq_id</span><span class="p">]</span>
+        <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">curr_seq</span><span class="p">)</span> <span class="o">&lt;</span> <span class="n">annotation</span><span class="o">.</span><span class="n">end</span><span class="p">:</span>
+            <span class="n">LOG</span><span class="o">.</span><span class="n">error</span><span class="p">(</span><span class="s2">&quot;Annotation (uid </span><span class="si">%s</span><span class="s2">) is outside the the sequence (sequence length </span><span class="si">%d</span><span class="s2">): </span><span class="si">%s</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">annotation</span><span class="o">.</span><span class="n">uid</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">curr_seq</span><span class="p">),</span> <span class="n">annotation</span><span class="p">)</span>
+        <span class="n">annotation</span><span class="o">.</span><span class="n">add_exp_syn_count</span><span class="p">(</span><span class="n">curr_seq</span><span class="p">)</span>
+
+        <span class="n">annotation</span><span class="o">.</span><span class="n">to_file</span><span class="p">(</span><span class="n">output_file</span><span class="p">)</span>
+
+
+<span class="nd">@main</span><span class="o">.</span><span class="n">command</span><span class="p">(</span><span class="s1">&#39;unipfile&#39;</span><span class="p">,</span> <span class="n">help</span><span class="o">=</span><span class="s2">&quot;&quot;&quot;Adds expected synonymous and non-synonymous</span>
+<span class="s2">              changes information&quot;&quot;&quot;</span><span class="p">)</span>
+<span class="nd">@click</span><span class="o">.</span><span class="n">option</span><span class="p">(</span><span class="s1">&#39;-v&#39;</span><span class="p">,</span> <span class="s1">&#39;--verbose&#39;</span><span class="p">,</span> <span class="n">is_flag</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="nd">@click</span><span class="o">.</span><span class="n">option</span><span class="p">(</span><span class="s1">&#39;-i&#39;</span><span class="p">,</span> <span class="s1">&#39;--mapping-file&#39;</span><span class="p">,</span> <span class="n">default</span><span class="o">=</span><span class="s1">&#39;idmapping.dat.gz&#39;</span><span class="p">,</span> <span class="n">required</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+              <span class="n">help</span><span class="o">=</span><span class="s2">&quot;Uniprot mapping file&quot;</span><span class="p">)</span>
+<span class="nd">@click</span><span class="o">.</span><span class="n">option</span><span class="p">(</span><span class="s1">&#39;-f&#39;</span><span class="p">,</span> <span class="s1">&#39;--force-taxon-id&#39;</span><span class="p">,</span> <span class="n">default</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">is_flag</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+              <span class="n">help</span><span class="o">=</span><span class="s2">&quot;Overwrite taxon_id if already present&quot;</span><span class="p">)</span>
+<span class="nd">@click</span><span class="o">.</span><span class="n">option</span><span class="p">(</span><span class="s1">&#39;-m&#39;</span><span class="p">,</span> <span class="s1">&#39;--mapping&#39;</span><span class="p">,</span> <span class="n">multiple</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">default</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">required</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+              <span class="nb">type</span><span class="o">=</span><span class="n">click</span><span class="o">.</span><span class="n">Choice</span><span class="p">(</span><span class="nb">list</span><span class="p">(</span><span class="n">uniprot_io</span><span class="o">.</span><span class="n">MAPPINGS</span><span class="o">.</span><span class="n">values</span><span class="p">())),</span>
+              <span class="n">help</span><span class="o">=</span><span class="s2">&quot;Mappings to add&quot;</span><span class="p">)</span>
+<span class="nd">@click</span><span class="o">.</span><span class="n">option</span><span class="p">(</span><span class="s1">&#39;--progress&#39;</span><span class="p">,</span> <span class="n">default</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">is_flag</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+              <span class="n">help</span><span class="o">=</span><span class="s2">&quot;Shows Progress Bar&quot;</span><span class="p">)</span>
+<span class="nd">@click</span><span class="o">.</span><span class="n">argument</span><span class="p">(</span><span class="s1">&#39;input-file&#39;</span><span class="p">,</span> <span class="nb">type</span><span class="o">=</span><span class="n">click</span><span class="o">.</span><span class="n">File</span><span class="p">(</span><span class="s1">&#39;rb&#39;</span><span class="p">,</span> <span class="n">lazy</span><span class="o">=</span><span class="kc">False</span><span class="p">),</span> <span class="n">default</span><span class="o">=</span><span class="s1">&#39;-&#39;</span><span class="p">)</span>
+<span class="nd">@click</span><span class="o">.</span><span class="n">argument</span><span class="p">(</span><span class="s1">&#39;output-file&#39;</span><span class="p">,</span> <span class="nb">type</span><span class="o">=</span><span class="n">click</span><span class="o">.</span><span class="n">File</span><span class="p">(</span><span class="s1">&#39;wb&#39;</span><span class="p">,</span> <span class="n">lazy</span><span class="o">=</span><span class="kc">False</span><span class="p">),</span> <span class="n">default</span><span class="o">=</span><span class="s1">&#39;-&#39;</span><span class="p">)</span>
+<span class="k">def</span> <span class="nf">uniprot_offline_command</span><span class="p">(</span><span class="n">verbose</span><span class="p">,</span> <span class="n">mapping_file</span><span class="p">,</span> <span class="n">force_taxon_id</span><span class="p">,</span> <span class="n">mapping</span><span class="p">,</span>
+                            <span class="n">progress</span><span class="p">,</span> <span class="n">input_file</span><span class="p">,</span> <span class="n">output_file</span><span class="p">):</span>
+    <span class="n">mgkit</span><span class="o">.</span><span class="n">logger</span><span class="o">.</span><span class="n">config_log</span><span class="p">(</span><span class="n">level</span><span class="o">=</span><span class="n">logging</span><span class="o">.</span><span class="n">DEBUG</span> <span class="k">if</span> <span class="n">verbose</span> <span class="k">else</span> <span class="n">logging</span><span class="o">.</span><span class="n">INFO</span><span class="p">)</span>
+
+    <span class="n">LOG</span><span class="o">.</span><span class="n">info</span><span class="p">(</span>
+        <span class="s1">&#39;Writing to file (</span><span class="si">%s</span><span class="s1">)&#39;</span><span class="p">,</span>
+        <span class="nb">getattr</span><span class="p">(</span><span class="n">output_file</span><span class="p">,</span> <span class="s1">&#39;name&#39;</span><span class="p">,</span> <span class="nb">repr</span><span class="p">(</span><span class="n">output_file</span><span class="p">))</span>
+    <span class="p">)</span>
+
+    <span class="n">LOG</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;Mappings selected: </span><span class="si">%s</span><span class="s2">&quot;</span><span class="p">,</span> <span class="s1">&#39;, &#39;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">mapping</span><span class="p">))</span>
+
+    <span class="n">annotations</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="n">gene_ids</span> <span class="o">=</span> <span class="nb">set</span><span class="p">()</span>
+
+    <span class="k">for</span> <span class="n">annotation</span> <span class="ow">in</span> <span class="n">gff</span><span class="o">.</span><span class="n">parse_gff</span><span class="p">(</span><span class="n">input_file</span><span class="p">):</span>
+        <span class="n">annotations</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">annotation</span><span class="p">)</span>
+        <span class="n">gene_ids</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">annotation</span><span class="o">.</span><span class="n">gene_id</span><span class="p">)</span>
+
+    <span class="n">iterator</span> <span class="o">=</span> <span class="n">uniprot_io</span><span class="o">.</span><span class="n">uniprot_mappings_to_dict</span><span class="p">(</span>
+        <span class="n">mapping_file</span><span class="p">,</span>
+        <span class="n">gene_ids</span><span class="o">=</span><span class="nb">set</span><span class="p">(</span><span class="n">gene_ids</span><span class="p">),</span>
+        <span class="n">mappings</span><span class="o">=</span><span class="nb">set</span><span class="p">(</span><span class="n">mapping</span><span class="p">),</span>
+        <span class="n">num_lines</span><span class="o">=</span><span class="kc">None</span>
+    <span class="p">)</span>
+
+    <span class="k">if</span> <span class="n">progress</span><span class="p">:</span>
+        <span class="n">iterator</span> <span class="o">=</span> <span class="n">tqdm</span><span class="p">(</span><span class="n">iterator</span><span class="p">)</span>
+
+    <span class="n">file_mappings</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">(</span><span class="n">iterator</span><span class="p">)</span>
+
+    <span class="n">count</span> <span class="o">=</span> <span class="mi">0</span>
+
+    <span class="k">for</span> <span class="n">annotation</span> <span class="ow">in</span> <span class="n">annotations</span><span class="p">:</span>
+        <span class="k">try</span><span class="p">:</span>
+            <span class="n">mappings</span> <span class="o">=</span> <span class="n">file_mappings</span><span class="p">[</span><span class="n">annotation</span><span class="o">.</span><span class="n">gene_id</span><span class="p">]</span>
+            <span class="k">for</span> <span class="n">mapping_id</span><span class="p">,</span> <span class="n">mapping_values</span> <span class="ow">in</span> <span class="n">viewitems</span><span class="p">(</span><span class="n">mappings</span><span class="p">):</span>
+                <span class="k">if</span> <span class="n">mapping_id</span> <span class="o">==</span> <span class="n">uniprot_io</span><span class="o">.</span><span class="n">MAPPINGS</span><span class="p">[</span><span class="s1">&#39;taxonomy&#39;</span><span class="p">]:</span>
+                    <span class="k">if</span> <span class="p">(</span><span class="n">annotation</span><span class="o">.</span><span class="n">taxon_id</span> <span class="ow">and</span> <span class="n">force_taxon_id</span><span class="p">)</span> <span class="ow">or</span> \
+                       <span class="p">(</span><span class="n">annotation</span><span class="o">.</span><span class="n">taxon_id</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">):</span>
+                        <span class="n">annotation</span><span class="o">.</span><span class="n">taxon_id</span> <span class="o">=</span> <span class="n">mapping_values</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+                        <span class="n">annotation</span><span class="o">.</span><span class="n">taxon_db</span> <span class="o">=</span> <span class="s1">&#39;UNIPROT&#39;</span>
+                <span class="k">else</span><span class="p">:</span>
+                    <span class="n">annotation</span><span class="o">.</span><span class="n">set_mapping</span><span class="p">(</span><span class="n">mapping_id</span><span class="p">,</span> <span class="n">mapping_values</span><span class="p">)</span>
+            <span class="n">count</span> <span class="o">+=</span> <span class="mi">1</span>
+        <span class="k">except</span> <span class="ne">KeyError</span><span class="p">:</span>
+            <span class="k">pass</span>
+
+        <span class="n">annotation</span><span class="o">.</span><span class="n">to_file</span><span class="p">(</span><span class="n">output_file</span><span class="p">)</span>
+
+    <span class="n">LOG</span><span class="o">.</span><span class="n">info</span><span class="p">(</span>
+        <span class="s2">&quot;Number of annotation changed: </span><span class="si">%d</span><span class="s2">/</span><span class="si">%d</span><span class="s2"> (</span><span class="si">%.2f%%</span><span class="s2">)&quot;</span><span class="p">,</span>
+        <span class="n">count</span><span class="p">,</span>
+        <span class="nb">len</span><span class="p">(</span><span class="n">annotations</span><span class="p">),</span>
+        <span class="n">count</span> <span class="o">/</span> <span class="nb">len</span><span class="p">(</span><span class="n">annotations</span><span class="p">)</span> <span class="o">*</span> <span class="mi">100</span>
+    <span class="p">)</span>
+
+
+<div class="viewcode-block" id="load_htseq_count_files"><a class="viewcode-back" href="../../../api/mgkit.workflow.add_gff_info.html#mgkit.workflow.add_gff_info.load_htseq_count_files">[docs]</a><span class="k">def</span> <span class="nf">load_htseq_count_files</span><span class="p">(</span><span class="n">count_files</span><span class="p">,</span> <span class="n">samples</span><span class="p">):</span>
+    <span class="n">counts</span> <span class="o">=</span> <span class="p">{}</span>
+
+    <span class="k">for</span> <span class="n">sample</span><span class="p">,</span> <span class="n">count_file</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="n">samples</span><span class="p">,</span> <span class="n">count_files</span><span class="p">):</span>
+        <span class="k">for</span> <span class="n">uid</span><span class="p">,</span> <span class="n">count</span> <span class="ow">in</span> <span class="n">mgkit</span><span class="o">.</span><span class="n">counts</span><span class="o">.</span><span class="n">func</span><span class="o">.</span><span class="n">load_htseq_counts</span><span class="p">(</span><span class="n">count_file</span><span class="p">):</span>
+            <span class="k">if</span> <span class="n">uid</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">counts</span><span class="p">:</span>
+                <span class="n">counts</span><span class="p">[</span><span class="n">uid</span><span class="p">]</span> <span class="o">=</span> <span class="p">{}</span>
+            <span class="n">counts</span><span class="p">[</span><span class="n">uid</span><span class="p">][</span><span class="n">sample</span><span class="p">]</span> <span class="o">=</span> <span class="n">count</span>
+
+    <span class="k">return</span> <span class="n">counts</span></div>
+
+
+<div class="viewcode-block" id="load_featurecounts_files"><a class="viewcode-back" href="../../../api/mgkit.workflow.add_gff_info.html#mgkit.workflow.add_gff_info.load_featurecounts_files">[docs]</a><span class="k">def</span> <span class="nf">load_featurecounts_files</span><span class="p">(</span><span class="n">count_files</span><span class="p">,</span> <span class="n">samples</span><span class="p">):</span>
+    <span class="n">counts</span> <span class="o">=</span> <span class="p">{}</span>
+    <span class="k">for</span> <span class="n">sample</span><span class="p">,</span> <span class="n">count_file</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="n">samples</span><span class="p">,</span> <span class="n">count_files</span><span class="p">):</span>
+        <span class="k">for</span> <span class="n">line</span> <span class="ow">in</span> <span class="n">open_file</span><span class="p">(</span><span class="n">count_file</span><span class="p">,</span> <span class="s1">&#39;rb&#39;</span><span class="p">):</span>
+            <span class="n">line</span> <span class="o">=</span> <span class="n">line</span><span class="o">.</span><span class="n">decode</span><span class="p">(</span><span class="s1">&#39;ascii&#39;</span><span class="p">)</span>
+            <span class="k">if</span> <span class="n">line</span><span class="o">.</span><span class="n">startswith</span><span class="p">(</span><span class="s1">&#39;#&#39;</span><span class="p">)</span> <span class="ow">or</span> <span class="n">line</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span><span class="o">.</span><span class="n">startswith</span><span class="p">(</span><span class="s1">&#39;geneid&#39;</span><span class="p">):</span>
+                <span class="k">continue</span>
+            <span class="n">line</span> <span class="o">=</span> <span class="n">line</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">&#39;</span><span class="se">\t</span><span class="s1">&#39;</span><span class="p">)</span>
+            <span class="n">uid</span> <span class="o">=</span> <span class="n">line</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+            <span class="n">counts</span><span class="p">[</span><span class="n">uid</span><span class="p">]</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">(</span><span class="nb">zip</span><span class="p">(</span><span class="n">samples</span><span class="p">,</span> <span class="n">line</span><span class="p">[</span><span class="mi">6</span><span class="p">:]))</span>
+    <span class="k">return</span> <span class="n">counts</span></div>
+
+
+<span class="nd">@main</span><span class="o">.</span><span class="n">command</span><span class="p">(</span><span class="s1">&#39;counts&#39;</span><span class="p">,</span> <span class="n">help</span><span class="o">=</span><span class="s2">&quot;&quot;&quot;Adds counts data to the GFF file&quot;&quot;&quot;</span><span class="p">)</span>
+<span class="nd">@click</span><span class="o">.</span><span class="n">option</span><span class="p">(</span><span class="s1">&#39;-v&#39;</span><span class="p">,</span> <span class="s1">&#39;--verbose&#39;</span><span class="p">,</span> <span class="n">is_flag</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="nd">@click</span><span class="o">.</span><span class="n">option</span><span class="p">(</span><span class="s1">&#39;-s&#39;</span><span class="p">,</span> <span class="s1">&#39;--samples&#39;</span><span class="p">,</span> <span class="n">required</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">multiple</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+              <span class="n">help</span><span class="o">=</span><span class="s2">&quot;&quot;&quot;Sample names, in the same order as the count files&quot;&quot;&quot;</span><span class="p">)</span>
+<span class="nd">@click</span><span class="o">.</span><span class="n">option</span><span class="p">(</span><span class="s1">&#39;-c&#39;</span><span class="p">,</span> <span class="s1">&#39;--count-files&#39;</span><span class="p">,</span> <span class="n">multiple</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">required</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">help</span><span class="o">=</span><span class="s2">&quot;Count file(s)&quot;</span><span class="p">)</span>
+<span class="nd">@click</span><span class="o">.</span><span class="n">option</span><span class="p">(</span><span class="s1">&#39;-f&#39;</span><span class="p">,</span> <span class="s1">&#39;--fpkms&#39;</span><span class="p">,</span> <span class="n">default</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">is_flag</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+              <span class="n">help</span><span class="o">=</span><span class="s2">&quot;If the counts are FPKMS&quot;</span><span class="p">)</span>
+<span class="nd">@click</span><span class="o">.</span><span class="n">option</span><span class="p">(</span><span class="s1">&#39;-e&#39;</span><span class="p">,</span> <span class="s1">&#39;--featureCounts&#39;</span><span class="p">,</span> <span class="n">default</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">is_flag</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+              <span class="n">help</span><span class="o">=</span><span class="s2">&quot;&quot;&quot;If the counts files are from featureCounts&quot;&quot;&quot;</span><span class="p">)</span>
+<span class="nd">@click</span><span class="o">.</span><span class="n">option</span><span class="p">(</span><span class="s1">&#39;--progress&#39;</span><span class="p">,</span> <span class="n">default</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">is_flag</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+              <span class="n">help</span><span class="o">=</span><span class="s2">&quot;Shows Progress Bar&quot;</span><span class="p">)</span>
+<span class="nd">@click</span><span class="o">.</span><span class="n">argument</span><span class="p">(</span><span class="s1">&#39;input-file&#39;</span><span class="p">,</span> <span class="nb">type</span><span class="o">=</span><span class="n">click</span><span class="o">.</span><span class="n">File</span><span class="p">(</span><span class="s1">&#39;rb&#39;</span><span class="p">,</span> <span class="n">lazy</span><span class="o">=</span><span class="kc">False</span><span class="p">),</span> <span class="n">default</span><span class="o">=</span><span class="s1">&#39;-&#39;</span><span class="p">)</span>
+<span class="nd">@click</span><span class="o">.</span><span class="n">argument</span><span class="p">(</span><span class="s1">&#39;output-file&#39;</span><span class="p">,</span> <span class="nb">type</span><span class="o">=</span><span class="n">click</span><span class="o">.</span><span class="n">File</span><span class="p">(</span><span class="s1">&#39;wb&#39;</span><span class="p">,</span> <span class="n">lazy</span><span class="o">=</span><span class="kc">False</span><span class="p">),</span> <span class="n">default</span><span class="o">=</span><span class="s1">&#39;-&#39;</span><span class="p">)</span>
+<span class="k">def</span> <span class="nf">counts_command</span><span class="p">(</span><span class="n">verbose</span><span class="p">,</span> <span class="n">samples</span><span class="p">,</span> <span class="n">count_files</span><span class="p">,</span> <span class="n">fpkms</span><span class="p">,</span> <span class="n">featurecounts</span><span class="p">,</span>
+                   <span class="n">progress</span><span class="p">,</span> <span class="n">input_file</span><span class="p">,</span> <span class="n">output_file</span><span class="p">):</span>
+    <span class="n">mgkit</span><span class="o">.</span><span class="n">logger</span><span class="o">.</span><span class="n">config_log</span><span class="p">(</span><span class="n">level</span><span class="o">=</span><span class="n">logging</span><span class="o">.</span><span class="n">DEBUG</span> <span class="k">if</span> <span class="n">verbose</span> <span class="k">else</span> <span class="n">logging</span><span class="o">.</span><span class="n">INFO</span><span class="p">)</span>
+
+    <span class="n">LOG</span><span class="o">.</span><span class="n">info</span><span class="p">(</span>
+        <span class="s1">&#39;Writing to file (</span><span class="si">%s</span><span class="s1">)&#39;</span><span class="p">,</span>
+        <span class="nb">getattr</span><span class="p">(</span><span class="n">output_file</span><span class="p">,</span> <span class="s1">&#39;name&#39;</span><span class="p">,</span> <span class="nb">repr</span><span class="p">(</span><span class="n">output_file</span><span class="p">))</span>
+    <span class="p">)</span>
+
+    <span class="n">LOG</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;Samples passed: </span><span class="si">%s</span><span class="s2">&quot;</span><span class="p">,</span> <span class="s1">&#39;,&#39;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">samples</span><span class="p">))</span>
+
+    <span class="k">if</span> <span class="n">featurecounts</span><span class="p">:</span>
+        <span class="n">counts</span> <span class="o">=</span> <span class="n">load_featurecounts_files</span><span class="p">(</span><span class="n">count_files</span><span class="p">,</span> <span class="n">samples</span><span class="p">)</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">counts</span> <span class="o">=</span> <span class="n">load_htseq_count_files</span><span class="p">(</span><span class="n">count_files</span><span class="p">,</span> <span class="n">samples</span><span class="p">)</span>
+
+    <span class="n">key</span> <span class="o">=</span> <span class="s2">&quot;fpkms_</span><span class="si">{}</span><span class="s2">&quot;</span> <span class="k">if</span> <span class="n">fpkms</span> <span class="k">else</span> <span class="s2">&quot;counts_</span><span class="si">{}</span><span class="s2">&quot;</span>
+
+    <span class="n">iterator</span> <span class="o">=</span> <span class="n">gff</span><span class="o">.</span><span class="n">parse_gff</span><span class="p">(</span><span class="n">input_file</span><span class="p">)</span>
+
+    <span class="k">if</span> <span class="n">progress</span><span class="p">:</span>
+        <span class="n">iterator</span> <span class="o">=</span> <span class="n">tqdm</span><span class="p">(</span><span class="n">iterator</span><span class="p">)</span>
+
+    <span class="k">for</span> <span class="n">annotation</span> <span class="ow">in</span> <span class="n">iterator</span><span class="p">:</span>
+        <span class="k">try</span><span class="p">:</span>
+            <span class="n">ann_counts</span> <span class="o">=</span> <span class="n">counts</span><span class="p">[</span><span class="n">annotation</span><span class="o">.</span><span class="n">uid</span><span class="p">]</span>
+        <span class="k">except</span> <span class="ne">KeyError</span><span class="p">:</span>
+            <span class="n">LOG</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="s2">&quot;No counts found for annotation </span><span class="si">%s</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">annotation</span><span class="o">.</span><span class="n">uid</span><span class="p">)</span>
+            <span class="n">annotation</span><span class="o">.</span><span class="n">to_file</span><span class="p">(</span><span class="n">output_file</span><span class="p">)</span>
+            <span class="k">continue</span>
+
+        <span class="k">for</span> <span class="n">sample</span> <span class="ow">in</span> <span class="n">samples</span><span class="p">:</span>
+            <span class="n">annotation</span><span class="o">.</span><span class="n">attr</span><span class="p">[</span><span class="n">key</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">sample</span><span class="p">)]</span> <span class="o">=</span> <span class="n">ann_counts</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">sample</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
+
+        <span class="n">annotation</span><span class="o">.</span><span class="n">to_file</span><span class="p">(</span><span class="n">output_file</span><span class="p">)</span>
+
+
+<div class="viewcode-block" id="parse_hdf5_arg"><a class="viewcode-back" href="../../../api/mgkit.workflow.add_gff_info.html#mgkit.workflow.add_gff_info.parse_hdf5_arg">[docs]</a><span class="k">def</span> <span class="nf">parse_hdf5_arg</span><span class="p">(</span><span class="n">ctx</span><span class="p">,</span> <span class="n">param</span><span class="p">,</span> <span class="n">values</span><span class="p">):</span>
+    <span class="k">if</span> <span class="n">values</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">values</span>
+    <span class="k">try</span><span class="p">:</span>
+        <span class="n">file_name</span><span class="p">,</span> <span class="n">table</span> <span class="o">=</span> <span class="n">values</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">&#39;:&#39;</span><span class="p">)</span>
+    <span class="k">except</span> <span class="ne">ValueError</span><span class="p">:</span>
+        <span class="k">raise</span> <span class="n">click</span><span class="o">.</span><span class="n">BadParameter</span><span class="p">(</span><span class="s2">&quot;&quot;&quot;The HDF5 file name must be followed by &#39;:&#39;</span>
+<span class="s2">                                 and the name of the table&quot;&quot;&quot;</span><span class="p">)</span>
+
+    <span class="k">return</span> <span class="p">(</span><span class="n">file_name</span><span class="p">,</span> <span class="n">table</span><span class="p">)</span></div>
+
+
+<span class="nd">@main</span><span class="o">.</span><span class="n">command</span><span class="p">(</span><span class="s1">&#39;addtaxa&#39;</span><span class="p">,</span> <span class="n">help</span><span class="o">=</span><span class="s1">&#39;&#39;&#39;Adds taxonomy information from a GI-Taxa,</span>
+<span class="s1">              gene_id/taxon_id table or a dictionary serialised as a</span>
+<span class="s1">              pickle/msgpack/json file, or a table in a HDF5 file&#39;&#39;&#39;</span><span class="p">)</span>
+<span class="nd">@click</span><span class="o">.</span><span class="n">option</span><span class="p">(</span><span class="s1">&#39;-v&#39;</span><span class="p">,</span> <span class="s1">&#39;--verbose&#39;</span><span class="p">,</span> <span class="n">is_flag</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="nd">@click</span><span class="o">.</span><span class="n">option</span><span class="p">(</span><span class="s1">&#39;-t&#39;</span><span class="p">,</span> <span class="s1">&#39;--gene-taxon-table&#39;</span><span class="p">,</span> <span class="n">default</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+              <span class="n">help</span><span class="o">=</span><span class="s2">&quot;&quot;&quot;GIDs taxonomy table (e.g. gi_taxid_nucl.dmp.gz) or a similar file where GENE/TAXON are tab separated and one per line&quot;&quot;&quot;</span><span class="p">)</span>
+<span class="nd">@click</span><span class="o">.</span><span class="n">option</span><span class="p">(</span><span class="s1">&#39;-a&#39;</span><span class="p">,</span> <span class="s1">&#39;--gene-attr&#39;</span><span class="p">,</span> <span class="n">default</span><span class="o">=</span><span class="s1">&#39;gene_id&#39;</span><span class="p">,</span>
+              <span class="n">help</span><span class="o">=</span><span class="s2">&quot;&quot;&quot;In which attribute the GENEID in the table is stored (defaults to *gene_id*)&quot;&quot;&quot;</span><span class="p">)</span>
+<span class="nd">@click</span><span class="o">.</span><span class="n">option</span><span class="p">(</span><span class="s1">&#39;-f&#39;</span><span class="p">,</span> <span class="s1">&#39;--hdf-table&#39;</span><span class="p">,</span> <span class="n">default</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">callback</span><span class="o">=</span><span class="n">parse_hdf5_arg</span><span class="p">,</span>
+              <span class="n">help</span><span class="o">=</span><span class="s2">&quot;&quot;&quot;HDF5 file and table name to use for taxon_id lookups. The format to pass is the file name, colon and the table file hf5:taxa-table. The index in the table is the accession_id, while the column `taxon_id` stores the taxon_id as int&quot;&quot;&quot;</span><span class="p">)</span>
+<span class="nd">@click</span><span class="o">.</span><span class="n">option</span><span class="p">(</span><span class="s1">&#39;-x&#39;</span><span class="p">,</span> <span class="s1">&#39;--taxonomy&#39;</span><span class="p">,</span> <span class="n">default</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">help</span><span class="o">=</span><span class="s2">&quot;&quot;&quot;Taxonomy file - If given, both *taxon_name* and *lineage* attributes will be set&quot;&quot;&quot;</span><span class="p">)</span>
+<span class="nd">@click</span><span class="o">.</span><span class="n">option</span><span class="p">(</span><span class="s1">&#39;-d&#39;</span><span class="p">,</span> <span class="s1">&#39;--dictionary&#39;</span><span class="p">,</span> <span class="n">default</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">help</span><span class="o">=</span><span class="s2">&quot;&quot;&quot;A serialised dictionary, where the key is the GENEID and the value is TAXONID. It can be in json or msgpack format (can be a compressed file) *Note*: the dictionary values takes precedence over the table files&quot;&quot;&quot;</span><span class="p">)</span>
+<span class="nd">@click</span><span class="o">.</span><span class="n">option</span><span class="p">(</span><span class="s1">&#39;-e&#39;</span><span class="p">,</span> <span class="s1">&#39;--skip-no-taxon&#39;</span><span class="p">,</span> <span class="n">default</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">is_flag</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+              <span class="n">help</span><span class="o">=</span><span class="s2">&quot;&quot;&quot;If used, annotations with no taxon_id won&#39;t be outputted&quot;&quot;&quot;</span><span class="p">)</span>
+<span class="nd">@click</span><span class="o">.</span><span class="n">option</span><span class="p">(</span><span class="s1">&#39;-db&#39;</span><span class="p">,</span> <span class="s1">&#39;--taxon-db&#39;</span><span class="p">,</span> <span class="n">default</span><span class="o">=</span><span class="s1">&#39;NONE&#39;</span><span class="p">,</span> <span class="n">help</span><span class="o">=</span><span class="s2">&quot;&quot;&quot;DB used to add the taxonomic information&quot;&quot;&quot;</span><span class="p">)</span>
+<span class="nd">@click</span><span class="o">.</span><span class="n">option</span><span class="p">(</span><span class="s1">&#39;-c&#39;</span><span class="p">,</span> <span class="s1">&#39;--cache-table&#39;</span><span class="p">,</span> <span class="n">default</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">is_flag</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+              <span class="n">help</span><span class="o">=</span><span class="s2">&quot;&quot;&quot;If used, annotations are not preloaded, but the taxa table is cached, instead&quot;&quot;&quot;</span><span class="p">)</span>
+<span class="nd">@click</span><span class="o">.</span><span class="n">option</span><span class="p">(</span><span class="s1">&#39;--progress&#39;</span><span class="p">,</span> <span class="n">default</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">is_flag</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+              <span class="n">help</span><span class="o">=</span><span class="s2">&quot;Shows Progress Bar&quot;</span><span class="p">)</span>
+<span class="nd">@click</span><span class="o">.</span><span class="n">argument</span><span class="p">(</span><span class="s1">&#39;input-file&#39;</span><span class="p">,</span> <span class="nb">type</span><span class="o">=</span><span class="n">click</span><span class="o">.</span><span class="n">File</span><span class="p">(</span><span class="s1">&#39;rb&#39;</span><span class="p">,</span> <span class="n">lazy</span><span class="o">=</span><span class="kc">False</span><span class="p">),</span> <span class="n">default</span><span class="o">=</span><span class="s1">&#39;-&#39;</span><span class="p">)</span>
+<span class="nd">@click</span><span class="o">.</span><span class="n">argument</span><span class="p">(</span><span class="s1">&#39;output-file&#39;</span><span class="p">,</span> <span class="nb">type</span><span class="o">=</span><span class="n">click</span><span class="o">.</span><span class="n">File</span><span class="p">(</span><span class="s1">&#39;wb&#39;</span><span class="p">,</span> <span class="n">lazy</span><span class="o">=</span><span class="kc">False</span><span class="p">),</span> <span class="n">default</span><span class="o">=</span><span class="s1">&#39;-&#39;</span><span class="p">)</span>
+<span class="k">def</span> <span class="nf">addtaxa_command</span><span class="p">(</span><span class="n">verbose</span><span class="p">,</span> <span class="n">gene_taxon_table</span><span class="p">,</span> <span class="n">hdf_table</span><span class="p">,</span> <span class="n">gene_attr</span><span class="p">,</span> <span class="n">taxonomy</span><span class="p">,</span>
+                    <span class="n">dictionary</span><span class="p">,</span> <span class="n">skip_no_taxon</span><span class="p">,</span> <span class="n">taxon_db</span><span class="p">,</span> <span class="n">cache_table</span><span class="p">,</span>
+                    <span class="n">progress</span><span class="p">,</span> <span class="n">input_file</span><span class="p">,</span> <span class="n">output_file</span><span class="p">):</span>
+    <span class="n">mgkit</span><span class="o">.</span><span class="n">logger</span><span class="o">.</span><span class="n">config_log</span><span class="p">(</span><span class="n">level</span><span class="o">=</span><span class="n">logging</span><span class="o">.</span><span class="n">DEBUG</span> <span class="k">if</span> <span class="n">verbose</span> <span class="k">else</span> <span class="n">logging</span><span class="o">.</span><span class="n">INFO</span><span class="p">)</span>
+
+    <span class="n">LOG</span><span class="o">.</span><span class="n">info</span><span class="p">(</span>
+        <span class="s1">&#39;Writing to file (</span><span class="si">%s</span><span class="s1">)&#39;</span><span class="p">,</span>
+        <span class="nb">getattr</span><span class="p">(</span><span class="n">output_file</span><span class="p">,</span> <span class="s1">&#39;name&#39;</span><span class="p">,</span> <span class="nb">repr</span><span class="p">(</span><span class="n">output_file</span><span class="p">))</span>
+    <span class="p">)</span>
+
+    <span class="k">if</span> <span class="p">(</span><span class="n">gene_taxon_table</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">)</span> <span class="ow">and</span> <span class="p">(</span><span class="ow">not</span> <span class="n">cache_table</span><span class="p">):</span>
+        <span class="n">annotations</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="n">gene_ids</span> <span class="o">=</span> <span class="nb">set</span><span class="p">()</span>
+
+        <span class="c1"># the annotations are preloaded if a table is supplied, such as</span>
+        <span class="c1"># the one from NCBI, so only the gene_ids necessary are taken from that</span>
+        <span class="c1"># table to save memory</span>
+
+        <span class="k">for</span> <span class="n">annotation</span> <span class="ow">in</span> <span class="n">gff</span><span class="o">.</span><span class="n">parse_gff</span><span class="p">(</span><span class="n">input_file</span><span class="p">):</span>
+            <span class="n">annotations</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">annotation</span><span class="p">)</span>
+            <span class="n">gene_ids</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">annotation</span><span class="o">.</span><span class="n">get_attr</span><span class="p">(</span><span class="n">gene_attr</span><span class="p">,</span> <span class="nb">str</span><span class="p">))</span>
+        <span class="n">gene_ids</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">(</span>
+            <span class="n">blast</span><span class="o">.</span><span class="n">parse_accession_taxa_table</span><span class="p">(</span>
+                <span class="n">gene_taxon_table</span><span class="p">,</span>
+                <span class="n">acc_ids</span><span class="o">=</span><span class="n">gene_ids</span><span class="p">,</span>
+                <span class="n">key</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span>
+                <span class="n">value</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span>
+                <span class="n">no_zero</span><span class="o">=</span><span class="kc">True</span>
+            <span class="p">)</span>
+        <span class="p">)</span>
+    <span class="k">elif</span> <span class="p">(</span><span class="n">gene_taxon_table</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">)</span> <span class="ow">and</span> <span class="n">cache_table</span><span class="p">:</span>
+        <span class="n">annotations</span> <span class="o">=</span> <span class="n">gff</span><span class="o">.</span><span class="n">parse_gff</span><span class="p">(</span><span class="n">input_file</span><span class="p">)</span>
+        <span class="n">gene_ids</span> <span class="o">=</span> <span class="n">cache_dict_file</span><span class="p">(</span>
+            <span class="n">blast</span><span class="o">.</span><span class="n">parse_accession_taxa_table</span><span class="p">(</span>
+                <span class="n">gene_taxon_table</span><span class="p">,</span>
+                <span class="n">key</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span>
+                <span class="n">value</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span>
+                <span class="n">no_zero</span><span class="o">=</span><span class="kc">True</span>
+            <span class="p">)</span>
+        <span class="p">)</span>
+    <span class="k">elif</span> <span class="n">hdf_table</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="k">try</span><span class="p">:</span>
+            <span class="n">gene_ids</span> <span class="o">=</span> <span class="n">HDFDict</span><span class="p">(</span><span class="n">hdf_table</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">hdf_table</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>
+        <span class="k">except</span> <span class="ne">ValueError</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+            <span class="n">utils</span><span class="o">.</span><span class="n">exit_script</span><span class="p">(</span>
+                <span class="nb">str</span><span class="p">(</span><span class="n">e</span><span class="p">),</span>
+                <span class="mi">3</span>
+            <span class="p">)</span>
+        <span class="n">annotations</span> <span class="o">=</span> <span class="n">gff</span><span class="o">.</span><span class="n">parse_gff</span><span class="p">(</span><span class="n">input_file</span><span class="p">)</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="c1"># in case a dictionary is supplied, it&#39;s expected to fit in memory,</span>
+        <span class="c1"># meaning that the GFF doesn&#39;t have to be preloaded</span>
+        <span class="n">annotations</span> <span class="o">=</span> <span class="n">gff</span><span class="o">.</span><span class="n">parse_gff</span><span class="p">(</span><span class="n">input_file</span><span class="p">)</span>
+        <span class="n">gene_ids</span> <span class="o">=</span> <span class="p">{}</span>
+
+    <span class="k">if</span> <span class="p">(</span><span class="n">dictionary</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">)</span> <span class="ow">and</span> <span class="p">(</span><span class="n">hdf_table</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">):</span>
+        <span class="n">dict_file</span> <span class="o">=</span> <span class="n">open_file</span><span class="p">(</span><span class="n">dictionary</span><span class="p">,</span> <span class="s1">&#39;r&#39;</span><span class="p">)</span>
+        <span class="k">if</span> <span class="s1">&#39;.json&#39;</span> <span class="ow">in</span> <span class="n">dictionary</span><span class="p">:</span>
+            <span class="n">gene_ids</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="n">json</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="n">dict_file</span><span class="p">))</span>
+        <span class="k">elif</span> <span class="s1">&#39;.msgpack&#39;</span><span class="p">:</span>
+            <span class="n">gene_ids</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="n">msgpack</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="n">dict_file</span><span class="p">))</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">gene_ids</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="n">pickle</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="n">dict_file</span><span class="p">))</span>
+
+        <span class="c1"># Ensures all taxon_ids are *int*</span>
+        <span class="n">gene_ids</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">(</span>
+            <span class="p">(</span><span class="n">key</span><span class="p">,</span> <span class="nb">int</span><span class="p">(</span><span class="n">value</span><span class="p">))</span>
+            <span class="k">for</span> <span class="n">key</span><span class="p">,</span> <span class="n">value</span> <span class="ow">in</span> <span class="n">viewitems</span><span class="p">(</span><span class="n">gene_ids</span><span class="p">)</span>
+        <span class="p">)</span>
+
+    <span class="k">if</span> <span class="n">taxonomy</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="n">taxonomy</span> <span class="o">=</span> <span class="n">taxon</span><span class="o">.</span><span class="n">Taxonomy</span><span class="p">(</span><span class="n">taxonomy</span><span class="p">)</span>
+
+    <span class="k">if</span> <span class="n">progress</span><span class="p">:</span>
+        <span class="n">annotations</span> <span class="o">=</span> <span class="n">tqdm</span><span class="p">(</span><span class="n">annotations</span><span class="p">)</span>
+
+    <span class="n">count</span> <span class="o">=</span> <span class="mi">0</span>
+    <span class="k">for</span> <span class="n">lineno</span><span class="p">,</span> <span class="n">annotation</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">annotations</span><span class="p">):</span>
+        <span class="n">gene_id</span> <span class="o">=</span> <span class="n">annotation</span><span class="o">.</span><span class="n">get_attr</span><span class="p">(</span><span class="n">gene_attr</span><span class="p">,</span> <span class="nb">str</span><span class="p">)</span>
+        <span class="k">try</span><span class="p">:</span>
+            <span class="n">taxon_id</span> <span class="o">=</span> <span class="n">gene_ids</span><span class="p">[</span><span class="n">gene_id</span><span class="p">]</span>
+            <span class="n">annotation</span><span class="o">.</span><span class="n">taxon_id</span> <span class="o">=</span> <span class="n">taxon_id</span>
+            <span class="n">annotation</span><span class="o">.</span><span class="n">set_attr</span><span class="p">(</span><span class="s1">&#39;taxon_db&#39;</span><span class="p">,</span> <span class="n">taxon_db</span><span class="p">)</span>
+            <span class="n">count</span> <span class="o">+=</span> <span class="mi">1</span>
+        <span class="k">except</span> <span class="ne">KeyError</span><span class="p">:</span>
+            <span class="n">LOG</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span>
+                <span class="s2">&quot;No Taxon ID for GENE - </span><span class="si">%s</span><span class="s2">&quot;</span><span class="p">,</span>
+                <span class="n">gene_id</span>
+            <span class="p">)</span>
+            <span class="n">taxon_id</span> <span class="o">=</span> <span class="kc">None</span>
+            <span class="k">if</span> <span class="n">skip_no_taxon</span><span class="p">:</span>
+                <span class="k">continue</span>
+
+        <span class="k">if</span> <span class="p">(</span><span class="n">taxonomy</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">)</span> <span class="ow">and</span> <span class="p">(</span><span class="n">taxon_id</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">):</span>
+            <span class="k">try</span><span class="p">:</span>
+                <span class="n">annotation</span><span class="o">.</span><span class="n">attr</span><span class="p">[</span><span class="s1">&#39;taxon_name&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">taxonomy</span><span class="p">[</span><span class="n">taxon_id</span><span class="p">]</span><span class="o">.</span><span class="n">s_name</span>
+                <span class="n">annotation</span><span class="o">.</span><span class="n">attr</span><span class="p">[</span><span class="s1">&#39;lineage&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="s1">&#39;,&#39;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span>
+                    <span class="n">taxon_name</span>
+                    <span class="k">for</span> <span class="n">taxon_name</span> <span class="ow">in</span> <span class="n">taxon</span><span class="o">.</span><span class="n">get_lineage</span><span class="p">(</span><span class="n">taxonomy</span><span class="p">,</span> <span class="n">taxon_id</span><span class="p">,</span> <span class="n">names</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">only_ranked</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+                    <span class="k">if</span> <span class="n">taxon_name</span>
+                <span class="p">)</span>
+            <span class="k">except</span> <span class="ne">KeyError</span><span class="p">:</span>
+                <span class="n">LOG</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="s2">&quot;Taxon ID </span><span class="si">%d</span><span class="s2"> not found in the Taxonomy&quot;</span><span class="p">,</span> <span class="n">taxon_id</span><span class="p">)</span>
+
+        <span class="n">annotation</span><span class="o">.</span><span class="n">to_file</span><span class="p">(</span><span class="n">output_file</span><span class="p">)</span>
+
+    <span class="n">LOG</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;Percentage of annotations changed </span><span class="si">%.2f%%</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">count</span> <span class="o">/</span> <span class="p">(</span><span class="n">count</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span> <span class="o">*</span> <span class="mi">100</span><span class="p">)</span>
+
+
+<span class="nd">@main</span><span class="o">.</span><span class="n">command</span><span class="p">(</span><span class="s1">&#39;pfam&#39;</span><span class="p">,</span> <span class="n">help</span><span class="o">=</span><span class="s2">&quot;&quot;&quot;Adds information from Pfam&quot;&quot;&quot;</span><span class="p">)</span>
+<span class="nd">@click</span><span class="o">.</span><span class="n">option</span><span class="p">(</span><span class="s1">&#39;-v&#39;</span><span class="p">,</span> <span class="s1">&#39;--verbose&#39;</span><span class="p">,</span> <span class="n">is_flag</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="nd">@click</span><span class="o">.</span><span class="n">option</span><span class="p">(</span><span class="s1">&#39;-i&#39;</span><span class="p">,</span> <span class="s1">&#39;--id-attr&#39;</span><span class="p">,</span> <span class="n">default</span><span class="o">=</span><span class="s1">&#39;gene_id&#39;</span><span class="p">,</span> <span class="n">help</span><span class="o">=</span><span class="s2">&quot;&quot;&quot;In which attribute the Pfam ID/ACCESSION is stored (defaults to *gene_id*)&quot;&quot;&quot;</span><span class="p">)</span>
+<span class="nd">@click</span><span class="o">.</span><span class="n">option</span><span class="p">(</span><span class="s1">&#39;-a&#39;</span><span class="p">,</span> <span class="s1">&#39;--use-accession&#39;</span><span class="p">,</span> <span class="n">default</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">is_flag</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">help</span><span class="o">=</span><span class="s2">&quot;&quot;&quot;If used, the attribute value is the Pfam ACCESSION (e.g. PF06894), not ID (e.g. Phage_TAC_2)&quot;&quot;&quot;</span><span class="p">)</span>
+<span class="nd">@click</span><span class="o">.</span><span class="n">argument</span><span class="p">(</span><span class="s1">&#39;input-file&#39;</span><span class="p">,</span> <span class="nb">type</span><span class="o">=</span><span class="n">click</span><span class="o">.</span><span class="n">File</span><span class="p">(</span><span class="s1">&#39;rb&#39;</span><span class="p">,</span> <span class="n">lazy</span><span class="o">=</span><span class="kc">False</span><span class="p">),</span> <span class="n">default</span><span class="o">=</span><span class="s1">&#39;-&#39;</span><span class="p">)</span>
+<span class="nd">@click</span><span class="o">.</span><span class="n">argument</span><span class="p">(</span><span class="s1">&#39;output-file&#39;</span><span class="p">,</span> <span class="nb">type</span><span class="o">=</span><span class="n">click</span><span class="o">.</span><span class="n">File</span><span class="p">(</span><span class="s1">&#39;wb&#39;</span><span class="p">,</span> <span class="n">lazy</span><span class="o">=</span><span class="kc">False</span><span class="p">),</span> <span class="n">default</span><span class="o">=</span><span class="s1">&#39;-&#39;</span><span class="p">)</span>
+<span class="k">def</span> <span class="nf">pfam_command</span><span class="p">(</span><span class="n">verbose</span><span class="p">,</span> <span class="n">id_attr</span><span class="p">,</span> <span class="n">use_accession</span><span class="p">,</span> <span class="n">input_file</span><span class="p">,</span> <span class="n">output_file</span><span class="p">):</span>
+    <span class="n">logger</span><span class="o">.</span><span class="n">config_log</span><span class="p">(</span><span class="n">level</span><span class="o">=</span><span class="n">logging</span><span class="o">.</span><span class="n">DEBUG</span> <span class="k">if</span> <span class="n">verbose</span> <span class="k">else</span> <span class="n">logging</span><span class="o">.</span><span class="n">INFO</span><span class="p">)</span>
+
+    <span class="n">LOG</span><span class="o">.</span><span class="n">info</span><span class="p">(</span>
+        <span class="s1">&#39;Writing to file (</span><span class="si">%s</span><span class="s1">)&#39;</span><span class="p">,</span>
+        <span class="nb">getattr</span><span class="p">(</span><span class="n">output_file</span><span class="p">,</span> <span class="s1">&#39;name&#39;</span><span class="p">,</span> <span class="nb">repr</span><span class="p">(</span><span class="n">output_file</span><span class="p">))</span>
+    <span class="p">)</span>
+
+    <span class="n">LOG</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;Downloading Pfam Information&quot;</span><span class="p">)</span>
+
+    <span class="n">pfam_families</span> <span class="o">=</span> <span class="n">pfam</span><span class="o">.</span><span class="n">get_pfam_families</span><span class="p">(</span>
+        <span class="s1">&#39;acc&#39;</span> <span class="k">if</span> <span class="n">use_accession</span> <span class="k">else</span> <span class="s1">&#39;id&#39;</span>
+    <span class="p">)</span>
+
+    <span class="k">for</span> <span class="n">annotation</span> <span class="ow">in</span> <span class="n">gff</span><span class="o">.</span><span class="n">parse_gff</span><span class="p">(</span><span class="n">input_file</span><span class="p">):</span>
+        <span class="n">pfam_id</span> <span class="o">=</span> <span class="n">annotation</span><span class="o">.</span><span class="n">attr</span><span class="p">[</span><span class="n">id_attr</span><span class="p">]</span>
+        <span class="k">try</span><span class="p">:</span>
+            <span class="n">annotation</span><span class="o">.</span><span class="n">attr</span><span class="p">[</span><span class="s1">&#39;pfam_description&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">pfam_families</span><span class="p">[</span><span class="n">pfam_id</span><span class="p">][</span><span class="mi">1</span><span class="p">]</span>
+        <span class="k">except</span> <span class="ne">KeyError</span><span class="p">:</span>
+            <span class="n">LOG</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="s2">&quot;No description found for family </span><span class="si">%s</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">pfam_id</span><span class="p">)</span>
+        <span class="n">annotation</span><span class="o">.</span><span class="n">to_file</span><span class="p">(</span><span class="n">output_file</span><span class="p">)</span>
+
+
+<div class="viewcode-block" id="update_annotation_coverage"><a class="viewcode-back" href="../../../api/mgkit.workflow.add_gff_info.html#mgkit.workflow.add_gff_info.update_annotation_coverage">[docs]</a><span class="k">def</span> <span class="nf">update_annotation_coverage</span><span class="p">(</span><span class="n">annotations</span><span class="p">,</span> <span class="n">depth</span><span class="p">,</span> <span class="n">sample</span><span class="p">):</span>
+    <span class="k">for</span> <span class="n">annotation</span> <span class="ow">in</span> <span class="n">annotations</span><span class="p">:</span>
+        <span class="n">cov</span> <span class="o">=</span> <span class="n">depth</span><span class="o">.</span><span class="n">region_coverage</span><span class="p">(</span>
+            <span class="n">annotation</span><span class="o">.</span><span class="n">seq_id</span><span class="p">,</span>
+            <span class="n">annotation</span><span class="o">.</span><span class="n">start</span><span class="p">,</span>
+            <span class="n">annotation</span><span class="o">.</span><span class="n">end</span>
+        <span class="p">)</span>
+        <span class="k">if</span> <span class="n">sample</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">annotation</span><span class="o">.</span><span class="n">set_attr</span><span class="p">(</span><span class="s1">&#39;cov&#39;</span><span class="p">,</span> <span class="n">cov</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">annotation</span><span class="o">.</span><span class="n">set_attr</span><span class="p">(</span><span class="n">sample</span><span class="p">,</span> <span class="n">cov</span><span class="p">)</span></div>
+
+
+<span class="nd">@main</span><span class="o">.</span><span class="n">command</span><span class="p">(</span><span class="s1">&#39;cov_samtools&#39;</span><span class="p">,</span> <span class="n">help</span><span class="o">=</span><span class="s2">&quot;&quot;&quot;Adds information from samtools_depth&quot;&quot;&quot;</span><span class="p">)</span>
+<span class="nd">@click</span><span class="o">.</span><span class="n">option</span><span class="p">(</span><span class="s1">&#39;-v&#39;</span><span class="p">,</span> <span class="s1">&#39;--verbose&#39;</span><span class="p">,</span> <span class="n">is_flag</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="nd">@click</span><span class="o">.</span><span class="n">option</span><span class="p">(</span><span class="s1">&#39;-m&#39;</span><span class="p">,</span> <span class="s1">&#39;--average&#39;</span><span class="p">,</span> <span class="n">is_flag</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">help</span><span class="o">=</span><span class="s1">&#39;if one or more samples are provided, the average coverage is calculated&#39;</span><span class="p">)</span>
+<span class="nd">@click</span><span class="o">.</span><span class="n">option</span><span class="p">(</span><span class="s1">&#39;-s&#39;</span><span class="p">,</span> <span class="s1">&#39;--samples&#39;</span><span class="p">,</span> <span class="n">default</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">multiple</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+              <span class="n">help</span><span class="o">=</span><span class="s1">&#39;&#39;&#39;Sample name, will add a `sample_cov` in the GFF file. If not passed, the attribute will be `cov`&#39;&#39;&#39;</span><span class="p">)</span>
+<span class="nd">@click</span><span class="o">.</span><span class="n">option</span><span class="p">(</span><span class="s1">&#39;-d&#39;</span><span class="p">,</span> <span class="s1">&#39;--depths&#39;</span><span class="p">,</span> <span class="n">required</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">multiple</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+              <span class="n">help</span><span class="o">=</span><span class="s1">&#39;`samtools depth -aa` file&#39;</span><span class="p">)</span>
+<span class="nd">@click</span><span class="o">.</span><span class="n">option</span><span class="p">(</span><span class="s1">&#39;-n&#39;</span><span class="p">,</span> <span class="s1">&#39;--num-seqs&#39;</span><span class="p">,</span> <span class="n">default</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span>  <span class="nb">type</span><span class="o">=</span><span class="n">click</span><span class="o">.</span><span class="n">INT</span><span class="p">,</span>
+              <span class="n">show_default</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">help</span><span class="o">=</span><span class="s1">&#39;&#39;&#39;Number of sequences to update the log. If 0, no message is logged&#39;&#39;&#39;</span><span class="p">)</span>
+<span class="nd">@click</span><span class="o">.</span><span class="n">option</span><span class="p">(</span><span class="s1">&#39;--progress&#39;</span><span class="p">,</span> <span class="n">default</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">is_flag</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+              <span class="n">help</span><span class="o">=</span><span class="s2">&quot;Shows Progress Bar&quot;</span><span class="p">)</span>
+<span class="nd">@click</span><span class="o">.</span><span class="n">argument</span><span class="p">(</span><span class="s1">&#39;input-file&#39;</span><span class="p">,</span> <span class="nb">type</span><span class="o">=</span><span class="n">click</span><span class="o">.</span><span class="n">File</span><span class="p">(</span><span class="s1">&#39;rb&#39;</span><span class="p">,</span> <span class="n">lazy</span><span class="o">=</span><span class="kc">False</span><span class="p">),</span> <span class="n">default</span><span class="o">=</span><span class="s1">&#39;-&#39;</span><span class="p">)</span>
+<span class="nd">@click</span><span class="o">.</span><span class="n">argument</span><span class="p">(</span><span class="s1">&#39;output-file&#39;</span><span class="p">,</span> <span class="nb">type</span><span class="o">=</span><span class="n">click</span><span class="o">.</span><span class="n">File</span><span class="p">(</span><span class="s1">&#39;wb&#39;</span><span class="p">,</span> <span class="n">lazy</span><span class="o">=</span><span class="kc">False</span><span class="p">),</span> <span class="n">default</span><span class="o">=</span><span class="s1">&#39;-&#39;</span><span class="p">)</span>
+<span class="k">def</span> <span class="nf">samtools_depth_command</span><span class="p">(</span><span class="n">verbose</span><span class="p">,</span> <span class="n">average</span><span class="p">,</span> <span class="n">samples</span><span class="p">,</span> <span class="n">depths</span><span class="p">,</span> <span class="n">num_seqs</span><span class="p">,</span> <span class="n">progress</span><span class="p">,</span>
+                           <span class="n">input_file</span><span class="p">,</span> <span class="n">output_file</span><span class="p">):</span>
+    <span class="n">logger</span><span class="o">.</span><span class="n">config_log</span><span class="p">(</span><span class="n">level</span><span class="o">=</span><span class="n">logging</span><span class="o">.</span><span class="n">DEBUG</span> <span class="k">if</span> <span class="n">verbose</span> <span class="k">else</span> <span class="n">logging</span><span class="o">.</span><span class="n">INFO</span><span class="p">)</span>
+
+    <span class="k">if</span> <span class="ow">not</span> <span class="n">samples</span><span class="p">:</span>
+        <span class="n">samples</span> <span class="o">=</span> <span class="p">(</span><span class="kc">None</span><span class="p">,)</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">samples</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;</span><span class="si">{}</span><span class="s1">_cov&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">sample</span><span class="p">)</span> <span class="k">for</span> <span class="n">sample</span> <span class="ow">in</span> <span class="n">samples</span><span class="p">]</span>
+
+    <span class="n">max_size_dict</span> <span class="o">=</span> <span class="p">{}</span>
+    <span class="n">annotations</span> <span class="o">=</span> <span class="n">gff</span><span class="o">.</span><span class="n">group_annotations</span><span class="p">(</span><span class="n">gff</span><span class="o">.</span><span class="n">parse_gff</span><span class="p">(</span><span class="n">input_file</span><span class="p">),</span> <span class="n">key_func</span><span class="o">=</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">x</span><span class="o">.</span><span class="n">seq_id</span><span class="p">)</span>
+
+    <span class="k">if</span> <span class="n">progress</span><span class="p">:</span>
+        <span class="n">it</span> <span class="o">=</span> <span class="n">tqdm</span><span class="p">(</span><span class="n">annotations</span><span class="o">.</span><span class="n">items</span><span class="p">(),</span> <span class="n">desc</span><span class="o">=</span><span class="s1">&#39;Max lengths&#39;</span><span class="p">)</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">it</span> <span class="o">=</span> <span class="n">annotations</span><span class="o">.</span><span class="n">items</span><span class="p">()</span>
+    <span class="k">for</span> <span class="n">seq_id</span><span class="p">,</span> <span class="n">seq_annotations</span> <span class="ow">in</span> <span class="n">it</span><span class="p">:</span>
+        <span class="n">max_size_dict</span><span class="p">[</span><span class="n">seq_id</span><span class="p">]</span> <span class="o">=</span> <span class="nb">max</span><span class="p">(</span><span class="n">annotation</span><span class="o">.</span><span class="n">end</span> <span class="k">for</span> <span class="n">annotation</span> <span class="ow">in</span> <span class="n">seq_annotations</span><span class="p">)</span>
+
+    <span class="n">depths</span> <span class="o">=</span> <span class="p">[</span>
+        <span class="n">align</span><span class="o">.</span><span class="n">SamtoolsDepth</span><span class="p">(</span>
+            <span class="n">file_name</span><span class="p">,</span>
+            <span class="n">num_seqs</span><span class="o">=</span><span class="kc">None</span> <span class="k">if</span> <span class="n">num_seqs</span> <span class="o">==</span> <span class="mi">0</span> <span class="k">else</span> <span class="n">num_seqs</span><span class="p">,</span>
+            <span class="n">max_size_dict</span><span class="o">=</span><span class="n">max_size_dict</span><span class="p">,</span>
+        <span class="p">)</span>
+        <span class="k">for</span> <span class="n">file_name</span> <span class="ow">in</span> <span class="n">depths</span>
+    <span class="p">]</span>
+    <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">samples</span><span class="p">)</span> <span class="o">!=</span> <span class="nb">len</span><span class="p">(</span><span class="n">depths</span><span class="p">):</span>
+        <span class="n">utils</span><span class="o">.</span><span class="n">exit_script</span><span class="p">(</span><span class="s1">&#39;Number of samples different from number of files&#39;</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
+
+    <span class="k">if</span> <span class="n">progress</span> <span class="ow">and</span> <span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">samples</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">1</span><span class="p">):</span>
+        <span class="n">depth_it</span> <span class="o">=</span> <span class="n">tqdm</span><span class="p">(</span><span class="nb">zip</span><span class="p">(</span><span class="n">samples</span><span class="p">,</span> <span class="n">depths</span><span class="p">),</span> <span class="n">desc</span><span class="o">=</span><span class="s1">&#39;Samples&#39;</span><span class="p">,</span> <span class="n">total</span><span class="o">=</span><span class="nb">len</span><span class="p">(</span><span class="n">samples</span><span class="p">))</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">depth_it</span> <span class="o">=</span> <span class="nb">zip</span><span class="p">(</span><span class="n">samples</span><span class="p">,</span> <span class="n">depths</span><span class="p">)</span>
+
+    <span class="k">for</span> <span class="n">sample</span><span class="p">,</span> <span class="n">depth</span> <span class="ow">in</span> <span class="n">depth_it</span><span class="p">:</span>
+        <span class="n">seq_found</span> <span class="o">=</span> <span class="nb">set</span><span class="p">()</span>
+
+        <span class="k">if</span> <span class="n">progress</span><span class="p">:</span>
+            <span class="n">seq_bar</span> <span class="o">=</span> <span class="n">tqdm</span><span class="p">(</span><span class="n">desc</span><span class="o">=</span><span class="s1">&#39;Sequences&#39;</span><span class="p">,</span> <span class="n">total</span><span class="o">=</span><span class="nb">len</span><span class="p">(</span><span class="n">annotations</span><span class="p">))</span>
+        <span class="k">while</span> <span class="kc">True</span><span class="p">:</span>
+            <span class="n">seq_id</span> <span class="o">=</span> <span class="n">depth</span><span class="o">.</span><span class="n">advance_file</span><span class="p">()</span>
+            <span class="c1"># sequence is in the annotations</span>
+            <span class="k">if</span> <span class="n">seq_id</span> <span class="ow">in</span> <span class="n">annotations</span><span class="p">:</span>
+                <span class="n">update_annotation_coverage</span><span class="p">(</span><span class="n">annotations</span><span class="p">[</span><span class="n">seq_id</span><span class="p">],</span> <span class="n">depth</span><span class="p">,</span> <span class="n">sample</span><span class="p">)</span>
+                <span class="n">seq_found</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">seq_id</span><span class="p">)</span>
+                <span class="n">depth</span><span class="o">.</span><span class="n">drop_sequence</span><span class="p">(</span><span class="n">seq_id</span><span class="p">)</span>
+                <span class="k">if</span> <span class="n">progress</span><span class="p">:</span>
+                    <span class="n">seq_bar</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="n">n</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+            <span class="c1"># reached the end of the file</span>
+            <span class="c1"># updated the remaining sequences</span>
+            <span class="k">elif</span> <span class="n">seq_id</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+                <span class="k">for</span> <span class="n">not_found</span> <span class="ow">in</span> <span class="nb">set</span><span class="p">(</span><span class="n">annotations</span><span class="p">)</span> <span class="o">-</span> <span class="n">seq_found</span><span class="p">:</span>
+                    <span class="n">update_annotation_coverage</span><span class="p">(</span><span class="n">annotations</span><span class="p">[</span><span class="n">not_found</span><span class="p">],</span> <span class="n">depth</span><span class="p">,</span>
+                                               <span class="n">sample</span><span class="p">)</span>
+                    <span class="k">if</span> <span class="n">progress</span><span class="p">:</span>
+                        <span class="n">seq_bar</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="n">n</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+                <span class="n">LOG</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span>
+                    <span class="s1">&#39;Cannot find </span><span class="si">%d</span><span class="s1"> of </span><span class="si">%d</span><span class="s1"> sequences in sample </span><span class="si">%s</span><span class="s1"> depth file&#39;</span><span class="p">,</span>
+                    <span class="nb">len</span><span class="p">(</span><span class="n">depth</span><span class="o">.</span><span class="n">not_found</span><span class="p">),</span> <span class="nb">len</span><span class="p">(</span><span class="n">annotations</span><span class="p">),</span> <span class="n">sample</span><span class="p">)</span>
+                <span class="k">break</span>
+            <span class="c1"># found all sequences, no need to continue scanning the file</span>
+            <span class="k">elif</span> <span class="nb">len</span><span class="p">(</span><span class="n">seq_found</span><span class="p">)</span> <span class="o">==</span> <span class="nb">len</span><span class="p">(</span><span class="n">annotations</span><span class="p">):</span>
+                <span class="n">LOG</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;Found all sequences in GFF file (sample </span><span class="si">%s</span><span class="s2">)&quot;</span><span class="p">,</span> <span class="n">sample</span><span class="p">)</span>
+                <span class="k">break</span>
+            <span class="c1"># the sequence was not in the annotations, skip</span>
+            <span class="c1"># continue scanning the depth file and drop the seq_id</span>
+            <span class="c1"># (redundat?)</span>
+            <span class="k">elif</span> <span class="n">seq_id</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">annotations</span><span class="p">:</span>
+                <span class="n">depth</span><span class="o">.</span><span class="n">drop_sequence</span><span class="p">(</span><span class="n">seq_id</span><span class="p">)</span>
+
+            <span class="c1"># some debug code, to check the density of the SparseArray(s)</span>
+            <span class="c1"># if (num_seqs &gt; 0) and (len(depth.density) % num_seqs == 0):</span>
+            <span class="c1">#     LOG.debug(sum(depth.density) / len(depth.density))</span>
+
+        <span class="c1"># closes the progress bar</span>
+        <span class="k">if</span> <span class="n">progress</span><span class="p">:</span>
+            <span class="n">seq_bar</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+
+    <span class="c1"># If no sample was provided it&#39;s assumed that the average was calculated</span>
+    <span class="k">if</span> <span class="n">average</span> <span class="ow">and</span> <span class="p">(</span><span class="n">samples</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">):</span>
+        <span class="n">max_coverage</span> <span class="o">=</span> <span class="mi">0</span>
+
+        <span class="n">LOG</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s1">&#39;Calculating average coverage&#39;</span><span class="p">)</span>
+        <span class="k">for</span> <span class="n">seq_annotations</span> <span class="ow">in</span> <span class="n">annotations</span><span class="o">.</span><span class="n">values</span><span class="p">():</span>
+            <span class="k">for</span> <span class="n">annotation</span> <span class="ow">in</span> <span class="n">seq_annotations</span><span class="p">:</span>
+                <span class="n">d</span> <span class="o">=</span> <span class="n">annotation</span><span class="o">.</span><span class="n">sample_coverage</span>
+                <span class="n">annotation</span><span class="o">.</span><span class="n">set_attr</span><span class="p">(</span><span class="s1">&#39;cov&#39;</span><span class="p">,</span> <span class="nb">sum</span><span class="p">(</span><span class="n">d</span><span class="o">.</span><span class="n">values</span><span class="p">())</span> <span class="o">/</span> <span class="nb">len</span><span class="p">(</span><span class="n">d</span><span class="p">))</span>
+                <span class="n">max_coverage</span> <span class="o">=</span> <span class="nb">max</span><span class="p">(</span><span class="n">max_coverage</span><span class="p">,</span> <span class="nb">max</span><span class="p">(</span><span class="n">d</span><span class="o">.</span><span class="n">values</span><span class="p">()))</span>
+        <span class="n">LOG</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s1">&#39;Maximum Coverage found: </span><span class="si">%d</span><span class="s1">&#39;</span><span class="p">,</span> <span class="n">max_coverage</span><span class="p">)</span>
+
+    <span class="n">LOG</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s1">&#39;Writing annotations to file (</span><span class="si">%r</span><span class="s1">)&#39;</span><span class="p">,</span> <span class="n">output_file</span><span class="p">)</span>
+    <span class="k">for</span> <span class="n">annotation</span> <span class="ow">in</span> <span class="n">itertools</span><span class="o">.</span><span class="n">chain</span><span class="p">(</span><span class="o">*</span><span class="n">annotations</span><span class="o">.</span><span class="n">values</span><span class="p">()):</span>
+        <span class="n">annotation</span><span class="o">.</span><span class="n">to_file</span><span class="p">(</span><span class="n">output_file</span><span class="p">)</span>
+</pre></div>
+
+           </div>
+           
+          </div>
+          <footer>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2013-2015, Francesco Rubino
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

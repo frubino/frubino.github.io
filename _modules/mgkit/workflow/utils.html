@@ -1,0 +1,323 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>mgkit.workflow.utils &mdash; MGKit: Metagenomic framework 0.5.0 documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+  <script type="text/javascript" src="../../../_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../../../" src="../../../_static/documentation_options.js"></script>
+        <script type="text/javascript" src="../../../_static/jquery.js"></script>
+        <script type="text/javascript" src="../../../_static/underscore.js"></script>
+        <script type="text/javascript" src="../../../_static/doctools.js"></script>
+        <script type="text/javascript" src="../../../_static/language_data.js"></script>
+        <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+        <script async="async" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+        <script type="text/x-mathjax-config">MathJax.Hub.Config({"tex2jax": {"inlineMath": [["$", "$"], ["\\(", "\\)"]], "processEscapes": true, "ignoreClass": "document", "processClass": "math|output_area"}})</script>
+    
+    <script type="text/javascript" src="../../../_static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="../../../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../../../_static/graphviz.css" type="text/css" />
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../../../index.html" class="icon icon-home"> MGKit: Metagenomic framework
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                0.5.0
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../introduction.html">Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../install.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../pipeline/index.html">Metagenomic Pipeline</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../scripts/index.html">Scripts Details</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../examples/index.html">Example Notebooks</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../gff.html">MGKit GFF Specifications</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../library.html">Library Reference</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../changes.html">Changes</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../index.html">MGKit: Metagenomic framework</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../../../index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="../../index.html">Module code</a> &raquo;</li>
+        
+          <li><a href="../../mgkit.html">mgkit</a> &raquo;</li>
+        
+      <li>mgkit.workflow.utils</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <h1>Source code for mgkit.workflow.utils</h1><div class="highlight"><pre>
+<span></span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">Utility functions for workflows</span>
+<span class="sd">&quot;&quot;&quot;</span>
+<span class="kn">from</span> <span class="nn">__future__</span> <span class="kn">import</span> <span class="n">print_function</span>
+<span class="kn">import</span> <span class="nn">logging</span>
+<span class="kn">import</span> <span class="nn">argparse</span>
+<span class="kn">import</span> <span class="nn">sys</span>
+<span class="kn">import</span> <span class="nn">click</span>
+<span class="kn">import</span> <span class="nn">mgkit</span>
+
+<span class="n">LOG</span> <span class="o">=</span> <span class="n">logging</span><span class="o">.</span><span class="n">getLogger</span><span class="p">(</span><span class="vm">__name__</span><span class="p">)</span>
+
+
+<div class="viewcode-block" id="cite_callback"><a class="viewcode-back" href="../../../api/mgkit.workflow.utils.html#mgkit.workflow.utils.cite_callback">[docs]</a><span class="k">def</span> <span class="nf">cite_callback</span><span class="p">(</span><span class="n">ctx</span><span class="p">,</span> <span class="n">param</span><span class="p">,</span> <span class="n">value</span><span class="p">):</span>
+    <span class="k">if</span> <span class="ow">not</span> <span class="n">value</span> <span class="ow">or</span> <span class="n">ctx</span><span class="o">.</span><span class="n">resilient_parsing</span><span class="p">:</span>
+        <span class="k">return</span>
+    <span class="n">click</span><span class="o">.</span><span class="n">echo</span><span class="p">(</span><span class="n">mgkit</span><span class="o">.</span><span class="n">CITE</span><span class="p">)</span>
+    <span class="n">ctx</span><span class="o">.</span><span class="n">exit</span><span class="p">()</span></div>
+
+
+<span class="n">cite_option</span> <span class="o">=</span> <span class="n">click</span><span class="o">.</span><span class="n">option</span><span class="p">(</span><span class="s1">&#39;--cite&#39;</span><span class="p">,</span> <span class="n">is_flag</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">callback</span><span class="o">=</span><span class="n">cite_callback</span><span class="p">,</span>
+                           <span class="n">expose_value</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">is_eager</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+
+
+<div class="viewcode-block" id="CiteAction"><a class="viewcode-back" href="../../../api/mgkit.workflow.utils.html#mgkit.workflow.utils.CiteAction">[docs]</a><span class="k">class</span> <span class="nc">CiteAction</span><span class="p">(</span><span class="n">argparse</span><span class="o">.</span><span class="n">Action</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Argparse action to print the citation, using the :func:`mgkit.cite`</span>
+<span class="sd">    function.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span>
+                 <span class="n">option_strings</span><span class="p">,</span>
+                 <span class="n">dest</span><span class="o">=</span><span class="n">argparse</span><span class="o">.</span><span class="n">SUPPRESS</span><span class="p">,</span>
+                 <span class="n">default</span><span class="o">=</span><span class="n">argparse</span><span class="o">.</span><span class="n">SUPPRESS</span><span class="p">,</span>
+                 <span class="n">help</span><span class="o">=</span><span class="s1">&#39;Show citation for the framework&#39;</span><span class="p">):</span>
+        <span class="nb">super</span><span class="p">(</span><span class="n">CiteAction</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span>
+            <span class="n">option_strings</span><span class="p">,</span>
+            <span class="n">dest</span><span class="o">=</span><span class="n">dest</span><span class="p">,</span>
+            <span class="n">default</span><span class="o">=</span><span class="n">default</span><span class="p">,</span>
+            <span class="n">nargs</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span>
+            <span class="n">help</span><span class="o">=</span><span class="n">help</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="fm">__call__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">parser</span><span class="p">,</span> <span class="n">namespace</span><span class="p">,</span> <span class="n">values</span><span class="p">,</span> <span class="n">option_string</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+        <span class="n">mgkit</span><span class="o">.</span><span class="n">cite</span><span class="p">(</span><span class="n">file_handle</span><span class="o">=</span><span class="n">sys</span><span class="o">.</span><span class="n">stderr</span><span class="p">)</span>
+        <span class="nb">setattr</span><span class="p">(</span><span class="n">namespace</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">dest</span><span class="p">,</span> <span class="n">values</span><span class="p">)</span>
+        <span class="n">parser</span><span class="o">.</span><span class="n">exit</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="PrintManAction"><a class="viewcode-back" href="../../../api/mgkit.workflow.utils.html#mgkit.workflow.utils.PrintManAction">[docs]</a><span class="k">class</span> <span class="nc">PrintManAction</span><span class="p">(</span><span class="n">argparse</span><span class="o">.</span><span class="n">Action</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    .. versionadded:: 0.2.6</span>
+
+<span class="sd">    Argparse action to print the manual</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span>
+                 <span class="n">option_strings</span><span class="p">,</span>
+                 <span class="n">dest</span><span class="o">=</span><span class="n">argparse</span><span class="o">.</span><span class="n">SUPPRESS</span><span class="p">,</span>
+                 <span class="n">default</span><span class="o">=</span><span class="n">argparse</span><span class="o">.</span><span class="n">SUPPRESS</span><span class="p">,</span>
+                 <span class="n">help</span><span class="o">=</span><span class="s1">&#39;Show the script manual&#39;</span><span class="p">,</span>
+                 <span class="n">manual</span><span class="o">=</span><span class="s1">&#39;&#39;</span><span class="p">):</span>
+        <span class="nb">super</span><span class="p">(</span><span class="n">PrintManAction</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span>
+            <span class="n">option_strings</span><span class="p">,</span>
+            <span class="n">dest</span><span class="o">=</span><span class="n">dest</span><span class="p">,</span>
+            <span class="n">default</span><span class="o">=</span><span class="n">default</span><span class="p">,</span>
+            <span class="n">nargs</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span>
+            <span class="n">help</span><span class="o">=</span><span class="n">help</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">manual</span> <span class="o">=</span> <span class="n">manual</span>
+
+    <span class="k">def</span> <span class="fm">__call__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">parser</span><span class="p">,</span> <span class="n">namespace</span><span class="p">,</span> <span class="n">values</span><span class="p">,</span> <span class="n">option_string</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+        <span class="nb">print</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">manual</span><span class="p">,</span> <span class="n">file</span><span class="o">=</span><span class="n">sys</span><span class="o">.</span><span class="n">stdout</span><span class="p">)</span>
+        <span class="nb">setattr</span><span class="p">(</span><span class="n">namespace</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">dest</span><span class="p">,</span> <span class="n">values</span><span class="p">)</span>
+        <span class="n">parser</span><span class="o">.</span><span class="n">exit</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="add_basic_options"><a class="viewcode-back" href="../../../api/mgkit.workflow.utils.html#mgkit.workflow.utils.add_basic_options">[docs]</a><span class="k">def</span> <span class="nf">add_basic_options</span><span class="p">(</span><span class="n">parser</span><span class="p">,</span> <span class="n">manual</span><span class="o">=</span><span class="s1">&#39;&#39;</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    .. versionchanged:: 0.2.6</span>
+<span class="sd">        added *quiet* option</span>
+
+<span class="sd">    Adds verbose and version options to the option parser</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">group</span> <span class="o">=</span> <span class="n">parser</span><span class="o">.</span><span class="n">add_mutually_exclusive_group</span><span class="p">()</span>
+    <span class="n">group</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span>
+        <span class="s1">&#39;-v&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;--verbose&#39;</span><span class="p">,</span>
+        <span class="n">action</span><span class="o">=</span><span class="s1">&#39;store_const&#39;</span><span class="p">,</span>
+        <span class="n">const</span><span class="o">=</span><span class="n">logging</span><span class="o">.</span><span class="n">DEBUG</span><span class="p">,</span>
+        <span class="n">default</span><span class="o">=</span><span class="n">logging</span><span class="o">.</span><span class="n">INFO</span><span class="p">,</span>
+        <span class="n">help</span><span class="o">=</span><span class="s1">&#39;more verbose - includes debug messages&#39;</span><span class="p">,</span>
+        <span class="n">dest</span><span class="o">=</span><span class="s1">&#39;verbose&#39;</span>
+    <span class="p">)</span>
+    <span class="n">group</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span>
+        <span class="s1">&#39;--quiet&#39;</span><span class="p">,</span>
+        <span class="n">action</span><span class="o">=</span><span class="s1">&#39;store_const&#39;</span><span class="p">,</span>
+        <span class="n">const</span><span class="o">=</span><span class="n">logging</span><span class="o">.</span><span class="n">ERROR</span><span class="p">,</span>
+        <span class="n">help</span><span class="o">=</span><span class="s1">&#39;less verbose - only error and critical messages&#39;</span><span class="p">,</span>
+        <span class="n">dest</span><span class="o">=</span><span class="s1">&#39;verbose&#39;</span>
+    <span class="p">)</span>
+    <span class="n">parser</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span>
+        <span class="s1">&#39;--cite&#39;</span><span class="p">,</span>
+        <span class="n">action</span><span class="o">=</span><span class="n">CiteAction</span>
+    <span class="p">)</span>
+    <span class="n">parser</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span>
+        <span class="s1">&#39;--manual&#39;</span><span class="p">,</span>
+        <span class="n">action</span><span class="o">=</span><span class="n">PrintManAction</span><span class="p">,</span>
+        <span class="n">manual</span><span class="o">=</span><span class="n">manual</span>
+    <span class="p">)</span>
+    <span class="n">parser</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span>
+        <span class="s1">&#39;--version&#39;</span><span class="p">,</span>
+        <span class="n">action</span><span class="o">=</span><span class="s1">&#39;version&#39;</span><span class="p">,</span>
+        <span class="n">version</span><span class="o">=</span><span class="s1">&#39;</span><span class="si">%(prog)s</span><span class="s1"> </span><span class="si">{0}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">mgkit</span><span class="o">.</span><span class="n">__VERSION__</span><span class="p">)</span>
+    <span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="exit_script"><a class="viewcode-back" href="../../../api/mgkit.workflow.utils.html#mgkit.workflow.utils.exit_script">[docs]</a><span class="k">def</span> <span class="nf">exit_script</span><span class="p">(</span><span class="n">message</span><span class="p">,</span> <span class="n">ret_value</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Used to exit the script with a return value</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">LOG</span><span class="o">.</span><span class="n">critical</span><span class="p">(</span><span class="n">message</span><span class="p">)</span>
+    <span class="n">sys</span><span class="o">.</span><span class="n">exit</span><span class="p">(</span><span class="n">ret_value</span><span class="p">)</span></div>
+</pre></div>
+
+           </div>
+           
+          </div>
+          <footer>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2013-2015, Francesco Rubino
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

@@ -1,0 +1,1146 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Examples of the mgkit.db package &mdash; MGKit: Metagenomic framework 0.5.0 documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+  <script type="text/javascript" src="../../_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
+        <script type="text/javascript" src="../../_static/jquery.js"></script>
+        <script type="text/javascript" src="../../_static/underscore.js"></script>
+        <script type="text/javascript" src="../../_static/doctools.js"></script>
+        <script type="text/javascript" src="../../_static/language_data.js"></script>
+        <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+        <script async="async" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+        <script type="text/x-mathjax-config">MathJax.Hub.Config({"tex2jax": {"inlineMath": [["$", "$"], ["\\(", "\\)"]], "processEscapes": true, "ignoreClass": "document", "processClass": "math|output_area"}})</script>
+    
+    <script type="text/javascript" src="../../_static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../../_static/graphviz.css" type="text/css" />
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="MGKit GFF Specifications" href="../../gff.html" />
+    <link rel="prev" title="Misc. Plots Tips" href="../plots/misc-plots.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../../index.html" class="icon icon-home"> MGKit: Metagenomic framework
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                0.5.0
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../introduction.html">Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../install.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../pipeline/index.html">Metagenomic Pipeline</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../scripts/index.html">Scripts Details</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../index.html">Example Notebooks</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../plots/abund.html">Abundance Plots</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../plots/boxplot.html">Boxplots</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../plots/heatmap.html">Heatmaps</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../plots/misc-plots.html">Misc. Plots Tips</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Examples of the <em>mgkit.db</em> package</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#Imports">Imports</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#Download-Example-GFF">Download Example GFF</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#GFF-Annotations">GFF Annotations</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#Taxonomy-and-Annotations">Taxonomy and Annotations</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#Issues">Issues</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#semidbm">semidbm</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#Using-MongoDB">Using MongoDB</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#Using-Taxonomy">Using Taxonomy</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../gff.html">MGKit GFF Specifications</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../library.html">Library Reference</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../changes.html">Changes</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">MGKit: Metagenomic framework</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../../index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="../index.html">Example Notebooks</a> &raquo;</li>
+        
+      <li>Examples of the <em>mgkit.db</em> package</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="../../_sources/examples/db/example-annotation-db-package.ipynb.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  
+<style>
+/* CSS for nbsphinx extension */
+
+/* remove conflicting styling from Sphinx themes */
+div.nbinput.container,
+div.nbinput.container div.prompt,
+div.nbinput.container div.input_area,
+div.nbinput.container div[class*=highlight],
+div.nbinput.container div[class*=highlight] pre,
+div.nboutput.container,
+div.nboutput.container div.prompt,
+div.nboutput.container div.output_area,
+div.nboutput.container div[class*=highlight],
+div.nboutput.container div[class*=highlight] pre {
+    background: none;
+    border: none;
+    padding: 0 0;
+    margin: 0;
+    box-shadow: none;
+}
+
+/* avoid gaps between output lines */
+div.nboutput.container div[class*=highlight] pre {
+    line-height: normal;
+}
+
+/* input/output containers */
+div.nbinput.container,
+div.nboutput.container {
+    display: -webkit-flex;
+    display: flex;
+    align-items: flex-start;
+    margin: 0;
+    width: 100%;
+}
+@media (max-width: 540px) {
+    div.nbinput.container,
+    div.nboutput.container {
+        flex-direction: column;
+    }
+}
+
+/* input container */
+div.nbinput.container {
+    padding-top: 5px;
+}
+
+/* last container */
+div.nblast.container {
+    padding-bottom: 5px;
+}
+
+/* input prompt */
+div.nbinput.container div.prompt pre {
+    color: #307FC1;
+}
+
+/* output prompt */
+div.nboutput.container div.prompt pre {
+    color: #BF5B3D;
+}
+
+/* all prompts */
+div.nbinput.container div.prompt,
+div.nboutput.container div.prompt {
+    min-width: 5ex;
+    padding-top: 0.4em;
+    padding-right: 0.4em;
+    text-align: right;
+    flex: 0;
+}
+@media (max-width: 540px) {
+    div.nbinput.container div.prompt,
+    div.nboutput.container div.prompt {
+        text-align: left;
+        padding: 0.4em;
+    }
+    div.nboutput.container div.prompt.empty {
+        padding: 0;
+    }
+}
+
+/* disable scrollbars on prompts */
+div.nbinput.container div.prompt pre,
+div.nboutput.container div.prompt pre {
+    overflow: hidden;
+}
+
+/* input/output area */
+div.nbinput.container div.input_area,
+div.nboutput.container div.output_area {
+    padding: 0.4em;
+    -webkit-flex: 1;
+    flex: 1;
+    overflow: auto;
+}
+@media (max-width: 540px) {
+    div.nbinput.container div.input_area,
+    div.nboutput.container div.output_area {
+        width: 100%;
+    }
+}
+
+/* input area */
+div.nbinput.container div.input_area {
+    border: 1px solid #e0e0e0;
+    border-radius: 2px;
+    background: #f5f5f5;
+}
+
+/* override MathJax center alignment in output cells */
+div.nboutput.container div[class*=MathJax] {
+    text-align: left !important;
+}
+
+/* override sphinx.ext.imgmath center alignment in output cells */
+div.nboutput.container div.math p {
+    text-align: left;
+}
+
+/* standard error */
+div.nboutput.container div.output_area.stderr {
+    background: #fdd;
+}
+
+/* ANSI colors */
+.ansi-black-fg { color: #3E424D; }
+.ansi-black-bg { background-color: #3E424D; }
+.ansi-black-intense-fg { color: #282C36; }
+.ansi-black-intense-bg { background-color: #282C36; }
+.ansi-red-fg { color: #E75C58; }
+.ansi-red-bg { background-color: #E75C58; }
+.ansi-red-intense-fg { color: #B22B31; }
+.ansi-red-intense-bg { background-color: #B22B31; }
+.ansi-green-fg { color: #00A250; }
+.ansi-green-bg { background-color: #00A250; }
+.ansi-green-intense-fg { color: #007427; }
+.ansi-green-intense-bg { background-color: #007427; }
+.ansi-yellow-fg { color: #DDB62B; }
+.ansi-yellow-bg { background-color: #DDB62B; }
+.ansi-yellow-intense-fg { color: #B27D12; }
+.ansi-yellow-intense-bg { background-color: #B27D12; }
+.ansi-blue-fg { color: #208FFB; }
+.ansi-blue-bg { background-color: #208FFB; }
+.ansi-blue-intense-fg { color: #0065CA; }
+.ansi-blue-intense-bg { background-color: #0065CA; }
+.ansi-magenta-fg { color: #D160C4; }
+.ansi-magenta-bg { background-color: #D160C4; }
+.ansi-magenta-intense-fg { color: #A03196; }
+.ansi-magenta-intense-bg { background-color: #A03196; }
+.ansi-cyan-fg { color: #60C6C8; }
+.ansi-cyan-bg { background-color: #60C6C8; }
+.ansi-cyan-intense-fg { color: #258F8F; }
+.ansi-cyan-intense-bg { background-color: #258F8F; }
+.ansi-white-fg { color: #C5C1B4; }
+.ansi-white-bg { background-color: #C5C1B4; }
+.ansi-white-intense-fg { color: #A1A6B2; }
+.ansi-white-intense-bg { background-color: #A1A6B2; }
+
+.ansi-default-inverse-fg { color: #FFFFFF; }
+.ansi-default-inverse-bg { background-color: #000000; }
+
+.ansi-bold { font-weight: bold; }
+.ansi-underline { text-decoration: underline; }
+
+/* Some additional styling taken form the Jupyter notebook CSS */
+div.rendered_html table {
+  border: none;
+  border-collapse: collapse;
+  border-spacing: 0;
+  color: black;
+  font-size: 12px;
+  table-layout: fixed;
+}
+div.rendered_html thead {
+  border-bottom: 1px solid black;
+  vertical-align: bottom;
+}
+div.rendered_html tr,
+div.rendered_html th,
+div.rendered_html td {
+  text-align: right;
+  vertical-align: middle;
+  padding: 0.5em 0.5em;
+  line-height: normal;
+  white-space: normal;
+  max-width: none;
+  border: none;
+}
+div.rendered_html th {
+  font-weight: bold;
+}
+div.rendered_html tbody tr:nth-child(odd) {
+  background: #f5f5f5;
+}
+div.rendered_html tbody tr:hover {
+  background: rgba(66, 165, 245, 0.2);
+}
+
+/* CSS overrides for sphinx_rtd_theme */
+
+/* 24px margin */
+.nbinput.nblast.container,
+.nboutput.nblast.container {
+    margin-bottom: 19px;  /* padding has already 5px */
+}
+
+/* ... except between code cells! */
+.nblast.container + .nbinput.container {
+    margin-top: -19px;
+}
+
+.admonition > p:before {
+    margin-right: 4px;  /* make room for the exclamation icon */
+}
+
+/* Fix math alignment, see https://github.com/rtfd/sphinx_rtd_theme/pull/686 */
+.math {
+    text-align: unset;
+}
+</style>
+<div class="section" id="Examples-of-the-mgkit.db-package">
+<h1>Examples of the <em>mgkit.db</em> package<a class="headerlink" href="#Examples-of-the-mgkit.db-package" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="Imports">
+<h2>Imports<a class="headerlink" href="#Imports" title="Permalink to this headline">¶</a></h2>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[84]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython2 notranslate"><div class="highlight"><pre>
+<span></span><span class="kn">from</span> <span class="nn">mgkit.io</span> <span class="kn">import</span> <span class="n">gff</span>
+<span class="kn">import</span> <span class="nn">mgkit.net</span>
+<span class="kn">from</span> <span class="nn">mgkit.db</span> <span class="kn">import</span> <span class="n">dbm</span>
+<span class="kn">from</span> <span class="nn">mgkit.db</span> <span class="kn">import</span> <span class="n">mongo</span>
+<span class="kn">import</span> <span class="nn">mgkit.taxon</span>
+<span class="kn">import</span> <span class="nn">gzip</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="Download-Example-GFF">
+<h2>Download Example GFF<a class="headerlink" href="#Download-Example-GFF" title="Permalink to this headline">¶</a></h2>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[66]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython2 notranslate"><div class="highlight"><pre>
+<span></span><span class="c1"># This will just load the data from the repository and save it in the same directory as</span>
+<span class="c1"># this notebook</span>
+<span class="n">data</span> <span class="o">=</span> <span class="n">mgkit</span><span class="o">.</span><span class="n">net</span><span class="o">.</span><span class="n">url_read</span><span class="p">(</span><span class="s1">&#39;https://bitbucket.org/setsuna80/mgkit/downloads/assembly.gff.gz&#39;</span><span class="p">)</span>
+<span class="c1"># The data is compressed</span>
+<span class="nb">open</span><span class="p">(</span><span class="s1">&#39;assembly.gff.gz&#39;</span><span class="p">,</span> <span class="s1">&#39;w&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="GFF-Annotations">
+<h2>GFF Annotations<a class="headerlink" href="#GFF-Annotations" title="Permalink to this headline">¶</a></h2>
+<p>The are a few ways to load the GFF, but the result of <em>parse_gff</em> is a generator that yields one annotation at a time when it’s iterate over. One way to keep the annotations in memory is building a dictionary, with the unique identifier for each annotation (called <strong>uid</strong>) used as key, while the annotation object is the value.</p>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[4]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython2 notranslate"><div class="highlight"><pre>
+<span></span><span class="c1"># *mgkit.io.gff.parse_gff* can read compressed data, gzip, bz2 (also lzma on python3)</span>
+<span class="n">annotations</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="n">annotation</span><span class="o">.</span><span class="n">uid</span><span class="p">:</span> <span class="n">annotation</span>
+    <span class="k">for</span> <span class="n">annotation</span> <span class="ow">in</span> <span class="n">gff</span><span class="o">.</span><span class="n">parse_gff</span><span class="p">(</span><span class="s1">&#39;assembly.gff.gz&#39;</span><span class="p">)</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</div>
+<p>Each annotation is parsed and an instance of the <strong>mgkit.io.gff.Annotation</strong> is created. The class contains several properties, like the unique identifier (uid), the gene identifier (gene_id) and the taxon identifier (taxon_id)</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[30]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython2 notranslate"><div class="highlight"><pre>
+<span></span><span class="n">annotation</span> <span class="o">=</span> <span class="n">annotations</span><span class="p">[</span><span class="s1">&#39;d002b31c-1d78-438c-b8f9-aba791807724&#39;</span><span class="p">]</span>
+<span class="nb">print</span> <span class="n">annotation</span>
+
+<span class="nb">print</span> <span class="n">annotation</span><span class="o">.</span><span class="n">uid</span><span class="p">,</span> <span class="n">annotation</span><span class="o">.</span><span class="n">gene_id</span><span class="p">,</span> <span class="n">annotation</span><span class="o">.</span><span class="n">taxon_id</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+NODE_57290(-):1-87
+d002b31c-1d78-438c-b8f9-aba791807724 Q72QU2 2
+</pre></div></div>
+</div>
+<p>Other properties and methods can be accessed, like the <em>Annotation.get_mappings</em> to get a dictionary of all mappings, or using the <em>len</em> function on the instance to get it’s length (or using the property <em>length</em>).</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[11]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython2 notranslate"><div class="highlight"><pre>
+<span></span><span class="nb">print</span> <span class="nb">len</span><span class="p">(</span><span class="n">annotation</span><span class="p">),</span> <span class="n">annotation</span><span class="o">.</span><span class="n">length</span>
+<span class="nb">print</span> <span class="n">annotation</span><span class="o">.</span><span class="n">get_mappings</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+87 87
+{&#39;ko&#39;: [&#39;K03695&#39;]}
+</pre></div></div>
+</div>
+<div class="section" id="Taxonomy-and-Annotations">
+<h3>Taxonomy and Annotations<a class="headerlink" href="#Taxonomy-and-Annotations" title="Permalink to this headline">¶</a></h3>
+<p>When using metagenomics, one of the problem is associated functionality to taxonomy. MGKit contains a class that can read the taxonomy from <a class="reference external" href="www.uniprot.org">Uniprot</a>, which is compatible with NCBI taxonomy. The <strong>mgkit.taxon</strong> contains the <strong>UniprotTaxonomy</strong> that is use to store and in part search the taxonomy. The module contains many more functions to resolve different levels of the taxonomy. A few examples applied to the annotations loaded follow.</p>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[90]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython2 notranslate"><div class="highlight"><pre>
+<span></span><span class="c1"># This will just load the data from the repository and save it in the same directory as</span>
+<span class="c1"># this notebook</span>
+<span class="n">data</span> <span class="o">=</span> <span class="n">mgkit</span><span class="o">.</span><span class="n">net</span><span class="o">.</span><span class="n">url_read</span><span class="p">(</span>
+    <span class="s2">&quot;https://bitbucket.org/setsuna80/mgkit/downloads/taxonomy.pickle.gz&quot;</span>
+<span class="p">)</span>
+<span class="nb">open</span><span class="p">(</span><span class="s1">&#39;taxonomy.pickle.gz&#39;</span><span class="p">,</span> <span class="s1">&#39;w&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
+<span class="k">del</span> <span class="n">data</span>
+</pre></div>
+</div>
+</div>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[91]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython2 notranslate"><div class="highlight"><pre>
+<span></span><span class="c1"># Using compress taxonomy files makes it slower to load</span>
+<span class="n">taxonomy</span> <span class="o">=</span> <span class="n">mgkit</span><span class="o">.</span><span class="n">taxon</span><span class="o">.</span><span class="n">UniprotTaxonomy</span><span class="p">(</span><span class="s1">&#39;taxonomy.pickle.gz&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[103]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython2 notranslate"><div class="highlight"><pre>
+<span></span><span class="c1"># to find the Bacteoidales taxon identifier</span>
+<span class="n">taxonomy</span><span class="o">.</span><span class="n">find_by_name</span><span class="p">(</span><span class="s1">&#39;bacteroidales&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[103]:
+</pre></div>
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+[171549]
+</pre></div></div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[121]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython2 notranslate"><div class="highlight"><pre>
+<span></span><span class="c1"># to find all the annotations that belong to the Order Bacteroidales</span>
+<span class="n">count</span> <span class="o">=</span> <span class="mi">0</span>
+<span class="k">for</span> <span class="n">annotation</span> <span class="ow">in</span> <span class="n">annotations</span><span class="o">.</span><span class="n">itervalues</span><span class="p">():</span>
+    <span class="k">if</span> <span class="n">mgkit</span><span class="o">.</span><span class="n">taxon</span><span class="o">.</span><span class="n">is_ancestor</span><span class="p">(</span><span class="n">taxonomy</span><span class="p">,</span> <span class="n">annotation</span><span class="o">.</span><span class="n">taxon_id</span><span class="p">,</span> <span class="mi">171549</span><span class="p">):</span>
+        <span class="n">count</span> <span class="o">+=</span> <span class="mi">1</span>
+        <span class="nb">print</span> <span class="n">annotation</span><span class="o">.</span><span class="n">uid</span><span class="p">,</span> <span class="n">annotation</span><span class="o">.</span><span class="n">gene_id</span>
+<span class="nb">print</span> <span class="s2">&quot;Number of annotation:&quot;</span><span class="p">,</span> <span class="n">count</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+7233587c-b80d-4908-8ead-92734deeec81 Q7MV19
+5322b316-46e5-44cf-9eb1-ef94355c7855 Q01VN6
+a7308f6f-7b17-4b00-8afa-92ebecef3dd3 Q8XP14
+195118b7-1236-48ad-8812-e0ec3100e7d9 Q7MV19
+14b3cc41-050a-4949-b085-75db0cda12ec Q8A294
+d1dad026-09ac-48e4-95fe-158e39d96a0d P49008
+01b819f8-1444-4f25-a3fa-93e160fa58c2 Q7MVL1
+4b3ce614-cc8a-47ea-a046-f9ca7c7ab16c Q5LI72
+65bae5c6-0d23-4a08-ae3f-aec2763f4621 Q7MV19
+3aef43ea-4e94-4940-bf85-743950e5ad8a Q9AGG3
+16794c3c-97b8-4453-8d14-a5e37c8969b4 A6LB11
+bd92adff-b8d9-411f-9488-7604eb580fd6 Q89YZ6
+3441f906-f63d-45fe-a4e5-e639439d19db A6LD25
+cd08ae89-1f1e-4875-851e-c0c55de8c764 A6LA51
+b3bf4054-4f31-4a8a-bf19-fd0e65c56867 A6LI30
+44bdfb77-1606-4194-b410-9a22c75b3b5b Q7MV19
+3b5e126e-25ec-460d-a439-2520bebe0a3d A6KZH6
+e908c5b1-9dec-4406-b952-009aab3fd778 A6LDS1
+b425ef29-0bc0-4de7-ad96-abe5c7b75f96 Q8A9M7
+2a3558c3-6f7b-49a4-a8d3-c2b0cef287d6 Q7MXZ1
+376d70e0-6591-4b2b-9a06-1d9fb7fdbc66 Q7M9Y2
+ff7fd5ef-9be2-404c-8137-89f368071a4e Q8A294
+2665ff2c-4e9a-4c7a-9604-8433fa2ae202 A6LHY5
+dd9a44d5-ed1e-4350-b05c-f0cfd510e669 A6L170
+255e75a1-a59c-43fd-9396-17a3566b3063 Q8A0F5
+49474358-7962-4b0c-b52a-5de935f17bfc A6LFA6
+27eb1efe-ff07-401c-93db-958a38e866bc Q7MWM7
+746805f5-0fdc-4499-953f-7be496b9c784 Q7MU65
+e3be2158-c013-4e58-a073-ab8e3c893094 Q8A8Y4
+e028b0e9-802f-4f1b-b055-f5ecca786170 Q8A1D3
+f2919fc6-d8e2-4fe7-ac9f-152c46d0ebbb Q7MV19
+b65468b2-d4e7-456b-871d-9cd96fa4dd48 Q02XT4
+e1643d1d-12c3-4397-a6a7-d2a24f203c4a Q8A294
+0d9cd52c-5969-49f7-866c-e8c5c9783b79 Q8A294
+cdd362ba-448f-475f-a638-d6473b471572 A6LD68
+7af092eb-20c5-46b4-b8bb-e9b0c99a8ce5 Q5LGH0
+2d9172a4-fe51-4baa-a8fb-66f020ba6452 Q7MVL1
+Number of annotation: 37
+</pre></div></div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[109]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython2 notranslate"><div class="highlight"><pre>
+<span></span><span class="c1"># to find out the Phyla represented in the annotations</span>
+<span class="nb">print</span> <span class="nb">set</span><span class="p">(</span>
+    <span class="n">taxonomy</span><span class="o">.</span><span class="n">get_ranked_taxon</span><span class="p">(</span><span class="n">annotation</span><span class="o">.</span><span class="n">taxon_id</span><span class="p">,</span> <span class="n">rank</span><span class="o">=</span><span class="s1">&#39;phylum&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">s_name</span>
+    <span class="k">for</span> <span class="n">annotation</span> <span class="ow">in</span> <span class="n">annotations</span><span class="o">.</span><span class="n">itervalues</span><span class="p">()</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+set([&#39;arthropoda&#39;, &#39;microsporidia&#39;, &#39;korarchaeota&#39;, &#39;viruses&#39;, &#39;nematoda&#39;, &#39;bacteroidetes&#39;, &#39;nanoarchaeota&#39;, &#39;tenericutes&#39;, &#39;thermotogae&#39;, &#39;chlorophyta&#39;, &#39;cellular organisms&#39;, &#39;fibrobacteres&#39;, &#39;bacteria&#39;, &#39;euryarchaeota&#39;, &#39;verrucomicrobia&#39;, &#39;annelida&#39;, &#39;eukaryota&#39;, &#39;aquificae&#39;, &#39;ascomycota&#39;, &#39;actinobacteria&#39;, &#39;chlorobi&#39;, &#39;deferribacteres&#39;, &#39;archaea&#39;, &#39;bacillariophyta&#39;, &#39;streptophyta&#39;, &#39;chlamydiae&#39;, &#39;apicomplexa&#39;, &#39;dictyoglomi&#39;, &#39;cloacimonetes&#39;, &#39;gemmatimonadetes&#39;, &#39;thaumarchaeota&#39;, &#39;proteobacteria&#39;, &#39;acidobacteria&#39;, &#39;spirochaetes&#39;, &#39;cyanobacteria&#39;, &#39;firmicutes&#39;, &#39;chloroflexi&#39;, &#39;planctomycetes&#39;, &#39;chordata&#39;, &#39;euglenida&#39;, &#39;elusimicrobia&#39;, &#39;basidiomycota&#39;, &#39;xanthophyceae&#39;, &#39;nitrospirae&#39;, &#39;fusobacteria&#39;, &#39;deinococcus-thermus&#39;, &#39;platyhelminthes&#39;, &#39;crenarchaeota&#39;])
+</pre></div></div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[116]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython2 notranslate"><div class="highlight"><pre>
+<span></span><span class="c1"># to get the lineage of the first annotations</span>
+<span class="n">annotation</span> <span class="o">=</span> <span class="n">annotations</span><span class="p">[</span><span class="s1">&#39;b97ead95-81a7-4caf-8d25-349ee6e276c1&#39;</span><span class="p">]</span>
+<span class="nb">print</span> <span class="n">taxonomy</span><span class="p">[</span><span class="n">annotation</span><span class="o">.</span><span class="n">taxon_id</span><span class="p">]</span><span class="o">.</span><span class="n">s_name</span><span class="p">,</span> <span class="n">mgkit</span><span class="o">.</span><span class="n">taxon</span><span class="o">.</span><span class="n">get_lineage</span><span class="p">(</span><span class="n">taxonomy</span><span class="p">,</span> <span class="n">annotation</span><span class="o">.</span><span class="n">taxon_id</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+escherichia coli (strain k12) [131567, 2, 1224, 1236, 91347, 543, 561, 562]
+</pre></div></div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[115]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython2 notranslate"><div class="highlight"><pre>
+<span></span><span class="c1"># to get the names, quickly</span>
+<span class="n">annotation</span> <span class="o">=</span> <span class="n">annotations</span><span class="p">[</span><span class="s1">&#39;b97ead95-81a7-4caf-8d25-349ee6e276c1&#39;</span><span class="p">]</span>
+<span class="nb">print</span> <span class="n">taxonomy</span><span class="p">[</span><span class="n">annotation</span><span class="o">.</span><span class="n">taxon_id</span><span class="p">]</span><span class="o">.</span><span class="n">s_name</span><span class="p">,</span> <span class="n">mgkit</span><span class="o">.</span><span class="n">taxon</span><span class="o">.</span><span class="n">get_lineage</span><span class="p">(</span><span class="n">taxonomy</span><span class="p">,</span> <span class="n">annotation</span><span class="o">.</span><span class="n">taxon_id</span><span class="p">,</span> <span class="n">names</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+escherichia coli (strain k12) [&#39;cellular organisms&#39;, &#39;bacteria&#39;, &#39;proteobacteria&#39;, &#39;gammaproteobacteria&#39;, &#39;enterobacteriales&#39;, &#39;enterobacteriaceae&#39;, &#39;escherichia&#39;, &#39;escherichia coli&#39;]
+</pre></div></div>
+</div>
+</div>
+<div class="section" id="Issues">
+<h3>Issues<a class="headerlink" href="#Issues" title="Permalink to this headline">¶</a></h3>
+<p>Keeping the annotations in memory can lead to a high memory usage, as well as a long time traversing all of them to specifically filter them. MGKit uses two solutions to interface with DBs, one is using a <em>dbm-like</em> database, <em>semidbm</em> and the other is using <em>MongoDB</em>.</p>
+</div>
+</div>
+<div class="section" id="semidbm">
+<h2>semidbm<a class="headerlink" href="#semidbm" title="Permalink to this headline">¶</a></h2>
+<p>Packages to use <em>dbm</em> database are included with Python, but they depend on the type of OS python is installed onto. A pure Python implementation of a dbm is <a class="reference external" href="https://github.com/jamesls/semidbm">semidbm</a>. As other <em>dbm</em>, it works in a similar way as a dictionary, while keeping the memory usage low. To create a <em>semidbm</em> DB from annotations, the <strong>get-gff-info</strong> can be used, using the <strong>dbm</strong> command:</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[21]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython2 notranslate"><div class="highlight"><pre>
+<span></span><span class="o">!</span>get-gff-info dbm -d assembly-db assembly.gff.gz
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+assembly-db
+INFO - mgkit.db.dbm: DB &#34;assembly-db&#34; opened/created
+INFO - mgkit.io.gff: Loading GFF from file (assembly.gff.gz)
+</pre></div></div>
+</div>
+<p>or interactively, using <em>mgkit.db.dbm.create_gff_dbm</em>:</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[27]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython2 notranslate"><div class="highlight"><pre>
+<span></span><span class="n">db</span> <span class="o">=</span> <span class="n">dbm</span><span class="o">.</span><span class="n">create_gff_dbm</span><span class="p">(</span><span class="n">annotations</span><span class="o">.</span><span class="n">itervalues</span><span class="p">(),</span> <span class="s1">&#39;assembly-db&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+assembly-db
+</pre></div></div>
+</div>
+<p>Which also return an instance of db. <em>semidbm</em> allows the use of only strings as keys and strings as values, so for the same annotation as before, you see what MGKit stores in it, the actual GFF line:</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[28]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython2 notranslate"><div class="highlight"><pre>
+<span></span><span class="n">db</span><span class="p">[</span><span class="s1">&#39;d002b31c-1d78-438c-b8f9-aba791807724&#39;</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[28]:
+</pre></div>
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+&#39;NODE_57290\tBLAST\tCDS\t1\t87\t51.6\t-\t0\tSRR001322_cov=&#34;0&#34;;SRR001323_cov=&#34;0&#34;;SRR001325_cov=&#34;3&#34;;SRR001326_cov=&#34;0&#34;;bitscore=&#34;51.6&#34;;cov=&#34;3&#34;;db=&#34;UNIPROT-SP&#34;;dbq=&#34;10&#34;;exp_nonsyn=&#34;200&#34;;exp_syn=&#34;61&#34;;gene_id=&#34;Q72QU2&#34;;identity=&#34;75.9&#34;;map_KO=&#34;K03695&#34;;taxon_db=&#34;NCBI-NT&#34;;taxon_id=&#34;2&#34;;uid=&#34;d002b31c-1d78-438c-b8f9-aba791807724&#34;\n&#39;
+</pre></div></div>
+</div>
+<p>The GFF line must then be converted back into an <strong>Annotation</strong> instance. To automate the process, the <strong>mgkit.db.dbm.GFFDB</strong> class wraps the <em>semidbm</em>. The same example as the one above:</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[56]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython2 notranslate"><div class="highlight"><pre>
+<span></span><span class="n">db</span> <span class="o">=</span> <span class="n">dbm</span><span class="o">.</span><span class="n">GFFDB</span><span class="p">(</span><span class="s1">&#39;assembly-db&#39;</span><span class="p">)</span>
+<span class="n">db</span><span class="p">[</span><span class="s1">&#39;d002b31c-1d78-438c-b8f9-aba791807724&#39;</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[56]:
+</pre></div>
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+NODE_57290(-):1-87
+</pre></div></div>
+</div>
+<p>It can also be iterated over as a dictionary (for compatibility, both <em>iteritems</em> and <em>items</em> return an iterator)</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[52]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython2 notranslate"><div class="highlight"><pre>
+<span></span><span class="k">for</span> <span class="n">uid</span> <span class="ow">in</span> <span class="n">db</span><span class="o">.</span><span class="n">db</span><span class="p">:</span>
+    <span class="nb">print</span> <span class="n">uid</span><span class="p">,</span> <span class="n">db</span><span class="p">[</span><span class="n">uid</span><span class="p">]</span>
+    <span class="k">break</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+50dccb4d-3a49-41ed-bf8c-a1906172d8a5 NODE_49806(+):3-116
+</pre></div></div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[55]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython2 notranslate"><div class="highlight"><pre>
+<span></span><span class="k">for</span> <span class="n">uid</span><span class="p">,</span> <span class="n">annotation</span> <span class="ow">in</span> <span class="n">db</span><span class="o">.</span><span class="n">iteritems</span><span class="p">():</span>
+    <span class="nb">print</span> <span class="n">uid</span><span class="p">,</span> <span class="n">annotation</span>
+    <span class="k">break</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+50dccb4d-3a49-41ed-bf8c-a1906172d8a5 NODE_49806(+):3-116
+</pre></div></div>
+</div>
+<p>Using this class, it is possible to use a DB as a drop-in replacement for a dictionary in a script that used annotations stored in memory in MGKit. The <a class="reference external" href="#Taxonomy-and-Annotations">examples using the taxonomy</a> will works in the same way, for example.</p>
+</div>
+<div class="section" id="Using-MongoDB">
+<h2>Using MongoDB<a class="headerlink" href="#Using-MongoDB" title="Permalink to this headline">¶</a></h2>
+<p><a class="reference external" href="https://www.mongodb.org/">MongoDB</a> is Document based DB that is not based on SQL. One of the advantage of it the absence of a schema, which makes it easy to insert annotations into it. Moreover, the data in a MongoDB is easily accessible from a variety of programming languages, as well as its own shell. Another advantage is the possiblity to query the annotations and index specific values to speed up them.</p>
+<p>In the same way as with <em>dbm</em>, the <strong>get-gff-info</strong> can help produce a file that can be directly loaded into a <em>mongod</em> instance.</p>
+<p>The following example uses <strong>pymongo</strong> (the official client library for Python) and requires a <strong>mongod</strong> instance running on the same machine. The annotations will be imported into the <strong>test</strong> database, into the <strong>gff</strong> collection.</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[69]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython2 notranslate"><div class="highlight"><pre>
+<span></span><span class="o">!</span>gunzip -c assembly.gff.gz <span class="p">|</span> get-gff-info mongodb <span class="p">|</span> mongoimport --db <span class="nb">test</span> --collection gff --drop
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+2015-12-04T15:38:41.355+1000    connected to: localhost
+2015-12-04T15:38:41.355+1000    dropping: test.gff
+INFO - mgkit.io.gff: Loading GFF from file (&lt;stdin&gt;)
+2015-12-04T15:38:43.830+1000    imported 9135 documents
+</pre></div></div>
+</div>
+<p>You can use the <strong>pymongo</strong> module directly or just use the <strong>mgkit.db.mongo.GFFDB</strong> class to automate connection and conversion of the <strong>JSON</strong> documents back into <strong>Annotation</strong> objects.</p>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[72]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython2 notranslate"><div class="highlight"><pre>
+<span></span><span class="n">db</span> <span class="o">=</span> <span class="n">mongo</span><span class="o">.</span><span class="n">GFFDB</span><span class="p">(</span><span class="s1">&#39;test&#39;</span><span class="p">,</span> <span class="s1">&#39;gff&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[74]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython2 notranslate"><div class="highlight"><pre>
+<span></span><span class="k">for</span> <span class="n">annotation</span> <span class="ow">in</span> <span class="n">db</span><span class="o">.</span><span class="n">find_annotation</span><span class="p">():</span>
+    <span class="nb">print</span> <span class="n">annotation</span><span class="o">.</span><span class="n">uid</span><span class="p">,</span> <span class="n">annotation</span><span class="o">.</span><span class="n">gene_id</span>
+    <span class="k">break</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+303fbf1f-8140-4f9e-9c44-ae089e67bdc3 O93746
+</pre></div></div>
+</div>
+<p>The DB can be queried by passing the <strong>GFF.find_annotation</strong> method the same query that are explained in <a class="reference external" href="https://docs.mongodb.org/getting-started/python/client/">Pymongo documentation</a>.</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[76]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython2 notranslate"><div class="highlight"><pre>
+<span></span><span class="c1"># To look for all annotations that have the KO mapping to K01883</span>
+<span class="k">for</span> <span class="n">annotation</span> <span class="ow">in</span> <span class="n">db</span><span class="o">.</span><span class="n">find_annotation</span><span class="p">({</span><span class="s1">&#39;map.ko&#39;</span><span class="p">:</span> <span class="s1">&#39;K01883&#39;</span><span class="p">}):</span>
+    <span class="nb">print</span> <span class="n">annotation</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+NODE_22940(-):2-97
+NODE_8691(+):2-88
+NODE_8691(+):5-91
+NODE_30222(+):11-97
+NODE_30222(+):2-82
+NODE_30222(+):8-94
+NODE_30222(+):5-91
+NODE_36783(+):11-115
+NODE_2009(-):3-104
+NODE_2009(-):12-110
+NODE_19876(+):3-113
+NODE_35927(-):2-76
+NODE_35927(-):8-163
+NODE_31317(+):2-73
+NODE_31317(+):5-88
+NODE_29415(+):29-100
+NODE_45868(-):1-96
+NODE_1013(-):33-128
+NODE_39238(-):1-90
+NODE_39238(-):4-93
+NODE_6581(-):3-116
+NODE_40758(-):2-163
+NODE_7805(-):1-117
+NODE_28135(+):3-116
+NODE_8575(+):34-123
+NODE_8575(+):28-114
+NODE_6979(+):1-99
+NODE_35052(-):2-106
+NODE_13245(-):2-94
+NODE_13245(-):5-97
+NODE_30508(+):1-99
+NODE_19190(+):18-227
+NODE_19190(+):3-113
+NODE_16671(+):2-106
+</pre></div></div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[79]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython2 notranslate"><div class="highlight"><pre>
+<span></span><span class="c1"># To look for all annotations that have the KO mapping to K01883 *AND*</span>
+<span class="c1"># the taxonomy was inferred from a blast to NCBI (see refinement of</span>
+<span class="c1"># taxonomy in theTutorial - Gene Prediction)</span>
+<span class="k">for</span> <span class="n">annotation</span> <span class="ow">in</span> <span class="n">db</span><span class="o">.</span><span class="n">find_annotation</span><span class="p">({</span><span class="s1">&#39;map.ko&#39;</span><span class="p">:</span> <span class="s1">&#39;K01883&#39;</span><span class="p">,</span> <span class="s1">&#39;taxon_db&#39;</span><span class="p">:</span> <span class="s1">&#39;NCBI-NT&#39;</span><span class="p">}):</span>
+    <span class="nb">print</span> <span class="n">annotation</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+NODE_22940(-):2-97
+NODE_30222(+):11-97
+NODE_30222(+):2-82
+NODE_30222(+):8-94
+NODE_30222(+):5-91
+NODE_40758(-):2-163
+</pre></div></div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[117]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython2 notranslate"><div class="highlight"><pre>
+<span></span><span class="c1"># Finding all annotation from a specific taxon</span>
+<span class="k">for</span> <span class="n">annotation</span> <span class="ow">in</span> <span class="n">db</span><span class="o">.</span><span class="n">find_annotation</span><span class="p">({</span><span class="s1">&#39;taxon_id&#39;</span><span class="p">:</span> <span class="mi">224911</span><span class="p">}):</span>
+    <span class="nb">print</span> <span class="n">annotation</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+NODE_36848(-):2-94
+NODE_58432(+):8-124
+NODE_48731(+):5-118
+NODE_13988(+):20-190
+NODE_10564(-):3-101
+NODE_61599(+):8-106
+NODE_58191(+):1-99
+NODE_36561(+):5-115
+NODE_33951(-):13-99
+NODE_20537(-):6-101
+NODE_72294(-):3-95
+</pre></div></div>
+</div>
+<div class="section" id="Using-Taxonomy">
+<h3>Using Taxonomy<a class="headerlink" href="#Using-Taxonomy" title="Permalink to this headline">¶</a></h3>
+<p>The usual approach about the taxonomy is to traverse all the annotations (those returned by one of the previous queries, even) and use the functionality in the <strong>mgkit.taxon</strong> module. It is possible to repeat the example that search all annotations that belong to Order <em>Bacteroidales</em>, but the records must be loaded with the lineage into the DB. This can be done having a taxonomy file, <em>taxonomy.pickle.gz</em> in our case, with the following command:</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[118]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython2 notranslate"><div class="highlight"><pre>
+<span></span><span class="o">!</span>gunzip -c assembly.gff.gz <span class="p">|</span> get-gff-info mongodb -t taxonomy.pickle.gz <span class="p">|</span> mongoimport --db <span class="nb">test</span> --collection gff --drop
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+2015-12-04T16:32:13.785+1000    connected to: localhost
+2015-12-04T16:32:13.786+1000    dropping: test.gff
+2015-12-04T16:32:16.783+1000    test.gff        0.0 B
+2015-12-04T16:32:19.783+1000    test.gff        0.0 B
+INFO - mgkit.taxon: Loading taxonomy from file taxonomy.pickle.gz
+2015-12-04T16:32:22.785+1000    test.gff        0.0 B
+2015-12-04T16:32:25.782+1000    test.gff        0.0 B
+2015-12-04T16:32:28.784+1000    test.gff        0.0 B
+2015-12-04T16:32:31.780+1000    test.gff        0.0 B
+2015-12-04T16:32:34.783+1000    test.gff        0.0 B
+2015-12-04T16:32:37.780+1000    test.gff        0.0 B
+2015-12-04T16:32:40.782+1000    test.gff        0.0 B
+2015-12-04T16:32:43.782+1000    test.gff        0.0 B
+2015-12-04T16:32:46.785+1000    test.gff        0.0 B
+2015-12-04T16:32:49.785+1000    test.gff        0.0 B
+2015-12-04T16:32:52.783+1000    test.gff        0.0 B
+2015-12-04T16:32:55.783+1000    test.gff        0.0 B
+2015-12-04T16:32:58.781+1000    test.gff        0.0 B
+2015-12-04T16:33:01.780+1000    test.gff        0.0 B
+2015-12-04T16:33:04.783+1000    test.gff        0.0 B
+2015-12-04T16:33:07.781+1000    test.gff        0.0 B
+2015-12-04T16:33:10.781+1000    test.gff        0.0 B
+2015-12-04T16:33:13.781+1000    test.gff        0.0 B
+2015-12-04T16:33:16.781+1000    test.gff        0.0 B
+2015-12-04T16:33:19.783+1000    test.gff        0.0 B
+2015-12-04T16:33:22.781+1000    test.gff        0.0 B
+2015-12-04T16:33:25.782+1000    test.gff        0.0 B
+2015-12-04T16:33:28.781+1000    test.gff        0.0 B
+2015-12-04T16:33:31.783+1000    test.gff        0.0 B
+2015-12-04T16:33:34.785+1000    test.gff        0.0 B
+2015-12-04T16:33:37.781+1000    test.gff        0.0 B
+2015-12-04T16:33:40.780+1000    test.gff        0.0 B
+2015-12-04T16:33:43.782+1000    test.gff        0.0 B
+2015-12-04T16:33:46.780+1000    test.gff        0.0 B
+2015-12-04T16:33:49.780+1000    test.gff        0.0 B
+2015-12-04T16:33:52.781+1000    test.gff        0.0 B
+2015-12-04T16:33:55.782+1000    test.gff        0.0 B
+2015-12-04T16:33:58.785+1000    test.gff        0.0 B
+2015-12-04T16:34:01.784+1000    test.gff        0.0 B
+2015-12-04T16:34:04.781+1000    test.gff        0.0 B
+2015-12-04T16:34:07.782+1000    test.gff        0.0 B
+2015-12-04T16:34:10.785+1000    test.gff        0.0 B
+2015-12-04T16:34:13.781+1000    test.gff        0.0 B
+2015-12-04T16:34:16.784+1000    test.gff        0.0 B
+2015-12-04T16:34:19.783+1000    test.gff        0.0 B
+2015-12-04T16:34:22.780+1000    test.gff        0.0 B
+2015-12-04T16:34:25.785+1000    test.gff        0.0 B
+2015-12-04T16:34:28.781+1000    test.gff        0.0 B
+2015-12-04T16:34:31.780+1000    test.gff        0.0 B
+2015-12-04T16:34:34.783+1000    test.gff        0.0 B
+2015-12-04T16:34:37.780+1000    test.gff        0.0 B
+2015-12-04T16:34:40.782+1000    test.gff        0.0 B
+2015-12-04T16:34:43.781+1000    test.gff        0.0 B
+2015-12-04T16:34:46.785+1000    test.gff        0.0 B
+INFO - mgkit.workflow.extract_gff_info: Using cached calls to lineage
+INFO - mgkit.io.gff: Loading GFF from file (&lt;stdin&gt;)
+2015-12-04T16:34:49.783+1000    test.gff        2.7 MB
+2015-12-04T16:34:51.874+1000    imported 9135 documents
+</pre></div></div>
+</div>
+<p>The script will first load the taxonomy and add to each record in the database the <strong>lineage</strong> key. This contains an array of integers, that are the output of the <strong>mgkit.taxon.lineage</strong> function and can be searched using:</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[123]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython2 notranslate"><div class="highlight"><pre>
+<span></span><span class="n">count</span> <span class="o">=</span> <span class="mi">0</span>
+<span class="k">for</span> <span class="n">annotation</span> <span class="ow">in</span> <span class="n">db</span><span class="o">.</span><span class="n">find_annotation</span><span class="p">({</span><span class="s1">&#39;lineage&#39;</span><span class="p">:</span> <span class="mi">171549</span><span class="p">}):</span>
+    <span class="n">count</span> <span class="o">+=</span> <span class="mi">1</span>
+    <span class="nb">print</span> <span class="n">annotation</span>
+<span class="nb">print</span> <span class="s2">&quot;Number of annotation:&quot;</span><span class="p">,</span> <span class="n">count</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+NODE_33533(-):2-64
+NODE_18827(+):2-127
+NODE_25363(+):3-95
+NODE_69486(+):1-111
+NODE_13380(-):3-95
+NODE_8404(+):3-176
+NODE_71367(+):2-106
+NODE_50779(-):1-102
+NODE_20694(+):129-221
+NODE_38976(+):4-102
+NODE_69904(+):9-110
+NODE_1963(-):2-94
+NODE_41194(-):18-98
+NODE_47622(+):1-99
+NODE_56590(+):2-103
+NODE_66803(+):23-169
+NODE_14043(+):4-96
+NODE_35099(+):18-122
+NODE_48598(-):20-97
+NODE_58511(+):1-96
+NODE_70185(+):2-103
+NODE_56348(-):4-93
+NODE_56348(-):13-102
+NODE_56348(-):10-99
+NODE_32336(-):1-114
+NODE_59685(+):3-107
+NODE_57945(+):12-134
+NODE_59259(-):1-108
+NODE_28794(-):5-133
+NODE_72312(-):1-96
+NODE_37438(+):3-107
+NODE_6370(+):123-224
+NODE_67647(+):2-100
+NODE_28480(-):1-93
+NODE_72226(+):8-103
+NODE_46503(+):3-104
+NODE_20236(+):1-90
+Number of annotation: 37
+</pre></div></div>
+</div>
+<p>And as you can see, the number of annotations is the same as the <a class="reference external" href="#Taxonomy-and-Annotations">example above</a>. The use of MongoDB to store the annotations can make it simplier to use richer queries, even from other languages.</p>
+</div>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="../../gff.html" class="btn btn-neutral float-right" title="MGKit GFF Specifications" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="../plots/misc-plots.html" class="btn btn-neutral float-left" title="Misc. Plots Tips" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2013-2015, Francesco Rubino
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

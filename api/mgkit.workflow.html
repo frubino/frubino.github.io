@@ -1,0 +1,435 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>mgkit.workflow package &mdash; MGKit: Metagenomic framework 0.5.0 documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+  <script type="text/javascript" src="../_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+        <script type="text/javascript" src="../_static/jquery.js"></script>
+        <script type="text/javascript" src="../_static/underscore.js"></script>
+        <script type="text/javascript" src="../_static/doctools.js"></script>
+        <script type="text/javascript" src="../_static/language_data.js"></script>
+        <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+        <script async="async" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+        <script type="text/x-mathjax-config">MathJax.Hub.Config({"tex2jax": {"inlineMath": [["$", "$"], ["\\(", "\\)"]], "processEscapes": true, "ignoreClass": "document", "processClass": "math|output_area"}})</script>
+    
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/graphviz.css" type="text/css" />
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="mgkit.workflow.add_gff_info module" href="mgkit.workflow.add_gff_info.html" />
+    <link rel="prev" title="mgkit.utils.trans_tables module" href="mgkit.utils.trans_tables.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../index.html" class="icon icon-home"> MGKit: Metagenomic framework
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                0.5.0
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../introduction.html">Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../install.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../pipeline/index.html">Metagenomic Pipeline</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../scripts/index.html">Scripts Details</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../examples/index.html">Example Notebooks</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../gff.html">MGKit GFF Specifications</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../library.html">Library Reference</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="mgkit.html">mgkit package</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mgkit.align.html">mgkit.align module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mgkit.consts.html">mgkit.consts module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mgkit.counts.html">mgkit.counts package</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mgkit.counts.func.html">mgkit.counts.func module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mgkit.counts.glm.html">mgkit.counts.glm module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mgkit.counts.scaling.html">mgkit.counts.scaling module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mgkit.db.html">mgkit.db package</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mgkit.db.dbm.html">mgkit.db.dbm module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mgkit.db.mongo.html">mgkit.db.mongo module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mgkit.filter.html">mgkit.filter package</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mgkit.filter.common.html">mgkit.filter.common module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mgkit.filter.gff.html">mgkit.filter.gff module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mgkit.filter.lists.html">mgkit.filter.lists module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mgkit.filter.reads.html">mgkit.filter.reads module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mgkit.filter.taxon.html">mgkit.filter.taxon module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mgkit.graphs.html">mgkit.graphs module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mgkit.io.html">mgkit.io package</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mgkit.io.blast.html">mgkit.io.blast module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mgkit.io.fasta.html">mgkit.io.fasta module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mgkit.io.fastq.html">mgkit.io.fastq module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mgkit.io.gff.html">mgkit.io.gff module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mgkit.io.glimmer.html">mgkit.io.glimmer module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mgkit.io.snpdat.html">mgkit.io.snpdat module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mgkit.io.uniprot.html">mgkit.io.uniprot module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mgkit.io.utils.html">mgkit.io.utils module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mgkit.kegg.html">mgkit.kegg module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mgkit.logger.html">mgkit.logger module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mgkit.mappings.html">mgkit.mappings package</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mgkit.mappings.cazy.html">mgkit.mappings.cazy module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mgkit.mappings.eggnog.html">mgkit.mappings.eggnog module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mgkit.mappings.enzyme.html">mgkit.mappings.enzyme module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mgkit.mappings.go.html">mgkit.mappings.go module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mgkit.mappings.pandas_map.html">mgkit.mappings.pandas_map module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mgkit.mappings.taxon.html">mgkit.mappings.taxon module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mgkit.mappings.utils.html">mgkit.mappings.utils module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mgkit.net.html">mgkit.net package</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mgkit.net.embl.html">mgkit.net.embl module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mgkit.net.pfam.html">mgkit.net.pfam module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mgkit.net.uniprot.html">mgkit.net.uniprot module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mgkit.net.utils.html">mgkit.net.utils module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mgkit.plots.html">mgkit.plots package</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mgkit.plots.abund.html">mgkit.plots.abund module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mgkit.plots.boxplot.html">mgkit.plots.boxplot module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mgkit.plots.colors.html">mgkit.plots.colors module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mgkit.plots.heatmap.html">mgkit.plots.heatmap module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mgkit.plots.unused.html">mgkit.plots.unused module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mgkit.plots.utils.html">mgkit.plots.utils module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mgkit.simple_cache.html">mgkit.simple_cache module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mgkit.snps.html">mgkit.snps package</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mgkit.snps.classes.html">mgkit.snps.classes module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mgkit.snps.conv_func.html">mgkit.snps.conv_func module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mgkit.snps.filter.html">mgkit.snps.filter module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mgkit.snps.funcs.html">mgkit.snps.funcs module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mgkit.snps.mapper.html">mgkit.snps.mapper module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mgkit.taxon.html">mgkit.taxon module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mgkit.utils.html">mgkit.utils package</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mgkit.utils.common.html">mgkit.utils.common module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mgkit.utils.dictionary.html">mgkit.utils.dictionary module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mgkit.utils.sequence.html">mgkit.utils.sequence module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mgkit.utils.trans_tables.html">mgkit.utils.trans_tables module</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">mgkit.workflow package</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#submodules">Submodules</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="mgkit.workflow.add_gff_info.html">mgkit.workflow.add_gff_info module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="mgkit.workflow.blast2gff.html">mgkit.workflow.blast2gff module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="mgkit.workflow.extract_gff_info.html">mgkit.workflow.extract_gff_info module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="mgkit.workflow.fasta_utils.html">mgkit.workflow.fasta_utils module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="mgkit.workflow.fastq_utils.html">mgkit.workflow.fastq_utils module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="mgkit.workflow.filter_gff.html">mgkit.workflow.filter_gff module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="mgkit.workflow.hmmer2gff.html">mgkit.workflow.hmmer2gff module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="mgkit.workflow.json2gff.html">mgkit.workflow.json2gff module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="mgkit.workflow.sampling_utils.html">mgkit.workflow.sampling_utils module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="mgkit.workflow.snp_parser.html">mgkit.workflow.snp_parser module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="mgkit.workflow.taxon_utils.html">mgkit.workflow.taxon_utils module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="mgkit.workflow.utils.html">mgkit.workflow.utils module</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#module-mgkit.workflow">Module contents</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="mgkit.workflow.add_gff_info.html">mgkit.workflow.add_gff_info module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mgkit.workflow.blast2gff.html">mgkit.workflow.blast2gff module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mgkit.workflow.extract_gff_info.html">mgkit.workflow.extract_gff_info module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mgkit.workflow.fasta_utils.html">mgkit.workflow.fasta_utils module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mgkit.workflow.fastq_utils.html">mgkit.workflow.fastq_utils module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mgkit.workflow.filter_gff.html">mgkit.workflow.filter_gff module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mgkit.workflow.hmmer2gff.html">mgkit.workflow.hmmer2gff module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mgkit.workflow.json2gff.html">mgkit.workflow.json2gff module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mgkit.workflow.sampling_utils.html">mgkit.workflow.sampling_utils module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mgkit.workflow.snp_parser.html">mgkit.workflow.snp_parser module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mgkit.workflow.taxon_utils.html">mgkit.workflow.taxon_utils module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mgkit.workflow.utils.html">mgkit.workflow.utils module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="modules.html">mgkit</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../changes.html">Changes</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">MGKit: Metagenomic framework</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="../library.html">Library Reference</a> &raquo;</li>
+        
+          <li><a href="mgkit.html">mgkit package</a> &raquo;</li>
+        
+      <li>mgkit.workflow package</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="../_sources/api/mgkit.workflow.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  
+<style>
+/* CSS overrides for sphinx_rtd_theme */
+
+/* 24px margin */
+.nbinput.nblast.container,
+.nboutput.nblast.container {
+    margin-bottom: 19px;  /* padding has already 5px */
+}
+
+/* ... except between code cells! */
+.nblast.container + .nbinput.container {
+    margin-top: -19px;
+}
+
+.admonition > p:before {
+    margin-right: 4px;  /* make room for the exclamation icon */
+}
+
+/* Fix math alignment, see https://github.com/rtfd/sphinx_rtd_theme/pull/686 */
+.math {
+    text-align: unset;
+}
+</style>
+<div class="section" id="mgkit-workflow-package">
+<h1>mgkit.workflow package<a class="headerlink" href="#mgkit-workflow-package" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="submodules">
+<h2>Submodules<a class="headerlink" href="#submodules" title="Permalink to this headline">¶</a></h2>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="mgkit.workflow.add_gff_info.html">mgkit.workflow.add_gff_info module</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="mgkit.workflow.add_gff_info.html#uniprot-command">Uniprot Command</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mgkit.workflow.add_gff_info.html#coverage-command">Coverage Command</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mgkit.workflow.add_gff_info.html#adding-coverage-from-samtools-depth">Adding Coverage from samtools depth</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mgkit.workflow.add_gff_info.html#uniprot-offline-mappings">Uniprot Offline Mappings</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mgkit.workflow.add_gff_info.html#kegg-information">Kegg Information</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mgkit.workflow.add_gff_info.html#expected-aminoacidic-changes">Expected Aminoacidic Changes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mgkit.workflow.add_gff_info.html#adding-count-data">Adding Count Data</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mgkit.workflow.add_gff_info.html#adding-taxonomy-from-a-table">Adding Taxonomy from a Table</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mgkit.workflow.add_gff_info.html#adding-information-from-pfam">Adding information from Pfam</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mgkit.workflow.add_gff_info.html#changes">Changes</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="mgkit.workflow.blast2gff.html">mgkit.workflow.blast2gff module</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="mgkit.workflow.blast2gff.html#uniprot">Uniprot</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mgkit.workflow.blast2gff.html#blastdb">BlastDB</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mgkit.workflow.blast2gff.html#changes">Changes</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="mgkit.workflow.extract_gff_info.html">mgkit.workflow.extract_gff_info module</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="mgkit.workflow.extract_gff_info.html#sequence-command">sequence command</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mgkit.workflow.extract_gff_info.html#dbm-command">dbm command</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mgkit.workflow.extract_gff_info.html#mongodb-command">mongodb command</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mgkit.workflow.extract_gff_info.html#gtf-command">gtf command</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mgkit.workflow.extract_gff_info.html#split-command">split command</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mgkit.workflow.extract_gff_info.html#cov-command">cov command</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mgkit.workflow.extract_gff_info.html#changes">Changes</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="mgkit.workflow.fasta_utils.html">mgkit.workflow.fasta_utils module</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="mgkit.workflow.fasta_utils.html#split-command">split command</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mgkit.workflow.fasta_utils.html#translate-command">translate command</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mgkit.workflow.fasta_utils.html#uid-command">uid command</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mgkit.workflow.fasta_utils.html#changes">Changes</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="mgkit.workflow.fastq_utils.html">mgkit.workflow.fastq_utils module</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="mgkit.workflow.fastq_utils.html#commands">Commands</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mgkit.workflow.fastq_utils.html#changes">Changes</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="mgkit.workflow.filter_gff.html">mgkit.workflow.filter_gff module</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="mgkit.workflow.filter_gff.html#value-filtering">Value Filtering</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mgkit.workflow.filter_gff.html#overlap-filtering">Overlap Filtering</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mgkit.workflow.filter_gff.html#per-sequence-values">Per Sequence Values</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mgkit.workflow.filter_gff.html#coverage-filtering">Coverage Filtering</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mgkit.workflow.filter_gff.html#changes">Changes</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="mgkit.workflow.hmmer2gff.html">mgkit.workflow.hmmer2gff module</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="mgkit.workflow.hmmer2gff.html#changes">Changes</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="mgkit.workflow.json2gff.html">mgkit.workflow.json2gff module</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="mgkit.workflow.json2gff.html#mongodb-command">mongodb command</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="mgkit.workflow.sampling_utils.html">mgkit.workflow.sampling_utils module</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="mgkit.workflow.sampling_utils.html#resampling-utilities">Resampling Utilities</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="mgkit.workflow.sampling_utils.html#sample-command"><em>sample</em> command</a></li>
+<li class="toctree-l3"><a class="reference internal" href="mgkit.workflow.sampling_utils.html#sample-stream-command"><em>sample_stream</em> command</a></li>
+<li class="toctree-l3"><a class="reference internal" href="mgkit.workflow.sampling_utils.html#sync-command"><em>sync</em> command</a></li>
+<li class="toctree-l3"><a class="reference internal" href="mgkit.workflow.sampling_utils.html#rand-seq-command"><em>rand_seq</em> command</a></li>
+<li class="toctree-l3"><a class="reference internal" href="mgkit.workflow.sampling_utils.html#changes">Changes</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="mgkit.workflow.snp_parser.html">mgkit.workflow.snp_parser module</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="mgkit.workflow.snp_parser.html#changes">Changes</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="mgkit.workflow.taxon_utils.html">mgkit.workflow.taxon_utils module</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="mgkit.workflow.taxon_utils.html#last-common-ancestor-lca-and-lca-line">Last Common Ancestor (lca and lca_line)</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="mgkit.workflow.taxon_utils.html#krona-output">Krona Output</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="mgkit.workflow.taxon_utils.html#filter-by-taxon">Filter by Taxon</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mgkit.workflow.taxon_utils.html#convert-taxa-tables-to-hdf5">Convert Taxa Tables to HDF5</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mgkit.workflow.taxon_utils.html#extract-taxonomy">Extract taxonomy</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mgkit.workflow.taxon_utils.html#changes">Changes</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="mgkit.workflow.utils.html">mgkit.workflow.utils module</a></li>
+</ul>
+</div>
+</div>
+<div class="section" id="module-mgkit.workflow">
+<span id="module-contents"></span><h2>Module contents<a class="headerlink" href="#module-mgkit.workflow" title="Permalink to this headline">¶</a></h2>
+<p>Workflows used to script the library - execute bits of the pipelines supported</p>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="mgkit.workflow.add_gff_info.html" class="btn btn-neutral float-right" title="mgkit.workflow.add_gff_info module" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="mgkit.utils.trans_tables.html" class="btn btn-neutral float-left" title="mgkit.utils.trans_tables module" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2013-2015, Francesco Rubino
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

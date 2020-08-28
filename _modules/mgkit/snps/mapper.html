@@ -1,0 +1,280 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>mgkit.snps.mapper &mdash; MGKit: Metagenomic framework 0.5.0 documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+  <script type="text/javascript" src="../../../_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../../../" src="../../../_static/documentation_options.js"></script>
+        <script type="text/javascript" src="../../../_static/jquery.js"></script>
+        <script type="text/javascript" src="../../../_static/underscore.js"></script>
+        <script type="text/javascript" src="../../../_static/doctools.js"></script>
+        <script type="text/javascript" src="../../../_static/language_data.js"></script>
+        <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+        <script async="async" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+        <script type="text/x-mathjax-config">MathJax.Hub.Config({"tex2jax": {"inlineMath": [["$", "$"], ["\\(", "\\)"]], "processEscapes": true, "ignoreClass": "document", "processClass": "math|output_area"}})</script>
+    
+    <script type="text/javascript" src="../../../_static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="../../../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../../../_static/graphviz.css" type="text/css" />
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../../../index.html" class="icon icon-home"> MGKit: Metagenomic framework
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                0.5.0
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../introduction.html">Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../install.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../pipeline/index.html">Metagenomic Pipeline</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../scripts/index.html">Scripts Details</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../examples/index.html">Example Notebooks</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../gff.html">MGKit GFF Specifications</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../library.html">Library Reference</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../changes.html">Changes</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../index.html">MGKit: Metagenomic framework</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../../../index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="../../index.html">Module code</a> &raquo;</li>
+        
+          <li><a href="../../mgkit.html">mgkit</a> &raquo;</li>
+        
+      <li>mgkit.snps.mapper</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <h1>Source code for mgkit.snps.mapper</h1><div class="highlight"><pre>
+<span></span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">Mapping functions for SNPs - Should be move into an &#39;iterator&#39; package to</span>
+<span class="sd">be shared with other modules?</span>
+<span class="sd">&quot;&quot;&quot;</span>
+
+
+<div class="viewcode-block" id="map_gene_id"><a class="viewcode-back" href="../../../api/mgkit.snps.mapper.html#mgkit.snps.mapper.map_gene_id">[docs]</a><span class="k">def</span> <span class="nf">map_gene_id</span><span class="p">(</span><span class="n">gene_id</span><span class="p">,</span> <span class="n">gene_map</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Returns an iterator for all the values of a dictionary. if gene_id is not</span>
+<span class="sd">    found in the gene_map, an empty iterator is returned.</span>
+
+<span class="sd">    Arguments:</span>
+<span class="sd">        gene_id (immutable): gene_id or any other dictionary key.</span>
+<span class="sd">        gene_map (dict): a dictionary in the form key-&gt;[v1, v2, .. vN]</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        generator: iterator (empty if gene_id is not in gene_map) with the</span>
+<span class="sd">        values</span>
+
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">if</span> <span class="n">gene_id</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">gene_map</span><span class="p">:</span>
+        <span class="k">return</span>
+    <span class="k">for</span> <span class="n">map_id</span> <span class="ow">in</span> <span class="n">gene_map</span><span class="p">[</span><span class="n">gene_id</span><span class="p">]:</span>
+        <span class="k">yield</span> <span class="n">map_id</span></div>
+
+
+<div class="viewcode-block" id="map_taxon_id_to_rank"><a class="viewcode-back" href="../../../api/mgkit.snps.mapper.html#mgkit.snps.mapper.map_taxon_id_to_rank">[docs]</a><span class="k">def</span> <span class="nf">map_taxon_id_to_rank</span><span class="p">(</span><span class="n">taxon_id</span><span class="p">,</span> <span class="n">rank</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">taxonomy</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+                         <span class="n">include_higher</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Given a taxon_id, returns an iterator with only the element that correspond</span>
+<span class="sd">    to the requested rank. If the taxon returned by</span>
+<span class="sd">    :class:`mgkit.taxon.Taxonomy.get_ranked_taxon` has a different rank</span>
+<span class="sd">    than requested, the iterator will be empty if `include_higher` is False</span>
+<span class="sd">    and the returned taxon ID if True.</span>
+
+<span class="sd">    Arguments:</span>
+<span class="sd">        taxon_id (int): taxon ID to be mapped</span>
+<span class="sd">        rank (str): taxon rank used (:data:`mgkit.taxon.TAXON_RANKS`)</span>
+<span class="sd">        include_higher (bool): determines if a rank higher than the one</span>
+<span class="sd">            requested is to be returned</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        generator: iterator with the values or empty</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">ranked_taxon</span> <span class="o">=</span> <span class="n">taxonomy</span><span class="o">.</span><span class="n">get_ranked_taxon</span><span class="p">(</span><span class="n">taxon_id</span><span class="p">,</span> <span class="n">rank</span><span class="o">=</span><span class="n">rank</span><span class="p">)</span>
+
+    <span class="c1"># in case we don&#39;t want to include higher taxa</span>
+    <span class="k">if</span> <span class="p">(</span><span class="n">ranked_taxon</span><span class="o">.</span><span class="n">rank</span> <span class="o">!=</span> <span class="n">rank</span><span class="p">)</span> <span class="ow">and</span> <span class="p">(</span><span class="ow">not</span> <span class="n">include_higher</span><span class="p">):</span>
+        <span class="k">return</span>
+
+    <span class="k">yield</span> <span class="n">ranked_taxon</span><span class="o">.</span><span class="n">taxon_id</span></div>
+
+
+<div class="viewcode-block" id="map_taxon_id_to_ancestor"><a class="viewcode-back" href="../../../api/mgkit.snps.mapper.html#mgkit.snps.mapper.map_taxon_id_to_ancestor">[docs]</a><span class="k">def</span> <span class="nf">map_taxon_id_to_ancestor</span><span class="p">(</span><span class="n">taxon_id</span><span class="p">,</span> <span class="n">anc_ids</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">func</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Given a taxon_id and a list of ancestors IDs, returns an iterator with the</span>
+<span class="sd">    IDs that are ancestors of taxon_id.</span>
+
+<span class="sd">    Arguments:</span>
+<span class="sd">        taxon_id (int): taxon ID to be mapped</span>
+<span class="sd">        anc_ids (iterable): taxon IDs to check for ancestry</span>
+<span class="sd">        func: function used to check for ancestry - partial function for</span>
+<span class="sd">            :func:`mgkit.taxon.is_ancestor` that accepts taxon_id and anc_id</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        generator: iterator with the values or empty</span>
+
+<span class="sd">    .. note::</span>
+
+<span class="sd">        check :func:`mgkit.filter.taxon.filter_taxon_by_id_list` for examples</span>
+<span class="sd">        on using func</span>
+
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">for</span> <span class="n">anc_id</span> <span class="ow">in</span> <span class="n">anc_ids</span><span class="p">:</span>
+        <span class="k">if</span> <span class="n">func</span><span class="p">(</span><span class="n">taxon_id</span><span class="p">,</span> <span class="n">anc_id</span><span class="p">):</span>
+            <span class="k">yield</span> <span class="n">anc_id</span></div>
+</pre></div>
+
+           </div>
+           
+          </div>
+          <footer>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2013-2015, Francesco Rubino
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

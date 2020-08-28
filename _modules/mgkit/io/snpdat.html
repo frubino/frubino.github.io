@@ -1,0 +1,435 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>mgkit.io.snpdat &mdash; MGKit: Metagenomic framework 0.5.0 documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+  <script type="text/javascript" src="../../../_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../../../" src="../../../_static/documentation_options.js"></script>
+        <script type="text/javascript" src="../../../_static/jquery.js"></script>
+        <script type="text/javascript" src="../../../_static/underscore.js"></script>
+        <script type="text/javascript" src="../../../_static/doctools.js"></script>
+        <script type="text/javascript" src="../../../_static/language_data.js"></script>
+        <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+        <script async="async" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+        <script type="text/x-mathjax-config">MathJax.Hub.Config({"tex2jax": {"inlineMath": [["$", "$"], ["\\(", "\\)"]], "processEscapes": true, "ignoreClass": "document", "processClass": "math|output_area"}})</script>
+    
+    <script type="text/javascript" src="../../../_static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="../../../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../../../_static/graphviz.css" type="text/css" />
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../../../index.html" class="icon icon-home"> MGKit: Metagenomic framework
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                0.5.0
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../introduction.html">Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../install.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../pipeline/index.html">Metagenomic Pipeline</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../scripts/index.html">Scripts Details</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../examples/index.html">Example Notebooks</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../gff.html">MGKit GFF Specifications</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../library.html">Library Reference</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../changes.html">Changes</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../index.html">MGKit: Metagenomic framework</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../../../index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="../../index.html">Module code</a> &raquo;</li>
+        
+          <li><a href="../../mgkit.html">mgkit</a> &raquo;</li>
+        
+      <li>mgkit.io.snpdat</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <h1>Source code for mgkit.io.snpdat</h1><div class="highlight"><pre>
+<span></span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">SNPDat reader</span>
+<span class="sd">&quot;&quot;&quot;</span>
+<span class="kn">import</span> <span class="nn">logging</span>
+<span class="kn">from</span> <span class="nn">builtins</span> <span class="kn">import</span> <span class="nb">object</span>
+<span class="kn">import</span> <span class="nn">mgkit.utils.sequence</span>
+<span class="kn">from</span> <span class="nn">mgkit.io</span> <span class="kn">import</span> <span class="n">open_file</span>
+
+<span class="n">LOG</span> <span class="o">=</span> <span class="n">logging</span><span class="o">.</span><span class="n">getLogger</span><span class="p">(</span><span class="vm">__name__</span><span class="p">)</span>
+
+
+<div class="viewcode-block" id="SNPDatRow"><a class="viewcode-back" href="../../../api/mgkit.io.snpdat.html#mgkit.io.snpdat.SNPDatRow">[docs]</a><span class="k">class</span> <span class="nc">SNPDatRow</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Class containing information ouputted by SNPDat in its result file. One</span>
+<span class="sd">    instance contains information about a row in the file.</span>
+
+<span class="sd">    Attributes:</span>
+<span class="sd">        chr_name (str): the queried SNPs chromosome ID</span>
+<span class="sd">        chr_pos (int): queried SNPs genomic location</span>
+<span class="sd">        in_feat (bool): Whether or not the queried SNP was within a feature</span>
+<span class="sd">        region (str): Region containing the SNP; either exonic, intronic or</span>
+<span class="sd">            intergenic</span>
+<span class="sd">        feat_dist (int): Distance to nearest feature</span>
+<span class="sd">        feature (str): Either the closest feature to the SNP or the feature</span>
+<span class="sd">            containing the SNP</span>
+<span class="sd">        num_features (int): number of different features that the SNP is</span>
+<span class="sd">            annotated to</span>
+<span class="sd">        feat_num (int): number of annotations of the current feature</span>
+<span class="sd">        feat_start (int): Start of feature (bp)</span>
+<span class="sd">        feat_end (int): End of feature (bp)</span>
+<span class="sd">        gene_id (str): gene ID for the current feature</span>
+<span class="sd">        gene_name (str): gene name for the current feature</span>
+<span class="sd">        transcript_id (str): transcript ID for the current feature</span>
+<span class="sd">        transcript_name (str): transcript name for the current feature</span>
+<span class="sd">        exon (tuple): exon that contains the current feature and the total</span>
+<span class="sd">            number of annotated exons for the gene containing the feature</span>
+<span class="sd">        strand (str): strand sense of the feature</span>
+<span class="sd">        ann_frame (str): annotated reading frame (when contained in the GTF)</span>
+<span class="sd">        frame (str): reading frame estimated by SNPdat</span>
+<span class="sd">        num_stops (int): estimated number of stop codons in the estimated</span>
+<span class="sd">            reading frame</span>
+<span class="sd">        codon (tuple): codon containing the SNP, position in the codon and</span>
+<span class="sd">            reference base and mutation</span>
+<span class="sd">        nuc_change (tuple): amino acid for the reference codon and new</span>
+<span class="sd">            amino acid with the mutation in place</span>
+<span class="sd">        nuc_ref (str, None): reference nucleotide</span>
+<span class="sd">        aa_change (str): amino acid for the reference codon and new amino</span>
+<span class="sd">            acid with the mutation in place</span>
+<span class="sd">        synonymous (bool): Whether or not the mutation is synonymous</span>
+<span class="sd">        protein_id (str): protein ID for the current feature</span>
+<span class="sd">        messages (str): messages in the SNPDat line</span>
+
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="vm">__slots__</span> <span class="o">=</span> <span class="p">(</span>
+        <span class="s1">&#39;chr_name&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;chr_pos&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;in_feat&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;region&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;feat_dist&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;feature&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;num_features&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;feat_num&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;feat_start&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;feat_end&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;gene_id&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;gene_name&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;transcript_id&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;transcript_name&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;exon&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;strand&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;ann_frame&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;frame&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;num_stops&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;codon&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;nuc_change&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;nuc_ref&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;aa_change&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;synonymous&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;protein_id&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;messages&#39;</span>
+    <span class="p">)</span>
+
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">line</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">rev_comp</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+        <span class="k">if</span> <span class="n">rev_comp</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">rev_comp</span> <span class="o">=</span> <span class="n">mgkit</span><span class="o">.</span><span class="n">utils</span><span class="o">.</span><span class="n">sequence</span><span class="o">.</span><span class="n">REV_COMP</span>
+        <span class="k">if</span> <span class="n">line</span><span class="p">:</span>
+            <span class="n">line</span> <span class="o">=</span> <span class="n">line</span><span class="o">.</span><span class="n">rstrip</span><span class="p">(</span><span class="s1">&#39;</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">&#39;</span><span class="se">\t</span><span class="s1">&#39;</span><span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">chr_name</span> <span class="o">=</span> <span class="n">line</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span>  <span class="c1"># The queried SNPs chromosome ID</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">chr_pos</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">line</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>  <span class="c1"># The queried SNPs genomic location</span>
+            <span class="c1"># Whether or not the queried SNP was within a feature</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">in_feat</span> <span class="o">=</span> <span class="kc">True</span> <span class="k">if</span> <span class="n">line</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span> <span class="o">==</span> <span class="s1">&#39;Y&#39;</span> <span class="k">else</span> <span class="kc">False</span>
+            <span class="c1"># exonic - in a annotation - check overlapping genes</span>
+            <span class="c1"># intergenic - between two features</span>
+            <span class="c1"># NA - no annotation for that contig/snp</span>
+            <span class="c1"># Region containing the SNP; either exonic, intronic or intergenic</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">region</span> <span class="o">=</span> <span class="n">line</span><span class="p">[</span><span class="mi">3</span><span class="p">]</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span>
+            <span class="c1"># Distance to nearest feature</span>
+            <span class="k">if</span> <span class="n">line</span><span class="p">[</span><span class="mi">4</span><span class="p">]</span> <span class="o">!=</span> <span class="s1">&#39;NA&#39;</span><span class="p">:</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">feat_dist</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">line</span><span class="p">[</span><span class="mi">4</span><span class="p">]</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s1">&#39;*^&#39;</span><span class="p">,</span> <span class="s1">&#39;&#39;</span><span class="p">))</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">feat_dist</span> <span class="o">=</span> <span class="s1">&#39;NA&#39;</span>
+            <span class="c1"># Either the closest feature to the SNP or the feature containing</span>
+            <span class="c1"># the SNP</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">feature</span> <span class="o">=</span> <span class="n">line</span><span class="p">[</span><span class="mi">5</span><span class="p">]</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span>
+            <span class="c1"># The number of different features that the SNP is annotated to</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">num_features</span> <span class="o">=</span> <span class="mi">0</span> <span class="k">if</span> <span class="n">line</span><span class="p">[</span><span class="mi">6</span><span class="p">]</span> <span class="o">==</span> <span class="s1">&#39;NA&#39;</span> <span class="k">else</span> <span class="nb">int</span><span class="p">(</span><span class="n">line</span><span class="p">[</span><span class="mi">6</span><span class="p">])</span>
+            <span class="c1"># The number of annotations of the current feature</span>
+            <span class="k">if</span> <span class="n">line</span><span class="p">[</span><span class="mi">6</span><span class="p">]</span> <span class="o">==</span> <span class="s1">&#39;NA&#39;</span><span class="p">:</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">feat_num</span> <span class="o">=</span> <span class="mi">0</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="nb">tuple</span><span class="p">(</span><span class="nb">int</span><span class="p">(</span><span class="n">x</span><span class="p">)</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">line</span><span class="p">[</span><span class="mi">7</span><span class="p">][</span><span class="mi">1</span><span class="p">:</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">&#39;/&#39;</span><span class="p">))</span>
+            <span class="c1"># Start of feature (bp)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">feat_start</span> <span class="o">=</span> <span class="mi">0</span> <span class="k">if</span> <span class="n">line</span><span class="p">[</span><span class="mi">6</span><span class="p">]</span> <span class="o">==</span> <span class="s1">&#39;NA&#39;</span> <span class="k">else</span> <span class="nb">int</span><span class="p">(</span><span class="n">line</span><span class="p">[</span><span class="mi">8</span><span class="p">])</span>
+            <span class="c1"># End of feature (bp)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">feat_end</span> <span class="o">=</span> <span class="mi">0</span> <span class="k">if</span> <span class="n">line</span><span class="p">[</span><span class="mi">6</span><span class="p">]</span> <span class="o">==</span> <span class="s1">&#39;NA&#39;</span> <span class="k">else</span> <span class="nb">int</span><span class="p">(</span><span class="n">line</span><span class="p">[</span><span class="mi">9</span><span class="p">])</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">gene_id</span> <span class="o">=</span> <span class="n">line</span><span class="p">[</span><span class="mi">10</span><span class="p">]</span>  <span class="c1"># The gene ID for the current feature</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">gene_name</span> <span class="o">=</span> <span class="n">line</span><span class="p">[</span><span class="mi">11</span><span class="p">]</span>  <span class="c1"># The gene name for the current feature</span>
+            <span class="c1"># The transcript ID for the current feature</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">transcript_id</span> <span class="o">=</span> <span class="n">line</span><span class="p">[</span><span class="mi">12</span><span class="p">]</span>
+            <span class="c1"># The transcript name for the current feature</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">transcript_name</span> <span class="o">=</span> <span class="n">line</span><span class="p">[</span><span class="mi">13</span><span class="p">]</span>
+            <span class="c1"># The exon that contains the current feature and the total number</span>
+            <span class="c1"># of annotated exons for the gene containing the feature</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">exon</span> <span class="o">=</span> <span class="nb">tuple</span><span class="p">(</span><span class="n">x</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">line</span><span class="p">[</span><span class="mi">14</span><span class="p">][</span><span class="mi">1</span><span class="p">:</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">&#39;/&#39;</span><span class="p">))</span>
+            <span class="c1"># The strand sense of the feature</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">strand</span> <span class="o">=</span> <span class="n">line</span><span class="p">[</span><span class="mi">15</span><span class="p">]</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s1">&#39;*&#39;</span><span class="p">,</span> <span class="s1">&#39;&#39;</span><span class="p">)</span>
+            <span class="c1"># The annotated reading frame (when contained in the GTF)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">ann_frame</span> <span class="o">=</span> <span class="n">line</span><span class="p">[</span><span class="mi">16</span><span class="p">]</span>
+            <span class="c1"># The reading frame estimated by SNPdat</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">frame</span> <span class="o">=</span> <span class="n">line</span><span class="p">[</span><span class="mi">17</span><span class="p">]</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s1">&#39;*&#39;</span><span class="p">,</span> <span class="s1">&#39;&#39;</span><span class="p">)</span>
+            <span class="c1"># The estimated number of stop codons in the estimated reading</span>
+            <span class="c1"># frame</span>
+            <span class="k">if</span> <span class="n">line</span><span class="p">[</span><span class="mi">6</span><span class="p">]</span> <span class="o">==</span> <span class="s1">&#39;NA&#39;</span><span class="p">:</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">num_stops</span> <span class="o">=</span> <span class="mi">0</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">num_stops</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">line</span><span class="p">[</span><span class="mi">18</span><span class="p">]</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s1">&#39;^&#39;</span><span class="p">,</span> <span class="s1">&#39;&#39;</span><span class="p">))</span>
+            <span class="c1"># The codon containing the SNP, position in the codon and reference</span>
+            <span class="c1"># base and mutation</span>
+            <span class="n">codon</span> <span class="o">=</span> <span class="n">line</span><span class="p">[</span><span class="mi">19</span><span class="p">]</span>
+            <span class="k">if</span> <span class="n">codon</span><span class="o">.</span><span class="n">startswith</span><span class="p">(</span><span class="s1">&#39;[&#39;</span><span class="p">):</span>
+                <span class="c1"># first base</span>
+                <span class="n">codon</span> <span class="o">=</span> <span class="p">(</span><span class="nb">tuple</span><span class="p">(</span><span class="n">codon</span><span class="p">[</span><span class="mi">1</span><span class="p">:</span><span class="o">-</span><span class="mi">3</span><span class="p">]</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">&#39;/&#39;</span><span class="p">)),</span> <span class="n">codon</span><span class="p">[</span><span class="o">-</span><span class="mi">2</span><span class="p">],</span> <span class="n">codon</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">])</span>
+                <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">strand</span> <span class="o">!=</span> <span class="s1">&#39;-&#39;</span><span class="p">:</span>
+                    <span class="bp">self</span><span class="o">.</span><span class="n">nuc_change</span> <span class="o">=</span> <span class="n">codon</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="mi">1</span><span class="p">]</span>
+                <span class="k">else</span><span class="p">:</span>
+                    <span class="bp">self</span><span class="o">.</span><span class="n">nuc_change</span> <span class="o">=</span> <span class="n">rev_comp</span><span class="p">[</span><span class="n">codon</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="mi">1</span><span class="p">]]</span>
+                <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">strand</span> <span class="o">!=</span> <span class="s1">&#39;-&#39;</span><span class="p">:</span>
+                    <span class="bp">self</span><span class="o">.</span><span class="n">nuc_ref</span> <span class="o">=</span> <span class="n">codon</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span>
+                <span class="k">else</span><span class="p">:</span>
+                    <span class="bp">self</span><span class="o">.</span><span class="n">nuc_ref</span> <span class="o">=</span> <span class="n">rev_comp</span><span class="p">[</span><span class="n">codon</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="mi">0</span><span class="p">]]</span>
+            <span class="k">elif</span> <span class="n">codon</span><span class="o">.</span><span class="n">endswith</span><span class="p">(</span><span class="s1">&#39;]&#39;</span><span class="p">):</span>
+                <span class="c1"># third base</span>
+                <span class="n">codon</span> <span class="o">=</span> <span class="p">(</span><span class="n">codon</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">codon</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="nb">tuple</span><span class="p">(</span><span class="n">codon</span><span class="p">[</span><span class="mi">3</span><span class="p">:</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">&#39;/&#39;</span><span class="p">)))</span>
+                <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">strand</span> <span class="o">!=</span> <span class="s1">&#39;-&#39;</span><span class="p">:</span>
+                    <span class="bp">self</span><span class="o">.</span><span class="n">nuc_change</span> <span class="o">=</span> <span class="n">codon</span><span class="p">[</span><span class="mi">2</span><span class="p">][</span><span class="mi">1</span><span class="p">]</span>
+                <span class="k">else</span><span class="p">:</span>
+                    <span class="bp">self</span><span class="o">.</span><span class="n">nuc_change</span> <span class="o">=</span> <span class="n">rev_comp</span><span class="p">[</span><span class="n">codon</span><span class="p">[</span><span class="mi">2</span><span class="p">][</span><span class="mi">1</span><span class="p">]]</span>
+                <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">strand</span> <span class="o">!=</span> <span class="s1">&#39;-&#39;</span><span class="p">:</span>
+                    <span class="bp">self</span><span class="o">.</span><span class="n">nuc_ref</span> <span class="o">=</span> <span class="n">codon</span><span class="p">[</span><span class="mi">2</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span>
+                <span class="k">else</span><span class="p">:</span>
+                    <span class="bp">self</span><span class="o">.</span><span class="n">nuc_ref</span> <span class="o">=</span> <span class="n">rev_comp</span><span class="p">[</span><span class="n">codon</span><span class="p">[</span><span class="mi">2</span><span class="p">][</span><span class="mi">0</span><span class="p">]]</span>
+            <span class="k">elif</span> <span class="n">codon</span> <span class="o">==</span> <span class="s1">&#39;NA&#39;</span><span class="p">:</span>
+                <span class="n">codon</span> <span class="o">=</span> <span class="kc">None</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">nuc_change</span> <span class="o">=</span> <span class="kc">None</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">nuc_ref</span> <span class="o">=</span> <span class="kc">None</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="c1"># second base</span>
+                <span class="n">codon</span> <span class="o">=</span> <span class="p">(</span><span class="n">codon</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="nb">tuple</span><span class="p">(</span><span class="n">codon</span><span class="p">[</span><span class="mi">2</span><span class="p">:</span><span class="o">-</span><span class="mi">2</span><span class="p">]</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">&#39;/&#39;</span><span class="p">)),</span> <span class="n">codon</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">])</span>
+                <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">strand</span> <span class="o">!=</span> <span class="s1">&#39;-&#39;</span><span class="p">:</span>
+                    <span class="bp">self</span><span class="o">.</span><span class="n">nuc_change</span> <span class="o">=</span> <span class="n">codon</span><span class="p">[</span><span class="mi">1</span><span class="p">][</span><span class="mi">1</span><span class="p">]</span>
+                <span class="k">else</span><span class="p">:</span>
+                    <span class="bp">self</span><span class="o">.</span><span class="n">nuc_change</span> <span class="o">=</span> <span class="n">rev_comp</span><span class="p">[</span><span class="n">codon</span><span class="p">[</span><span class="mi">1</span><span class="p">][</span><span class="mi">1</span><span class="p">]]</span>
+                <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">strand</span> <span class="o">!=</span> <span class="s1">&#39;-&#39;</span><span class="p">:</span>
+                    <span class="bp">self</span><span class="o">.</span><span class="n">nuc_ref</span> <span class="o">=</span> <span class="n">codon</span><span class="p">[</span><span class="mi">1</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span>
+                <span class="k">else</span><span class="p">:</span>
+                    <span class="bp">self</span><span class="o">.</span><span class="n">nuc_ref</span> <span class="o">=</span> <span class="n">rev_comp</span><span class="p">[</span><span class="n">codon</span><span class="p">[</span><span class="mi">1</span><span class="p">][</span><span class="mi">0</span><span class="p">]]</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">codon</span> <span class="o">=</span> <span class="n">codon</span>
+            <span class="c1"># The amino acid for the reference codon and new amino acid with</span>
+            <span class="c1"># the mutation in place</span>
+            <span class="k">if</span> <span class="n">line</span><span class="p">[</span><span class="mi">20</span><span class="p">]</span> <span class="o">==</span> <span class="s1">&#39;NA&#39;</span><span class="p">:</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">aa_change</span> <span class="o">=</span> <span class="p">(</span><span class="kc">None</span><span class="p">,</span> <span class="kc">None</span><span class="p">)</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">aa_change</span> <span class="o">=</span> <span class="nb">tuple</span><span class="p">(</span><span class="n">x</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">line</span><span class="p">[</span><span class="mi">20</span><span class="p">][</span><span class="mi">1</span><span class="p">:</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">&#39;/&#39;</span><span class="p">))</span>
+            <span class="c1"># Whether or not the mutation is synonymous</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">synonymous</span> <span class="o">=</span> <span class="kc">True</span> <span class="k">if</span> <span class="n">line</span><span class="p">[</span><span class="mi">21</span><span class="p">]</span> <span class="o">==</span> <span class="s1">&#39;Y&#39;</span> <span class="k">else</span> <span class="kc">False</span>
+            <span class="c1"># The protein ID for the current feature</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">protein_id</span> <span class="o">=</span> <span class="n">line</span><span class="p">[</span><span class="mi">22</span><span class="p">]</span>
+            <span class="c1"># not in a result file if no dbSNP (&#39;-d&#39; options) specified</span>
+            <span class="c1"># self.rs_id = line[23] #The RS identifier for queries that map to</span>
+            <span class="c1"># known SNPs</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">messages</span> <span class="o">=</span> <span class="n">line</span><span class="p">[</span><span class="mi">23</span><span class="p">]</span>  <span class="c1"># Error messages, warnings etc</span>
+
+    <span class="k">def</span> <span class="fm">__repr__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="nb">str</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="fm">__str__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">codon</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">codon</span> <span class="o">=</span> <span class="p">[</span>
+                <span class="n">x</span> <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="nb">str</span><span class="p">)</span> <span class="k">else</span> <span class="s1">&#39;[</span><span class="si">{0}</span><span class="s1">/</span><span class="si">{1}</span><span class="s1">]&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="o">*</span><span class="n">x</span><span class="p">)</span>
+                <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">codon</span>
+            <span class="p">]</span>
+            <span class="n">codon</span> <span class="o">=</span> <span class="s2">&quot;</span><span class="si">{0}{1}{2}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="o">*</span><span class="n">codon</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">codon</span> <span class="o">=</span> <span class="kc">None</span>
+        <span class="k">return</span> <span class="s2">&quot;</span><span class="si">{0}</span><span class="s2">:</span><span class="si">{1}</span><span class="s2"> </span><span class="si">{2}</span><span class="s2"> - [</span><span class="si">{3}</span><span class="s2">/</span><span class="si">{4}</span><span class="s2">]&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">chr_name</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">chr_pos</span><span class="p">,</span>
+                                                <span class="n">codon</span><span class="p">,</span> <span class="o">*</span><span class="bp">self</span><span class="o">.</span><span class="n">aa_change</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="snpdat_reader"><a class="viewcode-back" href="../../../api/mgkit.io.snpdat.html#mgkit.io.snpdat.snpdat_reader">[docs]</a><span class="k">def</span> <span class="nf">snpdat_reader</span><span class="p">(</span><span class="n">f_handle</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Simple SNPDat reader.</span>
+
+<span class="sd">    f_handle: file handle or string for the SNPDat result file</span>
+
+<span class="sd">    :return: generator of SNPDatRow instances</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">f_handle</span><span class="p">,</span> <span class="nb">str</span><span class="p">):</span>
+        <span class="n">f_handle</span> <span class="o">=</span> <span class="n">open_file</span><span class="p">(</span><span class="n">f_handle</span><span class="p">,</span> <span class="s1">&#39;r&#39;</span><span class="p">)</span>
+    <span class="n">LOG</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;Reading from file </span><span class="si">%s</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">f_handle</span><span class="o">.</span><span class="n">name</span><span class="p">)</span>
+
+    <span class="n">f_handle</span><span class="o">.</span><span class="n">readline</span><span class="p">()</span>  <span class="c1"># skips header line</span>
+
+    <span class="k">for</span> <span class="n">line</span> <span class="ow">in</span> <span class="n">f_handle</span><span class="p">:</span>
+        <span class="n">line</span> <span class="o">=</span> <span class="n">line</span><span class="o">.</span><span class="n">decode</span><span class="p">(</span><span class="s1">&#39;ascii&#39;</span><span class="p">)</span>
+        <span class="k">try</span><span class="p">:</span>
+            <span class="k">yield</span> <span class="n">SNPDatRow</span><span class="p">(</span><span class="n">line</span><span class="p">)</span>
+        <span class="k">except</span> <span class="ne">ValueError</span><span class="p">:</span>
+            <span class="n">LOG</span><span class="o">.</span><span class="n">critical</span><span class="p">(</span><span class="n">line</span><span class="p">)</span>
+            <span class="n">LOG</span><span class="o">.</span><span class="n">exception</span><span class="p">(</span><span class="s2">&quot;Error reading line&quot;</span><span class="p">)</span>
+            <span class="k">raise</span> <span class="ne">ValueError</span></div>
+</pre></div>
+
+           </div>
+           
+          </div>
+          <footer>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2013-2015, Francesco Rubino
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

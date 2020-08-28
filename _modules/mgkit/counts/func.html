@@ -1,0 +1,945 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>mgkit.counts.func &mdash; MGKit: Metagenomic framework 0.5.0 documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+  <script type="text/javascript" src="../../../_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../../../" src="../../../_static/documentation_options.js"></script>
+        <script type="text/javascript" src="../../../_static/jquery.js"></script>
+        <script type="text/javascript" src="../../../_static/underscore.js"></script>
+        <script type="text/javascript" src="../../../_static/doctools.js"></script>
+        <script type="text/javascript" src="../../../_static/language_data.js"></script>
+        <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+        <script async="async" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+        <script type="text/x-mathjax-config">MathJax.Hub.Config({"tex2jax": {"inlineMath": [["$", "$"], ["\\(", "\\)"]], "processEscapes": true, "ignoreClass": "document", "processClass": "math|output_area"}})</script>
+    
+    <script type="text/javascript" src="../../../_static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="../../../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../../../_static/graphviz.css" type="text/css" />
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../../../index.html" class="icon icon-home"> MGKit: Metagenomic framework
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                0.5.0
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../introduction.html">Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../install.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../pipeline/index.html">Metagenomic Pipeline</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../scripts/index.html">Scripts Details</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../examples/index.html">Example Notebooks</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../gff.html">MGKit GFF Specifications</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../library.html">Library Reference</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../changes.html">Changes</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../index.html">MGKit: Metagenomic framework</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../../../index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="../../index.html">Module code</a> &raquo;</li>
+        
+          <li><a href="../../mgkit.html">mgkit</a> &raquo;</li>
+        
+      <li>mgkit.counts.func</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <h1>Source code for mgkit.counts.func</h1><div class="highlight"><pre>
+<span></span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">.. versionadded:: 0.1.13</span>
+
+<span class="sd">Misc functions for count data</span>
+<span class="sd">&quot;&quot;&quot;</span>
+<span class="kn">import</span> <span class="nn">sys</span>
+<span class="kn">import</span> <span class="nn">logging</span>
+<span class="kn">import</span> <span class="nn">itertools</span>
+<span class="kn">import</span> <span class="nn">functools</span>
+<span class="kn">from</span> <span class="nn">collections</span> <span class="kn">import</span> <span class="n">Counter</span>
+<span class="kn">from</span> <span class="nn">future.utils</span> <span class="kn">import</span> <span class="n">viewitems</span>
+
+<span class="kn">from</span> <span class="nn">mgkit.filter</span> <span class="kn">import</span> <span class="n">taxon</span> <span class="k">as</span> <span class="n">tx_filters</span>
+<span class="kn">from</span> <span class="nn">mgkit.io</span> <span class="kn">import</span> <span class="n">open_file</span>
+<span class="kn">import</span> <span class="nn">mgkit.simple_cache</span>
+
+<span class="kn">import</span> <span class="nn">pandas</span>
+
+<span class="n">LOG</span> <span class="o">=</span> <span class="n">logging</span><span class="o">.</span><span class="n">getLogger</span><span class="p">(</span><span class="vm">__name__</span><span class="p">)</span>
+
+<span class="n">SKIP</span> <span class="o">=</span> <span class="nb">set</span><span class="p">(</span>
+    <span class="p">[</span>
+        <span class="s1">&#39;no_feature&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;ambiguous&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;too_low_aQual&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;not_aligned&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;alignment_not_unique&#39;</span>
+    <span class="p">]</span>
+<span class="p">)</span>
+
+
+<div class="viewcode-block" id="load_htseq_counts"><a class="viewcode-back" href="../../../api/mgkit.counts.func.html#mgkit.counts.func.load_htseq_counts">[docs]</a><span class="k">def</span> <span class="nf">load_htseq_counts</span><span class="p">(</span><span class="n">file_handle</span><span class="p">,</span> <span class="n">conv_func</span><span class="o">=</span><span class="nb">int</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    .. versionchanged:: 0.1.15</span>
+<span class="sd">        added *conv_func* parameter</span>
+
+<span class="sd">    Loads an HTSeq-count result file</span>
+
+<span class="sd">    Arguments:</span>
+
+<span class="sd">        file_handle (file or str): file handle or string with file name</span>
+<span class="sd">        conv_func (func): function to convert the number from string, defaults</span>
+<span class="sd">            to *int*, but *float* can be used as well</span>
+
+<span class="sd">    Yields:</span>
+<span class="sd">        tuple: first element is the gene_id and the second is the count</span>
+
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">file_handle</span><span class="p">,</span> <span class="nb">str</span><span class="p">):</span>
+        <span class="n">file_handle</span> <span class="o">=</span> <span class="n">open_file</span><span class="p">(</span><span class="n">file_handle</span><span class="p">,</span> <span class="s1">&#39;rb&#39;</span><span class="p">)</span>
+
+    <span class="k">if</span> <span class="nb">getattr</span><span class="p">(</span><span class="n">file_handle</span><span class="p">,</span> <span class="s1">&#39;name&#39;</span><span class="p">,</span> <span class="kc">None</span><span class="p">)</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="n">LOG</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;Loading HTSeq-count file </span><span class="si">%s</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">file_handle</span><span class="o">.</span><span class="n">name</span><span class="p">)</span>
+
+    <span class="k">for</span> <span class="n">line</span> <span class="ow">in</span> <span class="n">file_handle</span><span class="p">:</span>
+        <span class="n">line</span> <span class="o">=</span> <span class="n">line</span><span class="o">.</span><span class="n">decode</span><span class="p">(</span><span class="s1">&#39;ascii&#39;</span><span class="p">)</span>
+        <span class="n">gene_id</span><span class="p">,</span> <span class="n">count</span> <span class="o">=</span> <span class="n">line</span><span class="o">.</span><span class="n">rstrip</span><span class="p">()</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">&#39;</span><span class="se">\t</span><span class="s1">&#39;</span><span class="p">)</span>
+
+        <span class="k">if</span> <span class="n">line</span><span class="o">.</span><span class="n">startswith</span><span class="p">(</span><span class="s1">&#39;__&#39;</span><span class="p">)</span> <span class="ow">or</span> <span class="p">(</span><span class="n">gene_id</span> <span class="ow">in</span> <span class="n">SKIP</span><span class="p">):</span>
+            <span class="k">continue</span>
+
+        <span class="k">yield</span> <span class="n">gene_id</span><span class="p">,</span> <span class="n">conv_func</span><span class="p">(</span><span class="n">count</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="batch_load_htseq_counts"><a class="viewcode-back" href="../../../api/mgkit.counts.func.html#mgkit.counts.func.batch_load_htseq_counts">[docs]</a><span class="k">def</span> <span class="nf">batch_load_htseq_counts</span><span class="p">(</span><span class="n">count_files</span><span class="p">,</span> <span class="n">samples</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">cut_name</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Loads a list of htseq count result files and returns a DataFrame</span>
+<span class="sd">    (IDxSAMPLE)</span>
+
+<span class="sd">    The sample names are names are the file names if *samples* and *cut_name*</span>
+<span class="sd">    are *None*, supplying a list of sample names with *samples* is the</span>
+<span class="sd">    preferred way, and *cut_name* is used for backward compatibility and as an</span>
+<span class="sd">    option in cases a string replace is enough.</span>
+
+<span class="sd">    Arguments:</span>
+<span class="sd">        count_files (file or str): file handle or string with file name</span>
+<span class="sd">        samples (iterable): list of sample names, in the same order as</span>
+<span class="sd">            *count_files*</span>
+<span class="sd">        cut_name (str): string to delete from the the file names to get the</span>
+<span class="sd">            sample names</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        pandas.DataFrame: with sample names as columns and gene_ids as index</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">counts</span> <span class="o">=</span> <span class="p">{}</span>
+
+    <span class="n">iterator</span> <span class="o">=</span> <span class="n">itertools</span><span class="o">.</span><span class="n">zip_longest</span><span class="p">(</span>
+        <span class="n">count_files</span><span class="p">,</span>
+        <span class="p">[]</span> <span class="k">if</span> <span class="n">samples</span> <span class="ow">is</span> <span class="kc">None</span> <span class="k">else</span> <span class="n">samples</span>
+    <span class="p">)</span>
+
+    <span class="k">for</span> <span class="n">fname</span><span class="p">,</span> <span class="n">sample</span> <span class="ow">in</span> <span class="n">iterator</span><span class="p">:</span>
+        <span class="k">if</span> <span class="n">sample</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="k">if</span> <span class="n">cut_name</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+                <span class="n">sample</span> <span class="o">=</span> <span class="n">fname</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="n">cut_name</span><span class="p">,</span> <span class="s1">&#39;&#39;</span><span class="p">)</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="n">sample</span> <span class="o">=</span> <span class="n">fname</span>
+
+        <span class="n">counts</span><span class="p">[</span><span class="n">sample</span><span class="p">]</span> <span class="o">=</span> <span class="n">pandas</span><span class="o">.</span><span class="n">Series</span><span class="p">(</span><span class="n">load_htseq_counts</span><span class="p">(</span><span class="n">fname</span><span class="p">))</span>
+
+    <span class="k">return</span> <span class="n">pandas</span><span class="o">.</span><span class="n">DataFrame</span><span class="o">.</span><span class="n">from_dict</span><span class="p">(</span><span class="n">counts</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="get_uid_info"><a class="viewcode-back" href="../../../api/mgkit.counts.func.html#mgkit.counts.func.get_uid_info">[docs]</a><span class="k">def</span> <span class="nf">get_uid_info</span><span class="p">(</span><span class="n">info_dict</span><span class="p">,</span> <span class="n">uid</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Simple function to get a value from a dictionary of tuples</span>
+<span class="sd">    (gene_id, taxon_id)</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">return</span> <span class="n">info_dict</span><span class="p">[</span><span class="n">uid</span><span class="p">]</span></div>
+
+
+<div class="viewcode-block" id="get_uid_info_ann"><a class="viewcode-back" href="../../../api/mgkit.counts.func.html#mgkit.counts.func.get_uid_info_ann">[docs]</a><span class="k">def</span> <span class="nf">get_uid_info_ann</span><span class="p">(</span><span class="n">annotations</span><span class="p">,</span> <span class="n">uid</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Simple function to get a value from a dictionary of annotations</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">annotation</span> <span class="o">=</span> <span class="n">annotations</span><span class="p">[</span><span class="n">uid</span><span class="p">]</span>
+    <span class="k">return</span> <span class="n">annotation</span><span class="o">.</span><span class="n">gene_id</span><span class="p">,</span> <span class="n">annotation</span><span class="o">.</span><span class="n">taxon_id</span></div>
+
+
+<div class="viewcode-block" id="filter_counts"><a class="viewcode-back" href="../../../api/mgkit.counts.func.html#mgkit.counts.func.filter_counts">[docs]</a><span class="k">def</span> <span class="nf">filter_counts</span><span class="p">(</span><span class="n">counts_iter</span><span class="p">,</span> <span class="n">info_func</span><span class="p">,</span> <span class="n">gfilters</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">tfilters</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Returns counts that pass filters for each *uid* associated *gene_id* and</span>
+<span class="sd">    *taxon_id*.</span>
+
+<span class="sd">    Arguments:</span>
+<span class="sd">        counts_iter (iterable): iterator that yields a tuple (uid, count)</span>
+<span class="sd">        info_func (func): function accepting a *uid* that returns a tuple</span>
+<span class="sd">            *(gene_id, taxon_id)*</span>
+<span class="sd">        gfilters (iterable): list of filters to apply to each *uid* associated</span>
+<span class="sd">            *gene_id*</span>
+<span class="sd">        tfilters (iterable): list of filters to apply to each *uid* associated</span>
+<span class="sd">            *taxon_id*</span>
+
+<span class="sd">    Yields:</span>
+<span class="sd">        tuple: *(uid, count)* that pass filters</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">for</span> <span class="n">uid</span><span class="p">,</span> <span class="n">count</span> <span class="ow">in</span> <span class="n">counts_iter</span><span class="p">:</span>
+        <span class="k">try</span><span class="p">:</span>
+            <span class="n">gene_id</span><span class="p">,</span> <span class="n">taxon_id</span> <span class="o">=</span> <span class="n">info_func</span><span class="p">(</span><span class="n">uid</span><span class="p">)</span>
+        <span class="k">except</span> <span class="ne">KeyError</span><span class="p">:</span>
+            <span class="k">continue</span>
+
+        <span class="k">if</span> <span class="n">tfilters</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="k">if</span> <span class="n">taxon_id</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+                <span class="k">continue</span>
+
+            <span class="k">if</span> <span class="ow">not</span> <span class="nb">all</span><span class="p">(</span><span class="n">tfilter</span><span class="p">(</span><span class="n">taxon_id</span><span class="p">)</span> <span class="k">for</span> <span class="n">tfilter</span> <span class="ow">in</span> <span class="n">tfilters</span><span class="p">):</span>
+                <span class="k">continue</span>
+
+        <span class="k">if</span> <span class="n">gfilters</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="k">if</span> <span class="ow">not</span> <span class="nb">all</span><span class="p">(</span><span class="n">gfilter</span><span class="p">(</span><span class="n">taxon_id</span><span class="p">)</span> <span class="k">for</span> <span class="n">gfilter</span> <span class="ow">in</span> <span class="n">gfilters</span><span class="p">):</span>
+                <span class="k">continue</span>
+
+        <span class="k">yield</span> <span class="n">uid</span><span class="p">,</span> <span class="n">count</span></div>
+
+
+<div class="viewcode-block" id="map_counts"><a class="viewcode-back" href="../../../api/mgkit.counts.func.html#mgkit.counts.func.map_counts">[docs]</a><span class="k">def</span> <span class="nf">map_counts</span><span class="p">(</span><span class="n">counts_iter</span><span class="p">,</span> <span class="n">info_func</span><span class="p">,</span> <span class="n">gmapper</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">tmapper</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">index</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+               <span class="n">uid_used</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    .. versionchanged:: 0.1.14</span>
+<span class="sd">        added *index* parameter</span>
+
+<span class="sd">    .. versionchanged:: 0.1.15</span>
+<span class="sd">        added *uid_used* parameter</span>
+
+<span class="sd">    Maps counts according to the gmapper and tmapper functions. Each mapped</span>
+<span class="sd">    gene ID count is the sum of all uid that have the same ID(s). The same is</span>
+<span class="sd">    true for the taxa.</span>
+
+<span class="sd">    Arguments:</span>
+<span class="sd">        counts_iter (iterable): iterator that yields a tuple (uid, count)</span>
+<span class="sd">        info_func (func): function accepting a *uid* that returns a tuple</span>
+<span class="sd">            *(gene_id, taxon_id)*</span>
+<span class="sd">        gmapper (func): fucntion that accepts a *gene_id* and returns a list</span>
+<span class="sd">            of mapped IDs</span>
+<span class="sd">        tmapper (func): fucntion that accepts a *taxon_id* and returns a new</span>
+<span class="sd">            *taxon_id*</span>
+<span class="sd">        index (None, str): if None, the index of the Series if</span>
+<span class="sd">            *(gene_id, taxon_id)*, if a str, it can be either *gene* or</span>
+<span class="sd">            *taxon*, to specify a single value</span>
+<span class="sd">        uid_used (None, dict): an empty dictionary in which to store the *uid*</span>
+<span class="sd">            that were assigned to each key of the returned pandas.Series. If</span>
+<span class="sd">            *None*, no information is saved</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        pandas.Series: array with MultiIndex *(gene_id, taxon_id)* with the</span>
+<span class="sd">        mapped counts</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">mapped_counts</span> <span class="o">=</span> <span class="p">{}</span>
+
+    <span class="k">for</span> <span class="n">uid</span><span class="p">,</span> <span class="n">count</span> <span class="ow">in</span> <span class="n">counts_iter</span><span class="p">:</span>
+        <span class="k">try</span><span class="p">:</span>
+            <span class="n">gene_id</span><span class="p">,</span> <span class="n">taxon_id</span> <span class="o">=</span> <span class="n">info_func</span><span class="p">(</span><span class="n">uid</span><span class="p">)</span>
+        <span class="k">except</span> <span class="ne">KeyError</span><span class="p">:</span>
+            <span class="k">continue</span>
+
+        <span class="k">if</span> <span class="n">gmapper</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">gene_ids</span> <span class="o">=</span> <span class="n">gmapper</span><span class="p">(</span><span class="n">gene_id</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">gene_ids</span> <span class="o">=</span> <span class="p">[</span><span class="n">gene_id</span><span class="p">]</span>
+
+        <span class="k">if</span> <span class="n">tmapper</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">taxon_id</span> <span class="o">=</span> <span class="n">tmapper</span><span class="p">(</span><span class="n">taxon_id</span><span class="p">)</span>
+            <span class="k">if</span> <span class="n">taxon_id</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+                <span class="k">continue</span>
+
+        <span class="k">for</span> <span class="n">map_id</span> <span class="ow">in</span> <span class="n">gene_ids</span><span class="p">:</span>
+            <span class="k">if</span> <span class="n">index</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+                <span class="n">key</span> <span class="o">=</span> <span class="p">(</span><span class="n">map_id</span><span class="p">,</span> <span class="n">taxon_id</span><span class="p">)</span>
+            <span class="k">elif</span> <span class="n">index</span> <span class="o">==</span> <span class="s1">&#39;gene&#39;</span><span class="p">:</span>
+                <span class="n">key</span> <span class="o">=</span> <span class="n">map_id</span>
+            <span class="k">elif</span> <span class="n">index</span> <span class="o">==</span> <span class="s1">&#39;taxon&#39;</span><span class="p">:</span>
+                <span class="n">key</span> <span class="o">=</span> <span class="n">taxon_id</span>
+
+            <span class="k">try</span><span class="p">:</span>
+                <span class="n">mapped_counts</span><span class="p">[</span><span class="n">key</span><span class="p">]</span> <span class="o">+=</span> <span class="n">count</span>
+                <span class="k">if</span> <span class="n">uid_used</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+                    <span class="n">uid_used</span><span class="p">[</span><span class="n">key</span><span class="p">]</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">uid</span><span class="p">)</span>
+            <span class="k">except</span> <span class="ne">KeyError</span><span class="p">:</span>
+                <span class="n">mapped_counts</span><span class="p">[</span><span class="n">key</span><span class="p">]</span> <span class="o">=</span> <span class="n">count</span>
+                <span class="k">if</span> <span class="n">uid_used</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+                    <span class="n">uid_used</span><span class="p">[</span><span class="n">key</span><span class="p">]</span> <span class="o">=</span> <span class="nb">set</span><span class="p">([</span><span class="n">uid</span><span class="p">])</span>
+
+    <span class="k">return</span> <span class="n">pandas</span><span class="o">.</span><span class="n">Series</span><span class="p">(</span><span class="n">mapped_counts</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="map_taxon_id_to_rank"><a class="viewcode-back" href="../../../api/mgkit.counts.func.html#mgkit.counts.func.map_taxon_id_to_rank">[docs]</a><span class="k">def</span> <span class="nf">map_taxon_id_to_rank</span><span class="p">(</span><span class="n">taxonomy</span><span class="p">,</span> <span class="n">rank</span><span class="p">,</span> <span class="n">taxon_id</span><span class="p">,</span> <span class="n">include_higher</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Maps a *taxon_id* to the request taxon rank. Returns *None* if</span>
+<span class="sd">    *include_higher* is False and the found rank is not the one requested.</span>
+
+<span class="sd">    Internally uses :meth:`mgkit.taxon.Taxonomy.get_ranked_taxon`</span>
+
+<span class="sd">    Arguments:</span>
+<span class="sd">        taxonomy: taxonomy instance</span>
+<span class="sd">        rank (str): taxonomic rank requested</span>
+<span class="sd">        taxon_id (int): taxon_id to map</span>
+<span class="sd">        include_higher (bool): if False, any rank different than the requested</span>
+<span class="sd">            one is discarded</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        (int, None): if the mapping is successful, the ranked taxon_id is</span>
+<span class="sd">        returned, otherwise *None* is returned</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">if</span> <span class="n">taxon_id</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="k">return</span> <span class="kc">None</span>
+
+    <span class="n">ranked</span> <span class="o">=</span> <span class="n">taxonomy</span><span class="o">.</span><span class="n">get_ranked_taxon</span><span class="p">(</span><span class="n">taxon_id</span><span class="p">,</span> <span class="n">rank</span><span class="p">)</span>
+
+    <span class="k">if</span> <span class="p">(</span><span class="n">include_higher</span> <span class="ow">is</span> <span class="kc">False</span><span class="p">)</span> <span class="ow">and</span> <span class="p">(</span><span class="n">ranked</span><span class="o">.</span><span class="n">rank</span> <span class="o">!=</span> <span class="n">rank</span><span class="p">):</span>
+        <span class="k">return</span> <span class="kc">None</span>
+    <span class="k">return</span> <span class="n">ranked</span><span class="o">.</span><span class="n">taxon_id</span></div>
+
+
+<div class="viewcode-block" id="map_gene_id_to_map"><a class="viewcode-back" href="../../../api/mgkit.counts.func.html#mgkit.counts.func.map_gene_id_to_map">[docs]</a><span class="k">def</span> <span class="nf">map_gene_id_to_map</span><span class="p">(</span><span class="n">gene_map</span><span class="p">,</span> <span class="n">gene_id</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Function that extract a list of gene mappings from a dictionary and returns</span>
+<span class="sd">    an empty list if the *gene_id* is not found.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">return</span> <span class="n">gene_map</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">gene_id</span><span class="p">,</span> <span class="p">[])</span></div>
+
+
+<div class="viewcode-block" id="load_sample_counts"><a class="viewcode-back" href="../../../api/mgkit.counts.func.html#mgkit.counts.func.load_sample_counts">[docs]</a><span class="k">def</span> <span class="nf">load_sample_counts</span><span class="p">(</span><span class="n">info_dict</span><span class="p">,</span> <span class="n">counts_iter</span><span class="p">,</span> <span class="n">taxonomy</span><span class="p">,</span> <span class="n">inc_anc</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+                       <span class="n">rank</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">gene_map</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">ex_anc</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+                       <span class="n">include_higher</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">cached</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">uid_used</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    .. versionchanged:: 0.1.14</span>
+<span class="sd">        added *cached* argument</span>
+
+<span class="sd">    .. versionchanged:: 0.1.15</span>
+<span class="sd">        added *uid_used* parameter</span>
+
+<span class="sd">    .. versionchanged:: 0.2.0</span>
+<span class="sd">        info_dict can be a function</span>
+
+<span class="sd">    Reads sample counts, filtering and mapping them if requested. It&#39;s an</span>
+<span class="sd">    example of the usage of the above functions.</span>
+
+<span class="sd">    Arguments:</span>
+<span class="sd">        info_dict (dict): dictionary that has *uid* as key and</span>
+<span class="sd">            *(gene_id, taxon_id)* as value. In alternative a function that</span>
+<span class="sd">            accepts a *uid* as sole argument and returns *(gene_id, taxon_id)*</span>
+<span class="sd">        counts_iter (iterable): iterable that yields a *(uid, count)*</span>
+<span class="sd">        taxonomy: taxonomy instance</span>
+<span class="sd">        inc_anc (int, list): ancestor taxa to include</span>
+<span class="sd">        rank (str): rank to which map the counts</span>
+<span class="sd">        gene_map (dict): dictionary with the gene mappings</span>
+<span class="sd">        ex_anc (int, list): ancestor taxa to exclude</span>
+<span class="sd">        include_higher (bool): if False, any rank different than the requested</span>
+<span class="sd">            one is discarded</span>
+<span class="sd">        cached (bool): if *True*, the function will use</span>
+<span class="sd">            :class:`mgkit.simple_cache.memoize` to cache some of the functions</span>
+<span class="sd">            used</span>
+<span class="sd">        uid_used (None, dict): an empty dictionary in which to store the *uid*</span>
+<span class="sd">            that were assigned to each key of the returned pandas.Series. If</span>
+<span class="sd">            *None*, no information is saved</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        pandas.Series: array with MultiIndex *(gene_id, taxon_id)* with the</span>
+<span class="sd">        filtered and mapped counts</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">info_dict</span><span class="p">,</span> <span class="nb">dict</span><span class="p">):</span>
+        <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">info_dict</span><span class="p">[</span><span class="nb">list</span><span class="p">(</span><span class="n">info_dict</span><span class="o">.</span><span class="n">keys</span><span class="p">())[</span><span class="mi">0</span><span class="p">]],</span> <span class="nb">tuple</span><span class="p">):</span>
+            <span class="n">info_func</span> <span class="o">=</span> <span class="n">functools</span><span class="o">.</span><span class="n">partial</span><span class="p">(</span><span class="n">get_uid_info</span><span class="p">,</span> <span class="n">info_dict</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">info_func</span> <span class="o">=</span> <span class="n">functools</span><span class="o">.</span><span class="n">partial</span><span class="p">(</span><span class="n">get_uid_info_ann</span><span class="p">,</span> <span class="n">info_dict</span><span class="p">)</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">info_func</span> <span class="o">=</span> <span class="n">info_dict</span>
+
+    <span class="n">tfilters</span> <span class="o">=</span> <span class="p">[]</span>
+
+    <span class="k">if</span> <span class="n">inc_anc</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">inc_anc</span><span class="p">,</span> <span class="p">(</span><span class="nb">list</span><span class="p">,</span> <span class="nb">set</span><span class="p">,</span> <span class="nb">tuple</span><span class="p">)):</span>
+            <span class="n">inc_anc</span> <span class="o">=</span> <span class="p">[</span><span class="n">inc_anc</span><span class="p">]</span>
+        <span class="n">tfilters</span><span class="o">.</span><span class="n">append</span><span class="p">(</span>
+            <span class="n">functools</span><span class="o">.</span><span class="n">partial</span><span class="p">(</span>
+                <span class="n">tx_filters</span><span class="o">.</span><span class="n">filter_by_ancestor</span><span class="p">,</span>
+                <span class="n">filter_list</span><span class="o">=</span><span class="n">inc_anc</span><span class="p">,</span>
+                <span class="n">exclude</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+                <span class="n">taxonomy</span><span class="o">=</span><span class="n">taxonomy</span>
+            <span class="p">)</span>
+        <span class="p">)</span>
+    <span class="k">if</span> <span class="n">ex_anc</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">ex_anc</span><span class="p">,</span> <span class="p">(</span><span class="nb">list</span><span class="p">,</span> <span class="nb">set</span><span class="p">,</span> <span class="nb">tuple</span><span class="p">)):</span>
+            <span class="n">ex_anc</span> <span class="o">=</span> <span class="p">[</span><span class="n">ex_anc</span><span class="p">]</span>
+        <span class="n">tfilters</span><span class="o">.</span><span class="n">append</span><span class="p">(</span>
+            <span class="n">functools</span><span class="o">.</span><span class="n">partial</span><span class="p">(</span>
+                <span class="n">tx_filters</span><span class="o">.</span><span class="n">filter_by_ancestor</span><span class="p">,</span>
+                <span class="n">filter_list</span><span class="o">=</span><span class="n">ex_anc</span><span class="p">,</span>
+                <span class="n">exclude</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+                <span class="n">taxonomy</span><span class="o">=</span><span class="n">taxonomy</span>
+            <span class="p">)</span>
+        <span class="p">)</span>
+
+    <span class="k">if</span> <span class="n">cached</span><span class="p">:</span>
+        <span class="n">tfilters</span> <span class="o">=</span> <span class="p">[</span>
+            <span class="n">mgkit</span><span class="o">.</span><span class="n">simple_cache</span><span class="o">.</span><span class="n">memoize</span><span class="p">(</span><span class="n">tfilter</span><span class="p">)</span>
+            <span class="k">for</span> <span class="n">tfilter</span> <span class="ow">in</span> <span class="n">tfilters</span>
+        <span class="p">]</span>
+
+    <span class="n">gmapper</span> <span class="o">=</span> <span class="kc">None</span>
+    <span class="n">tmapper</span> <span class="o">=</span> <span class="kc">None</span>
+
+    <span class="k">if</span> <span class="n">rank</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="n">tmapper</span> <span class="o">=</span> <span class="n">functools</span><span class="o">.</span><span class="n">partial</span><span class="p">(</span>
+            <span class="n">map_taxon_id_to_rank</span><span class="p">,</span>
+            <span class="n">taxonomy</span><span class="p">,</span>
+            <span class="n">rank</span><span class="p">,</span>
+            <span class="n">include_higher</span><span class="o">=</span><span class="n">include_higher</span>
+        <span class="p">)</span>
+        <span class="k">if</span> <span class="n">cached</span><span class="p">:</span>
+            <span class="n">tmapper</span> <span class="o">=</span> <span class="n">mgkit</span><span class="o">.</span><span class="n">simple_cache</span><span class="o">.</span><span class="n">memoize</span><span class="p">(</span><span class="n">tmapper</span><span class="p">)</span>
+
+    <span class="k">if</span> <span class="n">gene_map</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="n">gmapper</span> <span class="o">=</span> <span class="n">functools</span><span class="o">.</span><span class="n">partial</span><span class="p">(</span>
+            <span class="n">map_gene_id_to_map</span><span class="p">,</span>
+            <span class="n">gene_map</span>
+        <span class="p">)</span>
+        <span class="k">if</span> <span class="n">cached</span><span class="p">:</span>
+            <span class="n">gmapper</span> <span class="o">=</span> <span class="n">mgkit</span><span class="o">.</span><span class="n">simple_cache</span><span class="o">.</span><span class="n">memoize</span><span class="p">(</span><span class="n">gmapper</span><span class="p">)</span>
+
+    <span class="n">series</span> <span class="o">=</span> <span class="n">map_counts</span><span class="p">(</span>
+        <span class="n">filter_counts</span><span class="p">(</span>
+            <span class="n">counts_iter</span><span class="p">,</span>
+            <span class="n">info_func</span><span class="p">,</span>
+            <span class="n">gfilters</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+            <span class="n">tfilters</span><span class="o">=</span><span class="n">tfilters</span>
+        <span class="p">),</span>
+        <span class="n">info_func</span><span class="p">,</span>
+        <span class="n">gmapper</span><span class="o">=</span><span class="n">gmapper</span><span class="p">,</span>
+        <span class="n">tmapper</span><span class="o">=</span><span class="n">tmapper</span><span class="p">,</span>
+        <span class="n">uid_used</span><span class="o">=</span><span class="n">uid_used</span>
+    <span class="p">)</span>
+
+    <span class="k">return</span> <span class="n">series</span></div>
+
+
+<div class="viewcode-block" id="load_sample_counts_to_taxon"><a class="viewcode-back" href="../../../api/mgkit.counts.func.html#mgkit.counts.func.load_sample_counts_to_taxon">[docs]</a><span class="k">def</span> <span class="nf">load_sample_counts_to_taxon</span><span class="p">(</span><span class="n">info_func</span><span class="p">,</span> <span class="n">counts_iter</span><span class="p">,</span> <span class="n">taxonomy</span><span class="p">,</span> <span class="n">inc_anc</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+                                <span class="n">rank</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">ex_anc</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">include_higher</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+                                <span class="n">cached</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">uid_used</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    .. versionadded:: 0.1.14</span>
+
+<span class="sd">    .. versionchanged:: 0.1.15</span>
+<span class="sd">        added *uid_used* parameter</span>
+
+<span class="sd">    Reads sample counts, filtering and mapping them if requested. It&#39;s a</span>
+<span class="sd">    variation of :func:`load_sample_counts`, with the counts being mapped only</span>
+<span class="sd">    to each specific taxon. Another difference is the absence of any assumption</span>
+<span class="sd">    on the first parameter. It is expected to return a (gene_id, taxon_id)</span>
+<span class="sd">    tuple.</span>
+
+<span class="sd">    Arguments:</span>
+<span class="sd">        info_func (callable): any callable that accept an *uid* as the only</span>
+<span class="sd">            parameter and and returns *(gene_id, taxon_id)* as value</span>
+<span class="sd">        counts_iter (iterable): iterable that yields a *(uid, count)*</span>
+<span class="sd">        taxonomy: taxonomy instance</span>
+<span class="sd">        inc_anc (int, list): ancestor taxa to include</span>
+<span class="sd">        rank (str): rank to which map the counts</span>
+<span class="sd">        ex_anc (int, list): ancestor taxa to exclude</span>
+<span class="sd">        include_higher (bool): if False, any rank different than the requested</span>
+<span class="sd">            one is discarded</span>
+<span class="sd">        cached (bool): if *True*, the function will use</span>
+<span class="sd">            :class:`mgkit.simple_cache.memoize` to cache some of the functions</span>
+<span class="sd">            used</span>
+<span class="sd">        uid_used (None, dict): an empty dictionary in which to store the *uid*</span>
+<span class="sd">            that were assigned to each key of the returned pandas.Series. If</span>
+<span class="sd">            *None*, no information is saved</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        pandas.Series: array with Index *taxon_id* with the filtered and mapped</span>
+<span class="sd">        counts</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">tfilters</span> <span class="o">=</span> <span class="p">[]</span>
+
+    <span class="k">if</span> <span class="n">inc_anc</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">inc_anc</span><span class="p">,</span> <span class="p">(</span><span class="nb">list</span><span class="p">,</span> <span class="nb">set</span><span class="p">,</span> <span class="nb">tuple</span><span class="p">)):</span>
+            <span class="n">inc_anc</span> <span class="o">=</span> <span class="p">[</span><span class="n">inc_anc</span><span class="p">]</span>
+        <span class="n">tfilters</span><span class="o">.</span><span class="n">append</span><span class="p">(</span>
+            <span class="n">functools</span><span class="o">.</span><span class="n">partial</span><span class="p">(</span>
+                <span class="n">tx_filters</span><span class="o">.</span><span class="n">filter_by_ancestor</span><span class="p">,</span>
+                <span class="n">filter_list</span><span class="o">=</span><span class="n">inc_anc</span><span class="p">,</span>
+                <span class="n">exclude</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+                <span class="n">taxonomy</span><span class="o">=</span><span class="n">taxonomy</span>
+            <span class="p">)</span>
+        <span class="p">)</span>
+    <span class="k">if</span> <span class="n">ex_anc</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">ex_anc</span><span class="p">,</span> <span class="p">(</span><span class="nb">list</span><span class="p">,</span> <span class="nb">set</span><span class="p">,</span> <span class="nb">tuple</span><span class="p">)):</span>
+            <span class="n">ex_anc</span> <span class="o">=</span> <span class="p">[</span><span class="n">ex_anc</span><span class="p">]</span>
+        <span class="n">tfilters</span><span class="o">.</span><span class="n">append</span><span class="p">(</span>
+            <span class="n">functools</span><span class="o">.</span><span class="n">partial</span><span class="p">(</span>
+                <span class="n">tx_filters</span><span class="o">.</span><span class="n">filter_by_ancestor</span><span class="p">,</span>
+                <span class="n">filter_list</span><span class="o">=</span><span class="n">ex_anc</span><span class="p">,</span>
+                <span class="n">exclude</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+                <span class="n">taxonomy</span><span class="o">=</span><span class="n">taxonomy</span>
+            <span class="p">)</span>
+        <span class="p">)</span>
+
+    <span class="k">if</span> <span class="n">cached</span><span class="p">:</span>
+        <span class="n">tfilters</span> <span class="o">=</span> <span class="p">[</span>
+            <span class="n">mgkit</span><span class="o">.</span><span class="n">simple_cache</span><span class="o">.</span><span class="n">memoize</span><span class="p">(</span><span class="n">tfilter</span><span class="p">)</span>
+            <span class="k">for</span> <span class="n">tfilter</span> <span class="ow">in</span> <span class="n">tfilters</span>
+        <span class="p">]</span>
+
+    <span class="n">tmapper</span> <span class="o">=</span> <span class="kc">None</span>
+
+    <span class="k">if</span> <span class="n">rank</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="n">tmapper</span> <span class="o">=</span> <span class="n">functools</span><span class="o">.</span><span class="n">partial</span><span class="p">(</span>
+            <span class="n">map_taxon_id_to_rank</span><span class="p">,</span>
+            <span class="n">taxonomy</span><span class="p">,</span>
+            <span class="n">rank</span><span class="p">,</span>
+            <span class="n">include_higher</span><span class="o">=</span><span class="n">include_higher</span>
+        <span class="p">)</span>
+        <span class="k">if</span> <span class="n">cached</span><span class="p">:</span>
+            <span class="n">tmapper</span> <span class="o">=</span> <span class="n">mgkit</span><span class="o">.</span><span class="n">simple_cache</span><span class="o">.</span><span class="n">memoize</span><span class="p">(</span><span class="n">tmapper</span><span class="p">)</span>
+
+    <span class="n">series</span> <span class="o">=</span> <span class="n">map_counts</span><span class="p">(</span>
+        <span class="n">filter_counts</span><span class="p">(</span>
+            <span class="n">counts_iter</span><span class="p">,</span>
+            <span class="n">info_func</span><span class="p">,</span>
+            <span class="n">gfilters</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+            <span class="n">tfilters</span><span class="o">=</span><span class="n">tfilters</span>
+        <span class="p">),</span>
+        <span class="n">info_func</span><span class="p">,</span>
+        <span class="n">tmapper</span><span class="o">=</span><span class="n">tmapper</span><span class="p">,</span>
+        <span class="n">index</span><span class="o">=</span><span class="s1">&#39;taxon&#39;</span><span class="p">,</span>
+        <span class="n">uid_used</span><span class="o">=</span><span class="n">uid_used</span>
+    <span class="p">)</span>
+
+    <span class="k">return</span> <span class="n">series</span></div>
+
+
+<div class="viewcode-block" id="load_sample_counts_to_genes"><a class="viewcode-back" href="../../../api/mgkit.counts.func.html#mgkit.counts.func.load_sample_counts_to_genes">[docs]</a><span class="k">def</span> <span class="nf">load_sample_counts_to_genes</span><span class="p">(</span><span class="n">info_func</span><span class="p">,</span> <span class="n">counts_iter</span><span class="p">,</span> <span class="n">taxonomy</span><span class="p">,</span> <span class="n">inc_anc</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+                                <span class="n">gene_map</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">ex_anc</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">cached</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+                                <span class="n">uid_used</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    .. versionadded:: 0.1.14</span>
+
+<span class="sd">    .. versionchanged:: 0.1.15</span>
+<span class="sd">        added *uid_used* parameter</span>
+
+<span class="sd">    Reads sample counts, filtering and mapping them if requested. It&#39;s a</span>
+<span class="sd">    variation of :func:`load_sample_counts`, with the counts being mapped only</span>
+<span class="sd">    to each specific gene_id. Another difference is the absence of any</span>
+<span class="sd">    assumption on the first parameter. It is expected to return a</span>
+<span class="sd">    (gene_id, taxon_id) tuple.</span>
+
+<span class="sd">    Arguments:</span>
+<span class="sd">        info_func (callable): any callable that accept an *uid* as the only</span>
+<span class="sd">            parameter and and returns *(gene_id, taxon_id)* as value</span>
+<span class="sd">        counts_iter (iterable): iterable that yields a *(uid, count)*</span>
+<span class="sd">        taxonomy: taxonomy instance</span>
+<span class="sd">        inc_anc (int, list): ancestor taxa to include</span>
+<span class="sd">        rank (str): rank to which map the counts</span>
+<span class="sd">        gene_map (dict): dictionary with the gene mappings</span>
+<span class="sd">        ex_anc (int, list): ancestor taxa to exclude</span>
+<span class="sd">        cached (bool): if *True*, the function will use</span>
+<span class="sd">            :class:`mgkit.simple_cache.memoize` to cache some of the functions</span>
+<span class="sd">            used</span>
+<span class="sd">        uid_used (None, dict): an empty dictionary in which to store the *uid*</span>
+<span class="sd">            that were assigned to each key of the returned pandas.Series. If</span>
+<span class="sd">            *None*, no information is saved</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        pandas.Series: array with Index *gene_id* with the filtered and mapped</span>
+<span class="sd">        counts</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">tfilters</span> <span class="o">=</span> <span class="p">[]</span>
+
+    <span class="k">if</span> <span class="n">inc_anc</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">inc_anc</span><span class="p">,</span> <span class="p">(</span><span class="nb">list</span><span class="p">,</span> <span class="nb">set</span><span class="p">,</span> <span class="nb">tuple</span><span class="p">)):</span>
+            <span class="n">inc_anc</span> <span class="o">=</span> <span class="p">[</span><span class="n">inc_anc</span><span class="p">]</span>
+        <span class="n">tfilters</span><span class="o">.</span><span class="n">append</span><span class="p">(</span>
+            <span class="n">functools</span><span class="o">.</span><span class="n">partial</span><span class="p">(</span>
+                <span class="n">tx_filters</span><span class="o">.</span><span class="n">filter_by_ancestor</span><span class="p">,</span>
+                <span class="n">filter_list</span><span class="o">=</span><span class="n">inc_anc</span><span class="p">,</span>
+                <span class="n">exclude</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+                <span class="n">taxonomy</span><span class="o">=</span><span class="n">taxonomy</span>
+            <span class="p">)</span>
+        <span class="p">)</span>
+    <span class="k">if</span> <span class="n">ex_anc</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">ex_anc</span><span class="p">,</span> <span class="p">(</span><span class="nb">list</span><span class="p">,</span> <span class="nb">set</span><span class="p">,</span> <span class="nb">tuple</span><span class="p">)):</span>
+            <span class="n">ex_anc</span> <span class="o">=</span> <span class="p">[</span><span class="n">ex_anc</span><span class="p">]</span>
+        <span class="n">tfilters</span><span class="o">.</span><span class="n">append</span><span class="p">(</span>
+            <span class="n">functools</span><span class="o">.</span><span class="n">partial</span><span class="p">(</span>
+                <span class="n">tx_filters</span><span class="o">.</span><span class="n">filter_by_ancestor</span><span class="p">,</span>
+                <span class="n">filter_list</span><span class="o">=</span><span class="n">ex_anc</span><span class="p">,</span>
+                <span class="n">exclude</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+                <span class="n">taxonomy</span><span class="o">=</span><span class="n">taxonomy</span>
+            <span class="p">)</span>
+        <span class="p">)</span>
+
+    <span class="k">if</span> <span class="n">cached</span><span class="p">:</span>
+        <span class="n">tfilters</span> <span class="o">=</span> <span class="p">[</span>
+            <span class="n">mgkit</span><span class="o">.</span><span class="n">simple_cache</span><span class="o">.</span><span class="n">memoize</span><span class="p">(</span><span class="n">tfilter</span><span class="p">)</span>
+            <span class="k">for</span> <span class="n">tfilter</span> <span class="ow">in</span> <span class="n">tfilters</span>
+        <span class="p">]</span>
+
+    <span class="k">if</span> <span class="n">gene_map</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="n">gmapper</span> <span class="o">=</span> <span class="n">functools</span><span class="o">.</span><span class="n">partial</span><span class="p">(</span>
+            <span class="n">map_gene_id_to_map</span><span class="p">,</span>
+            <span class="n">gene_map</span>
+        <span class="p">)</span>
+        <span class="k">if</span> <span class="n">cached</span><span class="p">:</span>
+            <span class="n">gmapper</span> <span class="o">=</span> <span class="n">mgkit</span><span class="o">.</span><span class="n">simple_cache</span><span class="o">.</span><span class="n">memoize</span><span class="p">(</span><span class="n">gmapper</span><span class="p">)</span>
+
+    <span class="n">series</span> <span class="o">=</span> <span class="n">map_counts</span><span class="p">(</span>
+        <span class="n">filter_counts</span><span class="p">(</span>
+            <span class="n">counts_iter</span><span class="p">,</span>
+            <span class="n">info_func</span><span class="p">,</span>
+            <span class="n">gfilters</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+            <span class="n">tfilters</span><span class="o">=</span><span class="n">tfilters</span>
+        <span class="p">),</span>
+        <span class="n">info_func</span><span class="p">,</span>
+        <span class="n">gmapper</span><span class="o">=</span><span class="n">gmapper</span><span class="p">,</span>
+        <span class="n">index</span><span class="o">=</span><span class="s1">&#39;gene&#39;</span><span class="p">,</span>
+        <span class="n">uid_used</span><span class="o">=</span><span class="n">uid_used</span>
+    <span class="p">)</span>
+
+    <span class="k">return</span> <span class="n">series</span></div>
+
+
+<div class="viewcode-block" id="load_deseq2_results"><a class="viewcode-back" href="../../../api/mgkit.counts.func.html#mgkit.counts.func.load_deseq2_results">[docs]</a><span class="k">def</span> <span class="nf">load_deseq2_results</span><span class="p">(</span><span class="n">file_name</span><span class="p">,</span> <span class="n">taxon_id</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    .. versionadded:: 0.1.14</span>
+
+<span class="sd">    Reads a CSV file output with DESeq2 results, adding a taxon_id to the index</span>
+<span class="sd">    for concatenating multiple results from different taxonomic groups.</span>
+
+<span class="sd">    Arguments:</span>
+<span class="sd">        file_name (str): file name of the CSV</span>
+<span class="sd">    Returns:</span>
+<span class="sd">        pandas.DataFrame: a MultiIndex DataFrame with the results</span>
+
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">dataframe</span> <span class="o">=</span> <span class="n">pandas</span><span class="o">.</span><span class="n">DataFrame</span><span class="o">.</span><span class="n">from_csv</span><span class="p">(</span><span class="n">file_name</span><span class="p">)</span>
+
+    <span class="n">dataframe</span> <span class="o">=</span> <span class="n">dataframe</span><span class="o">.</span><span class="n">rename</span><span class="p">(</span>
+        <span class="n">index</span><span class="o">=</span><span class="nb">dict</span><span class="p">(</span>
+            <span class="p">(</span><span class="n">gene_id</span><span class="p">,</span> <span class="p">(</span><span class="n">gene_id</span><span class="p">,</span> <span class="n">taxon_id</span><span class="p">))</span>
+            <span class="k">for</span> <span class="n">gene_id</span> <span class="ow">in</span> <span class="n">dataframe</span><span class="o">.</span><span class="n">index</span>
+        <span class="p">)</span>
+    <span class="p">)</span>
+    <span class="n">dataframe</span><span class="o">.</span><span class="n">index</span><span class="o">.</span><span class="n">names</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;gene_id&#39;</span><span class="p">,</span> <span class="s1">&#39;taxon_id&#39;</span><span class="p">]</span>
+
+    <span class="k">return</span> <span class="n">dataframe</span></div>
+
+
+<div class="viewcode-block" id="map_counts_to_category"><a class="viewcode-back" href="../../../api/mgkit.counts.func.html#mgkit.counts.func.map_counts_to_category">[docs]</a><span class="k">def</span> <span class="nf">map_counts_to_category</span><span class="p">(</span><span class="n">counts</span><span class="p">,</span> <span class="n">gene_map</span><span class="p">,</span> <span class="n">nomap</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">nomap_id</span><span class="o">=</span><span class="s1">&#39;NOMAP&#39;</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Used to map the counts from a certain gene identifier to another. Genes</span>
+<span class="sd">    with no mappings are not counted, unless *nomap=True*, in which case they</span>
+<span class="sd">    are counted as *nomap_id*.</span>
+
+<span class="sd">    Arguments:</span>
+<span class="sd">        counts (iterator): an iterator that yield a tuple, with the first value</span>
+<span class="sd">            being the gene_id and the second value the count for it</span>
+<span class="sd">        gene_map (dictionary): a dictionary whose keys are the gene_id yield by</span>
+<span class="sd">            *counts* and the values are iterable of mapping identifiers</span>
+<span class="sd">        nomap (bool): if False, counts for genes with no mappings in *gene_map*</span>
+<span class="sd">            are discarded, if True, they a counted as *nomap_id*</span>
+<span class="sd">        nomap_id (str): name of the mapping for genes with no mappings</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        pandas.Series: mapped counts</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="n">newcounts</span> <span class="o">=</span> <span class="p">{}</span>
+    <span class="k">for</span> <span class="n">gene_id</span><span class="p">,</span> <span class="n">count</span> <span class="ow">in</span> <span class="n">counts</span><span class="p">:</span>
+        <span class="k">try</span><span class="p">:</span>
+            <span class="n">map_ids</span> <span class="o">=</span> <span class="n">gene_map</span><span class="p">[</span><span class="n">gene_id</span><span class="p">]</span>
+        <span class="k">except</span> <span class="ne">KeyError</span><span class="p">:</span>
+            <span class="k">continue</span>
+
+        <span class="k">if</span> <span class="n">nomap</span> <span class="ow">and</span> <span class="p">(</span><span class="ow">not</span> <span class="n">map_ids</span><span class="p">):</span>
+            <span class="n">map_ids</span> <span class="o">=</span> <span class="p">[</span><span class="n">nomap_id</span><span class="p">]</span>
+
+        <span class="k">for</span> <span class="n">map_id</span> <span class="ow">in</span> <span class="n">map_ids</span><span class="p">:</span>
+            <span class="k">try</span><span class="p">:</span>
+                <span class="n">newcounts</span><span class="p">[</span><span class="n">map_id</span><span class="p">]</span> <span class="o">+=</span> <span class="n">count</span>
+            <span class="k">except</span> <span class="ne">KeyError</span><span class="p">:</span>
+                <span class="n">newcounts</span><span class="p">[</span><span class="n">map_id</span><span class="p">]</span> <span class="o">=</span> <span class="n">count</span>
+
+    <span class="k">return</span> <span class="n">pandas</span><span class="o">.</span><span class="n">Series</span><span class="p">(</span><span class="n">newcounts</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="load_counts_from_gff"><a class="viewcode-back" href="../../../api/mgkit.counts.func.html#mgkit.counts.func.load_counts_from_gff">[docs]</a><span class="k">def</span> <span class="nf">load_counts_from_gff</span><span class="p">(</span><span class="n">annotations</span><span class="p">,</span> <span class="n">elem_func</span><span class="o">=</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">x</span><span class="o">.</span><span class="n">uid</span><span class="p">,</span>
+                         <span class="n">sample_func</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">nozero</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    .. versionadded:: 0.2.5</span>
+
+<span class="sd">    Loads counts for each annotations that are stored into the annotation</span>
+<span class="sd">    *counts_* attributes. Annotations with a total of 0 counts are skipped by</span>
+<span class="sd">    default (nozero=True), the row index is set to the *uid* of the annotation</span>
+<span class="sd">    and the column to the sample name. The functions used to transform the</span>
+<span class="sd">    indices expect the annotation (for the row, *elem_func*) and the sample</span>
+<span class="sd">    name (for the column, *sample_func*).</span>
+
+<span class="sd">    Arguments:</span>
+<span class="sd">        annotations (iter): iterable of annotations</span>
+<span class="sd">        elem_func (func): function that accepts an annotation and return a</span>
+<span class="sd">            str/int for a Index or a tuple for a MultiIndex, defaults to</span>
+<span class="sd">            returning the *uid* of the annotation</span>
+<span class="sd">        sample_func (func, None): function that accepts the sample name and</span>
+<span class="sd">            returns tuple for a MultiIndex. Defaults to *None* so no</span>
+<span class="sd">            transformation is performed</span>
+<span class="sd">        nozero (bool): if *True*, annotations with no counts are skipped</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="n">count_dict</span> <span class="o">=</span> <span class="p">{}</span>
+
+    <span class="k">for</span> <span class="n">annotation</span> <span class="ow">in</span> <span class="n">annotations</span><span class="p">:</span>
+        <span class="n">counts</span> <span class="o">=</span> <span class="n">pandas</span><span class="o">.</span><span class="n">Series</span><span class="p">(</span><span class="n">annotation</span><span class="o">.</span><span class="n">counts</span><span class="p">)</span>
+
+        <span class="k">if</span> <span class="n">nozero</span> <span class="ow">and</span> <span class="p">(</span><span class="n">counts</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span> <span class="o">==</span> <span class="mi">0</span><span class="p">):</span>
+            <span class="k">continue</span>
+
+        <span class="n">count_dict</span><span class="p">[</span><span class="n">elem_func</span><span class="p">(</span><span class="n">annotation</span><span class="p">)]</span> <span class="o">=</span> <span class="n">counts</span>
+
+    <span class="c1"># LOG.debug(&#39;Returning DataFrame&#39;)</span>
+
+    <span class="n">count_dict</span> <span class="o">=</span> <span class="n">pandas</span><span class="o">.</span><span class="n">DataFrame</span><span class="o">.</span><span class="n">from_dict</span><span class="p">(</span><span class="n">count_dict</span><span class="p">,</span> <span class="n">orient</span><span class="o">=</span><span class="s1">&#39;index&#39;</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">sample_func</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="n">count_dict</span><span class="o">.</span><span class="n">columns</span> <span class="o">=</span> <span class="n">pandas</span><span class="o">.</span><span class="n">MultiIndex</span><span class="o">.</span><span class="n">from_tuples</span><span class="p">(</span>
+            <span class="p">[</span>
+                <span class="n">sample_func</span><span class="p">(</span><span class="n">column</span><span class="p">)</span>
+                <span class="k">for</span> <span class="n">column</span> <span class="ow">in</span> <span class="n">count_dict</span><span class="o">.</span><span class="n">columns</span>
+            <span class="p">]</span>
+        <span class="p">)</span>
+
+    <span class="k">return</span> <span class="n">count_dict</span></div>
+
+
+<div class="viewcode-block" id="from_gff"><a class="viewcode-back" href="../../../api/mgkit.counts.func.html#mgkit.counts.func.from_gff">[docs]</a><span class="k">def</span> <span class="nf">from_gff</span><span class="p">(</span><span class="n">annotations</span><span class="p">,</span> <span class="n">samples</span><span class="p">,</span> <span class="n">ann_func</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">sample_func</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    .. versionadded:: 0.3.1</span>
+
+<span class="sd">    Loads count data from a GFF file, only for the requested samples. By</span>
+<span class="sd">    default the function returns a DataFrame where the index is the *uid* of</span>
+<span class="sd">    each annotation and the columns the requested samples.</span>
+
+<span class="sd">    This can be customised by supplying *ann_func* and *sample_func*.</span>
+<span class="sd">    *sample_func* is a function that accept a sample name and is expected to</span>
+<span class="sd">    return a string or a tuple. This will be used to change the columns in the</span>
+<span class="sd">    DataFrame. *ann_func* must accept an :class:`mgkit.io.gff.Annotation`</span>
+<span class="sd">    instance and return an iterable, with each iteration yielding either a</span>
+<span class="sd">    single element or a tuple (for a MultiIndex DataFrame), each element</span>
+<span class="sd">    yielded will have the count of that annotation added to.</span>
+
+<span class="sd">    Arguments:</span>
+<span class="sd">        annotation (iterable): iterable yielding annotations</span>
+<span class="sd">        samples (iterable): list of samples to keep</span>
+<span class="sd">        ann_func (func): function used to customise the output</span>
+<span class="sd">        sample_func (func): function to customise the column elements</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        DataFrame: dataframe with the count data, columns are the samples and</span>
+<span class="sd">        rows the annotation counts (unless mapped with *ann_func*)</span>
+
+<span class="sd">    Exmples:</span>
+<span class="sd">        Assuming we have a list of *annotations* and sample SAMPLE1 and SAMPLE2</span>
+<span class="sd">        we can obtain the count table for all annotations with this</span>
+
+<span class="sd">        &gt;&gt;&gt; from_gff(annotations, [&#39;SAMPLE1&#39;, &#39;SAMPLE2&#39;])</span>
+
+<span class="sd">        Assuming we want to group the samples, for example treatment1,</span>
+<span class="sd">        treatment2 and control1, control2 into a MultiIndex DataFrame column</span>
+
+<span class="sd">        &gt;&gt;&gt; sample_func = lambda x: (&#39;T&#39; if x.startswith(&#39;t&#39;) else &#39;C&#39;, x)</span>
+<span class="sd">        &gt;&gt;&gt; from_gff(annotations, [&#39;treatment1&#39;, &#39;treatment2&#39;, &#39;control1&#39;,</span>
+<span class="sd">        &#39;control2&#39;], sample_func=sample_func)</span>
+
+<span class="sd">        Annotations can be mapped to other levels for example instead of using</span>
+<span class="sd">        the *uid* that is the default, it can be mapped to the gene_id,</span>
+<span class="sd">        taxon_id information that is included in the annotation, resulting in a</span>
+<span class="sd">        MultiIndex index for the rows, with (gene_id, taxon_id) as key.</span>
+
+<span class="sd">        &gt;&gt;&gt; ann_func = lambda x: [(x.gene_id, x.taxon_id)]</span>
+<span class="sd">        &gt;&gt;&gt; from_gff(annotations, [&#39;SAMPLE1&#39;, &#39;SAMPLE2&#39;], ann_func=ann_func)</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">if</span> <span class="n">ann_func</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="k">def</span> <span class="nf">ann_func</span><span class="p">(</span><span class="n">x</span><span class="p">):</span> <span class="k">return</span> <span class="p">(</span><span class="n">x</span><span class="o">.</span><span class="n">uid</span><span class="p">,</span> <span class="p">)</span>
+
+    <span class="k">if</span> <span class="n">sample_func</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="k">def</span> <span class="nf">sample_func</span><span class="p">(</span><span class="n">x</span><span class="p">):</span> <span class="k">return</span> <span class="n">x</span>
+
+    <span class="n">counters</span> <span class="o">=</span> <span class="p">{</span>
+        <span class="n">sample_func</span><span class="p">(</span><span class="n">sample</span><span class="p">):</span> <span class="n">Counter</span><span class="p">()</span>
+        <span class="k">for</span> <span class="n">sample</span> <span class="ow">in</span> <span class="n">samples</span>
+    <span class="p">}</span>
+
+    <span class="k">for</span> <span class="n">annotation</span> <span class="ow">in</span> <span class="n">annotations</span><span class="p">:</span>
+        <span class="k">for</span> <span class="n">sample</span><span class="p">,</span> <span class="n">count</span> <span class="ow">in</span> <span class="n">viewitems</span><span class="p">(</span><span class="n">annotation</span><span class="o">.</span><span class="n">counts</span><span class="p">):</span>
+            <span class="n">sample</span> <span class="o">=</span> <span class="n">sample_func</span><span class="p">(</span><span class="n">sample</span><span class="p">)</span>
+            <span class="k">if</span> <span class="n">sample</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">counters</span><span class="p">:</span>
+                <span class="k">continue</span>
+            <span class="k">for</span> <span class="n">ann_id</span> <span class="ow">in</span> <span class="n">ann_func</span><span class="p">(</span><span class="n">annotation</span><span class="p">):</span>
+                <span class="n">counters</span><span class="p">[</span><span class="n">sample</span><span class="p">][</span><span class="n">ann_id</span><span class="p">]</span> <span class="o">+=</span> <span class="n">count</span>
+
+    <span class="k">return</span> <span class="n">pandas</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">counters</span><span class="p">)</span></div>
+</pre></div>
+
+           </div>
+           
+          </div>
+          <footer>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2013-2015, Francesco Rubino
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

@@ -1,0 +1,731 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>mgkit.kegg module &mdash; MGKit: Metagenomic framework 0.5.0 documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+  <script type="text/javascript" src="../_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+        <script type="text/javascript" src="../_static/jquery.js"></script>
+        <script type="text/javascript" src="../_static/underscore.js"></script>
+        <script type="text/javascript" src="../_static/doctools.js"></script>
+        <script type="text/javascript" src="../_static/language_data.js"></script>
+        <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+        <script async="async" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+        <script type="text/x-mathjax-config">MathJax.Hub.Config({"tex2jax": {"inlineMath": [["$", "$"], ["\\(", "\\)"]], "processEscapes": true, "ignoreClass": "document", "processClass": "math|output_area"}})</script>
+    
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/graphviz.css" type="text/css" />
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="mgkit.logger module" href="mgkit.logger.html" />
+    <link rel="prev" title="mgkit.graphs module" href="mgkit.graphs.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../index.html" class="icon icon-home"> MGKit: Metagenomic framework
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                0.5.0
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../introduction.html">Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../install.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../pipeline/index.html">Metagenomic Pipeline</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../scripts/index.html">Scripts Details</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../examples/index.html">Example Notebooks</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../gff.html">MGKit GFF Specifications</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../library.html">Library Reference</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="mgkit.html">mgkit package</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mgkit.align.html">mgkit.align module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mgkit.consts.html">mgkit.consts module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mgkit.counts.html">mgkit.counts package</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mgkit.counts.func.html">mgkit.counts.func module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mgkit.counts.glm.html">mgkit.counts.glm module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mgkit.counts.scaling.html">mgkit.counts.scaling module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mgkit.db.html">mgkit.db package</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mgkit.db.dbm.html">mgkit.db.dbm module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mgkit.db.mongo.html">mgkit.db.mongo module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mgkit.filter.html">mgkit.filter package</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mgkit.filter.common.html">mgkit.filter.common module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mgkit.filter.gff.html">mgkit.filter.gff module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mgkit.filter.lists.html">mgkit.filter.lists module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mgkit.filter.reads.html">mgkit.filter.reads module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mgkit.filter.taxon.html">mgkit.filter.taxon module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mgkit.graphs.html">mgkit.graphs module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mgkit.io.html">mgkit.io package</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mgkit.io.blast.html">mgkit.io.blast module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mgkit.io.fasta.html">mgkit.io.fasta module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mgkit.io.fastq.html">mgkit.io.fastq module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mgkit.io.gff.html">mgkit.io.gff module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mgkit.io.glimmer.html">mgkit.io.glimmer module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mgkit.io.snpdat.html">mgkit.io.snpdat module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mgkit.io.uniprot.html">mgkit.io.uniprot module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mgkit.io.utils.html">mgkit.io.utils module</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">mgkit.kegg module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mgkit.logger.html">mgkit.logger module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mgkit.mappings.html">mgkit.mappings package</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mgkit.mappings.cazy.html">mgkit.mappings.cazy module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mgkit.mappings.eggnog.html">mgkit.mappings.eggnog module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mgkit.mappings.enzyme.html">mgkit.mappings.enzyme module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mgkit.mappings.go.html">mgkit.mappings.go module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mgkit.mappings.pandas_map.html">mgkit.mappings.pandas_map module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mgkit.mappings.taxon.html">mgkit.mappings.taxon module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mgkit.mappings.utils.html">mgkit.mappings.utils module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mgkit.net.html">mgkit.net package</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mgkit.net.embl.html">mgkit.net.embl module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mgkit.net.pfam.html">mgkit.net.pfam module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mgkit.net.uniprot.html">mgkit.net.uniprot module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mgkit.net.utils.html">mgkit.net.utils module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mgkit.plots.html">mgkit.plots package</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mgkit.plots.abund.html">mgkit.plots.abund module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mgkit.plots.boxplot.html">mgkit.plots.boxplot module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mgkit.plots.colors.html">mgkit.plots.colors module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mgkit.plots.heatmap.html">mgkit.plots.heatmap module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mgkit.plots.unused.html">mgkit.plots.unused module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mgkit.plots.utils.html">mgkit.plots.utils module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mgkit.simple_cache.html">mgkit.simple_cache module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mgkit.snps.html">mgkit.snps package</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mgkit.snps.classes.html">mgkit.snps.classes module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mgkit.snps.conv_func.html">mgkit.snps.conv_func module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mgkit.snps.filter.html">mgkit.snps.filter module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mgkit.snps.funcs.html">mgkit.snps.funcs module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mgkit.snps.mapper.html">mgkit.snps.mapper module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mgkit.taxon.html">mgkit.taxon module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mgkit.utils.html">mgkit.utils package</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mgkit.utils.common.html">mgkit.utils.common module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mgkit.utils.dictionary.html">mgkit.utils.dictionary module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mgkit.utils.sequence.html">mgkit.utils.sequence module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mgkit.utils.trans_tables.html">mgkit.utils.trans_tables module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mgkit.workflow.html">mgkit.workflow package</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mgkit.workflow.add_gff_info.html">mgkit.workflow.add_gff_info module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mgkit.workflow.blast2gff.html">mgkit.workflow.blast2gff module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mgkit.workflow.extract_gff_info.html">mgkit.workflow.extract_gff_info module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mgkit.workflow.fasta_utils.html">mgkit.workflow.fasta_utils module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mgkit.workflow.fastq_utils.html">mgkit.workflow.fastq_utils module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mgkit.workflow.filter_gff.html">mgkit.workflow.filter_gff module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mgkit.workflow.hmmer2gff.html">mgkit.workflow.hmmer2gff module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mgkit.workflow.json2gff.html">mgkit.workflow.json2gff module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mgkit.workflow.sampling_utils.html">mgkit.workflow.sampling_utils module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mgkit.workflow.snp_parser.html">mgkit.workflow.snp_parser module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mgkit.workflow.taxon_utils.html">mgkit.workflow.taxon_utils module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mgkit.workflow.utils.html">mgkit.workflow.utils module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="modules.html">mgkit</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../changes.html">Changes</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">MGKit: Metagenomic framework</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="../library.html">Library Reference</a> &raquo;</li>
+        
+          <li><a href="mgkit.html">mgkit package</a> &raquo;</li>
+        
+      <li>mgkit.kegg module</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="../_sources/api/mgkit.kegg.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  
+<style>
+/* CSS overrides for sphinx_rtd_theme */
+
+/* 24px margin */
+.nbinput.nblast.container,
+.nboutput.nblast.container {
+    margin-bottom: 19px;  /* padding has already 5px */
+}
+
+/* ... except between code cells! */
+.nblast.container + .nbinput.container {
+    margin-top: -19px;
+}
+
+.admonition > p:before {
+    margin-right: 4px;  /* make room for the exclamation icon */
+}
+
+/* Fix math alignment, see https://github.com/rtfd/sphinx_rtd_theme/pull/686 */
+.math {
+    text-align: unset;
+}
+</style>
+<div class="section" id="module-mgkit.kegg">
+<span id="mgkit-kegg-module"></span><h1>mgkit.kegg module<a class="headerlink" href="#module-mgkit.kegg" title="Permalink to this headline">¶</a></h1>
+<p>Module containing classes and functions to access Kegg data</p>
+<dl class="class">
+<dt id="mgkit.kegg.KeggClientRest">
+<em class="property">class </em><code class="sig-prename descclassname">mgkit.kegg.</code><code class="sig-name descname">KeggClientRest</code><span class="sig-paren">(</span><em class="sig-param">cache=None</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/mgkit/kegg.html#KeggClientRest"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#mgkit.kegg.KeggClientRest" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference external" href="https://docs.python.org/3/library/functions.html#object" title="(in Python v3.8)"><code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></a></p>
+<div class="versionchanged">
+<p><span class="versionmodified changed">Changed in version 0.3.1: </span>added a <em>cache</em> attribute for some methods</p>
+</div>
+<p>Kegg REST client</p>
+<p>The class includes methods and data to use the REST API provided by Kegg.
+At the moment it provides methods to for ‘link’, ‘list’ and ‘get’
+operations,</p>
+<p><a class="reference external" href="http://www.kegg.jp/kegg/rest/keggapi.html">Kegg REST API</a></p>
+<dl class="attribute">
+<dt id="mgkit.kegg.KeggClientRest.api_url">
+<code class="sig-name descname">api_url</code><em class="property"> = 'http://rest.kegg.jp/'</em><a class="headerlink" href="#mgkit.kegg.KeggClientRest.api_url" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="mgkit.kegg.KeggClientRest.cache">
+<code class="sig-name descname">cache</code><em class="property"> = None</em><a class="headerlink" href="#mgkit.kegg.KeggClientRest.cache" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="mgkit.kegg.KeggClientRest.contact">
+<code class="sig-name descname">contact</code><em class="property"> = None</em><a class="headerlink" href="#mgkit.kegg.KeggClientRest.contact" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="mgkit.kegg.KeggClientRest.conv">
+<code class="sig-name descname">conv</code><span class="sig-paren">(</span><em class="sig-param">target_db</em>, <em class="sig-param">source_db</em>, <em class="sig-param">strip=True</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/mgkit/kegg.html#KeggClientRest.conv"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#mgkit.kegg.KeggClientRest.conv" title="Permalink to this definition">¶</a></dt>
+<dd><div class="versionadded">
+<p><span class="versionmodified added">New in version 0.3.1.</span></p>
+</div>
+<p>Kegg Help:</p>
+<p><a class="reference external" href="http://rest.kegg.jp/conv">http://rest.kegg.jp/conv</a>/&lt;target_db&gt;/&lt;source_db&gt;</p>
+<p>(&lt;target_db&gt; &lt;source_db&gt;) = (&lt;kegg_db&gt; &lt;outside_db&gt;) | (&lt;outside_db&gt; &lt;kegg_db&gt;)</p>
+<p>For gene identifiers:
+&lt;kegg_db&gt; = &lt;org&gt;
+&lt;org&gt; = KEGG organism code or T number
+&lt;outside_db&gt; = ncbi-proteinid | ncbi-geneid | uniprot</p>
+<p>For chemical substance identifiers:
+&lt;kegg_db&gt; = drug | compound | glycan
+&lt;outside_db&gt; = pubchem | chebi
+<a class="reference external" href="http://rest.kegg.jp/conv">http://rest.kegg.jp/conv</a>/&lt;target_db&gt;/&lt;dbentries&gt;</p>
+<p>For gene identifiers:
+&lt;dbentries&gt; = database entries involving the following &lt;database&gt;
+&lt;database&gt; = &lt;org&gt; | genes | ncbi-proteinid | ncbi-geneid | uniprot
+&lt;org&gt; = KEGG organism code or T number</p>
+<p>For chemical substance identifiers:
+&lt;dbentries&gt; = database entries involving the following &lt;database&gt;
+&lt;database&gt; = drug | compound | glycan | pubchem | chebi</p>
+<p class="rubric">Examples</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">kc</span> <span class="o">=</span> <span class="n">KeggClientRest</span><span class="p">()</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">kc</span><span class="o">.</span><span class="n">conv</span><span class="p">(</span><span class="s1">&#39;ncbi-geneid&#39;</span><span class="p">,</span> <span class="s1">&#39;eco&#39;</span><span class="p">)</span>
+<span class="go">{&#39;eco:b0217&#39;: {&#39;ncbi-geneid:949009&#39;},</span>
+<span class="go"> &#39;eco:b0216&#39;: {&#39;ncbi-geneid:947541&#39;},</span>
+<span class="go"> &#39;eco:b0215&#39;: {&#39;ncbi-geneid:946441&#39;},</span>
+<span class="go"> &#39;eco:b0214&#39;: {&#39;ncbi-geneid:946955&#39;},</span>
+<span class="go"> &#39;eco:b0213&#39;: {&#39;ncbi-geneid:944903&#39;},</span>
+<span class="gp">...</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">kc</span><span class="o">.</span><span class="n">conv</span><span class="p">(</span><span class="s1">&#39;ncbi-proteinid&#39;</span><span class="p">,</span> <span class="s1">&#39;hsa:10458+ece:Z5100&#39;</span><span class="p">)</span>
+<span class="go">{&#39;10458&#39;: {&#39;NP_059345&#39;}, &#39;Z5100&#39;: {&#39;AAG58814&#39;}}</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="mgkit.kegg.KeggClientRest.cpd_desc_re">
+<code class="sig-name descname">cpd_desc_re</code><em class="property"> = re.compile(&quot;cpd:(C\\d{5})\\t([\\w+, ()\\[\\]'*.-]+);?\\n?&quot;)</em><a class="headerlink" href="#mgkit.kegg.KeggClientRest.cpd_desc_re" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="mgkit.kegg.KeggClientRest.cpd_re">
+<code class="sig-name descname">cpd_re</code><em class="property"> = re.compile('ENTRY\\s+(C\\d{5})\\s+Compound\\nNAME\\s+([,.\\w+ ()-]+);?')</em><a class="headerlink" href="#mgkit.kegg.KeggClientRest.cpd_re" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="mgkit.kegg.KeggClientRest.empty_cache">
+<code class="sig-name descname">empty_cache</code><span class="sig-paren">(</span><em class="sig-param">methods=None</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/mgkit/kegg.html#KeggClientRest.empty_cache"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#mgkit.kegg.KeggClientRest.empty_cache" title="Permalink to this definition">¶</a></dt>
+<dd><div class="versionadded">
+<p><span class="versionmodified added">New in version 0.3.1.</span></p>
+</div>
+<p>Empties the cache completely or for a specific method(s)</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>methods</strong> (<em>iterable</em><em>, </em><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.8)"><em>str</em></a>) – string or iterable of strings that are
+part of the cache. If None the cache is fully emptied</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="mgkit.kegg.KeggClientRest.find">
+<code class="sig-name descname">find</code><span class="sig-paren">(</span><em class="sig-param">query</em>, <em class="sig-param">database</em>, <em class="sig-param">options=None</em>, <em class="sig-param">strip=True</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/mgkit/kegg.html#KeggClientRest.find"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#mgkit.kegg.KeggClientRest.find" title="Permalink to this definition">¶</a></dt>
+<dd><div class="versionadded">
+<p><span class="versionmodified added">New in version 0.3.1.</span></p>
+</div>
+<p>Kegg Help:</p>
+<p><a class="reference external" href="http://rest.kegg.jp/find">http://rest.kegg.jp/find</a>/&lt;database&gt;/&lt;query&gt;</p>
+<dl class="simple">
+<dt>&lt;database&gt; = pathway | module | ko | genome | &lt;org&gt; | compound | glycan |</dt><dd><p>reaction | rclass | enzyme | disease | drug | dgroup | environ |
+genes | ligand</p>
+</dd>
+</dl>
+<p>&lt;org&gt; = KEGG organism code or T number</p>
+<p><a class="reference external" href="http://rest.kegg.jp/find">http://rest.kegg.jp/find</a>/&lt;database&gt;/&lt;query&gt;/&lt;option&gt;</p>
+<p>&lt;database&gt; = compound | drug
+&lt;option&gt; = formula | exact_mass | mol_weight</p>
+<p class="rubric">Examples</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">kc</span> <span class="o">=</span> <span class="n">KeggClientRest</span><span class="p">()</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">kc</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="s1">&#39;CH4&#39;</span><span class="p">,</span> <span class="s1">&#39;compound&#39;</span><span class="p">)</span>
+<span class="go">{&#39;C01438&#39;: &#39;Methane; CH4&#39;}</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">kc</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="s1">&#39;K00844&#39;</span><span class="p">,</span> <span class="s1">&#39;genes&#39;</span><span class="p">,</span> <span class="n">strip</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+<span class="go">{&#39;tped:TPE_0072&#39;: &#39;hexokinase; K00844 hexokinase [EC:2.7.1.1]&#39;,</span>
+<span class="gp">...</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">kc</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="s1">&#39;174.05&#39;</span><span class="p">,</span> <span class="s1">&#39;compound&#39;</span><span class="p">,</span> <span class="n">options</span><span class="o">=</span><span class="s1">&#39;exact_mass&#39;</span><span class="p">)</span>
+<span class="go">{&#39;C00493&#39;: &#39;174.052823&#39;,</span>
+<span class="go"> &#39;C04236&#39;: &#39;174.052823&#39;,</span>
+<span class="go"> &#39;C16588&#39;: &#39;174.052823&#39;,</span>
+<span class="go"> &#39;C17696&#39;: &#39;174.052823&#39;,</span>
+<span class="go"> &#39;C18307&#39;: &#39;174.052823&#39;,</span>
+<span class="go"> &#39;C18312&#39;: &#39;174.052823&#39;,</span>
+<span class="go"> &#39;C21281&#39;: &#39;174.052823&#39;}</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="method">
+<dt id="mgkit.kegg.KeggClientRest.get_entry">
+<code class="sig-name descname">get_entry</code><span class="sig-paren">(</span><em class="sig-param">k_id</em>, <em class="sig-param">option=None</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/mgkit/kegg.html#KeggClientRest.get_entry"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#mgkit.kegg.KeggClientRest.get_entry" title="Permalink to this definition">¶</a></dt>
+<dd><div class="versionchanged">
+<p><span class="versionmodified changed">Changed in version 0.3.1: </span>this is now cached</p>
+</div>
+<p>The method abstract the use of the ‘get’ operation in the Kegg API</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>k_id</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.8)"><em>str</em></a>) – kegg id of the resource to get</p></li>
+<li><p><strong>option</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.8)"><em>str</em></a>) – optional, to specify a format</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="mgkit.kegg.KeggClientRest.get_ids_names">
+<code class="sig-name descname">get_ids_names</code><span class="sig-paren">(</span><em class="sig-param">target='ko'</em>, <em class="sig-param">strip=True</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/mgkit/kegg.html#KeggClientRest.get_ids_names"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#mgkit.kegg.KeggClientRest.get_ids_names" title="Permalink to this definition">¶</a></dt>
+<dd><div class="versionadded">
+<p><span class="versionmodified added">New in version 0.1.13.</span></p>
+</div>
+<div class="versionchanged">
+<p><span class="versionmodified changed">Changed in version 0.3.1: </span>the call is now cached</p>
+</div>
+<p>Returns a dictionary with the names/description of all the id of a
+specific target, (ko, path, cpd, etc.)</p>
+<p>If strip=True the id will stripped of the module abbreviation (e.g.
+md:M00002-&gt;M00002)</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="mgkit.kegg.KeggClientRest.get_ortholog_pathways">
+<code class="sig-name descname">get_ortholog_pathways</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/mgkit/kegg.html#KeggClientRest.get_ortholog_pathways"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#mgkit.kegg.KeggClientRest.get_ortholog_pathways" title="Permalink to this definition">¶</a></dt>
+<dd><p>Gets ortholog pathways, replace ‘map’ with ‘ko’ in the id</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="mgkit.kegg.KeggClientRest.get_pathway_links">
+<code class="sig-name descname">get_pathway_links</code><span class="sig-paren">(</span><em class="sig-param">pathway</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/mgkit/kegg.html#KeggClientRest.get_pathway_links"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#mgkit.kegg.KeggClientRest.get_pathway_links" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns a dictionary with the mappings KO-&gt;compounds for a specific
+Pathway or module</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="mgkit.kegg.KeggClientRest.get_reaction_equations">
+<code class="sig-name descname">get_reaction_equations</code><span class="sig-paren">(</span><em class="sig-param">ids</em>, <em class="sig-param">max_len=10</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/mgkit/kegg.html#KeggClientRest.get_reaction_equations"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#mgkit.kegg.KeggClientRest.get_reaction_equations" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get the equation for the reactions</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="mgkit.kegg.KeggClientRest.id_prefix">
+<code class="sig-name descname">id_prefix</code><em class="property"> = {'C': 'cpd', 'K': 'ko', 'R': 'rn', 'k': 'map', 'm': 'path'}</em><a class="headerlink" href="#mgkit.kegg.KeggClientRest.id_prefix" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="mgkit.kegg.KeggClientRest.ko_desc_re">
+<code class="sig-name descname">ko_desc_re</code><em class="property"> = re.compile(&quot;ko:(K\\d{5})\\t.+?;\\s+([\\w+, ()/:'\\[\\]-]+)( \\[EC:)?\\n?&quot;)</em><a class="headerlink" href="#mgkit.kegg.KeggClientRest.ko_desc_re" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="mgkit.kegg.KeggClientRest.link">
+<code class="sig-name descname">link</code><span class="sig-paren">(</span><em class="sig-param">target</em>, <em class="sig-param">source</em>, <em class="sig-param">options=None</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/mgkit/kegg.html#KeggClientRest.link"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#mgkit.kegg.KeggClientRest.link" title="Permalink to this definition">¶</a></dt>
+<dd><div class="versionadded">
+<p><span class="versionmodified added">New in version 0.2.0.</span></p>
+</div>
+<p>Implements “link” operation in Kegg REST</p>
+<p><a class="reference external" href="http://www.genome.jp/linkdb/">http://www.genome.jp/linkdb/</a></p>
+</dd></dl>
+
+<dl class="method">
+<dt id="mgkit.kegg.KeggClientRest.link_ids">
+<code class="sig-name descname">link_ids</code><span class="sig-paren">(</span><em class="sig-param">target</em>, <em class="sig-param">kegg_ids</em>, <em class="sig-param">max_len=50</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/mgkit/kegg.html#KeggClientRest.link_ids"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#mgkit.kegg.KeggClientRest.link_ids" title="Permalink to this definition">¶</a></dt>
+<dd><div class="versionchanged">
+<p><span class="versionmodified changed">Changed in version 0.3.1: </span>removed <em>strip</em> and cached the results</p>
+</div>
+<p>The method abstract the use of the ‘link’ operation in the Kegg API</p>
+<p>The target parameter can be one of the following:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">pathway</span> <span class="o">|</span> <span class="n">brite</span> <span class="o">|</span> <span class="n">module</span> <span class="o">|</span> <span class="n">disease</span> <span class="o">|</span> <span class="n">drug</span> <span class="o">|</span> <span class="n">environ</span> <span class="o">|</span> <span class="n">ko</span> <span class="o">|</span> <span class="n">genome</span> <span class="o">|</span>
+<span class="o">&lt;</span><span class="n">org</span><span class="o">&gt;</span> <span class="o">|</span> <span class="n">compound</span> <span class="o">|</span> <span class="n">glycan</span> <span class="o">|</span> <span class="n">reaction</span> <span class="o">|</span> <span class="n">rpair</span> <span class="o">|</span> <span class="n">rclass</span> <span class="o">|</span> <span class="n">enzyme</span>
+
+<span class="o">&lt;</span><span class="n">org</span><span class="o">&gt;</span> <span class="o">=</span> <span class="n">KEGG</span> <span class="n">organism</span> <span class="n">code</span> <span class="ow">or</span> <span class="n">T</span> <span class="n">number</span>
+</pre></div>
+</div>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>target</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.8)"><em>str</em></a>) – the target db</p></li>
+<li><p><strong>ids</strong> – can be either a single id as a string or a list of ids</p></li>
+<li><p><strong>strip</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.8)"><em>bool</em></a>) – if the prefix (e.g. ko:K00601) should be stripped</p></li>
+<li><p><strong>max_len</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.8)"><em>int</em></a>) – the maximum number of ids to retrieve with each
+request, should not exceed 50</p></li>
+</ul>
+</dd>
+<dt class="field-even">Return dict</dt>
+<dd class="field-even"><p>dictionary mapping requested id to target id(s)</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="mgkit.kegg.KeggClientRest.list_ids">
+<code class="sig-name descname">list_ids</code><span class="sig-paren">(</span><em class="sig-param">k_id</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/mgkit/kegg.html#KeggClientRest.list_ids"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#mgkit.kegg.KeggClientRest.list_ids" title="Permalink to this definition">¶</a></dt>
+<dd><p>The method abstract the use of the ‘list’ operation in the Kegg API</p>
+<p>The k_id parameter can be one of the following:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">pathway</span> <span class="o">|</span> <span class="n">brite</span> <span class="o">|</span> <span class="n">module</span> <span class="o">|</span> <span class="n">disease</span> <span class="o">|</span> <span class="n">drug</span> <span class="o">|</span> <span class="n">environ</span> <span class="o">|</span> <span class="n">ko</span> <span class="o">|</span> <span class="n">genome</span> <span class="o">|</span>
+<span class="o">&lt;</span><span class="n">org</span><span class="o">&gt;</span> <span class="o">|</span> <span class="n">compound</span> <span class="o">|</span> <span class="n">glycan</span> <span class="o">|</span> <span class="n">reaction</span> <span class="o">|</span> <span class="n">rpair</span> <span class="o">|</span> <span class="n">rclass</span> <span class="o">|</span> <span class="n">enzyme</span>
+
+<span class="o">&lt;</span><span class="n">org</span><span class="o">&gt;</span> <span class="o">=</span> <span class="n">KEGG</span> <span class="n">organism</span> <span class="n">code</span> <span class="ow">or</span> <span class="n">T</span> <span class="n">number</span>
+</pre></div>
+</div>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>k_id</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.8)"><em>str</em></a>) – kegg database to get list of ids</p>
+</dd>
+<dt class="field-even">Return list</dt>
+<dd class="field-even"><p>list of ids in the specified database</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="mgkit.kegg.KeggClientRest.load_cache">
+<code class="sig-name descname">load_cache</code><span class="sig-paren">(</span><em class="sig-param">file_handle</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/mgkit/kegg.html#KeggClientRest.load_cache"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#mgkit.kegg.KeggClientRest.load_cache" title="Permalink to this definition">¶</a></dt>
+<dd><div class="versionadded">
+<p><span class="versionmodified added">New in version 0.3.1.</span></p>
+</div>
+<p>Loads the cache from file</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="mgkit.kegg.KeggClientRest.rn_eq_re">
+<code class="sig-name descname">rn_eq_re</code><em class="property"> = re.compile('C\\d{5}')</em><a class="headerlink" href="#mgkit.kegg.KeggClientRest.rn_eq_re" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="mgkit.kegg.KeggClientRest.rn_name_re">
+<code class="sig-name descname">rn_name_re</code><em class="property"> = re.compile('R\\d{5}')</em><a class="headerlink" href="#mgkit.kegg.KeggClientRest.rn_name_re" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="mgkit.kegg.KeggClientRest.write_cache">
+<code class="sig-name descname">write_cache</code><span class="sig-paren">(</span><em class="sig-param">file_handle</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/mgkit/kegg.html#KeggClientRest.write_cache"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#mgkit.kegg.KeggClientRest.write_cache" title="Permalink to this definition">¶</a></dt>
+<dd><div class="versionadded">
+<p><span class="versionmodified added">New in version 0.3.1.</span></p>
+</div>
+<p>Write the cache to file</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="mgkit.kegg.KeggModule">
+<em class="property">class </em><code class="sig-prename descclassname">mgkit.kegg.</code><code class="sig-name descname">KeggModule</code><span class="sig-paren">(</span><em class="sig-param">entry=None</em>, <em class="sig-param">old=False</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/mgkit/kegg.html#KeggModule"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#mgkit.kegg.KeggModule" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference external" href="https://docs.python.org/3/library/functions.html#object" title="(in Python v3.8)"><code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></a></p>
+<div class="versionadded">
+<p><span class="versionmodified added">New in version 0.1.13.</span></p>
+</div>
+<p>Used to extract information from a pathway module entry in Kegg</p>
+<p>The entry, as a string, can be either passed at instance creation or with
+<a class="reference internal" href="#mgkit.kegg.KeggModule.parse_entry" title="mgkit.kegg.KeggModule.parse_entry"><code class="xref py py-meth docutils literal notranslate"><span class="pre">KeggModule.parse_entry()</span></code></a></p>
+<dl class="attribute">
+<dt id="mgkit.kegg.KeggModule.classes">
+<code class="sig-name descname">classes</code><em class="property"> = None</em><a class="headerlink" href="#mgkit.kegg.KeggModule.classes" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="mgkit.kegg.KeggModule.compounds">
+<code class="sig-name descname">compounds</code><em class="property"> = None</em><a class="headerlink" href="#mgkit.kegg.KeggModule.compounds" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="mgkit.kegg.KeggModule.entry">
+<code class="sig-name descname">entry</code><em class="property"> = ''</em><a class="headerlink" href="#mgkit.kegg.KeggModule.entry" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="mgkit.kegg.KeggModule.find_submodules">
+<code class="sig-name descname">find_submodules</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/mgkit/kegg.html#KeggModule.find_submodules"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#mgkit.kegg.KeggModule.find_submodules" title="Permalink to this definition">¶</a></dt>
+<dd><div class="versionadded">
+<p><span class="versionmodified added">New in version 0.3.0.</span></p>
+</div>
+<p>Returns the possible submodules, as a list of tuples where the elements
+are the first and last compounds in a submodule</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="mgkit.kegg.KeggModule.first_cp">
+<em class="property">property </em><code class="sig-name descname">first_cp</code><a class="headerlink" href="#mgkit.kegg.KeggModule.first_cp" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns the first compound in the module</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="mgkit.kegg.KeggModule.last_cp">
+<em class="property">property </em><code class="sig-name descname">last_cp</code><a class="headerlink" href="#mgkit.kegg.KeggModule.last_cp" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns the first compound in the module</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="mgkit.kegg.KeggModule.name">
+<code class="sig-name descname">name</code><em class="property"> = ''</em><a class="headerlink" href="#mgkit.kegg.KeggModule.name" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="mgkit.kegg.KeggModule.parse_entry">
+<code class="sig-name descname">parse_entry</code><span class="sig-paren">(</span><em class="sig-param">entry</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/mgkit/kegg.html#KeggModule.parse_entry"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#mgkit.kegg.KeggModule.parse_entry" title="Permalink to this definition">¶</a></dt>
+<dd><p>Parses a Kegg module entry and change the instance values. By default
+the reactions IDs are substituted with the KO IDs</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="mgkit.kegg.KeggModule.parse_entry2">
+<code class="sig-name descname">parse_entry2</code><span class="sig-paren">(</span><em class="sig-param">entry</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/mgkit/kegg.html#KeggModule.parse_entry2"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#mgkit.kegg.KeggModule.parse_entry2" title="Permalink to this definition">¶</a></dt>
+<dd><div class="versionadded">
+<p><span class="versionmodified added">New in version 0.3.0.</span></p>
+</div>
+<p>Parses a Kegg module entry and change the instance values. By default
+the reactions IDs are NOT substituted with the KO IDs.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="mgkit.kegg.KeggModule.parse_reaction">
+<em class="property">static </em><code class="sig-name descname">parse_reaction</code><span class="sig-paren">(</span><em class="sig-param">line</em>, <em class="sig-param">ko_ids=None</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/mgkit/kegg.html#KeggModule.parse_reaction"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#mgkit.kegg.KeggModule.parse_reaction" title="Permalink to this definition">¶</a></dt>
+<dd><div class="versionchanged">
+<p><span class="versionmodified changed">Changed in version 0.3.0: </span>cleaned the parsing</p>
+</div>
+<p>parses the lines with the reactions and substitute reaction IDs with
+the corresponding KO IDs if provided</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="mgkit.kegg.KeggModule.reactions">
+<code class="sig-name descname">reactions</code><em class="property"> = None</em><a class="headerlink" href="#mgkit.kegg.KeggModule.reactions" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="mgkit.kegg.KeggModule.to_edges">
+<code class="sig-name descname">to_edges</code><span class="sig-paren">(</span><em class="sig-param">id_only=None</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/mgkit/kegg.html#KeggModule.to_edges"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#mgkit.kegg.KeggModule.to_edges" title="Permalink to this definition">¶</a></dt>
+<dd><div class="versionchanged">
+<p><span class="versionmodified changed">Changed in version 0.3.0: </span>added id_only and changed to reflect changes in <a class="reference internal" href="#mgkit.kegg.KeggModule.reactions" title="mgkit.kegg.KeggModule.reactions"><code class="xref py py-attr docutils literal notranslate"><span class="pre">reactions</span></code></a></p>
+</div>
+<p>Returns the reactions as edges that can be supplied to make graph.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>id_only</strong> (<a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.8)"><em>None</em></a><em>, </em><em>iterable</em>) – if None the returned edges are for the
+whole module, if an iterable (converted to a <a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#set" title="(in Python v3.8)"><code class="xref py py-class docutils literal notranslate"><span class="pre">set</span></code></a>),
+only edges for those reactions are returned</p>
+</dd>
+<dt class="field-even">Yields</dt>
+<dd class="field-even"><p><em>tuple</em> – the elements are the compounds and reactions in the module</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="function">
+<dt id="mgkit.kegg.parse_reaction">
+<code class="sig-prename descclassname">mgkit.kegg.</code><code class="sig-name descname">parse_reaction</code><span class="sig-paren">(</span><em class="sig-param">line</em>, <em class="sig-param">prefix=('C'</em>, <em class="sig-param">'G')</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/mgkit/kegg.html#parse_reaction"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#mgkit.kegg.parse_reaction" title="Permalink to this definition">¶</a></dt>
+<dd><div class="versionadded">
+<p><span class="versionmodified added">New in version 0.3.1.</span></p>
+</div>
+<p>Parses a reaction equation from Kegg, returning the left and right
+components. Needs testing</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>line</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.8)"><em>str</em></a>) – reaction string</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>left and right components as <cite>sets</cite></p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#tuple" title="(in Python v3.8)">tuple</a></p>
+</dd>
+<dt class="field-even">Raises</dt>
+<dd class="field-even"><p><a class="reference external" href="https://docs.python.org/3/library/exceptions.html#ValueError" title="(in Python v3.8)"><strong>ValueError</strong></a> – if the</p>
+</dd>
+</dl>
+</dd></dl>
+
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="mgkit.logger.html" class="btn btn-neutral float-right" title="mgkit.logger module" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="mgkit.graphs.html" class="btn btn-neutral float-left" title="mgkit.graphs module" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2013-2015, Francesco Rubino
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

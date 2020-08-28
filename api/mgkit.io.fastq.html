@@ -1,0 +1,494 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>mgkit.io.fastq module &mdash; MGKit: Metagenomic framework 0.5.0 documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+  <script type="text/javascript" src="../_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+        <script type="text/javascript" src="../_static/jquery.js"></script>
+        <script type="text/javascript" src="../_static/underscore.js"></script>
+        <script type="text/javascript" src="../_static/doctools.js"></script>
+        <script type="text/javascript" src="../_static/language_data.js"></script>
+        <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+        <script async="async" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+        <script type="text/x-mathjax-config">MathJax.Hub.Config({"tex2jax": {"inlineMath": [["$", "$"], ["\\(", "\\)"]], "processEscapes": true, "ignoreClass": "document", "processClass": "math|output_area"}})</script>
+    
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/graphviz.css" type="text/css" />
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="mgkit.io.gff module" href="mgkit.io.gff.html" />
+    <link rel="prev" title="mgkit.io.fasta module" href="mgkit.io.fasta.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../index.html" class="icon icon-home"> MGKit: Metagenomic framework
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                0.5.0
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../introduction.html">Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../install.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../pipeline/index.html">Metagenomic Pipeline</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../scripts/index.html">Scripts Details</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../examples/index.html">Example Notebooks</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../gff.html">MGKit GFF Specifications</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../library.html">Library Reference</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="mgkit.html">mgkit package</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mgkit.align.html">mgkit.align module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mgkit.consts.html">mgkit.consts module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mgkit.counts.html">mgkit.counts package</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mgkit.counts.func.html">mgkit.counts.func module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mgkit.counts.glm.html">mgkit.counts.glm module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mgkit.counts.scaling.html">mgkit.counts.scaling module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mgkit.db.html">mgkit.db package</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mgkit.db.dbm.html">mgkit.db.dbm module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mgkit.db.mongo.html">mgkit.db.mongo module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mgkit.filter.html">mgkit.filter package</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mgkit.filter.common.html">mgkit.filter.common module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mgkit.filter.gff.html">mgkit.filter.gff module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mgkit.filter.lists.html">mgkit.filter.lists module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mgkit.filter.reads.html">mgkit.filter.reads module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mgkit.filter.taxon.html">mgkit.filter.taxon module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mgkit.graphs.html">mgkit.graphs module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mgkit.io.html">mgkit.io package</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mgkit.io.blast.html">mgkit.io.blast module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mgkit.io.fasta.html">mgkit.io.fasta module</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">mgkit.io.fastq module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mgkit.io.gff.html">mgkit.io.gff module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mgkit.io.glimmer.html">mgkit.io.glimmer module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mgkit.io.snpdat.html">mgkit.io.snpdat module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mgkit.io.uniprot.html">mgkit.io.uniprot module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mgkit.io.utils.html">mgkit.io.utils module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mgkit.kegg.html">mgkit.kegg module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mgkit.logger.html">mgkit.logger module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mgkit.mappings.html">mgkit.mappings package</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mgkit.mappings.cazy.html">mgkit.mappings.cazy module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mgkit.mappings.eggnog.html">mgkit.mappings.eggnog module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mgkit.mappings.enzyme.html">mgkit.mappings.enzyme module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mgkit.mappings.go.html">mgkit.mappings.go module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mgkit.mappings.pandas_map.html">mgkit.mappings.pandas_map module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mgkit.mappings.taxon.html">mgkit.mappings.taxon module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mgkit.mappings.utils.html">mgkit.mappings.utils module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mgkit.net.html">mgkit.net package</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mgkit.net.embl.html">mgkit.net.embl module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mgkit.net.pfam.html">mgkit.net.pfam module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mgkit.net.uniprot.html">mgkit.net.uniprot module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mgkit.net.utils.html">mgkit.net.utils module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mgkit.plots.html">mgkit.plots package</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mgkit.plots.abund.html">mgkit.plots.abund module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mgkit.plots.boxplot.html">mgkit.plots.boxplot module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mgkit.plots.colors.html">mgkit.plots.colors module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mgkit.plots.heatmap.html">mgkit.plots.heatmap module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mgkit.plots.unused.html">mgkit.plots.unused module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mgkit.plots.utils.html">mgkit.plots.utils module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mgkit.simple_cache.html">mgkit.simple_cache module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mgkit.snps.html">mgkit.snps package</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mgkit.snps.classes.html">mgkit.snps.classes module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mgkit.snps.conv_func.html">mgkit.snps.conv_func module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mgkit.snps.filter.html">mgkit.snps.filter module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mgkit.snps.funcs.html">mgkit.snps.funcs module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mgkit.snps.mapper.html">mgkit.snps.mapper module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mgkit.taxon.html">mgkit.taxon module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mgkit.utils.html">mgkit.utils package</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mgkit.utils.common.html">mgkit.utils.common module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mgkit.utils.dictionary.html">mgkit.utils.dictionary module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mgkit.utils.sequence.html">mgkit.utils.sequence module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mgkit.utils.trans_tables.html">mgkit.utils.trans_tables module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mgkit.workflow.html">mgkit.workflow package</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mgkit.workflow.add_gff_info.html">mgkit.workflow.add_gff_info module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mgkit.workflow.blast2gff.html">mgkit.workflow.blast2gff module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mgkit.workflow.extract_gff_info.html">mgkit.workflow.extract_gff_info module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mgkit.workflow.fasta_utils.html">mgkit.workflow.fasta_utils module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mgkit.workflow.fastq_utils.html">mgkit.workflow.fastq_utils module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mgkit.workflow.filter_gff.html">mgkit.workflow.filter_gff module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mgkit.workflow.hmmer2gff.html">mgkit.workflow.hmmer2gff module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mgkit.workflow.json2gff.html">mgkit.workflow.json2gff module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mgkit.workflow.sampling_utils.html">mgkit.workflow.sampling_utils module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mgkit.workflow.snp_parser.html">mgkit.workflow.snp_parser module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mgkit.workflow.taxon_utils.html">mgkit.workflow.taxon_utils module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mgkit.workflow.utils.html">mgkit.workflow.utils module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="modules.html">mgkit</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../changes.html">Changes</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">MGKit: Metagenomic framework</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="../library.html">Library Reference</a> &raquo;</li>
+        
+          <li><a href="mgkit.html">mgkit package</a> &raquo;</li>
+        
+          <li><a href="mgkit.io.html">mgkit.io package</a> &raquo;</li>
+        
+      <li>mgkit.io.fastq module</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="../_sources/api/mgkit.io.fastq.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  
+<style>
+/* CSS overrides for sphinx_rtd_theme */
+
+/* 24px margin */
+.nbinput.nblast.container,
+.nboutput.nblast.container {
+    margin-bottom: 19px;  /* padding has already 5px */
+}
+
+/* ... except between code cells! */
+.nblast.container + .nbinput.container {
+    margin-top: -19px;
+}
+
+.admonition > p:before {
+    margin-right: 4px;  /* make room for the exclamation icon */
+}
+
+/* Fix math alignment, see https://github.com/rtfd/sphinx_rtd_theme/pull/686 */
+.math {
+    text-align: unset;
+}
+</style>
+<div class="section" id="module-mgkit.io.fastq">
+<span id="mgkit-io-fastq-module"></span><h1>mgkit.io.fastq module<a class="headerlink" href="#module-mgkit.io.fastq" title="Permalink to this headline">¶</a></h1>
+<p>Fastq utility functions</p>
+<dl class="data">
+<dt id="mgkit.io.fastq.CASAVA_HEADER_NEW">
+<code class="sig-prename descclassname">mgkit.io.fastq.</code><code class="sig-name descname">CASAVA_HEADER_NEW</code><em class="property"> = '(?P&lt;machine&gt;[\\w-]+):\n        (?P&lt;runid&gt;\\d+):\n        (?P&lt;cellid&gt;\\w+):\n        (?P&lt;lane&gt;\\d):\n        (?P&lt;tile&gt;\\d+):\n        (?P&lt;xcoord&gt;\\d+):\n        (?P&lt;ycoord&gt;\\d+)\n        [_ ](?P&lt;mate&gt;\\d): # underscore for data from from www.ebi.ac.uk/ena/\n        (?P&lt;filter&gt;[YN]):\n        (?P&lt;bits&gt;\\d+):\n        (?P&lt;index&gt;[ACTGN+]+)'</em><a class="headerlink" href="#mgkit.io.fastq.CASAVA_HEADER_NEW" title="Permalink to this definition">¶</a></dt>
+<dd><p>New casava header regex, including indices for both forward and reverse</p>
+</dd></dl>
+
+<dl class="data">
+<dt id="mgkit.io.fastq.CASAVA_HEADER_OLD">
+<code class="sig-prename descclassname">mgkit.io.fastq.</code><code class="sig-name descname">CASAVA_HEADER_OLD</code><em class="property"> = '(?P&lt;machine&gt;\\w+-\\w+):\n        (?P&lt;lane&gt;\\d):\n        (?P&lt;tile&gt;\\d+):\n        (?P&lt;xcoord&gt;\\d+):\n        (?P&lt;ycoord&gt;\\d+)\\#\n        (?P&lt;index&gt;(\\d|[ACTGN]{6}))/\n        (?P&lt;mate&gt;(1|2))'</em><a class="headerlink" href="#mgkit.io.fastq.CASAVA_HEADER_OLD" title="Permalink to this definition">¶</a></dt>
+<dd><p>Old casava header regex</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="mgkit.io.fastq.check_fastq_type">
+<code class="sig-prename descclassname">mgkit.io.fastq.</code><code class="sig-name descname">check_fastq_type</code><span class="sig-paren">(</span><em class="sig-param">qualities</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/mgkit/io/fastq.html#check_fastq_type"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#mgkit.io.fastq.check_fastq_type" title="Permalink to this definition">¶</a></dt>
+<dd><p>Trys to guess the type of quality string used in a Fastq file</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>qualities</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.8)"><em>str</em></a>) – string with the quality scores as in the Fastq file</p>
+</dd>
+<dt class="field-even">Return str</dt>
+<dd class="field-even"><p>a string with the guessed quality score</p>
+</dd>
+</dl>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Possible values are the following, classified but the values usually
+used in other softwares:</p>
+<ul class="simple">
+<li><p>ASCII33: sanger, illumina-1.8</p></li>
+<li><p>ASCII64: illumina-1.3, illumina-1.5, solexa-old</p></li>
+</ul>
+</div>
+</dd></dl>
+
+<dl class="function">
+<dt id="mgkit.io.fastq.choose_header_type">
+<code class="sig-prename descclassname">mgkit.io.fastq.</code><code class="sig-name descname">choose_header_type</code><span class="sig-paren">(</span><em class="sig-param">seq_id</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/mgkit/io/fastq.html#choose_header_type"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#mgkit.io.fastq.choose_header_type" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return the guessed compiled regular expression
+:param str seq_id: sequence header to test</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>compiled regular expression object or None if no match found</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="function">
+<dt id="mgkit.io.fastq.convert_seqid_to_new">
+<code class="sig-prename descclassname">mgkit.io.fastq.</code><code class="sig-name descname">convert_seqid_to_new</code><span class="sig-paren">(</span><em class="sig-param">seq_id</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/mgkit/io/fastq.html#convert_seqid_to_new"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#mgkit.io.fastq.convert_seqid_to_new" title="Permalink to this definition">¶</a></dt>
+<dd><p>Convert old seq_id format for Illumina reads to the new found in Casava
+1.8+</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>seq_id</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.8)"><em>str</em></a>) – seq_id of the sequence (stripped of ‘&#64;’)</p>
+</dd>
+<dt class="field-even">Return str</dt>
+<dd class="field-even"><p>the new format seq_id</p>
+</dd>
+</dl>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Example from Wikipedia:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">old</span> <span class="n">casava</span> <span class="n">seq_id</span><span class="p">:</span>
+<span class="nd">@HWUSI</span><span class="o">-</span><span class="n">EAS100R</span><span class="p">:</span><span class="mi">6</span><span class="p">:</span><span class="mi">73</span><span class="p">:</span><span class="mi">941</span><span class="p">:</span><span class="mi">1973</span><span class="c1">#0/1</span>
+<span class="n">new</span> <span class="n">casava</span> <span class="n">seq_id</span><span class="p">:</span>
+<span class="nd">@EAS139</span><span class="p">:</span><span class="mi">136</span><span class="p">:</span><span class="n">FC706VJ</span><span class="p">:</span><span class="mi">2</span><span class="p">:</span><span class="mi">2104</span><span class="p">:</span><span class="mi">15343</span><span class="p">:</span><span class="mi">197393</span> <span class="mi">1</span><span class="p">:</span><span class="n">Y</span><span class="p">:</span><span class="mi">18</span><span class="p">:</span><span class="n">ATCAC</span>
+</pre></div>
+</div>
+</div>
+</dd></dl>
+
+<dl class="function">
+<dt id="mgkit.io.fastq.convert_seqid_to_old">
+<code class="sig-prename descclassname">mgkit.io.fastq.</code><code class="sig-name descname">convert_seqid_to_old</code><span class="sig-paren">(</span><em class="sig-param">seq_id</em>, <em class="sig-param">index_as_seq=True</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/mgkit/io/fastq.html#convert_seqid_to_old"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#mgkit.io.fastq.convert_seqid_to_old" title="Permalink to this definition">¶</a></dt>
+<dd><div class="deprecated">
+<p><span class="versionmodified deprecated">Deprecated since version 0.3.3.</span></p>
+</div>
+<p>Convert old seq_id format for Illumina reads to the new found in Casava
+until 1.8, which marks the new format.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>seq_id</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.8)"><em>str</em></a>) – seq_id of the sequence (stripped of ‘&#64;’)</p></li>
+<li><p><strong>index_as_seq</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.8)"><em>bool</em></a>) – if True, the index for the multiplex we’ll be
+the sequence found at the end of the new format seq_id. Otherwise, 0
+we’ll be used</p></li>
+</ul>
+</dd>
+<dt class="field-even">Return str</dt>
+<dd class="field-even"><p>the new format seq_id</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="function">
+<dt id="mgkit.io.fastq.load_fastq">
+<code class="sig-prename descclassname">mgkit.io.fastq.</code><code class="sig-name descname">load_fastq</code><span class="sig-paren">(</span><em class="sig-param">file_handle</em>, <em class="sig-param">num_qual=False</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/mgkit/io/fastq.html#load_fastq"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#mgkit.io.fastq.load_fastq" title="Permalink to this definition">¶</a></dt>
+<dd><div class="versionadded">
+<p><span class="versionmodified added">New in version 0.3.1.</span></p>
+</div>
+<p>Loads a fastq file and returns a generator of tuples in which the first
+element is the name of the sequence, the second the sequence and the third
+the quality scores (converted in a numpy array if <em>num_qual</em> is True).</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>this is a simple parser that assumes each sequence is on 4 lines,
+1st and 3rd for the headers, 2nd for the sequence and 4th the quality
+scores</p>
+</div>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>file_handle</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.8)"><em>str</em></a><em>, </em><em>file</em>) – fastq file to open, can be a file name or a
+file handle</p></li>
+<li><p><strong>num_qual</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.8)"><em>bool</em></a>) – if <em>False</em> (default), the quality score will be
+returned as ASCII character, if <em>True</em> a numpy array.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Yields</dt>
+<dd class="field-even"><p><em>tuple</em> – first element is the sequence name/header, the second element is
+the sequence, the third is the quality score. The quality scores are
+kept as a string if <em>num_qual</em> is False (default) and converted to a
+numpy array with correct values (0-41) if <em>num_qual</em> is True</p>
+</dd>
+<dt class="field-odd">Raises</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><a class="reference external" href="https://docs.python.org/3/library/exceptions.html#ValueError" title="(in Python v3.8)"><strong>ValueError</strong></a> – if the headers in both sequence and quality scores are not</p></li>
+<li><p><strong>valid. This implies that the sequence/qualities have carriage returns</strong> – </p></li>
+<li><p><strong>or the file is truncated.</strong> – </p></li>
+<li><p><a class="reference external" href="https://docs.python.org/3/library/exceptions.html#TypeError" title="(in Python v3.8)"><strong>TypeError</strong></a> – if the qualities are in a format different than sanger</p></li>
+<li><p><strong>(</strong><strong>min 0</strong><strong>, </strong><strong>max 40</strong><strong>) or </strong><strong>illumina-1.8</strong><strong> (</strong><strong>0</strong><strong>, </strong><strong>41</strong><strong>)</strong> – </p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="function">
+<dt id="mgkit.io.fastq.load_fastq_rename">
+<code class="sig-prename descclassname">mgkit.io.fastq.</code><code class="sig-name descname">load_fastq_rename</code><span class="sig-paren">(</span><em class="sig-param">file_handle</em>, <em class="sig-param">num_qual=False</em>, <em class="sig-param">name_func=None</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/mgkit/io/fastq.html#load_fastq_rename"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#mgkit.io.fastq.load_fastq_rename" title="Permalink to this definition">¶</a></dt>
+<dd><div class="versionadded">
+<p><span class="versionmodified added">New in version 0.3.3.</span></p>
+</div>
+<p>Mirrors the same functionality in <a class="reference internal" href="mgkit.io.fasta.html#mgkit.io.fasta.load_fasta_rename" title="mgkit.io.fasta.load_fasta_rename"><code class="xref py py-func docutils literal notranslate"><span class="pre">mgkit.io.fasta.load_fasta_rename()</span></code></a>.
+Renames the header of the sequences using <em>name_func</em>, which is called on
+each header. By default, the behaviour is to keep the header to the left of
+the first space (BLAST behaviour).</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="mgkit.io.fastq.write_fastq_sequence">
+<code class="sig-prename descclassname">mgkit.io.fastq.</code><code class="sig-name descname">write_fastq_sequence</code><span class="sig-paren">(</span><em class="sig-param">file_handle</em>, <em class="sig-param">name</em>, <em class="sig-param">seq</em>, <em class="sig-param">qual</em>, <em class="sig-param">write_mode='a'</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/mgkit/io/fastq.html#write_fastq_sequence"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#mgkit.io.fastq.write_fastq_sequence" title="Permalink to this definition">¶</a></dt>
+<dd><div class="versionchanged">
+<p><span class="versionmodified changed">Changed in version 0.3.3: </span>if <em>qual</em> is not a string it’s converted to chars (phred33)</p>
+</div>
+<p>Write a fastq sequence to file. If the <em>file_handle</em> is a string, the file
+will be opened using <em>write_mode</em>.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>file_handle</strong> – file handle or string.</p></li>
+<li><p><strong>name</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.8)"><em>str</em></a>) – header to write for the sequence</p></li>
+<li><p><strong>seq</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.8)"><em>str</em></a>) – sequence to write</p></li>
+<li><p><strong>qual</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.8)"><em>str</em></a>) – quality string</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="mgkit.io.gff.html" class="btn btn-neutral float-right" title="mgkit.io.gff module" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="mgkit.io.fasta.html" class="btn btn-neutral float-left" title="mgkit.io.fasta module" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2013-2015, Francesco Rubino
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

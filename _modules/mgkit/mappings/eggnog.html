@@ -1,0 +1,472 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>mgkit.mappings.eggnog &mdash; MGKit: Metagenomic framework 0.5.0 documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+  <script type="text/javascript" src="../../../_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../../../" src="../../../_static/documentation_options.js"></script>
+        <script type="text/javascript" src="../../../_static/jquery.js"></script>
+        <script type="text/javascript" src="../../../_static/underscore.js"></script>
+        <script type="text/javascript" src="../../../_static/doctools.js"></script>
+        <script type="text/javascript" src="../../../_static/language_data.js"></script>
+        <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+        <script async="async" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+        <script type="text/x-mathjax-config">MathJax.Hub.Config({"tex2jax": {"inlineMath": [["$", "$"], ["\\(", "\\)"]], "processEscapes": true, "ignoreClass": "document", "processClass": "math|output_area"}})</script>
+    
+    <script type="text/javascript" src="../../../_static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="../../../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../../../_static/graphviz.css" type="text/css" />
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../../../index.html" class="icon icon-home"> MGKit: Metagenomic framework
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                0.5.0
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../introduction.html">Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../install.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../pipeline/index.html">Metagenomic Pipeline</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../scripts/index.html">Scripts Details</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../examples/index.html">Example Notebooks</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../gff.html">MGKit GFF Specifications</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../library.html">Library Reference</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../changes.html">Changes</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../index.html">MGKit: Metagenomic framework</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../../../index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="../../index.html">Module code</a> &raquo;</li>
+        
+          <li><a href="../../mgkit.html">mgkit</a> &raquo;</li>
+        
+      <li>mgkit.mappings.eggnog</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <h1>Source code for mgkit.mappings.eggnog</h1><div class="highlight"><pre>
+<span></span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">Module containing classes and functions to deal with eggNOG data</span>
+
+<span class="sd">.. todo::</span>
+
+<span class="sd">    * unify download of data from web</span>
+
+<span class="sd">&quot;&quot;&quot;</span>
+<span class="kn">from</span> <span class="nn">__future__</span> <span class="kn">import</span> <span class="n">print_function</span>
+<span class="kn">from</span> <span class="nn">future.utils</span> <span class="kn">import</span> <span class="n">viewitems</span>
+<span class="kn">import</span> <span class="nn">logging</span>
+<span class="kn">import</span> <span class="nn">itertools</span>
+<span class="kn">from</span> <span class="nn">..io</span> <span class="kn">import</span> <span class="n">open_file</span>
+<span class="kn">from</span> <span class="nn">..utils</span> <span class="kn">import</span> <span class="n">dictionary</span>
+
+<span class="n">LOG</span> <span class="o">=</span> <span class="n">logging</span><span class="o">.</span><span class="n">getLogger</span><span class="p">(</span><span class="vm">__name__</span><span class="p">)</span>
+
+<span class="n">EGGNOG_CAT_NAMES</span> <span class="o">=</span> <span class="p">(</span>
+    <span class="s1">&#39;INFORMATION STORAGE AND PROCESSING&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;CELLULAR PROCESSES AND SIGNALING&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;METABOLISM&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;POORLY CHARACTERIZED&#39;</span>
+<span class="p">)</span>
+<span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">Functional categories (broader)</span>
+<span class="sd">&quot;&quot;&quot;</span>
+
+<span class="n">EGGNOG_CAT_KEYS</span> <span class="o">=</span> <span class="p">(</span>
+    <span class="p">(</span><span class="s1">&#39;J&#39;</span><span class="p">,</span> <span class="s1">&#39;A&#39;</span><span class="p">,</span> <span class="s1">&#39;K&#39;</span><span class="p">,</span> <span class="s1">&#39;L&#39;</span><span class="p">,</span> <span class="s1">&#39;B&#39;</span><span class="p">),</span>
+    <span class="p">(</span><span class="s1">&#39;D&#39;</span><span class="p">,</span> <span class="s1">&#39;Y&#39;</span><span class="p">,</span> <span class="s1">&#39;V&#39;</span><span class="p">,</span> <span class="s1">&#39;T&#39;</span><span class="p">,</span> <span class="s1">&#39;M&#39;</span><span class="p">,</span> <span class="s1">&#39;N&#39;</span><span class="p">,</span> <span class="s1">&#39;Z&#39;</span><span class="p">,</span> <span class="s1">&#39;W&#39;</span><span class="p">,</span> <span class="s1">&#39;U&#39;</span><span class="p">,</span> <span class="s1">&#39;O&#39;</span><span class="p">),</span>
+    <span class="p">(</span><span class="s1">&#39;C&#39;</span><span class="p">,</span> <span class="s1">&#39;G&#39;</span><span class="p">,</span> <span class="s1">&#39;E&#39;</span><span class="p">,</span> <span class="s1">&#39;F&#39;</span><span class="p">,</span> <span class="s1">&#39;H&#39;</span><span class="p">,</span> <span class="s1">&#39;I&#39;</span><span class="p">,</span> <span class="s1">&#39;P&#39;</span><span class="p">,</span> <span class="s1">&#39;Q&#39;</span><span class="p">),</span>
+    <span class="p">(</span><span class="s1">&#39;R&#39;</span><span class="p">,</span> <span class="s1">&#39;S&#39;</span><span class="p">)</span>
+<span class="p">)</span>
+<span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">Used to build map of broader categories (:data:`EGGNOG_CAT_NAMES`) to more</span>
+<span class="sd">specific ones</span>
+<span class="sd">&quot;&quot;&quot;</span>
+
+<span class="n">EGGNOG_CAT_MAP</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">(</span>
+    <span class="p">(</span><span class="n">label</span><span class="p">,</span> <span class="n">categories</span><span class="p">)</span>
+    <span class="k">for</span> <span class="n">label</span><span class="p">,</span> <span class="n">categories</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="n">EGGNOG_CAT_NAMES</span><span class="p">,</span> <span class="n">EGGNOG_CAT_KEYS</span><span class="p">)</span>
+<span class="p">)</span>
+<span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">Functional categories (broader, :data:`EGGNOG_CAT_NAMES`) mappings to more</span>
+<span class="sd">specific one (:data:`EGGNOG_CAT`).</span>
+<span class="sd">&quot;&quot;&quot;</span>
+
+<span class="n">EGGNOG_CAT</span> <span class="o">=</span> <span class="p">{</span>
+
+    <span class="c1"># INFORMATION STORAGE AND PROCESSING</span>
+    <span class="s1">&#39;J&#39;</span><span class="p">:</span> <span class="s2">&quot;Translation, ribosomal structure and biogenesis&quot;</span><span class="p">,</span>
+    <span class="s1">&#39;A&#39;</span><span class="p">:</span> <span class="s2">&quot;RNA processing and modification&quot;</span><span class="p">,</span>
+    <span class="s1">&#39;K&#39;</span><span class="p">:</span> <span class="s2">&quot;Transcription&quot;</span><span class="p">,</span>
+    <span class="s1">&#39;L&#39;</span><span class="p">:</span> <span class="s2">&quot;Replication, recombination and repair&quot;</span><span class="p">,</span>
+    <span class="s1">&#39;B&#39;</span><span class="p">:</span> <span class="s2">&quot;Chromatin structure and dynamics&quot;</span><span class="p">,</span>
+
+    <span class="c1"># CELLULAR PROCESSES AND SIGNALING</span>
+    <span class="s1">&#39;D&#39;</span><span class="p">:</span> <span class="s2">&quot;Cell cycle control, cell division, chromosome partitioning&quot;</span><span class="p">,</span>
+    <span class="s1">&#39;Y&#39;</span><span class="p">:</span> <span class="s2">&quot;Nuclear structure&quot;</span><span class="p">,</span>
+    <span class="s1">&#39;V&#39;</span><span class="p">:</span> <span class="s2">&quot;Defense mechanisms&quot;</span><span class="p">,</span>
+    <span class="s1">&#39;T&#39;</span><span class="p">:</span> <span class="s2">&quot;Signal transduction mechanisms&quot;</span><span class="p">,</span>
+    <span class="s1">&#39;M&#39;</span><span class="p">:</span> <span class="s2">&quot;Cell wall/membrane/envelope biogenesis&quot;</span><span class="p">,</span>
+    <span class="s1">&#39;N&#39;</span><span class="p">:</span> <span class="s2">&quot;Cell motility&quot;</span><span class="p">,</span>
+    <span class="s1">&#39;Z&#39;</span><span class="p">:</span> <span class="s2">&quot;Cytoskeleton&quot;</span><span class="p">,</span>
+    <span class="s1">&#39;W&#39;</span><span class="p">:</span> <span class="s2">&quot;Extracellular structures&quot;</span><span class="p">,</span>
+    <span class="s1">&#39;U&#39;</span><span class="p">:</span> <span class="s2">&quot;Intracellular trafficking, secretion, and vesicular transport&quot;</span><span class="p">,</span>
+    <span class="s1">&#39;O&#39;</span><span class="p">:</span> <span class="s2">&quot;Posttranslational modification, protein turnover, chaperones&quot;</span><span class="p">,</span>
+
+    <span class="c1"># METABOLISM</span>
+    <span class="s1">&#39;C&#39;</span><span class="p">:</span> <span class="s2">&quot;Energy production and conversion&quot;</span><span class="p">,</span>
+    <span class="s1">&#39;G&#39;</span><span class="p">:</span> <span class="s2">&quot;Carbohydrate transport and metabolism&quot;</span><span class="p">,</span>
+    <span class="s1">&#39;E&#39;</span><span class="p">:</span> <span class="s2">&quot;Amino acid transport and metabolism&quot;</span><span class="p">,</span>
+    <span class="s1">&#39;F&#39;</span><span class="p">:</span> <span class="s2">&quot;Nucleotide transport and metabolism&quot;</span><span class="p">,</span>
+    <span class="s1">&#39;H&#39;</span><span class="p">:</span> <span class="s2">&quot;Coenzyme transport and metabolism&quot;</span><span class="p">,</span>
+    <span class="s1">&#39;I&#39;</span><span class="p">:</span> <span class="s2">&quot;Lipid transport and metabolism&quot;</span><span class="p">,</span>
+    <span class="s1">&#39;P&#39;</span><span class="p">:</span> <span class="s2">&quot;Inorganic ion transport and metabolism&quot;</span><span class="p">,</span>
+    <span class="s1">&#39;Q&#39;</span><span class="p">:</span> <span class="s2">&quot;Secondary metabolites biosynthesis, transport and catabolism&quot;</span><span class="p">,</span>
+
+    <span class="c1"># POORLY CHARACTERIZED</span>
+    <span class="s1">&#39;R&#39;</span><span class="p">:</span> <span class="s2">&quot;General function prediction only&quot;</span><span class="p">,</span>
+    <span class="s1">&#39;S&#39;</span><span class="p">:</span> <span class="s2">&quot;Function unknown&quot;</span>
+<span class="p">}</span>
+<span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">Single letter functional categories</span>
+<span class="sd">&quot;&quot;&quot;</span>
+
+
+<div class="viewcode-block" id="get_general_eggnog_cat"><a class="viewcode-back" href="../../../api/mgkit.mappings.eggnog.html#mgkit.mappings.eggnog.get_general_eggnog_cat">[docs]</a><span class="k">def</span> <span class="nf">get_general_eggnog_cat</span><span class="p">(</span><span class="n">category</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    .. versionadded:: 0.1.14</span>
+
+<span class="sd">    Returns the functional category (:data:`EGGNOG_CAT_NAMES` keys)</span>
+<span class="sd">    for the requested single letter functional category (:data:`EGGNOG_CAT`</span>
+<span class="sd">    keys)</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">return</span> <span class="nb">set</span><span class="p">(</span>
+        <span class="n">gen_category</span>
+        <span class="k">for</span> <span class="n">gen_category</span><span class="p">,</span> <span class="n">categories</span> <span class="ow">in</span> <span class="n">viewitems</span><span class="p">(</span><span class="n">EGGNOG_CAT_MAP</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">category</span> <span class="ow">in</span> <span class="n">categories</span>
+    <span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="NOGInfo"><a class="viewcode-back" href="../../../api/mgkit.mappings.eggnog.html#mgkit.mappings.eggnog.NOGInfo">[docs]</a><span class="k">class</span> <span class="nc">NOGInfo</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    .. versionadded:: 0.1.14</span>
+
+<span class="sd">    .. versionchanged:: 0.4.0</span>
+<span class="sd">        made file reading compatible with Python 3</span>
+
+<span class="sd">    Mappings from Uniprot to eggNOG</span>
+
+<span class="sd">    ..note::</span>
+
+<span class="sd">        load_description is optional</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">_map_nog_func</span> <span class="o">=</span> <span class="kc">None</span>
+    <span class="s2">&quot;eggNOG COG/NOG to functional category dictionary&quot;</span>
+    <span class="n">_map_nog_gene</span> <span class="o">=</span> <span class="kc">None</span>
+    <span class="s2">&quot;eggNOG COG/NOG to gene id dictionary&quot;</span>
+    <span class="n">_map_nog_desc</span> <span class="o">=</span> <span class="kc">None</span>
+    <span class="s2">&quot;eggNOG id to description dictionary&quot;</span>
+    <span class="n">_map_gene_nog</span> <span class="o">=</span> <span class="kc">None</span>
+    <span class="s2">&quot;eggNOG gene id to COG/NOG dictionary&quot;</span>
+
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">members</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">funccat</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">description</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        .. versionchanged:: 0.4.0</span>
+<span class="sd">            added parameters to load data at __init__</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_map_nog_gene</span> <span class="o">=</span> <span class="p">{}</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_map_gene_nog</span> <span class="o">=</span> <span class="p">{}</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_map_nog_func</span> <span class="o">=</span> <span class="p">{}</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_map_nog_desc</span> <span class="o">=</span> <span class="p">{}</span>
+        <span class="k">if</span> <span class="n">members</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">load_members</span><span class="p">(</span><span class="n">members</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">funccat</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">load_funccat</span><span class="p">(</span><span class="n">funccat</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">description</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">load_description</span><span class="p">(</span><span class="n">description</span><span class="p">)</span>
+
+<div class="viewcode-block" id="NOGInfo.load_members"><a class="viewcode-back" href="../../../api/mgkit.mappings.eggnog.html#mgkit.mappings.eggnog.NOGInfo.load_members">[docs]</a>    <span class="k">def</span> <span class="nf">load_members</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">file_handle</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Loads data from *NOG.members.txt.gz*</span>
+
+<span class="sd">        *file_handle* can either an open file or a path</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">file_handle</span> <span class="o">=</span> <span class="n">open_file</span><span class="p">(</span><span class="n">file_handle</span><span class="p">,</span> <span class="s1">&#39;rb&#39;</span><span class="p">)</span>
+
+        <span class="n">LOG</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;Reading Members from </span><span class="si">%s</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">file_handle</span><span class="o">.</span><span class="n">name</span><span class="p">)</span>
+
+        <span class="n">map_nog_gene</span> <span class="o">=</span> <span class="p">{}</span>
+
+        <span class="k">for</span> <span class="n">line</span> <span class="ow">in</span> <span class="n">file_handle</span><span class="p">:</span>
+            <span class="n">line</span> <span class="o">=</span> <span class="n">line</span><span class="o">.</span><span class="n">decode</span><span class="p">(</span><span class="s1">&#39;ascii&#39;</span><span class="p">)</span>
+            <span class="k">if</span> <span class="n">line</span><span class="o">.</span><span class="n">startswith</span><span class="p">(</span><span class="s1">&#39;#&#39;</span><span class="p">):</span>
+                <span class="k">continue</span>
+
+            <span class="n">nog_id</span><span class="p">,</span> <span class="n">gene_id</span><span class="p">,</span> <span class="n">start</span><span class="p">,</span> <span class="n">end</span> <span class="o">=</span> <span class="n">line</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span><span class="o">.</span><span class="n">split</span><span class="p">()</span>
+
+            <span class="k">try</span><span class="p">:</span>
+                <span class="n">map_nog_gene</span><span class="p">[</span><span class="n">nog_id</span><span class="p">]</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">gene_id</span><span class="p">)</span>
+            <span class="k">except</span> <span class="ne">KeyError</span><span class="p">:</span>
+                <span class="n">map_nog_gene</span><span class="p">[</span><span class="n">nog_id</span><span class="p">]</span> <span class="o">=</span> <span class="p">[</span><span class="n">gene_id</span><span class="p">]</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">_map_nog_gene</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="n">map_nog_gene</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_map_gene_nog</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="n">dictionary</span><span class="o">.</span><span class="n">reverse_mapping</span><span class="p">(</span><span class="n">map_nog_gene</span><span class="p">))</span></div>
+
+<div class="viewcode-block" id="NOGInfo.load_description"><a class="viewcode-back" href="../../../api/mgkit.mappings.eggnog.html#mgkit.mappings.eggnog.NOGInfo.load_description">[docs]</a>    <span class="k">def</span> <span class="nf">load_description</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">file_handle</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Loads data from *NOG.description.txt.gz*</span>
+
+<span class="sd">        *file_handle* can either an open file or a path</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">file_handle</span> <span class="o">=</span> <span class="n">open_file</span><span class="p">(</span><span class="n">file_handle</span><span class="p">,</span> <span class="s1">&#39;rb&#39;</span><span class="p">)</span>
+
+        <span class="n">LOG</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;Reading Descriptions from </span><span class="si">%s</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">file_handle</span><span class="o">.</span><span class="n">name</span><span class="p">)</span>
+
+        <span class="n">map_nog_desc</span> <span class="o">=</span> <span class="p">{}</span>
+
+        <span class="k">for</span> <span class="n">line</span> <span class="ow">in</span> <span class="n">file_handle</span><span class="p">:</span>
+            <span class="n">line</span> <span class="o">=</span> <span class="n">line</span><span class="o">.</span><span class="n">decode</span><span class="p">(</span><span class="s1">&#39;ascii&#39;</span><span class="p">)</span>
+            <span class="k">try</span><span class="p">:</span>
+                <span class="n">nog_id</span><span class="p">,</span> <span class="n">nog_desc</span> <span class="o">=</span> <span class="n">line</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">&#39;</span><span class="se">\t</span><span class="s1">&#39;</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+            <span class="k">except</span> <span class="ne">ValueError</span><span class="p">:</span>
+                <span class="n">nog_id</span> <span class="o">=</span> <span class="n">line</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span>
+                <span class="n">nog_desc</span> <span class="o">=</span> <span class="s1">&#39;&#39;</span>
+
+            <span class="n">map_nog_desc</span><span class="p">[</span><span class="n">nog_id</span><span class="p">]</span> <span class="o">=</span> <span class="n">nog_desc</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">_map_nog_desc</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="n">map_nog_desc</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="NOGInfo.load_funccat"><a class="viewcode-back" href="../../../api/mgkit.mappings.eggnog.html#mgkit.mappings.eggnog.NOGInfo.load_funccat">[docs]</a>    <span class="k">def</span> <span class="nf">load_funccat</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">file_handle</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Loads data from *NOG.funccat.txt.gz*</span>
+
+<span class="sd">        *file_handle* can either an open file or a path</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">file_handle</span> <span class="o">=</span> <span class="n">open_file</span><span class="p">(</span><span class="n">file_handle</span><span class="p">,</span> <span class="s1">&#39;rb&#39;</span><span class="p">)</span>
+
+        <span class="n">LOG</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;Reading Functional Categories from </span><span class="si">%s</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">file_handle</span><span class="o">.</span><span class="n">name</span><span class="p">)</span>
+
+        <span class="n">map_nog_func</span> <span class="o">=</span> <span class="p">{}</span>
+
+        <span class="k">for</span> <span class="n">line</span> <span class="ow">in</span> <span class="n">file_handle</span><span class="p">:</span>
+            <span class="n">line</span> <span class="o">=</span> <span class="n">line</span><span class="o">.</span><span class="n">decode</span><span class="p">(</span><span class="s1">&#39;ascii&#39;</span><span class="p">)</span>
+            <span class="n">nog_id</span><span class="p">,</span> <span class="n">nog_func</span> <span class="o">=</span> <span class="n">line</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span><span class="o">.</span><span class="n">split</span><span class="p">()</span>
+            <span class="n">nog_func</span> <span class="o">=</span> <span class="nb">set</span><span class="p">(</span><span class="n">nog_func</span><span class="p">)</span>
+
+            <span class="n">map_nog_func</span><span class="p">[</span><span class="n">nog_id</span><span class="p">]</span> <span class="o">=</span> <span class="n">nog_func</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">_map_nog_func</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="n">map_nog_func</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="NOGInfo.get_nog_funccat"><a class="viewcode-back" href="../../../api/mgkit.mappings.eggnog.html#mgkit.mappings.eggnog.NOGInfo.get_nog_funccat">[docs]</a>    <span class="k">def</span> <span class="nf">get_nog_funccat</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">nog_id</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Returns the functional category (one letter, :data:`EGGNOG_CAT` keys)</span>
+<span class="sd">        for the requested eggNOG COG/NOG ID</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">try</span><span class="p">:</span>
+            <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_map_nog_func</span><span class="p">[</span><span class="n">nog_id</span><span class="p">]</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+        <span class="k">except</span> <span class="ne">KeyError</span><span class="p">:</span>
+            <span class="k">return</span> <span class="nb">set</span><span class="p">()</span></div>
+
+<div class="viewcode-block" id="NOGInfo.get_nogs_funccat"><a class="viewcode-back" href="../../../api/mgkit.mappings.eggnog.html#mgkit.mappings.eggnog.NOGInfo.get_nogs_funccat">[docs]</a>    <span class="k">def</span> <span class="nf">get_nogs_funccat</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">nog_ids</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Returns the functional categories for a list of COG/NOG IDs. Uses</span>
+<span class="sd">        :meth:`NOGInfo.get_nog_funccat`</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+
+        <span class="n">iterator</span> <span class="o">=</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">get_nog_funccat</span><span class="p">(</span><span class="n">nog_id</span><span class="p">)</span> <span class="k">for</span> <span class="n">nog_id</span> <span class="ow">in</span> <span class="n">nog_ids</span><span class="p">)</span>
+
+        <span class="k">return</span> <span class="nb">set</span><span class="p">(</span><span class="n">itertools</span><span class="o">.</span><span class="n">chain</span><span class="p">(</span><span class="o">*</span><span class="n">iterator</span><span class="p">))</span></div>
+
+<div class="viewcode-block" id="NOGInfo.get_nog_gencat"><a class="viewcode-back" href="../../../api/mgkit.mappings.eggnog.html#mgkit.mappings.eggnog.NOGInfo.get_nog_gencat">[docs]</a>    <span class="k">def</span> <span class="nf">get_nog_gencat</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">nog_id</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Returns the functional category (:data:`EGGNOG_CAT_NAMES` keys)</span>
+<span class="sd">        for the requested eggNOG COG/NOG IDs</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="nb">set</span><span class="p">(</span>
+            <span class="n">itertools</span><span class="o">.</span><span class="n">chain</span><span class="p">(</span>
+                <span class="o">*</span><span class="p">(</span>
+                    <span class="n">get_general_eggnog_cat</span><span class="p">(</span><span class="n">funccat</span><span class="p">)</span>
+                    <span class="k">for</span> <span class="n">funccat</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_nog_funccat</span><span class="p">(</span><span class="n">nog_id</span><span class="p">)</span>
+                <span class="p">)</span>
+            <span class="p">)</span>
+        <span class="p">)</span></div>
+
+<div class="viewcode-block" id="NOGInfo.get_gene_nog"><a class="viewcode-back" href="../../../api/mgkit.mappings.eggnog.html#mgkit.mappings.eggnog.NOGInfo.get_gene_nog">[docs]</a>    <span class="k">def</span> <span class="nf">get_gene_nog</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">gene_id</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Returns the COG/NOG ID of the requested eggNOG gene ID</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">try</span><span class="p">:</span>
+            <span class="n">nog_ids</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_map_gene_nog</span><span class="p">[</span><span class="n">gene_id</span><span class="p">]</span>
+        <span class="k">except</span> <span class="ne">KeyError</span><span class="p">:</span>
+            <span class="k">return</span> <span class="kc">None</span>
+
+        <span class="k">return</span> <span class="n">nog_ids</span></div>
+
+<div class="viewcode-block" id="NOGInfo.get_gene_funccat"><a class="viewcode-back" href="../../../api/mgkit.mappings.eggnog.html#mgkit.mappings.eggnog.NOGInfo.get_gene_funccat">[docs]</a>    <span class="k">def</span> <span class="nf">get_gene_funccat</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">gene_id</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Returns the functional category (one letter, :data:`EGGNOG_CAT` keys)</span>
+<span class="sd">        for the requested eggNOG gene ID</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">try</span><span class="p">:</span>
+            <span class="n">nog_ids</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_map_gene_nog</span><span class="p">[</span><span class="n">gene_id</span><span class="p">]</span>
+        <span class="k">except</span> <span class="ne">KeyError</span><span class="p">:</span>
+            <span class="k">return</span> <span class="kc">None</span>
+
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_nogs_funccat</span><span class="p">(</span><span class="n">nog_ids</span><span class="p">)</span></div></div>
+</pre></div>
+
+           </div>
+           
+          </div>
+          <footer>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2013-2015, Francesco Rubino
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

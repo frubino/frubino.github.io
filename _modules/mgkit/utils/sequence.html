@@ -1,0 +1,1204 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>mgkit.utils.sequence &mdash; MGKit: Metagenomic framework 0.5.0 documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+  <script type="text/javascript" src="../../../_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../../../" src="../../../_static/documentation_options.js"></script>
+        <script type="text/javascript" src="../../../_static/jquery.js"></script>
+        <script type="text/javascript" src="../../../_static/underscore.js"></script>
+        <script type="text/javascript" src="../../../_static/doctools.js"></script>
+        <script type="text/javascript" src="../../../_static/language_data.js"></script>
+        <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+        <script async="async" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+        <script type="text/x-mathjax-config">MathJax.Hub.Config({"tex2jax": {"inlineMath": [["$", "$"], ["\\(", "\\)"]], "processEscapes": true, "ignoreClass": "document", "processClass": "math|output_area"}})</script>
+    
+    <script type="text/javascript" src="../../../_static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="../../../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../../../_static/graphviz.css" type="text/css" />
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../../../index.html" class="icon icon-home"> MGKit: Metagenomic framework
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                0.5.0
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../introduction.html">Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../install.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../pipeline/index.html">Metagenomic Pipeline</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../scripts/index.html">Scripts Details</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../examples/index.html">Example Notebooks</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../gff.html">MGKit GFF Specifications</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../library.html">Library Reference</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../changes.html">Changes</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../index.html">MGKit: Metagenomic framework</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../../../index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="../../index.html">Module code</a> &raquo;</li>
+        
+          <li><a href="../../mgkit.html">mgkit</a> &raquo;</li>
+        
+      <li>mgkit.utils.sequence</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <h1>Source code for mgkit.utils.sequence</h1><div class="highlight"><pre>
+<span></span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">Module containing functions related to sequence data</span>
+
+<span class="sd">.. note::</span>
+
+<span class="sd">    For those functions without a docstring, look at the same with a</span>
+<span class="sd">    underscore (&#39;_&#39;) prepended.</span>
+
+<span class="sd">&quot;&quot;&quot;</span>
+<span class="kn">from</span> <span class="nn">__future__</span> <span class="kn">import</span> <span class="n">division</span>  <span class="c1"># add check to use only on python 2.x</span>
+<span class="kn">from</span> <span class="nn">builtins</span> <span class="kn">import</span> <span class="nb">range</span><span class="p">,</span> <span class="nb">zip</span>
+<span class="kn">from</span> <span class="nn">future.utils</span> <span class="kn">import</span> <span class="n">viewitems</span><span class="p">,</span> <span class="n">viewvalues</span>
+<span class="kn">import</span> <span class="nn">itertools</span>
+<span class="kn">import</span> <span class="nn">logging</span>
+<span class="kn">import</span> <span class="nn">random</span>
+<span class="kn">import</span> <span class="nn">collections</span>
+<span class="kn">import</span> <span class="nn">numpy</span>
+<span class="kn">import</span> <span class="nn">pandas</span>
+<span class="kn">from</span> <span class="nn">scipy</span> <span class="kn">import</span> <span class="n">stats</span>
+<span class="kn">from</span> <span class="nn">scipy</span> <span class="kn">import</span> <span class="n">interpolate</span>
+<span class="kn">import</span> <span class="nn">statsmodels.api</span> <span class="k">as</span> <span class="nn">sm</span>
+
+<span class="kn">from</span> <span class="nn">..utils.common</span> <span class="kn">import</span> <span class="n">between</span>
+<span class="kn">from</span> <span class="nn">.trans_tables</span> <span class="kn">import</span> <span class="n">UNIVERSAL</span>
+<span class="kn">from</span> <span class="nn">..io</span> <span class="kn">import</span> <span class="n">fasta</span>
+<span class="kn">from</span> <span class="nn">._sequence</span> <span class="kn">import</span> <span class="n">get_kmers</span><span class="p">,</span> <span class="n">sliding_window</span><span class="p">,</span> <span class="n">sequence_signature</span><span class="p">,</span> \
+    <span class="n">signatures_matrix</span>
+
+<span class="n">LOG</span> <span class="o">=</span> <span class="n">logging</span><span class="o">.</span><span class="n">getLogger</span><span class="p">(</span><span class="vm">__name__</span><span class="p">)</span>
+
+<span class="n">TRANS_TABLE</span> <span class="o">=</span> <span class="n">UNIVERSAL</span>
+<span class="sd">&quot;&quot;&quot;Translation table - Universal genetic code&quot;&quot;&quot;</span>
+
+<span class="n">REV_COMP</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s1">&#39;A&#39;</span><span class="p">:</span> <span class="s1">&#39;T&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;T&#39;</span><span class="p">:</span> <span class="s1">&#39;A&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;C&#39;</span><span class="p">:</span> <span class="s1">&#39;G&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;G&#39;</span><span class="p">:</span> <span class="s1">&#39;C&#39;</span>
+<span class="p">}</span>
+<span class="s2">&quot;Dictionary containing the complement of each nucleotide sequence&quot;</span>
+
+
+<div class="viewcode-block" id="make_reverse_table"><a class="viewcode-back" href="../../../api/mgkit.utils.sequence.html#mgkit.utils.sequence.make_reverse_table">[docs]</a><span class="k">def</span> <span class="nf">make_reverse_table</span><span class="p">(</span><span class="n">tbl</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Makes table to reverse complement a sequence by :func:`reverse_complement`.</span>
+<span class="sd">    The table used is the complement for each nucleotide, defaulting to</span>
+<span class="sd">    :data:`REV_COMP`</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">if</span> <span class="n">tbl</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="n">tbl</span> <span class="o">=</span> <span class="n">REV_COMP</span>
+    <span class="n">trans_table</span> <span class="o">=</span> <span class="p">[</span><span class="nb">chr</span><span class="p">(</span><span class="n">idx</span><span class="p">)</span> <span class="k">for</span> <span class="n">idx</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">256</span><span class="p">)]</span>
+    <span class="k">for</span> <span class="n">nuc</span><span class="p">,</span> <span class="n">rev</span> <span class="ow">in</span> <span class="n">viewitems</span><span class="p">(</span><span class="n">tbl</span><span class="p">):</span>
+        <span class="n">trans_table</span><span class="p">[</span><span class="nb">ord</span><span class="p">(</span><span class="n">nuc</span><span class="p">)]</span> <span class="o">=</span> <span class="n">rev</span>
+    <span class="k">return</span> <span class="s1">&#39;&#39;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">trans_table</span><span class="p">)</span></div>
+
+
+<span class="c1"># The maketrans function is not available on Python3</span>
+<span class="n">REV_COMP_ASCII</span> <span class="o">=</span> <span class="sa">u</span><span class="s1">&#39;&#39;</span><span class="o">.</span><span class="n">maketrans</span><span class="p">(</span><span class="n">REV_COMP</span><span class="p">)</span>
+
+
+<div class="viewcode-block" id="reverse_complement_old"><a class="viewcode-back" href="../../../api/mgkit.utils.sequence.html#mgkit.utils.sequence.reverse_complement_old">[docs]</a><span class="k">def</span> <span class="nf">reverse_complement_old</span><span class="p">(</span><span class="n">seq</span><span class="p">,</span> <span class="n">tbl</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Returns the reverse complement of a nucleotide sequence</span>
+
+<span class="sd">    :param str seq: nucleotide sequence with uppercase characters</span>
+<span class="sd">    :param dict tbl: dictionary of complement bases, like :data:`REV_COMP`</span>
+
+<span class="sd">    :return str: returns the reverse complement of a nucleotide sequence</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">if</span> <span class="n">tbl</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="n">tbl</span> <span class="o">=</span> <span class="n">REV_COMP</span>
+    <span class="n">rev_complement</span> <span class="o">=</span> <span class="p">[</span><span class="n">tbl</span><span class="p">[</span><span class="n">x</span><span class="p">]</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">seq</span><span class="p">[::</span><span class="o">-</span><span class="mi">1</span><span class="p">]]</span>
+    <span class="k">return</span> <span class="s1">&#39;&#39;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">rev_complement</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="reverse_complement"><a class="viewcode-back" href="../../../api/mgkit.utils.sequence.html#mgkit.utils.sequence.reverse_complement">[docs]</a><span class="k">def</span> <span class="nf">reverse_complement</span><span class="p">(</span><span class="n">seq</span><span class="p">,</span> <span class="n">tbl</span><span class="o">=</span><span class="n">REV_COMP_ASCII</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Returns the reverse complement of a nucleotide sequence</span>
+
+<span class="sd">    :param str seq: nucleotide sequence with uppercase characters</span>
+<span class="sd">    :param dict tbl: translation table returned by :func:`make_reverse_table`</span>
+
+<span class="sd">    :return str: returns the reverse complement of a nucleotide sequence</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">return</span> <span class="n">seq</span><span class="p">[::</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">translate</span><span class="p">(</span><span class="n">tbl</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="translate_sequence"><a class="viewcode-back" href="../../../api/mgkit.utils.sequence.html#mgkit.utils.sequence.translate_sequence">[docs]</a><span class="k">def</span> <span class="nf">translate_sequence</span><span class="p">(</span><span class="n">sequence</span><span class="p">,</span> <span class="n">start</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">tbl</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">reverse</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Translate a nucleotide sequence in an amino acid one.</span>
+
+<span class="sd">    :param str sequence: sequence to translate, it&#39;s expected to be all caps</span>
+<span class="sd">    :param int start: 0-based index for the translation to start</span>
+<span class="sd">    :param dict tbl: dictionary with the translation for each codon</span>
+<span class="sd">    :param bool reverse: if True, :func:`reverse_complement` will be called and</span>
+<span class="sd">        the returned sequence translated</span>
+
+<span class="sd">    :return str: the translated sequence</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">if</span> <span class="n">reverse</span><span class="p">:</span>
+        <span class="n">sequence</span> <span class="o">=</span> <span class="n">reverse_complement</span><span class="p">(</span><span class="n">sequence</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">tbl</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="n">tbl</span> <span class="o">=</span> <span class="n">UNIVERSAL</span>
+
+    <span class="n">trs</span> <span class="o">=</span> <span class="p">[]</span>
+
+    <span class="k">for</span> <span class="n">idx</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">start</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">sequence</span><span class="p">),</span> <span class="mi">3</span><span class="p">):</span>
+        <span class="n">codon</span> <span class="o">=</span> <span class="n">sequence</span><span class="p">[</span><span class="n">idx</span><span class="p">:</span><span class="n">idx</span><span class="o">+</span><span class="mi">3</span><span class="p">]</span>
+        <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">codon</span><span class="p">)</span> <span class="o">&lt;</span> <span class="mi">3</span><span class="p">:</span>
+            <span class="k">break</span>
+        <span class="k">try</span><span class="p">:</span>
+            <span class="n">trs</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">tbl</span><span class="p">[</span><span class="n">codon</span><span class="p">])</span>
+        <span class="k">except</span> <span class="ne">KeyError</span><span class="p">:</span>
+            <span class="n">trs</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s1">&#39;X&#39;</span><span class="p">)</span>
+    <span class="k">return</span> <span class="s1">&#39;&#39;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">trs</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="put_gaps_in_nuc_seq"><a class="viewcode-back" href="../../../api/mgkit.utils.sequence.html#mgkit.utils.sequence.put_gaps_in_nuc_seq">[docs]</a><span class="k">def</span> <span class="nf">put_gaps_in_nuc_seq</span><span class="p">(</span><span class="n">nuc_seq</span><span class="p">,</span> <span class="n">aa_seq</span><span class="p">,</span> <span class="n">trim</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Match the gaps in an amino-acid aligned sequence to its original nucleotide</span>
+<span class="sd">    sequence. If the nucleotide sequence is not a multiple of 3, the trim</span>
+<span class="sd">    option by default trim those bases from the output.</span>
+
+<span class="sd">    :param str nuc_seq: original nucleotide sequence</span>
+<span class="sd">    :param str aa_seq: aligned amino-acid sequence</span>
+<span class="sd">    :param bool trim: if True trim last nucleotide(s)</span>
+
+<span class="sd">    :return str: gapped nucleotide sequence</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="c1"># transform a string into a list of codons, then inserts the gaps</span>
+    <span class="n">nuc_alg</span> <span class="o">=</span> <span class="p">[</span><span class="n">nuc_seq</span><span class="p">[</span><span class="n">idx</span><span class="p">:</span><span class="n">idx</span><span class="o">+</span><span class="mi">3</span><span class="p">]</span> <span class="k">for</span> <span class="n">idx</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">nuc_seq</span><span class="p">),</span> <span class="mi">3</span><span class="p">)]</span>
+
+    <span class="k">for</span> <span class="n">idx</span><span class="p">,</span> <span class="n">aa_pos</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">aa_seq</span><span class="p">):</span>
+        <span class="k">if</span> <span class="n">aa_pos</span> <span class="o">==</span> <span class="s1">&#39;-&#39;</span><span class="p">:</span>
+            <span class="n">nuc_alg</span><span class="o">.</span><span class="n">insert</span><span class="p">(</span><span class="n">idx</span><span class="p">,</span> <span class="s1">&#39;-&#39;</span> <span class="o">*</span> <span class="mi">3</span><span class="p">)</span>
+
+    <span class="n">nuc_alg</span> <span class="o">=</span> <span class="s1">&#39;&#39;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">nuc_alg</span><span class="p">)</span>
+
+    <span class="k">if</span> <span class="n">trim</span> <span class="ow">and</span> <span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">nuc_alg</span><span class="p">)</span> <span class="o">!=</span> <span class="nb">len</span><span class="p">(</span><span class="n">aa_seq</span><span class="p">)</span> <span class="o">*</span> <span class="mi">3</span><span class="p">):</span>
+        <span class="n">trim_idx</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">nuc_seq</span><span class="p">)</span> <span class="o">%</span> <span class="mi">3</span>
+        <span class="k">if</span> <span class="n">trim_idx</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
+            <span class="n">nuc_alg</span> <span class="o">=</span> <span class="n">nuc_alg</span><span class="p">[:</span><span class="o">-</span><span class="n">trim_idx</span><span class="p">]</span>
+
+    <span class="k">return</span> <span class="n">nuc_alg</span></div>
+
+
+<div class="viewcode-block" id="get_syn_matrix"><a class="viewcode-back" href="../../../api/mgkit.utils.sequence.html#mgkit.utils.sequence.get_syn_matrix">[docs]</a><span class="k">def</span> <span class="nf">get_syn_matrix</span><span class="p">(</span><span class="n">trans_table</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">nuc_list</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Returns a dictionary containing the expected count of synonymous and</span>
+<span class="sd">    non-synonymous changes that a codon can have if one base is allowed to</span>
+<span class="sd">    change at a time.</span>
+
+<span class="sd">    There are 9 possible changes per codon.</span>
+
+<span class="sd">    :param dict trans_table: a tranlation table, defaults to</span>
+<span class="sd">        :data:`seq_utils.TRANS_TABLE`</span>
+<span class="sd">    :param iterable nuc_list: a list of nucleotides in which a base can change,</span>
+<span class="sd">        default to the keys of :data:`seq_utils.REV_COMP`</span>
+
+<span class="sd">    :return dict: returns a dictionary in which for each codon a dictionary</span>
+<span class="sd">        {&#39;syn&#39;: 0, &#39;nonsyn&#39;: 0} holds the number of expected changes</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="k">if</span> <span class="n">trans_table</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="n">trans_table</span> <span class="o">=</span> <span class="n">TRANS_TABLE</span>
+    <span class="k">if</span> <span class="n">nuc_list</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="n">nuc_list</span> <span class="o">=</span> <span class="n">REV_COMP</span>
+
+    <span class="n">syn_matrix</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">(</span>
+        <span class="p">(</span><span class="n">codon</span><span class="p">,</span> <span class="p">{</span><span class="s1">&#39;syn&#39;</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span> <span class="s1">&#39;nonsyn&#39;</span><span class="p">:</span> <span class="mi">0</span><span class="p">})</span>
+        <span class="k">for</span> <span class="n">codon</span> <span class="ow">in</span> <span class="n">trans_table</span>
+    <span class="p">)</span>
+
+    <span class="k">for</span> <span class="n">codon1</span> <span class="ow">in</span> <span class="n">trans_table</span><span class="p">:</span>
+        <span class="k">for</span> <span class="n">frame</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">3</span><span class="p">):</span>
+            <span class="k">for</span> <span class="n">nuc</span> <span class="ow">in</span> <span class="n">nuc_list</span><span class="p">:</span>
+                <span class="n">codon2</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">codon1</span><span class="p">)</span>
+                <span class="n">codon2</span><span class="p">[</span><span class="n">frame</span><span class="p">]</span> <span class="o">=</span> <span class="n">nuc</span>
+                <span class="n">codon2</span> <span class="o">=</span> <span class="s1">&#39;&#39;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">codon2</span><span class="p">)</span>
+
+                <span class="c1"># skips if its the same</span>
+                <span class="k">if</span> <span class="n">codon1</span> <span class="o">==</span> <span class="n">codon2</span><span class="p">:</span>
+                    <span class="k">continue</span>
+
+                <span class="k">if</span> <span class="n">trans_table</span><span class="p">[</span><span class="n">codon1</span><span class="p">]</span> <span class="o">==</span> <span class="n">trans_table</span><span class="p">[</span><span class="n">codon2</span><span class="p">]:</span>
+                    <span class="n">syn_matrix</span><span class="p">[</span><span class="n">codon1</span><span class="p">][</span><span class="s1">&#39;syn&#39;</span><span class="p">]</span> <span class="o">+=</span> <span class="mi">1</span>
+                <span class="k">else</span><span class="p">:</span>
+                    <span class="n">syn_matrix</span><span class="p">[</span><span class="n">codon1</span><span class="p">][</span><span class="s1">&#39;nonsyn&#39;</span><span class="p">]</span> <span class="o">+=</span> <span class="mi">1</span>
+
+    <span class="k">return</span> <span class="n">syn_matrix</span></div>
+
+
+<div class="viewcode-block" id="get_syn_matrix_all"><a class="viewcode-back" href="../../../api/mgkit.utils.sequence.html#mgkit.utils.sequence.get_syn_matrix_all">[docs]</a><span class="k">def</span> <span class="nf">get_syn_matrix_all</span><span class="p">(</span><span class="n">trans_table</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Same as :func:`get_syn_matrix` but a codon can change in any of the ones</span>
+<span class="sd">    included in trans_table.</span>
+
+<span class="sd">    There are 63 possible changes per codon.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="k">if</span> <span class="n">trans_table</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="n">trans_table</span> <span class="o">=</span> <span class="n">TRANS_TABLE</span>
+
+    <span class="n">syn_matrix</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">(</span>
+        <span class="p">(</span><span class="n">codon</span><span class="p">,</span> <span class="p">{</span><span class="s1">&#39;syn&#39;</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span> <span class="s1">&#39;nonsyn&#39;</span><span class="p">:</span> <span class="mi">0</span><span class="p">})</span>
+        <span class="k">for</span> <span class="n">codon</span> <span class="ow">in</span> <span class="n">trans_table</span>
+    <span class="p">)</span>
+
+    <span class="k">for</span> <span class="n">codon1</span><span class="p">,</span> <span class="n">codon2</span> <span class="ow">in</span> <span class="n">itertools</span><span class="o">.</span><span class="n">permutations</span><span class="p">(</span><span class="n">trans_table</span><span class="p">,</span> <span class="mi">2</span><span class="p">):</span>
+        <span class="k">if</span> <span class="n">trans_table</span><span class="p">[</span><span class="n">codon1</span><span class="p">]</span> <span class="o">==</span> <span class="n">trans_table</span><span class="p">[</span><span class="n">codon2</span><span class="p">]:</span>
+            <span class="n">syn_matrix</span><span class="p">[</span><span class="n">codon1</span><span class="p">][</span><span class="s1">&#39;syn&#39;</span><span class="p">]</span> <span class="o">+=</span> <span class="mi">1</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">syn_matrix</span><span class="p">[</span><span class="n">codon1</span><span class="p">][</span><span class="s1">&#39;nonsyn&#39;</span><span class="p">]</span> <span class="o">+=</span> <span class="mi">1</span>
+
+    <span class="k">return</span> <span class="n">syn_matrix</span></div>
+
+
+<div class="viewcode-block" id="get_seq_expected_syn_count"><a class="viewcode-back" href="../../../api/mgkit.utils.sequence.html#mgkit.utils.sequence.get_seq_expected_syn_count">[docs]</a><span class="k">def</span> <span class="nf">get_seq_expected_syn_count</span><span class="p">(</span><span class="n">seq</span><span class="p">,</span> <span class="n">start</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">syn_matrix</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    .. versionchanged:: 0.4.4</span>
+<span class="sd">        if codon contains *N* or is not a multiple of 3, it is skipped</span>
+
+<span class="sd">    Calculate the expected number of synonymous and non-synonymous changes in a</span>
+<span class="sd">    nucleotide sequence. Assumes that the sequence is already in the correct</span>
+<span class="sd">    frame and its length is a multiple of 3.</span>
+
+<span class="sd">    :param iterable seq: nucleotide sequence (uppercase chars)</span>
+<span class="sd">    :param int start: frame of the sequence</span>
+<span class="sd">    :param dict syn_matrix: dictionary that contains the expected number of</span>
+<span class="sd">        changes for a codon, as returned by :func:`get_syn_matrix`</span>
+
+<span class="sd">    :return tuple: tuple with counts of expected counts (syn, nonsyn)</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">if</span> <span class="n">syn_matrix</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="n">syn_matrix</span> <span class="o">=</span> <span class="n">get_syn_matrix</span><span class="p">()</span>
+
+    <span class="n">seq_syn</span> <span class="o">=</span> <span class="mi">0</span>
+    <span class="n">seq_nonsyn</span> <span class="o">=</span> <span class="mi">0</span>
+
+    <span class="k">for</span> <span class="n">idx</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">start</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">seq</span><span class="p">),</span> <span class="mi">3</span><span class="p">):</span>
+        <span class="n">codon</span> <span class="o">=</span> <span class="n">seq</span><span class="p">[</span><span class="n">idx</span><span class="p">:</span><span class="n">idx</span><span class="o">+</span><span class="mi">3</span><span class="p">]</span>
+        <span class="c1"># if an ambiguity *N* is found, skip the codon</span>
+        <span class="k">if</span> <span class="p">(</span><span class="s1">&#39;N&#39;</span> <span class="ow">in</span> <span class="n">codon</span><span class="p">)</span> <span class="ow">or</span> <span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">codon</span><span class="p">)</span> <span class="o">!=</span> <span class="mi">3</span><span class="p">):</span>
+            <span class="k">continue</span>
+        <span class="n">seq_syn</span> <span class="o">+=</span> <span class="n">syn_matrix</span><span class="p">[</span><span class="n">codon</span><span class="p">][</span><span class="s1">&#39;syn&#39;</span><span class="p">]</span>
+        <span class="n">seq_nonsyn</span> <span class="o">+=</span> <span class="n">syn_matrix</span><span class="p">[</span><span class="n">codon</span><span class="p">][</span><span class="s1">&#39;nonsyn&#39;</span><span class="p">]</span>
+
+    <span class="k">return</span> <span class="n">seq_syn</span><span class="p">,</span> <span class="n">seq_nonsyn</span></div>
+
+
+<div class="viewcode-block" id="get_variant_sequence"><a class="viewcode-back" href="../../../api/mgkit.utils.sequence.html#mgkit.utils.sequence.get_variant_sequence">[docs]</a><span class="k">def</span> <span class="nf">get_variant_sequence</span><span class="p">(</span><span class="n">seq</span><span class="p">,</span> <span class="o">*</span><span class="n">snps</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    .. versionadded:: 0.1.16</span>
+
+<span class="sd">    Return a sequence changed in the positions requested.</span>
+
+<span class="sd">    Arguments:</span>
+<span class="sd">        seq (str): a sequence</span>
+<span class="sd">        *snps (tuple): each argument passed is a tuple with the first element</span>
+<span class="sd">            as a position in the sequence (1-based index) and the second</span>
+<span class="sd">            element is the character to substitute in the sequence</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        str: string with the changed characters</span>
+
+<span class="sd">    Example:</span>
+<span class="sd">        &gt;&gt;&gt; get_variant_sequence(&#39;ACTGATATATGCGCGCATCT&#39;, (1, &#39;C&#39;))</span>
+<span class="sd">        &#39;CCTGNTGTATGCGCGCATCT&#39;</span>
+
+<span class="sd">    .. note::</span>
+
+<span class="sd">        It is used for nucleotide sequences, but it is valid to use any string</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">seq</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">seq</span><span class="p">)</span>
+
+    <span class="k">for</span> <span class="n">pos</span><span class="p">,</span> <span class="n">change</span> <span class="ow">in</span> <span class="n">snps</span><span class="p">:</span>
+        <span class="n">seq</span><span class="p">[</span><span class="n">pos</span> <span class="o">-</span> <span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="n">change</span>
+
+    <span class="k">return</span> <span class="s1">&#39;&#39;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">seq</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="convert_aa_to_nuc_coord"><a class="viewcode-back" href="../../../api/mgkit.utils.sequence.html#mgkit.utils.sequence.convert_aa_to_nuc_coord">[docs]</a><span class="k">def</span> <span class="nf">convert_aa_to_nuc_coord</span><span class="p">(</span><span class="n">start</span><span class="p">,</span> <span class="n">end</span><span class="p">,</span> <span class="n">frame</span><span class="o">=</span><span class="mi">0</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Converts aa coordinates to nucleotidic ones. The coordinates must be from</span>
+<span class="sd">    &#39;+&#39; strand. For the &#39;-&#39; strand, use :func:`reverse_aa_coord` first.</span>
+
+<span class="sd">    Arguments:</span>
+<span class="sd">        start (int): start of the annotation (lowest number)</span>
+<span class="sd">        end (int): end of the annotation (highest number)</span>
+<span class="sd">        frame (int): frame of the AA translation (0, 1 or 2)</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        tuple: the first element is the converted *start* and the second</span>
+<span class="sd">        element is the converted *end*</span>
+
+<span class="sd">    .. note::</span>
+
+<span class="sd">        the coordinates are assumed to be 1-based indices</span>
+
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">start</span> <span class="o">=</span> <span class="p">(</span><span class="n">start</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)</span> <span class="o">*</span> <span class="mi">3</span> <span class="o">+</span> <span class="mi">1</span>  <span class="c1"># gets the first base of the codon</span>
+    <span class="n">end</span> <span class="o">=</span> <span class="p">(</span><span class="n">end</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)</span> <span class="o">*</span> <span class="mi">3</span> <span class="o">+</span> <span class="mi">3</span>  <span class="c1"># gets the third base of the codon</span>
+
+    <span class="k">return</span> <span class="p">(</span><span class="n">start</span> <span class="o">+</span> <span class="n">frame</span><span class="p">,</span> <span class="n">end</span> <span class="o">+</span> <span class="n">frame</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="reverse_aa_coord"><a class="viewcode-back" href="../../../api/mgkit.utils.sequence.html#mgkit.utils.sequence.reverse_aa_coord">[docs]</a><span class="k">def</span> <span class="nf">reverse_aa_coord</span><span class="p">(</span><span class="n">start</span><span class="p">,</span> <span class="n">end</span><span class="p">,</span> <span class="n">seq_len</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Used to reverse amino-acid coordinates when parsing an AA annotation on</span>
+<span class="sd">    the - strand. Used when the BLAST or HMMER annotations use AA sequences.</span>
+
+<span class="sd">    Arguments:</span>
+<span class="sd">        start (int): start of the annotation</span>
+<span class="sd">        end (int): end of the annotation</span>
+<span class="sd">        seq_len (int): aa sequence length</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        tuple: reversed (from strand - to strand +) coordinates. The first</span>
+<span class="sd">        element is the converted *start* and the second element is the</span>
+<span class="sd">        converted *end*</span>
+
+<span class="sd">    .. note::</span>
+
+<span class="sd">        * start and end are 1-based indices</span>
+
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="k">return</span> <span class="p">(</span><span class="n">seq_len</span> <span class="o">-</span> <span class="n">end</span> <span class="o">+</span> <span class="mi">1</span><span class="p">,</span> <span class="n">seq_len</span> <span class="o">-</span> <span class="n">start</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="calc_n50"><a class="viewcode-back" href="../../../api/mgkit.utils.sequence.html#mgkit.utils.sequence.calc_n50">[docs]</a><span class="k">def</span> <span class="nf">calc_n50</span><span class="p">(</span><span class="n">seq_lengths</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Calculate the N50 statistics for a :class:`numpy.array` of sequence</span>
+<span class="sd">    lengths.</span>
+
+<span class="sd">    The algorithm finds in the supplied array the element (contig length) for</span>
+<span class="sd">    which the sum all contig lengths equal or greater than it is equal to half</span>
+<span class="sd">    of all assembled base pairs.</span>
+
+<span class="sd">    :param array seq_lengths: an instance of a numpy array containing the</span>
+<span class="sd">        sequence lengths</span>
+
+<span class="sd">    :return int: the N50 statistics value</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">LOG</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;Calculating N50 for assembly&quot;</span><span class="p">)</span>
+    <span class="n">seq_lengths</span><span class="o">.</span><span class="n">sort</span><span class="p">()</span>
+
+    <span class="n">bp_half</span> <span class="o">=</span> <span class="n">seq_lengths</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span> <span class="o">/</span> <span class="mf">2.0</span>
+    <span class="n">bp_sum</span> <span class="o">=</span> <span class="mi">0</span>
+
+    <span class="k">for</span> <span class="n">seq_length</span> <span class="ow">in</span> <span class="n">seq_lengths</span><span class="p">[::</span><span class="o">-</span><span class="mi">1</span><span class="p">]:</span>
+        <span class="n">bp_sum</span> <span class="o">+=</span> <span class="n">seq_length</span>
+        <span class="k">if</span> <span class="n">bp_sum</span> <span class="o">&gt;</span> <span class="n">bp_half</span><span class="p">:</span>
+            <span class="k">return</span> <span class="n">seq_length</span></div>
+
+
+<div class="viewcode-block" id="Alignment"><a class="viewcode-back" href="../../../api/mgkit.utils.sequence.html#mgkit.utils.sequence.Alignment">[docs]</a><span class="k">class</span> <span class="nc">Alignment</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
+    <span class="s2">&quot;Simple alignment class&quot;</span>
+    <span class="n">_names</span> <span class="o">=</span> <span class="kc">None</span>
+    <span class="n">_seqs</span> <span class="o">=</span> <span class="kc">None</span>
+
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">seqs</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_names</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_seqs</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="k">if</span> <span class="n">seqs</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">add_seqs</span><span class="p">(</span><span class="n">seqs</span><span class="p">)</span>
+
+<div class="viewcode-block" id="Alignment.add_seq"><a class="viewcode-back" href="../../../api/mgkit.utils.sequence.html#mgkit.utils.sequence.Alignment.add_seq">[docs]</a>    <span class="k">def</span> <span class="nf">add_seq</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">,</span> <span class="n">seq</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Add a sequence to the alignment</span>
+
+<span class="sd">        :param str name: name of the sequence</span>
+<span class="sd">        :param str seq: sequence</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_names</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">name</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_seqs</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">seq</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="Alignment.add_seqs"><a class="viewcode-back" href="../../../api/mgkit.utils.sequence.html#mgkit.utils.sequence.Alignment.add_seqs">[docs]</a>    <span class="k">def</span> <span class="nf">add_seqs</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">seqs</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Add sequences to the alignment</span>
+
+<span class="sd">        :param iterable seqs: iterable that returns (name, seq)</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">for</span> <span class="n">name</span><span class="p">,</span> <span class="n">seq</span> <span class="ow">in</span> <span class="n">seqs</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">add_seq</span><span class="p">(</span><span class="n">name</span><span class="p">,</span> <span class="n">seq</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="Alignment.get_position"><a class="viewcode-back" href="../../../api/mgkit.utils.sequence.html#mgkit.utils.sequence.Alignment.get_position">[docs]</a>    <span class="k">def</span> <span class="nf">get_position</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">pos</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Get all characters at a position</span>
+
+<span class="sd">        :param int pos: position to return (0-based)</span>
+
+<span class="sd">        :return str: all characters occuring at the position</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="s1">&#39;&#39;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">seq</span><span class="p">[</span><span class="n">pos</span><span class="p">]</span> <span class="k">for</span> <span class="n">seq</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">_seqs</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="Alignment.get_seq_len"><a class="viewcode-back" href="../../../api/mgkit.utils.sequence.html#mgkit.utils.sequence.Alignment.get_seq_len">[docs]</a>    <span class="k">def</span> <span class="nf">get_seq_len</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="s2">&quot;Get the length of the alignment&quot;</span>
+        <span class="k">return</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_seqs</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span></div>
+
+<div class="viewcode-block" id="Alignment.get_consensus"><a class="viewcode-back" href="../../../api/mgkit.utils.sequence.html#mgkit.utils.sequence.Alignment.get_consensus">[docs]</a>    <span class="k">def</span> <span class="nf">get_consensus</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">nucl</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        .. versionchanged:: 0.1.16</span>
+<span class="sd">            added *nucl* parameter</span>
+
+<span class="sd">        The consensus sequence is constructed by checking the nucleotide that</span>
+<span class="sd">        has the maximum number of counts for each position in the alignment.</span>
+
+<span class="sd">        Arguments:</span>
+<span class="sd">            nucl (bool): specify if the alignment is nucleotidic</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            str: consensus sequence</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+
+        <span class="n">cons_seq</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="n">nucs</span> <span class="o">=</span> <span class="n">REV_COMP</span><span class="o">.</span><span class="n">keys</span><span class="p">()</span>
+
+        <span class="k">for</span> <span class="n">pos</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_seq_len</span><span class="p">()):</span>
+            <span class="n">site</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_position</span><span class="p">(</span><span class="n">pos</span><span class="p">)</span>
+            <span class="k">if</span> <span class="n">nucl</span><span class="p">:</span>
+                <span class="n">nuc_pos</span> <span class="o">=</span> <span class="nb">max</span><span class="p">(</span>
+                    <span class="p">((</span><span class="n">site</span><span class="o">.</span><span class="n">count</span><span class="p">(</span><span class="n">nuc</span><span class="p">),</span> <span class="n">nuc</span><span class="p">)</span> <span class="k">for</span> <span class="n">nuc</span> <span class="ow">in</span> <span class="n">nucs</span><span class="p">),</span>
+                    <span class="n">key</span><span class="o">=</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">x</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+                <span class="p">)[</span><span class="mi">1</span><span class="p">]</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="n">nuc_pos</span> <span class="o">=</span> <span class="nb">max</span><span class="p">(</span><span class="n">collections</span><span class="o">.</span><span class="n">Counter</span><span class="p">(</span><span class="n">x</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">site</span> <span class="k">if</span> <span class="n">x</span> <span class="o">!=</span> <span class="s1">&#39;-&#39;</span><span class="p">))</span>
+
+            <span class="n">cons_seq</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">nuc_pos</span><span class="p">)</span>
+        <span class="k">return</span> <span class="s1">&#39;&#39;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">cons_seq</span><span class="p">)</span></div>
+
+    <span class="k">def</span> <span class="fm">__iter__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+
+        <span class="k">for</span> <span class="n">name</span><span class="p">,</span> <span class="n">seq</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_names</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">_seqs</span><span class="p">):</span>
+            <span class="k">yield</span> <span class="n">name</span><span class="p">,</span> <span class="n">seq</span>
+
+<div class="viewcode-block" id="Alignment.get_snps"><a class="viewcode-back" href="../../../api/mgkit.utils.sequence.html#mgkit.utils.sequence.Alignment.get_snps">[docs]</a>    <span class="k">def</span> <span class="nf">get_snps</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">ref_seq</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">full_size</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        A SNP is called for the nucleotide that has the most counts among the</span>
+<span class="sd">        ones that differ in the each site of the alignment. If two nucleotides</span>
+<span class="sd">        have the same maximum count, one is randomly chosen.</span>
+
+<span class="sd">        :param str ref_seq: a reference sequence can be provided, if None, a</span>
+<span class="sd">            consensus sequence is produced for the alignment</span>
+<span class="sd">        :param bool full_size: if True a tuple is returned for each position in</span>
+<span class="sd">            the alignment. If there is no SNP at a position the value for the</span>
+<span class="sd">            SNP is None</span>
+
+<span class="sd">        :return list: a list of tuples (position, SNP)</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="n">ref_seq</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">ref_seq</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_consensus</span><span class="p">()</span>
+
+        <span class="n">nucs</span> <span class="o">=</span> <span class="n">REV_COMP</span><span class="o">.</span><span class="n">keys</span><span class="p">()</span>
+        <span class="n">snps</span> <span class="o">=</span> <span class="p">[]</span>
+
+        <span class="k">for</span> <span class="n">pos</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_seq_len</span><span class="p">()):</span>
+            <span class="n">ref_nuc</span> <span class="o">=</span> <span class="n">ref_seq</span><span class="p">[</span><span class="n">pos</span><span class="p">]</span>
+
+            <span class="n">alts</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_position</span><span class="p">(</span><span class="n">pos</span><span class="p">)</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="n">ref_nuc</span><span class="p">,</span> <span class="s1">&#39;&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s1">&#39;-&#39;</span><span class="p">,</span> <span class="s1">&#39;&#39;</span><span class="p">)</span>
+            <span class="k">if</span> <span class="ow">not</span> <span class="n">alts</span><span class="p">:</span>
+                <span class="k">if</span> <span class="n">full_size</span><span class="p">:</span>
+                    <span class="n">snps</span><span class="o">.</span><span class="n">append</span><span class="p">((</span><span class="n">pos</span><span class="p">,</span> <span class="kc">None</span><span class="p">))</span>
+                <span class="k">continue</span>
+            <span class="n">alts</span> <span class="o">=</span> <span class="nb">sorted</span><span class="p">(</span>
+                <span class="p">((</span><span class="n">alts</span><span class="o">.</span><span class="n">count</span><span class="p">(</span><span class="n">nuc</span><span class="p">),</span> <span class="n">nuc</span><span class="p">)</span> <span class="k">for</span> <span class="n">nuc</span> <span class="ow">in</span> <span class="n">nucs</span><span class="p">),</span>
+                <span class="n">key</span><span class="o">=</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">x</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+            <span class="p">)</span>
+            <span class="n">counts</span> <span class="o">=</span> <span class="p">[</span><span class="n">alt</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="k">for</span> <span class="n">alt</span> <span class="ow">in</span> <span class="n">alts</span><span class="p">]</span>
+            <span class="n">count_idx</span> <span class="o">=</span> <span class="n">counts</span><span class="o">.</span><span class="n">index</span><span class="p">(</span><span class="n">counts</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">])</span>
+            <span class="n">alt</span> <span class="o">=</span> <span class="n">random</span><span class="o">.</span><span class="n">choice</span><span class="p">(</span><span class="n">alts</span><span class="p">[</span><span class="n">count_idx</span><span class="p">:])</span>
+            <span class="n">snps</span><span class="o">.</span><span class="n">append</span><span class="p">((</span><span class="n">pos</span><span class="p">,</span> <span class="n">alt</span><span class="p">[</span><span class="mi">1</span><span class="p">]))</span>
+
+        <span class="k">return</span> <span class="n">snps</span></div></div>
+
+
+<div class="viewcode-block" id="get_seq_number_of_syn"><a class="viewcode-back" href="../../../api/mgkit.utils.sequence.html#mgkit.utils.sequence.get_seq_number_of_syn">[docs]</a><span class="k">def</span> <span class="nf">get_seq_number_of_syn</span><span class="p">(</span><span class="n">ref_seq</span><span class="p">,</span> <span class="n">snps</span><span class="p">,</span> <span class="n">start</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">trans_table</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Given a reference sequence and a list of SNPs, calculates the number of</span>
+<span class="sd">    synonymous and non-synonymous SNP.</span>
+
+<span class="sd">    :param str ref_seq: reference sequence</span>
+<span class="sd">    :param iterable snps: list of tuples (position, SNP) - zero based index</span>
+<span class="sd">    :param int start: the frame used for the reference {0, 1, 2}</span>
+<span class="sd">    :param dict trans_table: translation table used - codon-&gt;AA</span>
+
+<span class="sd">    :return tuple: synonymous and non-synonymous counts</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">if</span> <span class="n">trans_table</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="n">trans_table</span> <span class="o">=</span> <span class="n">TRANS_TABLE</span>
+
+    <span class="n">syn</span> <span class="o">=</span> <span class="mi">0</span>
+    <span class="n">nonsyn</span> <span class="o">=</span> <span class="mi">0</span>
+
+    <span class="k">for</span> <span class="n">idx</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">start</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">ref_seq</span><span class="p">),</span> <span class="mi">3</span><span class="p">):</span>
+        <span class="n">ref_codon</span> <span class="o">=</span> <span class="n">ref_seq</span><span class="p">[</span><span class="n">idx</span><span class="p">:</span><span class="n">idx</span><span class="o">+</span><span class="mi">3</span><span class="p">]</span>
+        <span class="n">end</span> <span class="o">=</span> <span class="n">idx</span> <span class="o">+</span> <span class="mi">2</span>
+        <span class="k">for</span> <span class="n">pos</span><span class="p">,</span> <span class="n">change</span> <span class="ow">in</span> <span class="n">snps</span><span class="p">:</span>
+            <span class="k">if</span> <span class="ow">not</span> <span class="n">between</span><span class="p">(</span><span class="n">pos</span><span class="p">,</span> <span class="n">idx</span><span class="p">,</span> <span class="n">end</span><span class="p">):</span>
+                <span class="k">continue</span>
+            <span class="n">change_pos</span> <span class="o">=</span> <span class="n">pos</span><span class="o">-</span><span class="n">idx</span>
+            <span class="n">codon</span> <span class="o">=</span> <span class="n">ref_codon</span><span class="p">[:</span><span class="n">change_pos</span><span class="p">]</span> <span class="o">+</span> <span class="n">change</span> <span class="o">+</span> <span class="n">ref_codon</span><span class="p">[</span><span class="n">change_pos</span><span class="o">+</span><span class="mi">1</span><span class="p">:]</span>
+
+            <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">codon</span><span class="p">)</span> <span class="o">&lt;</span> <span class="mi">3</span><span class="p">:</span>
+                <span class="k">continue</span>
+
+            <span class="k">if</span> <span class="n">trans_table</span><span class="p">[</span><span class="n">codon</span><span class="p">]</span> <span class="o">==</span> <span class="n">trans_table</span><span class="p">[</span><span class="n">ref_codon</span><span class="p">]:</span>
+                <span class="n">syn</span> <span class="o">+=</span> <span class="mi">1</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="n">nonsyn</span> <span class="o">+=</span> <span class="mi">1</span>
+
+    <span class="k">return</span> <span class="n">syn</span><span class="p">,</span> <span class="n">nonsyn</span></div>
+
+
+<div class="viewcode-block" id="check_snp_in_seq"><a class="viewcode-back" href="../../../api/mgkit.utils.sequence.html#mgkit.utils.sequence.check_snp_in_seq">[docs]</a><span class="k">def</span> <span class="nf">check_snp_in_seq</span><span class="p">(</span><span class="n">ref_seq</span><span class="p">,</span> <span class="n">pos</span><span class="p">,</span> <span class="n">change</span><span class="p">,</span> <span class="n">start</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">trans_table</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Check a SNP in a reference sequence if it is a synonymous or non-synonymous</span>
+<span class="sd">    change.</span>
+
+<span class="sd">    :param str ref_seq: reference sequence</span>
+<span class="sd">    :param int pos: SNP position - it is expected to be a 1 based index</span>
+<span class="sd">    :param str change: nucleotide change occuring at *pos*</span>
+<span class="sd">    :param int start: the starting position for the coding region - 0 based</span>
+<span class="sd">        index</span>
+<span class="sd">    :param dict trans_table: translation table used - codon-&gt;AA</span>
+
+<span class="sd">    :return bool: True if it is a synonymous change, False if non-synonymous</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="c1"># pos is expected to be a 1 based index</span>
+    <span class="c1"># returns true if snp is synonymous</span>
+    <span class="c1"># start is expected to be 0 based</span>
+    <span class="k">if</span> <span class="n">trans_table</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="n">trans_table</span> <span class="o">=</span> <span class="n">TRANS_TABLE</span>
+
+    <span class="n">codon_idx</span> <span class="o">=</span> <span class="p">((</span><span class="n">pos</span> <span class="o">-</span> <span class="n">start</span><span class="p">)</span> <span class="o">//</span> <span class="mi">3</span><span class="p">)</span> <span class="o">-</span> <span class="p">(</span><span class="mi">1</span> <span class="k">if</span> <span class="p">(</span><span class="n">pos</span> <span class="o">-</span> <span class="n">start</span><span class="p">)</span> <span class="o">%</span> <span class="mi">3</span> <span class="o">==</span> <span class="mi">0</span> <span class="k">else</span> <span class="mi">0</span><span class="p">)</span>
+
+    <span class="n">codon_pos</span> <span class="o">=</span> <span class="n">codon_idx</span> <span class="o">*</span> <span class="mi">3</span> <span class="o">+</span> <span class="n">start</span>
+
+    <span class="n">ref_codon</span> <span class="o">=</span> <span class="n">ref_seq</span><span class="p">[</span><span class="n">codon_pos</span><span class="p">:</span><span class="n">codon_pos</span> <span class="o">+</span> <span class="mi">3</span><span class="p">]</span>
+    <span class="n">snp_codon</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">ref_codon</span><span class="p">)</span>
+    <span class="n">snp_codon</span><span class="p">[(</span><span class="n">pos</span> <span class="o">%</span> <span class="mi">3</span><span class="p">)</span> <span class="o">-</span> <span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="n">change</span>
+    <span class="n">snp_codon</span> <span class="o">=</span> <span class="s1">&#39;&#39;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">snp_codon</span><span class="p">)</span>
+
+    <span class="k">return</span> <span class="n">trans_table</span><span class="p">[</span><span class="n">snp_codon</span><span class="p">]</span> <span class="o">==</span> <span class="n">trans_table</span><span class="p">[</span><span class="n">ref_codon</span><span class="p">]</span></div>
+
+
+<div class="viewcode-block" id="sequence_gc_ratio"><a class="viewcode-back" href="../../../api/mgkit.utils.sequence.html#mgkit.utils.sequence.sequence_gc_ratio">[docs]</a><span class="k">def</span> <span class="nf">sequence_gc_ratio</span><span class="p">(</span><span class="n">sequence</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    .. versionadded:: 0.1.13</span>
+
+<span class="sd">    Calculate GC ratio information for a sequence. The formula is:</span>
+
+<span class="sd">    .. math::</span>
+<span class="sd">        :label: gc_ratio</span>
+
+<span class="sd">        \\frac {(A + T)}{(G + C)}</span>
+
+<span class="sd">    Arguments:</span>
+<span class="sd">        sequence (str): sequence</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        float: GC ratio, or `numpy.nan` if G = C = 0</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="n">at_sum</span> <span class="o">=</span> <span class="p">(</span><span class="n">sequence</span><span class="o">.</span><span class="n">count</span><span class="p">(</span><span class="s1">&#39;A&#39;</span><span class="p">)</span> <span class="o">+</span> <span class="n">sequence</span><span class="o">.</span><span class="n">count</span><span class="p">(</span><span class="s1">&#39;T&#39;</span><span class="p">))</span>
+    <span class="n">gc_sum</span> <span class="o">=</span> <span class="p">(</span><span class="n">sequence</span><span class="o">.</span><span class="n">count</span><span class="p">(</span><span class="s1">&#39;G&#39;</span><span class="p">)</span> <span class="o">+</span> <span class="n">sequence</span><span class="o">.</span><span class="n">count</span><span class="p">(</span><span class="s1">&#39;C&#39;</span><span class="p">))</span>
+
+    <span class="k">try</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">at_sum</span> <span class="o">/</span> <span class="n">gc_sum</span>
+    <span class="k">except</span> <span class="ne">ZeroDivisionError</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">numpy</span><span class="o">.</span><span class="n">nan</span></div>
+
+
+<div class="viewcode-block" id="sequence_gc_content"><a class="viewcode-back" href="../../../api/mgkit.utils.sequence.html#mgkit.utils.sequence.sequence_gc_content">[docs]</a><span class="k">def</span> <span class="nf">sequence_gc_content</span><span class="p">(</span><span class="n">sequence</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    .. versionchanged:: 0.3.3</span>
+<span class="sd">        in case of `ZeroDivisionError` returns .5</span>
+
+<span class="sd">    .. versionadded:: 0.1.13</span>
+
+<span class="sd">    Calculate GC content information for an annotation. The formula is:</span>
+
+<span class="sd">    .. math::</span>
+<span class="sd">        :label: gc_content</span>
+
+<span class="sd">        \\frac {(G + C)}{(G + C + A + T)}</span>
+
+
+<span class="sd">    Arguments:</span>
+<span class="sd">        sequence (str): sequence</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        float: GC content</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="n">at_sum</span> <span class="o">=</span> <span class="p">(</span><span class="n">sequence</span><span class="o">.</span><span class="n">count</span><span class="p">(</span><span class="s1">&#39;A&#39;</span><span class="p">)</span> <span class="o">+</span> <span class="n">sequence</span><span class="o">.</span><span class="n">count</span><span class="p">(</span><span class="s1">&#39;T&#39;</span><span class="p">))</span>
+    <span class="n">gc_sum</span> <span class="o">=</span> <span class="p">(</span><span class="n">sequence</span><span class="o">.</span><span class="n">count</span><span class="p">(</span><span class="s1">&#39;G&#39;</span><span class="p">)</span> <span class="o">+</span> <span class="n">sequence</span><span class="o">.</span><span class="n">count</span><span class="p">(</span><span class="s1">&#39;C&#39;</span><span class="p">))</span>
+
+    <span class="k">try</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">gc_sum</span> <span class="o">/</span> <span class="p">(</span><span class="n">gc_sum</span> <span class="o">+</span> <span class="n">at_sum</span><span class="p">)</span>
+    <span class="k">except</span> <span class="ne">ZeroDivisionError</span><span class="p">:</span>
+        <span class="k">return</span> <span class="o">.</span><span class="mi">5</span></div>
+
+
+<div class="viewcode-block" id="sequence_composition"><a class="viewcode-back" href="../../../api/mgkit.utils.sequence.html#mgkit.utils.sequence.sequence_composition">[docs]</a><span class="k">def</span> <span class="nf">sequence_composition</span><span class="p">(</span><span class="n">sequence</span><span class="p">,</span> <span class="n">chars</span><span class="o">=</span><span class="nb">tuple</span><span class="p">(</span><span class="n">REV_COMP</span><span class="p">)):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    .. versionadded:: 0.1.13</span>
+
+<span class="sd">    Returns the number of occurences of each unique character in the sequence</span>
+
+<span class="sd">    Arguments:</span>
+<span class="sd">        sequence (str): sequence</span>
+<span class="sd">        chars (iterable, None): iterable of the chars to test, default to</span>
+<span class="sd">            (A, C, T, G). if None checks all unique characters in the sequencce</span>
+
+<span class="sd">    Yields:</span>
+<span class="sd">        tuple: the first element is the nucleotide and the second is the number</span>
+<span class="sd">        of occurences in *sequence*</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">if</span> <span class="n">chars</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="n">chars</span> <span class="o">=</span> <span class="nb">set</span><span class="p">(</span><span class="n">sequence</span><span class="p">)</span>
+
+    <span class="k">for</span> <span class="n">nuc</span> <span class="ow">in</span> <span class="n">chars</span><span class="p">:</span>
+        <span class="k">yield</span> <span class="n">nuc</span><span class="p">,</span> <span class="n">sequence</span><span class="o">.</span><span class="n">count</span><span class="p">(</span><span class="n">nuc</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="get_contigs_info"><a class="viewcode-back" href="../../../api/mgkit.utils.sequence.html#mgkit.utils.sequence.get_contigs_info">[docs]</a><span class="k">def</span> <span class="nf">get_contigs_info</span><span class="p">(</span><span class="n">file_name</span><span class="p">,</span> <span class="n">pp</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    .. versionchanged:: 0.2.4</span>
+<span class="sd">       file_name can be a *dict* name-&gt;seq or a list of sequences</span>
+
+<span class="sd">    .. versionadded:: 0.2.1</span>
+
+<span class="sd">    Given a file name for a fasta file with sequences, a dictionary of</span>
+<span class="sd">    name-&gt;seq, or a list of sequences, returns the following information in a</span>
+<span class="sd">    tuple, or a string if *pp* is True:</span>
+
+<span class="sd">    - number of sequences</span>
+<span class="sd">    - total base pairs</span>
+<span class="sd">    - max length</span>
+<span class="sd">    - min length</span>
+<span class="sd">    - average length</span>
+<span class="sd">    - N50 statistic</span>
+
+<span class="sd">    Arguments:</span>
+<span class="sd">        file_name (str): fasta file to open</span>
+<span class="sd">        pp (bool): if True, a formatted string is returned</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        str, tuple: the returned value depends on the value of *pp*, if True a</span>
+<span class="sd">        formatted string is returned, otherwise the tuple with all values is.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">file_name</span><span class="p">,</span> <span class="nb">dict</span><span class="p">):</span>
+        <span class="n">seqs</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">viewvalues</span><span class="p">(</span><span class="n">file_name</span><span class="p">))</span>
+        <span class="n">file_name</span> <span class="o">=</span> <span class="s1">&#39;dictionary&#39;</span>
+    <span class="k">elif</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">file_name</span><span class="p">,</span> <span class="nb">list</span><span class="p">):</span>
+        <span class="n">seqs</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">file_name</span><span class="p">)</span>
+        <span class="n">file_name</span> <span class="o">=</span> <span class="s1">&#39;list&#39;</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">seqs</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">seq</span> <span class="k">for</span> <span class="n">name</span><span class="p">,</span> <span class="n">seq</span> <span class="ow">in</span> <span class="n">fasta</span><span class="o">.</span><span class="n">load_fasta</span><span class="p">(</span><span class="n">file_name</span><span class="p">))</span>
+
+    <span class="n">lengths</span> <span class="o">=</span> <span class="n">numpy</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="nb">len</span><span class="p">(</span><span class="n">x</span><span class="p">)</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">seqs</span><span class="p">])</span>
+
+    <span class="n">info</span> <span class="o">=</span> <span class="p">(</span>
+        <span class="nb">len</span><span class="p">(</span><span class="n">seqs</span><span class="p">),</span>
+        <span class="n">lengths</span><span class="o">.</span><span class="n">sum</span><span class="p">(),</span>
+        <span class="n">lengths</span><span class="o">.</span><span class="n">max</span><span class="p">(),</span>
+        <span class="n">lengths</span><span class="o">.</span><span class="n">min</span><span class="p">(),</span>
+        <span class="n">lengths</span><span class="o">.</span><span class="n">mean</span><span class="p">(),</span>
+        <span class="n">calc_n50</span><span class="p">(</span><span class="n">lengths</span><span class="p">),</span>
+    <span class="p">)</span>
+
+    <span class="k">if</span> <span class="n">pp</span><span class="p">:</span>
+        <span class="n">info_str</span> <span class="o">=</span> <span class="s1">&#39;</span><span class="si">{}</span><span class="s1">: </span><span class="si">{}</span><span class="s1"> contigs, </span><span class="si">{}</span><span class="s1"> bp, max </span><span class="si">{}</span><span class="s1">, min </span><span class="si">{}</span><span class="s1">, avg </span><span class="si">{:.2f}</span><span class="s1">, n50 </span><span class="si">{}</span><span class="s1">&#39;</span>
+        <span class="n">info</span> <span class="o">=</span> <span class="n">info_str</span><span class="o">.</span><span class="n">format</span><span class="p">(</span>
+            <span class="n">file_name</span><span class="p">,</span> <span class="o">*</span><span class="n">info</span>
+        <span class="p">)</span>
+
+    <span class="k">return</span> <span class="n">info</span></div>
+
+
+<div class="viewcode-block" id="_sliding_window"><a class="viewcode-back" href="../../../api/mgkit.utils.sequence.html#mgkit.utils.sequence._sliding_window">[docs]</a><span class="k">def</span> <span class="nf">_sliding_window</span><span class="p">(</span><span class="n">seq</span><span class="p">,</span> <span class="n">size</span><span class="p">,</span> <span class="n">step</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    .. versionadded:: 0.2.6</span>
+
+<span class="sd">    Returns a generator, with every iteration yielding a subsequence of size</span>
+<span class="sd">    *size*, with a step of *step*.</span>
+
+<span class="sd">    Arguments:</span>
+<span class="sd">        seq (str): sequnece</span>
+<span class="sd">        size (int): size of the sliding window</span>
+<span class="sd">        step (int, None): the step to use in the sliding window. If *None*,</span>
+<span class="sd">            half of the sequence length is used</span>
+
+<span class="sd">    Yields:</span>
+<span class="sd">        str: a subsequence of size *size* and step *step*</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">for</span> <span class="n">index</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">seq</span><span class="p">)</span> <span class="o">-</span> <span class="n">size</span> <span class="o">+</span> <span class="mi">1</span><span class="p">,</span> <span class="n">size</span> <span class="o">//</span> <span class="mi">2</span> <span class="k">if</span> <span class="n">step</span> <span class="ow">is</span> <span class="kc">None</span> <span class="k">else</span> <span class="n">step</span><span class="p">):</span>
+        <span class="k">yield</span> <span class="n">seq</span><span class="p">[</span><span class="n">index</span><span class="p">:</span><span class="n">index</span><span class="o">+</span><span class="n">size</span><span class="p">]</span></div>
+
+
+<div class="viewcode-block" id="_get_kmers"><a class="viewcode-back" href="../../../api/mgkit.utils.sequence.html#mgkit.utils.sequence._get_kmers">[docs]</a><span class="k">def</span> <span class="nf">_get_kmers</span><span class="p">(</span><span class="n">seq</span><span class="p">,</span> <span class="n">k</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    .. versionadded:: 0.2.6</span>
+
+<span class="sd">    Returns a generator, with every iteration yielding a kmer of size *k*</span>
+
+<span class="sd">    Arguments:</span>
+<span class="sd">        seq (str): sequence</span>
+<span class="sd">        k (int): kmer size</span>
+
+<span class="sd">    Yields:</span>
+<span class="sd">        str: a portion of *seq*, of size *k* with a step of *1*</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">for</span> <span class="n">index</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">seq</span><span class="p">)</span> <span class="o">-</span> <span class="n">k</span> <span class="o">+</span> <span class="mi">1</span><span class="p">):</span>
+        <span class="k">yield</span> <span class="n">seq</span><span class="p">[</span><span class="n">index</span><span class="p">:</span><span class="n">index</span><span class="o">+</span><span class="n">k</span><span class="p">]</span></div>
+
+
+<div class="viewcode-block" id="_sequence_signature"><a class="viewcode-back" href="../../../api/mgkit.utils.sequence.html#mgkit.utils.sequence._sequence_signature">[docs]</a><span class="k">def</span> <span class="nf">_sequence_signature</span><span class="p">(</span><span class="n">seq</span><span class="p">,</span> <span class="n">w_size</span><span class="p">,</span> <span class="n">k_size</span><span class="o">=</span><span class="mi">4</span><span class="p">,</span> <span class="n">step</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    .. versionadded:: 0.2.6</span>
+
+<span class="sd">    Returns the signature of a sequence, based on a kmer length, over a sliding</span>
+<span class="sd">    window. Each sliding window signature is placed in order into a list, with</span>
+<span class="sd">    each element being a :class:`collections.Counter` instance whose keys are</span>
+<span class="sd">    the kmer found in that window.</span>
+
+<span class="sd">    Arguments:</span>
+<span class="sd">        seq (str): sequence for which to get the signature</span>
+<span class="sd">        w_size (int): size of the sliding window size</span>
+<span class="sd">        k_size (int): size of the kmer to use :func:`get_kmers`</span>
+<span class="sd">        step (int): step to use in :func:`sliding_window`</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        list: a list of :class:`collections.Counter` instances, for each</span>
+<span class="sd">        window used</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">kmer_counts</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="k">for</span> <span class="n">subseq</span> <span class="ow">in</span> <span class="n">_sliding_window</span><span class="p">(</span><span class="n">seq</span><span class="p">,</span> <span class="n">w_size</span><span class="p">,</span> <span class="n">step</span><span class="p">):</span>
+        <span class="n">kmer_counts</span><span class="o">.</span><span class="n">append</span><span class="p">(</span>
+            <span class="n">collections</span><span class="o">.</span><span class="n">Counter</span><span class="p">(</span><span class="n">kmer</span> <span class="k">for</span> <span class="n">kmer</span> <span class="ow">in</span> <span class="n">_get_kmers</span><span class="p">(</span><span class="n">subseq</span><span class="p">,</span> <span class="n">k_size</span><span class="p">)</span> <span class="k">if</span> <span class="s1">&#39;N&#39;</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">kmer</span><span class="p">)</span>
+        <span class="p">)</span>
+    <span class="k">return</span> <span class="n">kmer_counts</span></div>
+
+
+<div class="viewcode-block" id="_signatures_matrix"><a class="viewcode-back" href="../../../api/mgkit.utils.sequence.html#mgkit.utils.sequence._signatures_matrix">[docs]</a><span class="k">def</span> <span class="nf">_signatures_matrix</span><span class="p">(</span><span class="n">seqs</span><span class="p">,</span> <span class="n">w_size</span><span class="p">,</span> <span class="n">k_size</span><span class="o">=</span><span class="mi">4</span><span class="p">,</span> <span class="n">step</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    .. versionadded:: 0.2.6</span>
+
+<span class="sd">    Return a matrix (pandas.DataFrame) where the columns are the kmer found in</span>
+<span class="sd">    all sequences *seqs* and the rows are the a MultiIndex with the first level</span>
+<span class="sd">    being the sequnce name and the second the index of the sliding window for</span>
+<span class="sd">    which a signature was computed.</span>
+
+<span class="sd">    Arguments:</span>
+<span class="sd">        seqs (iterable): iterable that yields a tuple, with the first element</span>
+<span class="sd">            being the sequence name and the second the sequence itself</span>
+<span class="sd">        w_size (int): size of the sliding window size</span>
+<span class="sd">        k_size (int): size of the kmer to use :func:`get_kmers`</span>
+<span class="sd">        step (int): step to use in :func:`sliding_window`, defaults to half of</span>
+<span class="sd">            the window size</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        pandas.DataFrame: a DataFrame where the columns are the kmers and the</span>
+<span class="sd">        rows are the signatures of each contigs/windows.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="k">def</span> <span class="nf">flatten_contigs</span><span class="p">(</span><span class="n">data</span><span class="p">):</span>
+        <span class="k">for</span> <span class="n">name</span><span class="p">,</span> <span class="n">windows</span> <span class="ow">in</span> <span class="n">viewitems</span><span class="p">(</span><span class="n">data</span><span class="p">):</span>
+            <span class="k">for</span> <span class="n">index</span><span class="p">,</span> <span class="n">window</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">windows</span><span class="p">):</span>
+                <span class="k">yield</span> <span class="p">(</span><span class="n">name</span><span class="p">,</span> <span class="n">index</span><span class="p">),</span> <span class="nb">dict</span><span class="p">(</span><span class="n">window</span><span class="p">)</span>
+
+    <span class="n">step</span> <span class="o">=</span> <span class="n">w_size</span> <span class="o">//</span> <span class="mi">2</span> <span class="k">if</span> <span class="n">step</span> <span class="ow">is</span> <span class="kc">None</span> <span class="k">else</span> <span class="n">step</span>
+
+    <span class="n">kmer_counts</span> <span class="o">=</span> <span class="p">{}</span>
+
+    <span class="k">for</span> <span class="n">name</span><span class="p">,</span> <span class="n">seq</span> <span class="ow">in</span> <span class="n">seqs</span><span class="p">:</span>
+        <span class="n">sign</span> <span class="o">=</span> <span class="n">sequence_signature</span><span class="p">(</span><span class="n">seq</span><span class="p">,</span> <span class="n">w_size</span><span class="p">,</span> <span class="n">k_size</span><span class="p">,</span> <span class="n">step</span><span class="o">=</span><span class="n">step</span><span class="p">)</span>
+        <span class="n">kmer_counts</span><span class="p">[</span><span class="n">name</span><span class="p">]</span> <span class="o">=</span> <span class="n">sign</span>
+
+    <span class="k">return</span> <span class="n">pandas</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span>
+        <span class="nb">dict</span><span class="p">(</span>
+            <span class="n">flatten_contigs</span><span class="p">(</span><span class="n">kmer_counts</span><span class="p">)</span>
+        <span class="p">)</span>
+    <span class="p">)</span><span class="o">.</span><span class="n">T</span><span class="o">.</span><span class="n">fillna</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="random_sequences_codon"><a class="viewcode-back" href="../../../api/mgkit.utils.sequence.html#mgkit.utils.sequence.random_sequences_codon">[docs]</a><span class="k">def</span> <span class="nf">random_sequences_codon</span><span class="p">(</span><span class="n">n</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">length</span><span class="o">=</span><span class="mi">150</span><span class="p">,</span> <span class="n">codons</span><span class="o">=</span><span class="nb">list</span><span class="p">(</span><span class="n">UNIVERSAL</span><span class="o">.</span><span class="n">keys</span><span class="p">()),</span>
+                           <span class="n">p</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">frame</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    .. versionadded:: 0.3.3</span>
+
+<span class="sd">    Returns an iterator of nucleotidic sequences, based on a defined genetic</span>
+<span class="sd">    code (passed as parameter, defaults to the universal one). The sequence if</span>
+<span class="sd">    first sampled with replacement from the codon list, with a number of codons</span>
+<span class="sd">    that covers the length chosen plus an additional one to allow a frame shift</span>
+<span class="sd">    as set by *frame*</span>
+
+<span class="sd">    .. note::</span>
+
+<span class="sd">        If the probability (for each codon) are supplied, the number of</span>
+<span class="sd">        sequences required to match those probabilities within a 10% margin of</span>
+<span class="sd">        error is of at least 10.000 sequences, for 5% at leas 100.000</span>
+
+<span class="sd">    Arguments:</span>
+<span class="sd">        n (int): number of sequences to yield</span>
+<span class="sd">        length (int): length of the sequences</span>
+<span class="sd">        codons (iterable): codons used when generating the sequences</span>
+<span class="sd">        p (tuple): probability of each codon occurence, in the same order as</span>
+<span class="sd">            *codons*</span>
+<span class="sd">        frame (int or None): used to define a specific frame shift occuring in</span>
+<span class="sd">            the sequence (0 to 2) or a random one (if *None*)</span>
+
+<span class="sd">    Yields:</span>
+<span class="sd">        str: string representing a nucleotidic sequence</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">sample_size</span> <span class="o">=</span> <span class="p">(</span><span class="n">length</span> <span class="o">//</span> <span class="mi">3</span><span class="p">)</span> <span class="o">+</span> <span class="p">(</span><span class="mi">1</span> <span class="k">if</span> <span class="n">length</span> <span class="o">%</span> <span class="mi">3</span> <span class="o">!=</span> <span class="mi">0</span> <span class="k">else</span> <span class="mi">0</span><span class="p">)</span> <span class="o">+</span> <span class="mi">1</span>
+    <span class="n">codons</span> <span class="o">=</span> <span class="n">numpy</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">codons</span><span class="p">)</span>
+
+    <span class="k">if</span> <span class="n">frame</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="k">if</span> <span class="p">(</span><span class="n">frame</span> <span class="o">&lt;</span> <span class="mi">0</span><span class="p">)</span> <span class="ow">or</span> <span class="p">(</span><span class="n">frame</span> <span class="o">&gt;</span> <span class="mi">2</span><span class="p">):</span>
+            <span class="n">frame</span> <span class="o">=</span> <span class="mi">0</span>
+        <span class="n">sframe</span> <span class="o">=</span> <span class="n">frame</span>
+
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">n</span><span class="p">):</span>
+
+        <span class="k">if</span> <span class="n">frame</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">sframe</span> <span class="o">=</span> <span class="n">numpy</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">randint</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">4</span><span class="p">)</span>
+
+        <span class="k">yield</span> <span class="s1">&#39;&#39;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span>
+            <span class="n">numpy</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">choice</span><span class="p">(</span><span class="n">codons</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="n">sample_size</span><span class="p">,</span> <span class="n">replace</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">p</span><span class="o">=</span><span class="n">p</span><span class="p">)</span>
+        <span class="p">)[</span><span class="n">sframe</span><span class="p">:</span><span class="n">length</span><span class="o">+</span><span class="n">sframe</span><span class="p">]</span></div>
+
+
+<div class="viewcode-block" id="random_sequences"><a class="viewcode-back" href="../../../api/mgkit.utils.sequence.html#mgkit.utils.sequence.random_sequences">[docs]</a><span class="k">def</span> <span class="nf">random_sequences</span><span class="p">(</span><span class="n">n</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">length</span><span class="o">=</span><span class="mi">150</span><span class="p">,</span> <span class="n">p</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    .. versionadded:: 0.3.3</span>
+
+<span class="sd">    Returns an iterator of random squences, where each nucleotide probability</span>
+<span class="sd">    can be customised in the order (A, C, T, G)</span>
+
+<span class="sd">    Arguments:</span>
+<span class="sd">        n (int): number of sequences to yield</span>
+<span class="sd">        length (int): length of each sequence</span>
+<span class="sd">        p (tuple): tuple with the probability of a nucleotide to occur, in the</span>
+<span class="sd">            order A, C, T, G</span>
+
+<span class="sd">    Yields:</span>
+<span class="sd">        str: string representing a nucleotidic sequence</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">nucl</span> <span class="o">=</span> <span class="n">numpy</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="s1">&#39;A&#39;</span><span class="p">,</span> <span class="s1">&#39;C&#39;</span><span class="p">,</span> <span class="s1">&#39;T&#39;</span><span class="p">,</span> <span class="s1">&#39;G&#39;</span><span class="p">])</span>
+
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">n</span><span class="p">):</span>
+
+        <span class="k">yield</span> <span class="s1">&#39;&#39;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span>
+            <span class="n">numpy</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">choice</span><span class="p">(</span><span class="n">nucl</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="n">length</span><span class="p">,</span> <span class="n">replace</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">p</span><span class="o">=</span><span class="n">p</span><span class="p">)</span>
+        <span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="qualities_model_decrease"><a class="viewcode-back" href="../../../api/mgkit.utils.sequence.html#mgkit.utils.sequence.qualities_model_decrease">[docs]</a><span class="k">def</span> <span class="nf">qualities_model_decrease</span><span class="p">(</span><span class="n">length</span><span class="o">=</span><span class="mi">150</span><span class="p">,</span> <span class="n">scale</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">loc</span><span class="o">=</span><span class="mi">35</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    .. versionadded:: 0.3.3</span>
+
+<span class="sd">    The model is a decreasing one, from 35 and depends on the length of the</span>
+<span class="sd">    sequence.</span>
+
+<span class="sd">    Arguments:</span>
+<span class="sd">        length (int): length of the qualities</span>
+<span class="sd">        scale (float): base level of the qualities</span>
+<span class="sd">        loc (float): loc parameter of the normal distribution</span>
+
+<span class="sd">    Return:</span>
+<span class="sd">        tuple: first element is sequence qualities, the second element contains</span>
+<span class="sd">        the distribution used to randomise them</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">if</span> <span class="n">scale</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="n">scale</span> <span class="o">=</span> <span class="mf">2.</span> <span class="o">/</span> <span class="p">(</span><span class="n">length</span> <span class="o">/</span> <span class="mi">150</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">loc</span> <span class="o">-</span> <span class="p">(</span><span class="n">numpy</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="n">numpy</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="n">length</span><span class="p">)</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span> <span class="o">*</span> <span class="p">(</span><span class="n">length</span> <span class="o">/</span> <span class="mi">150</span><span class="p">)),</span> <span class="n">stats</span><span class="o">.</span><span class="n">norm</span><span class="o">.</span><span class="n">freeze</span><span class="p">(</span><span class="n">loc</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">scale</span><span class="o">=</span><span class="n">scale</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="qualities_model_constant"><a class="viewcode-back" href="../../../api/mgkit.utils.sequence.html#mgkit.utils.sequence.qualities_model_constant">[docs]</a><span class="k">def</span> <span class="nf">qualities_model_constant</span><span class="p">(</span><span class="n">length</span><span class="o">=</span><span class="mi">150</span><span class="p">,</span> <span class="n">scale</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">loc</span><span class="o">=</span><span class="mi">35</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    .. versionadded:: 0.3.3</span>
+
+<span class="sd">    Model with constant quality</span>
+
+<span class="sd">    Arguments:</span>
+<span class="sd">        length (int): length of the qualities</span>
+<span class="sd">        scale (float): base level of the qualities</span>
+<span class="sd">        loc (float): loc parameter of the normal distribution</span>
+
+<span class="sd">    Return:</span>
+<span class="sd">        tuple: first element is sequence qualities, the second element contains</span>
+<span class="sd">        the distribution used to randomise them</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">return</span> <span class="n">numpy</span><span class="o">.</span><span class="n">ones</span><span class="p">(</span><span class="n">length</span><span class="p">)</span> <span class="o">*</span> <span class="n">loc</span><span class="p">,</span> <span class="n">stats</span><span class="o">.</span><span class="n">norm</span><span class="o">.</span><span class="n">freeze</span><span class="p">(</span><span class="n">scale</span><span class="o">=</span><span class="n">scale</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="extrapolate_model"><a class="viewcode-back" href="../../../api/mgkit.utils.sequence.html#mgkit.utils.sequence.extrapolate_model">[docs]</a><span class="k">def</span> <span class="nf">extrapolate_model</span><span class="p">(</span><span class="n">quals</span><span class="p">,</span> <span class="n">frac</span><span class="o">=.</span><span class="mi">5</span><span class="p">,</span> <span class="n">scale_adj</span><span class="o">=.</span><span class="mi">5</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    .. versionadded:: 0.3.3</span>
+
+<span class="sd">    .. versionchanged:: 0.4.4</span>
+<span class="sd">        returns now the minimum and maximum quality scores found, along with</span>
+<span class="sd">        some messages for the stages of the function</span>
+
+<span class="sd">    Extrapolate a quality model from a list of qualities. It uses internally</span>
+<span class="sd">    a LOWESS as the base, which is used to estimate the noise as a normal</span>
+<span class="sd">    distribution.</span>
+
+<span class="sd">    Arguments:</span>
+<span class="sd">        quals (list): list of arrays of qualities, sorted by position in the</span>
+<span class="sd">            corresponding sequence</span>
+<span class="sd">        frac (float): fraction of the data used for the LOWESS fit (uses</span>
+<span class="sd">            statsmodels)</span>
+<span class="sd">        scale_adj (float): value by which the scale of the normal distribution</span>
+<span class="sd">            will be multiplied. Defaults to halving the scale</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        tuple: the first element is the qualities fit with a LOWESS, the second</span>
+<span class="sd">        element is the distribution, the third is the minimum quality score and</span>
+<span class="sd">        the fourth element is the maximum quality score found in the sequences</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">if</span> <span class="ow">not</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">quals</span><span class="p">,</span> <span class="nb">list</span><span class="p">):</span>
+        <span class="n">quals</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">quals</span><span class="p">)</span>
+
+    <span class="n">endog</span> <span class="o">=</span> <span class="n">numpy</span><span class="o">.</span><span class="n">hstack</span><span class="p">(</span><span class="n">quals</span><span class="p">)</span>
+    <span class="n">min_qual</span> <span class="o">=</span> <span class="n">endog</span><span class="o">.</span><span class="n">min</span><span class="p">()</span>
+    <span class="n">max_qual</span> <span class="o">=</span> <span class="n">endog</span><span class="o">.</span><span class="n">max</span><span class="p">()</span>
+    <span class="n">LOG</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;Max: </span><span class="si">%d</span><span class="s2"> Min: </span><span class="si">%d</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">max_qual</span><span class="p">,</span> <span class="n">min_qual</span><span class="p">)</span>
+    <span class="n">exog</span> <span class="o">=</span> <span class="n">numpy</span><span class="o">.</span><span class="n">hstack</span><span class="p">(</span>
+        <span class="p">[</span><span class="n">numpy</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">qual</span><span class="p">))</span> <span class="o">+</span> <span class="mi">1</span> <span class="k">for</span> <span class="n">qual</span> <span class="ow">in</span> <span class="n">quals</span><span class="p">]</span>
+    <span class="p">)</span>
+
+    <span class="n">LOG</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;Starting LOWESS fit&quot;</span><span class="p">)</span>
+
+    <span class="n">lowess</span> <span class="o">=</span> <span class="n">sm</span><span class="o">.</span><span class="n">nonparametric</span><span class="o">.</span><span class="n">lowess</span><span class="p">(</span><span class="n">endog</span><span class="p">,</span> <span class="n">exog</span><span class="p">,</span> <span class="n">frac</span><span class="o">=</span><span class="n">frac</span><span class="p">)</span>
+    <span class="n">lowess</span> <span class="o">=</span> <span class="n">interpolate</span><span class="o">.</span><span class="n">interp1d</span><span class="p">(</span>
+        <span class="n">lowess</span><span class="p">[:,</span> <span class="mi">0</span><span class="p">],</span>
+        <span class="n">lowess</span><span class="p">[:,</span> <span class="mi">1</span><span class="p">],</span>
+        <span class="n">kind</span><span class="o">=</span><span class="s1">&#39;nearest&#39;</span><span class="p">,</span>
+        <span class="n">bounds_error</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+        <span class="n">fill_value</span><span class="o">=</span><span class="s1">&#39;extrapolate&#39;</span>
+    <span class="p">)</span>
+    <span class="n">lowess</span> <span class="o">=</span> <span class="n">lowess</span><span class="p">(</span><span class="n">numpy</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="n">exog</span><span class="o">.</span><span class="n">max</span><span class="p">())</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span>
+
+    <span class="n">LOG</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;Starting normal distribution fit&quot;</span><span class="p">)</span>
+
+    <span class="n">dist</span> <span class="o">=</span> <span class="n">numpy</span><span class="o">.</span><span class="n">hstack</span><span class="p">([</span>
+        <span class="n">qual</span> <span class="o">-</span> <span class="n">lowess</span><span class="p">[:</span><span class="nb">len</span><span class="p">(</span><span class="n">qual</span><span class="p">)]</span>
+        <span class="k">for</span> <span class="n">qual</span> <span class="ow">in</span> <span class="n">quals</span>
+    <span class="p">])</span>
+    <span class="n">dist_args</span> <span class="o">=</span> <span class="n">stats</span><span class="o">.</span><span class="n">norm</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">dist</span><span class="p">)</span>
+    <span class="n">dist_args</span> <span class="o">=</span> <span class="p">(</span><span class="n">dist_args</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">dist_args</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">*</span> <span class="n">scale_adj</span><span class="p">)</span>
+    <span class="n">dist</span> <span class="o">=</span> <span class="n">stats</span><span class="o">.</span><span class="n">norm</span><span class="p">(</span><span class="o">*</span><span class="n">dist_args</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">lowess</span><span class="p">,</span> <span class="n">dist</span><span class="p">,</span> <span class="n">min_qual</span><span class="p">,</span> <span class="n">max_qual</span></div>
+
+
+<div class="viewcode-block" id="random_qualities"><a class="viewcode-back" href="../../../api/mgkit.utils.sequence.html#mgkit.utils.sequence.random_qualities">[docs]</a><span class="k">def</span> <span class="nf">random_qualities</span><span class="p">(</span><span class="n">n</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">length</span><span class="o">=</span><span class="mi">150</span><span class="p">,</span> <span class="n">model</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">max_qual</span><span class="o">=</span><span class="mi">60</span><span class="p">,</span> <span class="n">min_qual</span><span class="o">=</span><span class="mi">0</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    .. versionadded:: 0.3.3</span>
+
+<span class="sd">    .. versionchanged: 0.4.4</span>
+<span class="sd">        added *max_qual* and *min_qual* parameters, also the max quality value</span>
+<span class="sd">        output is 60 now</span>
+
+<span class="sd">    Arguments:</span>
+<span class="sd">        n (int): number of quality arrays to yield</span>
+<span class="sd">        length (int): length of the quality array</span>
+<span class="sd">        model (tuple): a tuple specifying the qualities and error distribution,</span>
+<span class="sd">            if *None* :func:`qualities_model_decrease` is used</span>
+<span class="sd">        max_qual (int): max quality values allowed, since rarely the quality</span>
+<span class="sd">            exceed 60 in sequencing data</span>
+
+<span class="sd">    Yields:</span>
+<span class="sd">        numpy.array: numpy array of qualities, with the maximum value of 60</span>
+<span class="sd">        by default, or *max_qual*, same with *min_qual*</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">if</span> <span class="n">model</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="n">model</span> <span class="o">=</span> <span class="n">qualities_model_decrease</span><span class="p">(</span><span class="n">length</span><span class="o">=</span><span class="n">length</span><span class="p">)</span>
+
+    <span class="n">base</span><span class="p">,</span> <span class="n">dist</span> <span class="o">=</span> <span class="n">model</span>
+    <span class="n">num_high_qual</span> <span class="o">=</span> <span class="mi">0</span>
+    <span class="n">num_low_qual</span> <span class="o">=</span> <span class="mi">0</span>
+
+    <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">n</span><span class="p">):</span>
+        <span class="n">qual</span> <span class="o">=</span> <span class="n">numpy</span><span class="o">.</span><span class="n">round</span><span class="p">(</span><span class="n">base</span> <span class="o">+</span> <span class="n">dist</span><span class="o">.</span><span class="n">rvs</span><span class="p">(</span><span class="n">size</span><span class="o">=</span><span class="n">length</span><span class="p">))</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">int</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">qual</span><span class="o">.</span><span class="n">max</span><span class="p">()</span> <span class="o">&gt;</span> <span class="n">max_qual</span><span class="p">:</span>
+            <span class="n">qual</span><span class="p">[</span><span class="n">qual</span> <span class="o">&gt;</span> <span class="n">max_qual</span><span class="p">]</span> <span class="o">=</span> <span class="n">max_qual</span>
+            <span class="n">num_high_qual</span> <span class="o">+=</span> <span class="mi">1</span>
+        <span class="k">if</span> <span class="n">qual</span><span class="o">.</span><span class="n">min</span><span class="p">()</span> <span class="o">&lt;</span> <span class="n">min_qual</span><span class="p">:</span>
+            <span class="n">qual</span><span class="p">[</span><span class="n">qual</span> <span class="o">&lt;</span> <span class="n">min_qual</span><span class="p">]</span> <span class="o">=</span> <span class="n">min_qual</span>
+            <span class="n">num_low_qual</span> <span class="o">+=</span> <span class="mi">1</span>
+        <span class="k">yield</span> <span class="n">qual</span>
+
+    <span class="n">LOG</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s1">&#39;Number of quality sequences over </span><span class="si">%d</span><span class="s1"> was </span><span class="si">%d</span><span class="s1"> out of </span><span class="si">%d</span><span class="s1">&#39;</span><span class="p">,</span> <span class="n">max_qual</span><span class="p">,</span>
+              <span class="n">num_high_qual</span><span class="p">,</span> <span class="n">n</span><span class="p">)</span>
+    <span class="n">LOG</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s1">&#39;Number of quality sequences below </span><span class="si">%d</span><span class="s1"> was </span><span class="si">%d</span><span class="s1"> out of </span><span class="si">%d</span><span class="s1">&#39;</span><span class="p">,</span>
+              <span class="n">min_qual</span><span class="p">,</span> <span class="n">num_low_qual</span><span class="p">,</span> <span class="n">n</span><span class="p">)</span></div>
+</pre></div>
+
+           </div>
+           
+          </div>
+          <footer>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2013-2015, Francesco Rubino
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

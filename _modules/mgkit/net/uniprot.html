@@ -1,0 +1,627 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>mgkit.net.uniprot &mdash; MGKit: Metagenomic framework 0.5.0 documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+  <script type="text/javascript" src="../../../_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../../../" src="../../../_static/documentation_options.js"></script>
+        <script type="text/javascript" src="../../../_static/jquery.js"></script>
+        <script type="text/javascript" src="../../../_static/underscore.js"></script>
+        <script type="text/javascript" src="../../../_static/doctools.js"></script>
+        <script type="text/javascript" src="../../../_static/language_data.js"></script>
+        <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+        <script async="async" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+        <script type="text/x-mathjax-config">MathJax.Hub.Config({"tex2jax": {"inlineMath": [["$", "$"], ["\\(", "\\)"]], "processEscapes": true, "ignoreClass": "document", "processClass": "math|output_area"}})</script>
+    
+    <script type="text/javascript" src="../../../_static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="../../../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../../../_static/graphviz.css" type="text/css" />
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../../../index.html" class="icon icon-home"> MGKit: Metagenomic framework
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                0.5.0
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../introduction.html">Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../install.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../pipeline/index.html">Metagenomic Pipeline</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../scripts/index.html">Scripts Details</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../examples/index.html">Example Notebooks</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../gff.html">MGKit GFF Specifications</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../library.html">Library Reference</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../changes.html">Changes</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../index.html">MGKit: Metagenomic framework</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../../../index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="../../index.html">Module code</a> &raquo;</li>
+        
+          <li><a href="../../mgkit.html">mgkit</a> &raquo;</li>
+        
+      <li>mgkit.net.uniprot</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <h1>Source code for mgkit.net.uniprot</h1><div class="highlight"><pre>
+<span></span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">Contains function and constants for Uniprot access</span>
+<span class="sd">&quot;&quot;&quot;</span>
+<span class="kn">from</span> <span class="nn">__future__</span> <span class="kn">import</span> <span class="n">division</span>
+<span class="kn">from</span> <span class="nn">builtins</span> <span class="kn">import</span> <span class="nb">range</span><span class="p">,</span> <span class="nb">zip</span>
+<span class="kn">import</span> <span class="nn">mgkit</span>
+<span class="kn">import</span> <span class="nn">logging</span>
+<span class="kn">from</span> <span class="nn">.</span> <span class="kn">import</span> <span class="n">url_read</span>
+
+<span class="n">UNIPROT_MAP</span> <span class="o">=</span> <span class="s1">&#39;http://www.uniprot.org/mapping/&#39;</span>
+<span class="s2">&quot;URL to Uniprot mapping REST API&quot;</span>
+
+<span class="n">UNIPROT_GET</span> <span class="o">=</span> <span class="s1">&#39;http://www.uniprot.org/uniprot/&#39;</span>
+<span class="s2">&quot;URL to Uniprot REST API&quot;</span>
+
+<span class="n">UNIPROT_TAXONOMY</span> <span class="o">=</span> <span class="s1">&#39;http://www.uniprot.org/taxonomy/&#39;</span>
+<span class="s2">&quot;URL to Uniprot REST API - Taxonomy&quot;</span>
+
+<span class="n">COLS_TAXON</span> <span class="o">=</span> <span class="s1">&#39;organism-id&#39;</span>
+<span class="n">COLS_KO</span> <span class="o">=</span> <span class="s1">&#39;database(KO)&#39;</span>
+<span class="n">COLS_EGGNOG</span> <span class="o">=</span> <span class="s1">&#39;database(EGGNOG)&#39;</span>
+<span class="n">COLS_EC</span> <span class="o">=</span> <span class="s1">&#39;ec&#39;</span>
+
+<span class="n">LOG</span> <span class="o">=</span> <span class="n">logging</span><span class="o">.</span><span class="n">getLogger</span><span class="p">(</span><span class="vm">__name__</span><span class="p">)</span>
+
+
+<div class="viewcode-block" id="get_sequences_by_ko"><a class="viewcode-back" href="../../../api/mgkit.net.uniprot.html#mgkit.net.uniprot.get_sequences_by_ko">[docs]</a><span class="k">def</span> <span class="nf">get_sequences_by_ko</span><span class="p">(</span><span class="n">ko_id</span><span class="p">,</span> <span class="n">taxonomy</span><span class="p">,</span> <span class="n">contact</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">reviewed</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Gets sequences from Uniprot, restricting to the taxon id passed.</span>
+
+<span class="sd">    :param str ko_id: KO id of the sequences to download</span>
+<span class="sd">    :param int taxonomy: id of the taxon</span>
+<span class="sd">    :param str contact: email address to be passed in the query (requested by</span>
+<span class="sd">        Uniprot API)</span>
+<span class="sd">    :param bool reviewed: if the sequences requested must be reviewed</span>
+
+<span class="sd">    :return: string with the fasta file downloaded</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">params</span> <span class="o">=</span> <span class="p">{</span>
+        <span class="s1">&#39;query&#39;</span><span class="p">:</span> <span class="s1">&#39;database:(type:ko </span><span class="si">{0}</span><span class="s1">) AND taxonomy:</span><span class="si">{1}{2}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span>
+            <span class="n">ko_id</span><span class="p">,</span> <span class="n">taxonomy</span><span class="p">,</span> <span class="s1">&#39; reviewed:yes&#39;</span> <span class="k">if</span> <span class="n">reviewed</span> <span class="k">else</span> <span class="s1">&#39;&#39;</span><span class="p">),</span>
+        <span class="s1">&#39;format&#39;</span><span class="p">:</span> <span class="s1">&#39;fasta&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;limit&#39;</span><span class="p">:</span> <span class="mi">200</span><span class="p">,</span>
+        <span class="s1">&#39;sort&#39;</span><span class="p">:</span> <span class="s1">&#39;score&#39;</span>
+    <span class="p">}</span>
+    <span class="k">if</span> <span class="n">mgkit</span><span class="o">.</span><span class="n">DEBUG</span><span class="p">:</span>
+        <span class="n">LOG</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s2">&quot;query: </span><span class="si">%s</span><span class="s2">?</span><span class="si">%s</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">UNIPROT_GET</span><span class="p">,</span> <span class="n">params</span><span class="p">)</span>
+        <span class="n">LOG</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s2">&quot;request length </span><span class="si">%d</span><span class="s2">&quot;</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">params</span><span class="p">))</span>
+
+    <span class="n">fasta</span> <span class="o">=</span> <span class="n">url_read</span><span class="p">(</span><span class="n">UNIPROT_GET</span><span class="p">,</span> <span class="n">data</span><span class="o">=</span><span class="n">params</span><span class="p">,</span> <span class="n">agent</span><span class="o">=</span><span class="n">contact</span><span class="p">)</span>
+
+    <span class="k">return</span> <span class="n">fasta</span></div>
+
+
+<div class="viewcode-block" id="get_mappings"><a class="viewcode-back" href="../../../api/mgkit.net.uniprot.html#mgkit.net.uniprot.get_mappings">[docs]</a><span class="k">def</span> <span class="nf">get_mappings</span><span class="p">(</span><span class="n">entry_ids</span><span class="p">,</span> <span class="n">db_from</span><span class="o">=</span><span class="s1">&#39;ID&#39;</span><span class="p">,</span> <span class="n">db_to</span><span class="o">=</span><span class="s1">&#39;EMBL&#39;</span><span class="p">,</span> <span class="n">out_format</span><span class="o">=</span><span class="s1">&#39;tab&#39;</span><span class="p">,</span>
+                 <span class="n">contact</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Gets mapping of genes using Uniprot REST API. The db_from and db_to values</span>
+<span class="sd">    are the ones accepted by Uniprot API. The same applies to out_format, the</span>
+<span class="sd">    only processed formats are &#39;list&#39;, which returns a list of the mappings</span>
+<span class="sd">    (should be used with one gene only) and &#39;tab&#39;, which returns a dictionary</span>
+<span class="sd">    with the mapping. All other values returns a string with the newline</span>
+<span class="sd">    stripped.</span>
+
+<span class="sd">    :param iterable entry_ids: iterable of ids to be mapped (there&#39;s a limit)</span>
+<span class="sd">        to the maximum length of a HTTP request, so it should be less than 50</span>
+<span class="sd">    :param str db_from: string that identify the DB for elements in entry_ids</span>
+<span class="sd">    :param str db_to: string that identify the DB to which map entry_ids</span>
+<span class="sd">    :param str out_format: format of the mapping; &#39;list&#39; and &#39;tab&#39; are</span>
+<span class="sd">        processed</span>
+<span class="sd">    :param str contact: email address to be passed in the query (requested</span>
+<span class="sd">        Uniprot API)</span>
+
+<span class="sd">    :return: tuple, dict or str depending on out_format value</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">entry_ids</span><span class="p">,</span> <span class="nb">str</span><span class="p">):</span>
+        <span class="n">entry_ids</span> <span class="o">=</span> <span class="p">[</span><span class="n">entry_ids</span><span class="p">]</span>
+
+    <span class="n">data</span> <span class="o">=</span> <span class="p">{</span>
+        <span class="s1">&#39;from&#39;</span><span class="p">:</span> <span class="n">db_from</span><span class="p">,</span>
+        <span class="s1">&#39;to&#39;</span><span class="p">:</span> <span class="n">db_to</span><span class="p">,</span>
+        <span class="s1">&#39;query&#39;</span><span class="p">:</span> <span class="s1">&#39; &#39;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">entry_ids</span><span class="p">),</span>
+        <span class="s1">&#39;format&#39;</span><span class="p">:</span> <span class="n">out_format</span>
+    <span class="p">}</span>
+
+    <span class="n">mappings</span> <span class="o">=</span> <span class="n">url_read</span><span class="p">(</span><span class="n">UNIPROT_MAP</span><span class="p">,</span> <span class="n">data</span><span class="o">=</span><span class="n">data</span><span class="p">,</span> <span class="n">agent</span><span class="o">=</span><span class="n">contact</span><span class="p">)</span>
+
+    <span class="n">mappings</span> <span class="o">=</span> <span class="n">mappings</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span>
+
+    <span class="k">if</span> <span class="n">out_format</span> <span class="o">==</span> <span class="s1">&#39;list&#39;</span><span class="p">:</span>
+        <span class="n">mappings</span> <span class="o">=</span> <span class="n">mappings</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">&#39;</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">)</span>
+    <span class="k">elif</span> <span class="n">out_format</span> <span class="o">==</span> <span class="s1">&#39;tab&#39;</span><span class="p">:</span>
+        <span class="n">mapping_dict</span> <span class="o">=</span> <span class="p">{}</span>
+        <span class="n">mappings</span> <span class="o">=</span> <span class="n">mappings</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">&#39;</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">)</span>
+        <span class="c1"># delete first row &#39;From to&#39;</span>
+        <span class="k">del</span> <span class="n">mappings</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+
+        <span class="k">for</span> <span class="n">mapping</span> <span class="ow">in</span> <span class="n">mappings</span><span class="p">:</span>
+            <span class="n">id_from</span><span class="p">,</span> <span class="n">id_to</span> <span class="o">=</span> <span class="n">mapping</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">&#39;</span><span class="se">\t</span><span class="s1">&#39;</span><span class="p">)</span>
+            <span class="k">if</span> <span class="n">id_to</span> <span class="o">==</span> <span class="s1">&#39;null&#39;</span><span class="p">:</span>
+                <span class="k">continue</span>
+            <span class="k">try</span><span class="p">:</span>
+                <span class="n">mapping_dict</span><span class="p">[</span><span class="n">id_from</span><span class="p">]</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">id_to</span><span class="p">)</span>
+            <span class="k">except</span> <span class="ne">KeyError</span><span class="p">:</span>
+                <span class="n">mapping_dict</span><span class="p">[</span><span class="n">id_from</span><span class="p">]</span> <span class="o">=</span> <span class="p">[</span><span class="n">id_to</span><span class="p">]</span>
+
+        <span class="n">mappings</span> <span class="o">=</span> <span class="n">mapping_dict</span>
+
+    <span class="k">return</span> <span class="n">mappings</span></div>
+
+
+<div class="viewcode-block" id="ko_to_mapping"><a class="viewcode-back" href="../../../api/mgkit.net.uniprot.html#mgkit.net.uniprot.ko_to_mapping">[docs]</a><span class="k">def</span> <span class="nf">ko_to_mapping</span><span class="p">(</span><span class="n">ko_id</span><span class="p">,</span> <span class="n">query</span><span class="p">,</span> <span class="n">columns</span><span class="p">,</span> <span class="n">contact</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Returns the mappings to the supplied KO. Can be used for any id, the</span>
+<span class="sd">    query format is free as well as the columns returned. The only</span>
+<span class="sd">    restriction is using a tab format, that is parsed.</span>
+
+<span class="sd">    :param str ko_id: id used in the query</span>
+<span class="sd">    :param str query: query passed to the Uniprot API, ko_id is replaced</span>
+<span class="sd">        using :func:`str.format`</span>
+<span class="sd">    :param str column: column used in the results table used to map the ids</span>
+<span class="sd">    :param str contact: email address to be passed in the query (requested</span>
+<span class="sd">        Uniprot API)</span>
+
+<span class="sd">    .. note::</span>
+
+<span class="sd">        each mapping in the column is separated by a ;</span>
+
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">data</span> <span class="o">=</span> <span class="p">{</span>
+        <span class="s1">&#39;query&#39;</span><span class="p">:</span> <span class="n">query</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">ko_id</span><span class="p">),</span>
+        <span class="s1">&#39;format&#39;</span><span class="p">:</span> <span class="s1">&#39;tab&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;columns&#39;</span><span class="p">:</span> <span class="n">columns</span>
+    <span class="p">}</span>
+
+    <span class="n">mappings</span> <span class="o">=</span> <span class="n">url_read</span><span class="p">(</span><span class="n">UNIPROT_GET</span><span class="p">,</span> <span class="n">data</span><span class="o">=</span><span class="n">data</span><span class="p">,</span> <span class="n">agent</span><span class="o">=</span><span class="n">contact</span><span class="p">)</span>
+
+    <span class="k">if</span> <span class="n">mgkit</span><span class="o">.</span><span class="n">DEBUG</span><span class="p">:</span>
+        <span class="n">LOG</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s2">&quot;query: </span><span class="si">%s</span><span class="s2">?</span><span class="si">%s</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">UNIPROT_GET</span><span class="p">,</span> <span class="n">data</span><span class="p">)</span>
+        <span class="n">LOG</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s2">&quot;request length </span><span class="si">%d</span><span class="s2">&quot;</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">data</span><span class="p">))</span>
+
+    <span class="n">mappings</span> <span class="o">=</span> <span class="n">mappings</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">&#39;</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">)</span>
+    <span class="k">del</span> <span class="n">mappings</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+
+    <span class="n">categories</span> <span class="o">=</span> <span class="nb">set</span><span class="p">()</span>
+
+    <span class="k">for</span> <span class="n">map_line</span> <span class="ow">in</span> <span class="n">mappings</span><span class="p">:</span>
+
+        <span class="n">mappings</span> <span class="o">=</span> <span class="p">[</span><span class="n">mapping</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span> <span class="k">for</span> <span class="n">mapping</span> <span class="ow">in</span> <span class="n">map_line</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">&#39;;&#39;</span><span class="p">)]</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="n">mappings</span><span class="p">:</span>
+            <span class="k">continue</span>
+
+        <span class="n">categories</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="n">mappings</span><span class="p">)</span>
+
+    <span class="c1"># in case an empty line is present</span>
+    <span class="k">try</span><span class="p">:</span>
+        <span class="n">categories</span><span class="o">.</span><span class="n">remove</span><span class="p">(</span><span class="s1">&#39;&#39;</span><span class="p">)</span>
+    <span class="k">except</span> <span class="ne">KeyError</span><span class="p">:</span>
+        <span class="k">pass</span>
+
+    <span class="k">return</span> <span class="n">categories</span></div>
+
+
+<div class="viewcode-block" id="get_gene_info"><a class="viewcode-back" href="../../../api/mgkit.net.uniprot.html#mgkit.net.uniprot.get_gene_info">[docs]</a><span class="k">def</span> <span class="nf">get_gene_info</span><span class="p">(</span><span class="n">gene_ids</span><span class="p">,</span> <span class="n">columns</span><span class="p">,</span> <span class="n">max_req</span><span class="o">=</span><span class="mi">50</span><span class="p">,</span> <span class="n">contact</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    .. versionadded:: 0.1.12</span>
+
+<span class="sd">    Get informations about a list of genes. it uses :func:`query_uniprot` to</span>
+<span class="sd">    send the request and format the response in a dictionary.</span>
+
+<span class="sd">    Arguments:</span>
+<span class="sd">        gene_ids (iterable, str): gene id(s) to get informations for</span>
+<span class="sd">        columns (list): list of columns</span>
+<span class="sd">        max_req (int): number of maximum *gene_ids* per request</span>
+<span class="sd">        contact (str): email address to be passed in the query (requested</span>
+<span class="sd">            Uniprot API)</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        dict: dictionary where the keys are the *gene_ids* requested and the</span>
+<span class="sd">        values are dictionaries with the names of the *columns* requested as</span>
+<span class="sd">        keys and the corresponding values, which can be lists if the values are</span>
+<span class="sd">        are semicolon separated strings.</span>
+
+<span class="sd">    Example:</span>
+<span class="sd">        To get the taxonomy ids for some genes:</span>
+
+<span class="sd">        &gt;&gt;&gt; uniprot.get_gene_info([&#39;Q09575&#39;, &#39;Q8DQI6&#39;], [&#39;organism-id&#39;])</span>
+<span class="sd">        {&#39;Q09575&#39;: {&#39;organism-id&#39;: &#39;6239&#39;}, &#39;Q8DQI6&#39;: {&#39;organism-id&#39;: &#39;171101&#39;}}</span>
+
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">gene_ids</span><span class="p">,</span> <span class="nb">str</span><span class="p">):</span>
+        <span class="n">gene_ids</span> <span class="o">=</span> <span class="p">[</span><span class="n">gene_ids</span><span class="p">]</span>
+    <span class="k">elif</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">gene_ids</span><span class="p">,</span> <span class="nb">set</span><span class="p">):</span>
+        <span class="n">gene_ids</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">gene_ids</span><span class="p">)</span>
+
+    <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">columns</span><span class="p">,</span> <span class="nb">str</span><span class="p">):</span>
+        <span class="n">columns</span> <span class="o">=</span> <span class="p">[</span><span class="n">columns</span><span class="p">]</span>
+
+    <span class="n">infos</span> <span class="o">=</span> <span class="p">{}</span>
+
+    <span class="k">for</span> <span class="n">index</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">gene_ids</span><span class="p">),</span> <span class="n">max_req</span><span class="p">):</span>
+
+        <span class="n">LOG</span><span class="o">.</span><span class="n">info</span><span class="p">(</span>
+            <span class="s2">&quot;Querying uniprot ids (</span><span class="si">%d</span><span class="s2">/</span><span class="si">%d</span><span class="s2">)&quot;</span><span class="p">,</span>
+            <span class="n">index</span> <span class="o">+</span> <span class="n">max_req</span><span class="p">,</span>
+            <span class="nb">len</span><span class="p">(</span><span class="n">gene_ids</span><span class="p">)</span>
+        <span class="p">)</span>
+
+        <span class="n">info_lines</span> <span class="o">=</span> <span class="n">query_uniprot</span><span class="p">(</span>
+            <span class="s1">&#39; OR &#39;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="s1">&#39;id:</span><span class="si">{}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">gene_id</span><span class="p">)</span> <span class="k">for</span> <span class="n">gene_id</span> <span class="ow">in</span> <span class="n">gene_ids</span><span class="p">[</span><span class="n">index</span><span class="p">:</span><span class="n">index</span><span class="o">+</span><span class="n">max_req</span><span class="p">]),</span>
+            <span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;id&#39;</span><span class="p">]</span> <span class="o">+</span> <span class="n">columns</span><span class="p">,</span>
+            <span class="n">contact</span><span class="o">=</span><span class="n">contact</span>
+        <span class="p">)</span>
+
+        <span class="n">info_lines</span> <span class="o">=</span> <span class="n">info_lines</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">&#39;</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">)</span>
+
+        <span class="k">del</span> <span class="n">info_lines</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+
+        <span class="k">for</span> <span class="n">info_line</span> <span class="ow">in</span> <span class="n">info_lines</span><span class="p">:</span>
+            <span class="n">info_line</span> <span class="o">=</span> <span class="n">info_line</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span>
+            <span class="k">if</span> <span class="ow">not</span> <span class="n">info_line</span><span class="p">:</span>
+                <span class="k">continue</span>
+            <span class="n">values</span> <span class="o">=</span> <span class="n">info_line</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">&#39;</span><span class="se">\t</span><span class="s1">&#39;</span><span class="p">)</span>
+
+            <span class="n">gene_id</span> <span class="o">=</span> <span class="n">values</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+
+            <span class="n">infos</span><span class="p">[</span><span class="n">gene_id</span><span class="p">]</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">(</span>
+                <span class="p">(</span>
+                    <span class="n">column</span><span class="p">,</span>
+                    <span class="n">value</span> <span class="k">if</span> <span class="p">(</span><span class="ow">not</span> <span class="n">value</span><span class="o">.</span><span class="n">endswith</span><span class="p">(</span><span class="s1">&#39;;&#39;</span><span class="p">))</span> <span class="ow">and</span> <span class="p">(</span><span class="ow">not</span> <span class="n">value</span><span class="o">.</span><span class="n">endswith</span><span class="p">(</span><span class="s1">&#39;; &#39;</span><span class="p">))</span> <span class="ow">and</span> <span class="p">(</span><span class="s1">&#39;; &#39;</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">value</span><span class="p">)</span>
+                    <span class="k">else</span> <span class="p">[</span><span class="n">x</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">value</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">&#39;;&#39;</span><span class="p">)</span> <span class="k">if</span> <span class="n">x</span><span class="o">.</span><span class="n">strip</span><span class="p">()]</span>
+                <span class="p">)</span>
+                <span class="k">for</span> <span class="n">column</span><span class="p">,</span> <span class="n">value</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="n">columns</span><span class="p">,</span> <span class="n">values</span><span class="p">[</span><span class="mi">1</span><span class="p">:])</span>
+            <span class="p">)</span>
+
+    <span class="k">return</span> <span class="n">infos</span></div>
+
+
+<div class="viewcode-block" id="query_uniprot"><a class="viewcode-back" href="../../../api/mgkit.net.uniprot.html#mgkit.net.uniprot.query_uniprot">[docs]</a><span class="k">def</span> <span class="nf">query_uniprot</span><span class="p">(</span><span class="n">query</span><span class="p">,</span> <span class="n">columns</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="nb">format</span><span class="o">=</span><span class="s1">&#39;tab&#39;</span><span class="p">,</span> <span class="n">limit</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">contact</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+                  <span class="n">baseurl</span><span class="o">=</span><span class="n">UNIPROT_GET</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    .. versionadded:: 0.1.12</span>
+
+<span class="sd">    .. versionchanged:: 0.1.13</span>
+<span class="sd">        added *baseurl* and made *columns* a default argument</span>
+
+<span class="sd">    Queries Uniprot, returning the raw response in tbe format specified. More</span>
+<span class="sd">    informations at the `page &lt;http://www.uniprot.org/faq/28&gt;`_</span>
+
+<span class="sd">    Arguments:</span>
+<span class="sd">        query (str): query to submit, as put in the input box</span>
+<span class="sd">        columns (None, iterable): list of columns to return</span>
+<span class="sd">        format (str): response format</span>
+<span class="sd">        limit (int, None): number of entries to return or *None* to request all</span>
+<span class="sd">            entries</span>
+<span class="sd">        contact (str): email address to be passed in the query (requested</span>
+<span class="sd">            Uniprot API)</span>
+<span class="sd">        baseurl (str): base url for the REST API, can be either</span>
+<span class="sd">            :data:`UNIPROT_GET` or :data:`UNIPROT_TAXONOMY`</span>
+<span class="sd">    Returns:</span>
+<span class="sd">        str: raw response from the query</span>
+
+<span class="sd">    Example:</span>
+<span class="sd">        To get the taxonomy ids for some genes:</span>
+
+<span class="sd">        &gt;&gt;&gt; uniprot.query_uniprot(&#39;Q09575 OR Q8DQI6&#39;, [&#39;id&#39;, &#39;organism-id&#39;])</span>
+<span class="sd">        &#39;Entry\\tOrganism ID\\nQ8DQI6\\t171101\\nQ09575\\t6239\\n&#39;</span>
+
+<span class="sd">    .. warning::</span>
+
+<span class="sd">        because of limits in the length of URLs, it&#39;s advised to limit the</span>
+<span class="sd">        length of the query string.</span>
+
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">data</span> <span class="o">=</span> <span class="p">{</span>
+        <span class="s1">&#39;query&#39;</span><span class="p">:</span> <span class="n">query</span><span class="p">,</span>
+        <span class="s1">&#39;format&#39;</span><span class="p">:</span> <span class="nb">format</span>
+    <span class="p">}</span>
+
+    <span class="k">if</span> <span class="n">limit</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="n">data</span><span class="p">[</span><span class="s1">&#39;limit&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">limit</span>
+
+    <span class="k">if</span> <span class="n">columns</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="n">data</span><span class="p">[</span><span class="s1">&#39;columns&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="s1">&#39;,&#39;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">columns</span><span class="p">)</span>
+
+    <span class="k">if</span> <span class="n">mgkit</span><span class="o">.</span><span class="n">DEBUG</span><span class="p">:</span>
+        <span class="n">LOG</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s2">&quot;query: </span><span class="si">%s</span><span class="s2">?</span><span class="si">%s</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">baseurl</span><span class="p">,</span> <span class="n">data</span><span class="p">)</span>
+        <span class="n">LOG</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s2">&quot;request length </span><span class="si">%d</span><span class="s2">&quot;</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">data</span><span class="p">))</span>
+
+    <span class="k">return</span> <span class="n">url_read</span><span class="p">(</span><span class="n">baseurl</span><span class="p">,</span> <span class="n">data</span><span class="p">,</span> <span class="n">agent</span><span class="o">=</span><span class="n">contact</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="parse_uniprot_response"><a class="viewcode-back" href="../../../api/mgkit.net.uniprot.html#mgkit.net.uniprot.parse_uniprot_response">[docs]</a><span class="k">def</span> <span class="nf">parse_uniprot_response</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">simple</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    .. versionadded:: 0.1.12</span>
+
+<span class="sd">    Parses raw response from a Uniprot query (tab format only) from functions</span>
+<span class="sd">    like :func:`query_uniprot` into a dictionary. It requires that the first</span>
+<span class="sd">    column is the entry id (or any other unique id).</span>
+
+<span class="sd">    Arguments:</span>
+<span class="sd">        data (str): string response from Uniprot</span>
+<span class="sd">        simple (bool): if True and the number of columns is 1, the dictionary</span>
+<span class="sd">            returned has a simplified structure</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        dict: The format of the resulting dictionary is</span>
+<span class="sd">        entry_id -&gt; {column1 -&gt; value, column2 -&gt; value, ..} unless there&#39;s</span>
+<span class="sd">        only one column and *simple* is True, in which case the value is</span>
+<span class="sd">        equal to the value of the only column.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">data</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">splitlines</span><span class="p">()</span>
+
+    <span class="n">columns</span> <span class="o">=</span> <span class="p">[</span><span class="n">x</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">data</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">&#39;</span><span class="se">\t</span><span class="s1">&#39;</span><span class="p">)[</span><span class="mi">1</span><span class="p">:]]</span>
+
+    <span class="k">del</span> <span class="n">data</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+
+    <span class="n">parsed_data</span> <span class="o">=</span> <span class="p">{}</span>
+
+    <span class="k">for</span> <span class="n">line</span> <span class="ow">in</span> <span class="n">data</span><span class="p">:</span>
+        <span class="n">line</span> <span class="o">=</span> <span class="n">line</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">&#39;</span><span class="se">\t</span><span class="s1">&#39;</span><span class="p">)</span>
+        <span class="n">entry_id</span> <span class="o">=</span> <span class="n">line</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+
+        <span class="k">if</span> <span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">columns</span><span class="p">)</span> <span class="o">==</span> <span class="mi">1</span><span class="p">)</span> <span class="ow">and</span> <span class="n">simple</span><span class="p">:</span>
+            <span class="n">parsed_data</span><span class="p">[</span><span class="n">entry_id</span><span class="p">]</span> <span class="o">=</span> <span class="n">line</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">parsed_data</span><span class="p">[</span><span class="n">entry_id</span><span class="p">]</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">(</span>
+                <span class="nb">zip</span><span class="p">(</span><span class="n">columns</span><span class="p">,</span> <span class="n">line</span><span class="p">[</span><span class="mi">1</span><span class="p">:])</span>
+            <span class="p">)</span>
+
+    <span class="k">return</span> <span class="n">parsed_data</span></div>
+
+
+<div class="viewcode-block" id="get_ko_to_eggnog_mappings"><a class="viewcode-back" href="../../../api/mgkit.net.uniprot.html#mgkit.net.uniprot.get_ko_to_eggnog_mappings">[docs]</a><span class="k">def</span> <span class="nf">get_ko_to_eggnog_mappings</span><span class="p">(</span><span class="n">ko_ids</span><span class="p">,</span> <span class="n">contact</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    .. versionadded:: 0.1.14</span>
+
+<span class="sd">    It&#39;s not possible to map in one go KO IDs to eggNOG IDs via the API in</span>
+<span class="sd">    Uniprot. This function uses :func:`query_uniprot` to get all Uniprot IDs</span>
+<span class="sd">    requested and the return a dictionary with all their eggNOG IDs they map</span>
+<span class="sd">    to.</span>
+
+<span class="sd">    Arguments:</span>
+<span class="sd">        ko_ids (iterable): an iterable of KO IDs</span>
+<span class="sd">        contact (str): email address to be passed in the query (requested</span>
+<span class="sd">            Uniprot API)</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        dict: The format of the resulting dictionary is</span>
+<span class="sd">        ko_id -&gt; {eggnog_id1, ..}</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="n">data</span> <span class="o">=</span> <span class="n">query_uniprot</span><span class="p">(</span>
+        <span class="s2">&quot;database:(type:ko AND (</span><span class="si">{}</span><span class="s2">))&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="s1">&#39; OR &#39;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="nb">list</span><span class="p">(</span><span class="n">ko_ids</span><span class="p">))),</span>
+        <span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;database(KO)&#39;</span><span class="p">,</span> <span class="s1">&#39;database(EGGNOG)&#39;</span><span class="p">],</span>
+        <span class="n">contact</span><span class="o">=</span><span class="n">contact</span>
+    <span class="p">)</span>
+
+    <span class="n">data</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">splitlines</span><span class="p">()</span>
+
+    <span class="k">del</span> <span class="n">data</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+
+    <span class="n">parsed_data</span> <span class="o">=</span> <span class="p">{}</span>
+
+    <span class="k">for</span> <span class="n">line</span> <span class="ow">in</span> <span class="n">data</span><span class="p">:</span>
+        <span class="n">ko_ids</span><span class="p">,</span> <span class="n">eggnog_ids</span> <span class="o">=</span> <span class="n">line</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">&#39;</span><span class="se">\t</span><span class="s1">&#39;</span><span class="p">)</span>
+        <span class="n">ko_ids</span> <span class="o">=</span> <span class="n">ko_ids</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">&#39;;&#39;</span><span class="p">)</span>
+
+        <span class="k">for</span> <span class="n">ko_id</span> <span class="ow">in</span> <span class="n">ko_ids</span><span class="p">:</span>
+            <span class="k">if</span> <span class="ow">not</span> <span class="n">ko_id</span><span class="p">:</span>
+                <span class="k">continue</span>
+            <span class="k">if</span> <span class="ow">not</span> <span class="n">eggnog_ids</span><span class="p">:</span>
+                <span class="k">continue</span>
+
+            <span class="k">for</span> <span class="n">eggnog_id</span> <span class="ow">in</span> <span class="n">eggnog_ids</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">&#39;;&#39;</span><span class="p">):</span>
+                <span class="k">if</span> <span class="ow">not</span> <span class="n">eggnog_id</span><span class="p">:</span>
+                    <span class="k">continue</span>
+
+                <span class="k">try</span><span class="p">:</span>
+                    <span class="n">parsed_data</span><span class="p">[</span><span class="n">ko_id</span><span class="p">]</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">eggnog_id</span><span class="p">)</span>
+                <span class="k">except</span> <span class="ne">KeyError</span><span class="p">:</span>
+                    <span class="n">parsed_data</span><span class="p">[</span><span class="n">ko_id</span><span class="p">]</span> <span class="o">=</span> <span class="nb">set</span><span class="p">([</span><span class="n">eggnog_id</span><span class="p">])</span>
+
+    <span class="k">return</span> <span class="n">parsed_data</span></div>
+
+
+<div class="viewcode-block" id="get_uniprot_ec_mappings"><a class="viewcode-back" href="../../../api/mgkit.net.uniprot.html#mgkit.net.uniprot.get_uniprot_ec_mappings">[docs]</a><span class="k">def</span> <span class="nf">get_uniprot_ec_mappings</span><span class="p">(</span><span class="n">gene_ids</span><span class="p">,</span> <span class="n">contact</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    .. versionadded:: 0.1.14</span>
+
+<span class="sd">    Shortcut to download EC mapping of Uniprot IDs. Uses :func:`get_gene_info`</span>
+<span class="sd">    passing the correct column (*ec*).</span>
+
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">return</span> <span class="n">get_gene_info</span><span class="p">(</span>
+        <span class="n">gene_ids</span><span class="p">,</span>
+        <span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;ec&#39;</span><span class="p">],</span>
+        <span class="n">contact</span><span class="o">=</span><span class="n">contact</span><span class="p">,</span>
+        <span class="n">max_req</span><span class="o">=</span><span class="mi">100</span>
+    <span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="get_gene_info_iter"><a class="viewcode-back" href="../../../api/mgkit.net.uniprot.html#mgkit.net.uniprot.get_gene_info_iter">[docs]</a><span class="k">def</span> <span class="nf">get_gene_info_iter</span><span class="p">(</span><span class="n">gene_ids</span><span class="p">,</span> <span class="n">columns</span><span class="p">,</span> <span class="n">contact</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">max_req</span><span class="o">=</span><span class="mi">50</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+
+<span class="sd">    .. versionadded:: 0.3.3</span>
+
+<span class="sd">    Alternative function to :func:`get_gene_info`, returning an iterator to</span>
+<span class="sd">    avoid connections timeouts when updating a dictionary</span>
+
+<span class="sd">    This funciton&#39;s parameters are the same as :func:`get_gene_info`</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="n">gene_ids</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">gene_ids</span><span class="p">)</span>
+
+    <span class="k">for</span> <span class="n">index</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">gene_ids</span><span class="p">),</span> <span class="n">max_req</span><span class="p">):</span>
+        <span class="k">yield</span> <span class="n">get_gene_info</span><span class="p">(</span>
+            <span class="n">gene_ids</span><span class="p">[</span><span class="n">index</span><span class="p">:</span><span class="n">index</span><span class="o">+</span><span class="n">max_req</span><span class="p">],</span>
+            <span class="n">columns</span><span class="p">,</span>
+            <span class="n">contact</span><span class="o">=</span><span class="n">contact</span><span class="p">,</span>
+            <span class="n">max_req</span><span class="o">=</span><span class="n">max_req</span>
+        <span class="p">)</span></div>
+</pre></div>
+
+           </div>
+           
+          </div>
+          <footer>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2013-2015, Francesco Rubino
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

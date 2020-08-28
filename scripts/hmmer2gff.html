@@ -1,0 +1,392 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>hmmer2gff - Convert HMMER output to GFF &mdash; MGKit: Metagenomic framework 0.5.0 documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+  <script type="text/javascript" src="../_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+        <script type="text/javascript" src="../_static/jquery.js"></script>
+        <script type="text/javascript" src="../_static/underscore.js"></script>
+        <script type="text/javascript" src="../_static/doctools.js"></script>
+        <script type="text/javascript" src="../_static/language_data.js"></script>
+        <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+        <script async="async" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+        <script type="text/x-mathjax-config">MathJax.Hub.Config({"tex2jax": {"inlineMath": [["$", "$"], ["\\(", "\\)"]], "processEscapes": true, "ignoreClass": "document", "processClass": "math|output_area"}})</script>
+    
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/graphviz.css" type="text/css" />
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="snp_parser - SNPs analysis" href="snp_analysis.html" />
+    <link rel="prev" title="get-gff-info - Extract informations to GFF annotations" href="get-gff-info.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../index.html" class="icon icon-home"> MGKit: Metagenomic framework
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                0.5.0
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../introduction.html">Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../install.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../pipeline/index.html">Metagenomic Pipeline</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">Scripts Details</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="blast2gff.html">blast2gff - Convert BLAST output to GFF</a></li>
+<li class="toctree-l2"><a class="reference internal" href="filter-gff.html">filter-gff - Filter GFF annotations</a></li>
+<li class="toctree-l2"><a class="reference internal" href="add-gff-info.html">add-gff-info - Add informations to GFF annotations</a></li>
+<li class="toctree-l2"><a class="reference internal" href="get-gff-info.html">get-gff-info - Extract informations to GFF annotations</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">hmmer2gff - Convert HMMER output to GFF</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#module-mgkit.workflow.hmmer2gff">Overview</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#changes">Changes</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#options">Options</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#Named Arguments">Named Arguments</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#File options">File options</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#Filters">Filters</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#GFF">GFF</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="snp_analysis.html">snp_parser - SNPs analysis</a></li>
+<li class="toctree-l2"><a class="reference internal" href="download-taxonomy.html">Download Taxonomy</a></li>
+<li class="toctree-l2"><a class="reference internal" href="download-taxonomy.html#download-accession-taxonid">Download Accession/TaxonID</a></li>
+<li class="toctree-l2"><a class="reference internal" href="taxon_utils.html">taxon-utils - Taxonomy Utilities</a></li>
+<li class="toctree-l2"><a class="reference internal" href="fasta-utils.html">fasta-utils - Fasta Utilities</a></li>
+<li class="toctree-l2"><a class="reference internal" href="fastq-utils.html">fastq-utils - Fastq Utilities</a></li>
+<li class="toctree-l2"><a class="reference internal" href="json2gff.html">json2gff - Convert JSON to GFF</a></li>
+<li class="toctree-l2"><a class="reference internal" href="sampling-utils.html">sampling-utils - Resampling Utilities</a></li>
+<li class="toctree-l2"><a class="reference internal" href="edit_gff.html">edit-gff - GFF Viewer and Editor</a></li>
+<li class="toctree-l2"><a class="reference internal" href="pnps_gen.html">pnps-gen - pN/pS Table Generation</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../examples/index.html">Example Notebooks</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../gff.html">MGKit GFF Specifications</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../library.html">Library Reference</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../changes.html">Changes</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">MGKit: Metagenomic framework</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="index.html">Scripts Details</a> &raquo;</li>
+        
+      <li>hmmer2gff - Convert HMMER output to GFF</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="../_sources/scripts/hmmer2gff.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  
+<style>
+/* CSS overrides for sphinx_rtd_theme */
+
+/* 24px margin */
+.nbinput.nblast.container,
+.nboutput.nblast.container {
+    margin-bottom: 19px;  /* padding has already 5px */
+}
+
+/* ... except between code cells! */
+.nblast.container + .nbinput.container {
+    margin-top: -19px;
+}
+
+.admonition > p:before {
+    margin-right: 4px;  /* make room for the exclamation icon */
+}
+
+/* Fix math alignment, see https://github.com/rtfd/sphinx_rtd_theme/pull/686 */
+.math {
+    text-align: unset;
+}
+</style>
+<div class="section" id="hmmer2gff-convert-hmmer-output-to-gff">
+<span id="hmmer2gff"></span><h1>hmmer2gff - Convert HMMER output to GFF<a class="headerlink" href="#hmmer2gff-convert-hmmer-output-to-gff" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="module-mgkit.workflow.hmmer2gff">
+<span id="overview"></span><h2>Overview<a class="headerlink" href="#module-mgkit.workflow.hmmer2gff" title="Permalink to this headline">¶</a></h2>
+<p>Script to convert HMMER results files (domain table) to a GFF file, the name of
+the profiles are expected to be now in the form
+<em>GENEID_TAXONID_TAXON-NAME(-nr)</em> by default, but any other profile name is
+accepted.</p>
+<p>The profiles tested are those made from Kegg Orthologs, from the
+<cite>download_profiles</cite> script. If the <cite>–no-custom-profiles</cite> options is used,
+the script can be used with any profile name. The profile name will be used
+for <cite>gene_id</cite>, <cite>taxon_id</cite> and <cite>taxon_name</cite> in the GFF file.</p>
+<p>It is possible to use seuqnces not translated using mgkit, no information on
+the frame is assumed, so this script can be used against a protein DB. For
+example Uniprot can be searched for profiles, in which case the <strong>–no-frame</strong>
+options must be used.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>for GENEID, old documentation points to KOID, it is the same</p>
+</div>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>The compatibility with old data has been <strong>removed</strong>, meaning that old
+experiments must use the scripts from those versions. It is possible to use
+multiple environments, with <cite>virtualenv</cite> for this purpose. An examples is
+given in <a class="reference internal" href="../install.html#install-ref"><span class="std std-ref">Installation</span></a>.</p>
+</div>
+<div class="section" id="changes">
+<h3>Changes<a class="headerlink" href="#changes" title="Permalink to this headline">¶</a></h3>
+<div class="versionchanged">
+<p><span class="versionmodified changed">Changed in version 0.1.15: </span>adapted to new GFF module and specs</p>
+</div>
+<div class="versionchanged">
+<p><span class="versionmodified changed">Changed in version 0.2.1: </span>added options to customise output and filters and old restrictions</p>
+</div>
+<div class="versionchanged">
+<p><span class="versionmodified changed">Changed in version 0.3.1: </span>added <em>–no-frame</em> option for non mgkit-translated proteins, sequence
+headers are handled the same way as HMMER (truncated at the first space)</p>
+</div>
+</div>
+</div>
+<div class="section" id="options">
+<h2>Options<a class="headerlink" href="#options" title="Permalink to this headline">¶</a></h2>
+<p><p>Convert HMMER data to GFF file</p>
+</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">usage</span><span class="p">:</span> <span class="n">hmmer2gff</span> <span class="p">[</span><span class="o">-</span><span class="n">h</span><span class="p">]</span> <span class="p">[</span><span class="o">-</span><span class="n">o</span> <span class="p">[</span><span class="n">OUTPUT_FILE</span><span class="p">]]</span> <span class="p">[</span><span class="o">-</span><span class="n">t</span> <span class="n">DISCARD</span><span class="p">]</span> <span class="p">[</span><span class="o">-</span><span class="n">d</span><span class="p">]</span> <span class="p">[</span><span class="o">-</span><span class="n">c</span><span class="p">]</span> <span class="p">[</span><span class="o">-</span><span class="n">db</span> <span class="n">DATABASE</span><span class="p">]</span>
+                 <span class="p">[</span><span class="o">-</span><span class="n">f</span> <span class="n">FEATURE_TYPE</span><span class="p">]</span> <span class="p">[</span><span class="o">-</span><span class="n">n</span><span class="p">]</span> <span class="p">[</span><span class="o">-</span><span class="n">v</span> <span class="o">|</span> <span class="o">--</span><span class="n">quiet</span><span class="p">]</span> <span class="p">[</span><span class="o">--</span><span class="n">cite</span><span class="p">]</span> <span class="p">[</span><span class="o">--</span><span class="n">manual</span><span class="p">]</span>
+                 <span class="p">[</span><span class="o">--</span><span class="n">version</span><span class="p">]</span>
+                 <span class="n">aa_file</span> <span class="p">[</span><span class="n">hmmer_file</span><span class="p">]</span>
+</pre></div>
+</div>
+<div class="section" id="Named Arguments">
+<h3>Named Arguments<a class="headerlink" href="#Named Arguments" title="Permalink to this headline">¶</a></h3>
+<dl class="option-list">
+<dt><kbd>-v, --verbose</kbd></dt>
+<dd><p>more verbose - includes debug messages</p>
+<p>Default: 20</p>
+</dd>
+<dt><kbd>--quiet</kbd></dt>
+<dd><p>less verbose - only error and critical messages</p>
+</dd>
+<dt><kbd>--cite</kbd></dt>
+<dd><p>Show citation for the framework</p>
+</dd>
+<dt><kbd>--manual</kbd></dt>
+<dd><p>Show the script manual</p>
+</dd>
+<dt><kbd>--version</kbd></dt>
+<dd><p>show program’s version number and exit</p>
+</dd>
+</dl>
+</div>
+<div class="section" id="File options">
+<h3>File options<a class="headerlink" href="#File options" title="Permalink to this headline">¶</a></h3>
+<dl class="option-list">
+<dt><kbd>aa_file</kbd></dt>
+<dd><p>Fasta file containing contigs translated to aa (used by HMMER)</p>
+</dd>
+<dt><kbd>hmmer_file</kbd></dt>
+<dd><p>Default: -</p>
+</dd>
+<dt><kbd>-o, --output-file</kbd></dt>
+<dd><p>Default: &lt;_io.TextIOWrapper name=’&lt;stdout&gt;’ mode=’w’ encoding=’UTF-8’&gt;</p>
+</dd>
+</dl>
+</div>
+<div class="section" id="Filters">
+<h3>Filters<a class="headerlink" href="#Filters" title="Permalink to this headline">¶</a></h3>
+<dl class="option-list">
+<dt><kbd>-t, --discard</kbd></dt>
+<dd><p>Evalue over which an hit will be discarded</p>
+<p>Default: 0.05</p>
+</dd>
+<dt><kbd>-d, --disable-evalue</kbd></dt>
+<dd><p>Disable Evalue filter</p>
+<p>Default: False</p>
+</dd>
+</dl>
+</div>
+<div class="section" id="GFF">
+<h3>GFF<a class="headerlink" href="#GFF" title="Permalink to this headline">¶</a></h3>
+<dl class="option-list">
+<dt><kbd>-c, --no-custom-profiles</kbd></dt>
+<dd><p>Profiles names are not in the custom format</p>
+<p>Default: True</p>
+</dd>
+<dt><kbd>-db, --database</kbd></dt>
+<dd><p>Database from which the profiles are generated ” +” (e.g. PFAM)</p>
+<p>Default: “CUSTOM”</p>
+</dd>
+<dt><kbd>-f, --feature-type</kbd></dt>
+<dd><p>Type of feature (e.g. gene)</p>
+<p>Default: “gene”</p>
+</dd>
+<dt><kbd>-n, --no-frame</kbd></dt>
+<dd><p>Set if the sequences were not translated with translate_seq</p>
+<p>Default: False</p>
+</dd>
+</dl>
+</div>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="snp_analysis.html" class="btn btn-neutral float-right" title="snp_parser - SNPs analysis" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="get-gff-info.html" class="btn btn-neutral float-left" title="get-gff-info - Extract informations to GFF annotations" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2013-2015, Francesco Rubino
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

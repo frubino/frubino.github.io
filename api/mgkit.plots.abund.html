@@ -1,0 +1,467 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>mgkit.plots.abund module &mdash; MGKit: Metagenomic framework 0.5.0 documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+  <script type="text/javascript" src="../_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+        <script type="text/javascript" src="../_static/jquery.js"></script>
+        <script type="text/javascript" src="../_static/underscore.js"></script>
+        <script type="text/javascript" src="../_static/doctools.js"></script>
+        <script type="text/javascript" src="../_static/language_data.js"></script>
+        <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+        <script async="async" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+        <script type="text/x-mathjax-config">MathJax.Hub.Config({"tex2jax": {"inlineMath": [["$", "$"], ["\\(", "\\)"]], "processEscapes": true, "ignoreClass": "document", "processClass": "math|output_area"}})</script>
+    
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/graphviz.css" type="text/css" />
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="mgkit.plots.boxplot module" href="mgkit.plots.boxplot.html" />
+    <link rel="prev" title="mgkit.plots package" href="mgkit.plots.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../index.html" class="icon icon-home"> MGKit: Metagenomic framework
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                0.5.0
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../introduction.html">Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../install.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../pipeline/index.html">Metagenomic Pipeline</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../scripts/index.html">Scripts Details</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../examples/index.html">Example Notebooks</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../gff.html">MGKit GFF Specifications</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../library.html">Library Reference</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="mgkit.html">mgkit package</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mgkit.align.html">mgkit.align module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mgkit.consts.html">mgkit.consts module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mgkit.counts.html">mgkit.counts package</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mgkit.counts.func.html">mgkit.counts.func module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mgkit.counts.glm.html">mgkit.counts.glm module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mgkit.counts.scaling.html">mgkit.counts.scaling module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mgkit.db.html">mgkit.db package</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mgkit.db.dbm.html">mgkit.db.dbm module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mgkit.db.mongo.html">mgkit.db.mongo module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mgkit.filter.html">mgkit.filter package</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mgkit.filter.common.html">mgkit.filter.common module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mgkit.filter.gff.html">mgkit.filter.gff module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mgkit.filter.lists.html">mgkit.filter.lists module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mgkit.filter.reads.html">mgkit.filter.reads module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mgkit.filter.taxon.html">mgkit.filter.taxon module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mgkit.graphs.html">mgkit.graphs module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mgkit.io.html">mgkit.io package</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mgkit.io.blast.html">mgkit.io.blast module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mgkit.io.fasta.html">mgkit.io.fasta module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mgkit.io.fastq.html">mgkit.io.fastq module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mgkit.io.gff.html">mgkit.io.gff module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mgkit.io.glimmer.html">mgkit.io.glimmer module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mgkit.io.snpdat.html">mgkit.io.snpdat module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mgkit.io.uniprot.html">mgkit.io.uniprot module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mgkit.io.utils.html">mgkit.io.utils module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mgkit.kegg.html">mgkit.kegg module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mgkit.logger.html">mgkit.logger module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mgkit.mappings.html">mgkit.mappings package</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mgkit.mappings.cazy.html">mgkit.mappings.cazy module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mgkit.mappings.eggnog.html">mgkit.mappings.eggnog module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mgkit.mappings.enzyme.html">mgkit.mappings.enzyme module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mgkit.mappings.go.html">mgkit.mappings.go module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mgkit.mappings.pandas_map.html">mgkit.mappings.pandas_map module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mgkit.mappings.taxon.html">mgkit.mappings.taxon module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mgkit.mappings.utils.html">mgkit.mappings.utils module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mgkit.net.html">mgkit.net package</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mgkit.net.embl.html">mgkit.net.embl module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mgkit.net.pfam.html">mgkit.net.pfam module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mgkit.net.uniprot.html">mgkit.net.uniprot module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mgkit.net.utils.html">mgkit.net.utils module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mgkit.plots.html">mgkit.plots package</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">mgkit.plots.abund module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mgkit.plots.boxplot.html">mgkit.plots.boxplot module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mgkit.plots.colors.html">mgkit.plots.colors module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mgkit.plots.heatmap.html">mgkit.plots.heatmap module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mgkit.plots.unused.html">mgkit.plots.unused module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mgkit.plots.utils.html">mgkit.plots.utils module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mgkit.simple_cache.html">mgkit.simple_cache module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mgkit.snps.html">mgkit.snps package</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mgkit.snps.classes.html">mgkit.snps.classes module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mgkit.snps.conv_func.html">mgkit.snps.conv_func module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mgkit.snps.filter.html">mgkit.snps.filter module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mgkit.snps.funcs.html">mgkit.snps.funcs module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mgkit.snps.mapper.html">mgkit.snps.mapper module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mgkit.taxon.html">mgkit.taxon module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mgkit.utils.html">mgkit.utils package</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mgkit.utils.common.html">mgkit.utils.common module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mgkit.utils.dictionary.html">mgkit.utils.dictionary module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mgkit.utils.sequence.html">mgkit.utils.sequence module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mgkit.utils.trans_tables.html">mgkit.utils.trans_tables module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mgkit.workflow.html">mgkit.workflow package</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mgkit.workflow.add_gff_info.html">mgkit.workflow.add_gff_info module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mgkit.workflow.blast2gff.html">mgkit.workflow.blast2gff module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mgkit.workflow.extract_gff_info.html">mgkit.workflow.extract_gff_info module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mgkit.workflow.fasta_utils.html">mgkit.workflow.fasta_utils module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mgkit.workflow.fastq_utils.html">mgkit.workflow.fastq_utils module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mgkit.workflow.filter_gff.html">mgkit.workflow.filter_gff module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mgkit.workflow.hmmer2gff.html">mgkit.workflow.hmmer2gff module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mgkit.workflow.json2gff.html">mgkit.workflow.json2gff module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mgkit.workflow.sampling_utils.html">mgkit.workflow.sampling_utils module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mgkit.workflow.snp_parser.html">mgkit.workflow.snp_parser module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mgkit.workflow.taxon_utils.html">mgkit.workflow.taxon_utils module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mgkit.workflow.utils.html">mgkit.workflow.utils module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="modules.html">mgkit</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../changes.html">Changes</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">MGKit: Metagenomic framework</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="../library.html">Library Reference</a> &raquo;</li>
+        
+          <li><a href="mgkit.html">mgkit package</a> &raquo;</li>
+        
+          <li><a href="mgkit.plots.html">mgkit.plots package</a> &raquo;</li>
+        
+      <li>mgkit.plots.abund module</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="../_sources/api/mgkit.plots.abund.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  
+<style>
+/* CSS overrides for sphinx_rtd_theme */
+
+/* 24px margin */
+.nbinput.nblast.container,
+.nboutput.nblast.container {
+    margin-bottom: 19px;  /* padding has already 5px */
+}
+
+/* ... except between code cells! */
+.nblast.container + .nbinput.container {
+    margin-top: -19px;
+}
+
+.admonition > p:before {
+    margin-right: 4px;  /* make room for the exclamation icon */
+}
+
+/* Fix math alignment, see https://github.com/rtfd/sphinx_rtd_theme/pull/686 */
+.math {
+    text-align: unset;
+}
+</style>
+<div class="section" id="module-mgkit.plots.abund">
+<span id="mgkit-plots-abund-module"></span><h1>mgkit.plots.abund module<a class="headerlink" href="#module-mgkit.plots.abund" title="Permalink to this headline">¶</a></h1>
+<div class="versionadded">
+<p><span class="versionmodified added">New in version 0.1.15.</span></p>
+</div>
+<p>Module to plot relative abundances in a 1D or 3D projection</p>
+<dl class="function">
+<dt id="mgkit.plots.abund.col_func_firstel">
+<code class="sig-prename descclassname">mgkit.plots.abund.</code><code class="sig-name descname">col_func_firstel</code><span class="sig-paren">(</span><em class="sig-param">key</em>, <em class="sig-param">colors=None</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/mgkit/plots/abund.html#col_func_firstel"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#mgkit.plots.abund.col_func_firstel" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="function">
+<dt id="mgkit.plots.abund.col_func_name">
+<code class="sig-prename descclassname">mgkit.plots.abund.</code><code class="sig-name descname">col_func_name</code><span class="sig-paren">(</span><em class="sig-param">key</em>, <em class="sig-param">func=None</em>, <em class="sig-param">colors=None</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/mgkit/plots/abund.html#col_func_name"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#mgkit.plots.abund.col_func_name" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="function">
+<dt id="mgkit.plots.abund.col_func_taxon">
+<code class="sig-prename descclassname">mgkit.plots.abund.</code><code class="sig-name descname">col_func_taxon</code><span class="sig-paren">(</span><em class="sig-param">taxon_id</em>, <em class="sig-param">taxonomy</em>, <em class="sig-param">anc_ids</em>, <em class="sig-param">colpal</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/mgkit/plots/abund.html#col_func_taxon"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#mgkit.plots.abund.col_func_taxon" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="function">
+<dt id="mgkit.plots.abund.draw_1d_grid">
+<code class="sig-prename descclassname">mgkit.plots.abund.</code><code class="sig-name descname">draw_1d_grid</code><span class="sig-paren">(</span><em class="sig-param">ax, labels=['LAM', 'SAM'], fontsize=22</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/mgkit/plots/abund.html#draw_1d_grid"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#mgkit.plots.abund.draw_1d_grid" title="Permalink to this definition">¶</a></dt>
+<dd><div class="versionchanged">
+<p><span class="versionmodified changed">Changed in version 0.2.0: </span>reworked internals and changed defaults</p>
+</div>
+<p>Draws a 1D axis, to display propotions.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>ax</strong> – an axis instance</p></li>
+<li><p><strong>labels</strong> (<em>iterable</em>) – list of string to be put for the axes</p></li>
+<li><p><strong>fontsize</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.8)"><em>float</em></a>) – font size for the labels, the tick font size is
+equal to <em>0.75 * fontsize</em></p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="function">
+<dt id="mgkit.plots.abund.draw_axis_internal_triangle">
+<code class="sig-prename descclassname">mgkit.plots.abund.</code><code class="sig-name descname">draw_axis_internal_triangle</code><span class="sig-paren">(</span><em class="sig-param">ax</em>, <em class="sig-param">color='r'</em>, <em class="sig-param">linewidth=2.0</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/mgkit/plots/abund.html#draw_axis_internal_triangle"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#mgkit.plots.abund.draw_axis_internal_triangle" title="Permalink to this definition">¶</a></dt>
+<dd><div class="versionadded">
+<p><span class="versionmodified added">New in version 0.2.5.</span></p>
+</div>
+<p>Draws a triangle that indicates the 50% limit for all 3 samples</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>ax</strong> – axis to use</p></li>
+<li><p><strong>color</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.8)"><em>str</em></a><em>, </em><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.8)"><em>float</em></a><em>, </em><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#tuple" title="(in Python v3.8)"><em>tuple</em></a>) – color used to draw the triangle</p></li>
+<li><p><strong>linewidth</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.8)"><em>float</em></a>) – line width</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="function">
+<dt id="mgkit.plots.abund.draw_circles">
+<code class="sig-prename descclassname">mgkit.plots.abund.</code><code class="sig-name descname">draw_circles</code><span class="sig-paren">(</span><em class="sig-param">ax</em>, <em class="sig-param">data</em>, <em class="sig-param">col_func=&lt;function col_func_name&gt;</em>, <em class="sig-param">csize=200</em>, <em class="sig-param">alpha=0.5</em>, <em class="sig-param">sizescale=None</em>, <em class="sig-param">order=None</em>, <em class="sig-param">linewidths=0.0</em>, <em class="sig-param">edgecolor='none'</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/mgkit/plots/abund.html#draw_circles"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#mgkit.plots.abund.draw_circles" title="Permalink to this definition">¶</a></dt>
+<dd><div class="versionchanged">
+<p><span class="versionmodified changed">Changed in version 0.2.0: </span>changed internals and added return value</p>
+</div>
+<p>Draws a scatter plot over either a planar-simplex projection, if the number
+of coordinates is 3, or in a 1D axis.</p>
+<p>If the number of coordinates is 3, <a class="reference internal" href="#mgkit.plots.abund.project_point" title="mgkit.plots.abund.project_point"><code class="xref py py-func docutils literal notranslate"><span class="pre">project_point()</span></code></a> is used to project
+the point in 2 coordinates. The coordinates are converted in proportions
+internally.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>ax</strong> – axis to plot on</p></li>
+<li><p><strong>data</strong> (<em>pandas.DataFrame</em>) – a DataFrame with 2 for a 1D plot or 3 columns
+for a planar-simplex</p></li>
+<li><p><strong>col_func</strong> (<em>func</em>) – a function that accept a parameter, an element of the
+DataFrame index and returns a colour for it</p></li>
+<li><p><strong>csize</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.8)"><em>int</em></a>) – the base size of the circles</p></li>
+<li><p><strong>alpha</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.8)"><em>float</em></a>) – transparency of the circles, between 0 and 1 included</p></li>
+<li><p><strong>sizescale</strong> (<a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.8)"><em>None</em></a><em>, </em><em>pandas.Series</em>) – a Series or dictionary with the same
+elements as the Index of <em>data</em>, whose values are the size factors
+that are multiplied to <em>csize</em>. If <strong>None</strong>, the size of the
+circles is equal to <em>csize</em></p></li>
+<li><p><strong>order</strong> (<a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.8)"><em>None</em></a><em>, </em><em>iterable</em>) – iterable with the elements of <em>data</em> Index, to
+specify the order in which the circles must be plotted. If None,
+the order is the same as <em>data.index</em></p></li>
+<li><p><strong>linewidths</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.8)"><em>float</em></a>) – width of the circle line</p></li>
+<li><p><strong>edgecolor</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.8)"><em>str</em></a>) – color of the circle line</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>the return value of matplotlib <em>scatter</em></p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>PathCollection</p>
+</dd>
+</dl>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>To <strong>not</strong> have circle lines, <em>edgecolor</em> must be <em>‘none’</em> and
+<em>linewidths</em> equal <em>0</em></p>
+</div>
+</dd></dl>
+
+<dl class="function">
+<dt id="mgkit.plots.abund.draw_triangle_grid">
+<code class="sig-prename descclassname">mgkit.plots.abund.</code><code class="sig-name descname">draw_triangle_grid</code><span class="sig-paren">(</span><em class="sig-param">ax, labels=['LAM', 'SAM', 'EAM'], linewidth=1.0, styles=['-', ':', '--'], fontsize=22</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/mgkit/plots/abund.html#draw_triangle_grid"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#mgkit.plots.abund.draw_triangle_grid" title="Permalink to this definition">¶</a></dt>
+<dd><div class="versionchanged">
+<p><span class="versionmodified changed">Changed in version 0.2.0: </span>reworked internals and changed defaults</p>
+</div>
+<p>Draws a triangle as axes, for a planar-simplex projection.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>ax</strong> – an axis instance</p></li>
+<li><p><strong>labels</strong> (<em>iterable</em>) – list of string to be put for the axes</p></li>
+<li><p><strong>styles</strong> (<a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.8)"><em>None</em></a><em>, </em><em>iterable</em>) – either <em>None</em> for solid lines or matplotlib
+line markers. These are in sync between the internal lines and
+the axes.</p></li>
+<li><p><strong>linewidth</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.8)"><em>float</em></a>) – line width for the axes, the internal lines are
+equal to <em>0.75 * linewidth</em></p></li>
+<li><p><strong>fontsize</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.8)"><em>float</em></a>) – font size for the labels, the tick font size is
+equal to <em>0.75 * fontsize</em></p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="function">
+<dt id="mgkit.plots.abund.project_point">
+<code class="sig-prename descclassname">mgkit.plots.abund.</code><code class="sig-name descname">project_point</code><span class="sig-paren">(</span><em class="sig-param">point</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/mgkit/plots/abund.html#project_point"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#mgkit.plots.abund.project_point" title="Permalink to this definition">¶</a></dt>
+<dd><p>Project a tuple containing coordinates (i.e. x, y, z) to planar-simplex.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>point</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#tuple" title="(in Python v3.8)"><em>tuple</em></a>) – contains the three coordinates to project</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>the projected point in a planar-simplex</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#tuple" title="(in Python v3.8)">tuple</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="mgkit.plots.boxplot.html" class="btn btn-neutral float-right" title="mgkit.plots.boxplot module" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="mgkit.plots.html" class="btn btn-neutral float-left" title="mgkit.plots package" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2013-2015, Francesco Rubino
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

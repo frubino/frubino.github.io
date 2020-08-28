@@ -1,0 +1,1061 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>add-gff-info - Add informations to GFF annotations &mdash; MGKit: Metagenomic framework 0.5.0 documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+  <script type="text/javascript" src="../_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+        <script type="text/javascript" src="../_static/jquery.js"></script>
+        <script type="text/javascript" src="../_static/underscore.js"></script>
+        <script type="text/javascript" src="../_static/doctools.js"></script>
+        <script type="text/javascript" src="../_static/language_data.js"></script>
+        <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+        <script async="async" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+        <script type="text/x-mathjax-config">MathJax.Hub.Config({"tex2jax": {"inlineMath": [["$", "$"], ["\\(", "\\)"]], "processEscapes": true, "ignoreClass": "document", "processClass": "math|output_area"}})</script>
+    
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/graphviz.css" type="text/css" />
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="get-gff-info - Extract informations to GFF annotations" href="get-gff-info.html" />
+    <link rel="prev" title="filter-gff - Filter GFF annotations" href="filter-gff.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../index.html" class="icon icon-home"> MGKit: Metagenomic framework
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                0.5.0
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../introduction.html">Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../install.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../pipeline/index.html">Metagenomic Pipeline</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">Scripts Details</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="blast2gff.html">blast2gff - Convert BLAST output to GFF</a></li>
+<li class="toctree-l2"><a class="reference internal" href="filter-gff.html">filter-gff - Filter GFF annotations</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">add-gff-info - Add informations to GFF annotations</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#module-mgkit.workflow.add_gff_info">Overview</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#uniprot-command">Uniprot Command</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#coverage-command">Coverage Command</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#adding-coverage-from-samtools-depth">Adding Coverage from samtools depth</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#uniprot-offline-mappings">Uniprot Offline Mappings</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#kegg-information">Kegg Information</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#expected-aminoacidic-changes">Expected Aminoacidic Changes</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#adding-count-data">Adding Count Data</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#adding-taxonomy-from-a-table">Adding Taxonomy from a Table</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#adding-information-from-pfam">Adding information from Pfam</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#changes">Changes</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#options">Options</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#add-gff-info">add-gff-info</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="get-gff-info.html">get-gff-info - Extract informations to GFF annotations</a></li>
+<li class="toctree-l2"><a class="reference internal" href="hmmer2gff.html">hmmer2gff - Convert HMMER output to GFF</a></li>
+<li class="toctree-l2"><a class="reference internal" href="snp_analysis.html">snp_parser - SNPs analysis</a></li>
+<li class="toctree-l2"><a class="reference internal" href="download-taxonomy.html">Download Taxonomy</a></li>
+<li class="toctree-l2"><a class="reference internal" href="download-taxonomy.html#download-accession-taxonid">Download Accession/TaxonID</a></li>
+<li class="toctree-l2"><a class="reference internal" href="taxon_utils.html">taxon-utils - Taxonomy Utilities</a></li>
+<li class="toctree-l2"><a class="reference internal" href="fasta-utils.html">fasta-utils - Fasta Utilities</a></li>
+<li class="toctree-l2"><a class="reference internal" href="fastq-utils.html">fastq-utils - Fastq Utilities</a></li>
+<li class="toctree-l2"><a class="reference internal" href="json2gff.html">json2gff - Convert JSON to GFF</a></li>
+<li class="toctree-l2"><a class="reference internal" href="sampling-utils.html">sampling-utils - Resampling Utilities</a></li>
+<li class="toctree-l2"><a class="reference internal" href="edit_gff.html">edit-gff - GFF Viewer and Editor</a></li>
+<li class="toctree-l2"><a class="reference internal" href="pnps_gen.html">pnps-gen - pN/pS Table Generation</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../examples/index.html">Example Notebooks</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../gff.html">MGKit GFF Specifications</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../library.html">Library Reference</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../changes.html">Changes</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">MGKit: Metagenomic framework</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="index.html">Scripts Details</a> &raquo;</li>
+        
+      <li>add-gff-info - Add informations to GFF annotations</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="../_sources/scripts/add-gff-info.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  
+<style>
+/* CSS overrides for sphinx_rtd_theme */
+
+/* 24px margin */
+.nbinput.nblast.container,
+.nboutput.nblast.container {
+    margin-bottom: 19px;  /* padding has already 5px */
+}
+
+/* ... except between code cells! */
+.nblast.container + .nbinput.container {
+    margin-top: -19px;
+}
+
+.admonition > p:before {
+    margin-right: 4px;  /* make room for the exclamation icon */
+}
+
+/* Fix math alignment, see https://github.com/rtfd/sphinx_rtd_theme/pull/686 */
+.math {
+    text-align: unset;
+}
+</style>
+<div class="section" id="add-gff-info-add-informations-to-gff-annotations">
+<span id="add-gff-info"></span><h1>add-gff-info - Add informations to GFF annotations<a class="headerlink" href="#add-gff-info-add-informations-to-gff-annotations" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="module-mgkit.workflow.add_gff_info">
+<span id="overview"></span><h2>Overview<a class="headerlink" href="#module-mgkit.workflow.add_gff_info" title="Permalink to this headline">¶</a></h2>
+<p>Add more information to GFF annotations: gene mappings, coverage, taxonomy,
+etc..</p>
+<div class="section" id="uniprot-command">
+<h3>Uniprot Command<a class="headerlink" href="#uniprot-command" title="Permalink to this headline">¶</a></h3>
+<p>If the <em>gene_id</em> of an annotation is a Uniprot ID, the script queries Uniprot
+for the requested information. At the moment the information that can be added
+is the taxon_id, taxon_name, lineage and mapping to EC, KO, eggNOG IDs.</p>
+<p>It’s also possible to add mappings to other databases using the <em>-m</em> option
+with the correct identifier for the mapping, which can be found at <a class="reference external" href="http://www.uniprot.org/faq/28">this page</a>; for example if it’s we want to add the
+mappings of uniprot IDs to <em>BioCyc</em>, in the <em>abbreviation</em> column of the
+mappings we find that it’s identifier is <em>REACTOME_ID</em>, so we pass
+<em>-m REACTOME</em> to the script (leaving <em>_ID</em> out). Mapped IDs are separated by
+commas.</p>
+<p>The taxonomy IDs are not overwritten if they are found in the annotations, the
+<em>-f</em> is provided to force the overwriting of those values.</p>
+<p>See also <a class="reference internal" href="../gff.html#gff-specs"><span class="std std-ref">MGKit GFF Specifications</span></a> for more informations about the GFF specifications
+used.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>As the script needs to query Uniprot a lot, it is recommended to split
+the GFF in several files, so an error in the connection doesn’t waste time.</p>
+<p>However, a cache is kept to reduce the number of connections</p>
+</div>
+</div>
+<div class="section" id="coverage-command">
+<h3>Coverage Command<a class="headerlink" href="#coverage-command" title="Permalink to this headline">¶</a></h3>
+<p>Adds coverage information from BAM alignment files to a GFF file, using the
+function <a class="reference internal" href="../api/mgkit.align.html#mgkit.align.add_coverage_info" title="mgkit.align.add_coverage_info"><code class="xref py py-func docutils literal notranslate"><span class="pre">mgkit.align.add_coverage_info()</span></code></a>, the user needs to supply for
+each sample a BAM file, using the <cite>-a</cite> option, whose parameter is in the form
+<cite>sample,samplealg.bam</cite>. More samples can be supplied adding more <cite>-a</cite>
+arguments.</p>
+<div class="admonition hint">
+<p class="admonition-title">Hint</p>
+<p>As an example, to add coverage for <cite>sample1</cite>, <cite>sample2</cite> the command line
+is:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">add</span><span class="o">-</span><span class="n">gff</span><span class="o">-</span><span class="n">info</span> <span class="n">coverage</span> <span class="o">-</span><span class="n">a</span> <span class="n">sample1</span><span class="p">,</span><span class="n">sample1</span><span class="o">.</span><span class="n">bam</span> <span class="o">-</span><span class="n">a</span> <span class="n">sample2</span><span class="p">,</span><span class="n">sample2</span><span class="o">.</span><span class="n">bam</span> \
+<span class="n">inputgff</span> <span class="n">outputgff</span>
+</pre></div>
+</div>
+</div>
+<p>A total coverage for the annotation is also calculated and stored in the
+<cite>cov</cite> attribute, while each sample coverage is stored into <cite>sample_cov</cite> as per
+<a class="reference internal" href="../gff.html#gff-specs"><span class="std std-ref">MGKit GFF Specifications</span></a>.</p>
+</div>
+<div class="section" id="adding-coverage-from-samtools-depth">
+<h3>Adding Coverage from samtools depth<a class="headerlink" href="#adding-coverage-from-samtools-depth" title="Permalink to this headline">¶</a></h3>
+<p>The <em>cov_samtools</em> allows the use of the output of <em>samtools</em> <strong>depth</strong>
+command. The command work similarly to <em>coverage</em>, accepting compressed <em>depth</em>
+files as well. If only one <em>depth</em> file is passed and no sample is passed, the
+attribute in the GFF will be <em>cov</em>, otherwise the attribute will be
+<em>sample1_cov</em>, <em>sample2_cov</em>, etc.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>From version 0.4.2 the behaviour is different in the following ways:</p>
+<ul class="simple">
+<li><dl class="simple">
+<dt>the GFF file is loaded in memory to get information that helps reduce</dt><dd><p>the memory size</p>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt>the depth file is scanned and each time a sequence in the GFF file is</dt><dd><p>found, coverage data is added, this way memory is freed more often</p>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt>the GFF file is written at the very end, so chaining multiple commands</dt><dd><p>(one for each sample) doesn’t give any advantage now</p>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt>there’s no need to use the <cite>-aa</cite> option of <cite>samtools depth</cite>, since some</dt><dd><p>assumptions are made when scanning the fils (see next point)</p>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt>when the depth file is scanned completely, the sequences in the GFF file</dt><dd><p>with coverage information are set coverage 0.0, instead of raising an
+error</p>
+</dd>
+</dl>
+</li>
+<li><p>average coverage is only calculated if requested, with the <cite>-m</cite> option</p></li>
+</ul>
+</div>
+<p>The GFF file is first loaded in memory to get information about the maximum
+array size for each sequence, then the script proceeds for each depth file, to
+scan it until a) all sequences in the GFF are found or b) until the end of the
+file. If b) is the case, all sequences with not found in the depth file are set
+to a coverage of 0.0. A warning with the number of sequences lacking coverage
+is printed, for diagnostic purposes. If the the mean coverage is requested with
+the <cite>-m</cite> option, coverage is then calculated</p>
+<p>To create samtools <em>depth</em> files, you can use this command:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ samtools depth [bam_file] &gt; [depth_file]
+
+where [bam_file] is the alignment to be used and [depth_file] where the
+file will be stored (by redirection). You could create a gzipped file, as
+the file can be huge (and in my experience compressing reduces by ~10x the
+file size)::
+
+$ samtools depth [bam_file] | gzip &gt; [depth_file.gz]
+</pre></div>
+</div>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>if version &lt; 0.4.2:</p>
+<p>The <em>-aa</em> options must be used to pass information about all base
+pairs and sequences coverage in the BAM/SAM file.</p>
+<p>$ samtools depth -aa bam_file</p>
+</div>
+</div>
+<div class="section" id="uniprot-offline-mappings">
+<h3>Uniprot Offline Mappings<a class="headerlink" href="#uniprot-offline-mappings" title="Permalink to this headline">¶</a></h3>
+<p>Similar to the <em>uniprot</em> command, it uses the <a class="reference external" href="ftp://ftp.uniprot.org/pub/databases/uniprot/current_release/knowledgebase/idmapping/idmapping.dat.gz">idmapping</a>
+file provided by Uniprot, which speeds up the process of adding mappings and
+taxonomy IDs from Uniprot gene IDs. It’s not possible tough to add <em>EC</em>
+mappings with this command, as those are not included in the file.</p>
+</div>
+<div class="section" id="kegg-information">
+<h3>Kegg Information<a class="headerlink" href="#kegg-information" title="Permalink to this headline">¶</a></h3>
+<p>The <em>kegg</em> command allows to add information to each annotation. Right now the
+information that can be added is restricted to the pathway(s) (reference KO) a
+KO is part of and both the KO and pathway(s) descriptions. This information is
+stored in keys starting with <strong>ko_</strong>.</p>
+</div>
+<div class="section" id="expected-aminoacidic-changes">
+<h3>Expected Aminoacidic Changes<a class="headerlink" href="#expected-aminoacidic-changes" title="Permalink to this headline">¶</a></h3>
+<p>Some scripts, like <a class="reference internal" href="snp_analysis.html#snp-parser"><span class="std std-ref">snp_parser - SNPs analysis</span></a>, require information about the expected
+number of synonymous and non-synonymous changes of an annotation. This can be
+done using <a class="reference internal" href="../api/mgkit.io.gff.html#mgkit.io.gff.Annotation.add_exp_syn_count" title="mgkit.io.gff.Annotation.add_exp_syn_count"><code class="xref py py-meth docutils literal notranslate"><span class="pre">mgkit.io.gff.Annotation.add_exp_syn_count()</span></code></a> by the user of the
+command <cite>exp_syn</cite> of this script. The attributes added to each annotation are
+explained in the <a class="reference internal" href="../gff.html#gff-specs"><span class="std std-ref">MGKit GFF Specifications</span></a></p>
+</div>
+<div class="section" id="adding-count-data">
+<h3>Adding Count Data<a class="headerlink" href="#adding-count-data" title="Permalink to this headline">¶</a></h3>
+<p>Count data on a per-sample basis can be added with the <em>counts</em> command. The
+accepted inputs are from HTSeq-count and featureCounts. The ouput produced by
+featureCounts, is the one from using its <strong>-f</strong> option must be used.</p>
+<p>This script accept by default a tab separated file, with a uid in the first
+column and the other columns are the counts for each sample, in the same order
+as they are passed to the <strong>-s</strong> option. To use the featureCounts file format,
+this script <strong>-e</strong> option must be used.</p>
+<p>The sample names must be provided in the same order as the columns in the input
+files. If the counts are FPKMS the <em>-f</em> option can be used.</p>
+</div>
+<div class="section" id="adding-taxonomy-from-a-table">
+<h3>Adding Taxonomy from a Table<a class="headerlink" href="#adding-taxonomy-from-a-table" title="Permalink to this headline">¶</a></h3>
+<p>There are cases where it may needed or preferred to add the taxonomy from a
+<em>gene_id</em> already provided in the GFF file. For such cases the <em>addtaxa</em>
+command can be used. It works in a similar way to the <em>taxonomy</em> command, only
+it expect three different type of inputs:</p>
+<blockquote>
+<div><ul class="simple">
+<li><p><em>GI-Taxa</em> table from NCBI (e.g. gi_taxid_nucl.dmp, )</p></li>
+<li><p>tab separated table</p></li>
+<li><p>dictionary</p></li>
+<li><p>HDF5</p></li>
+</ul>
+</div></blockquote>
+<p>The first two are tab separated files, where on each line, the first column is
+the <em>gene_id</em> that is found in the first column, while the second if the
+<em>taxon_id</em>.</p>
+<p>The third option is a serialised Python <em>dict</em>/hash table, whose keys are the
+<em>gene_id</em> and the value is that gene corresponding <em>taxon_id</em>. The serialised
+formats accepted are msgpack, json and pickle. The <em>msgpack</em> module must be
+importable. The option to use json and msgpack allow to integrate this script
+with other languages without resorting to a text file.</p>
+<p>The last option is a HDF5 created using the <em>to_hdf</em> command in
+<a class="reference internal" href="taxon_utils.html#taxon-utils"><span class="std std-ref">taxon-utils - Taxonomy Utilities</span></a>. This requires <cite>pandas</cite> installed and <cite>pytables</cite> and it
+provides faster lookup of IDs in the table.</p>
+<p>While the default is to look for the <em>gene_id</em> attribute in the GFF annotation,
+another attribute can be specified, using the <strong>-gene-attr</strong> option.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>the dictionary content is loaded after the table files and its keys and
+corresponding values takes precedence over the text files.</p>
+</div>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>from September 2016 NCBI will retire the GI. In that case the same
+kind of table can be built from the <em>nucl_gb.accession2taxid.gz</em> file
+The format is different, but some information can be found in
+<a class="reference internal" href="../api/mgkit.io.blast.html#mgkit.io.blast.parse_accession_taxa_table" title="mgkit.io.blast.parse_accession_taxa_table"><code class="xref py py-func docutils literal notranslate"><span class="pre">mgkit.io.blast.parse_accession_taxa_table()</span></code></a></p>
+</div>
+</div>
+<div class="section" id="adding-information-from-pfam">
+<h3>Adding information from Pfam<a class="headerlink" href="#adding-information-from-pfam" title="Permalink to this headline">¶</a></h3>
+<p>Adds the Pfam description for the annotation, by downloading the list from
+Pfam.</p>
+<p>The options allow to specify in which attribute the ID/ACCESSION is stored
+(defaults to <em>gene_id</em>) and which one between ID/ACCESSION is the value of that
+attribute (defaults to <em>ID</em>). if no description is found for the family, a
+warning message is logged.</p>
+</div>
+<div class="section" id="changes">
+<h3>Changes<a class="headerlink" href="#changes" title="Permalink to this headline">¶</a></h3>
+<div class="versionchanged">
+<p><span class="versionmodified changed">Changed in version 0.4.2: </span>added <em>-m</em> option for <em>cov_samtools</em> command, to calculate the average
+coverage for an annotation (<em>cov</em> attribute). Fixed loading compressed
+files</p>
+</div>
+<div class="versionchanged">
+<p><span class="versionmodified changed">Changed in version 0.3.4: </span>removed the <em>taxonomy</em> command, since a similar result can be obtained with
+<em>taxon-utils lca</em> and <em>add-gff-info addtaxa</em>. Removed <em>eggnog</em> command and
+added option to verbose the logging in <em>cov_samtools</em> (now is quiet), also
+changed the interface</p>
+</div>
+<div class="versionchanged">
+<p><span class="versionmodified changed">Changed in version 0.3.3: </span>changed how <em>addtaxa</em> <em>-a</em> works, to allow the use of <em>seq_id</em> as key to
+add the taxon_id</p>
+</div>
+<div class="versionchanged">
+<p><span class="versionmodified changed">Changed in version 0.3.0: </span>added <em>cov_samtools</em> command, <em>–split</em> option to <em>exp_syn</em>, <em>-c</em> option to
+<em>addtaxa</em>. <em>kegg</em> now does not skip annotations when the attribute is not
+found.</p>
+</div>
+<div class="versionchanged">
+<p><span class="versionmodified changed">Changed in version 0.2.6: </span>added <em>skip-no-taxon</em> option to <em>addtaxa</em></p>
+</div>
+<div class="versionchanged">
+<p><span class="versionmodified changed">Changed in version 0.2.5: </span>if a dictionary is supplied to <em>addtaxa</em>, the GFF is not preloaded</p>
+</div>
+<div class="versionchanged">
+<p><span class="versionmodified changed">Changed in version 0.2.3: </span>added <em>pfam</em> command, renamed <em>gitaxa</em> to <em>addtaxa</em> and made it general</p>
+</div>
+<div class="versionchanged">
+<p><span class="versionmodified changed">Changed in version 0.2.2: </span>added <em>eggnog</em>, <em>gitaxa</em> and <em>counts</em> command</p>
+</div>
+<div class="versionchanged">
+<p><span class="versionmodified changed">Changed in version 0.2.1.</span></p>
+</div>
+<ul class="simple">
+<li><p>added <em>-d</em> to <em>uniprot</em> command</p></li>
+<li><p>added cache to <em>uniprot</em> command</p></li>
+<li><p>added <em>kegg</em> command (cached)</p></li>
+</ul>
+<div class="versionchanged">
+<p><span class="versionmodified changed">Changed in version 0.1.16: </span>added <em>exp_syn</em> command</p>
+</div>
+<div class="versionchanged">
+<p><span class="versionmodified changed">Changed in version 0.1.15: </span><em>taxonomy</em> command <em>-b</em> option changed</p>
+</div>
+<div class="versionchanged">
+<p><span class="versionmodified changed">Changed in version 0.1.13.</span></p>
+</div>
+<ul class="simple">
+<li><p>added <em>–force-taxon-id</em> option to the <em>uniprot</em> command</p></li>
+<li><p>added <em>coverage</em> command</p></li>
+<li><p>added <em>taxonomy</em> command</p></li>
+<li><p>added <em>unipfile</em> command</p></li>
+</ul>
+<div class="versionadded">
+<p><span class="versionmodified added">New in version 0.1.12.</span></p>
+</div>
+</div>
+</div>
+<div class="section" id="options">
+<h2>Options<a class="headerlink" href="#options" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="add-gff-info">
+<h3>add-gff-info<a class="headerlink" href="#add-gff-info" title="Permalink to this headline">¶</a></h3>
+<p>Main function</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>add-gff-info <span class="o">[</span>OPTIONS<span class="o">]</span> COMMAND <span class="o">[</span>ARGS<span class="o">]</span>...
+</pre></div>
+</div>
+<p class="rubric">Options</p>
+<dl class="option">
+<dt id="cmdoption-add-gff-info-version">
+<code class="sig-name descname">--version</code><code class="sig-prename descclassname"></code><a class="headerlink" href="#cmdoption-add-gff-info-version" title="Permalink to this definition">¶</a></dt>
+<dd><p>Show the version and exit.</p>
+</dd></dl>
+
+<dl class="option">
+<dt id="cmdoption-add-gff-info-cite">
+<code class="sig-name descname">--cite</code><code class="sig-prename descclassname"></code><a class="headerlink" href="#cmdoption-add-gff-info-cite" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<div class="section" id="add-gff-info-addtaxa">
+<h4>addtaxa<a class="headerlink" href="#add-gff-info-addtaxa" title="Permalink to this headline">¶</a></h4>
+<p>Adds taxonomy information from a GI-Taxa,
+gene_id/taxon_id table or a dictionary serialised as a
+pickle/msgpack/json file, or a table in a HDF5 file</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>add-gff-info addtaxa <span class="o">[</span>OPTIONS<span class="o">]</span> <span class="o">[</span>INPUT_FILE<span class="o">]</span> <span class="o">[</span>OUTPUT_FILE<span class="o">]</span>
+</pre></div>
+</div>
+<p class="rubric">Options</p>
+<dl class="option">
+<dt id="cmdoption-add-gff-info-addtaxa-v">
+<code class="sig-name descname">-v</code><code class="sig-prename descclassname"></code><code class="sig-prename descclassname">, </code><code class="sig-name descname">--verbose</code><code class="sig-prename descclassname"></code><a class="headerlink" href="#cmdoption-add-gff-info-addtaxa-v" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="option">
+<dt id="cmdoption-add-gff-info-addtaxa-t">
+<code class="sig-name descname">-t</code><code class="sig-prename descclassname"></code><code class="sig-prename descclassname">, </code><code class="sig-name descname">--gene-taxon-table</code><code class="sig-prename descclassname"> &lt;gene_taxon_table&gt;</code><a class="headerlink" href="#cmdoption-add-gff-info-addtaxa-t" title="Permalink to this definition">¶</a></dt>
+<dd><p>GIDs taxonomy table (e.g. gi_taxid_nucl.dmp.gz) or a similar file where GENE/TAXON are tab separated and one per line</p>
+</dd></dl>
+
+<dl class="option">
+<dt id="cmdoption-add-gff-info-addtaxa-a">
+<code class="sig-name descname">-a</code><code class="sig-prename descclassname"></code><code class="sig-prename descclassname">, </code><code class="sig-name descname">--gene-attr</code><code class="sig-prename descclassname"> &lt;gene_attr&gt;</code><a class="headerlink" href="#cmdoption-add-gff-info-addtaxa-a" title="Permalink to this definition">¶</a></dt>
+<dd><p>In which attribute the GENEID in the table is stored (defaults to <em>gene_id</em>)</p>
+</dd></dl>
+
+<dl class="option">
+<dt id="cmdoption-add-gff-info-addtaxa-f">
+<code class="sig-name descname">-f</code><code class="sig-prename descclassname"></code><code class="sig-prename descclassname">, </code><code class="sig-name descname">--hdf-table</code><code class="sig-prename descclassname"> &lt;hdf_table&gt;</code><a class="headerlink" href="#cmdoption-add-gff-info-addtaxa-f" title="Permalink to this definition">¶</a></dt>
+<dd><p>HDF5 file and table name to use for taxon_id lookups. The format to pass is the file name, colon and the table file hf5:taxa-table. The index in the table is the accession_id, while the column <cite>taxon_id</cite> stores the taxon_id as int</p>
+</dd></dl>
+
+<dl class="option">
+<dt id="cmdoption-add-gff-info-addtaxa-x">
+<code class="sig-name descname">-x</code><code class="sig-prename descclassname"></code><code class="sig-prename descclassname">, </code><code class="sig-name descname">--taxonomy</code><code class="sig-prename descclassname"> &lt;taxonomy&gt;</code><a class="headerlink" href="#cmdoption-add-gff-info-addtaxa-x" title="Permalink to this definition">¶</a></dt>
+<dd><p>Taxonomy file - If given, both <em>taxon_name</em> and <em>lineage</em> attributes will be set</p>
+</dd></dl>
+
+<dl class="option">
+<dt id="cmdoption-add-gff-info-addtaxa-d">
+<code class="sig-name descname">-d</code><code class="sig-prename descclassname"></code><code class="sig-prename descclassname">, </code><code class="sig-name descname">--dictionary</code><code class="sig-prename descclassname"> &lt;dictionary&gt;</code><a class="headerlink" href="#cmdoption-add-gff-info-addtaxa-d" title="Permalink to this definition">¶</a></dt>
+<dd><p>A serialised dictionary, where the key is the GENEID and the value is TAXONID. It can be in json or msgpack format (can be a compressed file) <em>Note</em>: the dictionary values takes precedence over the table files</p>
+</dd></dl>
+
+<dl class="option">
+<dt id="cmdoption-add-gff-info-addtaxa-e">
+<code class="sig-name descname">-e</code><code class="sig-prename descclassname"></code><code class="sig-prename descclassname">, </code><code class="sig-name descname">--skip-no-taxon</code><code class="sig-prename descclassname"></code><a class="headerlink" href="#cmdoption-add-gff-info-addtaxa-e" title="Permalink to this definition">¶</a></dt>
+<dd><p>If used, annotations with no taxon_id won’t be outputted</p>
+</dd></dl>
+
+<dl class="option">
+<dt id="cmdoption-add-gff-info-addtaxa-db">
+<code class="sig-name descname">-db</code><code class="sig-prename descclassname"></code><code class="sig-prename descclassname">, </code><code class="sig-name descname">--taxon-db</code><code class="sig-prename descclassname"> &lt;taxon_db&gt;</code><a class="headerlink" href="#cmdoption-add-gff-info-addtaxa-db" title="Permalink to this definition">¶</a></dt>
+<dd><p>DB used to add the taxonomic information</p>
+</dd></dl>
+
+<dl class="option">
+<dt id="cmdoption-add-gff-info-addtaxa-c">
+<code class="sig-name descname">-c</code><code class="sig-prename descclassname"></code><code class="sig-prename descclassname">, </code><code class="sig-name descname">--cache-table</code><code class="sig-prename descclassname"></code><a class="headerlink" href="#cmdoption-add-gff-info-addtaxa-c" title="Permalink to this definition">¶</a></dt>
+<dd><p>If used, annotations are not preloaded, but the taxa table is cached, instead</p>
+</dd></dl>
+
+<dl class="option">
+<dt id="cmdoption-add-gff-info-addtaxa-progress">
+<code class="sig-name descname">--progress</code><code class="sig-prename descclassname"></code><a class="headerlink" href="#cmdoption-add-gff-info-addtaxa-progress" title="Permalink to this definition">¶</a></dt>
+<dd><p>Shows Progress Bar</p>
+</dd></dl>
+
+<p class="rubric">Arguments</p>
+<dl class="option">
+<dt id="cmdoption-add-gff-info-addtaxa-arg-input-file">
+<code class="sig-name descname">INPUT_FILE</code><code class="sig-prename descclassname"></code><a class="headerlink" href="#cmdoption-add-gff-info-addtaxa-arg-input-file" title="Permalink to this definition">¶</a></dt>
+<dd><p>Optional argument</p>
+</dd></dl>
+
+<dl class="option">
+<dt id="cmdoption-add-gff-info-addtaxa-arg-output-file">
+<code class="sig-name descname">OUTPUT_FILE</code><code class="sig-prename descclassname"></code><a class="headerlink" href="#cmdoption-add-gff-info-addtaxa-arg-output-file" title="Permalink to this definition">¶</a></dt>
+<dd><p>Optional argument</p>
+</dd></dl>
+
+</div>
+<div class="section" id="add-gff-info-counts">
+<h4>counts<a class="headerlink" href="#add-gff-info-counts" title="Permalink to this headline">¶</a></h4>
+<p>Adds counts data to the GFF file</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>add-gff-info counts <span class="o">[</span>OPTIONS<span class="o">]</span> <span class="o">[</span>INPUT_FILE<span class="o">]</span> <span class="o">[</span>OUTPUT_FILE<span class="o">]</span>
+</pre></div>
+</div>
+<p class="rubric">Options</p>
+<dl class="option">
+<dt id="cmdoption-add-gff-info-counts-v">
+<code class="sig-name descname">-v</code><code class="sig-prename descclassname"></code><code class="sig-prename descclassname">, </code><code class="sig-name descname">--verbose</code><code class="sig-prename descclassname"></code><a class="headerlink" href="#cmdoption-add-gff-info-counts-v" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="option">
+<dt id="cmdoption-add-gff-info-counts-s">
+<code class="sig-name descname">-s</code><code class="sig-prename descclassname"></code><code class="sig-prename descclassname">, </code><code class="sig-name descname">--samples</code><code class="sig-prename descclassname"> &lt;samples&gt;</code><a class="headerlink" href="#cmdoption-add-gff-info-counts-s" title="Permalink to this definition">¶</a></dt>
+<dd><p>Sample names, in the same order as the count files  [required]</p>
+</dd></dl>
+
+<dl class="option">
+<dt id="cmdoption-add-gff-info-counts-c">
+<code class="sig-name descname">-c</code><code class="sig-prename descclassname"></code><code class="sig-prename descclassname">, </code><code class="sig-name descname">--count-files</code><code class="sig-prename descclassname"> &lt;count_files&gt;</code><a class="headerlink" href="#cmdoption-add-gff-info-counts-c" title="Permalink to this definition">¶</a></dt>
+<dd><p>Count file(s)  [required]</p>
+</dd></dl>
+
+<dl class="option">
+<dt id="cmdoption-add-gff-info-counts-f">
+<code class="sig-name descname">-f</code><code class="sig-prename descclassname"></code><code class="sig-prename descclassname">, </code><code class="sig-name descname">--fpkms</code><code class="sig-prename descclassname"></code><a class="headerlink" href="#cmdoption-add-gff-info-counts-f" title="Permalink to this definition">¶</a></dt>
+<dd><p>If the counts are FPKMS</p>
+</dd></dl>
+
+<dl class="option">
+<dt id="cmdoption-add-gff-info-counts-e">
+<code class="sig-name descname">-e</code><code class="sig-prename descclassname"></code><code class="sig-prename descclassname">, </code><code class="sig-name descname">--featureCounts</code><code class="sig-prename descclassname"></code><a class="headerlink" href="#cmdoption-add-gff-info-counts-e" title="Permalink to this definition">¶</a></dt>
+<dd><p>If the counts files are from featureCounts</p>
+</dd></dl>
+
+<dl class="option">
+<dt id="cmdoption-add-gff-info-counts-progress">
+<code class="sig-name descname">--progress</code><code class="sig-prename descclassname"></code><a class="headerlink" href="#cmdoption-add-gff-info-counts-progress" title="Permalink to this definition">¶</a></dt>
+<dd><p>Shows Progress Bar</p>
+</dd></dl>
+
+<p class="rubric">Arguments</p>
+<dl class="option">
+<dt id="cmdoption-add-gff-info-counts-arg-input-file">
+<code class="sig-name descname">INPUT_FILE</code><code class="sig-prename descclassname"></code><a class="headerlink" href="#cmdoption-add-gff-info-counts-arg-input-file" title="Permalink to this definition">¶</a></dt>
+<dd><p>Optional argument</p>
+</dd></dl>
+
+<dl class="option">
+<dt id="cmdoption-add-gff-info-counts-arg-output-file">
+<code class="sig-name descname">OUTPUT_FILE</code><code class="sig-prename descclassname"></code><a class="headerlink" href="#cmdoption-add-gff-info-counts-arg-output-file" title="Permalink to this definition">¶</a></dt>
+<dd><p>Optional argument</p>
+</dd></dl>
+
+</div>
+<div class="section" id="add-gff-info-cov-samtools">
+<h4>cov_samtools<a class="headerlink" href="#add-gff-info-cov-samtools" title="Permalink to this headline">¶</a></h4>
+<p>Adds information from samtools_depth</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>add-gff-info cov_samtools <span class="o">[</span>OPTIONS<span class="o">]</span> <span class="o">[</span>INPUT_FILE<span class="o">]</span> <span class="o">[</span>OUTPUT_FILE<span class="o">]</span>
+</pre></div>
+</div>
+<p class="rubric">Options</p>
+<dl class="option">
+<dt id="cmdoption-add-gff-info-cov-samtools-v">
+<code class="sig-name descname">-v</code><code class="sig-prename descclassname"></code><code class="sig-prename descclassname">, </code><code class="sig-name descname">--verbose</code><code class="sig-prename descclassname"></code><a class="headerlink" href="#cmdoption-add-gff-info-cov-samtools-v" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="option">
+<dt id="cmdoption-add-gff-info-cov-samtools-m">
+<code class="sig-name descname">-m</code><code class="sig-prename descclassname"></code><code class="sig-prename descclassname">, </code><code class="sig-name descname">--average</code><code class="sig-prename descclassname"></code><a class="headerlink" href="#cmdoption-add-gff-info-cov-samtools-m" title="Permalink to this definition">¶</a></dt>
+<dd><p>if one or more samples are provided, the average coverage is calculated</p>
+</dd></dl>
+
+<dl class="option">
+<dt id="cmdoption-add-gff-info-cov-samtools-s">
+<code class="sig-name descname">-s</code><code class="sig-prename descclassname"></code><code class="sig-prename descclassname">, </code><code class="sig-name descname">--samples</code><code class="sig-prename descclassname"> &lt;samples&gt;</code><a class="headerlink" href="#cmdoption-add-gff-info-cov-samtools-s" title="Permalink to this definition">¶</a></dt>
+<dd><p>Sample name, will add a <cite>sample_cov</cite> in the GFF file. If not passed, the attribute will be <cite>cov</cite></p>
+</dd></dl>
+
+<dl class="option">
+<dt id="cmdoption-add-gff-info-cov-samtools-d">
+<code class="sig-name descname">-d</code><code class="sig-prename descclassname"></code><code class="sig-prename descclassname">, </code><code class="sig-name descname">--depths</code><code class="sig-prename descclassname"> &lt;depths&gt;</code><a class="headerlink" href="#cmdoption-add-gff-info-cov-samtools-d" title="Permalink to this definition">¶</a></dt>
+<dd><p><cite>samtools depth -aa</cite> file  [required]</p>
+</dd></dl>
+
+<dl class="option">
+<dt id="cmdoption-add-gff-info-cov-samtools-n">
+<code class="sig-name descname">-n</code><code class="sig-prename descclassname"></code><code class="sig-prename descclassname">, </code><code class="sig-name descname">--num-seqs</code><code class="sig-prename descclassname"> &lt;num_seqs&gt;</code><a class="headerlink" href="#cmdoption-add-gff-info-cov-samtools-n" title="Permalink to this definition">¶</a></dt>
+<dd><p>Number of sequences to update the log. If 0, no message is logged  [default: 0]</p>
+</dd></dl>
+
+<dl class="option">
+<dt id="cmdoption-add-gff-info-cov-samtools-progress">
+<code class="sig-name descname">--progress</code><code class="sig-prename descclassname"></code><a class="headerlink" href="#cmdoption-add-gff-info-cov-samtools-progress" title="Permalink to this definition">¶</a></dt>
+<dd><p>Shows Progress Bar</p>
+</dd></dl>
+
+<p class="rubric">Arguments</p>
+<dl class="option">
+<dt id="cmdoption-add-gff-info-cov-samtools-arg-input-file">
+<code class="sig-name descname">INPUT_FILE</code><code class="sig-prename descclassname"></code><a class="headerlink" href="#cmdoption-add-gff-info-cov-samtools-arg-input-file" title="Permalink to this definition">¶</a></dt>
+<dd><p>Optional argument</p>
+</dd></dl>
+
+<dl class="option">
+<dt id="cmdoption-add-gff-info-cov-samtools-arg-output-file">
+<code class="sig-name descname">OUTPUT_FILE</code><code class="sig-prename descclassname"></code><a class="headerlink" href="#cmdoption-add-gff-info-cov-samtools-arg-output-file" title="Permalink to this definition">¶</a></dt>
+<dd><p>Optional argument</p>
+</dd></dl>
+
+</div>
+<div class="section" id="add-gff-info-coverage">
+<h4>coverage<a class="headerlink" href="#add-gff-info-coverage" title="Permalink to this headline">¶</a></h4>
+<p>Adds coverage information from BAM Alignment
+files</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>add-gff-info coverage <span class="o">[</span>OPTIONS<span class="o">]</span> <span class="o">[</span>INPUT_FILE<span class="o">]</span> <span class="o">[</span>OUTPUT_FILE<span class="o">]</span>
+</pre></div>
+</div>
+<p class="rubric">Options</p>
+<dl class="option">
+<dt id="cmdoption-add-gff-info-coverage-v">
+<code class="sig-name descname">-v</code><code class="sig-prename descclassname"></code><code class="sig-prename descclassname">, </code><code class="sig-name descname">--verbose</code><code class="sig-prename descclassname"></code><a class="headerlink" href="#cmdoption-add-gff-info-coverage-v" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="option">
+<dt id="cmdoption-add-gff-info-coverage-a">
+<code class="sig-name descname">-a</code><code class="sig-prename descclassname"></code><code class="sig-prename descclassname">, </code><code class="sig-name descname">--sample-alignment</code><code class="sig-prename descclassname"> &lt;sample_alignment&gt;</code><a class="headerlink" href="#cmdoption-add-gff-info-coverage-a" title="Permalink to this definition">¶</a></dt>
+<dd><p>sample name and correspondent alignment file separated by comma  [required]</p>
+</dd></dl>
+
+<p class="rubric">Arguments</p>
+<dl class="option">
+<dt id="cmdoption-add-gff-info-coverage-arg-input-file">
+<code class="sig-name descname">INPUT_FILE</code><code class="sig-prename descclassname"></code><a class="headerlink" href="#cmdoption-add-gff-info-coverage-arg-input-file" title="Permalink to this definition">¶</a></dt>
+<dd><p>Optional argument</p>
+</dd></dl>
+
+<dl class="option">
+<dt id="cmdoption-add-gff-info-coverage-arg-output-file">
+<code class="sig-name descname">OUTPUT_FILE</code><code class="sig-prename descclassname"></code><a class="headerlink" href="#cmdoption-add-gff-info-coverage-arg-output-file" title="Permalink to this definition">¶</a></dt>
+<dd><p>Optional argument</p>
+</dd></dl>
+
+</div>
+<div class="section" id="add-gff-info-exp-syn">
+<h4>exp_syn<a class="headerlink" href="#add-gff-info-exp-syn" title="Permalink to this headline">¶</a></h4>
+<p>Adds expected synonymous and non-synonymous
+changes information</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>add-gff-info exp_syn <span class="o">[</span>OPTIONS<span class="o">]</span> <span class="o">[</span>INPUT_FILE<span class="o">]</span> <span class="o">[</span>OUTPUT_FILE<span class="o">]</span>
+</pre></div>
+</div>
+<p class="rubric">Options</p>
+<dl class="option">
+<dt id="cmdoption-add-gff-info-exp-syn-v">
+<code class="sig-name descname">-v</code><code class="sig-prename descclassname"></code><code class="sig-prename descclassname">, </code><code class="sig-name descname">--verbose</code><code class="sig-prename descclassname"></code><a class="headerlink" href="#cmdoption-add-gff-info-exp-syn-v" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="option">
+<dt id="cmdoption-add-gff-info-exp-syn-r">
+<code class="sig-name descname">-r</code><code class="sig-prename descclassname"></code><code class="sig-prename descclassname">, </code><code class="sig-name descname">--reference</code><code class="sig-prename descclassname"> &lt;reference&gt;</code><a class="headerlink" href="#cmdoption-add-gff-info-exp-syn-r" title="Permalink to this definition">¶</a></dt>
+<dd><p>reference sequence in fasta format  [required]</p>
+</dd></dl>
+
+<dl class="option">
+<dt id="cmdoption-add-gff-info-exp-syn-s">
+<code class="sig-name descname">-s</code><code class="sig-prename descclassname"></code><code class="sig-prename descclassname">, </code><code class="sig-name descname">--split</code><code class="sig-prename descclassname"></code><a class="headerlink" href="#cmdoption-add-gff-info-exp-syn-s" title="Permalink to this definition">¶</a></dt>
+<dd><p>Split the sequence header of the reference at the first space, to emulate BLAST behaviour</p>
+</dd></dl>
+
+<dl class="option">
+<dt id="cmdoption-add-gff-info-exp-syn-progress">
+<code class="sig-name descname">--progress</code><code class="sig-prename descclassname"></code><a class="headerlink" href="#cmdoption-add-gff-info-exp-syn-progress" title="Permalink to this definition">¶</a></dt>
+<dd><p>Shows Progress Bar</p>
+</dd></dl>
+
+<p class="rubric">Arguments</p>
+<dl class="option">
+<dt id="cmdoption-add-gff-info-exp-syn-arg-input-file">
+<code class="sig-name descname">INPUT_FILE</code><code class="sig-prename descclassname"></code><a class="headerlink" href="#cmdoption-add-gff-info-exp-syn-arg-input-file" title="Permalink to this definition">¶</a></dt>
+<dd><p>Optional argument</p>
+</dd></dl>
+
+<dl class="option">
+<dt id="cmdoption-add-gff-info-exp-syn-arg-output-file">
+<code class="sig-name descname">OUTPUT_FILE</code><code class="sig-prename descclassname"></code><a class="headerlink" href="#cmdoption-add-gff-info-exp-syn-arg-output-file" title="Permalink to this definition">¶</a></dt>
+<dd><p>Optional argument</p>
+</dd></dl>
+
+</div>
+<div class="section" id="add-gff-info-kegg">
+<h4>kegg<a class="headerlink" href="#add-gff-info-kegg" title="Permalink to this headline">¶</a></h4>
+<p>Adds information and mapping from Kegg</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>add-gff-info kegg <span class="o">[</span>OPTIONS<span class="o">]</span> <span class="o">[</span>INPUT_FILE<span class="o">]</span> <span class="o">[</span>OUTPUT_FILE<span class="o">]</span>
+</pre></div>
+</div>
+<p class="rubric">Options</p>
+<dl class="option">
+<dt id="cmdoption-add-gff-info-kegg-v">
+<code class="sig-name descname">-v</code><code class="sig-prename descclassname"></code><code class="sig-prename descclassname">, </code><code class="sig-name descname">--verbose</code><code class="sig-prename descclassname"></code><a class="headerlink" href="#cmdoption-add-gff-info-kegg-v" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="option">
+<dt id="cmdoption-add-gff-info-kegg-c">
+<code class="sig-name descname">-c</code><code class="sig-prename descclassname"></code><code class="sig-prename descclassname">, </code><code class="sig-name descname">--email</code><code class="sig-prename descclassname"> &lt;email&gt;</code><a class="headerlink" href="#cmdoption-add-gff-info-kegg-c" title="Permalink to this definition">¶</a></dt>
+<dd><p>Contact email  [required]</p>
+</dd></dl>
+
+<dl class="option">
+<dt id="cmdoption-add-gff-info-kegg-d">
+<code class="sig-name descname">-d</code><code class="sig-prename descclassname"></code><code class="sig-prename descclassname">, </code><code class="sig-name descname">--description</code><code class="sig-prename descclassname"></code><a class="headerlink" href="#cmdoption-add-gff-info-kegg-d" title="Permalink to this definition">¶</a></dt>
+<dd><p>Add Kegg description</p>
+</dd></dl>
+
+<dl class="option">
+<dt id="cmdoption-add-gff-info-kegg-p">
+<code class="sig-name descname">-p</code><code class="sig-prename descclassname"></code><code class="sig-prename descclassname">, </code><code class="sig-name descname">--pathways</code><code class="sig-prename descclassname"></code><a class="headerlink" href="#cmdoption-add-gff-info-kegg-p" title="Permalink to this definition">¶</a></dt>
+<dd><p>Add pathways ID involved</p>
+</dd></dl>
+
+<dl class="option">
+<dt id="cmdoption-add-gff-info-kegg-m">
+<code class="sig-name descname">-m</code><code class="sig-prename descclassname"></code><code class="sig-prename descclassname">, </code><code class="sig-name descname">--kegg-id</code><code class="sig-prename descclassname"> &lt;kegg_id&gt;</code><a class="headerlink" href="#cmdoption-add-gff-info-kegg-m" title="Permalink to this definition">¶</a></dt>
+<dd><p>In which attribute the Kegg ID is stored (defaults to <em>gene_id</em>)</p>
+</dd></dl>
+
+<p class="rubric">Arguments</p>
+<dl class="option">
+<dt id="cmdoption-add-gff-info-kegg-arg-input-file">
+<code class="sig-name descname">INPUT_FILE</code><code class="sig-prename descclassname"></code><a class="headerlink" href="#cmdoption-add-gff-info-kegg-arg-input-file" title="Permalink to this definition">¶</a></dt>
+<dd><p>Optional argument</p>
+</dd></dl>
+
+<dl class="option">
+<dt id="cmdoption-add-gff-info-kegg-arg-output-file">
+<code class="sig-name descname">OUTPUT_FILE</code><code class="sig-prename descclassname"></code><a class="headerlink" href="#cmdoption-add-gff-info-kegg-arg-output-file" title="Permalink to this definition">¶</a></dt>
+<dd><p>Optional argument</p>
+</dd></dl>
+
+</div>
+<div class="section" id="add-gff-info-pfam">
+<h4>pfam<a class="headerlink" href="#add-gff-info-pfam" title="Permalink to this headline">¶</a></h4>
+<p>Adds information from Pfam</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>add-gff-info pfam <span class="o">[</span>OPTIONS<span class="o">]</span> <span class="o">[</span>INPUT_FILE<span class="o">]</span> <span class="o">[</span>OUTPUT_FILE<span class="o">]</span>
+</pre></div>
+</div>
+<p class="rubric">Options</p>
+<dl class="option">
+<dt id="cmdoption-add-gff-info-pfam-v">
+<code class="sig-name descname">-v</code><code class="sig-prename descclassname"></code><code class="sig-prename descclassname">, </code><code class="sig-name descname">--verbose</code><code class="sig-prename descclassname"></code><a class="headerlink" href="#cmdoption-add-gff-info-pfam-v" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="option">
+<dt id="cmdoption-add-gff-info-pfam-i">
+<code class="sig-name descname">-i</code><code class="sig-prename descclassname"></code><code class="sig-prename descclassname">, </code><code class="sig-name descname">--id-attr</code><code class="sig-prename descclassname"> &lt;id_attr&gt;</code><a class="headerlink" href="#cmdoption-add-gff-info-pfam-i" title="Permalink to this definition">¶</a></dt>
+<dd><p>In which attribute the Pfam ID/ACCESSION is stored (defaults to <em>gene_id</em>)</p>
+</dd></dl>
+
+<dl class="option">
+<dt id="cmdoption-add-gff-info-pfam-a">
+<code class="sig-name descname">-a</code><code class="sig-prename descclassname"></code><code class="sig-prename descclassname">, </code><code class="sig-name descname">--use-accession</code><code class="sig-prename descclassname"></code><a class="headerlink" href="#cmdoption-add-gff-info-pfam-a" title="Permalink to this definition">¶</a></dt>
+<dd><p>If used, the attribute value is the Pfam ACCESSION (e.g. PF06894), not ID (e.g. Phage_TAC_2)</p>
+</dd></dl>
+
+<p class="rubric">Arguments</p>
+<dl class="option">
+<dt id="cmdoption-add-gff-info-pfam-arg-input-file">
+<code class="sig-name descname">INPUT_FILE</code><code class="sig-prename descclassname"></code><a class="headerlink" href="#cmdoption-add-gff-info-pfam-arg-input-file" title="Permalink to this definition">¶</a></dt>
+<dd><p>Optional argument</p>
+</dd></dl>
+
+<dl class="option">
+<dt id="cmdoption-add-gff-info-pfam-arg-output-file">
+<code class="sig-name descname">OUTPUT_FILE</code><code class="sig-prename descclassname"></code><a class="headerlink" href="#cmdoption-add-gff-info-pfam-arg-output-file" title="Permalink to this definition">¶</a></dt>
+<dd><p>Optional argument</p>
+</dd></dl>
+
+</div>
+<div class="section" id="add-gff-info-unipfile">
+<h4>unipfile<a class="headerlink" href="#add-gff-info-unipfile" title="Permalink to this headline">¶</a></h4>
+<p>Adds expected synonymous and non-synonymous
+changes information</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>add-gff-info unipfile <span class="o">[</span>OPTIONS<span class="o">]</span> <span class="o">[</span>INPUT_FILE<span class="o">]</span> <span class="o">[</span>OUTPUT_FILE<span class="o">]</span>
+</pre></div>
+</div>
+<p class="rubric">Options</p>
+<dl class="option">
+<dt id="cmdoption-add-gff-info-unipfile-v">
+<code class="sig-name descname">-v</code><code class="sig-prename descclassname"></code><code class="sig-prename descclassname">, </code><code class="sig-name descname">--verbose</code><code class="sig-prename descclassname"></code><a class="headerlink" href="#cmdoption-add-gff-info-unipfile-v" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="option">
+<dt id="cmdoption-add-gff-info-unipfile-i">
+<code class="sig-name descname">-i</code><code class="sig-prename descclassname"></code><code class="sig-prename descclassname">, </code><code class="sig-name descname">--mapping-file</code><code class="sig-prename descclassname"> &lt;mapping_file&gt;</code><a class="headerlink" href="#cmdoption-add-gff-info-unipfile-i" title="Permalink to this definition">¶</a></dt>
+<dd><p>Uniprot mapping file  [required]</p>
+</dd></dl>
+
+<dl class="option">
+<dt id="cmdoption-add-gff-info-unipfile-f">
+<code class="sig-name descname">-f</code><code class="sig-prename descclassname"></code><code class="sig-prename descclassname">, </code><code class="sig-name descname">--force-taxon-id</code><code class="sig-prename descclassname"></code><a class="headerlink" href="#cmdoption-add-gff-info-unipfile-f" title="Permalink to this definition">¶</a></dt>
+<dd><p>Overwrite taxon_id if already present</p>
+</dd></dl>
+
+<dl class="option">
+<dt id="cmdoption-add-gff-info-unipfile-m">
+<code class="sig-name descname">-m</code><code class="sig-prename descclassname"></code><code class="sig-prename descclassname">, </code><code class="sig-name descname">--mapping</code><code class="sig-prename descclassname"> &lt;mapping&gt;</code><a class="headerlink" href="#cmdoption-add-gff-info-unipfile-m" title="Permalink to this definition">¶</a></dt>
+<dd><p>Mappings to add  [required]</p>
+<dl class="field-list simple">
+<dt class="field-odd">Options</dt>
+<dd class="field-odd"><p>NCBI_TaxID|eggNOG|KO|KEGG|BioCyc|UniPathway|EMBL|EMBL-CDS|GI|STRING</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="option">
+<dt id="cmdoption-add-gff-info-unipfile-progress">
+<code class="sig-name descname">--progress</code><code class="sig-prename descclassname"></code><a class="headerlink" href="#cmdoption-add-gff-info-unipfile-progress" title="Permalink to this definition">¶</a></dt>
+<dd><p>Shows Progress Bar</p>
+</dd></dl>
+
+<p class="rubric">Arguments</p>
+<dl class="option">
+<dt id="cmdoption-add-gff-info-unipfile-arg-input-file">
+<code class="sig-name descname">INPUT_FILE</code><code class="sig-prename descclassname"></code><a class="headerlink" href="#cmdoption-add-gff-info-unipfile-arg-input-file" title="Permalink to this definition">¶</a></dt>
+<dd><p>Optional argument</p>
+</dd></dl>
+
+<dl class="option">
+<dt id="cmdoption-add-gff-info-unipfile-arg-output-file">
+<code class="sig-name descname">OUTPUT_FILE</code><code class="sig-prename descclassname"></code><a class="headerlink" href="#cmdoption-add-gff-info-unipfile-arg-output-file" title="Permalink to this definition">¶</a></dt>
+<dd><p>Optional argument</p>
+</dd></dl>
+
+</div>
+<div class="section" id="add-gff-info-uniprot">
+<h4>uniprot<a class="headerlink" href="#add-gff-info-uniprot" title="Permalink to this headline">¶</a></h4>
+<p>Adds information from GFF whose gene_id is
+from Uniprot</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>add-gff-info uniprot <span class="o">[</span>OPTIONS<span class="o">]</span> <span class="o">[</span>INPUT_FILE<span class="o">]</span> <span class="o">[</span>OUTPUT_FILE<span class="o">]</span>
+</pre></div>
+</div>
+<p class="rubric">Options</p>
+<dl class="option">
+<dt id="cmdoption-add-gff-info-uniprot-v">
+<code class="sig-name descname">-v</code><code class="sig-prename descclassname"></code><code class="sig-prename descclassname">, </code><code class="sig-name descname">--verbose</code><code class="sig-prename descclassname"></code><a class="headerlink" href="#cmdoption-add-gff-info-uniprot-v" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="option">
+<dt id="cmdoption-add-gff-info-uniprot-c">
+<code class="sig-name descname">-c</code><code class="sig-prename descclassname"></code><code class="sig-prename descclassname">, </code><code class="sig-name descname">--email</code><code class="sig-prename descclassname"> &lt;email&gt;</code><a class="headerlink" href="#cmdoption-add-gff-info-uniprot-c" title="Permalink to this definition">¶</a></dt>
+<dd><p>Contact email  [required]</p>
+</dd></dl>
+
+<dl class="option">
+<dt id="cmdoption-add-gff-info-uniprot-buffer">
+<code class="sig-name descname">--buffer</code><code class="sig-prename descclassname"> &lt;buffer&gt;</code><a class="headerlink" href="#cmdoption-add-gff-info-uniprot-buffer" title="Permalink to this definition">¶</a></dt>
+<dd><p>Number of annotations to keep in memory  [default: 50]</p>
+</dd></dl>
+
+<dl class="option">
+<dt id="cmdoption-add-gff-info-uniprot-f">
+<code class="sig-name descname">-f</code><code class="sig-prename descclassname"></code><code class="sig-prename descclassname">, </code><code class="sig-name descname">--force-taxon-id</code><code class="sig-prename descclassname"></code><a class="headerlink" href="#cmdoption-add-gff-info-uniprot-f" title="Permalink to this definition">¶</a></dt>
+<dd><p>Overwrite taxon_id if already present</p>
+</dd></dl>
+
+<dl class="option">
+<dt id="cmdoption-add-gff-info-uniprot-t">
+<code class="sig-name descname">-t</code><code class="sig-prename descclassname"></code><code class="sig-prename descclassname">, </code><code class="sig-name descname">--taxon-id</code><code class="sig-prename descclassname"></code><a class="headerlink" href="#cmdoption-add-gff-info-uniprot-t" title="Permalink to this definition">¶</a></dt>
+<dd><p>Add taxonomic ids to annotations, if taxon_id is found, it won’t be Overwritten.</p>
+</dd></dl>
+
+<dl class="option">
+<dt id="cmdoption-add-gff-info-uniprot-l">
+<code class="sig-name descname">-l</code><code class="sig-prename descclassname"></code><code class="sig-prename descclassname">, </code><code class="sig-name descname">--lineage</code><code class="sig-prename descclassname"></code><a class="headerlink" href="#cmdoption-add-gff-info-uniprot-l" title="Permalink to this definition">¶</a></dt>
+<dd><p>Add taxonomic lineage to annotations</p>
+</dd></dl>
+
+<dl class="option">
+<dt id="cmdoption-add-gff-info-uniprot-e">
+<code class="sig-name descname">-e</code><code class="sig-prename descclassname"></code><code class="sig-prename descclassname">, </code><code class="sig-name descname">--eggnog</code><code class="sig-prename descclassname"></code><a class="headerlink" href="#cmdoption-add-gff-info-uniprot-e" title="Permalink to this definition">¶</a></dt>
+<dd><p>Add eggNOG mappings to annotations</p>
+</dd></dl>
+
+<dl class="option">
+<dt id="cmdoption-add-gff-info-uniprot-ec">
+<code class="sig-name descname">-ec</code><code class="sig-prename descclassname"></code><code class="sig-prename descclassname">, </code><code class="sig-name descname">--enzymes</code><code class="sig-prename descclassname"></code><a class="headerlink" href="#cmdoption-add-gff-info-uniprot-ec" title="Permalink to this definition">¶</a></dt>
+<dd><p>Add EC mappings to annotations</p>
+</dd></dl>
+
+<dl class="option">
+<dt id="cmdoption-add-gff-info-uniprot-ko">
+<code class="sig-name descname">-ko</code><code class="sig-prename descclassname"></code><code class="sig-prename descclassname">, </code><code class="sig-name descname">--kegg_orthologs</code><code class="sig-prename descclassname"></code><a class="headerlink" href="#cmdoption-add-gff-info-uniprot-ko" title="Permalink to this definition">¶</a></dt>
+<dd><p>Add KO mappings to annotations</p>
+</dd></dl>
+
+<dl class="option">
+<dt id="cmdoption-add-gff-info-uniprot-d">
+<code class="sig-name descname">-d</code><code class="sig-prename descclassname"></code><code class="sig-prename descclassname">, </code><code class="sig-name descname">--protein-names</code><code class="sig-prename descclassname"></code><a class="headerlink" href="#cmdoption-add-gff-info-uniprot-d" title="Permalink to this definition">¶</a></dt>
+<dd><p>Add Uniprot description</p>
+</dd></dl>
+
+<dl class="option">
+<dt id="cmdoption-add-gff-info-uniprot-m">
+<code class="sig-name descname">-m</code><code class="sig-prename descclassname"></code><code class="sig-prename descclassname">, </code><code class="sig-name descname">--mapping</code><code class="sig-prename descclassname"> &lt;mapping&gt;</code><a class="headerlink" href="#cmdoption-add-gff-info-uniprot-m" title="Permalink to this definition">¶</a></dt>
+<dd><p>Add any DB mappings to annotations</p>
+</dd></dl>
+
+<p class="rubric">Arguments</p>
+<dl class="option">
+<dt id="cmdoption-add-gff-info-uniprot-arg-input-file">
+<code class="sig-name descname">INPUT_FILE</code><code class="sig-prename descclassname"></code><a class="headerlink" href="#cmdoption-add-gff-info-uniprot-arg-input-file" title="Permalink to this definition">¶</a></dt>
+<dd><p>Optional argument</p>
+</dd></dl>
+
+<dl class="option">
+<dt id="cmdoption-add-gff-info-uniprot-arg-output-file">
+<code class="sig-name descname">OUTPUT_FILE</code><code class="sig-prename descclassname"></code><a class="headerlink" href="#cmdoption-add-gff-info-uniprot-arg-output-file" title="Permalink to this definition">¶</a></dt>
+<dd><p>Optional argument</p>
+</dd></dl>
+
+</div>
+</div>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="get-gff-info.html" class="btn btn-neutral float-right" title="get-gff-info - Extract informations to GFF annotations" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="filter-gff.html" class="btn btn-neutral float-left" title="filter-gff - Filter GFF annotations" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2013-2015, Francesco Rubino
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

@@ -1,0 +1,375 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>mgkit.io.fasta &mdash; MGKit: Metagenomic framework 0.5.0 documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+  <script type="text/javascript" src="../../../_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../../../" src="../../../_static/documentation_options.js"></script>
+        <script type="text/javascript" src="../../../_static/jquery.js"></script>
+        <script type="text/javascript" src="../../../_static/underscore.js"></script>
+        <script type="text/javascript" src="../../../_static/doctools.js"></script>
+        <script type="text/javascript" src="../../../_static/language_data.js"></script>
+        <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+        <script async="async" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+        <script type="text/x-mathjax-config">MathJax.Hub.Config({"tex2jax": {"inlineMath": [["$", "$"], ["\\(", "\\)"]], "processEscapes": true, "ignoreClass": "document", "processClass": "math|output_area"}})</script>
+    
+    <script type="text/javascript" src="../../../_static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="../../../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../../../_static/graphviz.css" type="text/css" />
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../../../index.html" class="icon icon-home"> MGKit: Metagenomic framework
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                0.5.0
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../introduction.html">Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../install.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../pipeline/index.html">Metagenomic Pipeline</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../scripts/index.html">Scripts Details</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../examples/index.html">Example Notebooks</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../gff.html">MGKit GFF Specifications</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../library.html">Library Reference</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../changes.html">Changes</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../index.html">MGKit: Metagenomic framework</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../../../index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="../../index.html">Module code</a> &raquo;</li>
+        
+          <li><a href="../../mgkit.html">mgkit</a> &raquo;</li>
+        
+      <li>mgkit.io.fasta</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <h1>Source code for mgkit.io.fasta</h1><div class="highlight"><pre>
+<span></span><span class="c1"># coding=utf8</span>
+<span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">Simple fasta parser and a few utility functions</span>
+<span class="sd">&quot;&quot;&quot;</span>
+<span class="kn">import</span> <span class="nn">itertools</span>
+<span class="kn">import</span> <span class="nn">logging</span>
+<span class="kn">from</span> <span class="nn">builtins</span> <span class="kn">import</span> <span class="nb">range</span>
+<span class="kn">import</span> <span class="nn">mgkit.io</span>
+
+<span class="n">LOG</span> <span class="o">=</span> <span class="n">logging</span><span class="o">.</span><span class="n">getLogger</span><span class="p">(</span><span class="vm">__name__</span><span class="p">)</span>
+
+
+<div class="viewcode-block" id="load_fasta"><a class="viewcode-back" href="../../../api/mgkit.io.fasta.html#mgkit.io.fasta.load_fasta">[docs]</a><span class="k">def</span> <span class="nf">load_fasta</span><span class="p">(</span><span class="n">file_handle</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    .. versionchanged:: 0.1.13</span>
+<span class="sd">        now returns uppercase sequences</span>
+
+<span class="sd">    Loads a fasta file and returns a generator of tuples in which the first</span>
+<span class="sd">    element is the name of the sequence and the second the sequence</span>
+
+<span class="sd">    Arguments:</span>
+<span class="sd">        file_handle (str, file): fasta file to open; a file name or a file handle</span>
+<span class="sd">            is expected</span>
+
+<span class="sd">    Yields:</span>
+<span class="sd">        tuple: first element is the sequence name/header, the second element is</span>
+<span class="sd">        the sequence</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">file_handle</span> <span class="o">=</span> <span class="n">mgkit</span><span class="o">.</span><span class="n">io</span><span class="o">.</span><span class="n">open_file</span><span class="p">(</span><span class="n">file_handle</span><span class="p">,</span> <span class="s1">&#39;rb&#39;</span><span class="p">)</span>
+
+    <span class="k">if</span> <span class="nb">getattr</span><span class="p">(</span><span class="n">file_handle</span><span class="p">,</span> <span class="s1">&#39;name&#39;</span><span class="p">,</span> <span class="kc">None</span><span class="p">)</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="n">LOG</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;Reading fasta file </span><span class="si">%s</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">file_handle</span><span class="o">.</span><span class="n">name</span><span class="p">)</span>
+
+    <span class="n">cur_name</span> <span class="o">=</span> <span class="s2">&quot;&quot;</span>
+    <span class="n">last_name</span> <span class="o">=</span> <span class="s2">&quot;&quot;</span>
+    <span class="n">nseq</span> <span class="o">=</span> <span class="mi">0</span>
+    <span class="c1"># Better use &#39;&#39;.join(list) than seq+=seq, it&#39;s faster</span>
+    <span class="n">cur_seq</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="c1"># main loop to read file&#39;s sequences</span>
+    <span class="k">for</span> <span class="n">line</span> <span class="ow">in</span> <span class="n">file_handle</span><span class="p">:</span>
+        <span class="n">line</span> <span class="o">=</span> <span class="n">line</span><span class="o">.</span><span class="n">decode</span><span class="p">(</span><span class="s1">&#39;ascii&#39;</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">line</span><span class="o">.</span><span class="n">startswith</span><span class="p">(</span><span class="s1">&#39;&gt;&#39;</span><span class="p">):</span>
+            <span class="k">if</span> <span class="n">cur_seq</span> <span class="o">!=</span> <span class="p">[]:</span>
+                <span class="c1"># start of next sequence</span>
+                <span class="k">yield</span> <span class="n">cur_name</span><span class="p">,</span> <span class="s1">&#39;&#39;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">cur_seq</span><span class="p">)</span><span class="o">.</span><span class="n">upper</span><span class="p">()</span>
+                <span class="n">nseq</span> <span class="o">+=</span> <span class="mi">1</span>
+                <span class="n">cur_seq</span> <span class="o">=</span> <span class="p">[]</span>
+            <span class="c1"># save previous name for loop&#39;s else clause</span>
+            <span class="n">last_name</span> <span class="o">=</span> <span class="n">cur_name</span>
+            <span class="c1"># classic fasta, all characters besides starting &quot;&gt;&quot; and rightmost</span>
+            <span class="c1"># whitespace</span>
+            <span class="n">cur_name</span> <span class="o">=</span> <span class="n">line</span><span class="p">[</span><span class="mi">1</span><span class="p">:]</span><span class="o">.</span><span class="n">rstrip</span><span class="p">()</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">cur_seq</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">line</span><span class="o">.</span><span class="n">rstrip</span><span class="p">())</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="c1"># handles cases where there&#39;s no newline after last</span>
+        <span class="c1"># portion of the sequence at EOF</span>
+        <span class="k">if</span> <span class="n">nseq</span> <span class="o">!=</span> <span class="mi">0</span><span class="p">:</span>
+            <span class="k">if</span> <span class="n">cur_name</span> <span class="o">!=</span> <span class="n">last_name</span><span class="p">:</span>
+                <span class="k">yield</span> <span class="n">cur_name</span><span class="p">,</span> <span class="s1">&#39;&#39;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">cur_seq</span><span class="p">)</span><span class="o">.</span><span class="n">upper</span><span class="p">()</span>
+                <span class="n">nseq</span> <span class="o">+=</span> <span class="mi">1</span>
+        <span class="c1"># case in which only one sequence is present</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">yield</span> <span class="n">cur_name</span><span class="p">,</span> <span class="s1">&#39;&#39;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">cur_seq</span><span class="p">)</span><span class="o">.</span><span class="n">upper</span><span class="p">()</span>
+            <span class="n">nseq</span> <span class="o">+=</span> <span class="mi">1</span>
+    <span class="n">file_handle</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+
+    <span class="n">LOG</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;Read </span><span class="si">%d</span><span class="s2"> fasta sequences&quot;</span><span class="p">,</span> <span class="n">nseq</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="load_fasta_files"><a class="viewcode-back" href="../../../api/mgkit.io.fasta.html#mgkit.io.fasta.load_fasta_files">[docs]</a><span class="k">def</span> <span class="nf">load_fasta_files</span><span class="p">(</span><span class="n">files</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    .. versionadded:: 0.3.4</span>
+
+<span class="sd">    Loads all fasta files from a list or iterable</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">return</span> <span class="n">itertools</span><span class="o">.</span><span class="n">chain</span><span class="p">(</span>
+        <span class="o">*</span><span class="p">(</span>
+            <span class="n">load_fasta</span><span class="p">(</span><span class="n">file_handle</span><span class="p">)</span>
+            <span class="k">for</span> <span class="n">file_handle</span> <span class="ow">in</span> <span class="n">files</span>
+        <span class="p">)</span>
+
+    <span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="load_fasta_rename"><a class="viewcode-back" href="../../../api/mgkit.io.fasta.html#mgkit.io.fasta.load_fasta_rename">[docs]</a><span class="k">def</span> <span class="nf">load_fasta_rename</span><span class="p">(</span><span class="n">file_handle</span><span class="p">,</span> <span class="n">name_func</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    .. versionadded:: 0.3.1</span>
+
+<span class="sd">    Renames the header of the sequences using *name_func*, which is called on</span>
+<span class="sd">    each header. By default, the behaviour is to keep the header to the left of</span>
+<span class="sd">    the first space (BLAST behaviour).</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">if</span> <span class="n">name_func</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="k">def</span> <span class="nf">name_func</span><span class="p">(</span><span class="n">x</span><span class="p">):</span> <span class="k">return</span> <span class="n">x</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">&#39; &#39;</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span>
+
+    <span class="k">for</span> <span class="n">seq_id</span><span class="p">,</span> <span class="n">seq</span> <span class="ow">in</span> <span class="n">load_fasta</span><span class="p">(</span><span class="n">file_handle</span><span class="p">):</span>
+        <span class="k">yield</span> <span class="n">name_func</span><span class="p">(</span><span class="n">seq_id</span><span class="p">),</span> <span class="n">seq</span></div>
+
+
+<div class="viewcode-block" id="load_fasta_prodigal"><a class="viewcode-back" href="../../../api/mgkit.io.fasta.html#mgkit.io.fasta.load_fasta_prodigal">[docs]</a><span class="k">def</span> <span class="nf">load_fasta_prodigal</span><span class="p">(</span><span class="n">file_handle</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    .. versionadded:: 0.3.1</span>
+
+<span class="sd">    Reads a Prodigal aminoacid fasta file and yields a dictionary with</span>
+<span class="sd">    basic information about the sequences.</span>
+
+<span class="sd">    Arguments:</span>
+<span class="sd">        file_handle (str, file): passed to :func:`load_fasta`</span>
+
+<span class="sd">    Yields:</span>
+<span class="sd">        dict: dictionary with the information contained in the header, the last</span>
+<span class="sd">        of the attributes put into key *attr*, while the rest are transformed</span>
+<span class="sd">        to other keys: seq_id, seq, start, end (genomic), strand, ordinal of</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="k">for</span> <span class="n">seq_id</span><span class="p">,</span> <span class="n">seq</span> <span class="ow">in</span> <span class="n">load_fasta</span><span class="p">(</span><span class="n">file_handle</span><span class="p">):</span>
+        <span class="n">prod_seq_id</span><span class="p">,</span> <span class="n">start</span><span class="p">,</span> <span class="n">end</span><span class="p">,</span> <span class="n">strand</span><span class="p">,</span> <span class="n">attr</span> <span class="o">=</span> <span class="n">seq_id</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">&#39; # &#39;</span><span class="p">)</span>
+        <span class="n">seq_id</span><span class="p">,</span> <span class="n">idx</span> <span class="o">=</span> <span class="n">prod_seq_id</span><span class="o">.</span><span class="n">rsplit</span><span class="p">(</span><span class="s1">&#39;_&#39;</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+
+        <span class="k">yield</span> <span class="nb">dict</span><span class="p">(</span>
+            <span class="n">prod_seq_id</span><span class="o">=</span><span class="n">prod_seq_id</span><span class="p">,</span>
+            <span class="n">seq_id</span><span class="o">=</span><span class="n">seq_id</span><span class="p">,</span>
+            <span class="n">seq</span><span class="o">=</span><span class="n">seq</span><span class="p">,</span>
+            <span class="n">start</span><span class="o">=</span><span class="nb">int</span><span class="p">(</span><span class="n">start</span><span class="p">),</span>
+            <span class="n">end</span><span class="o">=</span><span class="nb">int</span><span class="p">(</span><span class="n">end</span><span class="p">),</span>
+            <span class="n">strand</span><span class="o">=</span><span class="s1">&#39;+&#39;</span> <span class="k">if</span> <span class="n">strand</span> <span class="o">==</span> <span class="s1">&#39;1&#39;</span> <span class="k">else</span> <span class="s1">&#39;-&#39;</span><span class="p">,</span>
+            <span class="n">idx</span><span class="o">=</span><span class="nb">int</span><span class="p">(</span><span class="n">idx</span><span class="p">),</span>
+            <span class="n">attr</span><span class="o">=</span><span class="n">attr</span>
+        <span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="write_fasta_sequence"><a class="viewcode-back" href="../../../api/mgkit.io.fasta.html#mgkit.io.fasta.write_fasta_sequence">[docs]</a><span class="k">def</span> <span class="nf">write_fasta_sequence</span><span class="p">(</span><span class="n">file_handle</span><span class="p">,</span> <span class="n">name</span><span class="p">,</span> <span class="n">seq</span><span class="p">,</span> <span class="n">wrap</span><span class="o">=</span><span class="mi">60</span><span class="p">,</span> <span class="n">write_mode</span><span class="o">=</span><span class="s1">&#39;a&#39;</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Write a fasta sequence to file. If the *file_handle* is a string, the file</span>
+<span class="sd">    will be opened using *write_mode*.</span>
+
+<span class="sd">    :param file_handle: file handle or string.</span>
+<span class="sd">    :param str name: header to write for the sequence</span>
+<span class="sd">    :param str seq: sequence to write</span>
+<span class="sd">    :param int wrap: int for the line wrapping. If None, the sequence will be</span>
+<span class="sd">        written in a single line</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">file_handle</span> <span class="o">=</span> <span class="n">mgkit</span><span class="o">.</span><span class="n">io</span><span class="o">.</span><span class="n">open_file</span><span class="p">(</span><span class="n">file_handle</span><span class="p">,</span> <span class="n">write_mode</span><span class="p">)</span>
+
+    <span class="k">if</span> <span class="n">wrap</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="n">seq</span> <span class="o">=</span> <span class="s1">&#39;</span><span class="se">\n</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span>
+            <span class="n">seq</span><span class="p">[</span><span class="n">pos</span><span class="p">:</span><span class="n">pos</span> <span class="o">+</span> <span class="n">wrap</span><span class="p">]</span>
+            <span class="k">for</span> <span class="n">pos</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">seq</span><span class="p">),</span> <span class="n">wrap</span><span class="p">)</span>
+        <span class="p">)</span>
+
+    <span class="n">file_handle</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s2">&quot;&gt;</span><span class="si">{0}</span><span class="se">\n</span><span class="si">{1}</span><span class="se">\n</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">name</span><span class="p">,</span> <span class="n">seq</span><span class="p">)</span><span class="o">.</span><span class="n">encode</span><span class="p">(</span><span class="s1">&#39;ascii&#39;</span><span class="p">))</span></div>
+
+
+<div class="viewcode-block" id="split_fasta_file"><a class="viewcode-back" href="../../../api/mgkit.io.fasta.html#mgkit.io.fasta.split_fasta_file">[docs]</a><span class="k">def</span> <span class="nf">split_fasta_file</span><span class="p">(</span><span class="n">file_handle</span><span class="p">,</span> <span class="n">name_mask</span><span class="p">,</span> <span class="n">num_files</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    .. versionadded:: 0.1.13</span>
+
+<span class="sd">    Splits a fasta file into a series of smaller files.</span>
+
+<span class="sd">    Arguments:</span>
+<span class="sd">        file_handle (file, str): fasta file with the input sequences</span>
+<span class="sd">        name_mask (str): file name template for the splitted files, more</span>
+<span class="sd">            informations are found in :func:`mgkit.io.split_write`</span>
+<span class="sd">        num_files (int): number of files in which to distribute the sequences</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">records</span> <span class="o">=</span> <span class="n">load_fasta</span><span class="p">(</span><span class="n">file_handle</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">write_func</span><span class="p">(</span><span class="n">h</span><span class="p">,</span> <span class="n">r</span><span class="p">):</span> <span class="k">return</span> <span class="n">write_fasta_sequence</span><span class="p">(</span><span class="n">h</span><span class="p">,</span> <span class="o">*</span><span class="n">r</span><span class="p">)</span>
+
+    <span class="n">mgkit</span><span class="o">.</span><span class="n">io</span><span class="o">.</span><span class="n">split_write</span><span class="p">(</span><span class="n">records</span><span class="p">,</span> <span class="n">name_mask</span><span class="p">,</span> <span class="n">write_func</span><span class="p">,</span> <span class="n">num_files</span><span class="o">=</span><span class="n">num_files</span><span class="p">)</span></div>
+</pre></div>
+
+           </div>
+           
+          </div>
+          <footer>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2013-2015, Francesco Rubino
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

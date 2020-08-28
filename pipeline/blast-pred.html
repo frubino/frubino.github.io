@@ -1,0 +1,390 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Gene Prediction with BLAST+ &mdash; MGKit: Metagenomic framework 0.5.0 documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+  <script type="text/javascript" src="../_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+        <script type="text/javascript" src="../_static/jquery.js"></script>
+        <script type="text/javascript" src="../_static/underscore.js"></script>
+        <script type="text/javascript" src="../_static/doctools.js"></script>
+        <script type="text/javascript" src="../_static/language_data.js"></script>
+        <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+        <script async="async" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+        <script type="text/x-mathjax-config">MathJax.Hub.Config({"tex2jax": {"inlineMath": [["$", "$"], ["\\(", "\\)"]], "processEscapes": true, "ignoreClass": "document", "processClass": "math|output_area"}})</script>
+    
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/graphviz.css" type="text/css" />
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Scripts Details" href="../scripts/index.html" />
+    <link rel="prev" title="Gene Prediction" href="gene_prediction.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../index.html" class="icon icon-home"> MGKit: Metagenomic framework
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                0.5.0
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../introduction.html">Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../install.html">Installation</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">Metagenomic Pipeline</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="tutorial.html">Tutorial</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Exploring-Metagenomic-Data.html">Tutorial - Exploring the Data</a></li>
+<li class="toctree-l2"><a class="reference internal" href="blast2lca.html">Profile a Community with BLAST</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="gene_prediction.html">Gene Prediction</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="gene_prediction.html#prediction-software">Prediction Software</a></li>
+<li class="toctree-l3"><a class="reference internal" href="gene_prediction.html#general-procedure">General Procedure</a></li>
+<li class="toctree-l3"><a class="reference internal" href="gene_prediction.html#functional-prediction">Functional Prediction</a></li>
+<li class="toctree-l3"><a class="reference internal" href="gene_prediction.html#filter-annotations">Filter Annotations</a></li>
+<li class="toctree-l3"><a class="reference internal" href="gene_prediction.html#taxonomic-prediction">Taxonomic Prediction</a></li>
+<li class="toctree-l3"><a class="reference internal" href="gene_prediction.html#complete-annotations">Complete Annotations</a></li>
+<li class="toctree-l3 current"><a class="reference internal" href="gene_prediction.html#examples">Examples</a><ul class="current">
+<li class="toctree-l4 current"><a class="current reference internal" href="#">Gene Prediction with BLAST+</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../scripts/index.html">Scripts Details</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../examples/index.html">Example Notebooks</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../gff.html">MGKit GFF Specifications</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../library.html">Library Reference</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../changes.html">Changes</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">MGKit: Metagenomic framework</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="index.html">Metagenomic Pipeline</a> &raquo;</li>
+        
+          <li><a href="gene_prediction.html">Gene Prediction</a> &raquo;</li>
+        
+      <li>Gene Prediction with BLAST+</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="../_sources/pipeline/blast-pred.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  
+<style>
+/* CSS overrides for sphinx_rtd_theme */
+
+/* 24px margin */
+.nbinput.nblast.container,
+.nboutput.nblast.container {
+    margin-bottom: 19px;  /* padding has already 5px */
+}
+
+/* ... except between code cells! */
+.nblast.container + .nbinput.container {
+    margin-top: -19px;
+}
+
+.admonition > p:before {
+    margin-right: 4px;  /* make room for the exclamation icon */
+}
+
+/* Fix math alignment, see https://github.com/rtfd/sphinx_rtd_theme/pull/686 */
+.math {
+    text-align: unset;
+}
+</style>
+<div class="section" id="gene-prediction-with-blast">
+<span id="gene-prediction-blast"></span><h1>Gene Prediction with BLAST+<a class="headerlink" href="#gene-prediction-with-blast" title="Permalink to this headline">¶</a></h1>
+<p>BLAST is another option to predict genes in a sequence and it is less difficult to set up as it only needs a FASTA file with the collection of genes to use.</p>
+<p>The examples here use Uniprot DBs to predict genes, as it enables the mapping to several DBs, including eggNOG and Kegg Orthologs. It also assumes that an assembly has been produced for the gene prediction and that a DB to use blast with is already set up. Also, the BLAST+ package is expected to be installed on the system.</p>
+<div><svg height="640" viewBox="0 0 736 640" width="736" xmlns="http://www.w3.org/2000/svg" xmlns:inkspace="http://www.inkscape.org/namespaces/inkscape" xmlns:xlink="http://www.w3.org/1999/xlink">
+  <defs id="defs_block">
+    <filter height="1.504" id="filter_blur" inkspace:collect="always" width="1.1575" x="-0.07875" y="-0.252">
+      <feGaussianBlur id="feGaussianBlur3780" inkspace:collect="always" stdDeviation="4.2" />
+    </filter>
+  </defs>
+  <title>blockdiag</title>
+  <desc />
+  <polygon fill="rgb(0,0,0)" points="99,54 235,54 211,134 75,134 99,54" stroke="rgb(0,0,0)" style="filter:url(#filter_blur);opacity:0.7;fill-opacity:1" />
+  <polygon fill="rgb(0,0,0)" points="95,50 231,50 207,130 71,130 95,50" stroke="rgb(0,0,0)" style="filter:url(#filter_blur);opacity:0.7;fill-opacity:1" />
+  <polygon fill="rgb(0,0,0)" points="91,46 227,46 203,126 67,126 91,46" stroke="rgb(0,0,0)" style="filter:url(#filter_blur);opacity:0.7;fill-opacity:1" />
+  <polygon fill="rgb(0,0,0)" points="315,46 451,46 427,126 291,126 315,46" stroke="rgb(0,0,0)" style="filter:url(#filter_blur);opacity:0.7;fill-opacity:1" />
+  <rect fill="rgb(0,0,0)" height="80" stroke="rgb(0,0,0)" style="filter:url(#filter_blur);opacity:0.7;fill-opacity:1" width="160" x="67" y="166" />
+  <rect fill="rgb(0,0,0)" height="80" stroke="rgb(0,0,0)" style="filter:url(#filter_blur);opacity:0.7;fill-opacity:1" width="160" x="67" y="286" />
+  <rect fill="rgb(0,0,0)" height="80" stroke="rgb(0,0,0)" style="filter:url(#filter_blur);opacity:0.7;fill-opacity:1" width="160" x="291" y="406" />
+  <rect fill="rgb(0,0,0)" height="80" stroke="rgb(0,0,0)" style="filter:url(#filter_blur);opacity:0.7;fill-opacity:1" width="160" x="515" y="406" />
+  <rect fill="rgb(0,0,0)" height="80" stroke="rgb(0,0,0)" style="filter:url(#filter_blur);opacity:0.7;fill-opacity:1" width="160" x="291" y="166" />
+  <rect fill="rgb(0,0,0)" height="80" stroke="rgb(0,0,0)" style="filter:url(#filter_blur);opacity:0.7;fill-opacity:1" width="160" x="291" y="286" />
+  <rect fill="rgb(0,0,0)" height="80" stroke="rgb(0,0,0)" style="filter:url(#filter_blur);opacity:0.7;fill-opacity:1" width="160" x="515" y="526" />
+  <polygon fill="rgb(55,126,184)" points="96,48 232,48 208,128 72,128 96,48" stroke="rgb(0,0,0)" />
+  <polygon fill="rgb(55,126,184)" points="92,44 228,44 204,124 68,124 92,44" stroke="rgb(0,0,0)" />
+  <polygon fill="rgb(55,126,184)" points="88,40 224,40 200,120 64,120 88,40" stroke="rgb(0,0,0)" />
+  <text fill="rgb(255,255,255)" font-family="sans-serif" font-size="16" font-style="normal" font-weight="normal" text-anchor="middle" textLength="52" x="144.0" y="79">BLAST+</text>
+  <text fill="rgb(255,255,255)" font-family="sans-serif" font-size="16" font-style="normal" font-weight="normal" text-anchor="middle" textLength="69" x="144.5" y="97">(blastx)</text>
+  <polygon fill="rgb(55,126,184)" points="312,40 448,40 424,120 288,120 312,40" stroke="rgb(0,0,0)" />
+  <text fill="rgb(255,255,255)" font-family="sans-serif" font-size="16" font-style="normal" font-weight="normal" text-anchor="middle" textLength="52" x="368.0" y="79">BLAST+</text>
+  <text fill="rgb(255,255,255)" font-family="sans-serif" font-size="16" font-style="normal" font-weight="normal" text-anchor="middle" textLength="69" x="368.5" y="97">(blastn)</text>
+  <rect fill="rgb(228,26,28)" height="80" stroke="rgb(0,0,0)" width="160" x="64" y="160" />
+  <text fill="rgb(255,255,255)" font-family="sans-serif" font-size="16" font-style="normal" font-weight="normal" text-anchor="middle" textLength="78" x="144.0" y="208">blast2gff</text>
+  <rect fill="rgb(228,26,28)" height="80" stroke="rgb(0,0,0)" width="160" x="64" y="280" />
+  <text fill="rgb(255,255,255)" font-family="sans-serif" font-size="16" font-style="normal" font-weight="normal" text-anchor="middle" textLength="87" x="144.5" y="328">filter-gff</text>
+  <rect fill="rgb(228,26,28)" height="80" stroke="rgb(0,0,0)" width="160" x="288" y="400" />
+  <text fill="rgb(255,255,255)" font-family="sans-serif" font-size="16" font-style="normal" font-weight="normal" text-anchor="middle" textLength="104" x="368.0" y="448">get-gff-info</text>
+  <rect fill="rgb(228,26,28)" height="80" stroke="rgb(0,0,0)" width="160" x="512" y="400" />
+  <text fill="rgb(255,255,255)" font-family="sans-serif" font-size="16" font-style="normal" font-weight="normal" text-anchor="middle" textLength="104" x="592.0" y="439">add-gff-info</text>
+  <text fill="rgb(255,255,255)" font-family="sans-serif" font-size="16" font-style="normal" font-weight="normal" text-anchor="middle" textLength="87" x="592.5" y="457">(unipfile)</text>
+  <rect fill="rgb(228,26,28)" height="80" stroke="rgb(0,0,0)" width="160" x="288" y="160" />
+  <text fill="rgb(255,255,255)" font-family="sans-serif" font-size="16" font-style="normal" font-weight="normal" text-anchor="middle" textLength="104" x="368.0" y="199">add-gff-info</text>
+  <text fill="rgb(255,255,255)" font-family="sans-serif" font-size="16" font-style="normal" font-weight="normal" text-anchor="middle" textLength="87" x="368.5" y="217">(taxonomy)</text>
+  <rect fill="rgb(77,175,74)" height="80" stroke="rgb(0,0,0)" width="160" x="288" y="280" />
+  <text fill="rgb(255,255,255)" font-family="sans-serif" font-size="16" font-style="normal" font-weight="normal" text-anchor="middle" textLength="78" x="368.0" y="328">Draft GFF</text>
+  <rect fill="rgb(77,175,74)" height="80" stroke="rgb(0,0,0)" width="160" x="512" y="520" />
+  <text fill="rgb(255,255,255)" font-family="sans-serif" font-size="16" font-style="normal" font-weight="normal" text-anchor="middle" textLength="78" x="592.0" y="568">Final GFF</text>
+  <path d="M 144 128 L 144 152" fill="none" stroke="rgb(0,0,0)" />
+  <polygon fill="rgb(0,0,0)" points="144,159 140,152 148,152 144,159" stroke="rgb(0,0,0)" />
+  <path d="M 368 120 L 368 152" fill="none" stroke="rgb(0,0,0)" />
+  <polygon fill="rgb(0,0,0)" points="368,159 364,152 372,152 368,159" stroke="rgb(0,0,0)" />
+  <path d="M 144 240 L 144 272" fill="none" stroke="rgb(0,0,0)" />
+  <polygon fill="rgb(0,0,0)" points="144,279 140,272 148,272 144,279" stroke="rgb(0,0,0)" />
+  <path d="M 224 320 L 280 320" fill="none" stroke="rgb(0,0,0)" />
+  <polygon fill="rgb(0,0,0)" points="287,320 280,316 280,324 287,320" stroke="rgb(0,0,0)" />
+  <path d="M 368 480 L 368 500" fill="none" stroke="rgb(0,0,0)" />
+  <path d="M 368 500 L 464 500" fill="none" stroke="rgb(0,0,0)" />
+  <path d="M 464 500 L 464 25" fill="none" stroke="rgb(0,0,0)" />
+  <path d="M 368 25 L 464 25" fill="none" stroke="rgb(0,0,0)" />
+  <path d="M 368 25 L 368 32" fill="none" stroke="rgb(0,0,0)" />
+  <polygon fill="rgb(0,0,0)" points="368,39 364,32 372,32 368,39" stroke="rgb(0,0,0)" />
+  <path d="M 368 240 L 368 272" fill="none" stroke="rgb(0,0,0)" />
+  <polygon fill="rgb(0,0,0)" points="368,279 364,272 372,272 368,279" stroke="rgb(0,0,0)" />
+  <path d="M 592 480 L 592 512" fill="none" stroke="rgb(0,0,0)" />
+  <polygon fill="rgb(0,0,0)" points="592,519 588,512 596,512 592,519" stroke="rgb(0,0,0)" />
+  <path d="M 368 360 L 368 392" fill="none" stroke="rgb(0,0,0)" />
+  <polygon fill="rgb(0,0,0)" points="368,399 364,392 372,392 368,399" stroke="rgb(0,0,0)" />
+  <path d="M 368 360 L 368 380" fill="none" stroke="rgb(0,0,0)" />
+  <path d="M 368 380 L 460.0 380" fill="none" stroke="rgb(0,0,0)" />
+  <path d="M 460.0 380.0 A4.0,4.0 0 0 1 468.0 380.0" fill="none" stroke="rgb(0,0,0)" />
+  <path d="M 468.0 380 L 592 380" fill="none" stroke="rgb(0,0,0)" />
+  <path d="M 592 380 L 592 392" fill="none" stroke="rgb(0,0,0)" />
+  <polygon fill="rgb(0,0,0)" points="592,399 588,392 596,392 592,399" stroke="rgb(0,0,0)" />
+</svg>
+</div>
+<div class="section" id="functional-prediction">
+<h2>Functional Prediction<a class="headerlink" href="#functional-prediction" title="Permalink to this headline">¶</a></h2>
+<p>Assuming that BLAST is correctly installed and that the Uniprot DB is indexed, the only required parameter required by the scripts is <cite>–outfmt 6</cite>, which produces the BLAST tab format required by scripts that convert a BLAST output to a GFF <a class="reference internal" href="../scripts/blast2gff.html#blast2gff"><span class="std std-ref">blast2gff - Convert BLAST output to GFF</span></a>. An example of the command line is this:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ blastx -query assembly.fasta -db uniprot_sprot.fasta -out assembly.uniprot.tab -outfmt 6
+</pre></div>
+</div>
+<p>This will output a file that can be passed to the GFF creation script, <cite>blast2gff</cite>, with the following command:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ blast2gff uniprot -b 40 -db UNIPROT-SP -dbq 10 assembly.uniprot.tab assembly.uniprot.gff
+</pre></div>
+</div>
+<p>The script documentation <a class="reference internal" href="../scripts/blast2gff.html#blast2gff"><span class="std std-ref">blast2gff - Convert BLAST output to GFF</span></a> offer more information on the parameters. Suffice to say that <cite>-b 40</cite> excludes any BLAST hit with a bit score of less than 40 and <cite>-dbq 10</cite> point to the DB quality, as per <a class="reference internal" href="../gff.html#gff-specs"><span class="std std-ref">MGKit GFF Specifications</span></a>, which is important to filter annotations coming from multiple DBs with varying quality.</p>
+</div>
+<div class="section" id="filter-gff">
+<h2>Filter GFF<a class="headerlink" href="#filter-gff" title="Permalink to this headline">¶</a></h2>
+<p>The amount of prediction can be huge and most of them are overlapping annotations, so filtering the GFF annotations is important. A script is included to filter annotations (<a class="reference internal" href="../scripts/filter-gff.html#filter-gff"><span class="std std-ref">filter-gff - Filter GFF annotations</span></a>), whose <cite>overlap</cite> command filters overlapping annotations. An example of the script execution is:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ filter-gff overlap assembly.uniprot.gff assembly.uniprot-filt.gff
+</pre></div>
+</div>
+<p>This will considerably reduce the size of the GFF file.</p>
+</div>
+<div class="section" id="taxonomic-prediction">
+<h2>Taxonomic Prediction<a class="headerlink" href="#taxonomic-prediction" title="Permalink to this headline">¶</a></h2>
+<p>Once the functional annotations are filtered, the next step is to assign taxonomic information to them, with the process being a two step process, to further refine the assignments.</p>
+<p>The base process is to use the taxonomic assignment associated with the Uniprot ID predicted by BLAST, with a possible refinement of this by using the nucleotidic sequence associated with an annotation, whose similarity is then predicted using BLAST against a large collection of sequences, like the <cite>nt</cite> DB in NCBI.</p>
+<div class="section" id="taxonomic-refinement">
+<h3>Taxonomic Refinement<a class="headerlink" href="#taxonomic-refinement" title="Permalink to this headline">¶</a></h3>
+<p>This part is entirely optional, but should be executed before the next one, to speed the scripts that follow.</p>
+<p>First the sequences from the GFF file needs to be extracted with the <cite>get-gff-info</cite> <cite>sequence</cite> (<a class="reference internal" href="../scripts/get-gff-info.html#get-gff-info"><span class="std std-ref">get-gff-info - Extract informations to GFF annotations</span></a>) command; an example execution is:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ get-gff-info sequence -f assembly.fasta assembly.uniprot.gff assembly.uniprot.frag.fasta
+</pre></div>
+</div>
+<p>This will output a FASTA file called <cite>assembly.uniprot.fasta</cite> with the sequences used as query for the <cite>blastn</cite> command of the BLAST+ package against the <cite>nt</cite> DB:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ blastn -query assembly.uniprot.frag.fasta -db nt -out assembly.uniprot.frag.tab -outfmt 6
+</pre></div>
+</div>
+<p>The ouput file <cite>assembly.uniprot.frag.tab</cite> is then passed to the <cite>taxonomy</cite> command of the <cite>add-gff-info</cite> script to incorporate the assignments information into the GFF file, an example of the execution of this command is the following:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ add-gff-info taxonomy -t gi_taxid_nucl.dmp.gz -b assembly.uniprot.frag.tab -s 40 -d NCBI-NT assembly.uniprot.gff assembly.uniprot-taxa.gff
+</pre></div>
+</div>
+<p>More information about the options used can be found at the script documentation (<a class="reference internal" href="../scripts/get-gff-info.html#get-gff-info"><span class="std std-ref">get-gff-info - Extract informations to GFF annotations</span></a>), with an LCA option being available for assignments.</p>
+</div>
+<div class="section" id="complete-annotations">
+<h3>Complete Annotations<a class="headerlink" href="#complete-annotations" title="Permalink to this headline">¶</a></h3>
+<p>The rest of the taxonomic assignments, if not all, as  well as additional informations can be added with <cite>uniprot</cite> or <cite>unipfile</cite> commands of the <cite>add-gff-info</cite> <a class="reference internal" href="../scripts/add-gff-info.html#add-gff-info"><span class="std std-ref">add-gff-info - Add informations to GFF annotations</span></a> script. The main difference is that the <cite>uniprot</cite> command may be slower, as it connects to the internet and on a large number of annotations it takes a long time. The <cite>unipfile</cite> uses a file provided by Uniprot with additional information (in particular the taxonomy).</p>
+<p>An example execution of the command is:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ add-gff-info unipfile -i idmapping.dat.gz -m NCBI_TaxID assembly.uniprot.gff assembly.uniprot-final.gff
+</pre></div>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>if you used the taxonomic refinement, use <cite>assembly.uniprot-taxa.gff</cite> instead of <cite>assembly.uniprot.gff</cite></p>
+</div>
+</div>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="../scripts/index.html" class="btn btn-neutral float-right" title="Scripts Details" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="gene_prediction.html" class="btn btn-neutral float-left" title="Gene Prediction" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2013-2015, Francesco Rubino
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

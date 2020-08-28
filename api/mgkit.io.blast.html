@@ -1,0 +1,532 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>mgkit.io.blast module &mdash; MGKit: Metagenomic framework 0.5.0 documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+  <script type="text/javascript" src="../_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+        <script type="text/javascript" src="../_static/jquery.js"></script>
+        <script type="text/javascript" src="../_static/underscore.js"></script>
+        <script type="text/javascript" src="../_static/doctools.js"></script>
+        <script type="text/javascript" src="../_static/language_data.js"></script>
+        <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+        <script async="async" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+        <script type="text/x-mathjax-config">MathJax.Hub.Config({"tex2jax": {"inlineMath": [["$", "$"], ["\\(", "\\)"]], "processEscapes": true, "ignoreClass": "document", "processClass": "math|output_area"}})</script>
+    
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/graphviz.css" type="text/css" />
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="mgkit.io.fasta module" href="mgkit.io.fasta.html" />
+    <link rel="prev" title="mgkit.io package" href="mgkit.io.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../index.html" class="icon icon-home"> MGKit: Metagenomic framework
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                0.5.0
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../introduction.html">Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../install.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../pipeline/index.html">Metagenomic Pipeline</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../scripts/index.html">Scripts Details</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../examples/index.html">Example Notebooks</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../gff.html">MGKit GFF Specifications</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../library.html">Library Reference</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="mgkit.html">mgkit package</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mgkit.align.html">mgkit.align module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mgkit.consts.html">mgkit.consts module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mgkit.counts.html">mgkit.counts package</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mgkit.counts.func.html">mgkit.counts.func module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mgkit.counts.glm.html">mgkit.counts.glm module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mgkit.counts.scaling.html">mgkit.counts.scaling module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mgkit.db.html">mgkit.db package</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mgkit.db.dbm.html">mgkit.db.dbm module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mgkit.db.mongo.html">mgkit.db.mongo module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mgkit.filter.html">mgkit.filter package</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mgkit.filter.common.html">mgkit.filter.common module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mgkit.filter.gff.html">mgkit.filter.gff module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mgkit.filter.lists.html">mgkit.filter.lists module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mgkit.filter.reads.html">mgkit.filter.reads module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mgkit.filter.taxon.html">mgkit.filter.taxon module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mgkit.graphs.html">mgkit.graphs module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mgkit.io.html">mgkit.io package</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">mgkit.io.blast module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mgkit.io.fasta.html">mgkit.io.fasta module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mgkit.io.fastq.html">mgkit.io.fastq module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mgkit.io.gff.html">mgkit.io.gff module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mgkit.io.glimmer.html">mgkit.io.glimmer module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mgkit.io.snpdat.html">mgkit.io.snpdat module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mgkit.io.uniprot.html">mgkit.io.uniprot module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mgkit.io.utils.html">mgkit.io.utils module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mgkit.kegg.html">mgkit.kegg module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mgkit.logger.html">mgkit.logger module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mgkit.mappings.html">mgkit.mappings package</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mgkit.mappings.cazy.html">mgkit.mappings.cazy module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mgkit.mappings.eggnog.html">mgkit.mappings.eggnog module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mgkit.mappings.enzyme.html">mgkit.mappings.enzyme module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mgkit.mappings.go.html">mgkit.mappings.go module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mgkit.mappings.pandas_map.html">mgkit.mappings.pandas_map module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mgkit.mappings.taxon.html">mgkit.mappings.taxon module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mgkit.mappings.utils.html">mgkit.mappings.utils module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mgkit.net.html">mgkit.net package</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mgkit.net.embl.html">mgkit.net.embl module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mgkit.net.pfam.html">mgkit.net.pfam module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mgkit.net.uniprot.html">mgkit.net.uniprot module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mgkit.net.utils.html">mgkit.net.utils module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mgkit.plots.html">mgkit.plots package</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mgkit.plots.abund.html">mgkit.plots.abund module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mgkit.plots.boxplot.html">mgkit.plots.boxplot module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mgkit.plots.colors.html">mgkit.plots.colors module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mgkit.plots.heatmap.html">mgkit.plots.heatmap module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mgkit.plots.unused.html">mgkit.plots.unused module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mgkit.plots.utils.html">mgkit.plots.utils module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mgkit.simple_cache.html">mgkit.simple_cache module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mgkit.snps.html">mgkit.snps package</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mgkit.snps.classes.html">mgkit.snps.classes module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mgkit.snps.conv_func.html">mgkit.snps.conv_func module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mgkit.snps.filter.html">mgkit.snps.filter module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mgkit.snps.funcs.html">mgkit.snps.funcs module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mgkit.snps.mapper.html">mgkit.snps.mapper module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mgkit.taxon.html">mgkit.taxon module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mgkit.utils.html">mgkit.utils package</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mgkit.utils.common.html">mgkit.utils.common module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mgkit.utils.dictionary.html">mgkit.utils.dictionary module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mgkit.utils.sequence.html">mgkit.utils.sequence module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mgkit.utils.trans_tables.html">mgkit.utils.trans_tables module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mgkit.workflow.html">mgkit.workflow package</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mgkit.workflow.add_gff_info.html">mgkit.workflow.add_gff_info module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mgkit.workflow.blast2gff.html">mgkit.workflow.blast2gff module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mgkit.workflow.extract_gff_info.html">mgkit.workflow.extract_gff_info module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mgkit.workflow.fasta_utils.html">mgkit.workflow.fasta_utils module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mgkit.workflow.fastq_utils.html">mgkit.workflow.fastq_utils module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mgkit.workflow.filter_gff.html">mgkit.workflow.filter_gff module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mgkit.workflow.hmmer2gff.html">mgkit.workflow.hmmer2gff module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mgkit.workflow.json2gff.html">mgkit.workflow.json2gff module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mgkit.workflow.sampling_utils.html">mgkit.workflow.sampling_utils module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mgkit.workflow.snp_parser.html">mgkit.workflow.snp_parser module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mgkit.workflow.taxon_utils.html">mgkit.workflow.taxon_utils module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mgkit.workflow.utils.html">mgkit.workflow.utils module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="modules.html">mgkit</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../changes.html">Changes</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">MGKit: Metagenomic framework</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="../library.html">Library Reference</a> &raquo;</li>
+        
+          <li><a href="mgkit.html">mgkit package</a> &raquo;</li>
+        
+          <li><a href="mgkit.io.html">mgkit.io package</a> &raquo;</li>
+        
+      <li>mgkit.io.blast module</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="../_sources/api/mgkit.io.blast.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  
+<style>
+/* CSS overrides for sphinx_rtd_theme */
+
+/* 24px margin */
+.nbinput.nblast.container,
+.nboutput.nblast.container {
+    margin-bottom: 19px;  /* padding has already 5px */
+}
+
+/* ... except between code cells! */
+.nblast.container + .nbinput.container {
+    margin-top: -19px;
+}
+
+.admonition > p:before {
+    margin-right: 4px;  /* make room for the exclamation icon */
+}
+
+/* Fix math alignment, see https://github.com/rtfd/sphinx_rtd_theme/pull/686 */
+.math {
+    text-align: unset;
+}
+</style>
+<div class="section" id="module-mgkit.io.blast">
+<span id="mgkit-io-blast-module"></span><h1>mgkit.io.blast module<a class="headerlink" href="#module-mgkit.io.blast" title="Permalink to this headline">¶</a></h1>
+<p>Blast routines and parsers</p>
+<dl class="function">
+<dt id="mgkit.io.blast.add_blast_result_to_annotation">
+<code class="sig-prename descclassname">mgkit.io.blast.</code><code class="sig-name descname">add_blast_result_to_annotation</code><span class="sig-paren">(</span><em class="sig-param">annotation</em>, <em class="sig-param">gi_taxa_dict</em>, <em class="sig-param">taxonomy</em>, <em class="sig-param">threshold=60</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/mgkit/io/blast.html#add_blast_result_to_annotation"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#mgkit.io.blast.add_blast_result_to_annotation" title="Permalink to this definition">¶</a></dt>
+<dd><div class="deprecated">
+<p><span class="versionmodified deprecated">Deprecated since version 0.4.0.</span></p>
+</div>
+<p>Adds blast information to a GFF annotation.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>annotation</strong> – GFF annotation object</p></li>
+<li><p><strong>gi_taxa_dict</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.8)"><em>dict</em></a>) – dictionary returned by
+<code class="xref py py-func docutils literal notranslate"><span class="pre">parse_gi_taxa_table()</span></code>.</p></li>
+<li><p><strong>taxonomy</strong> – Uniprot taxonomy, used to add the taxon name to the
+annotation</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="function">
+<dt id="mgkit.io.blast.parse_accession_taxa_table">
+<code class="sig-prename descclassname">mgkit.io.blast.</code><code class="sig-name descname">parse_accession_taxa_table</code><span class="sig-paren">(</span><em class="sig-param">file_handle</em>, <em class="sig-param">acc_ids=None</em>, <em class="sig-param">key=1</em>, <em class="sig-param">value=2</em>, <em class="sig-param">num_lines=1000000</em>, <em class="sig-param">no_zero=True</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/mgkit/io/blast.html#parse_accession_taxa_table"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#mgkit.io.blast.parse_accession_taxa_table" title="Permalink to this definition">¶</a></dt>
+<dd><div class="versionadded">
+<p><span class="versionmodified added">New in version 0.2.5.</span></p>
+</div>
+<div class="versionchanged">
+<p><span class="versionmodified changed">Changed in version 0.3.0: </span>added <em>no_zero</em></p>
+</div>
+<p>This function superseeds <code class="xref py py-func docutils literal notranslate"><span class="pre">parse_gi_taxa_table()</span></code>, since NCBI is
+deprecating the GIDs in favor of accessions like <em>X53318</em>. The new file can
+be found at the NCBI <cite>ftp://ftp.ncbi.nih.gov/pub/taxonomy/accession2taxid</cite>,
+for DNA sequences (<em>nt</em> DB) <em>nucl_gb.accession2taxid.gz</em>.</p>
+<p>The file contains 4 columns, the first one is the accession without its
+version, the second one includes the version, the third column is the
+taxonomic identifier and the fourth is either the old GID or <strong>na</strong>.</p>
+<p>The column used as key is the <em>second</em>, since by default the fasta headers
+used in NCBI DBs use the versioned identifier. To use the GID as key, the
+<em>key</em> parameter can be set to 3, but if no identifier is found (<em>na</em> as per
+the file README), the line is skipped.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>file_handle</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.8)"><em>str</em></a><em>, </em><em>file</em>) – file name or open file handle</p></li>
+<li><p><strong>acc_ids</strong> (<a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.8)"><em>None</em></a><em>, </em><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.8)"><em>list</em></a>) – if it’s not <cite>None</cite> only the keys included in the
+passed <cite>acc_ids</cite> list will be returned</p></li>
+<li><p><strong>key</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.8)"><em>int</em></a>) – 0-based index for the column to use as accession. Defaults
+to the versioned accession that is used in GenBank fasta files.</p></li>
+<li><p><strong>num_lines</strong> (<a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.8)"><em>None</em></a><em>, </em><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.8)"><em>int</em></a>) – number of which a message is logged. If None,
+no message is logged</p></li>
+<li><p><strong>no_zero</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.8)"><em>bool</em></a>) – if True (default) a key with taxon_id of 0 is not yield</p></li>
+</ul>
+</dd>
+</dl>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>GIDs are being phased out in September 2016:
+<a class="reference external" href="http://www.ncbi.nlm.nih.gov/news/03-02-2016-phase-out-of-GI-numbers/">http://www.ncbi.nlm.nih.gov/news/03-02-2016-phase-out-of-GI-numbers/</a></p>
+</div>
+</dd></dl>
+
+<dl class="function">
+<dt id="mgkit.io.blast.parse_blast_tab">
+<code class="sig-prename descclassname">mgkit.io.blast.</code><code class="sig-name descname">parse_blast_tab</code><span class="sig-paren">(</span><em class="sig-param">file_handle</em>, <em class="sig-param">seq_id=0</em>, <em class="sig-param">ret_col=(0</em>, <em class="sig-param">1</em>, <em class="sig-param">2</em>, <em class="sig-param">6</em>, <em class="sig-param">7</em>, <em class="sig-param">11)</em>, <em class="sig-param">key_func=None</em>, <em class="sig-param">value_funcs=None</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/mgkit/io/blast.html#parse_blast_tab"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#mgkit.io.blast.parse_blast_tab" title="Permalink to this definition">¶</a></dt>
+<dd><div class="versionadded">
+<p><span class="versionmodified added">New in version 0.1.12.</span></p>
+</div>
+<p>Parses blast output tab format, returning for each line a key (the query
+id) and the columns requested in a tuple.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>file_handle</strong> (<em>file</em>) – file name or file handle for the blast ouput</p></li>
+<li><p><strong>seq_id</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.8)"><em>int</em></a>) – index for the column which has the query id</p></li>
+<li><p><strong>ret_col</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.8)"><em>list</em></a><em>, </em><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.8)"><em>None</em></a>) – list of indexes for the columns to be returned or
+<em>None</em> if all columns must be returned</p></li>
+<li><p><strong>key_func</strong> (<a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.8)"><em>None</em></a><em>, </em><em>func</em>) – function to transform the query id value in the
+key returned. If <em>None</em>, the query id is used</p></li>
+<li><p><strong>value_funcs</strong> (<a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.8)"><em>None</em></a><em>, </em><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.8)"><em>list</em></a>) – list of functions to transform the value of
+all the requested columns. If <em>None</em> the values are not converted</p></li>
+</ul>
+</dd>
+<dt class="field-even">Yields</dt>
+<dd class="field-even"><p><em>tuple</em> – iterator of tuples with the first element being the query id
+after key_func is applied, if requested and the second element of
+the tuple is a tuple with the requested columns <em>ret_col</em></p>
+</dd>
+</dl>
+<table class="docutils align-default" id="id1">
+<caption><span class="caption-text">BLAST+ used with <cite>-outfmt 6</cite>, default columns</span><a class="headerlink" href="#id1" title="Permalink to this table">¶</a></caption>
+<colgroup>
+<col style="width: 30%" />
+<col style="width: 70%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>column index</p></th>
+<th class="head"><p>description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>0</p></td>
+<td><p>query name</p></td>
+</tr>
+<tr class="row-odd"><td><p>1</p></td>
+<td><p>subject name</p></td>
+</tr>
+<tr class="row-even"><td><p>2</p></td>
+<td><p>percent identities</p></td>
+</tr>
+<tr class="row-odd"><td><p>3</p></td>
+<td><p>aligned length</p></td>
+</tr>
+<tr class="row-even"><td><p>4</p></td>
+<td><p>number of mismatched positions</p></td>
+</tr>
+<tr class="row-odd"><td><p>5</p></td>
+<td><p>number of gap positions</p></td>
+</tr>
+<tr class="row-even"><td><p>6</p></td>
+<td><p>query sequence start</p></td>
+</tr>
+<tr class="row-odd"><td><p>7</p></td>
+<td><p>query sequence end</p></td>
+</tr>
+<tr class="row-even"><td><p>8</p></td>
+<td><p>subject sequence start</p></td>
+</tr>
+<tr class="row-odd"><td><p>9</p></td>
+<td><p>subject sequence end</p></td>
+</tr>
+<tr class="row-even"><td><p>10</p></td>
+<td><p>e-value</p></td>
+</tr>
+<tr class="row-odd"><td><p>11</p></td>
+<td><p>bit score</p></td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="function">
+<dt id="mgkit.io.blast.parse_fragment_blast">
+<code class="sig-prename descclassname">mgkit.io.blast.</code><code class="sig-name descname">parse_fragment_blast</code><span class="sig-paren">(</span><em class="sig-param">file_handle</em>, <em class="sig-param">bitscore=40.0</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/mgkit/io/blast.html#parse_fragment_blast"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#mgkit.io.blast.parse_fragment_blast" title="Permalink to this definition">¶</a></dt>
+<dd><div class="versionadded">
+<p><span class="versionmodified added">New in version 0.1.13.</span></p>
+</div>
+<p>Parse the output of a BLAST output where the sequences are the single
+annotations, so the sequence names are the <em>uid</em> of the annotations.</p>
+<p>The only returned values are the best hits, maxed by bitscore and identity.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>file_handle</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.8)"><em>str</em></a><em>, </em><em>file</em>) – file name or open file handle</p></li>
+<li><p><strong>bitscore</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.8)"><em>float</em></a>) – minimum bitscore for accepting a hit</p></li>
+</ul>
+</dd>
+<dt class="field-even">Yields</dt>
+<dd class="field-even"><p><em>tuple</em> – a tuple whose first element is the <em>uid</em> (the sequence name) and
+the second is the a list of tuples whose first element is the GID (NCBI
+identifier), the second one is the identity and the third is the
+bitscore of the hit.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="function">
+<dt id="mgkit.io.blast.parse_uniprot_blast">
+<code class="sig-prename descclassname">mgkit.io.blast.</code><code class="sig-name descname">parse_uniprot_blast</code><span class="sig-paren">(</span><em class="sig-param">file_handle</em>, <em class="sig-param">bitscore=40</em>, <em class="sig-param">db='UNIPROT-SP'</em>, <em class="sig-param">dbq=10</em>, <em class="sig-param">name_func=None</em>, <em class="sig-param">feat_type='CDS'</em>, <em class="sig-param">seq_lengths=None</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/mgkit/io/blast.html#parse_uniprot_blast"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#mgkit.io.blast.parse_uniprot_blast" title="Permalink to this definition">¶</a></dt>
+<dd><div class="versionadded">
+<p><span class="versionmodified added">New in version 0.1.12.</span></p>
+</div>
+<div class="versionchanged">
+<p><span class="versionmodified changed">Changed in version 0.1.13: </span>added <em>name_func</em> argument</p>
+</div>
+<div class="versionchanged">
+<p><span class="versionmodified changed">Changed in version 0.2.1: </span>added <em>feat_type</em></p>
+</div>
+<div class="versionchanged">
+<p><span class="versionmodified changed">Changed in version 0.2.3: </span>added <em>seq_lengths</em> and added subject <em>start</em> and <em>end</em> and <em>e-value</em></p>
+</div>
+<p>Parses BLAST results in tabular format using <a class="reference internal" href="#mgkit.io.blast.parse_blast_tab" title="mgkit.io.blast.parse_blast_tab"><code class="xref py py-func docutils literal notranslate"><span class="pre">parse_blast_tab()</span></code></a>,
+applying a basic bitscore filter. Returns the annotations associated with
+each BLAST hit.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>file_handle</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.8)"><em>str</em></a><em>, </em><em>file</em>) – file name or open file handle</p></li>
+<li><p><strong>bitscore</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.8)"><em>int</em></a><em>, </em><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.8)"><em>float</em></a>) – the minimum bitscore for an annotation to be
+accepted</p></li>
+<li><p><strong>db</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.8)"><em>str</em></a>) – database used</p></li>
+<li><p><strong>dbq</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.8)"><em>int</em></a>) – an index indicating the quality of the sequence database
+used; this value is used in the filtering of annotations</p></li>
+<li><p><strong>name_func</strong> (<em>func</em>) – function to convert the name of the database
+sequences. Defaults to <cite>lambda x: x.split(‘|’)[1]</cite>, which can be
+be used with fasta files provided by Uniprot</p></li>
+<li><p><strong>feat_type</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.8)"><em>str</em></a>) – feature type in the GFF</p></li>
+<li><p><strong>seq_lengths</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.8)"><em>dict</em></a>) – dictionary with the sequences lengths, used to
+deduct the frame of the ‘-‘ strand</p></li>
+</ul>
+</dd>
+<dt class="field-even">Yields</dt>
+<dd class="field-even"><p><em>Annotation</em> – instances of <a class="reference internal" href="mgkit.io.gff.html#mgkit.io.gff.Annotation" title="mgkit.io.gff.Annotation"><code class="xref py py-class docutils literal notranslate"><span class="pre">mgkit.io.gff.Annotation</span></code></a> instance of
+each BLAST hit.</p>
+</dd>
+</dl>
+</dd></dl>
+
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="mgkit.io.fasta.html" class="btn btn-neutral float-right" title="mgkit.io.fasta module" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="mgkit.io.html" class="btn btn-neutral float-left" title="mgkit.io package" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2013-2015, Francesco Rubino
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

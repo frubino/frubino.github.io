@@ -1,0 +1,639 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>edit-gff - GFF Viewer and Editor &mdash; MGKit: Metagenomic framework 0.5.0 documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+  <script type="text/javascript" src="../_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+        <script type="text/javascript" src="../_static/jquery.js"></script>
+        <script type="text/javascript" src="../_static/underscore.js"></script>
+        <script type="text/javascript" src="../_static/doctools.js"></script>
+        <script type="text/javascript" src="../_static/language_data.js"></script>
+        <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+        <script async="async" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+        <script type="text/x-mathjax-config">MathJax.Hub.Config({"tex2jax": {"inlineMath": [["$", "$"], ["\\(", "\\)"]], "processEscapes": true, "ignoreClass": "document", "processClass": "math|output_area"}})</script>
+    
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/graphviz.css" type="text/css" />
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="pnps-gen - pN/pS Table Generation" href="pnps_gen.html" />
+    <link rel="prev" title="sampling-utils - Resampling Utilities" href="sampling-utils.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../index.html" class="icon icon-home"> MGKit: Metagenomic framework
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                0.5.0
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../introduction.html">Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../install.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../pipeline/index.html">Metagenomic Pipeline</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">Scripts Details</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="blast2gff.html">blast2gff - Convert BLAST output to GFF</a></li>
+<li class="toctree-l2"><a class="reference internal" href="filter-gff.html">filter-gff - Filter GFF annotations</a></li>
+<li class="toctree-l2"><a class="reference internal" href="add-gff-info.html">add-gff-info - Add informations to GFF annotations</a></li>
+<li class="toctree-l2"><a class="reference internal" href="get-gff-info.html">get-gff-info - Extract informations to GFF annotations</a></li>
+<li class="toctree-l2"><a class="reference internal" href="hmmer2gff.html">hmmer2gff - Convert HMMER output to GFF</a></li>
+<li class="toctree-l2"><a class="reference internal" href="snp_analysis.html">snp_parser - SNPs analysis</a></li>
+<li class="toctree-l2"><a class="reference internal" href="download-taxonomy.html">Download Taxonomy</a></li>
+<li class="toctree-l2"><a class="reference internal" href="download-taxonomy.html#download-accession-taxonid">Download Accession/TaxonID</a></li>
+<li class="toctree-l2"><a class="reference internal" href="taxon_utils.html">taxon-utils - Taxonomy Utilities</a></li>
+<li class="toctree-l2"><a class="reference internal" href="fasta-utils.html">fasta-utils - Fasta Utilities</a></li>
+<li class="toctree-l2"><a class="reference internal" href="fastq-utils.html">fastq-utils - Fastq Utilities</a></li>
+<li class="toctree-l2"><a class="reference internal" href="json2gff.html">json2gff - Convert JSON to GFF</a></li>
+<li class="toctree-l2"><a class="reference internal" href="sampling-utils.html">sampling-utils - Resampling Utilities</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">edit-gff - GFF Viewer and Editor</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#module-mgkit.workflow.edit_gff">Overview</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#print-attributes-in-a-gff-file">Print Attributes in a GFF file</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#view-gff">View GFF</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#change-or-add-attributes">Change or Add Attributes</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#remove-attributes">Remove Attributes</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#table">Table</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#changes">Changes</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#options">Options</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#edit-gff">edit-gff</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="pnps_gen.html">pnps-gen - pN/pS Table Generation</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../examples/index.html">Example Notebooks</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../gff.html">MGKit GFF Specifications</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../library.html">Library Reference</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../changes.html">Changes</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">MGKit: Metagenomic framework</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="index.html">Scripts Details</a> &raquo;</li>
+        
+      <li>edit-gff - GFF Viewer and Editor</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="../_sources/scripts/edit_gff.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  
+<style>
+/* CSS overrides for sphinx_rtd_theme */
+
+/* 24px margin */
+.nbinput.nblast.container,
+.nboutput.nblast.container {
+    margin-bottom: 19px;  /* padding has already 5px */
+}
+
+/* ... except between code cells! */
+.nblast.container + .nbinput.container {
+    margin-top: -19px;
+}
+
+.admonition > p:before {
+    margin-right: 4px;  /* make room for the exclamation icon */
+}
+
+/* Fix math alignment, see https://github.com/rtfd/sphinx_rtd_theme/pull/686 */
+.math {
+    text-align: unset;
+}
+</style>
+<div class="section" id="edit-gff-gff-viewer-and-editor">
+<span id="edit-gff"></span><h1>edit-gff - GFF Viewer and Editor<a class="headerlink" href="#edit-gff-gff-viewer-and-editor" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="module-mgkit.workflow.edit_gff">
+<span id="overview"></span><h2>Overview<a class="headerlink" href="#module-mgkit.workflow.edit_gff" title="Permalink to this headline">¶</a></h2>
+<p>Script to edit GFF files</p>
+<div class="section" id="print-attributes-in-a-gff-file">
+<h3>Print Attributes in a GFF file<a class="headerlink" href="#print-attributes-in-a-gff-file" title="Permalink to this headline">¶</a></h3>
+<p>By default reads the first 10 lines of a GFF file and prints all attributes
+present in the file sorted. Not all annotations may have the same set of
+attributes, so a higher number of lines may be necessary to be read.</p>
+</div>
+<div class="section" id="view-gff">
+<h3>View GFF<a class="headerlink" href="#view-gff" title="Permalink to this headline">¶</a></h3>
+<p>Used to print the content of a GFF file as a table (more output formats will be
+added later).</p>
+<p>The attributes printed are passed with <cite>-a</cite>, one attribute at a time. For
+example:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">edit</span><span class="o">-</span><span class="n">gff</span> <span class="n">view</span> <span class="o">-</span><span class="n">a</span> <span class="n">uid</span> <span class="n">test</span><span class="o">.</span><span class="n">gff</span>
+</pre></div>
+</div>
+<p>will print <cite>uid</cite> for all annotations. Multiple attributes can be passed, like:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">edit</span><span class="o">-</span><span class="n">gff</span> <span class="n">view</span> <span class="o">-</span><span class="n">a</span> <span class="n">uid</span> <span class="o">-</span><span class="n">a</span> <span class="n">taxon_id</span> <span class="n">test</span><span class="o">.</span><span class="n">gff</span>
+</pre></div>
+</div>
+<p>that will print a table with <cite>uid</cite> and <cite>taxon_id</cite> of each annotation.</p>
+<p>The default behaviour is to print only annotations that have all the attributes
+requested. This can be changed by using the <cite>-k</cite> options and the fields that
+were not found are empty strings.</p>
+<p>An header can be printed with the <cite>-h</cite> option.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>the order of the fields in the table is the same as the order of the
+attributes passed with <cite>-a</cite></p>
+</div>
+</div>
+<div class="section" id="change-or-add-attributes">
+<h3>Change or Add Attributes<a class="headerlink" href="#change-or-add-attributes" title="Permalink to this headline">¶</a></h3>
+<p>Add or changes annotations in a GFF files with the specified attributes.</p>
+<p>The attributes and the values are passed with the <cite>-a</cite> option, for example
+to set all annotations <cite>taxon_id</cite> to 2, you can pass <cite>-a taxon_id 2</cite>. Multiple
+attributes can be set by passing multiple options. For example:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">edit</span><span class="o">-</span><span class="n">gff</span> <span class="n">add</span> <span class="o">-</span><span class="n">a</span> <span class="n">taxon_id</span> <span class="mi">2</span> <span class="o">-</span><span class="n">a</span> <span class="n">taxon_db</span> <span class="n">CUSTOM</span> <span class="n">test</span><span class="o">.</span><span class="n">gff</span>
+</pre></div>
+</div>
+<p>will set the <cite>taxon_id</cite> to 2 and the <cite>taxon_db</cite> to CUSTOM for all annotations.</p>
+<p>The default behaviour is to not change an attribute already set in an
+annotation, but this can be changed by passing the <cite>-w</cite> option. Moreover,
+only edited annotations can be output with <cite>-o</cite>.</p>
+<p>To change attributes on a subset of the annotations, a file can be passed with
+the <cite>-f</cite> options, which contains one <cite>uid</cite> per line. Only annotations that
+match a <cite>uid</cite> in that list are edited.</p>
+</div>
+<div class="section" id="remove-attributes">
+<h3>Remove Attributes<a class="headerlink" href="#remove-attributes" title="Permalink to this headline">¶</a></h3>
+<p>Removes a list of attributes in a GFF file. Only attributes in the last column
+of a GFF file (fields separated by a ‘;’) can be removed. Attributes are passed
+with the <cite>-a</cite> option followed by one attribute. Multiple <cite>-a attribute</cite> options
+can be passed.</p>
+<p>To remove attributes on a subset of the annotations, a file can be passed with
+the <cite>-f</cite> options, which contains one <cite>uid</cite> per line. Only annotations that
+match a <cite>uid</cite> in that list are edited.</p>
+</div>
+<div class="section" id="table">
+<h3>Table<a class="headerlink" href="#table" title="Permalink to this headline">¶</a></h3>
+<p>Similar to the <em>add</em> command and with similar functions as <em>add-gff-info
+addtaxa</em>, it allows the adding/changing of attributes from a table file.</p>
+<p>The user defines 2 attributes in a GFF annotation, the <em>key</em> and the
+<em>attribute</em>. The <em>key</em> is used to find if an annotation is to be modified and
+the <em>attribute</em> is set for that annotation with the value in the table. For
+example a table:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">GENE001</span><span class="p">,</span><span class="mf">1.1</span><span class="o">.</span><span class="mf">3.3</span>
+<span class="n">GENE002</span><span class="p">,</span><span class="mf">1.2</span><span class="o">.</span><span class="mf">3.3</span>
+</pre></div>
+</div>
+<p>If <em>key</em> chosen is <em>gene_id</em> and <em>attribute</em> is <em>EC</em>, the GFF will be scanned
+for annotation that have the <em>gene_id</em> equal to <em>GENE001</em> and set the
+<em>attribute</em> <em>EC</em> to <em>1.1.3.3</em> and similarly for the second row.</p>
+<p>The table can have multiple fields, but only 2 can be loaded, the <em>key</em> and
+<em>attribute</em> in the options. The 2 fields are loaded into a python dictionary,
+with the key and attribute being respectively the key and value in it. So 2
+things must be noted:</p>
+<blockquote>
+<div><ol class="arabic simple">
+<li><p>duplicates keys will be overwritten (only last one remains)</p></li>
+<li><p>the entire fields are first loaded, which can take up a lot of RAM</p></li>
+</ol>
+</div></blockquote>
+<p>The default is for the key to be the first field (0) and the attribute is the
+second (1). The table may contains some headers, so the first N rows can be
+skipped with <cite>-r</cite>. Also, the field separator can be chosen, as well as only
+the edited annotation be printed (<cite>-o</cite> option).</p>
+</div>
+<div class="section" id="changes">
+<h3>Changes<a class="headerlink" href="#changes" title="Permalink to this headline">¶</a></h3>
+<div class="versionadded">
+<p><span class="versionmodified added">New in version 0.4.4.</span></p>
+</div>
+</div>
+</div>
+<div class="section" id="options">
+<h2>Options<a class="headerlink" href="#options" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="edit-gff">
+<h3>edit-gff<a class="headerlink" href="#edit-gff" title="Permalink to this headline">¶</a></h3>
+<p>Main function</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>edit-gff <span class="o">[</span>OPTIONS<span class="o">]</span> COMMAND <span class="o">[</span>ARGS<span class="o">]</span>...
+</pre></div>
+</div>
+<p class="rubric">Options</p>
+<dl class="option">
+<dt id="cmdoption-edit-gff-version">
+<code class="sig-name descname">--version</code><code class="sig-prename descclassname"></code><a class="headerlink" href="#cmdoption-edit-gff-version" title="Permalink to this definition">¶</a></dt>
+<dd><p>Show the version and exit.</p>
+</dd></dl>
+
+<dl class="option">
+<dt id="cmdoption-edit-gff-cite">
+<code class="sig-name descname">--cite</code><code class="sig-prename descclassname"></code><a class="headerlink" href="#cmdoption-edit-gff-cite" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<div class="section" id="edit-gff-add">
+<h4>add<a class="headerlink" href="#edit-gff-add" title="Permalink to this headline">¶</a></h4>
+<p>Add fields to a GFF File</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>edit-gff add <span class="o">[</span>OPTIONS<span class="o">]</span> <span class="o">[</span>INPUT_FILE<span class="o">]</span> <span class="o">[</span>OUTPUT_FILE<span class="o">]</span>
+</pre></div>
+</div>
+<p class="rubric">Options</p>
+<dl class="option">
+<dt id="cmdoption-edit-gff-add-v">
+<code class="sig-name descname">-v</code><code class="sig-prename descclassname"></code><code class="sig-prename descclassname">, </code><code class="sig-name descname">--verbose</code><code class="sig-prename descclassname"></code><a class="headerlink" href="#cmdoption-edit-gff-add-v" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="option">
+<dt id="cmdoption-edit-gff-add-a">
+<code class="sig-name descname">-a</code><code class="sig-prename descclassname"></code><code class="sig-prename descclassname">, </code><code class="sig-name descname">--attributes</code><code class="sig-prename descclassname"> &lt;attributes&gt;</code><a class="headerlink" href="#cmdoption-edit-gff-add-a" title="Permalink to this definition">¶</a></dt>
+<dd><p>Add attributes to the GFF file. For example <cite>-a taxon_id 2</cite> will add taxon_id attribute with a value of 2 to all annotations. Multiple attributes can be set, for example: <cite>-a taxon_id 2 -a gene_id TEST</cite>  [required]</p>
+</dd></dl>
+
+<dl class="option">
+<dt id="cmdoption-edit-gff-add-w">
+<code class="sig-name descname">-w</code><code class="sig-prename descclassname"></code><code class="sig-prename descclassname">, </code><code class="sig-name descname">--overwrite</code><code class="sig-prename descclassname"></code><a class="headerlink" href="#cmdoption-edit-gff-add-w" title="Permalink to this definition">¶</a></dt>
+<dd><p>Overwrite the attributes if present</p>
+</dd></dl>
+
+<dl class="option">
+<dt id="cmdoption-edit-gff-add-o">
+<code class="sig-name descname">-o</code><code class="sig-prename descclassname"></code><code class="sig-prename descclassname">, </code><code class="sig-name descname">--only-edited</code><code class="sig-prename descclassname"></code><a class="headerlink" href="#cmdoption-edit-gff-add-o" title="Permalink to this definition">¶</a></dt>
+<dd><p>Only output edited annotations</p>
+</dd></dl>
+
+<dl class="option">
+<dt id="cmdoption-edit-gff-add-f">
+<code class="sig-name descname">-f</code><code class="sig-prename descclassname"></code><code class="sig-prename descclassname">, </code><code class="sig-name descname">--uids</code><code class="sig-prename descclassname"> &lt;uids&gt;</code><a class="headerlink" href="#cmdoption-edit-gff-add-f" title="Permalink to this definition">¶</a></dt>
+<dd><p>Only edit annotations with <cite>uid</cite> in a file (one per line)</p>
+</dd></dl>
+
+<p class="rubric">Arguments</p>
+<dl class="option">
+<dt id="cmdoption-edit-gff-add-arg-input-file">
+<code class="sig-name descname">INPUT_FILE</code><code class="sig-prename descclassname"></code><a class="headerlink" href="#cmdoption-edit-gff-add-arg-input-file" title="Permalink to this definition">¶</a></dt>
+<dd><p>Optional argument</p>
+</dd></dl>
+
+<dl class="option">
+<dt id="cmdoption-edit-gff-add-arg-output-file">
+<code class="sig-name descname">OUTPUT_FILE</code><code class="sig-prename descclassname"></code><a class="headerlink" href="#cmdoption-edit-gff-add-arg-output-file" title="Permalink to this definition">¶</a></dt>
+<dd><p>Optional argument</p>
+</dd></dl>
+
+</div>
+<div class="section" id="edit-gff-fields">
+<h4>fields<a class="headerlink" href="#edit-gff-fields" title="Permalink to this headline">¶</a></h4>
+<p>Prints the fields in a GFF File</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>edit-gff fields <span class="o">[</span>OPTIONS<span class="o">]</span> <span class="o">[</span>GFF_FILE<span class="o">]</span> <span class="o">[</span>TXT_FILE<span class="o">]</span>
+</pre></div>
+</div>
+<p class="rubric">Options</p>
+<dl class="option">
+<dt id="cmdoption-edit-gff-fields-v">
+<code class="sig-name descname">-v</code><code class="sig-prename descclassname"></code><code class="sig-prename descclassname">, </code><code class="sig-name descname">--verbose</code><code class="sig-prename descclassname"></code><a class="headerlink" href="#cmdoption-edit-gff-fields-v" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="option">
+<dt id="cmdoption-edit-gff-fields-n">
+<code class="sig-name descname">-n</code><code class="sig-prename descclassname"></code><code class="sig-prename descclassname">, </code><code class="sig-name descname">--num-ann</code><code class="sig-prename descclassname"> &lt;num_ann&gt;</code><a class="headerlink" href="#cmdoption-edit-gff-fields-n" title="Permalink to this definition">¶</a></dt>
+<dd><p>Number of annotations to parse, 0 will parse
+the whole file  [default: 10]</p>
+</dd></dl>
+
+<p class="rubric">Arguments</p>
+<dl class="option">
+<dt id="cmdoption-edit-gff-fields-arg-gff-file">
+<code class="sig-name descname">GFF_FILE</code><code class="sig-prename descclassname"></code><a class="headerlink" href="#cmdoption-edit-gff-fields-arg-gff-file" title="Permalink to this definition">¶</a></dt>
+<dd><p>Optional argument</p>
+</dd></dl>
+
+<dl class="option">
+<dt id="cmdoption-edit-gff-fields-arg-txt-file">
+<code class="sig-name descname">TXT_FILE</code><code class="sig-prename descclassname"></code><a class="headerlink" href="#cmdoption-edit-gff-fields-arg-txt-file" title="Permalink to this definition">¶</a></dt>
+<dd><p>Optional argument</p>
+</dd></dl>
+
+</div>
+<div class="section" id="edit-gff-remove">
+<h4>remove<a class="headerlink" href="#edit-gff-remove" title="Permalink to this headline">¶</a></h4>
+<p>Remove fields from a GFF File</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>edit-gff remove <span class="o">[</span>OPTIONS<span class="o">]</span> <span class="o">[</span>INPUT_FILE<span class="o">]</span> <span class="o">[</span>OUTPUT_FILE<span class="o">]</span>
+</pre></div>
+</div>
+<p class="rubric">Options</p>
+<dl class="option">
+<dt id="cmdoption-edit-gff-remove-v">
+<code class="sig-name descname">-v</code><code class="sig-prename descclassname"></code><code class="sig-prename descclassname">, </code><code class="sig-name descname">--verbose</code><code class="sig-prename descclassname"></code><a class="headerlink" href="#cmdoption-edit-gff-remove-v" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="option">
+<dt id="cmdoption-edit-gff-remove-a">
+<code class="sig-name descname">-a</code><code class="sig-prename descclassname"></code><code class="sig-prename descclassname">, </code><code class="sig-name descname">--attributes</code><code class="sig-prename descclassname"> &lt;attributes&gt;</code><a class="headerlink" href="#cmdoption-edit-gff-remove-a" title="Permalink to this definition">¶</a></dt>
+<dd><p>Remove attributes to the GFF file. For example <cite>-a taxon_id</cite> will remove taxon_id attribute for all annotations. Multiple attributes can be removed, for example: <cite>-a taxon_id -a gene_id</cite>  [required]</p>
+</dd></dl>
+
+<dl class="option">
+<dt id="cmdoption-edit-gff-remove-f">
+<code class="sig-name descname">-f</code><code class="sig-prename descclassname"></code><code class="sig-prename descclassname">, </code><code class="sig-name descname">--uids</code><code class="sig-prename descclassname"> &lt;uids&gt;</code><a class="headerlink" href="#cmdoption-edit-gff-remove-f" title="Permalink to this definition">¶</a></dt>
+<dd><p>Only edit annotations with <cite>uid</cite> in a file (one per line)</p>
+</dd></dl>
+
+<p class="rubric">Arguments</p>
+<dl class="option">
+<dt id="cmdoption-edit-gff-remove-arg-input-file">
+<code class="sig-name descname">INPUT_FILE</code><code class="sig-prename descclassname"></code><a class="headerlink" href="#cmdoption-edit-gff-remove-arg-input-file" title="Permalink to this definition">¶</a></dt>
+<dd><p>Optional argument</p>
+</dd></dl>
+
+<dl class="option">
+<dt id="cmdoption-edit-gff-remove-arg-output-file">
+<code class="sig-name descname">OUTPUT_FILE</code><code class="sig-prename descclassname"></code><a class="headerlink" href="#cmdoption-edit-gff-remove-arg-output-file" title="Permalink to this definition">¶</a></dt>
+<dd><p>Optional argument</p>
+</dd></dl>
+
+</div>
+<div class="section" id="edit-gff-table">
+<h4>table<a class="headerlink" href="#edit-gff-table" title="Permalink to this headline">¶</a></h4>
+<p>Adds fields from a Table file</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>edit-gff table <span class="o">[</span>OPTIONS<span class="o">]</span> <span class="o">[</span>INPUT_FILE<span class="o">]</span> <span class="o">[</span>OUTPUT_FILE<span class="o">]</span>
+</pre></div>
+</div>
+<p class="rubric">Options</p>
+<dl class="option">
+<dt id="cmdoption-edit-gff-table-v">
+<code class="sig-name descname">-v</code><code class="sig-prename descclassname"></code><code class="sig-prename descclassname">, </code><code class="sig-name descname">--verbose</code><code class="sig-prename descclassname"></code><a class="headerlink" href="#cmdoption-edit-gff-table-v" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="option">
+<dt id="cmdoption-edit-gff-table-k">
+<code class="sig-name descname">-k</code><code class="sig-prename descclassname"></code><code class="sig-prename descclassname">, </code><code class="sig-name descname">--key</code><code class="sig-prename descclassname"> &lt;key&gt;</code><a class="headerlink" href="#cmdoption-edit-gff-table-k" title="Permalink to this definition">¶</a></dt>
+<dd><p>Attribute used to search the table defaults to <cite>uid</cite></p>
+</dd></dl>
+
+<dl class="option">
+<dt id="cmdoption-edit-gff-table-a">
+<code class="sig-name descname">-a</code><code class="sig-prename descclassname"></code><code class="sig-prename descclassname">, </code><code class="sig-name descname">--attribute</code><code class="sig-prename descclassname"> &lt;attribute&gt;</code><a class="headerlink" href="#cmdoption-edit-gff-table-a" title="Permalink to this definition">¶</a></dt>
+<dd><p>Attribute to add/change  [required]</p>
+</dd></dl>
+
+<dl class="option">
+<dt id="cmdoption-edit-gff-table-o">
+<code class="sig-name descname">-o</code><code class="sig-prename descclassname"></code><code class="sig-prename descclassname">, </code><code class="sig-name descname">--only-edited</code><code class="sig-prename descclassname"></code><a class="headerlink" href="#cmdoption-edit-gff-table-o" title="Permalink to this definition">¶</a></dt>
+<dd><p>Only output edited annotations</p>
+</dd></dl>
+
+<dl class="option">
+<dt id="cmdoption-edit-gff-table-r">
+<code class="sig-name descname">-r</code><code class="sig-prename descclassname"></code><code class="sig-prename descclassname">, </code><code class="sig-name descname">--skip-rows</code><code class="sig-prename descclassname"> &lt;skip_rows&gt;</code><a class="headerlink" href="#cmdoption-edit-gff-table-r" title="Permalink to this definition">¶</a></dt>
+<dd><p>Number of rows to skip at the start of the file</p>
+</dd></dl>
+
+<dl class="option">
+<dt id="cmdoption-edit-gff-table-s">
+<code class="sig-name descname">-s</code><code class="sig-prename descclassname"></code><code class="sig-prename descclassname">, </code><code class="sig-name descname">--separator</code><code class="sig-prename descclassname"> &lt;separator&gt;</code><a class="headerlink" href="#cmdoption-edit-gff-table-s" title="Permalink to this definition">¶</a></dt>
+<dd><p>Fields separator, default to <cite>TAB</cite></p>
+</dd></dl>
+
+<dl class="option">
+<dt id="cmdoption-edit-gff-table-t">
+<code class="sig-name descname">-t</code><code class="sig-prename descclassname"></code><code class="sig-prename descclassname">, </code><code class="sig-name descname">--table-file</code><code class="sig-prename descclassname"> &lt;table_file&gt;</code><a class="headerlink" href="#cmdoption-edit-gff-table-t" title="Permalink to this definition">¶</a></dt>
+<dd><p>[required]</p>
+</dd></dl>
+
+<dl class="option">
+<dt id="cmdoption-edit-gff-table-ki">
+<code class="sig-name descname">-ki</code><code class="sig-prename descclassname"></code><code class="sig-prename descclassname">, </code><code class="sig-name descname">--key-index</code><code class="sig-prename descclassname"> &lt;key_index&gt;</code><a class="headerlink" href="#cmdoption-edit-gff-table-ki" title="Permalink to this definition">¶</a></dt>
+<dd><p>Which field in the table is the key value  [default: 0]</p>
+</dd></dl>
+
+<dl class="option">
+<dt id="cmdoption-edit-gff-table-ai">
+<code class="sig-name descname">-ai</code><code class="sig-prename descclassname"></code><code class="sig-prename descclassname">, </code><code class="sig-name descname">--attr-index</code><code class="sig-prename descclassname"> &lt;attr_index&gt;</code><a class="headerlink" href="#cmdoption-edit-gff-table-ai" title="Permalink to this definition">¶</a></dt>
+<dd><p>Which field in the table is the attribute value  [default: 1]</p>
+</dd></dl>
+
+<p class="rubric">Arguments</p>
+<dl class="option">
+<dt id="cmdoption-edit-gff-table-arg-input-file">
+<code class="sig-name descname">INPUT_FILE</code><code class="sig-prename descclassname"></code><a class="headerlink" href="#cmdoption-edit-gff-table-arg-input-file" title="Permalink to this definition">¶</a></dt>
+<dd><p>Optional argument</p>
+</dd></dl>
+
+<dl class="option">
+<dt id="cmdoption-edit-gff-table-arg-output-file">
+<code class="sig-name descname">OUTPUT_FILE</code><code class="sig-prename descclassname"></code><a class="headerlink" href="#cmdoption-edit-gff-table-arg-output-file" title="Permalink to this definition">¶</a></dt>
+<dd><p>Optional argument</p>
+</dd></dl>
+
+</div>
+<div class="section" id="edit-gff-view">
+<h4>view<a class="headerlink" href="#edit-gff-view" title="Permalink to this headline">¶</a></h4>
+<p>View GFF file as table/json, etc.</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>edit-gff view <span class="o">[</span>OPTIONS<span class="o">]</span> <span class="o">[</span>INPUT_FILE<span class="o">]</span> <span class="o">[</span>OUTPUT_FILE<span class="o">]</span>
+</pre></div>
+</div>
+<p class="rubric">Options</p>
+<dl class="option">
+<dt id="cmdoption-edit-gff-view-v">
+<code class="sig-name descname">-v</code><code class="sig-prename descclassname"></code><code class="sig-prename descclassname">, </code><code class="sig-name descname">--verbose</code><code class="sig-prename descclassname"></code><a class="headerlink" href="#cmdoption-edit-gff-view-v" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="option">
+<dt id="cmdoption-edit-gff-view-h">
+<code class="sig-name descname">-h</code><code class="sig-prename descclassname"></code><code class="sig-prename descclassname">, </code><code class="sig-name descname">--header</code><code class="sig-prename descclassname"></code><a class="headerlink" href="#cmdoption-edit-gff-view-h" title="Permalink to this definition">¶</a></dt>
+<dd><p>Print Header</p>
+</dd></dl>
+
+<dl class="option">
+<dt id="cmdoption-edit-gff-view-k">
+<code class="sig-name descname">-k</code><code class="sig-prename descclassname"></code><code class="sig-prename descclassname">, </code><code class="sig-name descname">--keep-empty</code><code class="sig-prename descclassname"></code><a class="headerlink" href="#cmdoption-edit-gff-view-k" title="Permalink to this definition">¶</a></dt>
+<dd><p>Keep annotations where not all attributes were found</p>
+</dd></dl>
+
+<dl class="option">
+<dt id="cmdoption-edit-gff-view-a">
+<code class="sig-name descname">-a</code><code class="sig-prename descclassname"></code><code class="sig-prename descclassname">, </code><code class="sig-name descname">--attributes</code><code class="sig-prename descclassname"> &lt;attributes&gt;</code><a class="headerlink" href="#cmdoption-edit-gff-view-a" title="Permalink to this definition">¶</a></dt>
+<dd><p>Attributes of GFF file to print. For example <cite>-a taxon_id</cite> will print <cite>taxon_id</cite> for all annotations. Multiple attributes can be printed, for example: <cite>-a taxon_id -a gene_id</cite>  [required]</p>
+</dd></dl>
+
+<dl class="option">
+<dt id="cmdoption-edit-gff-view-s">
+<code class="sig-name descname">-s</code><code class="sig-prename descclassname"></code><code class="sig-prename descclassname">, </code><code class="sig-name descname">--separator</code><code class="sig-prename descclassname"> &lt;separator&gt;</code><a class="headerlink" href="#cmdoption-edit-gff-view-s" title="Permalink to this definition">¶</a></dt>
+<dd><p>Fields separator, default to <cite>TAB</cite></p>
+</dd></dl>
+
+<p class="rubric">Arguments</p>
+<dl class="option">
+<dt id="cmdoption-edit-gff-view-arg-input-file">
+<code class="sig-name descname">INPUT_FILE</code><code class="sig-prename descclassname"></code><a class="headerlink" href="#cmdoption-edit-gff-view-arg-input-file" title="Permalink to this definition">¶</a></dt>
+<dd><p>Optional argument</p>
+</dd></dl>
+
+<dl class="option">
+<dt id="cmdoption-edit-gff-view-arg-output-file">
+<code class="sig-name descname">OUTPUT_FILE</code><code class="sig-prename descclassname"></code><a class="headerlink" href="#cmdoption-edit-gff-view-arg-output-file" title="Permalink to this definition">¶</a></dt>
+<dd><p>Optional argument</p>
+</dd></dl>
+
+</div>
+</div>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="pnps_gen.html" class="btn btn-neutral float-right" title="pnps-gen - pN/pS Table Generation" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="sampling-utils.html" class="btn btn-neutral float-left" title="sampling-utils - Resampling Utilities" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2013-2015, Francesco Rubino
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

@@ -1,0 +1,486 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>mgkit.plots.abund &mdash; MGKit: Metagenomic framework 0.5.0 documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+  <script type="text/javascript" src="../../../_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../../../" src="../../../_static/documentation_options.js"></script>
+        <script type="text/javascript" src="../../../_static/jquery.js"></script>
+        <script type="text/javascript" src="../../../_static/underscore.js"></script>
+        <script type="text/javascript" src="../../../_static/doctools.js"></script>
+        <script type="text/javascript" src="../../../_static/language_data.js"></script>
+        <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+        <script async="async" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+        <script type="text/x-mathjax-config">MathJax.Hub.Config({"tex2jax": {"inlineMath": [["$", "$"], ["\\(", "\\)"]], "processEscapes": true, "ignoreClass": "document", "processClass": "math|output_area"}})</script>
+    
+    <script type="text/javascript" src="../../../_static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="../../../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../../../_static/graphviz.css" type="text/css" />
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../../../index.html" class="icon icon-home"> MGKit: Metagenomic framework
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                0.5.0
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../introduction.html">Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../install.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../pipeline/index.html">Metagenomic Pipeline</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../scripts/index.html">Scripts Details</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../examples/index.html">Example Notebooks</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../gff.html">MGKit GFF Specifications</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../library.html">Library Reference</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../changes.html">Changes</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../index.html">MGKit: Metagenomic framework</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../../../index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="../../index.html">Module code</a> &raquo;</li>
+        
+          <li><a href="../../mgkit.html">mgkit</a> &raquo;</li>
+        
+      <li>mgkit.plots.abund</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <h1>Source code for mgkit.plots.abund</h1><div class="highlight"><pre>
+<span></span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">.. versionadded:: 0.1.15</span>
+
+<span class="sd">Module to plot relative abundances in a 1D or 3D projection</span>
+<span class="sd">&quot;&quot;&quot;</span>
+<span class="kn">from</span> <span class="nn">__future__</span> <span class="kn">import</span> <span class="n">division</span>
+<span class="kn">from</span> <span class="nn">builtins</span> <span class="kn">import</span> <span class="nb">zip</span>
+<span class="kn">import</span> <span class="nn">math</span>
+
+<span class="kn">import</span> <span class="nn">numpy</span>
+
+<span class="n">SQRT3_2</span> <span class="o">=</span> <span class="n">math</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span> <span class="o">/</span> <span class="mi">2</span>
+
+
+<div class="viewcode-block" id="draw_triangle_grid"><a class="viewcode-back" href="../../../api/mgkit.plots.abund.html#mgkit.plots.abund.draw_triangle_grid">[docs]</a><span class="k">def</span> <span class="nf">draw_triangle_grid</span><span class="p">(</span><span class="n">ax</span><span class="p">,</span> <span class="n">labels</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;LAM&#39;</span><span class="p">,</span> <span class="s1">&#39;SAM&#39;</span><span class="p">,</span> <span class="s1">&#39;EAM&#39;</span><span class="p">],</span> <span class="n">linewidth</span><span class="o">=</span><span class="mf">1.</span><span class="p">,</span>
+                       <span class="n">styles</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;-&#39;</span><span class="p">,</span> <span class="s1">&#39;:&#39;</span><span class="p">,</span> <span class="s1">&#39;--&#39;</span><span class="p">],</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">22</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    .. versionchanged:: 0.2.0</span>
+<span class="sd">        reworked internals and changed defaults</span>
+
+<span class="sd">    Draws a triangle as axes, for a planar-simplex projection.</span>
+
+<span class="sd">    Arguments:</span>
+<span class="sd">        ax: an axis instance</span>
+<span class="sd">        labels (iterable): list of string to be put for the axes</span>
+<span class="sd">        styles (None, iterable): either *None* for solid lines or matplotlib</span>
+<span class="sd">            line markers. These are in sync between the internal lines and</span>
+<span class="sd">            the axes.</span>
+<span class="sd">        linewidth (float): line width for the axes, the internal lines are</span>
+<span class="sd">            equal to *0.75 * linewidth*</span>
+<span class="sd">        fontsize (float): font size for the labels, the tick font size is</span>
+<span class="sd">            equal to *0.75 * fontsize*</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="n">ax</span><span class="o">.</span><span class="n">set_ylim</span><span class="p">((</span><span class="o">-</span><span class="mf">0.1</span><span class="p">,</span> <span class="mf">1.0</span><span class="p">))</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">set_xlim</span><span class="p">((</span><span class="o">-</span><span class="mf">0.1</span><span class="p">,</span> <span class="mf">1.1</span><span class="p">))</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">set_axis_off</span><span class="p">()</span>
+
+    <span class="c1"># SAM</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">text</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="o">-</span><span class="mf">0.05</span><span class="p">,</span> <span class="n">labels</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">fontsize</span><span class="o">=</span><span class="n">fontsize</span><span class="p">,</span> <span class="n">ha</span><span class="o">=</span><span class="s1">&#39;right&#39;</span><span class="p">)</span>
+    <span class="c1"># LAM</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">text</span><span class="p">(</span><span class="mf">1.0</span><span class="p">,</span> <span class="o">-</span><span class="mf">0.05</span><span class="p">,</span> <span class="n">labels</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">fontsize</span><span class="o">=</span><span class="n">fontsize</span><span class="p">,</span> <span class="n">ha</span><span class="o">=</span><span class="s1">&#39;left&#39;</span><span class="p">)</span>
+    <span class="c1"># EAB</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">text</span><span class="p">(</span><span class="mf">0.5</span><span class="p">,</span> <span class="n">SQRT3_2</span> <span class="o">+</span> <span class="mf">0.025</span><span class="p">,</span> <span class="n">labels</span><span class="p">[</span><span class="mi">2</span><span class="p">],</span> <span class="n">fontsize</span><span class="o">=</span><span class="n">fontsize</span><span class="p">,</span> <span class="n">ha</span><span class="o">=</span><span class="s1">&#39;center&#39;</span><span class="p">)</span>
+
+    <span class="n">values</span> <span class="o">=</span> <span class="n">numpy</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mf">0.1</span><span class="p">,</span> <span class="mf">1.</span><span class="p">,</span> <span class="mf">0.1</span><span class="p">)</span>
+
+    <span class="n">points</span> <span class="o">=</span> <span class="p">[]</span>
+
+    <span class="c1"># Bottom axis (LAM)</span>
+    <span class="n">x1</span><span class="p">,</span> <span class="n">y1</span> <span class="o">=</span> <span class="n">project_point</span><span class="p">((</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">))</span>
+    <span class="n">x2</span><span class="p">,</span> <span class="n">y2</span> <span class="o">=</span> <span class="n">project_point</span><span class="p">((</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">))</span>
+    <span class="n">points</span><span class="o">.</span><span class="n">append</span><span class="p">((</span>
+        <span class="p">[</span><span class="n">x1</span><span class="p">,</span> <span class="n">x2</span><span class="p">],</span>
+        <span class="p">[</span><span class="n">y1</span><span class="p">,</span> <span class="n">y2</span><span class="p">]</span>
+    <span class="p">))</span>
+    <span class="c1"># Left axis (EAM)</span>
+    <span class="n">x1</span><span class="p">,</span> <span class="n">y1</span> <span class="o">=</span> <span class="n">project_point</span><span class="p">((</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">))</span>
+    <span class="n">x2</span><span class="p">,</span> <span class="n">y2</span> <span class="o">=</span> <span class="n">project_point</span><span class="p">((</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">))</span>
+    <span class="n">points</span><span class="o">.</span><span class="n">append</span><span class="p">((</span>
+        <span class="p">[</span><span class="n">x1</span><span class="p">,</span> <span class="n">x2</span><span class="p">],</span>
+        <span class="p">[</span><span class="n">y1</span><span class="p">,</span> <span class="n">y2</span><span class="p">]</span>
+    <span class="p">))</span>
+    <span class="c1"># Right axis (SAM)</span>
+    <span class="n">x1</span><span class="p">,</span> <span class="n">y1</span> <span class="o">=</span> <span class="n">project_point</span><span class="p">((</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">))</span>
+    <span class="n">x2</span><span class="p">,</span> <span class="n">y2</span> <span class="o">=</span> <span class="n">project_point</span><span class="p">((</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">))</span>
+    <span class="n">points</span><span class="o">.</span><span class="n">append</span><span class="p">((</span>
+        <span class="p">[</span><span class="n">x1</span><span class="p">,</span> <span class="n">x2</span><span class="p">],</span>
+        <span class="p">[</span><span class="n">y1</span><span class="p">,</span> <span class="n">y2</span><span class="p">]</span>
+    <span class="p">))</span>
+
+    <span class="k">if</span> <span class="n">styles</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="n">styles</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;-&#39;</span><span class="p">]</span> <span class="o">*</span> <span class="mi">3</span>
+
+    <span class="k">for</span> <span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">Y</span><span class="p">),</span> <span class="n">style</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="n">points</span><span class="p">,</span> <span class="n">styles</span><span class="p">):</span>
+        <span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">Y</span><span class="p">,</span> <span class="n">linestyle</span><span class="o">=</span><span class="n">style</span><span class="p">,</span> <span class="n">linewidth</span><span class="o">=</span><span class="n">linewidth</span><span class="o">*</span><span class="mf">1.5</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;k&#39;</span><span class="p">)</span>
+
+    <span class="k">for</span> <span class="n">index</span> <span class="ow">in</span> <span class="n">values</span><span class="p">:</span>
+
+        <span class="n">x1</span><span class="p">,</span> <span class="n">y1</span> <span class="o">=</span> <span class="n">project_point</span><span class="p">((</span><span class="n">index</span><span class="p">,</span> <span class="mi">1</span> <span class="o">-</span> <span class="n">index</span><span class="p">,</span> <span class="mi">0</span><span class="p">))</span>
+        <span class="n">x2</span><span class="p">,</span> <span class="n">y2</span> <span class="o">=</span> <span class="n">project_point</span><span class="p">((</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span> <span class="o">-</span> <span class="n">index</span><span class="p">,</span> <span class="n">index</span><span class="p">))</span>
+        <span class="c1"># EAM</span>
+        <span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">([</span><span class="n">x1</span><span class="p">,</span> <span class="n">x2</span><span class="p">],</span> <span class="p">[</span><span class="n">y1</span><span class="p">,</span> <span class="n">y2</span><span class="p">],</span> <span class="n">linestyle</span><span class="o">=</span><span class="n">styles</span><span class="p">[</span><span class="mi">2</span><span class="p">],</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;k&#39;</span><span class="p">,</span>
+                <span class="n">linewidth</span><span class="o">=</span><span class="n">linewidth</span><span class="p">)</span>
+
+        <span class="n">x3</span><span class="p">,</span> <span class="n">y3</span> <span class="o">=</span> <span class="n">project_point</span><span class="p">((</span><span class="mi">0</span><span class="p">,</span> <span class="n">index</span><span class="p">,</span> <span class="mi">1</span> <span class="o">-</span> <span class="n">index</span><span class="p">))</span>
+        <span class="n">x4</span><span class="p">,</span> <span class="n">y4</span> <span class="o">=</span> <span class="n">project_point</span><span class="p">((</span><span class="n">index</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span> <span class="o">-</span> <span class="n">index</span><span class="p">))</span>
+        <span class="c1"># SAM</span>
+        <span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">([</span><span class="n">x3</span><span class="p">,</span> <span class="n">x4</span><span class="p">],</span> <span class="p">[</span><span class="n">y3</span><span class="p">,</span> <span class="n">y4</span><span class="p">],</span> <span class="n">linestyle</span><span class="o">=</span><span class="n">styles</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;k&#39;</span><span class="p">,</span>
+                <span class="n">linewidth</span><span class="o">=</span><span class="n">linewidth</span><span class="p">)</span>
+
+        <span class="c1"># LAM</span>
+        <span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">([</span><span class="n">x4</span><span class="p">,</span> <span class="n">x1</span><span class="p">],</span> <span class="p">[</span><span class="n">y4</span><span class="p">,</span> <span class="n">y1</span><span class="p">],</span> <span class="n">linestyle</span><span class="o">=</span><span class="n">styles</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;k&#39;</span><span class="p">,</span>
+                <span class="n">linewidth</span><span class="o">=</span><span class="n">linewidth</span><span class="p">)</span>
+
+        <span class="c1"># LAM labels</span>
+        <span class="n">ax</span><span class="o">.</span><span class="n">text</span><span class="p">(</span><span class="n">x1</span><span class="p">,</span> <span class="n">y1</span> <span class="o">-</span> <span class="mf">0.02</span><span class="p">,</span> <span class="n">numpy</span><span class="o">.</span><span class="n">round</span><span class="p">(</span><span class="n">index</span><span class="p">,</span> <span class="mi">1</span><span class="p">),</span> <span class="n">va</span><span class="o">=</span><span class="s1">&#39;top&#39;</span><span class="p">,</span> <span class="n">ha</span><span class="o">=</span><span class="s1">&#39;center&#39;</span><span class="p">,</span>
+                <span class="n">fontsize</span><span class="o">=</span><span class="nb">int</span><span class="p">(</span><span class="n">fontsize</span> <span class="o">*</span> <span class="mf">0.75</span><span class="p">))</span>
+        <span class="c1"># EAM labels</span>
+        <span class="n">ax</span><span class="o">.</span><span class="n">text</span><span class="p">(</span><span class="n">x4</span> <span class="o">-</span> <span class="mf">0.02</span><span class="p">,</span> <span class="n">y4</span><span class="p">,</span> <span class="n">numpy</span><span class="o">.</span><span class="n">round</span><span class="p">(</span><span class="mi">1</span> <span class="o">-</span> <span class="n">index</span><span class="p">,</span> <span class="mi">1</span><span class="p">),</span> <span class="n">ha</span><span class="o">=</span><span class="s1">&#39;right&#39;</span><span class="p">,</span> <span class="n">va</span><span class="o">=</span><span class="s1">&#39;center&#39;</span><span class="p">,</span>
+                <span class="n">fontsize</span><span class="o">=</span><span class="nb">int</span><span class="p">(</span><span class="n">fontsize</span> <span class="o">*</span> <span class="mf">0.75</span><span class="p">))</span>
+        <span class="c1"># EAM labels</span>
+        <span class="n">ax</span><span class="o">.</span><span class="n">text</span><span class="p">(</span><span class="n">x3</span> <span class="o">+</span> <span class="mf">0.02</span><span class="p">,</span> <span class="n">y3</span><span class="p">,</span> <span class="n">numpy</span><span class="o">.</span><span class="n">round</span><span class="p">(</span><span class="n">index</span><span class="p">,</span> <span class="mi">1</span><span class="p">),</span> <span class="n">ha</span><span class="o">=</span><span class="s1">&#39;left&#39;</span><span class="p">,</span> <span class="n">va</span><span class="o">=</span><span class="s1">&#39;center&#39;</span><span class="p">,</span>
+                <span class="n">fontsize</span><span class="o">=</span><span class="nb">int</span><span class="p">(</span><span class="n">fontsize</span> <span class="o">*</span> <span class="mf">0.75</span><span class="p">))</span></div>
+
+
+<div class="viewcode-block" id="draw_1d_grid"><a class="viewcode-back" href="../../../api/mgkit.plots.abund.html#mgkit.plots.abund.draw_1d_grid">[docs]</a><span class="k">def</span> <span class="nf">draw_1d_grid</span><span class="p">(</span><span class="n">ax</span><span class="p">,</span> <span class="n">labels</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;LAM&#39;</span><span class="p">,</span> <span class="s1">&#39;SAM&#39;</span><span class="p">],</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">22</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    .. versionchanged:: 0.2.0</span>
+<span class="sd">        reworked internals and changed defaults</span>
+
+<span class="sd">    Draws a 1D axis, to display propotions.</span>
+
+<span class="sd">    Arguments:</span>
+<span class="sd">        ax: an axis instance</span>
+<span class="sd">        labels (iterable): list of string to be put for the axes</span>
+<span class="sd">        fontsize (float): font size for the labels, the tick font size is</span>
+<span class="sd">            equal to *0.75 * fontsize*</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="n">ax</span><span class="o">.</span><span class="n">set_ylim</span><span class="p">((</span><span class="o">-</span><span class="mf">1.1</span><span class="p">,</span> <span class="mf">1.1</span><span class="p">))</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">set_xlim</span><span class="p">((</span><span class="o">-</span><span class="mf">0.1</span><span class="p">,</span> <span class="mf">1.1</span><span class="p">))</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">set_axis_off</span><span class="p">()</span>
+
+    <span class="n">ax</span><span class="o">.</span><span class="n">text</span><span class="p">(</span><span class="o">-</span><span class="mf">0.025</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="n">labels</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">fontsize</span><span class="o">=</span><span class="n">fontsize</span><span class="p">,</span> <span class="n">va</span><span class="o">=</span><span class="s1">&#39;center&#39;</span><span class="p">,</span> <span class="n">ha</span><span class="o">=</span><span class="s1">&#39;right&#39;</span><span class="p">)</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">text</span><span class="p">(</span><span class="mf">1.025</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="n">labels</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">fontsize</span><span class="o">=</span><span class="n">fontsize</span><span class="p">,</span> <span class="n">va</span><span class="o">=</span><span class="s1">&#39;center&#39;</span><span class="p">,</span> <span class="n">ha</span><span class="o">=</span><span class="s1">&#39;left&#39;</span><span class="p">)</span>
+
+    <span class="n">ty</span> <span class="o">=</span> <span class="mf">1.0</span>
+    <span class="n">by</span> <span class="o">=</span> <span class="o">-</span><span class="mf">1.0</span>
+
+    <span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span> <span class="n">linewidth</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;k&#39;</span><span class="p">)</span>
+
+    <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">numpy</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mf">0.1</span><span class="p">,</span> <span class="mf">1.</span><span class="p">,</span> <span class="mf">0.1</span><span class="p">):</span>
+        <span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">([</span><span class="n">x</span><span class="p">,</span> <span class="n">x</span><span class="p">],</span> <span class="p">[</span><span class="n">by</span><span class="p">,</span> <span class="n">ty</span><span class="p">],</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;k&#39;</span><span class="p">,</span> <span class="n">linestyle</span><span class="o">=</span><span class="s1">&#39;:&#39;</span><span class="p">)</span>
+        <span class="n">y_b</span> <span class="o">=</span> <span class="n">by</span> <span class="o">-</span> <span class="o">.</span><span class="mi">1</span>
+        <span class="n">y_t</span> <span class="o">=</span> <span class="n">ty</span> <span class="o">+</span> <span class="o">.</span><span class="mi">1</span>
+        <span class="n">ax</span><span class="o">.</span><span class="n">text</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y_b</span><span class="p">,</span> <span class="n">numpy</span><span class="o">.</span><span class="n">round</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="mi">1</span><span class="p">),</span> <span class="n">fontsize</span><span class="o">=</span><span class="n">fontsize</span> <span class="o">*</span> <span class="mf">0.75</span><span class="p">,</span> <span class="n">ha</span><span class="o">=</span><span class="s1">&#39;center&#39;</span><span class="p">,</span> <span class="n">va</span><span class="o">=</span><span class="s1">&#39;top&#39;</span><span class="p">)</span>
+        <span class="n">ax</span><span class="o">.</span><span class="n">text</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y_t</span><span class="p">,</span> <span class="n">numpy</span><span class="o">.</span><span class="n">round</span><span class="p">(</span><span class="mi">1</span> <span class="o">-</span> <span class="n">x</span><span class="p">,</span> <span class="mi">1</span><span class="p">),</span> <span class="n">fontsize</span><span class="o">=</span><span class="n">fontsize</span> <span class="o">*</span> <span class="mf">0.75</span><span class="p">,</span> <span class="n">ha</span><span class="o">=</span><span class="s1">&#39;center&#39;</span><span class="p">,</span>
+                <span class="n">va</span><span class="o">=</span><span class="s1">&#39;bottom&#39;</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="project_point"><a class="viewcode-back" href="../../../api/mgkit.plots.abund.html#mgkit.plots.abund.project_point">[docs]</a><span class="k">def</span> <span class="nf">project_point</span><span class="p">(</span><span class="n">point</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Project a tuple containing coordinates (i.e. x, y, z) to planar-simplex.</span>
+
+<span class="sd">    Arguments:</span>
+<span class="sd">        point (tuple): contains the three coordinates to project</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        tuple: the projected point in a planar-simplex</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="c1"># a = point[0]</span>
+    <span class="n">b</span> <span class="o">=</span> <span class="n">point</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
+    <span class="n">c</span> <span class="o">=</span> <span class="n">point</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span>
+
+    <span class="n">x</span> <span class="o">=</span> <span class="n">b</span> <span class="o">+</span> <span class="p">(</span><span class="n">c</span> <span class="o">/</span> <span class="mf">2.</span><span class="p">)</span>
+    <span class="n">y</span> <span class="o">=</span> <span class="n">SQRT3_2</span> <span class="o">*</span> <span class="n">c</span>
+
+    <span class="k">return</span> <span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="col_func_firstel"><a class="viewcode-back" href="../../../api/mgkit.plots.abund.html#mgkit.plots.abund.col_func_firstel">[docs]</a><span class="k">def</span> <span class="nf">col_func_firstel</span><span class="p">(</span><span class="n">key</span><span class="p">,</span> <span class="n">colors</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+    <span class="k">if</span> <span class="n">colors</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="k">return</span> <span class="s1">&#39;black&#39;</span>
+
+    <span class="k">return</span> <span class="n">colors</span><span class="p">[</span><span class="n">key</span><span class="p">[</span><span class="mi">0</span><span class="p">]]</span></div>
+
+
+<div class="viewcode-block" id="col_func_name"><a class="viewcode-back" href="../../../api/mgkit.plots.abund.html#mgkit.plots.abund.col_func_name">[docs]</a><span class="k">def</span> <span class="nf">col_func_name</span><span class="p">(</span><span class="n">key</span><span class="p">,</span> <span class="n">func</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">colors</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+    <span class="k">if</span> <span class="p">(</span><span class="n">colors</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">):</span>
+        <span class="k">return</span> <span class="s1">&#39;black&#39;</span>
+
+    <span class="k">if</span> <span class="n">func</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="n">key</span> <span class="o">=</span> <span class="n">func</span><span class="p">(</span><span class="n">key</span><span class="p">)</span>
+
+    <span class="k">return</span> <span class="n">colors</span><span class="p">[</span><span class="n">key</span><span class="p">]</span></div>
+
+
+<div class="viewcode-block" id="col_func_taxon"><a class="viewcode-back" href="../../../api/mgkit.plots.abund.html#mgkit.plots.abund.col_func_taxon">[docs]</a><span class="k">def</span> <span class="nf">col_func_taxon</span><span class="p">(</span><span class="n">taxon_id</span><span class="p">,</span> <span class="n">taxonomy</span><span class="p">,</span> <span class="n">anc_ids</span><span class="p">,</span> <span class="n">colpal</span><span class="p">):</span>
+    <span class="k">for</span> <span class="n">anc_id</span><span class="p">,</span> <span class="n">color</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="n">anc_ids</span><span class="p">,</span> <span class="n">colpal</span><span class="p">):</span>
+        <span class="k">if</span> <span class="n">taxonomy</span><span class="o">.</span><span class="n">is_ancestor</span><span class="p">(</span><span class="n">taxon_id</span><span class="p">,</span> <span class="n">anc_id</span><span class="p">):</span>
+            <span class="k">return</span> <span class="n">color</span>
+    <span class="k">return</span> <span class="s1">&#39;black&#39;</span></div>
+
+
+<div class="viewcode-block" id="draw_circles"><a class="viewcode-back" href="../../../api/mgkit.plots.abund.html#mgkit.plots.abund.draw_circles">[docs]</a><span class="k">def</span> <span class="nf">draw_circles</span><span class="p">(</span><span class="n">ax</span><span class="p">,</span> <span class="n">data</span><span class="p">,</span> <span class="n">col_func</span><span class="o">=</span><span class="n">col_func_name</span><span class="p">,</span> <span class="n">csize</span><span class="o">=</span><span class="mi">200</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=.</span><span class="mi">5</span><span class="p">,</span>
+                 <span class="n">sizescale</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">order</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">linewidths</span><span class="o">=</span><span class="mf">0.</span><span class="p">,</span> <span class="n">edgecolor</span><span class="o">=</span><span class="s1">&#39;none&#39;</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    .. versionchanged:: 0.2.0</span>
+<span class="sd">        changed internals and added return value</span>
+
+<span class="sd">    Draws a scatter plot over either a planar-simplex projection, if the number</span>
+<span class="sd">    of coordinates is 3, or in a 1D axis.</span>
+
+<span class="sd">    If the number of coordinates is 3, :func:`project_point` is used to project</span>
+<span class="sd">    the point in 2 coordinates. The coordinates are converted in proportions</span>
+<span class="sd">    internally.</span>
+
+<span class="sd">    Arguments:</span>
+<span class="sd">        ax: axis to plot on</span>
+<span class="sd">        data (pandas.DataFrame): a DataFrame with 2 for a 1D plot or 3 columns</span>
+<span class="sd">            for a planar-simplex</span>
+<span class="sd">        col_func (func): a function that accept a parameter, an element of the</span>
+<span class="sd">            DataFrame index and returns a colour for it</span>
+<span class="sd">        csize (int): the base size of the circles</span>
+<span class="sd">        alpha (float): transparency of the circles, between 0 and 1 included</span>
+<span class="sd">        sizescale (None, pandas.Series): a Series or dictionary with the same</span>
+<span class="sd">            elements as the Index of *data*, whose values are the size factors</span>
+<span class="sd">            that are multiplied to *csize*. If **None**, the size of the</span>
+<span class="sd">            circles is equal to *csize*</span>
+<span class="sd">        order (None, iterable): iterable with the elements of *data* Index, to</span>
+<span class="sd">            specify the order in which the circles must be plotted. If None,</span>
+<span class="sd">            the order is the same as *data.index*</span>
+<span class="sd">        linewidths (float): width of the circle line</span>
+<span class="sd">        edgecolor (str): color of the circle line</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        PathCollection: the return value of matplotlib *scatter*</span>
+
+<span class="sd">    .. note::</span>
+
+<span class="sd">        To **not** have circle lines, *edgecolor* must be *&#39;none&#39;* and</span>
+<span class="sd">        *linewidths* equal *0*</span>
+
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="c1"># normalize data (ternary plots requires that the sum of a row is 1)</span>
+    <span class="n">data</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">div</span><span class="p">(</span><span class="n">data</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">),</span> <span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">no_project</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">):</span>
+        <span class="k">if</span> <span class="n">a</span> <span class="o">&gt;</span> <span class="n">b</span><span class="p">:</span>
+            <span class="n">x</span> <span class="o">=</span> <span class="mi">1</span> <span class="o">-</span> <span class="n">a</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">x</span> <span class="o">=</span> <span class="n">b</span>
+        <span class="k">return</span> <span class="n">x</span><span class="p">,</span> <span class="mf">0.</span>
+
+    <span class="k">if</span> <span class="n">order</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="n">order</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">index</span>
+
+    <span class="n">X</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="n">Y</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="k">for</span> <span class="n">key</span><span class="p">,</span> <span class="n">coord</span> <span class="ow">in</span> <span class="n">data</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">order</span><span class="p">]</span><span class="o">.</span><span class="n">iterrows</span><span class="p">():</span>
+        <span class="c1"># print coord</span>
+        <span class="n">x</span><span class="p">,</span> <span class="n">y</span> <span class="o">=</span> <span class="n">project_point</span><span class="p">(</span><span class="n">coord</span><span class="p">)</span> <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">coord</span><span class="p">)</span> <span class="o">==</span> <span class="mi">3</span> <span class="k">else</span> <span class="n">no_project</span><span class="p">(</span><span class="o">*</span><span class="n">coord</span><span class="p">)</span>
+        <span class="n">X</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+        <span class="n">Y</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">y</span><span class="p">)</span>
+
+    <span class="n">colors</span> <span class="o">=</span> <span class="p">[</span><span class="n">col_func</span><span class="p">(</span><span class="n">key</span><span class="p">)</span> <span class="k">for</span> <span class="n">key</span> <span class="ow">in</span> <span class="n">order</span><span class="p">]</span>
+
+    <span class="n">paths</span> <span class="o">=</span> <span class="n">ax</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span>
+        <span class="n">X</span><span class="p">,</span>
+        <span class="n">Y</span><span class="p">,</span>
+        <span class="n">color</span><span class="o">=</span><span class="n">colors</span><span class="p">,</span>
+        <span class="n">alpha</span><span class="o">=</span><span class="n">alpha</span><span class="p">,</span>
+        <span class="n">linewidths</span><span class="o">=</span><span class="n">linewidths</span><span class="p">,</span>
+        <span class="n">edgecolor</span><span class="o">=</span><span class="n">edgecolor</span><span class="p">,</span>
+        <span class="n">marker</span><span class="o">=</span><span class="sa">u</span><span class="s1">&#39;o&#39;</span><span class="p">,</span>
+        <span class="n">s</span><span class="o">=</span><span class="n">csize</span> <span class="o">*</span> <span class="p">(</span><span class="n">sizescale</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">order</span><span class="p">]</span> <span class="k">if</span> <span class="n">sizescale</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span> <span class="k">else</span> <span class="mi">1</span><span class="p">)</span>
+    <span class="p">)</span>
+    <span class="k">return</span> <span class="n">paths</span></div>
+
+
+<div class="viewcode-block" id="draw_axis_internal_triangle"><a class="viewcode-back" href="../../../api/mgkit.plots.abund.html#mgkit.plots.abund.draw_axis_internal_triangle">[docs]</a><span class="k">def</span> <span class="nf">draw_axis_internal_triangle</span><span class="p">(</span><span class="n">ax</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;r&#39;</span><span class="p">,</span> <span class="n">linewidth</span><span class="o">=</span><span class="mf">2.</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    .. versionadded:: 0.2.5</span>
+
+<span class="sd">    Draws a triangle that indicates the 50% limit for all 3 samples</span>
+
+<span class="sd">    Arguments:</span>
+<span class="sd">        ax: axis to use</span>
+<span class="sd">        color (str, float, tuple): color used to draw the triangle</span>
+<span class="sd">        linewidth (float): line width</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">x1</span><span class="p">,</span> <span class="n">y1</span> <span class="o">=</span> <span class="n">project_point</span><span class="p">([</span><span class="o">.</span><span class="mi">5</span><span class="p">,</span> <span class="o">.</span><span class="mi">5</span><span class="p">,</span> <span class="mf">0.</span><span class="p">])</span>
+    <span class="n">x2</span><span class="p">,</span> <span class="n">y2</span> <span class="o">=</span> <span class="n">project_point</span><span class="p">([</span><span class="o">.</span><span class="mi">5</span><span class="p">,</span> <span class="mf">0.</span><span class="p">,</span> <span class="mf">0.5</span><span class="p">])</span>
+    <span class="n">x3</span><span class="p">,</span> <span class="n">y3</span> <span class="o">=</span> <span class="n">project_point</span><span class="p">([</span><span class="o">.</span><span class="mi">0</span><span class="p">,</span> <span class="mf">0.5</span><span class="p">,</span> <span class="mf">0.5</span><span class="p">])</span>
+
+    <span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span>
+        <span class="p">[</span><span class="n">x1</span><span class="p">,</span> <span class="n">x2</span><span class="p">,</span> <span class="n">x3</span><span class="p">,</span> <span class="n">x1</span><span class="p">],</span>
+        <span class="p">[</span><span class="n">y1</span><span class="p">,</span> <span class="n">y2</span><span class="p">,</span> <span class="n">y3</span><span class="p">,</span> <span class="n">y1</span><span class="p">],</span>
+        <span class="n">color</span><span class="o">=</span><span class="n">color</span><span class="p">,</span>
+        <span class="n">linewidth</span><span class="o">=</span><span class="n">linewidth</span>
+    <span class="p">)</span></div>
+</pre></div>
+
+           </div>
+           
+          </div>
+          <footer>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2013-2015, Francesco Rubino
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

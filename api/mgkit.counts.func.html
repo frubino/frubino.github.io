@@ -1,0 +1,753 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>mgkit.counts.func module &mdash; MGKit: Metagenomic framework 0.5.0 documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+  <script type="text/javascript" src="../_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+        <script type="text/javascript" src="../_static/jquery.js"></script>
+        <script type="text/javascript" src="../_static/underscore.js"></script>
+        <script type="text/javascript" src="../_static/doctools.js"></script>
+        <script type="text/javascript" src="../_static/language_data.js"></script>
+        <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+        <script async="async" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+        <script type="text/x-mathjax-config">MathJax.Hub.Config({"tex2jax": {"inlineMath": [["$", "$"], ["\\(", "\\)"]], "processEscapes": true, "ignoreClass": "document", "processClass": "math|output_area"}})</script>
+    
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/graphviz.css" type="text/css" />
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="mgkit.counts.glm module" href="mgkit.counts.glm.html" />
+    <link rel="prev" title="mgkit.counts package" href="mgkit.counts.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../index.html" class="icon icon-home"> MGKit: Metagenomic framework
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                0.5.0
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../introduction.html">Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../install.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../pipeline/index.html">Metagenomic Pipeline</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../scripts/index.html">Scripts Details</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../examples/index.html">Example Notebooks</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../gff.html">MGKit GFF Specifications</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../library.html">Library Reference</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="mgkit.html">mgkit package</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mgkit.align.html">mgkit.align module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mgkit.consts.html">mgkit.consts module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mgkit.counts.html">mgkit.counts package</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">mgkit.counts.func module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mgkit.counts.glm.html">mgkit.counts.glm module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mgkit.counts.scaling.html">mgkit.counts.scaling module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mgkit.db.html">mgkit.db package</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mgkit.db.dbm.html">mgkit.db.dbm module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mgkit.db.mongo.html">mgkit.db.mongo module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mgkit.filter.html">mgkit.filter package</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mgkit.filter.common.html">mgkit.filter.common module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mgkit.filter.gff.html">mgkit.filter.gff module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mgkit.filter.lists.html">mgkit.filter.lists module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mgkit.filter.reads.html">mgkit.filter.reads module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mgkit.filter.taxon.html">mgkit.filter.taxon module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mgkit.graphs.html">mgkit.graphs module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mgkit.io.html">mgkit.io package</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mgkit.io.blast.html">mgkit.io.blast module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mgkit.io.fasta.html">mgkit.io.fasta module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mgkit.io.fastq.html">mgkit.io.fastq module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mgkit.io.gff.html">mgkit.io.gff module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mgkit.io.glimmer.html">mgkit.io.glimmer module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mgkit.io.snpdat.html">mgkit.io.snpdat module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mgkit.io.uniprot.html">mgkit.io.uniprot module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mgkit.io.utils.html">mgkit.io.utils module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mgkit.kegg.html">mgkit.kegg module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mgkit.logger.html">mgkit.logger module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mgkit.mappings.html">mgkit.mappings package</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mgkit.mappings.cazy.html">mgkit.mappings.cazy module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mgkit.mappings.eggnog.html">mgkit.mappings.eggnog module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mgkit.mappings.enzyme.html">mgkit.mappings.enzyme module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mgkit.mappings.go.html">mgkit.mappings.go module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mgkit.mappings.pandas_map.html">mgkit.mappings.pandas_map module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mgkit.mappings.taxon.html">mgkit.mappings.taxon module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mgkit.mappings.utils.html">mgkit.mappings.utils module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mgkit.net.html">mgkit.net package</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mgkit.net.embl.html">mgkit.net.embl module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mgkit.net.pfam.html">mgkit.net.pfam module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mgkit.net.uniprot.html">mgkit.net.uniprot module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mgkit.net.utils.html">mgkit.net.utils module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mgkit.plots.html">mgkit.plots package</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mgkit.plots.abund.html">mgkit.plots.abund module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mgkit.plots.boxplot.html">mgkit.plots.boxplot module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mgkit.plots.colors.html">mgkit.plots.colors module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mgkit.plots.heatmap.html">mgkit.plots.heatmap module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mgkit.plots.unused.html">mgkit.plots.unused module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mgkit.plots.utils.html">mgkit.plots.utils module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mgkit.simple_cache.html">mgkit.simple_cache module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mgkit.snps.html">mgkit.snps package</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mgkit.snps.classes.html">mgkit.snps.classes module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mgkit.snps.conv_func.html">mgkit.snps.conv_func module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mgkit.snps.filter.html">mgkit.snps.filter module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mgkit.snps.funcs.html">mgkit.snps.funcs module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mgkit.snps.mapper.html">mgkit.snps.mapper module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mgkit.taxon.html">mgkit.taxon module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mgkit.utils.html">mgkit.utils package</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mgkit.utils.common.html">mgkit.utils.common module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mgkit.utils.dictionary.html">mgkit.utils.dictionary module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mgkit.utils.sequence.html">mgkit.utils.sequence module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mgkit.utils.trans_tables.html">mgkit.utils.trans_tables module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mgkit.workflow.html">mgkit.workflow package</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mgkit.workflow.add_gff_info.html">mgkit.workflow.add_gff_info module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mgkit.workflow.blast2gff.html">mgkit.workflow.blast2gff module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mgkit.workflow.extract_gff_info.html">mgkit.workflow.extract_gff_info module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mgkit.workflow.fasta_utils.html">mgkit.workflow.fasta_utils module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mgkit.workflow.fastq_utils.html">mgkit.workflow.fastq_utils module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mgkit.workflow.filter_gff.html">mgkit.workflow.filter_gff module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mgkit.workflow.hmmer2gff.html">mgkit.workflow.hmmer2gff module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mgkit.workflow.json2gff.html">mgkit.workflow.json2gff module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mgkit.workflow.sampling_utils.html">mgkit.workflow.sampling_utils module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mgkit.workflow.snp_parser.html">mgkit.workflow.snp_parser module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mgkit.workflow.taxon_utils.html">mgkit.workflow.taxon_utils module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mgkit.workflow.utils.html">mgkit.workflow.utils module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="modules.html">mgkit</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../changes.html">Changes</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">MGKit: Metagenomic framework</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="../library.html">Library Reference</a> &raquo;</li>
+        
+          <li><a href="mgkit.html">mgkit package</a> &raquo;</li>
+        
+          <li><a href="mgkit.counts.html">mgkit.counts package</a> &raquo;</li>
+        
+      <li>mgkit.counts.func module</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="../_sources/api/mgkit.counts.func.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  
+<style>
+/* CSS overrides for sphinx_rtd_theme */
+
+/* 24px margin */
+.nbinput.nblast.container,
+.nboutput.nblast.container {
+    margin-bottom: 19px;  /* padding has already 5px */
+}
+
+/* ... except between code cells! */
+.nblast.container + .nbinput.container {
+    margin-top: -19px;
+}
+
+.admonition > p:before {
+    margin-right: 4px;  /* make room for the exclamation icon */
+}
+
+/* Fix math alignment, see https://github.com/rtfd/sphinx_rtd_theme/pull/686 */
+.math {
+    text-align: unset;
+}
+</style>
+<div class="section" id="module-mgkit.counts.func">
+<span id="mgkit-counts-func-module"></span><h1>mgkit.counts.func module<a class="headerlink" href="#module-mgkit.counts.func" title="Permalink to this headline">¶</a></h1>
+<div class="versionadded">
+<p><span class="versionmodified added">New in version 0.1.13.</span></p>
+</div>
+<p>Misc functions for count data</p>
+<dl class="function">
+<dt id="mgkit.counts.func.batch_load_htseq_counts">
+<code class="sig-prename descclassname">mgkit.counts.func.</code><code class="sig-name descname">batch_load_htseq_counts</code><span class="sig-paren">(</span><em class="sig-param">count_files</em>, <em class="sig-param">samples=None</em>, <em class="sig-param">cut_name=None</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/mgkit/counts/func.html#batch_load_htseq_counts"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#mgkit.counts.func.batch_load_htseq_counts" title="Permalink to this definition">¶</a></dt>
+<dd><p>Loads a list of htseq count result files and returns a DataFrame
+(IDxSAMPLE)</p>
+<p>The sample names are names are the file names if <em>samples</em> and <em>cut_name</em>
+are <em>None</em>, supplying a list of sample names with <em>samples</em> is the
+preferred way, and <em>cut_name</em> is used for backward compatibility and as an
+option in cases a string replace is enough.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>count_files</strong> (<em>file</em><em> or </em><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.8)"><em>str</em></a>) – file handle or string with file name</p></li>
+<li><p><strong>samples</strong> (<em>iterable</em>) – list of sample names, in the same order as
+<em>count_files</em></p></li>
+<li><p><strong>cut_name</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.8)"><em>str</em></a>) – string to delete from the the file names to get the
+sample names</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>with sample names as columns and gene_ids as index</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>pandas.DataFrame</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="function">
+<dt id="mgkit.counts.func.filter_counts">
+<code class="sig-prename descclassname">mgkit.counts.func.</code><code class="sig-name descname">filter_counts</code><span class="sig-paren">(</span><em class="sig-param">counts_iter</em>, <em class="sig-param">info_func</em>, <em class="sig-param">gfilters=None</em>, <em class="sig-param">tfilters=None</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/mgkit/counts/func.html#filter_counts"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#mgkit.counts.func.filter_counts" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns counts that pass filters for each <em>uid</em> associated <em>gene_id</em> and
+<em>taxon_id</em>.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>counts_iter</strong> (<em>iterable</em>) – iterator that yields a tuple (uid, count)</p></li>
+<li><p><strong>info_func</strong> (<em>func</em>) – function accepting a <em>uid</em> that returns a tuple
+<em>(gene_id, taxon_id)</em></p></li>
+<li><p><strong>gfilters</strong> (<em>iterable</em>) – list of filters to apply to each <em>uid</em> associated
+<em>gene_id</em></p></li>
+<li><p><strong>tfilters</strong> (<em>iterable</em>) – list of filters to apply to each <em>uid</em> associated
+<em>taxon_id</em></p></li>
+</ul>
+</dd>
+<dt class="field-even">Yields</dt>
+<dd class="field-even"><p><em>tuple</em> – <em>(uid, count)</em> that pass filters</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="function">
+<dt id="mgkit.counts.func.from_gff">
+<code class="sig-prename descclassname">mgkit.counts.func.</code><code class="sig-name descname">from_gff</code><span class="sig-paren">(</span><em class="sig-param">annotations</em>, <em class="sig-param">samples</em>, <em class="sig-param">ann_func=None</em>, <em class="sig-param">sample_func=None</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/mgkit/counts/func.html#from_gff"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#mgkit.counts.func.from_gff" title="Permalink to this definition">¶</a></dt>
+<dd><div class="versionadded">
+<p><span class="versionmodified added">New in version 0.3.1.</span></p>
+</div>
+<p>Loads count data from a GFF file, only for the requested samples. By
+default the function returns a DataFrame where the index is the <em>uid</em> of
+each annotation and the columns the requested samples.</p>
+<p>This can be customised by supplying <em>ann_func</em> and <em>sample_func</em>.
+<em>sample_func</em> is a function that accept a sample name and is expected to
+return a string or a tuple. This will be used to change the columns in the
+DataFrame. <em>ann_func</em> must accept an <a class="reference internal" href="mgkit.io.gff.html#mgkit.io.gff.Annotation" title="mgkit.io.gff.Annotation"><code class="xref py py-class docutils literal notranslate"><span class="pre">mgkit.io.gff.Annotation</span></code></a>
+instance and return an iterable, with each iteration yielding either a
+single element or a tuple (for a MultiIndex DataFrame), each element
+yielded will have the count of that annotation added to.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>annotation</strong> (<em>iterable</em>) – iterable yielding annotations</p></li>
+<li><p><strong>samples</strong> (<em>iterable</em>) – list of samples to keep</p></li>
+<li><p><strong>ann_func</strong> (<em>func</em>) – function used to customise the output</p></li>
+<li><p><strong>sample_func</strong> (<em>func</em>) – function to customise the column elements</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>dataframe with the count data, columns are the samples and
+rows the annotation counts (unless mapped with <em>ann_func</em>)</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>DataFrame</p>
+</dd>
+</dl>
+<dl>
+<dt>Exmples:</dt><dd><p>Assuming we have a list of <em>annotations</em> and sample SAMPLE1 and SAMPLE2
+we can obtain the count table for all annotations with this</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">from_gff</span><span class="p">(</span><span class="n">annotations</span><span class="p">,</span> <span class="p">[</span><span class="s1">&#39;SAMPLE1&#39;</span><span class="p">,</span> <span class="s1">&#39;SAMPLE2&#39;</span><span class="p">])</span>
+</pre></div>
+</div>
+<p>Assuming we want to group the samples, for example treatment1,
+treatment2 and control1, control2 into a MultiIndex DataFrame column</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">sample_func</span> <span class="o">=</span> <span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="p">(</span><span class="s1">&#39;T&#39;</span> <span class="k">if</span> <span class="n">x</span><span class="o">.</span><span class="n">startswith</span><span class="p">(</span><span class="s1">&#39;t&#39;</span><span class="p">)</span> <span class="k">else</span> <span class="s1">&#39;C&#39;</span><span class="p">,</span> <span class="n">x</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">from_gff</span><span class="p">(</span><span class="n">annotations</span><span class="p">,</span> <span class="p">[</span><span class="s1">&#39;treatment1&#39;</span><span class="p">,</span> <span class="s1">&#39;treatment2&#39;</span><span class="p">,</span> <span class="s1">&#39;control1&#39;</span><span class="p">,</span>
+<span class="go">&#39;control2&#39;], sample_func=sample_func)</span>
+</pre></div>
+</div>
+<p>Annotations can be mapped to other levels for example instead of using
+the <em>uid</em> that is the default, it can be mapped to the gene_id,
+taxon_id information that is included in the annotation, resulting in a
+MultiIndex index for the rows, with (gene_id, taxon_id) as key.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">ann_func</span> <span class="o">=</span> <span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="p">[(</span><span class="n">x</span><span class="o">.</span><span class="n">gene_id</span><span class="p">,</span> <span class="n">x</span><span class="o">.</span><span class="n">taxon_id</span><span class="p">)]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">from_gff</span><span class="p">(</span><span class="n">annotations</span><span class="p">,</span> <span class="p">[</span><span class="s1">&#39;SAMPLE1&#39;</span><span class="p">,</span> <span class="s1">&#39;SAMPLE2&#39;</span><span class="p">],</span> <span class="n">ann_func</span><span class="o">=</span><span class="n">ann_func</span><span class="p">)</span>
+</pre></div>
+</div>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="function">
+<dt id="mgkit.counts.func.get_uid_info">
+<code class="sig-prename descclassname">mgkit.counts.func.</code><code class="sig-name descname">get_uid_info</code><span class="sig-paren">(</span><em class="sig-param">info_dict</em>, <em class="sig-param">uid</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/mgkit/counts/func.html#get_uid_info"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#mgkit.counts.func.get_uid_info" title="Permalink to this definition">¶</a></dt>
+<dd><p>Simple function to get a value from a dictionary of tuples
+(gene_id, taxon_id)</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="mgkit.counts.func.get_uid_info_ann">
+<code class="sig-prename descclassname">mgkit.counts.func.</code><code class="sig-name descname">get_uid_info_ann</code><span class="sig-paren">(</span><em class="sig-param">annotations</em>, <em class="sig-param">uid</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/mgkit/counts/func.html#get_uid_info_ann"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#mgkit.counts.func.get_uid_info_ann" title="Permalink to this definition">¶</a></dt>
+<dd><p>Simple function to get a value from a dictionary of annotations</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="mgkit.counts.func.load_counts_from_gff">
+<code class="sig-prename descclassname">mgkit.counts.func.</code><code class="sig-name descname">load_counts_from_gff</code><span class="sig-paren">(</span><em class="sig-param">annotations</em>, <em class="sig-param">elem_func=&lt;function &lt;lambda&gt;&gt;</em>, <em class="sig-param">sample_func=None</em>, <em class="sig-param">nozero=True</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/mgkit/counts/func.html#load_counts_from_gff"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#mgkit.counts.func.load_counts_from_gff" title="Permalink to this definition">¶</a></dt>
+<dd><div class="versionadded">
+<p><span class="versionmodified added">New in version 0.2.5.</span></p>
+</div>
+<p>Loads counts for each annotations that are stored into the annotation
+<em>counts_</em> attributes. Annotations with a total of 0 counts are skipped by
+default (nozero=True), the row index is set to the <em>uid</em> of the annotation
+and the column to the sample name. The functions used to transform the
+indices expect the annotation (for the row, <em>elem_func</em>) and the sample
+name (for the column, <em>sample_func</em>).</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>annotations</strong> (<em>iter</em>) – iterable of annotations</p></li>
+<li><p><strong>elem_func</strong> (<em>func</em>) – function that accepts an annotation and return a
+str/int for a Index or a tuple for a MultiIndex, defaults to
+returning the <em>uid</em> of the annotation</p></li>
+<li><p><strong>sample_func</strong> (<em>func</em><em>, </em><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.8)"><em>None</em></a>) – function that accepts the sample name and
+returns tuple for a MultiIndex. Defaults to <em>None</em> so no
+transformation is performed</p></li>
+<li><p><strong>nozero</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.8)"><em>bool</em></a>) – if <em>True</em>, annotations with no counts are skipped</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="function">
+<dt id="mgkit.counts.func.load_deseq2_results">
+<code class="sig-prename descclassname">mgkit.counts.func.</code><code class="sig-name descname">load_deseq2_results</code><span class="sig-paren">(</span><em class="sig-param">file_name</em>, <em class="sig-param">taxon_id=None</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/mgkit/counts/func.html#load_deseq2_results"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#mgkit.counts.func.load_deseq2_results" title="Permalink to this definition">¶</a></dt>
+<dd><div class="versionadded">
+<p><span class="versionmodified added">New in version 0.1.14.</span></p>
+</div>
+<p>Reads a CSV file output with DESeq2 results, adding a taxon_id to the index
+for concatenating multiple results from different taxonomic groups.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>file_name</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.8)"><em>str</em></a>) – file name of the CSV</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>a MultiIndex DataFrame with the results</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>pandas.DataFrame</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="function">
+<dt id="mgkit.counts.func.load_htseq_counts">
+<code class="sig-prename descclassname">mgkit.counts.func.</code><code class="sig-name descname">load_htseq_counts</code><span class="sig-paren">(</span><em class="sig-param">file_handle</em>, <em class="sig-param">conv_func=&lt;class 'int'&gt;</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/mgkit/counts/func.html#load_htseq_counts"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#mgkit.counts.func.load_htseq_counts" title="Permalink to this definition">¶</a></dt>
+<dd><div class="versionchanged">
+<p><span class="versionmodified changed">Changed in version 0.1.15: </span>added <em>conv_func</em> parameter</p>
+</div>
+<p>Loads an HTSeq-count result file</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>file_handle</strong> (<em>file</em><em> or </em><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.8)"><em>str</em></a>) – file handle or string with file name</p></li>
+<li><p><strong>conv_func</strong> (<em>func</em>) – function to convert the number from string, defaults
+to <em>int</em>, but <em>float</em> can be used as well</p></li>
+</ul>
+</dd>
+<dt class="field-even">Yields</dt>
+<dd class="field-even"><p><em>tuple</em> – first element is the gene_id and the second is the count</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="function">
+<dt id="mgkit.counts.func.load_sample_counts">
+<code class="sig-prename descclassname">mgkit.counts.func.</code><code class="sig-name descname">load_sample_counts</code><span class="sig-paren">(</span><em class="sig-param">info_dict</em>, <em class="sig-param">counts_iter</em>, <em class="sig-param">taxonomy</em>, <em class="sig-param">inc_anc=None</em>, <em class="sig-param">rank=None</em>, <em class="sig-param">gene_map=None</em>, <em class="sig-param">ex_anc=None</em>, <em class="sig-param">include_higher=True</em>, <em class="sig-param">cached=True</em>, <em class="sig-param">uid_used=None</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/mgkit/counts/func.html#load_sample_counts"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#mgkit.counts.func.load_sample_counts" title="Permalink to this definition">¶</a></dt>
+<dd><div class="versionchanged">
+<p><span class="versionmodified changed">Changed in version 0.1.14: </span>added <em>cached</em> argument</p>
+</div>
+<div class="versionchanged">
+<p><span class="versionmodified changed">Changed in version 0.1.15: </span>added <em>uid_used</em> parameter</p>
+</div>
+<div class="versionchanged">
+<p><span class="versionmodified changed">Changed in version 0.2.0: </span>info_dict can be a function</p>
+</div>
+<p>Reads sample counts, filtering and mapping them if requested. It’s an
+example of the usage of the above functions.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>info_dict</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.8)"><em>dict</em></a>) – dictionary that has <em>uid</em> as key and
+<em>(gene_id, taxon_id)</em> as value. In alternative a function that
+accepts a <em>uid</em> as sole argument and returns <em>(gene_id, taxon_id)</em></p></li>
+<li><p><strong>counts_iter</strong> (<em>iterable</em>) – iterable that yields a <em>(uid, count)</em></p></li>
+<li><p><strong>taxonomy</strong> – taxonomy instance</p></li>
+<li><p><strong>inc_anc</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.8)"><em>int</em></a><em>, </em><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.8)"><em>list</em></a>) – ancestor taxa to include</p></li>
+<li><p><strong>rank</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.8)"><em>str</em></a>) – rank to which map the counts</p></li>
+<li><p><strong>gene_map</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.8)"><em>dict</em></a>) – dictionary with the gene mappings</p></li>
+<li><p><strong>ex_anc</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.8)"><em>int</em></a><em>, </em><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.8)"><em>list</em></a>) – ancestor taxa to exclude</p></li>
+<li><p><strong>include_higher</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.8)"><em>bool</em></a>) – if False, any rank different than the requested
+one is discarded</p></li>
+<li><p><strong>cached</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.8)"><em>bool</em></a>) – if <em>True</em>, the function will use
+<a class="reference internal" href="mgkit.simple_cache.html#mgkit.simple_cache.memoize" title="mgkit.simple_cache.memoize"><code class="xref py py-class docutils literal notranslate"><span class="pre">mgkit.simple_cache.memoize</span></code></a> to cache some of the functions
+used</p></li>
+<li><p><strong>uid_used</strong> (<a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.8)"><em>None</em></a><em>, </em><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.8)"><em>dict</em></a>) – an empty dictionary in which to store the <em>uid</em>
+that were assigned to each key of the returned pandas.Series. If
+<em>None</em>, no information is saved</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>array with MultiIndex <em>(gene_id, taxon_id)</em> with the
+filtered and mapped counts</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>pandas.Series</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="function">
+<dt id="mgkit.counts.func.load_sample_counts_to_genes">
+<code class="sig-prename descclassname">mgkit.counts.func.</code><code class="sig-name descname">load_sample_counts_to_genes</code><span class="sig-paren">(</span><em class="sig-param">info_func</em>, <em class="sig-param">counts_iter</em>, <em class="sig-param">taxonomy</em>, <em class="sig-param">inc_anc=None</em>, <em class="sig-param">gene_map=None</em>, <em class="sig-param">ex_anc=None</em>, <em class="sig-param">cached=True</em>, <em class="sig-param">uid_used=None</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/mgkit/counts/func.html#load_sample_counts_to_genes"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#mgkit.counts.func.load_sample_counts_to_genes" title="Permalink to this definition">¶</a></dt>
+<dd><div class="versionadded">
+<p><span class="versionmodified added">New in version 0.1.14.</span></p>
+</div>
+<div class="versionchanged">
+<p><span class="versionmodified changed">Changed in version 0.1.15: </span>added <em>uid_used</em> parameter</p>
+</div>
+<p>Reads sample counts, filtering and mapping them if requested. It’s a
+variation of <a class="reference internal" href="#mgkit.counts.func.load_sample_counts" title="mgkit.counts.func.load_sample_counts"><code class="xref py py-func docutils literal notranslate"><span class="pre">load_sample_counts()</span></code></a>, with the counts being mapped only
+to each specific gene_id. Another difference is the absence of any
+assumption on the first parameter. It is expected to return a
+(gene_id, taxon_id) tuple.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>info_func</strong> (<em>callable</em>) – any callable that accept an <em>uid</em> as the only
+parameter and and returns <em>(gene_id, taxon_id)</em> as value</p></li>
+<li><p><strong>counts_iter</strong> (<em>iterable</em>) – iterable that yields a <em>(uid, count)</em></p></li>
+<li><p><strong>taxonomy</strong> – taxonomy instance</p></li>
+<li><p><strong>inc_anc</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.8)"><em>int</em></a><em>, </em><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.8)"><em>list</em></a>) – ancestor taxa to include</p></li>
+<li><p><strong>rank</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.8)"><em>str</em></a>) – rank to which map the counts</p></li>
+<li><p><strong>gene_map</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.8)"><em>dict</em></a>) – dictionary with the gene mappings</p></li>
+<li><p><strong>ex_anc</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.8)"><em>int</em></a><em>, </em><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.8)"><em>list</em></a>) – ancestor taxa to exclude</p></li>
+<li><p><strong>cached</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.8)"><em>bool</em></a>) – if <em>True</em>, the function will use
+<a class="reference internal" href="mgkit.simple_cache.html#mgkit.simple_cache.memoize" title="mgkit.simple_cache.memoize"><code class="xref py py-class docutils literal notranslate"><span class="pre">mgkit.simple_cache.memoize</span></code></a> to cache some of the functions
+used</p></li>
+<li><p><strong>uid_used</strong> (<a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.8)"><em>None</em></a><em>, </em><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.8)"><em>dict</em></a>) – an empty dictionary in which to store the <em>uid</em>
+that were assigned to each key of the returned pandas.Series. If
+<em>None</em>, no information is saved</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>array with Index <em>gene_id</em> with the filtered and mapped
+counts</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>pandas.Series</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="function">
+<dt id="mgkit.counts.func.load_sample_counts_to_taxon">
+<code class="sig-prename descclassname">mgkit.counts.func.</code><code class="sig-name descname">load_sample_counts_to_taxon</code><span class="sig-paren">(</span><em class="sig-param">info_func</em>, <em class="sig-param">counts_iter</em>, <em class="sig-param">taxonomy</em>, <em class="sig-param">inc_anc=None</em>, <em class="sig-param">rank=None</em>, <em class="sig-param">ex_anc=None</em>, <em class="sig-param">include_higher=True</em>, <em class="sig-param">cached=True</em>, <em class="sig-param">uid_used=None</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/mgkit/counts/func.html#load_sample_counts_to_taxon"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#mgkit.counts.func.load_sample_counts_to_taxon" title="Permalink to this definition">¶</a></dt>
+<dd><div class="versionadded">
+<p><span class="versionmodified added">New in version 0.1.14.</span></p>
+</div>
+<div class="versionchanged">
+<p><span class="versionmodified changed">Changed in version 0.1.15: </span>added <em>uid_used</em> parameter</p>
+</div>
+<p>Reads sample counts, filtering and mapping them if requested. It’s a
+variation of <a class="reference internal" href="#mgkit.counts.func.load_sample_counts" title="mgkit.counts.func.load_sample_counts"><code class="xref py py-func docutils literal notranslate"><span class="pre">load_sample_counts()</span></code></a>, with the counts being mapped only
+to each specific taxon. Another difference is the absence of any assumption
+on the first parameter. It is expected to return a (gene_id, taxon_id)
+tuple.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>info_func</strong> (<em>callable</em>) – any callable that accept an <em>uid</em> as the only
+parameter and and returns <em>(gene_id, taxon_id)</em> as value</p></li>
+<li><p><strong>counts_iter</strong> (<em>iterable</em>) – iterable that yields a <em>(uid, count)</em></p></li>
+<li><p><strong>taxonomy</strong> – taxonomy instance</p></li>
+<li><p><strong>inc_anc</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.8)"><em>int</em></a><em>, </em><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.8)"><em>list</em></a>) – ancestor taxa to include</p></li>
+<li><p><strong>rank</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.8)"><em>str</em></a>) – rank to which map the counts</p></li>
+<li><p><strong>ex_anc</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.8)"><em>int</em></a><em>, </em><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.8)"><em>list</em></a>) – ancestor taxa to exclude</p></li>
+<li><p><strong>include_higher</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.8)"><em>bool</em></a>) – if False, any rank different than the requested
+one is discarded</p></li>
+<li><p><strong>cached</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.8)"><em>bool</em></a>) – if <em>True</em>, the function will use
+<a class="reference internal" href="mgkit.simple_cache.html#mgkit.simple_cache.memoize" title="mgkit.simple_cache.memoize"><code class="xref py py-class docutils literal notranslate"><span class="pre">mgkit.simple_cache.memoize</span></code></a> to cache some of the functions
+used</p></li>
+<li><p><strong>uid_used</strong> (<a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.8)"><em>None</em></a><em>, </em><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.8)"><em>dict</em></a>) – an empty dictionary in which to store the <em>uid</em>
+that were assigned to each key of the returned pandas.Series. If
+<em>None</em>, no information is saved</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>array with Index <em>taxon_id</em> with the filtered and mapped
+counts</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>pandas.Series</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="function">
+<dt id="mgkit.counts.func.map_counts">
+<code class="sig-prename descclassname">mgkit.counts.func.</code><code class="sig-name descname">map_counts</code><span class="sig-paren">(</span><em class="sig-param">counts_iter</em>, <em class="sig-param">info_func</em>, <em class="sig-param">gmapper=None</em>, <em class="sig-param">tmapper=None</em>, <em class="sig-param">index=None</em>, <em class="sig-param">uid_used=None</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/mgkit/counts/func.html#map_counts"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#mgkit.counts.func.map_counts" title="Permalink to this definition">¶</a></dt>
+<dd><div class="versionchanged">
+<p><span class="versionmodified changed">Changed in version 0.1.14: </span>added <em>index</em> parameter</p>
+</div>
+<div class="versionchanged">
+<p><span class="versionmodified changed">Changed in version 0.1.15: </span>added <em>uid_used</em> parameter</p>
+</div>
+<p>Maps counts according to the gmapper and tmapper functions. Each mapped
+gene ID count is the sum of all uid that have the same ID(s). The same is
+true for the taxa.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>counts_iter</strong> (<em>iterable</em>) – iterator that yields a tuple (uid, count)</p></li>
+<li><p><strong>info_func</strong> (<em>func</em>) – function accepting a <em>uid</em> that returns a tuple
+<em>(gene_id, taxon_id)</em></p></li>
+<li><p><strong>gmapper</strong> (<em>func</em>) – fucntion that accepts a <em>gene_id</em> and returns a list
+of mapped IDs</p></li>
+<li><p><strong>tmapper</strong> (<em>func</em>) – fucntion that accepts a <em>taxon_id</em> and returns a new
+<em>taxon_id</em></p></li>
+<li><p><strong>index</strong> (<a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.8)"><em>None</em></a><em>, </em><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.8)"><em>str</em></a>) – if None, the index of the Series if
+<em>(gene_id, taxon_id)</em>, if a str, it can be either <em>gene</em> or
+<em>taxon</em>, to specify a single value</p></li>
+<li><p><strong>uid_used</strong> (<a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.8)"><em>None</em></a><em>, </em><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.8)"><em>dict</em></a>) – an empty dictionary in which to store the <em>uid</em>
+that were assigned to each key of the returned pandas.Series. If
+<em>None</em>, no information is saved</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>array with MultiIndex <em>(gene_id, taxon_id)</em> with the
+mapped counts</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>pandas.Series</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="function">
+<dt id="mgkit.counts.func.map_counts_to_category">
+<code class="sig-prename descclassname">mgkit.counts.func.</code><code class="sig-name descname">map_counts_to_category</code><span class="sig-paren">(</span><em class="sig-param">counts</em>, <em class="sig-param">gene_map</em>, <em class="sig-param">nomap=False</em>, <em class="sig-param">nomap_id='NOMAP'</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/mgkit/counts/func.html#map_counts_to_category"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#mgkit.counts.func.map_counts_to_category" title="Permalink to this definition">¶</a></dt>
+<dd><p>Used to map the counts from a certain gene identifier to another. Genes
+with no mappings are not counted, unless <em>nomap=True</em>, in which case they
+are counted as <em>nomap_id</em>.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>counts</strong> (<em>iterator</em>) – an iterator that yield a tuple, with the first value
+being the gene_id and the second value the count for it</p></li>
+<li><p><strong>gene_map</strong> (<em>dictionary</em>) – a dictionary whose keys are the gene_id yield by
+<em>counts</em> and the values are iterable of mapping identifiers</p></li>
+<li><p><strong>nomap</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.8)"><em>bool</em></a>) – if False, counts for genes with no mappings in <em>gene_map</em>
+are discarded, if True, they a counted as <em>nomap_id</em></p></li>
+<li><p><strong>nomap_id</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.8)"><em>str</em></a>) – name of the mapping for genes with no mappings</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>mapped counts</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>pandas.Series</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="function">
+<dt id="mgkit.counts.func.map_gene_id_to_map">
+<code class="sig-prename descclassname">mgkit.counts.func.</code><code class="sig-name descname">map_gene_id_to_map</code><span class="sig-paren">(</span><em class="sig-param">gene_map</em>, <em class="sig-param">gene_id</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/mgkit/counts/func.html#map_gene_id_to_map"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#mgkit.counts.func.map_gene_id_to_map" title="Permalink to this definition">¶</a></dt>
+<dd><p>Function that extract a list of gene mappings from a dictionary and returns
+an empty list if the <em>gene_id</em> is not found.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="mgkit.counts.func.map_taxon_id_to_rank">
+<code class="sig-prename descclassname">mgkit.counts.func.</code><code class="sig-name descname">map_taxon_id_to_rank</code><span class="sig-paren">(</span><em class="sig-param">taxonomy</em>, <em class="sig-param">rank</em>, <em class="sig-param">taxon_id</em>, <em class="sig-param">include_higher=True</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/mgkit/counts/func.html#map_taxon_id_to_rank"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#mgkit.counts.func.map_taxon_id_to_rank" title="Permalink to this definition">¶</a></dt>
+<dd><p>Maps a <em>taxon_id</em> to the request taxon rank. Returns <em>None</em> if
+<em>include_higher</em> is False and the found rank is not the one requested.</p>
+<p>Internally uses <a class="reference internal" href="mgkit.taxon.html#mgkit.taxon.Taxonomy.get_ranked_taxon" title="mgkit.taxon.Taxonomy.get_ranked_taxon"><code class="xref py py-meth docutils literal notranslate"><span class="pre">mgkit.taxon.Taxonomy.get_ranked_taxon()</span></code></a></p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>taxonomy</strong> – taxonomy instance</p></li>
+<li><p><strong>rank</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.8)"><em>str</em></a>) – taxonomic rank requested</p></li>
+<li><p><strong>taxon_id</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.8)"><em>int</em></a>) – taxon_id to map</p></li>
+<li><p><strong>include_higher</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.8)"><em>bool</em></a>) – if False, any rank different than the requested
+one is discarded</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>if the mapping is successful, the ranked taxon_id is
+returned, otherwise <em>None</em> is returned</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>(<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.8)">int</a>, <a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.8)">None</a>)</p>
+</dd>
+</dl>
+</dd></dl>
+
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="mgkit.counts.glm.html" class="btn btn-neutral float-right" title="mgkit.counts.glm module" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="mgkit.counts.html" class="btn btn-neutral float-left" title="mgkit.counts package" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2013-2015, Francesco Rubino
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

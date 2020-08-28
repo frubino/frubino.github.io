@@ -1,0 +1,612 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>mgkit.plots.boxplot &mdash; MGKit: Metagenomic framework 0.5.0 documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+  <script type="text/javascript" src="../../../_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../../../" src="../../../_static/documentation_options.js"></script>
+        <script type="text/javascript" src="../../../_static/jquery.js"></script>
+        <script type="text/javascript" src="../../../_static/underscore.js"></script>
+        <script type="text/javascript" src="../../../_static/doctools.js"></script>
+        <script type="text/javascript" src="../../../_static/language_data.js"></script>
+        <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+        <script async="async" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+        <script type="text/x-mathjax-config">MathJax.Hub.Config({"tex2jax": {"inlineMath": [["$", "$"], ["\\(", "\\)"]], "processEscapes": true, "ignoreClass": "document", "processClass": "math|output_area"}})</script>
+    
+    <script type="text/javascript" src="../../../_static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="../../../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../../../_static/graphviz.css" type="text/css" />
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../../../index.html" class="icon icon-home"> MGKit: Metagenomic framework
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                0.5.0
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../introduction.html">Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../install.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../pipeline/index.html">Metagenomic Pipeline</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../scripts/index.html">Scripts Details</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../examples/index.html">Example Notebooks</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../gff.html">MGKit GFF Specifications</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../library.html">Library Reference</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../changes.html">Changes</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../index.html">MGKit: Metagenomic framework</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../../../index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="../../index.html">Module code</a> &raquo;</li>
+        
+          <li><a href="../../mgkit.html">mgkit</a> &raquo;</li>
+        
+      <li>mgkit.plots.boxplot</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <h1>Source code for mgkit.plots.boxplot</h1><div class="highlight"><pre>
+<span></span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">.. versionadded:: 0.1.14</span>
+
+<span class="sd">Code related to boxplots</span>
+<span class="sd">&quot;&quot;&quot;</span>
+<span class="kn">from</span> <span class="nn">__future__</span> <span class="kn">import</span> <span class="n">division</span>
+<span class="kn">from</span> <span class="nn">builtins</span> <span class="kn">import</span> <span class="nb">zip</span>
+<span class="kn">import</span> <span class="nn">logging</span>
+<span class="kn">import</span> <span class="nn">numpy</span>
+<span class="kn">from</span> <span class="nn">..utils.common</span> <span class="kn">import</span> <span class="n">deprecated</span>
+<span class="kn">from</span> <span class="nn">.colors</span> <span class="kn">import</span> <span class="n">float_to_hex_color</span>
+
+<span class="n">LOG</span> <span class="o">=</span> <span class="n">logging</span><span class="o">.</span><span class="n">getLogger</span><span class="p">(</span><span class="vm">__name__</span><span class="p">)</span>
+
+<span class="kn">from</span> <span class="nn">matplotlib.patches</span> <span class="kn">import</span> <span class="n">Polygon</span>
+
+<span class="k">try</span><span class="p">:</span>
+    <span class="kn">import</span> <span class="nn">seaborn</span> <span class="k">as</span> <span class="nn">sns</span>
+<span class="k">except</span> <span class="ne">ImportError</span><span class="p">:</span>
+    <span class="n">sns</span> <span class="o">=</span> <span class="kc">None</span>
+
+<span class="n">DEFAULT_BOXPLOT_FONTCONF</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s1">&#39;rotation&#39;</span><span class="p">:</span> <span class="s1">&#39;vertical&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;fontsize&#39;</span><span class="p">:</span> <span class="mi">8</span>
+<span class="p">}</span>
+
+<span class="n">DEFAULT_BOXPLOT_COLOURS</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s1">&#39;boxes&#39;</span><span class="p">:</span> <span class="s1">&#39;#636363&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;medians&#39;</span><span class="p">:</span> <span class="s1">&#39;#f0f0f0&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;whiskers&#39;</span><span class="p">:</span> <span class="s1">&#39;#636363&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;caps&#39;</span><span class="p">:</span> <span class="s1">&#39;black&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;fliers&#39;</span><span class="p">:</span> <span class="s1">&#39;#636363&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;vals&#39;</span><span class="p">:</span> <span class="s1">&#39;#636363&#39;</span><span class="p">,</span>
+<span class="p">}</span>
+
+
+<div class="viewcode-block" id="boxplot_dataframe_multindex"><a class="viewcode-back" href="../../../api/mgkit.plots.boxplot.html#mgkit.plots.boxplot.boxplot_dataframe_multindex">[docs]</a><span class="k">def</span> <span class="nf">boxplot_dataframe_multindex</span><span class="p">(</span><span class="n">dataframe</span><span class="p">,</span> <span class="n">axes</span><span class="p">,</span> <span class="n">plot_order</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+                                <span class="n">label_map</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">fonts</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">fill_box</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+                                <span class="n">colours</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">data_colours</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+                                <span class="n">box_vert</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    .. versionadded:: 0.1.13</span>
+
+<span class="sd">    .. todo::</span>
+
+<span class="sd">        documentation</span>
+
+<span class="sd">    The function draws a series of boxplots from a DataFrame object, whose</span>
+<span class="sd">    order is directed by the iterable plot_order. The columns of each DataFrame</span>
+<span class="sd">    row contains the values for each boxplot. An axes object is needed.</span>
+
+<span class="sd">    :param dataframe: dataframe to plot</span>
+<span class="sd">    :param iterable plot_order: row order used to plot the boxes</span>
+<span class="sd">    :param axes: an axes instance</span>
+<span class="sd">    :param dict label_map: a map that converts the items in plot_order to a</span>
+<span class="sd">        label used on the plot X axes</span>
+<span class="sd">    :param dict fonts: dictionary with properties for x axis labels,</span>
+<span class="sd">        :data:`DEFAULT_BOXPLOT_FONTCONF` is used by default</span>
+<span class="sd">    :param bool fill_box: if True each box is filled with the same colour of</span>
+<span class="sd">        its outline</span>
+<span class="sd">    :param dict colours: dictionary with properties for each boxplot if</span>
+<span class="sd">        data_colours is None, whi overrides box, whiskers and fliers. Defaults</span>
+<span class="sd">        to :data:`DEFAULT_BOXPLOT_COLOURS`</span>
+<span class="sd">    :param dict data_colours: dictionary of colours for each boxplot, a set of</span>
+<span class="sd">        colours can be obtained using func:`map_taxon_to_colours`</span>
+
+<span class="sd">    :return: the plot data same as matplotlib boxplot function</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="k">if</span> <span class="n">colours</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="n">colours</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">(</span>
+            <span class="p">(</span><span class="n">feature</span><span class="p">,</span> <span class="n">colours</span><span class="p">[</span><span class="n">feature</span><span class="p">])</span> <span class="k">if</span> <span class="n">feature</span> <span class="ow">in</span> <span class="n">colours</span> <span class="k">else</span> <span class="p">(</span><span class="n">feature</span><span class="p">,</span> <span class="n">colour</span><span class="p">)</span>
+            <span class="k">for</span> <span class="n">feature</span><span class="p">,</span> <span class="n">colour</span> <span class="ow">in</span> <span class="n">DEFAULT_BOXPLOT_COLOURS</span><span class="o">.</span><span class="n">items</span><span class="p">()</span>
+        <span class="p">)</span>
+        <span class="n">DEFAULT_BOXPLOT_COLOURS</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="n">colours</span><span class="p">)</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">colours</span> <span class="o">=</span> <span class="n">DEFAULT_BOXPLOT_COLOURS</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+
+    <span class="k">if</span> <span class="n">fonts</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="n">fonts</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">(</span>
+            <span class="p">(</span><span class="n">feature</span><span class="p">,</span> <span class="n">fonts</span><span class="p">[</span><span class="n">feature</span><span class="p">])</span> <span class="k">if</span> <span class="n">feature</span> <span class="ow">in</span> <span class="n">fonts</span> <span class="k">else</span> <span class="p">(</span><span class="n">feature</span><span class="p">,</span> <span class="n">option</span><span class="p">)</span>
+            <span class="k">for</span> <span class="n">feature</span><span class="p">,</span> <span class="n">option</span> <span class="ow">in</span> <span class="n">DEFAULT_BOXPLOT_FONTCONF</span><span class="o">.</span><span class="n">items</span><span class="p">()</span>
+        <span class="p">)</span>
+        <span class="n">DEFAULT_BOXPLOT_FONTCONF</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="n">fonts</span><span class="p">)</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">fonts</span> <span class="o">=</span> <span class="n">DEFAULT_BOXPLOT_FONTCONF</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+
+    <span class="n">categories</span> <span class="o">=</span> <span class="nb">set</span><span class="p">(</span><span class="n">dataframe</span><span class="o">.</span><span class="n">index</span><span class="o">.</span><span class="n">get_level_values</span><span class="p">(</span><span class="mi">1</span><span class="p">))</span>
+
+    <span class="k">if</span> <span class="p">(</span><span class="n">data_colours</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">)</span> <span class="ow">and</span> <span class="p">(</span><span class="n">sns</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">):</span>
+        <span class="n">data_colours</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">(</span>
+            <span class="nb">zip</span><span class="p">(</span>
+                <span class="n">categories</span><span class="p">,</span>
+                <span class="n">sns</span><span class="o">.</span><span class="n">color_palette</span><span class="p">(</span><span class="s2">&quot;hls&quot;</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">categories</span><span class="p">))</span>
+            <span class="p">)</span>
+        <span class="p">)</span>
+
+    <span class="k">if</span> <span class="n">plot_order</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="n">plot_order</span> <span class="o">=</span> <span class="n">dataframe</span><span class="o">.</span><span class="n">index</span>
+
+    <span class="k">if</span> <span class="n">label_map</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="n">label_map</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="k">for</span> <span class="n">label</span> <span class="ow">in</span> <span class="n">dataframe</span><span class="o">.</span><span class="n">index</span><span class="o">.</span><span class="n">get_level_values</span><span class="p">(</span><span class="mi">0</span><span class="p">):</span>
+            <span class="k">if</span> <span class="n">label</span> <span class="ow">in</span> <span class="n">label_map</span><span class="p">:</span>
+                <span class="k">continue</span>
+            <span class="n">label_map</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">label</span><span class="p">)</span>
+
+    <span class="n">plot_data</span> <span class="o">=</span> <span class="n">axes</span><span class="o">.</span><span class="n">boxplot</span><span class="p">(</span>
+        <span class="p">[</span><span class="n">dataframe</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">x</span><span class="p">]</span><span class="o">.</span><span class="n">dropna</span><span class="p">()</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">plot_order</span><span class="p">],</span>
+        <span class="n">vert</span><span class="o">=</span><span class="n">box_vert</span>
+    <span class="p">)</span>
+
+    <span class="k">for</span> <span class="n">idx</span><span class="p">,</span> <span class="n">row_id</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">plot_order</span><span class="p">):</span>
+        <span class="n">category</span> <span class="o">=</span> <span class="n">row_id</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
+        <span class="n">box</span> <span class="o">=</span> <span class="n">plot_data</span><span class="p">[</span><span class="s1">&#39;boxes&#39;</span><span class="p">][</span><span class="n">idx</span><span class="p">]</span>
+        <span class="n">box</span><span class="o">.</span><span class="n">set_color</span><span class="p">(</span>
+            <span class="n">data_colours</span><span class="p">[</span><span class="n">category</span><span class="p">]</span> <span class="k">if</span> <span class="n">data_colours</span> <span class="k">else</span> <span class="n">colours</span><span class="p">[</span><span class="s1">&#39;boxes&#39;</span><span class="p">]</span>
+        <span class="p">)</span>
+        <span class="k">if</span> <span class="n">fill_box</span><span class="p">:</span>
+            <span class="n">box_coord</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="nb">zip</span><span class="p">(</span><span class="n">box</span><span class="o">.</span><span class="n">get_xdata</span><span class="p">(),</span> <span class="n">box</span><span class="o">.</span><span class="n">get_ydata</span><span class="p">()))</span>
+            <span class="n">polygon</span> <span class="o">=</span> <span class="n">Polygon</span><span class="p">(</span>
+                <span class="n">box_coord</span><span class="p">,</span>
+                <span class="n">facecolor</span><span class="o">=</span><span class="n">data_colours</span><span class="p">[</span><span class="n">category</span><span class="p">]</span> <span class="k">if</span> <span class="n">data_colours</span> <span class="k">else</span> <span class="n">colours</span><span class="p">[</span><span class="s1">&#39;boxes&#39;</span><span class="p">]</span>
+            <span class="p">)</span>
+            <span class="n">axes</span><span class="o">.</span><span class="n">add_patch</span><span class="p">(</span><span class="n">polygon</span><span class="p">)</span>
+
+        <span class="n">plot_data</span><span class="p">[</span><span class="s1">&#39;medians&#39;</span><span class="p">][</span><span class="n">idx</span><span class="p">]</span><span class="o">.</span><span class="n">set_color</span><span class="p">(</span><span class="n">colours</span><span class="p">[</span><span class="s1">&#39;medians&#39;</span><span class="p">])</span>
+
+    <span class="c1"># It&#39;s got a different length (double the size of plot_order)</span>
+    <span class="k">for</span> <span class="n">idx</span><span class="p">,</span> <span class="n">tx</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">plot_data</span><span class="p">[</span><span class="s1">&#39;whiskers&#39;</span><span class="p">]):</span>
+        <span class="n">whisker</span> <span class="o">=</span> <span class="n">plot_data</span><span class="p">[</span><span class="s1">&#39;whiskers&#39;</span><span class="p">][</span><span class="n">idx</span><span class="p">]</span>
+        <span class="n">whisker</span><span class="o">.</span><span class="n">set_color</span><span class="p">(</span>
+            <span class="c1"># data_colours[tx] if data_colours else colours[&#39;whiskers&#39;]</span>
+            <span class="n">colours</span><span class="p">[</span><span class="s1">&#39;whiskers&#39;</span><span class="p">]</span>
+        <span class="p">)</span>
+        <span class="n">plot_data</span><span class="p">[</span><span class="s1">&#39;caps&#39;</span><span class="p">][</span><span class="n">idx</span><span class="p">]</span><span class="o">.</span><span class="n">set_color</span><span class="p">(</span><span class="n">colours</span><span class="p">[</span><span class="s1">&#39;caps&#39;</span><span class="p">])</span>
+
+    <span class="k">for</span> <span class="n">flier</span> <span class="ow">in</span> <span class="n">plot_data</span><span class="p">[</span><span class="s1">&#39;fliers&#39;</span><span class="p">]:</span>
+        <span class="n">flier</span><span class="o">.</span><span class="n">set_markerfacecolor</span><span class="p">(</span>
+            <span class="n">colours</span><span class="p">[</span><span class="s1">&#39;fliers&#39;</span><span class="p">]</span>
+            <span class="c1"># data_colours[tx] if data_colours else colours[&#39;fliers&#39;]</span>
+        <span class="p">)</span>
+
+    <span class="k">if</span> <span class="n">box_vert</span><span class="p">:</span>
+        <span class="n">ltick_setfunc</span> <span class="o">=</span> <span class="n">axes</span><span class="o">.</span><span class="n">set_xticklabels</span>
+        <span class="n">vtick_getfunc</span> <span class="o">=</span> <span class="n">axes</span><span class="o">.</span><span class="n">get_yticklabels</span>
+        <span class="n">ptick_setfunc</span> <span class="o">=</span> <span class="n">axes</span><span class="o">.</span><span class="n">set_xticks</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">ltick_setfunc</span> <span class="o">=</span> <span class="n">axes</span><span class="o">.</span><span class="n">set_yticklabels</span>
+        <span class="n">vtick_getfunc</span> <span class="o">=</span> <span class="n">axes</span><span class="o">.</span><span class="n">get_xticklabels</span>
+        <span class="n">ptick_setfunc</span> <span class="o">=</span> <span class="n">axes</span><span class="o">.</span><span class="n">set_yticks</span>
+
+    <span class="k">if</span> <span class="n">fonts</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="n">ptick_setfunc</span><span class="p">(</span>
+            <span class="n">numpy</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span>
+                <span class="n">numpy</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">categories</span><span class="p">)</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span><span class="o">.</span><span class="n">mean</span><span class="p">(),</span>
+                <span class="nb">len</span><span class="p">(</span><span class="n">dataframe</span><span class="o">.</span><span class="n">index</span><span class="p">),</span>
+                <span class="nb">len</span><span class="p">(</span><span class="n">categories</span><span class="p">)</span>
+            <span class="p">)</span>
+        <span class="p">)</span>
+        <span class="n">ltick_setfunc</span><span class="p">(</span>
+            <span class="n">label_map</span><span class="p">,</span>
+            <span class="n">rotation</span><span class="o">=</span><span class="n">fonts</span><span class="p">[</span><span class="s1">&#39;rotation&#39;</span><span class="p">],</span>
+            <span class="n">fontsize</span><span class="o">=</span><span class="n">fonts</span><span class="p">[</span><span class="s1">&#39;fontsize&#39;</span><span class="p">]</span>
+        <span class="p">)</span>
+        <span class="k">for</span> <span class="n">label</span> <span class="ow">in</span> <span class="n">vtick_getfunc</span><span class="p">():</span>
+            <span class="n">label</span><span class="o">.</span><span class="n">set_fontsize</span><span class="p">(</span><span class="n">fonts</span><span class="p">[</span><span class="s1">&#39;fontsize&#39;</span><span class="p">])</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">ltick_setfunc</span><span class="p">([])</span>
+
+    <span class="k">return</span> <span class="n">plot_data</span></div>
+
+
+<div class="viewcode-block" id="add_values_to_boxplot"><a class="viewcode-back" href="../../../api/mgkit.plots.boxplot.html#mgkit.plots.boxplot.add_values_to_boxplot">[docs]</a><span class="k">def</span> <span class="nf">add_values_to_boxplot</span><span class="p">(</span><span class="n">dataframe</span><span class="p">,</span> <span class="n">ax</span><span class="p">,</span> <span class="n">plot_data</span><span class="p">,</span> <span class="n">plot_order</span><span class="p">,</span>
+                          <span class="n">data_colours</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.5</span><span class="p">,</span> <span class="n">s</span><span class="o">=</span><span class="mi">80</span><span class="p">,</span> <span class="n">marker</span><span class="o">=</span><span class="s1">&#39;o&#39;</span><span class="p">,</span>
+                          <span class="n">linewidth</span><span class="o">=</span><span class="mf">0.01</span><span class="p">,</span> <span class="n">box_vert</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    .. versionadded:: 0.1.13</span>
+
+<span class="sd">    .. versionchanged:: 0.1.14</span>
+<span class="sd">        added *box_vert* parameter</span>
+
+<span class="sd">    .. versionchanged:: 0.1.16</span>
+<span class="sd">        changed default value for *linewidth*</span>
+
+<span class="sd">    Adds the values of a dataframe used in :func:`boxplot_dataframe` to the</span>
+<span class="sd">    plot. *linewidth* must be higher than 0 if a marker like *|* is used.</span>
+
+<span class="sd">    A list of markers is available at</span>
+<span class="sd">    `this page &lt;http://matplotlib.org/api/markers_api.html&gt;`_</span>
+
+<span class="sd">    .. warning::</span>
+
+<span class="sd">        Contrary to :func:`boxplot_dataframe`, the boxplot default is</span>
+<span class="sd">        horizontal (*box_vert*). The default will change in a later version.</span>
+
+<span class="sd">    Arguments:</span>
+<span class="sd">        dataframe: dataframe with the values to plot</span>
+<span class="sd">        ax: an axis instance</span>
+<span class="sd">        plot_data: return value from :func:`boxplot_dataframe`</span>
+<span class="sd">        plot_order (iterable): row order used to plot the boxes</span>
+<span class="sd">        data_colours (dict): colors used for the values</span>
+<span class="sd">        alpha (float): alpha value for the colour</span>
+<span class="sd">        s (int): size of the marker drawn</span>
+<span class="sd">        marker (str): one of the accepted matplotlib markers</span>
+<span class="sd">        linewidth (float): width of the line used to draw the marker</span>
+<span class="sd">        box_vert (bool): specify if the original boxplot is vertical or not</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="k">if</span> <span class="n">data_colours</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="c1"># in case each color is a tuple of rgb floats, it converts them into</span>
+        <span class="c1"># strings to avoid matplotlit to confuse the single color as different</span>
+        <span class="c1"># shades of grey. It only happens when the number of data points in a</span>
+        <span class="c1"># row is 3</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">data_colours</span><span class="p">[</span><span class="nb">list</span><span class="p">(</span><span class="n">data_colours</span><span class="o">.</span><span class="n">keys</span><span class="p">())[</span><span class="mi">0</span><span class="p">]],</span> <span class="nb">str</span><span class="p">):</span>
+            <span class="n">data_colours</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">(</span>
+                <span class="p">(</span><span class="n">key</span><span class="p">,</span> <span class="n">float_to_hex_color</span><span class="p">(</span><span class="o">*</span><span class="n">value</span><span class="p">))</span>
+                <span class="k">for</span> <span class="n">key</span><span class="p">,</span> <span class="n">value</span> <span class="ow">in</span> <span class="n">data_colours</span><span class="o">.</span><span class="n">items</span><span class="p">()</span>
+            <span class="p">)</span>
+
+    <span class="k">for</span> <span class="n">index</span><span class="p">,</span> <span class="n">row_id</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">plot_order</span><span class="p">):</span>
+        <span class="k">if</span> <span class="n">box_vert</span><span class="p">:</span>
+            <span class="n">xvals</span> <span class="o">=</span> <span class="n">plot_data</span><span class="p">[</span><span class="s1">&#39;medians&#39;</span><span class="p">][</span><span class="n">index</span><span class="p">]</span><span class="o">.</span><span class="n">get_xdata</span><span class="p">()</span>
+            <span class="n">mean_x</span> <span class="o">=</span> <span class="n">xvals</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span>
+            <span class="n">y</span> <span class="o">=</span> <span class="n">dataframe</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">row_id</span><span class="p">]</span><span class="o">.</span><span class="n">dropna</span><span class="p">()</span>
+            <span class="n">x</span> <span class="o">=</span> <span class="p">[</span><span class="n">mean_x</span><span class="p">]</span> <span class="o">*</span> <span class="n">dataframe</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">row_id</span><span class="p">]</span><span class="o">.</span><span class="n">count</span><span class="p">()</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">yvals</span> <span class="o">=</span> <span class="n">plot_data</span><span class="p">[</span><span class="s1">&#39;medians&#39;</span><span class="p">][</span><span class="n">index</span><span class="p">]</span><span class="o">.</span><span class="n">get_ydata</span><span class="p">()</span>
+            <span class="n">mean_y</span> <span class="o">=</span> <span class="n">yvals</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span>
+            <span class="n">x</span> <span class="o">=</span> <span class="n">dataframe</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">row_id</span><span class="p">]</span><span class="o">.</span><span class="n">dropna</span><span class="p">()</span>
+            <span class="n">y</span> <span class="o">=</span> <span class="p">[</span><span class="n">mean_y</span><span class="p">]</span> <span class="o">*</span> <span class="n">dataframe</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">row_id</span><span class="p">]</span><span class="o">.</span><span class="n">count</span><span class="p">()</span>
+
+        <span class="k">if</span> <span class="n">data_colours</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">DEFAULT_BOXPLOT_COLOURS</span><span class="p">[</span><span class="s1">&#39;boxes&#39;</span><span class="p">]</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">color</span> <span class="o">=</span> <span class="n">data_colours</span><span class="p">[</span><span class="n">row_id</span><span class="p">]</span>
+
+        <span class="n">ax</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span>
+            <span class="n">x</span><span class="p">,</span>
+            <span class="n">y</span><span class="p">,</span>
+            <span class="n">c</span><span class="o">=</span><span class="n">color</span><span class="p">,</span>
+            <span class="n">alpha</span><span class="o">=</span><span class="n">alpha</span><span class="p">,</span>
+            <span class="n">s</span><span class="o">=</span><span class="n">s</span><span class="p">,</span>
+            <span class="n">marker</span><span class="o">=</span><span class="n">marker</span><span class="p">,</span>
+            <span class="n">linewidth</span><span class="o">=</span><span class="n">linewidth</span><span class="p">,</span>
+            <span class="c1"># this option put the dots below the lines of the boxplot</span>
+            <span class="n">zorder</span><span class="o">=</span><span class="mi">1</span>
+        <span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="boxplot_dataframe"><a class="viewcode-back" href="../../../api/mgkit.plots.boxplot.html#mgkit.plots.boxplot.boxplot_dataframe">[docs]</a><span class="k">def</span> <span class="nf">boxplot_dataframe</span><span class="p">(</span><span class="n">dataframe</span><span class="p">,</span> <span class="n">plot_order</span><span class="p">,</span> <span class="n">ax</span><span class="p">,</span> <span class="n">label_map</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">fonts</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+                      <span class="n">fill_box</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">colours</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">data_colours</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+                      <span class="n">box_vert</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">widths</span><span class="o">=</span><span class="mf">0.5</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    .. versionadded:: 0.1.7</span>
+<span class="sd">        To move from an all-in-one drawing to a more modular one.</span>
+
+<span class="sd">    .. versionchanged:: 0.1.13</span>
+<span class="sd">        added box_vert parameter</span>
+
+<span class="sd">    .. versionchanged:: 0.1.16</span>
+<span class="sd">        added *widths* parameter</span>
+
+<span class="sd">    The function draws a series of boxplots from a DataFrame object, whose</span>
+<span class="sd">    order is directed by the iterable plot_order. The columns of each DataFrame</span>
+<span class="sd">    row contains the values for each boxplot. An ax object is needed.</span>
+
+<span class="sd">    :param dataframe: dataframe to plot</span>
+<span class="sd">    :param iterable plot_order: row order used to plot the boxes</span>
+<span class="sd">    :param ax: an axis instance</span>
+<span class="sd">    :param dict label_map: a map that converts the items in plot_order to a</span>
+<span class="sd">        label used on the plot X ax</span>
+<span class="sd">    :param dict fonts: dictionary with properties for x axis labels,</span>
+<span class="sd">        :data:`DEFAULT_BOXPLOT_FONTCONF` is used by default</span>
+<span class="sd">    :param bool fill_box: if True each box is filled with the same colour of</span>
+<span class="sd">        its outline</span>
+<span class="sd">    :param dict colours: dictionary with properties for each boxplot if</span>
+<span class="sd">        data_colours is None, whi overrides box, whiskers and fliers. Defaults</span>
+<span class="sd">        to :data:`DEFAULT_BOXPLOT_COLOURS`</span>
+<span class="sd">    :param dict data_colours: dictionary of colours for each boxplot, a set of</span>
+<span class="sd">        colours can be obtained using func:`map_taxon_to_colours`</span>
+<span class="sd">    :param bool box_vert: if False the boxplots are drawn horizontally</span>
+<span class="sd">    :param float widths: width (scalar or array) of the boxplots width(s)</span>
+
+<span class="sd">    :return: the plot data; same as matplotlib boxplot function</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="k">if</span> <span class="n">colours</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="n">colours</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">(</span>
+            <span class="p">(</span><span class="n">feature</span><span class="p">,</span> <span class="n">colours</span><span class="p">[</span><span class="n">feature</span><span class="p">])</span> <span class="k">if</span> <span class="n">feature</span> <span class="ow">in</span> <span class="n">colours</span> <span class="k">else</span> <span class="p">(</span><span class="n">feature</span><span class="p">,</span> <span class="n">colour</span><span class="p">)</span>
+            <span class="k">for</span> <span class="n">feature</span><span class="p">,</span> <span class="n">colour</span> <span class="ow">in</span> <span class="n">DEFAULT_BOXPLOT_COLOURS</span><span class="o">.</span><span class="n">items</span><span class="p">()</span>
+        <span class="p">)</span>
+        <span class="c1"># DEFAULT_BOXPLOT_COLOURS.copy().update(colours)</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">colours</span> <span class="o">=</span> <span class="n">DEFAULT_BOXPLOT_COLOURS</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+
+    <span class="k">if</span> <span class="n">fonts</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="n">fonts</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">(</span>
+            <span class="p">(</span><span class="n">feature</span><span class="p">,</span> <span class="n">fonts</span><span class="p">[</span><span class="n">feature</span><span class="p">])</span> <span class="k">if</span> <span class="n">feature</span> <span class="ow">in</span> <span class="n">fonts</span> <span class="k">else</span> <span class="p">(</span><span class="n">feature</span><span class="p">,</span> <span class="n">option</span><span class="p">)</span>
+            <span class="k">for</span> <span class="n">feature</span><span class="p">,</span> <span class="n">option</span> <span class="ow">in</span> <span class="n">DEFAULT_BOXPLOT_FONTCONF</span><span class="o">.</span><span class="n">items</span><span class="p">()</span>
+        <span class="p">)</span>
+        <span class="n">DEFAULT_BOXPLOT_FONTCONF</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="n">fonts</span><span class="p">)</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">fonts</span> <span class="o">=</span> <span class="n">DEFAULT_BOXPLOT_FONTCONF</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+
+    <span class="n">plot_data</span> <span class="o">=</span> <span class="n">ax</span><span class="o">.</span><span class="n">boxplot</span><span class="p">(</span>
+        <span class="p">[</span><span class="n">dataframe</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">x</span><span class="p">]</span><span class="o">.</span><span class="n">dropna</span><span class="p">()</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">plot_order</span><span class="p">],</span>
+        <span class="n">vert</span><span class="o">=</span><span class="n">box_vert</span><span class="p">,</span>
+        <span class="n">widths</span><span class="o">=</span><span class="n">widths</span>
+    <span class="p">)</span>
+
+    <span class="k">for</span> <span class="n">idx</span><span class="p">,</span> <span class="n">row_id</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">plot_order</span><span class="p">):</span>
+        <span class="n">box</span> <span class="o">=</span> <span class="n">plot_data</span><span class="p">[</span><span class="s1">&#39;boxes&#39;</span><span class="p">][</span><span class="n">idx</span><span class="p">]</span>
+        <span class="n">box</span><span class="o">.</span><span class="n">set_color</span><span class="p">(</span>
+            <span class="n">data_colours</span><span class="p">[</span><span class="n">row_id</span><span class="p">]</span> <span class="k">if</span> <span class="n">data_colours</span> <span class="k">else</span> <span class="n">colours</span><span class="p">[</span><span class="s1">&#39;boxes&#39;</span><span class="p">]</span>
+        <span class="p">)</span>
+        <span class="k">if</span> <span class="n">fill_box</span><span class="p">:</span>
+            <span class="n">box_coord</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="nb">zip</span><span class="p">(</span><span class="n">box</span><span class="o">.</span><span class="n">get_xdata</span><span class="p">(),</span> <span class="n">box</span><span class="o">.</span><span class="n">get_ydata</span><span class="p">()))</span>
+            <span class="n">polygon</span> <span class="o">=</span> <span class="n">Polygon</span><span class="p">(</span>
+                <span class="n">box_coord</span><span class="p">,</span>
+                <span class="n">facecolor</span><span class="o">=</span><span class="n">data_colours</span><span class="p">[</span><span class="n">row_id</span><span class="p">]</span> <span class="k">if</span> <span class="n">data_colours</span> <span class="k">else</span> <span class="n">colours</span><span class="p">[</span><span class="s1">&#39;boxes&#39;</span><span class="p">]</span>
+            <span class="p">)</span>
+            <span class="n">ax</span><span class="o">.</span><span class="n">add_patch</span><span class="p">(</span><span class="n">polygon</span><span class="p">)</span>
+
+        <span class="n">plot_data</span><span class="p">[</span><span class="s1">&#39;medians&#39;</span><span class="p">][</span><span class="n">idx</span><span class="p">]</span><span class="o">.</span><span class="n">set_color</span><span class="p">(</span><span class="n">colours</span><span class="p">[</span><span class="s1">&#39;medians&#39;</span><span class="p">])</span>
+
+    <span class="c1"># It&#39;s got a different length (double the size of plot_order)</span>
+    <span class="k">for</span> <span class="n">idx</span><span class="p">,</span> <span class="n">tx</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">plot_data</span><span class="p">[</span><span class="s1">&#39;whiskers&#39;</span><span class="p">]):</span>
+        <span class="n">whisker</span> <span class="o">=</span> <span class="n">plot_data</span><span class="p">[</span><span class="s1">&#39;whiskers&#39;</span><span class="p">][</span><span class="n">idx</span><span class="p">]</span>
+        <span class="n">whisker</span><span class="o">.</span><span class="n">set_color</span><span class="p">(</span>
+            <span class="c1"># data_colours[tx] if data_colours else colours[&#39;whiskers&#39;]</span>
+            <span class="n">colours</span><span class="p">[</span><span class="s1">&#39;whiskers&#39;</span><span class="p">]</span>
+        <span class="p">)</span>
+        <span class="n">plot_data</span><span class="p">[</span><span class="s1">&#39;caps&#39;</span><span class="p">][</span><span class="n">idx</span><span class="p">]</span><span class="o">.</span><span class="n">set_color</span><span class="p">(</span><span class="n">colours</span><span class="p">[</span><span class="s1">&#39;caps&#39;</span><span class="p">])</span>
+
+    <span class="k">for</span> <span class="n">flier</span> <span class="ow">in</span> <span class="n">plot_data</span><span class="p">[</span><span class="s1">&#39;fliers&#39;</span><span class="p">]:</span>
+        <span class="n">flier</span><span class="o">.</span><span class="n">set_color</span><span class="p">(</span>
+            <span class="n">colours</span><span class="p">[</span><span class="s1">&#39;whiskers&#39;</span><span class="p">]</span>
+            <span class="c1"># data_colours[tx] if data_colours else colours[&#39;fliers&#39;]</span>
+        <span class="p">)</span>
+
+    <span class="k">if</span> <span class="n">box_vert</span><span class="p">:</span>
+        <span class="n">ltick_setfunc</span> <span class="o">=</span> <span class="n">ax</span><span class="o">.</span><span class="n">set_xticklabels</span>
+        <span class="n">vtick_getfunc</span> <span class="o">=</span> <span class="n">ax</span><span class="o">.</span><span class="n">get_yticklabels</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">ltick_setfunc</span> <span class="o">=</span> <span class="n">ax</span><span class="o">.</span><span class="n">set_yticklabels</span>
+        <span class="n">vtick_getfunc</span> <span class="o">=</span> <span class="n">ax</span><span class="o">.</span><span class="n">get_xticklabels</span>
+
+    <span class="k">if</span> <span class="n">fonts</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="n">ltick_setfunc</span><span class="p">(</span>
+            <span class="p">[</span>
+                <span class="n">label</span> <span class="k">if</span> <span class="n">label_map</span> <span class="ow">is</span> <span class="kc">None</span> <span class="k">else</span> <span class="n">label_map</span><span class="p">[</span><span class="n">label</span><span class="p">]</span>
+                <span class="k">for</span> <span class="n">label</span> <span class="ow">in</span> <span class="n">plot_order</span>
+            <span class="p">],</span>
+            <span class="n">rotation</span><span class="o">=</span><span class="n">fonts</span><span class="p">[</span><span class="s1">&#39;rotation&#39;</span><span class="p">],</span> <span class="n">fontsize</span><span class="o">=</span><span class="n">fonts</span><span class="p">[</span><span class="s1">&#39;fontsize&#39;</span><span class="p">]</span>
+        <span class="p">)</span>
+        <span class="k">for</span> <span class="n">label</span> <span class="ow">in</span> <span class="n">vtick_getfunc</span><span class="p">():</span>
+            <span class="n">label</span><span class="o">.</span><span class="n">set_fontsize</span><span class="p">(</span><span class="n">fonts</span><span class="p">[</span><span class="s1">&#39;fontsize&#39;</span><span class="p">])</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">ltick_setfunc</span><span class="p">([])</span>
+
+    <span class="k">return</span> <span class="n">plot_data</span></div>
+
+
+<div class="viewcode-block" id="add_significance_to_boxplot"><a class="viewcode-back" href="../../../api/mgkit.plots.boxplot.html#mgkit.plots.boxplot.add_significance_to_boxplot">[docs]</a><span class="k">def</span> <span class="nf">add_significance_to_boxplot</span><span class="p">(</span><span class="n">sign_indices</span><span class="p">,</span> <span class="n">ax</span><span class="p">,</span> <span class="n">pos</span><span class="p">,</span> <span class="n">box_vert</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+                                <span class="n">fontsize</span><span class="o">=</span><span class="mi">16</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    .. versionadded:: 0.1.16</span>
+
+<span class="sd">    Add significance groups to boxplots</span>
+
+<span class="sd">    Arguments:</span>
+<span class="sd">        sign_indices (iterable): iterable in which each element is a tuple;</span>
+<span class="sd">            each element of the tuple is the numerical index of the position of</span>
+<span class="sd">            the significant boxplot</span>
+<span class="sd">        ax: an axis instance</span>
+<span class="sd">        pos (tuple): the 2 values are the coordinates for the top line, and the</span>
+<span class="sd">            the lowest bound for the whisker</span>
+<span class="sd">        box_vert (bool): if the boxplot is vertical</span>
+<span class="sd">        fontsize (float): size for the * (star)</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">maxval</span><span class="p">,</span> <span class="n">spine</span> <span class="o">=</span> <span class="n">pos</span>
+    <span class="n">text</span> <span class="o">=</span> <span class="n">maxval</span>
+
+    <span class="k">for</span> <span class="n">index</span><span class="p">,</span> <span class="p">(</span><span class="n">sign1</span><span class="p">,</span> <span class="n">sign2</span><span class="p">)</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">sign_indices</span><span class="p">):</span>
+        <span class="n">spacer</span> <span class="o">=</span> <span class="p">(</span><span class="n">index</span> <span class="o">*</span> <span class="p">((</span><span class="n">maxval</span> <span class="o">-</span> <span class="n">spine</span><span class="p">)</span> <span class="o">*</span> <span class="mf">2.5</span><span class="p">))</span>
+        <span class="n">factors</span> <span class="o">=</span> <span class="p">[</span><span class="n">spine</span><span class="p">,</span> <span class="n">maxval</span><span class="p">]</span>
+        <span class="n">x</span> <span class="o">=</span> <span class="n">numpy</span><span class="o">.</span><span class="n">array</span><span class="p">(</span>
+            <span class="n">factors</span> <span class="o">+</span> <span class="n">factors</span><span class="p">[::</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
+        <span class="p">)</span> <span class="o">-</span> <span class="n">spacer</span>
+
+        <span class="n">y</span> <span class="o">=</span> <span class="p">[</span><span class="n">sign1</span> <span class="o">+</span> <span class="mi">1</span><span class="p">,</span> <span class="n">sign1</span> <span class="o">+</span> <span class="mi">1</span><span class="p">,</span> <span class="n">sign2</span> <span class="o">+</span> <span class="mi">1</span><span class="p">,</span> <span class="n">sign2</span> <span class="o">+</span> <span class="mi">1</span><span class="p">]</span>
+
+        <span class="k">if</span> <span class="n">box_vert</span><span class="p">:</span>
+            <span class="n">x</span><span class="p">,</span> <span class="n">y</span> <span class="o">=</span> <span class="n">y</span><span class="p">,</span> <span class="n">x</span>
+        <span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">linestyle</span><span class="o">=</span><span class="s1">&#39;-&#39;</span><span class="p">,</span> <span class="n">c</span><span class="o">=</span><span class="s1">&#39;k&#39;</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=.</span><span class="mi">75</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">box_vert</span><span class="p">:</span>
+            <span class="n">xtext</span><span class="p">,</span> <span class="n">ytext</span> <span class="o">=</span> <span class="n">numpy</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">x</span><span class="p">),</span> <span class="n">text</span> <span class="o">-</span> <span class="n">spacer</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">xtext</span><span class="p">,</span> <span class="n">ytext</span> <span class="o">=</span> <span class="n">text</span> <span class="o">-</span> <span class="n">spacer</span><span class="p">,</span> <span class="n">numpy</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">y</span><span class="p">)</span>
+        <span class="n">ax</span><span class="o">.</span><span class="n">text</span><span class="p">(</span><span class="n">xtext</span><span class="p">,</span> <span class="n">ytext</span><span class="p">,</span> <span class="s1">&#39;*&#39;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="n">fontsize</span><span class="p">)</span></div>
+
+<span class="n">__all__</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="s1">&#39;add_values_to_boxplot&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;add_significance_to_boxplot&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;boxplot_dataframe_multindex&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;boxplot_dataframe&#39;</span>
+<span class="p">]</span>
+</pre></div>
+
+           </div>
+           
+          </div>
+          <footer>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2013-2015, Francesco Rubino
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

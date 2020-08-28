@@ -1,0 +1,282 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>mgkit.logger &mdash; MGKit: Metagenomic framework 0.5.0 documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+  <script type="text/javascript" src="../../_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
+        <script type="text/javascript" src="../../_static/jquery.js"></script>
+        <script type="text/javascript" src="../../_static/underscore.js"></script>
+        <script type="text/javascript" src="../../_static/doctools.js"></script>
+        <script type="text/javascript" src="../../_static/language_data.js"></script>
+        <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+        <script async="async" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+        <script type="text/x-mathjax-config">MathJax.Hub.Config({"tex2jax": {"inlineMath": [["$", "$"], ["\\(", "\\)"]], "processEscapes": true, "ignoreClass": "document", "processClass": "math|output_area"}})</script>
+    
+    <script type="text/javascript" src="../../_static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../../_static/graphviz.css" type="text/css" />
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../../index.html" class="icon icon-home"> MGKit: Metagenomic framework
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                0.5.0
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="../../introduction.html">Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../install.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../pipeline/index.html">Metagenomic Pipeline</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../scripts/index.html">Scripts Details</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../examples/index.html">Example Notebooks</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../gff.html">MGKit GFF Specifications</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../library.html">Library Reference</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../changes.html">Changes</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">MGKit: Metagenomic framework</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../../index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="../index.html">Module code</a> &raquo;</li>
+        
+          <li><a href="../mgkit.html">mgkit</a> &raquo;</li>
+        
+      <li>mgkit.logger</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <h1>Source code for mgkit.logger</h1><div class="highlight"><pre>
+<span></span><span class="s2">&quot;Module configuring log information&quot;</span>
+
+<span class="kn">import</span> <span class="nn">click</span>
+<span class="kn">import</span> <span class="nn">logging</span>
+<span class="kn">import</span> <span class="nn">sys</span>
+<span class="kn">import</span> <span class="nn">os.path</span>
+
+<span class="n">DEBUG_FMT</span> <span class="o">=</span> <span class="s2">&quot;</span><span class="si">%(asctime)s</span><span class="s2"> - </span><span class="si">%(levelname) 7s</span><span class="s2"> - </span><span class="si">%(name)s</span><span class="s2">-&gt;</span><span class="si">%(funcName)s</span><span class="s2">: &quot;</span> <span class="o">+</span> \
+    <span class="s2">&quot;</span><span class="si">%(message)s</span><span class="s2">&quot;</span>
+<span class="n">INFO_FMT</span> <span class="o">=</span> <span class="s2">&quot;</span><span class="si">%(levelname)s</span><span class="s2"> - </span><span class="si">%(name)s</span><span class="s2">: </span><span class="si">%(message)s</span><span class="s2">&quot;</span>
+
+
+<div class="viewcode-block" id="ColorFormatter"><a class="viewcode-back" href="../../api/mgkit.logger.html#mgkit.logger.ColorFormatter">[docs]</a><span class="k">class</span> <span class="nc">ColorFormatter</span><span class="p">(</span><span class="n">logging</span><span class="o">.</span><span class="n">Formatter</span><span class="p">):</span>
+    <span class="n">colors</span> <span class="o">=</span> <span class="p">{</span>
+        <span class="s1">&#39;INFO&#39;</span><span class="p">:</span> <span class="s1">&#39;green&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;WARNING&#39;</span><span class="p">:</span> <span class="s1">&#39;yellow&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;ERROR&#39;</span><span class="p">:</span> <span class="s1">&#39;magenta&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;CRITICAL&#39;</span><span class="p">:</span> <span class="s1">&#39;red&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;DEBUG&#39;</span><span class="p">:</span> <span class="s1">&#39;blue&#39;</span><span class="p">,</span>
+    <span class="p">}</span>
+    
+<div class="viewcode-block" id="ColorFormatter.format"><a class="viewcode-back" href="../../api/mgkit.logger.html#mgkit.logger.ColorFormatter.format">[docs]</a>    <span class="k">def</span> <span class="nf">format</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">record</span><span class="p">):</span>
+        <span class="n">color</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">colors</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">record</span><span class="o">.</span><span class="n">levelname</span><span class="p">,</span> <span class="kc">None</span><span class="p">)</span>
+        <span class="n">record</span><span class="o">.</span><span class="n">levelname</span> <span class="o">=</span> <span class="n">click</span><span class="o">.</span><span class="n">style</span><span class="p">(</span><span class="n">record</span><span class="o">.</span><span class="n">levelname</span><span class="p">,</span> <span class="n">fg</span><span class="o">=</span><span class="n">color</span><span class="p">)</span>
+        <span class="k">return</span> <span class="nb">super</span><span class="p">(</span><span class="n">ColorFormatter</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">record</span><span class="p">)</span></div></div>
+
+
+<div class="viewcode-block" id="config_log"><a class="viewcode-back" href="../../api/mgkit.logger.html#mgkit.logger.config_log">[docs]</a><span class="k">def</span> <span class="nf">config_log</span><span class="p">(</span><span class="n">level</span><span class="o">=</span><span class="n">logging</span><span class="o">.</span><span class="n">DEBUG</span><span class="p">,</span> <span class="n">output</span><span class="o">=</span><span class="n">sys</span><span class="o">.</span><span class="n">stderr</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Minimal configuration of :mod`logging` module, default to debug level and</span>
+<span class="sd">    the output is printed to standard error</span>
+
+<span class="sd">    :param int level: logging level</span>
+<span class="sd">    :param file output: file to which write the log</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">log_handler</span> <span class="o">=</span> <span class="n">logging</span><span class="o">.</span><span class="n">StreamHandler</span><span class="p">(</span><span class="n">output</span><span class="p">)</span>
+
+    <span class="k">if</span> <span class="n">level</span> <span class="o">==</span> <span class="n">logging</span><span class="o">.</span><span class="n">DEBUG</span><span class="p">:</span>
+        <span class="n">fmt</span> <span class="o">=</span> <span class="n">ColorFormatter</span><span class="p">(</span><span class="n">fmt</span><span class="o">=</span><span class="n">DEBUG_FMT</span><span class="p">)</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">fmt</span> <span class="o">=</span> <span class="n">ColorFormatter</span><span class="p">(</span><span class="n">fmt</span><span class="o">=</span><span class="n">INFO_FMT</span><span class="p">)</span>
+
+    <span class="n">log_handler</span><span class="o">.</span><span class="n">setFormatter</span><span class="p">(</span><span class="n">fmt</span><span class="p">)</span>
+    <span class="n">log_handler</span><span class="o">.</span><span class="n">setLevel</span><span class="p">(</span><span class="n">level</span><span class="p">)</span>
+
+    <span class="n">logging</span><span class="o">.</span><span class="n">getLogger</span><span class="p">()</span><span class="o">.</span><span class="n">addHandler</span><span class="p">(</span><span class="n">log_handler</span><span class="p">)</span>
+    <span class="n">logging</span><span class="o">.</span><span class="n">getLogger</span><span class="p">()</span><span class="o">.</span><span class="n">setLevel</span><span class="p">(</span><span class="n">level</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="config_log_to_file"><a class="viewcode-back" href="../../api/mgkit.logger.html#mgkit.logger.config_log_to_file">[docs]</a><span class="k">def</span> <span class="nf">config_log_to_file</span><span class="p">(</span><span class="n">level</span><span class="o">=</span><span class="n">logging</span><span class="o">.</span><span class="n">DEBUG</span><span class="p">,</span> <span class="n">output</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    .. versionadded:: 0.1.14</span>
+
+<span class="sd">    Minimal configuration of :mod`logging` module, default to debug level and</span>
+<span class="sd">    the output is printed to script name, using `sys.argv[0]`.</span>
+
+<span class="sd">    :param int level: logging level</span>
+<span class="sd">    :param file output: file to which write the log</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="k">if</span> <span class="n">output</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="n">output</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span>
+            <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">splitext</span><span class="p">(</span><span class="n">sys</span><span class="o">.</span><span class="n">argv</span><span class="p">[</span><span class="mi">0</span><span class="p">])[</span><span class="mi">0</span><span class="p">],</span>
+            <span class="s1">&#39;.log&#39;</span>
+        <span class="p">)</span>
+
+    <span class="n">log_handler</span> <span class="o">=</span> <span class="n">logging</span><span class="o">.</span><span class="n">FileHandler</span><span class="p">(</span><span class="n">filename</span><span class="o">=</span><span class="n">output</span><span class="p">,</span> <span class="n">mode</span><span class="o">=</span><span class="s1">&#39;w&#39;</span><span class="p">,</span> <span class="n">delay</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+
+    <span class="k">if</span> <span class="n">level</span> <span class="o">==</span> <span class="n">logging</span><span class="o">.</span><span class="n">DEBUG</span><span class="p">:</span>
+        <span class="n">fmt</span> <span class="o">=</span> <span class="n">logging</span><span class="o">.</span><span class="n">Formatter</span><span class="p">(</span><span class="n">fmt</span><span class="o">=</span><span class="n">DEBUG_FMT</span><span class="p">)</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">fmt</span> <span class="o">=</span> <span class="n">logging</span><span class="o">.</span><span class="n">Formatter</span><span class="p">(</span><span class="n">fmt</span><span class="o">=</span><span class="n">INFO_FMT</span><span class="p">)</span>
+
+    <span class="n">log_handler</span><span class="o">.</span><span class="n">setLevel</span><span class="p">(</span><span class="n">level</span><span class="p">)</span>
+    <span class="n">log_handler</span><span class="o">.</span><span class="n">setFormatter</span><span class="p">(</span><span class="n">fmt</span><span class="p">)</span>
+
+    <span class="n">logging</span><span class="o">.</span><span class="n">getLogger</span><span class="p">()</span><span class="o">.</span><span class="n">addHandler</span><span class="p">(</span><span class="n">log_handler</span><span class="p">)</span>
+    <span class="n">logging</span><span class="o">.</span><span class="n">getLogger</span><span class="p">()</span><span class="o">.</span><span class="n">setLevel</span><span class="p">(</span><span class="n">level</span><span class="p">)</span></div>
+</pre></div>
+
+           </div>
+           
+          </div>
+          <footer>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2013-2015, Francesco Rubino
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

@@ -1,0 +1,640 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>mgkit.align &mdash; MGKit: Metagenomic framework 0.5.0 documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+  <script type="text/javascript" src="../../_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
+        <script type="text/javascript" src="../../_static/jquery.js"></script>
+        <script type="text/javascript" src="../../_static/underscore.js"></script>
+        <script type="text/javascript" src="../../_static/doctools.js"></script>
+        <script type="text/javascript" src="../../_static/language_data.js"></script>
+        <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+        <script async="async" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+        <script type="text/x-mathjax-config">MathJax.Hub.Config({"tex2jax": {"inlineMath": [["$", "$"], ["\\(", "\\)"]], "processEscapes": true, "ignoreClass": "document", "processClass": "math|output_area"}})</script>
+    
+    <script type="text/javascript" src="../../_static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../../_static/graphviz.css" type="text/css" />
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../../index.html" class="icon icon-home"> MGKit: Metagenomic framework
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                0.5.0
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="../../introduction.html">Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../install.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../pipeline/index.html">Metagenomic Pipeline</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../scripts/index.html">Scripts Details</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../examples/index.html">Example Notebooks</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../gff.html">MGKit GFF Specifications</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../library.html">Library Reference</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../changes.html">Changes</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">MGKit: Metagenomic framework</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../../index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="../index.html">Module code</a> &raquo;</li>
+        
+          <li><a href="../mgkit.html">mgkit</a> &raquo;</li>
+        
+      <li>mgkit.align</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <h1>Source code for mgkit.align</h1><div class="highlight"><pre>
+<span></span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">Module dealing with BAM/SAM files</span>
+<span class="sd">&quot;&quot;&quot;</span>
+<span class="kn">from</span> <span class="nn">future.utils</span> <span class="kn">import</span> <span class="n">viewitems</span>
+<span class="kn">import</span> <span class="nn">logging</span>
+<span class="k">try</span><span class="p">:</span>
+    <span class="c1"># In Python2</span>
+    <span class="kn">from</span> <span class="nn">itertools</span> <span class="kn">import</span> <span class="n">izip</span> <span class="k">as</span> <span class="nb">zip</span>
+<span class="k">except</span> <span class="ne">ImportError</span><span class="p">:</span>
+    <span class="k">pass</span>
+<span class="kn">from</span> <span class="nn">builtins</span> <span class="kn">import</span> <span class="nb">object</span>
+<span class="kn">import</span> <span class="nn">pandas</span>
+<span class="kn">import</span> <span class="nn">numpy</span>
+<span class="kn">import</span> <span class="nn">pysam</span>
+<span class="kn">from</span> <span class="nn">tqdm</span> <span class="kn">import</span> <span class="n">tqdm</span>
+<span class="kn">from</span> <span class="nn">mgkit.io.utils</span> <span class="kn">import</span> <span class="n">open_file</span>
+
+<span class="n">LOG</span> <span class="o">=</span> <span class="n">logging</span><span class="o">.</span><span class="n">getLogger</span><span class="p">(</span><span class="vm">__name__</span><span class="p">)</span>
+
+
+<div class="viewcode-block" id="get_region_coverage"><a class="viewcode-back" href="../../api/mgkit.align.html#mgkit.align.get_region_coverage">[docs]</a><span class="k">def</span> <span class="nf">get_region_coverage</span><span class="p">(</span><span class="n">bam_file</span><span class="p">,</span> <span class="n">seq_id</span><span class="p">,</span> <span class="n">feat_from</span><span class="p">,</span> <span class="n">feat_to</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Return coverage for an annotation.</span>
+
+<span class="sd">    .. note::</span>
+
+<span class="sd">        feat_from and feat_to are 1-based indexes</span>
+
+<span class="sd">    :param Samfile bam_file: instance of :class:`pysam.Samfile`</span>
+<span class="sd">    :param str seq_id: sequence id</span>
+<span class="sd">    :param int feat_from: start position of feature</span>
+<span class="sd">    :param int feat_to: end position of feature</span>
+
+<span class="sd">    :return int: coverage array for the annotation</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">norm_start</span><span class="p">,</span> <span class="n">norm_end</span> <span class="o">=</span> <span class="n">feat_from</span> <span class="o">-</span> <span class="mi">1</span><span class="p">,</span> <span class="n">feat_to</span> <span class="o">-</span> <span class="mi">1</span>
+    <span class="n">iterator</span> <span class="o">=</span> <span class="n">bam_file</span><span class="o">.</span><span class="n">pileup</span><span class="p">(</span>
+        <span class="n">reference</span><span class="o">=</span><span class="n">seq_id</span><span class="p">,</span>
+        <span class="n">start</span><span class="o">=</span><span class="n">norm_start</span><span class="p">,</span>
+        <span class="n">end</span><span class="o">=</span><span class="n">norm_end</span><span class="p">,</span>
+        <span class="n">truncate</span><span class="o">=</span><span class="kc">True</span>
+    <span class="p">)</span>
+
+    <span class="n">coverage</span> <span class="o">=</span> <span class="n">pandas</span><span class="o">.</span><span class="n">Series</span><span class="p">(</span>
+        <span class="nb">dict</span><span class="p">(</span>
+            <span class="p">(</span><span class="n">pileup_proxy</span><span class="o">.</span><span class="n">pos</span><span class="p">,</span> <span class="n">pileup_proxy</span><span class="o">.</span><span class="n">n</span><span class="p">)</span>
+            <span class="k">for</span> <span class="n">pileup_proxy</span> <span class="ow">in</span> <span class="n">iterator</span>
+        <span class="p">),</span>
+        <span class="n">dtype</span><span class="o">=</span><span class="n">numpy</span><span class="o">.</span><span class="n">int</span><span class="p">,</span>
+    <span class="p">)</span>
+
+    <span class="k">return</span> <span class="n">coverage</span></div>
+
+
+<div class="viewcode-block" id="covered_annotation_bp"><a class="viewcode-back" href="../../api/mgkit.align.html#mgkit.align.covered_annotation_bp">[docs]</a><span class="k">def</span> <span class="nf">covered_annotation_bp</span><span class="p">(</span><span class="n">files</span><span class="p">,</span> <span class="n">annotations</span><span class="p">,</span> <span class="n">min_cov</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">progress</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    .. versionadded:: 0.1.14</span>
+
+<span class="sd">    Returns the number of base pairs covered of annotations over multiple</span>
+<span class="sd">    samples.</span>
+
+<span class="sd">    Arguments:</span>
+<span class="sd">        files (iterable): an iterable that returns the alignment file names</span>
+<span class="sd">        annotations (iterable): an iterable that returns annotations</span>
+<span class="sd">        min_cov (int): minumum coverage for a base to counted</span>
+<span class="sd">        progress (bool): if *True*, a progress bar is used</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        dict: a dictionary whose keys are the uid and the values the number of</span>
+<span class="sd">        bases that are covered by reads among all samples</span>
+
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">annotations</span> <span class="o">=</span> <span class="p">[</span>
+        <span class="p">(</span><span class="n">annotation</span><span class="o">.</span><span class="n">uid</span><span class="p">,</span> <span class="n">annotation</span><span class="o">.</span><span class="n">seq_id</span><span class="p">,</span> <span class="n">annotation</span><span class="o">.</span><span class="n">start</span><span class="p">,</span> <span class="n">annotation</span><span class="o">.</span><span class="n">end</span><span class="p">)</span>
+        <span class="k">for</span> <span class="n">annotation</span> <span class="ow">in</span> <span class="n">annotations</span>
+    <span class="p">]</span>
+
+    <span class="n">covered</span> <span class="o">=</span> <span class="p">{}</span>
+
+    <span class="k">for</span> <span class="n">file_name</span> <span class="ow">in</span> <span class="n">files</span><span class="p">:</span>
+        <span class="c1"># pysam 0.8.1 changed Samfile to AlignmentFile</span>
+        <span class="n">alg_file</span> <span class="o">=</span> <span class="n">pysam</span><span class="o">.</span><span class="n">AlignmentFile</span><span class="p">(</span><span class="n">file_name</span><span class="p">,</span> <span class="s1">&#39;rb&#39;</span><span class="p">)</span>
+
+        <span class="k">if</span> <span class="n">progress</span><span class="p">:</span>
+            <span class="n">annotations</span> <span class="o">=</span> <span class="n">tqdm</span><span class="p">(</span><span class="n">annotations</span><span class="p">)</span>
+
+        <span class="k">for</span> <span class="n">uid</span><span class="p">,</span> <span class="n">seq_id</span><span class="p">,</span> <span class="n">start</span><span class="p">,</span> <span class="n">end</span> <span class="ow">in</span> <span class="n">annotations</span><span class="p">:</span>
+            <span class="n">cov</span> <span class="o">=</span> <span class="n">get_region_coverage</span><span class="p">(</span><span class="n">alg_file</span><span class="p">,</span> <span class="n">seq_id</span><span class="p">,</span> <span class="n">start</span><span class="p">,</span> <span class="n">end</span><span class="p">)</span>
+
+            <span class="k">try</span><span class="p">:</span>
+                <span class="n">covered</span><span class="p">[</span><span class="n">uid</span><span class="p">]</span> <span class="o">=</span> <span class="n">cov</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">covered</span><span class="p">[</span><span class="n">uid</span><span class="p">],</span> <span class="n">fill_value</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+            <span class="k">except</span> <span class="ne">KeyError</span><span class="p">:</span>
+                <span class="n">covered</span><span class="p">[</span><span class="n">uid</span><span class="p">]</span> <span class="o">=</span> <span class="n">cov</span>
+
+    <span class="k">return</span> <span class="nb">dict</span><span class="p">(</span>
+        <span class="p">(</span><span class="n">uid</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">cov</span><span class="p">[</span><span class="n">cov</span> <span class="o">&gt;=</span> <span class="n">min_cov</span><span class="p">]))</span> <span class="k">for</span> <span class="n">uid</span><span class="p">,</span> <span class="n">cov</span> <span class="ow">in</span> <span class="n">viewitems</span><span class="p">(</span><span class="n">covered</span><span class="p">)</span>
+    <span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="add_coverage_info"><a class="viewcode-back" href="../../api/mgkit.align.html#mgkit.align.add_coverage_info">[docs]</a><span class="k">def</span> <span class="nf">add_coverage_info</span><span class="p">(</span><span class="n">annotations</span><span class="p">,</span> <span class="n">bam_files</span><span class="p">,</span> <span class="n">samples</span><span class="p">,</span> <span class="n">attr_suff</span><span class="o">=</span><span class="s1">&#39;_cov&#39;</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    .. versionchanged:: 0.3.4</span>
+<span class="sd">        the coverage now is returned as floats instead of int</span>
+
+<span class="sd">    Adds coverage information to annotations, using BAM files.</span>
+
+<span class="sd">    The coverage information is added for each sample as a &#39;sample_cov&#39; and the</span>
+<span class="sd">    total coverage as as &#39;cov&#39; attribute in the annotations.</span>
+
+<span class="sd">    .. note::</span>
+
+<span class="sd">        The bam_files and sample variables must have the same order</span>
+
+<span class="sd">    :param iterable annotations: iterable of annotations</span>
+<span class="sd">    :param iterable bam_files: iterable of :class:`pysam.Samfile` instances</span>
+<span class="sd">    :param iterable sample: names of the samples for the BAM files</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">LOG</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;Adding coverage info for </span><span class="si">%d</span><span class="s2"> annotations&quot;</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">annotations</span><span class="p">))</span>
+    <span class="k">for</span> <span class="n">bam_file</span><span class="p">,</span> <span class="n">sample</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="n">bam_files</span><span class="p">,</span> <span class="n">samples</span><span class="p">):</span>
+        <span class="n">LOG</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;Sample </span><span class="si">%s</span><span class="s2">, file </span><span class="si">%s</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">sample</span><span class="p">,</span> <span class="n">bam_file</span><span class="o">.</span><span class="n">filename</span><span class="p">)</span>
+
+    <span class="n">tot_coverage</span> <span class="o">=</span> <span class="p">{}</span>
+
+    <span class="k">for</span> <span class="n">bam_file</span><span class="p">,</span> <span class="n">sample</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="n">bam_files</span><span class="p">,</span> <span class="n">samples</span><span class="p">):</span>
+        <span class="n">LOG</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;Adding coverage for sample </span><span class="si">%s</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">sample</span><span class="p">)</span>
+        <span class="k">for</span> <span class="n">index</span><span class="p">,</span> <span class="n">annotation</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">annotations</span><span class="p">):</span>
+            <span class="n">sample_coverage</span> <span class="o">=</span> <span class="n">get_region_coverage</span><span class="p">(</span>
+                <span class="n">bam_file</span><span class="p">,</span>
+                <span class="n">annotation</span><span class="o">.</span><span class="n">seq_id</span><span class="p">,</span>
+                <span class="n">annotation</span><span class="o">.</span><span class="n">start</span><span class="p">,</span>
+                <span class="n">annotation</span><span class="o">.</span><span class="n">end</span>
+            <span class="p">)</span>
+            <span class="c1"># adds the results of the coverage to the total coverage</span>
+            <span class="c1"># uses the add method of a Series to make sure that possible</span>
+            <span class="c1"># nan values are filled with 0 before the sum</span>
+            <span class="k">try</span><span class="p">:</span>
+                <span class="n">tot_coverage</span><span class="p">[</span><span class="n">annotation</span><span class="o">.</span><span class="n">uid</span><span class="p">]</span> <span class="o">=</span> <span class="n">sample_coverage</span><span class="o">.</span><span class="n">add</span><span class="p">(</span>
+                    <span class="n">tot_coverage</span><span class="p">[</span><span class="n">annotation</span><span class="o">.</span><span class="n">uid</span><span class="p">],</span>
+                    <span class="n">fill_value</span><span class="o">=</span><span class="mi">0</span>
+                <span class="p">)</span>
+            <span class="k">except</span> <span class="ne">KeyError</span><span class="p">:</span>
+                <span class="n">tot_coverage</span><span class="p">[</span><span class="n">annotation</span><span class="o">.</span><span class="n">uid</span><span class="p">]</span> <span class="o">=</span> <span class="n">sample_coverage</span>
+
+            <span class="n">cov_mean</span> <span class="o">=</span> <span class="n">sample_coverage</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span>
+
+            <span class="n">annotation</span><span class="o">.</span><span class="n">set_attr</span><span class="p">(</span>
+                <span class="n">sample</span> <span class="o">+</span> <span class="n">attr_suff</span><span class="p">,</span>
+                <span class="mi">0</span> <span class="k">if</span> <span class="n">numpy</span><span class="o">.</span><span class="n">isnan</span><span class="p">(</span><span class="n">cov_mean</span><span class="p">)</span> <span class="k">else</span> <span class="nb">int</span><span class="p">(</span><span class="n">cov_mean</span><span class="p">)</span>
+            <span class="p">)</span>
+            <span class="k">if</span> <span class="p">(</span><span class="n">index</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span> <span class="o">%</span> <span class="mi">1000</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+                <span class="n">LOG</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span>
+                    <span class="s1">&#39;Added coverage for (</span><span class="si">%d</span><span class="s1">/</span><span class="si">%d</span><span class="s1">) annotations&#39;</span><span class="p">,</span>
+                    <span class="n">index</span> <span class="o">+</span> <span class="mi">1</span><span class="p">,</span>
+                    <span class="nb">len</span><span class="p">(</span><span class="n">annotations</span><span class="p">)</span>
+                <span class="p">)</span>
+    <span class="k">for</span> <span class="n">annotation</span> <span class="ow">in</span> <span class="n">annotations</span><span class="p">:</span>
+        <span class="n">cov_mean</span> <span class="o">=</span> <span class="n">tot_coverage</span><span class="p">[</span><span class="n">annotation</span><span class="o">.</span><span class="n">uid</span><span class="p">]</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span>
+        <span class="n">annotation</span><span class="o">.</span><span class="n">set_attr</span><span class="p">(</span>
+            <span class="s1">&#39;cov&#39;</span><span class="p">,</span>
+            <span class="mi">0</span> <span class="k">if</span> <span class="n">numpy</span><span class="o">.</span><span class="n">isnan</span><span class="p">(</span><span class="n">cov_mean</span><span class="p">)</span> <span class="k">else</span> <span class="n">cov_mean</span>
+        <span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="read_samtools_depth"><a class="viewcode-back" href="../../api/mgkit.align.html#mgkit.align.read_samtools_depth">[docs]</a><span class="k">def</span> <span class="nf">read_samtools_depth</span><span class="p">(</span><span class="n">file_handle</span><span class="p">,</span> <span class="n">num_seqs</span><span class="o">=</span><span class="mi">10000</span><span class="p">,</span> <span class="n">seq_ids</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    .. versionchanged:: 0.4.2</span>
+<span class="sd">        the function returns **lists** instead of numpy arrays for speed (at</span>
+<span class="sd">        least in my tests it seems ~4x increase)</span>
+
+<span class="sd">    .. versionchanged:: 0.4.0</span>
+<span class="sd">        now returns 3 array, instead of 2. Also added *seq_ids* to skip lines</span>
+
+<span class="sd">    .. versionchanged:: 0.3.4</span>
+<span class="sd">        *num_seqs* can be None to avoid a log message</span>
+
+<span class="sd">    .. versionadded:: 0.3.0</span>
+
+<span class="sd">    Reads a samtools *depth* file, returning a generator that yields the</span>
+<span class="sd">    array of each base coverage on a per-sequence base.</span>
+
+<span class="sd">    .. note::</span>
+
+<span class="sd">        There&#39;s no need anymore to use `samtools depth -aa`, because the</span>
+<span class="sd">        function returns the position array and this can be used to create a</span>
+<span class="sd">        Pandas SparseArray which can be reindexed to include missing positions</span>
+<span class="sd">        (with values of 0)</span>
+
+<span class="sd">        **Valid for version &lt; 0.4.0**:</span>
+
+<span class="sd">        The information on position is not used, to use numpy and save memory.</span>
+<span class="sd">        samtools *depth* should be called with the `-aa` option::</span>
+
+<span class="sd">             `samtools depth -aa bamfile`</span>
+
+<span class="sd">        This options will output both base position with 0 coverage and</span>
+<span class="sd">        sequneces with no aligned reads</span>
+
+<span class="sd">    Arguments:</span>
+<span class="sd">        file_handle (file): file handle of the coverage file</span>
+<span class="sd">        num_seqs (int or None): number of sequence that fires a log message. If</span>
+<span class="sd">            None, no message is triggered</span>
+<span class="sd">        seq_ids (dict, set): a hashed container like a dictionary or set with</span>
+<span class="sd">            the sequences to return</span>
+
+<span class="sd">    Yields:</span>
+<span class="sd">        tuple: the first element is the sequence identifier, the second one</span>
+<span class="sd">        is the list with the positions, the third element is the list with the</span>
+<span class="sd">        coverages</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">curr_key</span> <span class="o">=</span> <span class="s1">&#39;&#39;</span>
+    <span class="n">curr_pos</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="n">curr_cov</span> <span class="o">=</span> <span class="p">[]</span>
+
+    <span class="n">file_handle</span> <span class="o">=</span> <span class="n">open_file</span><span class="p">(</span><span class="n">file_handle</span><span class="p">,</span> <span class="s1">&#39;rb&#39;</span><span class="p">)</span>
+
+    <span class="n">LOG</span><span class="o">.</span><span class="n">info</span><span class="p">(</span>
+        <span class="s1">&#39;Reading coverage from file (</span><span class="si">%s</span><span class="s1">)&#39;</span><span class="p">,</span>
+        <span class="nb">getattr</span><span class="p">(</span><span class="n">file_handle</span><span class="p">,</span> <span class="s1">&#39;name&#39;</span><span class="p">,</span> <span class="nb">repr</span><span class="p">(</span><span class="n">file_handle</span><span class="p">))</span>
+    <span class="p">)</span>
+    <span class="n">line_no</span> <span class="o">=</span> <span class="mi">0</span>
+    <span class="k">for</span> <span class="n">line</span> <span class="ow">in</span> <span class="n">file_handle</span><span class="p">:</span>
+        <span class="n">line</span> <span class="o">=</span> <span class="n">line</span><span class="o">.</span><span class="n">decode</span><span class="p">(</span><span class="s1">&#39;ascii&#39;</span><span class="p">)</span>
+        <span class="c1"># From Python3 the default is Universal newlines, and it&#39;s not expected</span>
+        <span class="c1"># to have more than &#39;\n&#39; at the end of the line - increases speed</span>
+        <span class="c1"># slightly</span>
+        <span class="n">name</span><span class="p">,</span> <span class="n">pos</span><span class="p">,</span> <span class="n">cov</span> <span class="o">=</span> <span class="n">line</span><span class="p">[:</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">&#39;</span><span class="se">\t</span><span class="s1">&#39;</span><span class="p">)</span>
+        <span class="k">if</span> <span class="p">(</span><span class="n">seq_ids</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">)</span> <span class="ow">and</span> <span class="p">(</span><span class="n">name</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">seq_ids</span><span class="p">):</span>
+            <span class="k">continue</span>
+        <span class="c1"># only converts if sequence is to be used</span>
+        <span class="n">pos</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">pos</span><span class="p">)</span>
+        <span class="n">cov</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">cov</span><span class="p">)</span>
+
+        <span class="k">if</span> <span class="n">curr_key</span> <span class="o">==</span> <span class="n">name</span><span class="p">:</span>
+                <span class="n">curr_pos</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">pos</span><span class="p">)</span>
+                <span class="n">curr_cov</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">cov</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">if</span> <span class="n">curr_key</span> <span class="o">==</span> <span class="s1">&#39;&#39;</span><span class="p">:</span>
+                <span class="n">curr_cov</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">cov</span><span class="p">)</span>
+                <span class="n">curr_pos</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">pos</span><span class="p">)</span>
+                <span class="n">curr_key</span> <span class="o">=</span> <span class="n">name</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="n">line_no</span> <span class="o">+=</span> <span class="mi">1</span>
+                <span class="k">if</span> <span class="p">(</span><span class="n">num_seqs</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">)</span> <span class="ow">and</span> <span class="p">(</span><span class="n">line_no</span> <span class="o">%</span> <span class="n">num_seqs</span> <span class="o">==</span> <span class="mi">0</span><span class="p">):</span>
+                    <span class="n">LOG</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s1">&#39;Read </span><span class="si">%d</span><span class="s1"> sequence coverage&#39;</span><span class="p">,</span> <span class="n">line_no</span><span class="p">)</span>
+                <span class="k">yield</span> <span class="n">curr_key</span><span class="p">,</span> <span class="n">curr_pos</span><span class="p">,</span> <span class="n">curr_cov</span>
+                <span class="n">curr_key</span> <span class="o">=</span> <span class="n">name</span>
+                <span class="n">curr_cov</span> <span class="o">=</span> <span class="p">[</span><span class="n">cov</span><span class="p">]</span>
+                <span class="n">curr_cov</span> <span class="o">=</span> <span class="p">[</span><span class="n">pos</span><span class="p">]</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="k">yield</span> <span class="n">curr_key</span><span class="p">,</span> <span class="n">curr_pos</span><span class="p">,</span> <span class="n">curr_cov</span>
+
+    <span class="n">LOG</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s1">&#39;Read a total of </span><span class="si">%d</span><span class="s1"> sequence coverage&#39;</span><span class="p">,</span> <span class="n">line_no</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="SamtoolsDepth"><a class="viewcode-back" href="../../api/mgkit.align.html#mgkit.align.SamtoolsDepth">[docs]</a><span class="k">class</span> <span class="nc">SamtoolsDepth</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    .. versionchanged:: 0.4.2</span>
+<span class="sd">        several optimisations and changes to support a scanning approach,</span>
+<span class="sd">        instead of lookup table. No exception is raised when a sequence is not</span>
+<span class="sd">        found in the file, instead assuming that the coverage is 0</span>
+
+<span class="sd">    .. versionchanged:: 0.4.0</span>
+<span class="sd">        uses pandas.SparseArray now. It should use less memory, but needs</span>
+<span class="sd">        pandas version &gt; 0.24</span>
+
+<span class="sd">    .. versionadded:: 0.3.0</span>
+
+<span class="sd">    This a class that helps use the results from :func:`read_samtools_depth`.</span>
+
+<span class="sd">    There are 2 modes of operations:</span>
+
+<span class="sd">        1) Request a region coverage via :meth:`SamtoolsDepth.region_coverage`</span>
+
+<span class="sd">        2) Advance the `samtools depth` file until a sequence coverage is read</span>
+
+<span class="sd">    The method 1) was the default in MGKit &lt; 0.4.2, when the user would request</span>
+<span class="sd">    a region coverage and this class would advance the reading until the</span>
+<span class="sd">    requested region is found. While scanning, all the sequences encountered</span>
+<span class="sd">    are kept as pandas Series with SparseArray declared, reindexed from 0 to</span>
+<span class="sd">    the *max_size_dict* values if provided, or *max_size*. The advantage is that</span>
+<span class="sd">    the it&#39;s easier to use, but with bigger datasets will keep high memory</span>
+<span class="sd">    usage. This is the case for case 2) which involves calling directly</span>
+<span class="sd">    :meth:`SamtoolsDepth.advance_file` returning the sequence ID read. Then the</span>
+<span class="sd">    region coverage can be requested the same way as before, but won&#39;t involve</span>
+<span class="sd">    scanning the file.</span>
+
+<span class="sd">    The use of a SparseArray in a pandas Series allows the use of</span>
+<span class="sd">    `samtools depth` files that weren&#39;t produced with `samtools depth -aa` and</span>
+<span class="sd">    save memory.</span>
+
+<span class="sd">    .. note::</span>
+
+<span class="sd">        The amount of memory used is fairly high, especially with the increasing</span>
+<span class="sd">        number of sequences in a GFF/Depth file. It is recoommended to use</span>
+<span class="sd">        max_size_dict to 1) only creates arrays for sequences needed and 2) use</span>
+<span class="sd">        arrays of smaller size</span>
+
+<span class="sd">    .. warning::</span>
+
+<span class="sd">        In MGKit 0.4.2, the internal dictionary to keep the SparseArray(s)</span>
+<span class="sd">        is a :class:`weakref.WeakValueDictionary`, to improve the release</span>
+<span class="sd">        of memory. That on Linux seems to release the array **too fast**.</span>
+<span class="sd">        Upgrade to MGKit version 0.4.3 if this class is needed</span>
+
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">file_handle</span> <span class="o">=</span> <span class="kc">None</span>
+    <span class="n">data</span> <span class="o">=</span> <span class="kc">None</span>
+    <span class="n">max_size</span> <span class="o">=</span> <span class="kc">None</span>
+    <span class="n">max_size_dict</span> <span class="o">=</span> <span class="kc">None</span>
+    <span class="n">not_found</span> <span class="o">=</span> <span class="kc">None</span>
+    <span class="n">closed</span> <span class="o">=</span> <span class="kc">False</span>
+    <span class="n">density</span> <span class="o">=</span> <span class="kc">None</span>
+
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">file_handle</span><span class="p">,</span> <span class="n">num_seqs</span><span class="o">=</span><span class="mi">10</span><span class="o">**</span><span class="mi">4</span><span class="p">,</span> <span class="n">max_size</span><span class="o">=</span><span class="mi">10</span><span class="o">**</span><span class="mi">6</span><span class="p">,</span>
+                 <span class="n">max_size_dict</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">calc_density</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="s1">&#39;uint32&#39;</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        .. versionchanged:: 0.4.2</span>
+<span class="sd">            added *raise_error* to control sequences not found in depth files,</span>
+<span class="sd">            *calc_density* to debug the density of the SparseArray used and</span>
+<span class="sd">            also dtype to control the dtype to use in the SparseArray</span>
+
+<span class="sd">        .. versionchanged:: 0.4.0</span>
+<span class="sd">            added *max_size* and max_size_dict</span>
+
+<span class="sd">        Arguments:</span>
+<span class="sd">            file_handle (file): the file handle to pass to</span>
+<span class="sd">                :func:`read_samtools_depth`</span>
+<span class="sd">            num_seqs (int): number of sequence that fires a log message</span>
+<span class="sd">            max_size (int): max size to use in the SparseArray</span>
+<span class="sd">            max_size_dict (dict): dictionary with max size for each seq_id</span>
+<span class="sd">                requested. If None, *max_size* is used</span>
+<span class="sd">            calc_density (bool): If True, the density of the SparseArray(s)</span>
+<span class="sd">                used are kept in :attr:`SamtoolsDepth.density`</span>
+<span class="sd">            dtype (str): dtype to pass to the SparseArray</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">max_size</span> <span class="o">=</span> <span class="n">max_size</span>
+        <span class="k">if</span> <span class="n">max_size_dict</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">max_size_dict</span> <span class="o">=</span> <span class="p">{}</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">max_size_dict</span> <span class="o">=</span> <span class="n">max_size_dict</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">file_handle</span> <span class="o">=</span> <span class="n">read_samtools_depth</span><span class="p">(</span>
+            <span class="n">file_handle</span><span class="p">,</span>
+            <span class="n">num_seqs</span><span class="o">=</span><span class="n">num_seqs</span><span class="p">,</span>
+            <span class="n">seq_ids</span><span class="o">=</span><span class="n">max_size_dict</span>
+        <span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">not_found</span> <span class="o">=</span> <span class="nb">set</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">closed</span> <span class="o">=</span> <span class="kc">False</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">data</span> <span class="o">=</span> <span class="p">{}</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">dtype</span> <span class="o">=</span> <span class="s1">&#39;Sparse[</span><span class="si">{}</span><span class="s1">]&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">dtype</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">calc_density</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">density</span> <span class="o">=</span> <span class="p">[]</span>
+
+<div class="viewcode-block" id="SamtoolsDepth.advance_file"><a class="viewcode-back" href="../../api/mgkit.align.html#mgkit.align.SamtoolsDepth.advance_file">[docs]</a>    <span class="k">def</span> <span class="nf">advance_file</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        .. versionadded:: 0.4.2</span>
+
+<span class="sd">        Requests the scan of the file and returns the sequence found, the</span>
+<span class="sd">        coverage can then be retrivied with :meth:`SamtoolsDepth.region_coverage`</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            (str, None): the return value is None if the file is fully read,</span>
+<span class="sd">            otherwise the the sequnece ID found is returned</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="c1"># continue scanning the file</span>
+        <span class="k">try</span><span class="p">:</span>
+            <span class="n">key</span><span class="p">,</span> <span class="n">pos_array</span><span class="p">,</span> <span class="n">cov_array</span> <span class="o">=</span> <span class="nb">next</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">file_handle</span><span class="p">)</span>
+        <span class="k">except</span> <span class="ne">StopIteration</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">closed</span> <span class="o">=</span> <span class="kc">True</span>
+            <span class="k">return</span> <span class="kc">None</span>
+        <span class="c1"># Init a SparseArray (by passing the correct dtype)</span>
+        <span class="n">value</span> <span class="o">=</span> <span class="n">pandas</span><span class="o">.</span><span class="n">Series</span><span class="p">(</span>
+            <span class="c1"># brings start position to 0</span>
+            <span class="nb">dict</span><span class="p">(</span><span class="nb">zip</span><span class="p">((</span><span class="n">pos</span> <span class="o">-</span> <span class="mi">1</span> <span class="k">for</span> <span class="n">pos</span> <span class="ow">in</span> <span class="n">pos_array</span><span class="p">),</span> <span class="n">cov_array</span><span class="p">)),</span>
+            <span class="n">dtype</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">dtype</span>
+        <span class="c1"># reindex to the correct size to allow</span>
+        <span class="p">)</span><span class="o">.</span><span class="n">reindex</span><span class="p">(</span>
+            <span class="nb">range</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">max_size_dict</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">key</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">max_size</span><span class="p">)),</span>
+            <span class="n">fill_value</span><span class="o">=</span><span class="mi">0</span>
+        <span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">data</span><span class="p">[</span><span class="n">key</span><span class="p">]</span> <span class="o">=</span> <span class="n">value</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">density</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">density</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">value</span><span class="o">.</span><span class="n">sparse</span><span class="o">.</span><span class="n">density</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">key</span></div>
+
+<div class="viewcode-block" id="SamtoolsDepth.region_coverage"><a class="viewcode-back" href="../../api/mgkit.align.html#mgkit.align.SamtoolsDepth.region_coverage">[docs]</a>    <span class="k">def</span> <span class="nf">region_coverage</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">seq_id</span><span class="p">,</span> <span class="n">start</span><span class="p">,</span> <span class="n">end</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        .. versionchanged:: 0.4.2</span>
+<span class="sd">            now using :meth:`SamtoolsDepth.advance_file` to scan the file</span>
+
+<span class="sd">        Returns the mean coverage of a region. The *start* and *end* parameters</span>
+<span class="sd">        are expected to be 1-based coordinates, like the correspondent</span>
+<span class="sd">        attributes in :class:`mgkit.io.gff.Annotation` or</span>
+<span class="sd">        :class:`mgkit.io.gff.GenomicRange`.</span>
+
+<span class="sd">        If the sequence for which the coverage is requested is not found, the</span>
+<span class="sd">        *depth* file is read (and cached) until it is found.</span>
+
+<span class="sd">        Arguments:</span>
+<span class="sd">            seq_id (str): sequence for which to return mean coverage</span>
+<span class="sd">            start (int): start of the region</span>
+<span class="sd">            end (int): end of the region</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            float: mean coverage of the requested region</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="n">seq_id</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">data</span><span class="p">:</span>
+            <span class="c1"># data already in dictionary</span>
+            <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">data</span><span class="p">[</span><span class="n">seq_id</span><span class="p">][</span><span class="n">start</span><span class="o">-</span><span class="mi">1</span><span class="p">:</span><span class="n">end</span><span class="p">]</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span>
+        <span class="k">elif</span> <span class="n">seq_id</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">not_found</span><span class="p">:</span>
+            <span class="c1"># already asked for and not found in depth file</span>
+            <span class="k">return</span> <span class="mf">0.</span>
+            <span class="c1"># depth file is closed and we assume</span>
+            <span class="c1"># so no coverage is available</span>
+        <span class="k">elif</span> <span class="bp">self</span><span class="o">.</span><span class="n">closed</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">not_found</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">seq_id</span><span class="p">)</span>
+            <span class="k">return</span> <span class="mf">0.</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">while</span> <span class="kc">True</span><span class="p">:</span>
+                <span class="n">key</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">advance_file</span><span class="p">()</span>
+                <span class="k">if</span> <span class="n">key</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+                    <span class="bp">self</span><span class="o">.</span><span class="n">not_found</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">seq_id</span><span class="p">)</span>
+                    <span class="bp">self</span><span class="o">.</span><span class="n">closed</span> <span class="o">=</span> <span class="kc">True</span>
+                    <span class="k">return</span> <span class="mf">0.</span>
+                <span class="k">elif</span> <span class="n">key</span> <span class="o">==</span> <span class="n">seq_id</span><span class="p">:</span>
+                    <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">data</span><span class="p">[</span><span class="n">seq_id</span><span class="p">][</span><span class="n">start</span><span class="o">-</span><span class="mi">1</span><span class="p">:</span><span class="n">end</span><span class="p">]</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span></div>
+
+<div class="viewcode-block" id="SamtoolsDepth.drop_sequence"><a class="viewcode-back" href="../../api/mgkit.align.html#mgkit.align.SamtoolsDepth.drop_sequence">[docs]</a>    <span class="k">def</span> <span class="nf">drop_sequence</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">seq_id</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        .. versionadded:: 0.4.2</span>
+
+<span class="sd">        Remove the sequence passed from the internal dictionary</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="n">seq_id</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">data</span><span class="p">:</span>
+            <span class="k">del</span> <span class="bp">self</span><span class="o">.</span><span class="n">data</span><span class="p">[</span><span class="n">seq_id</span><span class="p">]</span></div></div>
+</pre></div>
+
+           </div>
+           
+          </div>
+          <footer>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2013-2015, Francesco Rubino
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

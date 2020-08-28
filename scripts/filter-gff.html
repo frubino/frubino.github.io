@@ -1,0 +1,750 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>filter-gff - Filter GFF annotations &mdash; MGKit: Metagenomic framework 0.5.0 documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+  <script type="text/javascript" src="../_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+        <script type="text/javascript" src="../_static/jquery.js"></script>
+        <script type="text/javascript" src="../_static/underscore.js"></script>
+        <script type="text/javascript" src="../_static/doctools.js"></script>
+        <script type="text/javascript" src="../_static/language_data.js"></script>
+        <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+        <script async="async" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+        <script type="text/x-mathjax-config">MathJax.Hub.Config({"tex2jax": {"inlineMath": [["$", "$"], ["\\(", "\\)"]], "processEscapes": true, "ignoreClass": "document", "processClass": "math|output_area"}})</script>
+    
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/graphviz.css" type="text/css" />
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="add-gff-info - Add informations to GFF annotations" href="add-gff-info.html" />
+    <link rel="prev" title="blast2gff - Convert BLAST output to GFF" href="blast2gff.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../index.html" class="icon icon-home"> MGKit: Metagenomic framework
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                0.5.0
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../introduction.html">Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../install.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../pipeline/index.html">Metagenomic Pipeline</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">Scripts Details</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="blast2gff.html">blast2gff - Convert BLAST output to GFF</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">filter-gff - Filter GFF annotations</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#module-mgkit.workflow.filter_gff">Overview</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#value-filtering">Value Filtering</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#overlap-filtering">Overlap Filtering</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#per-sequence-values">Per Sequence Values</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#coverage-filtering">Coverage Filtering</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#changes">Changes</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#options">Options</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#filter-gff">filter-gff</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="add-gff-info.html">add-gff-info - Add informations to GFF annotations</a></li>
+<li class="toctree-l2"><a class="reference internal" href="get-gff-info.html">get-gff-info - Extract informations to GFF annotations</a></li>
+<li class="toctree-l2"><a class="reference internal" href="hmmer2gff.html">hmmer2gff - Convert HMMER output to GFF</a></li>
+<li class="toctree-l2"><a class="reference internal" href="snp_analysis.html">snp_parser - SNPs analysis</a></li>
+<li class="toctree-l2"><a class="reference internal" href="download-taxonomy.html">Download Taxonomy</a></li>
+<li class="toctree-l2"><a class="reference internal" href="download-taxonomy.html#download-accession-taxonid">Download Accession/TaxonID</a></li>
+<li class="toctree-l2"><a class="reference internal" href="taxon_utils.html">taxon-utils - Taxonomy Utilities</a></li>
+<li class="toctree-l2"><a class="reference internal" href="fasta-utils.html">fasta-utils - Fasta Utilities</a></li>
+<li class="toctree-l2"><a class="reference internal" href="fastq-utils.html">fastq-utils - Fastq Utilities</a></li>
+<li class="toctree-l2"><a class="reference internal" href="json2gff.html">json2gff - Convert JSON to GFF</a></li>
+<li class="toctree-l2"><a class="reference internal" href="sampling-utils.html">sampling-utils - Resampling Utilities</a></li>
+<li class="toctree-l2"><a class="reference internal" href="edit_gff.html">edit-gff - GFF Viewer and Editor</a></li>
+<li class="toctree-l2"><a class="reference internal" href="pnps_gen.html">pnps-gen - pN/pS Table Generation</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../examples/index.html">Example Notebooks</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../gff.html">MGKit GFF Specifications</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../library.html">Library Reference</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../changes.html">Changes</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">MGKit: Metagenomic framework</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="index.html">Scripts Details</a> &raquo;</li>
+        
+      <li>filter-gff - Filter GFF annotations</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="../_sources/scripts/filter-gff.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  
+<style>
+/* CSS overrides for sphinx_rtd_theme */
+
+/* 24px margin */
+.nbinput.nblast.container,
+.nboutput.nblast.container {
+    margin-bottom: 19px;  /* padding has already 5px */
+}
+
+/* ... except between code cells! */
+.nblast.container + .nbinput.container {
+    margin-top: -19px;
+}
+
+.admonition > p:before {
+    margin-right: 4px;  /* make room for the exclamation icon */
+}
+
+/* Fix math alignment, see https://github.com/rtfd/sphinx_rtd_theme/pull/686 */
+.math {
+    text-align: unset;
+}
+</style>
+<div class="section" id="filter-gff-filter-gff-annotations">
+<span id="filter-gff"></span><h1>filter-gff - Filter GFF annotations<a class="headerlink" href="#filter-gff-filter-gff-annotations" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="module-mgkit.workflow.filter_gff">
+<span id="overview"></span><h2>Overview<a class="headerlink" href="#module-mgkit.workflow.filter_gff" title="Permalink to this headline">¶</a></h2>
+<p>Filters GFF annotations in different ways.</p>
+<div class="section" id="value-filtering">
+<h3>Value Filtering<a class="headerlink" href="#value-filtering" title="Permalink to this headline">¶</a></h3>
+<p>Enables filtering of GFF annotations based on the the values of attributes of a
+GFF annotation. The filters are based on equality of numbers (internally
+converted into float) and strings, a string contained in the value of an attribute
+less or greater than are included as well. The length of annotation has the
+attribute <em>length</em> and can be tested.</p>
+</div>
+<div class="section" id="overlap-filtering">
+<h3>Overlap Filtering<a class="headerlink" href="#overlap-filtering" title="Permalink to this headline">¶</a></h3>
+<p>Filters overlapping annotations using the functions
+<a class="reference internal" href="../api/mgkit.filter.gff.html#mgkit.filter.gff.choose_annotation" title="mgkit.filter.gff.choose_annotation"><code class="xref py py-func docutils literal notranslate"><span class="pre">mgkit.filter.gff.choose_annotation()</span></code></a> and
+<a class="reference internal" href="../api/mgkit.filter.gff.html#mgkit.filter.gff.filter_annotations" title="mgkit.filter.gff.filter_annotations"><code class="xref py py-func docutils literal notranslate"><span class="pre">mgkit.filter.gff.filter_annotations()</span></code></a>, after the annotations are grouped
+by both sequence and strand. If the GFF is sorted by sequence name and strand,
+the <cite>-t</cite> can be used to make the filtering use less memory. It can be sorted in
+Unix using <cite>sort -s -k 1,1 -k 7,7 gff_file</cite>, which applies a stable sort using
+the sequence name as the first key and the strand as the second key.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>It is also recommended to use:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">export</span> <span class="n">LC_ALL</span><span class="o">=</span><span class="n">C</span>
+</pre></div>
+</div>
+<p>To speed up the sorting</p>
+</div>
+<div><svg height="440" viewBox="0 0 592 440" width="592" xmlns="http://www.w3.org/2000/svg" xmlns:inkspace="http://www.inkscape.org/namespaces/inkscape" xmlns:xlink="http://www.w3.org/1999/xlink">
+  <defs id="defs_block">
+    <filter height="1.504" id="filter_blur" inkspace:collect="always" width="1.1575" x="-0.07875" y="-0.252">
+      <feGaussianBlur id="feGaussianBlur3780" inkspace:collect="always" stdDeviation="4.2" />
+    </filter>
+  </defs>
+  <title>blockdiag</title>
+  <desc />
+  <rect fill="rgb(0,0,0)" height="40" stroke="rgb(0,0,0)" style="filter:url(#filter_blur);opacity:0.7;fill-opacity:1" width="128" x="103" y="206" />
+  <rect fill="rgb(0,0,0)" height="40" stroke="rgb(0,0,0)" style="filter:url(#filter_blur);opacity:0.7;fill-opacity:1" width="200" x="331" y="206" />
+  <polygon fill="rgb(0,0,0)" points="91,46 267,46 243,86 67,86 91,46" stroke="rgb(0,0,0)" style="filter:url(#filter_blur);opacity:0.7;fill-opacity:1" />
+  <rect fill="rgb(0,0,0)" height="40" stroke="rgb(0,0,0)" style="filter:url(#filter_blur);opacity:0.7;fill-opacity:1" width="200" x="67" y="126" />
+  <polygon fill="rgb(0,0,0)" points="167,278 275,306 167,334 59,306 167,278" stroke="rgb(0,0,0)" style="filter:url(#filter_blur);opacity:0.7;fill-opacity:1" />
+  <rect fill="rgb(0,0,0)" height="40" stroke="rgb(0,0,0)" style="filter:url(#filter_blur);opacity:0.7;fill-opacity:1" width="200" x="75" y="374" />
+  <rect fill="rgb(0,0,0)" height="40" stroke="rgb(0,0,0)" style="filter:url(#filter_blur);opacity:0.7;fill-opacity:1" width="200" x="71" y="370" />
+  <rect fill="rgb(0,0,0)" height="40" stroke="rgb(0,0,0)" style="filter:url(#filter_blur);opacity:0.7;fill-opacity:1" width="200" x="67" y="366" />
+  <rect fill="rgb(55,126,184)" height="40" stroke="rgb(0,0,0)" width="128" x="100" y="200" />
+  <text fill="rgb(255,255,255)" font-family="sans-serif" font-size="15" font-style="normal" font-weight="normal" text-anchor="middle" textLength="32" x="164.0" y="227">sort</text>
+  <rect fill="rgb(228,26,28)" height="40" stroke="rgb(0,0,0)" width="200" x="328" y="200" />
+  <text fill="rgb(255,255,255)" font-family="sans-serif" font-size="15" font-style="normal" font-weight="normal" text-anchor="middle" textLength="139" x="428.5" y="227">group_annotations</text>
+  <polygon fill="rgb(77,175,74)" points="88,40 264,40 240,80 64,80 88,40" stroke="rgb(0,0,0)" />
+  <text fill="rgb(255,255,255)" font-family="sans-serif" font-size="15" font-style="normal" font-weight="normal" text-anchor="middle" textLength="24" x="164.0" y="67">GFF</text>
+  <rect fill="rgb(228,26,28)" height="40" stroke="rgb(0,0,0)" width="200" x="64" y="120" />
+  <text fill="rgb(255,255,255)" font-family="sans-serif" font-size="15" font-style="normal" font-weight="normal" text-anchor="middle" textLength="73" x="164.5" y="147">parse_gff</text>
+  <polygon fill="rgb(228,26,28)" points="164,272 272,300 164,328 56,300 164,272" stroke="rgb(0,0,0)" />
+  <text fill="rgb(255,255,255)" font-family="sans-serif" font-size="12" font-style="normal" font-weight="normal" text-anchor="middle" textLength="104" x="164.0" y="306">filter_annot ...</text>
+  <rect fill="rgb(77,175,74)" height="40" stroke="rgb(0,0,0)" width="200" x="72" y="368" />
+  <rect fill="rgb(77,175,74)" height="40" stroke="rgb(0,0,0)" width="200" x="68" y="364" />
+  <rect fill="rgb(77,175,74)" height="40" stroke="rgb(0,0,0)" width="200" x="64" y="360" />
+  <text fill="rgb(255,255,255)" font-family="sans-serif" font-size="15" font-style="normal" font-weight="normal" text-anchor="middle" textLength="163" x="164.5" y="387">Filtered Annotations</text>
+  <path d="M 164 240 L 164 264" fill="none" stroke="rgb(0,0,0)" />
+  <polygon fill="rgb(0,0,0)" points="164,271 160,264 168,264 164,271" stroke="rgb(0,0,0)" />
+  <path d="M 164 80 L 164 112" fill="none" stroke="rgb(0,0,0)" />
+  <polygon fill="rgb(0,0,0)" points="164,119 160,112 168,112 164,119" stroke="rgb(0,0,0)" />
+  <path d="M 164 160 L 164 192" fill="none" stroke="rgb(0,0,0)" />
+  <polygon fill="rgb(0,0,0)" points="164,199 160,192 168,192 164,199" stroke="rgb(0,0,0)" />
+  <path d="M 164 160 L 164 180" fill="none" stroke="rgb(0,0,0)" />
+  <path d="M 164 180 L 428 180" fill="none" stroke="rgb(0,0,0)" />
+  <path d="M 428 180 L 428 192" fill="none" stroke="rgb(0,0,0)" />
+  <polygon fill="rgb(0,0,0)" points="428,199 424,192 432,192 428,199" stroke="rgb(0,0,0)" />
+  <path d="M 428 240 L 428 260" fill="none" stroke="rgb(0,0,0)" />
+  <path d="M 164 260 L 428 260" fill="none" stroke="rgb(0,0,0)" />
+  <path d="M 164 260 L 164 264" fill="none" stroke="rgb(0,0,0)" />
+  <polygon fill="rgb(0,0,0)" points="164,271 160,264 168,264 164,271" stroke="rgb(0,0,0)" />
+  <path d="M 164 328 L 164 352" fill="none" stroke="rgb(0,0,0)" />
+  <polygon fill="rgb(0,0,0)" points="164,359 160,352 168,352 164,359" stroke="rgb(0,0,0)" />
+</svg>
+</div>
+<p>The above digram describes the internals of the script.</p>
+<p>The annotations needs first to be grouped by seq_id and strand, forming a group
+that can be then be passed to <a class="reference internal" href="../api/mgkit.filter.gff.html#mgkit.filter.gff.filter_annotations" title="mgkit.filter.gff.filter_annotations"><code class="xref py py-func docutils literal notranslate"><span class="pre">mgkit.filter.gff.filter_annotations()</span></code></a>.
+This function:</p>
+<blockquote>
+<div><ol class="arabic">
+<li><p>sort annotations by bit score, from the highest to the lowest</p></li>
+<li><p>loop over all combination of N=2 annotations:</p>
+<blockquote>
+<div><ol class="arabic simple">
+<li><p>choose which of the two annotations to discard if they overlap for a
+the required amount of bp (defaults to 100bp)</p></li>
+<li><p>in which case, the preference is given to the db quality first, than
+the bit score and finally the lenght of annotation, the one with the
+highest values is kept</p></li>
+</ol>
+</div></blockquote>
+</li>
+</ol>
+</div></blockquote>
+<p>While the default behaviour is the same, now it is posible to decided the
+function used to discard one the two annotations. It is possible to use the
+<cite>-c</cite> argument to pass a string that defines the function. The string passed must
+start with or without a <strong>+</strong>. Using <strong>+</strong> translates into the builtin function
+<em>max</em> while no <strong>+</strong> translates into <em>min</em> from the second character on, any
+number of attributes can be used, separated by commas. The attributes, however,
+must be one of the properties defined in <a class="reference internal" href="../api/mgkit.io.gff.html#mgkit.io.gff.Annotation" title="mgkit.io.gff.Annotation"><code class="xref py py-class docutils literal notranslate"><span class="pre">mgkit.io.gff.Annotation</span></code></a>,
+<em>bitscore</em> that returns the value converted in a <em>float</em>. Internally the
+attributes are stored as strings, so for attributes that have no properties in
+the class, such as <em>evalue</em>, the <cite>float</cite> builtin is applied.</p>
+<p>The tuples built for both annotations are then passed to the comparison
+function to be selected and the value returned by it is <strong>discarded</strong>. The
+order of the elements in the string is important to define the priority
+given to each element in the comparison and the leftmost one has the
+highesst priority.</p>
+<p>Examples of function strings:</p>
+<ul class="simple">
+<li><p><cite>-dbq,bitscore,length</cite> becomes max((ann1.dbq, ann1.bitscore, ann1.length),
+(ann2.dbq, ann2.bitscore, ann2.length) - This is default and previously
+only choice</p></li>
+<li><p><cite>-bitscore,length,dbq</cite> uses the same elements but gives lowest priority
+to <em>dbq</em></p></li>
+<li><p><cite>+evalue</cite>: will discard the annotation with the highest <em>evalue</em></p></li>
+</ul>
+</div>
+<div class="section" id="per-sequence-values">
+<h3>Per Sequence Values<a class="headerlink" href="#per-sequence-values" title="Permalink to this headline">¶</a></h3>
+<p>The <em>sequence</em> command allows to filter on a per sequence basis, using
+functions such as the median, quantile and mean on attributes like evalue,
+bitscore and identity. The file can be passed as sorted already, saving memory
+(like in the <em>overlap</em> command), but it’s not needed to sort the file by strand,
+only by the first column.</p>
+</div>
+<div class="section" id="coverage-filtering">
+<h3>Coverage Filtering<a class="headerlink" href="#coverage-filtering" title="Permalink to this headline">¶</a></h3>
+<p>The <em>cov</em> command calculates the coverage of annotations as a measure of the
+percentage of each reference sequence length. A minimum coverage percentage can
+be used to keep the annotations of sequences that have a greater or equal
+coverage than the specified one.</p>
+</div>
+<div class="section" id="changes">
+<h3>Changes<a class="headerlink" href="#changes" title="Permalink to this headline">¶</a></h3>
+<div class="versionadded">
+<p><span class="versionmodified added">New in version 0.1.12.</span></p>
+</div>
+<div class="versionchanged">
+<p><span class="versionmodified changed">Changed in version 0.1.13: </span>added <em>–sorted</em> option</p>
+</div>
+<div class="versionchanged">
+<p><span class="versionmodified changed">Changed in version 0.2.0: </span>changed option <em>-c</em> to accept a string to filter overlap</p>
+</div>
+<div class="versionchanged">
+<p><span class="versionmodified changed">Changed in version 0.2.5: </span>added <em>sequence</em> command</p>
+</div>
+<div class="versionchanged">
+<p><span class="versionmodified changed">Changed in version 0.2.6: </span>added <em>length</em> as attribute and <em>min</em>/<em>max</em>, and <em>ge</em> is the default
+comparison for command <em>sequence</em>, <em>–sort-attr</em> to <em>overlap</em></p>
+</div>
+<div class="versionchanged">
+<p><span class="versionmodified changed">Changed in version 0.3.1: </span>added <em>–num-gt</em> and <em>–num-lt</em> to <em>values</em> command, added <em>cov</em> command</p>
+</div>
+<div class="versionchanged">
+<p><span class="versionmodified changed">Changed in version 0.3.4: </span>moved to use <em>click</em> for argument parsing reworked the <em>values</em>, <em>sequence</em>
+commands</p>
+</div>
+<div class="versionchanged">
+<p><span class="versionmodified changed">Changed in version 0.4.4: </span><em>overlap</em> command: added option to not use the strand information and
+added an option to make multiple passes of overlap for each sequence</p>
+</div>
+</div>
+</div>
+<div class="section" id="options">
+<h2>Options<a class="headerlink" href="#options" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="filter-gff">
+<h3>filter-gff<a class="headerlink" href="#filter-gff" title="Permalink to this headline">¶</a></h3>
+<p>Main function</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>filter-gff <span class="o">[</span>OPTIONS<span class="o">]</span> COMMAND <span class="o">[</span>ARGS<span class="o">]</span>...
+</pre></div>
+</div>
+<p class="rubric">Options</p>
+<dl class="option">
+<dt id="cmdoption-filter-gff-version">
+<code class="sig-name descname">--version</code><code class="sig-prename descclassname"></code><a class="headerlink" href="#cmdoption-filter-gff-version" title="Permalink to this definition">¶</a></dt>
+<dd><p>Show the version and exit.</p>
+</dd></dl>
+
+<dl class="option">
+<dt id="cmdoption-filter-gff-cite">
+<code class="sig-name descname">--cite</code><code class="sig-prename descclassname"></code><a class="headerlink" href="#cmdoption-filter-gff-cite" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<div class="section" id="filter-gff-cov">
+<h4>cov<a class="headerlink" href="#filter-gff-cov" title="Permalink to this headline">¶</a></h4>
+<p>Filter on a per coverage basis</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>filter-gff cov <span class="o">[</span>OPTIONS<span class="o">]</span> <span class="o">[</span>INPUT_FILE<span class="o">]</span> <span class="o">[</span>OUTPUT_FILE<span class="o">]</span>
+</pre></div>
+</div>
+<p class="rubric">Options</p>
+<dl class="option">
+<dt id="cmdoption-filter-gff-cov-v">
+<code class="sig-name descname">-v</code><code class="sig-prename descclassname"></code><code class="sig-prename descclassname">, </code><code class="sig-name descname">--verbose</code><code class="sig-prename descclassname"></code><a class="headerlink" href="#cmdoption-filter-gff-cov-v" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="option">
+<dt id="cmdoption-filter-gff-cov-f">
+<code class="sig-name descname">-f</code><code class="sig-prename descclassname"></code><code class="sig-prename descclassname">, </code><code class="sig-name descname">--reference</code><code class="sig-prename descclassname"> &lt;reference&gt;</code><a class="headerlink" href="#cmdoption-filter-gff-cov-f" title="Permalink to this definition">¶</a></dt>
+<dd><p>Reference FASTA file for the GFF  [required]</p>
+</dd></dl>
+
+<dl class="option">
+<dt id="cmdoption-filter-gff-cov-s">
+<code class="sig-name descname">-s</code><code class="sig-prename descclassname"></code><code class="sig-prename descclassname">, </code><code class="sig-name descname">--strand-specific</code><code class="sig-prename descclassname"></code><a class="headerlink" href="#cmdoption-filter-gff-cov-s" title="Permalink to this definition">¶</a></dt>
+<dd><p>If the coverage must be calculated on each strand</p>
+</dd></dl>
+
+<dl class="option">
+<dt id="cmdoption-filter-gff-cov-t">
+<code class="sig-name descname">-t</code><code class="sig-prename descclassname"></code><code class="sig-prename descclassname">, </code><code class="sig-name descname">--sorted</code><code class="sig-prename descclassname"></code><a class="headerlink" href="#cmdoption-filter-gff-cov-t" title="Permalink to this definition">¶</a></dt>
+<dd><p>Assumes the GFF to be correctly sorted</p>
+</dd></dl>
+
+<dl class="option">
+<dt id="cmdoption-filter-gff-cov-c">
+<code class="sig-name descname">-c</code><code class="sig-prename descclassname"></code><code class="sig-prename descclassname">, </code><code class="sig-name descname">--min-coverage</code><code class="sig-prename descclassname"> &lt;min_coverage&gt;</code><a class="headerlink" href="#cmdoption-filter-gff-cov-c" title="Permalink to this definition">¶</a></dt>
+<dd><p>Minimum coverage for the contig/strand</p>
+</dd></dl>
+
+<dl class="option">
+<dt id="cmdoption-filter-gff-cov-r">
+<code class="sig-name descname">-r</code><code class="sig-prename descclassname"></code><code class="sig-prename descclassname">, </code><code class="sig-name descname">--rename</code><code class="sig-prename descclassname"></code><a class="headerlink" href="#cmdoption-filter-gff-cov-r" title="Permalink to this definition">¶</a></dt>
+<dd><p>Emulates BLAST in reading the FASTA file (keeps only the header before the first space)</p>
+</dd></dl>
+
+<dl class="option">
+<dt id="cmdoption-filter-gff-cov-progress">
+<code class="sig-name descname">--progress</code><code class="sig-prename descclassname"></code><a class="headerlink" href="#cmdoption-filter-gff-cov-progress" title="Permalink to this definition">¶</a></dt>
+<dd><p>Shows Progress Bar</p>
+</dd></dl>
+
+<p class="rubric">Arguments</p>
+<dl class="option">
+<dt id="cmdoption-filter-gff-cov-arg-input-file">
+<code class="sig-name descname">INPUT_FILE</code><code class="sig-prename descclassname"></code><a class="headerlink" href="#cmdoption-filter-gff-cov-arg-input-file" title="Permalink to this definition">¶</a></dt>
+<dd><p>Optional argument</p>
+</dd></dl>
+
+<dl class="option">
+<dt id="cmdoption-filter-gff-cov-arg-output-file">
+<code class="sig-name descname">OUTPUT_FILE</code><code class="sig-prename descclassname"></code><a class="headerlink" href="#cmdoption-filter-gff-cov-arg-output-file" title="Permalink to this definition">¶</a></dt>
+<dd><p>Optional argument</p>
+</dd></dl>
+
+</div>
+<div class="section" id="filter-gff-overlap">
+<h4>overlap<a class="headerlink" href="#filter-gff-overlap" title="Permalink to this headline">¶</a></h4>
+<p>Use overlapping filter</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>filter-gff overlap <span class="o">[</span>OPTIONS<span class="o">]</span> <span class="o">[</span>INPUT_FILE<span class="o">]</span> <span class="o">[</span>OUTPUT_FILE<span class="o">]</span>
+</pre></div>
+</div>
+<p class="rubric">Options</p>
+<dl class="option">
+<dt id="cmdoption-filter-gff-overlap-v">
+<code class="sig-name descname">-v</code><code class="sig-prename descclassname"></code><code class="sig-prename descclassname">, </code><code class="sig-name descname">--verbose</code><code class="sig-prename descclassname"></code><a class="headerlink" href="#cmdoption-filter-gff-overlap-v" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="option">
+<dt id="cmdoption-filter-gff-overlap-s">
+<code class="sig-name descname">-s</code><code class="sig-prename descclassname"></code><code class="sig-prename descclassname">, </code><code class="sig-name descname">--size</code><code class="sig-prename descclassname"> &lt;size&gt;</code><a class="headerlink" href="#cmdoption-filter-gff-overlap-s" title="Permalink to this definition">¶</a></dt>
+<dd><p>Size of the overlap that triggers the filter  [default: 100]</p>
+</dd></dl>
+
+<dl class="option">
+<dt id="cmdoption-filter-gff-overlap-t">
+<code class="sig-name descname">-t</code><code class="sig-prename descclassname"></code><code class="sig-prename descclassname">, </code><code class="sig-name descname">--sorted</code><code class="sig-prename descclassname"></code><a class="headerlink" href="#cmdoption-filter-gff-overlap-t" title="Permalink to this definition">¶</a></dt>
+<dd><p>If the GFF file is sorted (all of a sequence annotations are contiguos and sorted by strand) can use less memory, <cite>sort -s -k 1,1 -k 7,7</cite> can be used</p>
+</dd></dl>
+
+<dl class="option">
+<dt id="cmdoption-filter-gff-overlap-c">
+<code class="sig-name descname">-c</code><code class="sig-prename descclassname"></code><code class="sig-prename descclassname">, </code><code class="sig-name descname">--choose-func</code><code class="sig-prename descclassname"> &lt;choose_func&gt;</code><a class="headerlink" href="#cmdoption-filter-gff-overlap-c" title="Permalink to this definition">¶</a></dt>
+<dd><p>Function to choose between two overlapping annotations</p>
+</dd></dl>
+
+<dl class="option">
+<dt id="cmdoption-filter-gff-overlap-a">
+<code class="sig-name descname">-a</code><code class="sig-prename descclassname"></code><code class="sig-prename descclassname">, </code><code class="sig-name descname">--sort-attr</code><code class="sig-prename descclassname"> &lt;sort_attr&gt;</code><a class="headerlink" href="#cmdoption-filter-gff-overlap-a" title="Permalink to this definition">¶</a></dt>
+<dd><p>Attribute to sort annotations before filtering (default bitscore)  [default: bitscore]</p>
+<dl class="field-list simple">
+<dt class="field-odd">Options</dt>
+<dd class="field-odd"><p>bitscore|identity|length</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="option">
+<dt id="cmdoption-filter-gff-overlap-d">
+<code class="sig-name descname">-d</code><code class="sig-prename descclassname"></code><code class="sig-prename descclassname">, </code><code class="sig-name descname">--no-strand</code><code class="sig-prename descclassname"></code><a class="headerlink" href="#cmdoption-filter-gff-overlap-d" title="Permalink to this definition">¶</a></dt>
+<dd><p>Strand information is not used, if ‘-t’ is used, sort GFF file with <cite>sort -s -k 1,1</cite></p>
+</dd></dl>
+
+<dl class="option">
+<dt id="cmdoption-filter-gff-overlap-n">
+<code class="sig-name descname">-n</code><code class="sig-prename descclassname"></code><code class="sig-prename descclassname">, </code><code class="sig-name descname">--iterations</code><code class="sig-prename descclassname"> &lt;iterations&gt;</code><a class="headerlink" href="#cmdoption-filter-gff-overlap-n" title="Permalink to this definition">¶</a></dt>
+<dd><p>Max number of iteration over which filter the overlaps</p>
+</dd></dl>
+
+<dl class="option">
+<dt id="cmdoption-filter-gff-overlap-progress">
+<code class="sig-name descname">--progress</code><code class="sig-prename descclassname"></code><a class="headerlink" href="#cmdoption-filter-gff-overlap-progress" title="Permalink to this definition">¶</a></dt>
+<dd><p>Shows Progress Bar</p>
+</dd></dl>
+
+<p class="rubric">Arguments</p>
+<dl class="option">
+<dt id="cmdoption-filter-gff-overlap-arg-input-file">
+<code class="sig-name descname">INPUT_FILE</code><code class="sig-prename descclassname"></code><a class="headerlink" href="#cmdoption-filter-gff-overlap-arg-input-file" title="Permalink to this definition">¶</a></dt>
+<dd><p>Optional argument</p>
+</dd></dl>
+
+<dl class="option">
+<dt id="cmdoption-filter-gff-overlap-arg-output-file">
+<code class="sig-name descname">OUTPUT_FILE</code><code class="sig-prename descclassname"></code><a class="headerlink" href="#cmdoption-filter-gff-overlap-arg-output-file" title="Permalink to this definition">¶</a></dt>
+<dd><p>Optional argument</p>
+</dd></dl>
+
+</div>
+<div class="section" id="filter-gff-sequence">
+<h4>sequence<a class="headerlink" href="#filter-gff-sequence" title="Permalink to this headline">¶</a></h4>
+<p>Filter on a per sequence basis</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>filter-gff sequence <span class="o">[</span>OPTIONS<span class="o">]</span> <span class="o">[</span>INPUT_FILE<span class="o">]</span> <span class="o">[</span>OUTPUT_FILE<span class="o">]</span>
+</pre></div>
+</div>
+<p class="rubric">Options</p>
+<dl class="option">
+<dt id="cmdoption-filter-gff-sequence-v">
+<code class="sig-name descname">-v</code><code class="sig-prename descclassname"></code><code class="sig-prename descclassname">, </code><code class="sig-name descname">--verbose</code><code class="sig-prename descclassname"></code><a class="headerlink" href="#cmdoption-filter-gff-sequence-v" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="option">
+<dt id="cmdoption-filter-gff-sequence-t">
+<code class="sig-name descname">-t</code><code class="sig-prename descclassname"></code><code class="sig-prename descclassname">, </code><code class="sig-name descname">--sorted</code><code class="sig-prename descclassname"></code><a class="headerlink" href="#cmdoption-filter-gff-sequence-t" title="Permalink to this definition">¶</a></dt>
+<dd><p>If the GFF file is sorted (all of a sequence annotations
+are contiguos) can use less memory, <cite>sort -s -k 1,1</cite> can be used</p>
+</dd></dl>
+
+<dl class="option">
+<dt id="cmdoption-filter-gff-sequence-a">
+<code class="sig-name descname">-a</code><code class="sig-prename descclassname"></code><code class="sig-prename descclassname">, </code><code class="sig-name descname">--attribute</code><code class="sig-prename descclassname"> &lt;attribute&gt;</code><a class="headerlink" href="#cmdoption-filter-gff-sequence-a" title="Permalink to this definition">¶</a></dt>
+<dd><p>Attribute on which to apply the filter  [default: bitscore]</p>
+<dl class="field-list simple">
+<dt class="field-odd">Options</dt>
+<dd class="field-odd"><p>evalue|bitscore|identity|length</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="option">
+<dt id="cmdoption-filter-gff-sequence-f">
+<code class="sig-name descname">-f</code><code class="sig-prename descclassname"></code><code class="sig-prename descclassname">, </code><code class="sig-name descname">--function</code><code class="sig-prename descclassname"> &lt;function&gt;</code><a class="headerlink" href="#cmdoption-filter-gff-sequence-f" title="Permalink to this definition">¶</a></dt>
+<dd><p>Function for filtering  [default: mean]</p>
+<dl class="field-list simple">
+<dt class="field-odd">Options</dt>
+<dd class="field-odd"><p>mean|median|quantile|std|max|min</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="option">
+<dt id="cmdoption-filter-gff-sequence-l">
+<code class="sig-name descname">-l</code><code class="sig-prename descclassname"></code><code class="sig-prename descclassname">, </code><code class="sig-name descname">--value</code><code class="sig-prename descclassname"> &lt;value&gt;</code><a class="headerlink" href="#cmdoption-filter-gff-sequence-l" title="Permalink to this definition">¶</a></dt>
+<dd><p>Value for the function (used for <em>std</em> and <em>quantile</em>)</p>
+</dd></dl>
+
+<dl class="option">
+<dt id="cmdoption-filter-gff-sequence-c">
+<code class="sig-name descname">-c</code><code class="sig-prename descclassname"></code><code class="sig-prename descclassname">, </code><code class="sig-name descname">--comparison</code><code class="sig-prename descclassname"> &lt;comparison&gt;</code><a class="headerlink" href="#cmdoption-filter-gff-sequence-c" title="Permalink to this definition">¶</a></dt>
+<dd><p>Type of comparison (e.g. ge -&gt; greater than or equal to)  [default: ge]</p>
+<dl class="field-list simple">
+<dt class="field-odd">Options</dt>
+<dd class="field-odd"><p>gt|ge|lt|le</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="option">
+<dt id="cmdoption-filter-gff-sequence-progress">
+<code class="sig-name descname">--progress</code><code class="sig-prename descclassname"></code><a class="headerlink" href="#cmdoption-filter-gff-sequence-progress" title="Permalink to this definition">¶</a></dt>
+<dd><p>Shows Progress Bar</p>
+</dd></dl>
+
+<p class="rubric">Arguments</p>
+<dl class="option">
+<dt id="cmdoption-filter-gff-sequence-arg-input-file">
+<code class="sig-name descname">INPUT_FILE</code><code class="sig-prename descclassname"></code><a class="headerlink" href="#cmdoption-filter-gff-sequence-arg-input-file" title="Permalink to this definition">¶</a></dt>
+<dd><p>Optional argument</p>
+</dd></dl>
+
+<dl class="option">
+<dt id="cmdoption-filter-gff-sequence-arg-output-file">
+<code class="sig-name descname">OUTPUT_FILE</code><code class="sig-prename descclassname"></code><a class="headerlink" href="#cmdoption-filter-gff-sequence-arg-output-file" title="Permalink to this definition">¶</a></dt>
+<dd><p>Optional argument</p>
+</dd></dl>
+
+</div>
+<div class="section" id="filter-gff-values">
+<h4>values<a class="headerlink" href="#filter-gff-values" title="Permalink to this headline">¶</a></h4>
+<p>Filter based on values</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>filter-gff values <span class="o">[</span>OPTIONS<span class="o">]</span> <span class="o">[</span>INPUT_FILE<span class="o">]</span> <span class="o">[</span>OUTPUT_FILE<span class="o">]</span>
+</pre></div>
+</div>
+<p class="rubric">Options</p>
+<dl class="option">
+<dt id="cmdoption-filter-gff-values-v">
+<code class="sig-name descname">-v</code><code class="sig-prename descclassname"></code><code class="sig-prename descclassname">, </code><code class="sig-name descname">--verbose</code><code class="sig-prename descclassname"></code><a class="headerlink" href="#cmdoption-filter-gff-values-v" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="option">
+<dt id="cmdoption-filter-gff-values-str-eq">
+<code class="sig-name descname">--str-eq</code><code class="sig-prename descclassname"> &lt;str_eq&gt;</code><a class="headerlink" href="#cmdoption-filter-gff-values-str-eq" title="Permalink to this definition">¶</a></dt>
+<dd><p>filter by custom key:value, if the argument is ‘key:value’ the annotation is kept if it contains an attribute ‘key’ whose value is exactly ‘value’ as a string</p>
+</dd></dl>
+
+<dl class="option">
+<dt id="cmdoption-filter-gff-values-str-in">
+<code class="sig-name descname">--str-in</code><code class="sig-prename descclassname"> &lt;str_in&gt;</code><a class="headerlink" href="#cmdoption-filter-gff-values-str-in" title="Permalink to this definition">¶</a></dt>
+<dd><p>Same as ‘–str-eq’ but ‘value’ is contained in the attribute</p>
+</dd></dl>
+
+<dl class="option">
+<dt id="cmdoption-filter-gff-values-num-eq">
+<code class="sig-name descname">--num-eq</code><code class="sig-prename descclassname"> &lt;num_eq&gt;</code><a class="headerlink" href="#cmdoption-filter-gff-values-num-eq" title="Permalink to this definition">¶</a></dt>
+<dd><p>Same as ‘–str-eq’ but ‘value’ is a number which is equal or greater than</p>
+</dd></dl>
+
+<dl class="option">
+<dt id="cmdoption-filter-gff-values-num-ge">
+<code class="sig-name descname">--num-ge</code><code class="sig-prename descclassname"> &lt;num_ge&gt;</code><a class="headerlink" href="#cmdoption-filter-gff-values-num-ge" title="Permalink to this definition">¶</a></dt>
+<dd><p>Same as ‘–str-eq’ but ‘value’ is a number which is equal or greater than</p>
+</dd></dl>
+
+<dl class="option">
+<dt id="cmdoption-filter-gff-values-num-le">
+<code class="sig-name descname">--num-le</code><code class="sig-prename descclassname"> &lt;num_le&gt;</code><a class="headerlink" href="#cmdoption-filter-gff-values-num-le" title="Permalink to this definition">¶</a></dt>
+<dd><p>Same as ‘–num-ge’ but ‘value’ is a number which is equal or less than</p>
+</dd></dl>
+
+<dl class="option">
+<dt id="cmdoption-filter-gff-values-num-gt">
+<code class="sig-name descname">--num-gt</code><code class="sig-prename descclassname"> &lt;num_gt&gt;</code><a class="headerlink" href="#cmdoption-filter-gff-values-num-gt" title="Permalink to this definition">¶</a></dt>
+<dd><p>Same as ‘–str-eq’ but ‘value’ is a number which is greater than</p>
+</dd></dl>
+
+<dl class="option">
+<dt id="cmdoption-filter-gff-values-num-lt">
+<code class="sig-name descname">--num-lt</code><code class="sig-prename descclassname"> &lt;num_lt&gt;</code><a class="headerlink" href="#cmdoption-filter-gff-values-num-lt" title="Permalink to this definition">¶</a></dt>
+<dd><p>Same as ‘–num-ge’ but ‘value’ is a number which is less than</p>
+</dd></dl>
+
+<dl class="option">
+<dt id="cmdoption-filter-gff-values-progress">
+<code class="sig-name descname">--progress</code><code class="sig-prename descclassname"></code><a class="headerlink" href="#cmdoption-filter-gff-values-progress" title="Permalink to this definition">¶</a></dt>
+<dd><p>Shows Progress Bar</p>
+</dd></dl>
+
+<p class="rubric">Arguments</p>
+<dl class="option">
+<dt id="cmdoption-filter-gff-values-arg-input-file">
+<code class="sig-name descname">INPUT_FILE</code><code class="sig-prename descclassname"></code><a class="headerlink" href="#cmdoption-filter-gff-values-arg-input-file" title="Permalink to this definition">¶</a></dt>
+<dd><p>Optional argument</p>
+</dd></dl>
+
+<dl class="option">
+<dt id="cmdoption-filter-gff-values-arg-output-file">
+<code class="sig-name descname">OUTPUT_FILE</code><code class="sig-prename descclassname"></code><a class="headerlink" href="#cmdoption-filter-gff-values-arg-output-file" title="Permalink to this definition">¶</a></dt>
+<dd><p>Optional argument</p>
+</dd></dl>
+
+</div>
+</div>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="add-gff-info.html" class="btn btn-neutral float-right" title="add-gff-info - Add informations to GFF annotations" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="blast2gff.html" class="btn btn-neutral float-left" title="blast2gff - Convert BLAST output to GFF" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2013-2015, Francesco Rubino
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

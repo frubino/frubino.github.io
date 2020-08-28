@@ -1,0 +1,381 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>mgkit.io.utils &mdash; MGKit: Metagenomic framework 0.5.0 documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+  <script type="text/javascript" src="../../../_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../../../" src="../../../_static/documentation_options.js"></script>
+        <script type="text/javascript" src="../../../_static/jquery.js"></script>
+        <script type="text/javascript" src="../../../_static/underscore.js"></script>
+        <script type="text/javascript" src="../../../_static/doctools.js"></script>
+        <script type="text/javascript" src="../../../_static/language_data.js"></script>
+        <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+        <script async="async" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+        <script type="text/x-mathjax-config">MathJax.Hub.Config({"tex2jax": {"inlineMath": [["$", "$"], ["\\(", "\\)"]], "processEscapes": true, "ignoreClass": "document", "processClass": "math|output_area"}})</script>
+    
+    <script type="text/javascript" src="../../../_static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="../../../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../../../_static/graphviz.css" type="text/css" />
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../../../index.html" class="icon icon-home"> MGKit: Metagenomic framework
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                0.5.0
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../introduction.html">Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../install.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../pipeline/index.html">Metagenomic Pipeline</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../scripts/index.html">Scripts Details</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../examples/index.html">Example Notebooks</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../gff.html">MGKit GFF Specifications</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../library.html">Library Reference</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../changes.html">Changes</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../index.html">MGKit: Metagenomic framework</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../../../index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="../../index.html">Module code</a> &raquo;</li>
+        
+          <li><a href="../../mgkit.html">mgkit</a> &raquo;</li>
+        
+      <li>mgkit.io.utils</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <h1>Source code for mgkit.io.utils</h1><div class="highlight"><pre>
+<span></span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">Various utilities to help read and process files</span>
+<span class="sd">&quot;&quot;&quot;</span>
+<span class="kn">from</span> <span class="nn">builtins</span> <span class="kn">import</span> <span class="nb">range</span><span class="p">,</span> <span class="nb">next</span>
+<span class="kn">import</span> <span class="nn">logging</span>
+<span class="kn">import</span> <span class="nn">gzip</span>
+<span class="kn">import</span> <span class="nn">bz2</span>
+<span class="kn">import</span> <span class="nn">io</span>
+<span class="kn">import</span> <span class="nn">lzma</span>
+
+<span class="n">LOG</span> <span class="o">=</span> <span class="n">logging</span><span class="o">.</span><span class="n">getLogger</span><span class="p">(</span><span class="vm">__name__</span><span class="p">)</span>
+
+
+<div class="viewcode-block" id="group_tuples_by_key"><a class="viewcode-back" href="../../../api/mgkit.io.utils.html#mgkit.io.utils.group_tuples_by_key">[docs]</a><span class="k">def</span> <span class="nf">group_tuples_by_key</span><span class="p">(</span><span class="n">iterator</span><span class="p">,</span> <span class="n">key_func</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">skip_elements</span><span class="o">=</span><span class="mi">0</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    .. versionadded:: 0.3.1</span>
+
+<span class="sd">    Group the elements of an iterator by a key and yields the grouped elements.</span>
+<span class="sd">    The elements yielded by the iterator are assumed to be a list or tuple,</span>
+<span class="sd">    with the default key (when *key_func* is None) being the first of the of</span>
+<span class="sd">    the objects inside that element. This behaviour can be customised by</span>
+<span class="sd">    passing to *key_func* a function that accept an element and returns the key</span>
+<span class="sd">    to be used.</span>
+
+<span class="sd">    .. note::</span>
+
+<span class="sd">        the iterable assumen that the elements are already sorted by their keys</span>
+
+<span class="sd">    Arguments:</span>
+<span class="sd">        iterator (iterable): iterator to be grouped</span>
+<span class="sd">        key_func (func): function that accepts a element and returns its</span>
+<span class="sd">            associated key</span>
+<span class="sd">        skip_elements (int): number of elements to skip at the start</span>
+
+<span class="sd">    Yields:</span>
+<span class="sd">        list: a list of the grouped elements by key</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">if</span> <span class="n">key_func</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="k">def</span> <span class="nf">key_func</span><span class="p">(</span><span class="n">x</span><span class="p">):</span> <span class="k">return</span> <span class="n">x</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+
+    <span class="k">for</span> <span class="n">index</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">skip_elements</span><span class="p">):</span>
+        <span class="nb">next</span><span class="p">(</span><span class="n">iterator</span><span class="p">)</span>
+
+    <span class="n">curr_key</span> <span class="o">=</span> <span class="kc">None</span>
+    <span class="n">curr_ann</span> <span class="o">=</span> <span class="p">[]</span>
+
+    <span class="k">for</span> <span class="n">element</span> <span class="ow">in</span> <span class="n">iterator</span><span class="p">:</span>
+        <span class="n">new_key</span> <span class="o">=</span> <span class="n">key_func</span><span class="p">(</span><span class="n">element</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">curr_key</span> <span class="o">==</span> <span class="n">new_key</span><span class="p">:</span>
+            <span class="n">curr_ann</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">element</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">if</span> <span class="n">curr_key</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+                <span class="n">curr_ann</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">element</span><span class="p">)</span>
+                <span class="n">curr_key</span> <span class="o">=</span> <span class="n">new_key</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="k">yield</span> <span class="n">curr_ann</span>
+                <span class="n">curr_key</span> <span class="o">=</span> <span class="n">new_key</span>
+                <span class="n">curr_ann</span> <span class="o">=</span> <span class="p">[</span><span class="n">element</span><span class="p">]</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="k">yield</span> <span class="n">curr_ann</span></div>
+
+
+<div class="viewcode-block" id="UnsupportedFormat"><a class="viewcode-back" href="../../../api/mgkit.io.utils.html#mgkit.io.utils.UnsupportedFormat">[docs]</a><span class="k">class</span> <span class="nc">UnsupportedFormat</span><span class="p">(</span><span class="ne">IOError</span><span class="p">):</span>
+    <span class="s2">&quot;Raised if the a file can&#39;t be opened with the correct module&quot;</span>
+    <span class="k">pass</span></div>
+
+
+<div class="viewcode-block" id="open_file"><a class="viewcode-back" href="../../../api/mgkit.io.utils.html#mgkit.io.utils.open_file">[docs]</a><span class="k">def</span> <span class="nf">open_file</span><span class="p">(</span><span class="n">file_name</span><span class="p">,</span> <span class="n">mode</span><span class="o">=</span><span class="s1">&#39;r&#39;</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    .. versionadded:: 0.1.12</span>
+
+<span class="sd">    .. versionchanged:: 0.3.4</span>
+<span class="sd">        using *io.open*, always in binary mode</span>
+
+<span class="sd">    .. versionchanged:: 0.4.2</span>
+<span class="sd">        when a file handle is detected, it is passed to :func:`compressed_handle`</span>
+<span class="sd">        to detect if the handle is a compressed file</span>
+
+<span class="sd">    Opens a file using the extension as a guide to which module to use.</span>
+
+<span class="sd">    .. note::</span>
+
+<span class="sd">        Unicode makes for a slower `.translate` method in Python2, so it&#39;s</span>
+<span class="sd">        best to use the `open` builtin.</span>
+
+<span class="sd">    Arguments:</span>
+<span class="sd">        file_name (str): file name</span>
+<span class="sd">        mode (str): mode used to open the file</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        file: file handle</span>
+
+<span class="sd">    Raises:</span>
+<span class="sd">        UnsupportedFormat: if the module to open the file is not available</span>
+
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="n">test_class</span> <span class="o">=</span> <span class="n">io</span><span class="o">.</span><span class="n">IOBase</span>
+
+    <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">file_name</span><span class="p">,</span> <span class="n">test_class</span><span class="p">):</span>
+        <span class="k">return</span> <span class="n">compressed_handle</span><span class="p">(</span><span class="n">file_name</span><span class="p">)</span>
+
+    <span class="n">mode</span> <span class="o">=</span> <span class="n">mode</span> <span class="o">+</span> <span class="s1">&#39;b&#39;</span> <span class="k">if</span> <span class="s1">&#39;b&#39;</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">mode</span> <span class="k">else</span> <span class="n">mode</span>
+
+    <span class="k">if</span> <span class="n">file_name</span><span class="o">.</span><span class="n">endswith</span><span class="p">(</span><span class="s1">&#39;.gz&#39;</span><span class="p">):</span>
+        <span class="n">file_handle</span> <span class="o">=</span> <span class="n">gzip</span><span class="o">.</span><span class="n">GzipFile</span><span class="p">(</span><span class="n">file_name</span><span class="p">,</span> <span class="n">mode</span><span class="p">)</span>
+    <span class="k">elif</span> <span class="n">file_name</span><span class="o">.</span><span class="n">endswith</span><span class="p">(</span><span class="s1">&#39;.bz2&#39;</span><span class="p">):</span>
+        <span class="n">file_handle</span> <span class="o">=</span> <span class="n">bz2</span><span class="o">.</span><span class="n">BZ2File</span><span class="p">(</span><span class="n">file_name</span><span class="p">,</span> <span class="n">mode</span><span class="p">)</span>
+    <span class="k">elif</span> <span class="n">file_name</span><span class="o">.</span><span class="n">endswith</span><span class="p">(</span><span class="s1">&#39;.xz&#39;</span><span class="p">):</span>
+        <span class="k">if</span> <span class="n">lzma</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="n">UnsupportedFormat</span><span class="p">(</span><span class="s2">&quot;Cannot import lzma module&quot;</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">file_handle</span> <span class="o">=</span> <span class="n">lzma</span><span class="o">.</span><span class="n">LZMAFile</span><span class="p">(</span><span class="n">file_name</span><span class="p">,</span> <span class="n">mode</span><span class="p">)</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">file_handle</span> <span class="o">=</span> <span class="n">io</span><span class="o">.</span><span class="n">open</span><span class="p">(</span><span class="n">file_name</span><span class="p">,</span> <span class="n">mode</span><span class="p">)</span>
+
+    <span class="k">return</span> <span class="n">file_handle</span></div>
+
+
+<div class="viewcode-block" id="compressed_handle"><a class="viewcode-back" href="../../../api/mgkit.io.utils.html#mgkit.io.utils.compressed_handle">[docs]</a><span class="k">def</span> <span class="nf">compressed_handle</span><span class="p">(</span><span class="n">file_handle</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    .. versionadded:: 0.1.13</span>
+
+<span class="sd">    Tries to wrap a file handle in the appropriate compressed file class.</span>
+
+<span class="sd">    Arguments:</span>
+<span class="sd">        file_handle (str): file handle</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        file: the same file handle if no suitable compressed file class is</span>
+<span class="sd">        found or the new file_handle which supports the compression</span>
+
+<span class="sd">    Raises:</span>
+<span class="sd">        UnsupportedFormat: if the module to open the file is not available</span>
+
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="c1"># LOG.info(&#39;Detecting Compressed File Handle&#39;)</span>
+
+    <span class="n">file_name</span> <span class="o">=</span> <span class="nb">getattr</span><span class="p">(</span><span class="n">file_handle</span><span class="p">,</span> <span class="s1">&#39;name&#39;</span><span class="p">,</span> <span class="kc">None</span><span class="p">)</span>
+
+    <span class="k">if</span> <span class="n">file_name</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">file_handle</span>
+
+    <span class="k">if</span> <span class="n">file_name</span><span class="o">.</span><span class="n">endswith</span><span class="p">(</span><span class="s1">&#39;.gz&#39;</span><span class="p">):</span>
+        <span class="n">file_handle</span> <span class="o">=</span> <span class="n">gzip</span><span class="o">.</span><span class="n">GzipFile</span><span class="p">(</span><span class="n">fileobj</span><span class="o">=</span><span class="n">file_handle</span><span class="p">,</span> <span class="n">mode</span><span class="o">=</span><span class="s1">&#39;rb&#39;</span><span class="p">)</span>
+    <span class="k">elif</span> <span class="n">file_name</span><span class="o">.</span><span class="n">endswith</span><span class="p">(</span><span class="s1">&#39;.xz&#39;</span><span class="p">):</span>
+        <span class="k">if</span> <span class="n">lzma</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="n">UnsupportedFormat</span><span class="p">(</span><span class="s2">&quot;Cannot import lzma module&quot;</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">file_handle</span> <span class="o">=</span> <span class="n">lzma</span><span class="o">.</span><span class="n">LZMAFile</span><span class="p">(</span><span class="n">file_handle</span><span class="p">)</span>
+
+    <span class="k">return</span> <span class="n">file_handle</span></div>
+
+
+<div class="viewcode-block" id="split_write"><a class="viewcode-back" href="../../../api/mgkit.io.utils.html#mgkit.io.utils.split_write">[docs]</a><span class="k">def</span> <span class="nf">split_write</span><span class="p">(</span><span class="n">records</span><span class="p">,</span> <span class="n">name_mask</span><span class="p">,</span> <span class="n">write_func</span><span class="p">,</span> <span class="n">num_files</span><span class="o">=</span><span class="mi">2</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    .. versionadded:: 0.1.13</span>
+
+<span class="sd">    Splits the writing of a number of records in a series of files. The</span>
+<span class="sd">    `name_mask` is used as template for the file names. A string like</span>
+<span class="sd">    &quot;split-files-{0}&quot; can be specified and the function applies format with the</span>
+<span class="sd">    index of the pieces.</span>
+
+<span class="sd">    Arguments:</span>
+<span class="sd">        records (iterable): an iterable that returns a object to be saved</span>
+<span class="sd">        name_mask (str): a string used as template for the output file names</span>
+<span class="sd">            on which the function applies :func:`string.format`</span>
+<span class="sd">        write_func (func): a function that is called to write to the files. It</span>
+<span class="sd">            needs to accept a file handles as first argument and the record</span>
+<span class="sd">            returned by `records` as the second argument</span>
+<span class="sd">        num_files (int): the number of files to split the records</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">out_handles</span> <span class="o">=</span> <span class="p">[</span><span class="n">open_file</span><span class="p">(</span><span class="n">name_mask</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">x</span><span class="p">),</span> <span class="s1">&#39;w&#39;</span><span class="p">)</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">num_files</span><span class="p">)]</span>
+
+    <span class="k">for</span> <span class="n">index</span><span class="p">,</span> <span class="n">record</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">records</span><span class="p">):</span>
+        <span class="n">out_handle</span> <span class="o">=</span> <span class="n">out_handles</span><span class="p">[</span><span class="n">index</span> <span class="o">%</span> <span class="n">num_files</span><span class="p">]</span>
+        <span class="n">write_func</span><span class="p">(</span><span class="n">out_handle</span><span class="p">,</span> <span class="n">record</span><span class="p">)</span></div>
+</pre></div>
+
+           </div>
+           
+          </div>
+          <footer>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2013-2015, Francesco Rubino
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

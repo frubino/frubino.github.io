@@ -1,0 +1,421 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>mgkit.workflow.hmmer2gff &mdash; MGKit: Metagenomic framework 0.5.0 documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+  <script type="text/javascript" src="../../../_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../../../" src="../../../_static/documentation_options.js"></script>
+        <script type="text/javascript" src="../../../_static/jquery.js"></script>
+        <script type="text/javascript" src="../../../_static/underscore.js"></script>
+        <script type="text/javascript" src="../../../_static/doctools.js"></script>
+        <script type="text/javascript" src="../../../_static/language_data.js"></script>
+        <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+        <script async="async" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+        <script type="text/x-mathjax-config">MathJax.Hub.Config({"tex2jax": {"inlineMath": [["$", "$"], ["\\(", "\\)"]], "processEscapes": true, "ignoreClass": "document", "processClass": "math|output_area"}})</script>
+    
+    <script type="text/javascript" src="../../../_static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="../../../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../../../_static/graphviz.css" type="text/css" />
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../../../index.html" class="icon icon-home"> MGKit: Metagenomic framework
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                0.5.0
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../introduction.html">Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../install.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../pipeline/index.html">Metagenomic Pipeline</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../scripts/index.html">Scripts Details</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../examples/index.html">Example Notebooks</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../gff.html">MGKit GFF Specifications</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../library.html">Library Reference</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../changes.html">Changes</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../index.html">MGKit: Metagenomic framework</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../../../index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="../../index.html">Module code</a> &raquo;</li>
+        
+          <li><a href="../../mgkit.html">mgkit</a> &raquo;</li>
+        
+      <li>mgkit.workflow.hmmer2gff</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <h1>Source code for mgkit.workflow.hmmer2gff</h1><div class="highlight"><pre>
+<span></span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">Script to convert HMMER results files (domain table) to a GFF file, the name of</span>
+<span class="sd">the profiles are expected to be now in the form</span>
+<span class="sd">*GENEID_TAXONID_TAXON-NAME(-nr)* by default, but any other profile name is</span>
+<span class="sd">accepted.</span>
+
+<span class="sd">The profiles tested are those made from Kegg Orthologs, from the</span>
+<span class="sd">`download_profiles` script. If the `--no-custom-profiles` options is used,</span>
+<span class="sd">the script can be used with any profile name. The profile name will be used</span>
+<span class="sd">for `gene_id`, `taxon_id` and `taxon_name` in the GFF file.</span>
+
+<span class="sd">It is possible to use seuqnces not translated using mgkit, no information on</span>
+<span class="sd">the frame is assumed, so this script can be used against a protein DB. For</span>
+<span class="sd">example Uniprot can be searched for profiles, in which case the **--no-frame**</span>
+<span class="sd">options must be used.</span>
+
+<span class="sd">.. note::</span>
+
+<span class="sd">    for GENEID, old documentation points to KOID, it is the same</span>
+
+<span class="sd">.. warning::</span>
+
+<span class="sd">    The compatibility with old data has been **removed**, meaning that old</span>
+<span class="sd">    experiments must use the scripts from those versions. It is possible to use</span>
+<span class="sd">    multiple environments, with `virtualenv` for this purpose. An examples is</span>
+<span class="sd">    given in :ref:`install-ref`.</span>
+
+<span class="sd">Changes</span>
+<span class="sd">*******</span>
+
+<span class="sd">.. versionchanged:: 0.1.15</span>
+<span class="sd">    adapted to new GFF module and specs</span>
+
+<span class="sd">.. versionchanged:: 0.2.1</span>
+<span class="sd">    added options to customise output and filters and old restrictions</span>
+
+<span class="sd">.. versionchanged:: 0.3.1</span>
+<span class="sd">    added *--no-frame* option for non mgkit-translated proteins, sequence</span>
+<span class="sd">    headers are handled the same way as HMMER (truncated at the first space)</span>
+
+<span class="sd">&quot;&quot;&quot;</span>
+
+<span class="kn">import</span> <span class="nn">sys</span>
+<span class="kn">import</span> <span class="nn">logging</span>
+<span class="kn">import</span> <span class="nn">argparse</span>
+<span class="kn">from</span> <span class="nn">mgkit</span> <span class="kn">import</span> <span class="n">logger</span>
+<span class="kn">from</span> <span class="nn">mgkit.io</span> <span class="kn">import</span> <span class="n">gff</span>
+<span class="kn">from</span> <span class="nn">mgkit.io</span> <span class="kn">import</span> <span class="n">fasta</span>
+<span class="kn">from</span> <span class="nn">.</span> <span class="kn">import</span> <span class="n">utils</span>
+
+<span class="n">LOG</span> <span class="o">=</span> <span class="n">logging</span><span class="o">.</span><span class="n">getLogger</span><span class="p">(</span><span class="vm">__name__</span><span class="p">)</span>
+
+
+<div class="viewcode-block" id="set_parser"><a class="viewcode-back" href="../../../api/mgkit.workflow.hmmer2gff.html#mgkit.workflow.hmmer2gff.set_parser">[docs]</a><span class="k">def</span> <span class="nf">set_parser</span><span class="p">():</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Setup command line options</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">parser</span> <span class="o">=</span> <span class="n">argparse</span><span class="o">.</span><span class="n">ArgumentParser</span><span class="p">(</span>
+        <span class="n">description</span><span class="o">=</span><span class="s1">&#39;Convert HMMER data to GFF file&#39;</span><span class="p">,</span>
+        <span class="n">formatter_class</span><span class="o">=</span><span class="n">argparse</span><span class="o">.</span><span class="n">ArgumentDefaultsHelpFormatter</span><span class="p">)</span>
+
+    <span class="n">group</span> <span class="o">=</span> <span class="n">parser</span><span class="o">.</span><span class="n">add_argument_group</span><span class="p">(</span><span class="s1">&#39;File options&#39;</span><span class="p">)</span>
+    <span class="n">group</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span>
+        <span class="s1">&#39;aa_file&#39;</span><span class="p">,</span>
+        <span class="nb">type</span><span class="o">=</span><span class="n">argparse</span><span class="o">.</span><span class="n">FileType</span><span class="p">(</span><span class="s1">&#39;r&#39;</span><span class="p">),</span>
+        <span class="n">help</span><span class="o">=</span><span class="s2">&quot;Fasta file containing contigs translated to aa (used by HMMER)&quot;</span>
+    <span class="p">)</span>
+    <span class="n">group</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span>
+        <span class="s1">&#39;hmmer_file&#39;</span><span class="p">,</span>
+        <span class="n">nargs</span><span class="o">=</span><span class="s1">&#39;?&#39;</span><span class="p">,</span>
+        <span class="nb">type</span><span class="o">=</span><span class="n">argparse</span><span class="o">.</span><span class="n">FileType</span><span class="p">(</span><span class="s1">&#39;r&#39;</span><span class="p">),</span>
+        <span class="n">default</span><span class="o">=</span><span class="s1">&#39;-&#39;</span>
+    <span class="p">)</span>
+    <span class="n">group</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span>
+        <span class="s1">&#39;-o&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;--output-file&#39;</span><span class="p">,</span>
+        <span class="n">nargs</span><span class="o">=</span><span class="s1">&#39;?&#39;</span><span class="p">,</span>
+        <span class="nb">type</span><span class="o">=</span><span class="n">argparse</span><span class="o">.</span><span class="n">FileType</span><span class="p">(</span><span class="s1">&#39;w&#39;</span><span class="p">),</span> <span class="n">default</span><span class="o">=</span><span class="n">sys</span><span class="o">.</span><span class="n">stdout</span>
+    <span class="p">)</span>
+
+    <span class="n">group</span> <span class="o">=</span> <span class="n">parser</span><span class="o">.</span><span class="n">add_argument_group</span><span class="p">(</span><span class="s1">&#39;Filters&#39;</span><span class="p">)</span>
+    <span class="n">group</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span>
+        <span class="s1">&#39;-t&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;--discard&#39;</span><span class="p">,</span>
+        <span class="n">action</span><span class="o">=</span><span class="s1">&#39;store&#39;</span><span class="p">,</span>
+        <span class="nb">type</span><span class="o">=</span><span class="nb">float</span><span class="p">,</span>
+        <span class="n">default</span><span class="o">=</span><span class="mf">0.05</span><span class="p">,</span>
+        <span class="n">help</span><span class="o">=</span><span class="s1">&#39;Evalue over which an hit will be discarded&#39;</span>
+    <span class="p">)</span>
+    <span class="n">group</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span>
+        <span class="s1">&#39;-d&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;--disable-evalue&#39;</span><span class="p">,</span>
+        <span class="n">action</span><span class="o">=</span><span class="s1">&#39;store_true&#39;</span><span class="p">,</span>
+        <span class="n">default</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+        <span class="n">help</span><span class="o">=</span><span class="s1">&#39;Disable Evalue filter&#39;</span>
+    <span class="p">)</span>
+
+    <span class="n">group</span> <span class="o">=</span> <span class="n">parser</span><span class="o">.</span><span class="n">add_argument_group</span><span class="p">(</span><span class="s1">&#39;GFF&#39;</span><span class="p">)</span>
+    <span class="n">group</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span>
+        <span class="s1">&#39;-c&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;--no-custom-profiles&#39;</span><span class="p">,</span>
+        <span class="n">action</span><span class="o">=</span><span class="s1">&#39;store_false&#39;</span><span class="p">,</span>
+        <span class="n">default</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+        <span class="n">help</span><span class="o">=</span><span class="s1">&#39;Profiles names are not in the custom format&#39;</span>
+    <span class="p">)</span>
+    <span class="n">group</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span>
+        <span class="s1">&#39;-db&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;--database&#39;</span><span class="p">,</span>
+        <span class="n">action</span><span class="o">=</span><span class="s1">&#39;store&#39;</span><span class="p">,</span>
+        <span class="n">default</span><span class="o">=</span><span class="s1">&#39;CUSTOM&#39;</span><span class="p">,</span>
+        <span class="n">help</span><span class="o">=</span><span class="s1">&#39;Database from which the profiles are generated &quot; +&quot; (e.g. PFAM)&#39;</span>
+    <span class="p">)</span>
+    <span class="n">group</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span>
+        <span class="s1">&#39;-f&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;--feature-type&#39;</span><span class="p">,</span>
+        <span class="n">action</span><span class="o">=</span><span class="s1">&#39;store&#39;</span><span class="p">,</span>
+        <span class="n">default</span><span class="o">=</span><span class="s1">&#39;gene&#39;</span><span class="p">,</span>
+        <span class="n">help</span><span class="o">=</span><span class="s1">&#39;Type of feature (e.g. gene)&#39;</span>
+    <span class="p">)</span>
+    <span class="n">group</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span>
+        <span class="s1">&#39;-n&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;--no-frame&#39;</span><span class="p">,</span>
+        <span class="n">action</span><span class="o">=</span><span class="s1">&#39;store_true&#39;</span><span class="p">,</span>
+        <span class="n">default</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+        <span class="n">help</span><span class="o">=</span><span class="s1">&#39;Set if the sequences were not translated with translate_seq&#39;</span>
+    <span class="p">)</span>
+
+    <span class="n">group</span> <span class="o">=</span> <span class="n">parser</span><span class="o">.</span><span class="n">add_argument_group</span><span class="p">(</span><span class="s1">&#39;Misc&#39;</span><span class="p">)</span>
+
+    <span class="n">utils</span><span class="o">.</span><span class="n">add_basic_options</span><span class="p">(</span><span class="n">parser</span><span class="p">,</span> <span class="n">manual</span><span class="o">=</span><span class="vm">__doc__</span><span class="p">)</span>
+
+    <span class="k">return</span> <span class="n">parser</span></div>
+
+
+<div class="viewcode-block" id="get_aa_data"><a class="viewcode-back" href="../../../api/mgkit.workflow.hmmer2gff.html#mgkit.workflow.hmmer2gff.get_aa_data">[docs]</a><span class="k">def</span> <span class="nf">get_aa_data</span><span class="p">(</span><span class="n">f_handle</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Load aminoacid seuqnces used by HMMER.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="c1"># LOG.info(&#39;Loading aa data from file %s&#39;, f_handle.name)</span>
+
+    <span class="n">aa_seqs</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">(</span>
+        <span class="p">(</span><span class="n">name</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">&#39; &#39;</span><span class="p">)[</span><span class="mi">0</span><span class="p">],</span> <span class="n">seq</span><span class="p">)</span>
+        <span class="k">for</span> <span class="n">name</span><span class="p">,</span> <span class="n">seq</span> <span class="ow">in</span> <span class="n">fasta</span><span class="o">.</span><span class="n">load_fasta</span><span class="p">(</span><span class="n">f_handle</span><span class="p">)</span>
+    <span class="p">)</span>
+
+    <span class="k">return</span> <span class="n">aa_seqs</span></div>
+
+
+<div class="viewcode-block" id="parse_domain_table_contigs"><a class="viewcode-back" href="../../../api/mgkit.workflow.hmmer2gff.html#mgkit.workflow.hmmer2gff.parse_domain_table_contigs">[docs]</a><span class="k">def</span> <span class="nf">parse_domain_table_contigs</span><span class="p">(</span><span class="n">options</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Parse the HMMER result file</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">aa_seqs</span> <span class="o">=</span> <span class="n">get_aa_data</span><span class="p">(</span><span class="n">options</span><span class="o">.</span><span class="n">aa_file</span><span class="p">)</span>
+
+    <span class="n">LOG</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s1">&#39;Parsing HMMER data from file </span><span class="si">%s</span><span class="s1">&#39;</span><span class="p">,</span> <span class="n">options</span><span class="o">.</span><span class="n">hmmer_file</span><span class="o">.</span><span class="n">name</span><span class="p">)</span>
+    <span class="n">LOG</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s1">&#39;Writing GFF data to file </span><span class="si">%s</span><span class="s1">&#39;</span><span class="p">,</span> <span class="n">options</span><span class="o">.</span><span class="n">output_file</span><span class="o">.</span><span class="n">name</span><span class="p">)</span>
+
+    <span class="n">count_dsc</span> <span class="o">=</span> <span class="mi">0</span>
+    <span class="n">count_tot</span> <span class="o">=</span> <span class="mi">0</span>
+    <span class="n">count_skp</span> <span class="o">=</span> <span class="mi">0</span>
+
+    <span class="k">for</span> <span class="n">idx</span><span class="p">,</span> <span class="n">line</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">options</span><span class="o">.</span><span class="n">hmmer_file</span><span class="p">):</span>
+
+        <span class="k">if</span> <span class="n">line</span><span class="o">.</span><span class="n">startswith</span><span class="p">(</span><span class="s1">&#39;#&#39;</span><span class="p">):</span>
+            <span class="k">continue</span>
+        <span class="k">if</span> <span class="n">idx</span> <span class="o">%</span> <span class="mi">10000</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+            <span class="n">LOG</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;Line number: </span><span class="si">%d</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">idx</span><span class="p">)</span>
+
+        <span class="n">count_tot</span> <span class="o">+=</span> <span class="mi">1</span>
+
+        <span class="k">try</span><span class="p">:</span>
+            <span class="n">annotation</span> <span class="o">=</span> <span class="n">gff</span><span class="o">.</span><span class="n">from_hmmer</span><span class="p">(</span>
+                <span class="n">line</span><span class="p">,</span>
+                <span class="n">aa_seqs</span><span class="p">,</span>
+                <span class="n">feat_type</span><span class="o">=</span><span class="n">options</span><span class="o">.</span><span class="n">feature_type</span><span class="p">,</span>
+                <span class="n">db</span><span class="o">=</span><span class="n">options</span><span class="o">.</span><span class="n">database</span><span class="p">,</span>
+                <span class="n">custom_profiles</span><span class="o">=</span><span class="n">options</span><span class="o">.</span><span class="n">no_custom_profiles</span><span class="p">,</span>
+                <span class="n">noframe</span><span class="o">=</span><span class="n">options</span><span class="o">.</span><span class="n">no_frame</span><span class="p">,</span>
+            <span class="p">)</span>
+        <span class="k">except</span> <span class="ne">ZeroDivisionError</span><span class="p">:</span>
+            <span class="n">LOG</span><span class="o">.</span><span class="n">error</span><span class="p">(</span>
+                <span class="s2">&quot;Skipping line </span><span class="si">%d</span><span class="s2"> because of an error in the calculations&quot;</span><span class="p">,</span>
+                <span class="n">idx</span> <span class="o">+</span> <span class="mi">1</span>
+            <span class="p">)</span>
+            <span class="n">count_skp</span> <span class="o">+=</span> <span class="mi">1</span>
+            <span class="k">continue</span>
+
+        <span class="c1"># if disable_evalue is True, skips filter</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="n">options</span><span class="o">.</span><span class="n">disable_evalue</span><span class="p">:</span>
+            <span class="k">if</span> <span class="n">annotation</span><span class="o">.</span><span class="n">score</span> <span class="o">&gt;</span> <span class="n">options</span><span class="o">.</span><span class="n">discard</span><span class="p">:</span>
+                <span class="n">count_dsc</span> <span class="o">+=</span> <span class="mi">1</span>
+                <span class="k">continue</span>
+
+        <span class="n">annotation</span><span class="o">.</span><span class="n">to_file</span><span class="p">(</span><span class="n">options</span><span class="o">.</span><span class="n">output_file</span><span class="p">)</span>
+
+    <span class="n">LOG</span><span class="o">.</span><span class="n">info</span><span class="p">(</span>
+        <span class="s2">&quot;Read </span><span class="si">%d</span><span class="s2"> lines, discarded </span><span class="si">%d</span><span class="s2">, skipped </span><span class="si">%d</span><span class="s2">&quot;</span><span class="p">,</span>
+        <span class="n">count_tot</span><span class="p">,</span>
+        <span class="n">count_dsc</span><span class="p">,</span>
+        <span class="n">count_skp</span>
+    <span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="main"><a class="viewcode-back" href="../../../api/mgkit.workflow.hmmer2gff.html#mgkit.workflow.hmmer2gff.main">[docs]</a><span class="k">def</span> <span class="nf">main</span><span class="p">():</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Main loop</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">options</span> <span class="o">=</span> <span class="n">set_parser</span><span class="p">()</span><span class="o">.</span><span class="n">parse_args</span><span class="p">()</span>
+    <span class="n">logger</span><span class="o">.</span><span class="n">config_log</span><span class="p">(</span><span class="n">options</span><span class="o">.</span><span class="n">verbose</span><span class="p">)</span>
+
+    <span class="n">parse_domain_table_contigs</span><span class="p">(</span>
+        <span class="n">options</span>
+    <span class="p">)</span></div>
+
+
+<span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s1">&#39;__main__&#39;</span><span class="p">:</span>
+    <span class="n">main</span><span class="p">()</span>
+</pre></div>
+
+           </div>
+           
+          </div>
+          <footer>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2013-2015, Francesco Rubino
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

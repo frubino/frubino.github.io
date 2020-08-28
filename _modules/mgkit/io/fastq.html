@@ -1,0 +1,486 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>mgkit.io.fastq &mdash; MGKit: Metagenomic framework 0.5.0 documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+  <script type="text/javascript" src="../../../_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../../../" src="../../../_static/documentation_options.js"></script>
+        <script type="text/javascript" src="../../../_static/jquery.js"></script>
+        <script type="text/javascript" src="../../../_static/underscore.js"></script>
+        <script type="text/javascript" src="../../../_static/doctools.js"></script>
+        <script type="text/javascript" src="../../../_static/language_data.js"></script>
+        <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+        <script async="async" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+        <script type="text/x-mathjax-config">MathJax.Hub.Config({"tex2jax": {"inlineMath": [["$", "$"], ["\\(", "\\)"]], "processEscapes": true, "ignoreClass": "document", "processClass": "math|output_area"}})</script>
+    
+    <script type="text/javascript" src="../../../_static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="../../../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../../../_static/graphviz.css" type="text/css" />
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../../../index.html" class="icon icon-home"> MGKit: Metagenomic framework
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                0.5.0
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../introduction.html">Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../install.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../pipeline/index.html">Metagenomic Pipeline</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../scripts/index.html">Scripts Details</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../examples/index.html">Example Notebooks</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../gff.html">MGKit GFF Specifications</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../library.html">Library Reference</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../changes.html">Changes</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../index.html">MGKit: Metagenomic framework</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../../../index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="../../index.html">Module code</a> &raquo;</li>
+        
+          <li><a href="../../mgkit.html">mgkit</a> &raquo;</li>
+        
+      <li>mgkit.io.fastq</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <h1>Source code for mgkit.io.fastq</h1><div class="highlight"><pre>
+<span></span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">Fastq utility functions</span>
+<span class="sd">&quot;&quot;&quot;</span>
+<span class="kn">import</span> <span class="nn">re</span>
+<span class="kn">import</span> <span class="nn">numpy</span>
+<span class="kn">import</span> <span class="nn">logging</span>
+
+<span class="kn">from</span> <span class="nn">.utils</span> <span class="kn">import</span> <span class="n">open_file</span>
+
+<span class="n">LOG</span> <span class="o">=</span> <span class="n">logging</span><span class="o">.</span><span class="n">getLogger</span><span class="p">(</span><span class="vm">__name__</span><span class="p">)</span>
+
+<span class="n">CASAVA_HEADER_OLD</span> <span class="o">=</span> <span class="sa">r</span><span class="s2">&quot;&quot;&quot;(?P&lt;machine&gt;\w+-\w+):</span>
+<span class="s2">        (?P&lt;lane&gt;\d):</span>
+<span class="s2">        (?P&lt;tile&gt;\d+):</span>
+<span class="s2">        (?P&lt;xcoord&gt;\d+):</span>
+<span class="s2">        (?P&lt;ycoord&gt;\d+)\#</span>
+<span class="s2">        (?P&lt;index&gt;(\d|[ACTGN]</span><span class="si">{6}</span><span class="s2">))/</span>
+<span class="s2">        (?P&lt;mate&gt;(1|2))&quot;&quot;&quot;</span>
+<span class="s2">&quot;Old casava header regex&quot;</span>
+
+<span class="n">CASAVA_HEADER_NEW</span> <span class="o">=</span> <span class="sa">r</span><span class="s2">&quot;&quot;&quot;(?P&lt;machine&gt;[\w-]+):</span>
+<span class="s2">        (?P&lt;runid&gt;\d+):</span>
+<span class="s2">        (?P&lt;cellid&gt;\w+):</span>
+<span class="s2">        (?P&lt;lane&gt;\d):</span>
+<span class="s2">        (?P&lt;tile&gt;\d+):</span>
+<span class="s2">        (?P&lt;xcoord&gt;\d+):</span>
+<span class="s2">        (?P&lt;ycoord&gt;\d+)</span>
+<span class="s2">        [_ ](?P&lt;mate&gt;\d): # underscore for data from from www.ebi.ac.uk/ena/</span>
+<span class="s2">        (?P&lt;filter&gt;[YN]):</span>
+<span class="s2">        (?P&lt;bits&gt;\d+):</span>
+<span class="s2">        (?P&lt;index&gt;[ACTGN+]+)&quot;&quot;&quot;</span>
+<span class="s2">&quot;New casava header regex, including indices for both forward and reverse&quot;</span>
+
+<span class="n">CASAVA_KHMER</span> <span class="o">=</span> <span class="sa">r</span><span class="s2">&quot;&quot;&quot;</span>
+<span class="s2">    (?P&lt;machine&gt;[\w-]+):</span>
+<span class="s2">    (?P&lt;runid&gt;\d+):</span>
+<span class="s2">    (?P&lt;cellid&gt;\w+):</span>
+<span class="s2">    (?P&lt;lane&gt;\d):</span>
+<span class="s2">    (?P&lt;tile&gt;\d+):</span>
+<span class="s2">    (?P&lt;xcoord&gt;\d+):</span>
+<span class="s2">    (?P&lt;ycoord&gt;\d+)</span>
+<span class="s2">    /(?P&lt;mate&gt;\d)</span>
+<span class="s2">&quot;&quot;&quot;</span>
+
+
+<div class="viewcode-block" id="check_fastq_type"><a class="viewcode-back" href="../../../api/mgkit.io.fastq.html#mgkit.io.fastq.check_fastq_type">[docs]</a><span class="k">def</span> <span class="nf">check_fastq_type</span><span class="p">(</span><span class="n">qualities</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Trys to guess the type of quality string used in a Fastq file</span>
+
+<span class="sd">    :param str qualities: string with the quality scores as in the Fastq file</span>
+<span class="sd">    :return str: a string with the guessed quality score</span>
+
+<span class="sd">    .. note::</span>
+
+<span class="sd">        Possible values are the following, classified but the values usually</span>
+<span class="sd">        used in other softwares:</span>
+
+<span class="sd">        * ASCII33: sanger, illumina-1.8</span>
+<span class="sd">        * ASCII64: illumina-1.3, illumina-1.5, solexa-old</span>
+
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">qualities</span> <span class="o">=</span> <span class="p">[</span><span class="nb">ord</span><span class="p">(</span><span class="n">char</span><span class="p">)</span> <span class="k">for</span> <span class="n">char</span> <span class="ow">in</span> <span class="n">qualities</span><span class="p">]</span>
+
+    <span class="n">max_qual</span> <span class="o">=</span> <span class="nb">max</span><span class="p">(</span><span class="n">qualities</span><span class="p">)</span>
+    <span class="n">min_qual</span> <span class="o">=</span> <span class="nb">min</span><span class="p">(</span><span class="n">qualities</span><span class="p">)</span>
+
+    <span class="k">if</span> <span class="p">(</span><span class="n">min_qual</span> <span class="o">&gt;=</span> <span class="mi">33</span><span class="p">)</span> <span class="ow">and</span> <span class="p">(</span><span class="n">max_qual</span> <span class="o">&lt;=</span> <span class="mi">73</span><span class="p">):</span>
+        <span class="k">return</span> <span class="s1">&#39;sanger&#39;</span>
+    <span class="k">elif</span> <span class="p">(</span><span class="n">min_qual</span> <span class="o">&gt;=</span> <span class="mi">33</span><span class="p">)</span> <span class="ow">and</span> <span class="p">(</span><span class="n">max_qual</span> <span class="o">&lt;=</span> <span class="mi">74</span><span class="p">):</span>
+        <span class="k">return</span> <span class="s1">&#39;illumina-1.8&#39;</span>
+    <span class="k">elif</span> <span class="p">(</span><span class="n">min_qual</span> <span class="o">&gt;=</span> <span class="mi">64</span><span class="p">)</span> <span class="ow">and</span> <span class="p">(</span><span class="n">max_qual</span> <span class="o">&lt;=</span> <span class="mi">104</span><span class="p">):</span>
+        <span class="k">return</span> <span class="s1">&#39;illumina-1.5&#39;</span>
+    <span class="k">elif</span> <span class="p">(</span><span class="n">min_qual</span> <span class="o">&gt;=</span> <span class="mi">67</span><span class="p">)</span> <span class="ow">and</span> <span class="p">(</span><span class="n">max_qual</span> <span class="o">&lt;=</span> <span class="mi">104</span><span class="p">):</span>
+        <span class="k">return</span> <span class="s1">&#39;illumina-1.3&#39;</span>
+    <span class="k">elif</span> <span class="p">(</span><span class="n">min_qual</span> <span class="o">&gt;=</span> <span class="mi">59</span><span class="p">)</span> <span class="ow">and</span> <span class="p">(</span><span class="n">max_qual</span> <span class="o">&lt;=</span> <span class="mi">104</span><span class="p">):</span>
+        <span class="k">return</span> <span class="s1">&#39;solexa-old&#39;</span></div>
+
+
+<div class="viewcode-block" id="convert_seqid_to_new"><a class="viewcode-back" href="../../../api/mgkit.io.fastq.html#mgkit.io.fastq.convert_seqid_to_new">[docs]</a><span class="k">def</span> <span class="nf">convert_seqid_to_new</span><span class="p">(</span><span class="n">seq_id</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Convert old seq_id format for Illumina reads to the new found in Casava</span>
+<span class="sd">    1.8+</span>
+
+<span class="sd">    :param str seq_id: seq_id of the sequence (stripped of &#39;@&#39;)</span>
+<span class="sd">    :return str: the new format seq_id</span>
+
+<span class="sd">    .. note::</span>
+
+<span class="sd">        Example from Wikipedia::</span>
+
+<span class="sd">            old casava seq_id:</span>
+<span class="sd">            @HWUSI-EAS100R:6:73:941:1973#0/1</span>
+<span class="sd">            new casava seq_id:</span>
+<span class="sd">            @EAS139:136:FC706VJ:2:2104:15343:197393 1:Y:18:ATCAC</span>
+
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">machine_id</span><span class="p">,</span> <span class="n">cell_lane</span><span class="p">,</span> <span class="n">tile_num</span><span class="p">,</span> <span class="n">x_coord</span><span class="p">,</span> <span class="n">other</span> <span class="o">=</span> <span class="n">seq_id</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">&#39;:&#39;</span><span class="p">)</span>
+    <span class="n">y_coord</span><span class="p">,</span> <span class="n">other</span> <span class="o">=</span> <span class="n">other</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">&#39;#&#39;</span><span class="p">)</span>
+    <span class="n">idx_multiplex</span><span class="p">,</span> <span class="n">mate</span> <span class="o">=</span> <span class="n">other</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">&#39;/&#39;</span><span class="p">)</span>
+
+    <span class="k">return</span> <span class="s2">&quot;</span><span class="si">{0}</span><span class="s2">:0:FC706VJ:</span><span class="si">{1}</span><span class="s2">:</span><span class="si">{2}</span><span class="s2">:</span><span class="si">{3}</span><span class="s2">:</span><span class="si">{4}</span><span class="s2"> </span><span class="si">{5}</span><span class="s2">:N:0:</span><span class="si">{6}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span>
+        <span class="n">machine_id</span><span class="p">,</span>
+        <span class="n">cell_lane</span><span class="p">,</span>
+        <span class="n">tile_num</span><span class="p">,</span>
+        <span class="n">x_coord</span><span class="p">,</span>
+        <span class="n">y_coord</span><span class="p">,</span>
+        <span class="n">mate</span><span class="p">,</span>
+        <span class="n">idx_multiplex</span>
+    <span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="convert_seqid_to_old"><a class="viewcode-back" href="../../../api/mgkit.io.fastq.html#mgkit.io.fastq.convert_seqid_to_old">[docs]</a><span class="k">def</span> <span class="nf">convert_seqid_to_old</span><span class="p">(</span><span class="n">seq_id</span><span class="p">,</span> <span class="n">index_as_seq</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+
+<span class="sd">    .. deprecated:: 0.3.3</span>
+
+<span class="sd">    Convert old seq_id format for Illumina reads to the new found in Casava</span>
+<span class="sd">    until 1.8, which marks the new format.</span>
+
+<span class="sd">    :param str seq_id: seq_id of the sequence (stripped of &#39;@&#39;)</span>
+<span class="sd">    :param bool index_as_seq: if True, the index for the multiplex we&#39;ll be</span>
+<span class="sd">        the sequence found at the end of the new format seq_id. Otherwise, 0</span>
+<span class="sd">        we&#39;ll be used</span>
+<span class="sd">    :return str: the new format seq_id</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">left_part</span><span class="p">,</span> <span class="n">right_part</span> <span class="o">=</span> <span class="n">seq_id</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">&#39; &#39;</span><span class="p">)</span>
+    <span class="n">machine_id</span><span class="p">,</span> <span class="n">run_id</span><span class="p">,</span> <span class="n">cell_id</span><span class="p">,</span> <span class="n">cell_lane</span><span class="p">,</span> <span class="n">tile_num</span><span class="p">,</span> <span class="n">x_coord</span><span class="p">,</span> \
+        <span class="n">y_coord</span> <span class="o">=</span> <span class="n">left_part</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">&#39;:&#39;</span><span class="p">)</span>
+
+    <span class="n">mate</span><span class="p">,</span> <span class="n">fail_filter</span><span class="p">,</span> <span class="n">control_bits</span><span class="p">,</span> <span class="n">index_seq</span> <span class="o">=</span> <span class="n">right_part</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">&#39;:&#39;</span><span class="p">)</span>
+
+    <span class="k">return</span> <span class="s2">&quot;HWUSI-</span><span class="si">{0}</span><span class="s2">:</span><span class="si">{1}</span><span class="s2">:</span><span class="si">{2}</span><span class="s2">:</span><span class="si">{3}</span><span class="s2">:</span><span class="si">{4}</span><span class="s2">#</span><span class="si">{5}</span><span class="s2">/</span><span class="si">{6}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span>
+        <span class="n">machine_id</span><span class="p">,</span>
+        <span class="n">cell_lane</span><span class="p">,</span>
+        <span class="n">tile_num</span><span class="p">,</span>
+        <span class="n">x_coord</span><span class="p">,</span>
+        <span class="n">y_coord</span><span class="p">,</span>
+        <span class="n">index_seq</span> <span class="k">if</span> <span class="n">index_as_seq</span> <span class="k">else</span> <span class="s1">&#39;0&#39;</span><span class="p">,</span>
+        <span class="n">mate</span>
+    <span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="write_fastq_sequence"><a class="viewcode-back" href="../../../api/mgkit.io.fastq.html#mgkit.io.fastq.write_fastq_sequence">[docs]</a><span class="k">def</span> <span class="nf">write_fastq_sequence</span><span class="p">(</span><span class="n">file_handle</span><span class="p">,</span> <span class="n">name</span><span class="p">,</span> <span class="n">seq</span><span class="p">,</span> <span class="n">qual</span><span class="p">,</span> <span class="n">write_mode</span><span class="o">=</span><span class="s1">&#39;a&#39;</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+
+<span class="sd">    .. versionchanged:: 0.3.3</span>
+<span class="sd">        if *qual* is not a string it&#39;s converted to chars (phred33)</span>
+
+<span class="sd">    Write a fastq sequence to file. If the *file_handle* is a string, the file</span>
+<span class="sd">    will be opened using *write_mode*.</span>
+
+<span class="sd">    :param file_handle: file handle or string.</span>
+<span class="sd">    :param str name: header to write for the sequence</span>
+<span class="sd">    :param str seq: sequence to write</span>
+<span class="sd">    :param str qual: quality string</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">file_handle</span> <span class="o">=</span> <span class="n">open_file</span><span class="p">(</span><span class="n">file_handle</span><span class="p">,</span> <span class="n">write_mode</span><span class="p">)</span>
+
+    <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">qual</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="p">(</span><span class="nb">int</span><span class="p">,</span> <span class="n">numpy</span><span class="o">.</span><span class="n">integer</span><span class="p">)):</span>
+        <span class="n">qual</span> <span class="o">=</span> <span class="s1">&#39;&#39;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="nb">chr</span><span class="p">(</span><span class="n">q</span> <span class="o">+</span> <span class="mi">33</span><span class="p">)</span> <span class="k">for</span> <span class="n">q</span> <span class="ow">in</span> <span class="n">qual</span><span class="p">)</span>
+
+    <span class="n">file_handle</span><span class="o">.</span><span class="n">write</span><span class="p">(</span>
+        <span class="s2">&quot;@</span><span class="si">{name}</span><span class="se">\n</span><span class="si">{seq}</span><span class="se">\n</span><span class="s2">+</span><span class="se">\n</span><span class="si">{qual}</span><span class="se">\n</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span>
+            <span class="n">name</span><span class="o">=</span><span class="n">name</span><span class="p">,</span>
+            <span class="n">seq</span><span class="o">=</span><span class="n">seq</span><span class="p">,</span>
+            <span class="n">qual</span><span class="o">=</span><span class="n">qual</span>
+        <span class="p">)</span><span class="o">.</span><span class="n">encode</span><span class="p">(</span><span class="s1">&#39;ascii&#39;</span><span class="p">)</span>
+    <span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="choose_header_type"><a class="viewcode-back" href="../../../api/mgkit.io.fastq.html#mgkit.io.fastq.choose_header_type">[docs]</a><span class="k">def</span> <span class="nf">choose_header_type</span><span class="p">(</span><span class="n">seq_id</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Return the guessed compiled regular expression</span>
+<span class="sd">    :param str seq_id: sequence header to test</span>
+
+<span class="sd">    :return: compiled regular expression object or None if no match found</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">if</span> <span class="n">re</span><span class="o">.</span><span class="n">search</span><span class="p">(</span><span class="n">CASAVA_HEADER_OLD</span><span class="p">,</span> <span class="n">seq_id</span><span class="p">,</span> <span class="n">re</span><span class="o">.</span><span class="n">X</span><span class="p">)</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">re</span><span class="o">.</span><span class="n">compile</span><span class="p">(</span><span class="n">CASAVA_HEADER_OLD</span><span class="p">,</span> <span class="n">re</span><span class="o">.</span><span class="n">X</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">re</span><span class="o">.</span><span class="n">search</span><span class="p">(</span><span class="n">CASAVA_HEADER_NEW</span><span class="p">,</span> <span class="n">seq_id</span><span class="p">,</span> <span class="n">re</span><span class="o">.</span><span class="n">X</span><span class="p">)</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">re</span><span class="o">.</span><span class="n">compile</span><span class="p">(</span><span class="n">CASAVA_HEADER_NEW</span><span class="p">,</span> <span class="n">re</span><span class="o">.</span><span class="n">X</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">re</span><span class="o">.</span><span class="n">search</span><span class="p">(</span><span class="n">CASAVA_KHMER</span><span class="p">,</span> <span class="n">seq_id</span><span class="p">,</span> <span class="n">re</span><span class="o">.</span><span class="n">X</span><span class="p">)</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">re</span><span class="o">.</span><span class="n">compile</span><span class="p">(</span><span class="n">CASAVA_KHMER</span><span class="p">,</span> <span class="n">re</span><span class="o">.</span><span class="n">X</span><span class="p">)</span>
+    <span class="k">return</span> <span class="kc">None</span></div>
+
+
+<div class="viewcode-block" id="load_fastq"><a class="viewcode-back" href="../../../api/mgkit.io.fastq.html#mgkit.io.fastq.load_fastq">[docs]</a><span class="k">def</span> <span class="nf">load_fastq</span><span class="p">(</span><span class="n">file_handle</span><span class="p">,</span> <span class="n">num_qual</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    .. versionadded:: 0.3.1</span>
+
+<span class="sd">    Loads a fastq file and returns a generator of tuples in which the first</span>
+<span class="sd">    element is the name of the sequence, the second the sequence and the third</span>
+<span class="sd">    the quality scores (converted in a numpy array if *num_qual* is True).</span>
+
+<span class="sd">    .. note::</span>
+
+<span class="sd">        this is a simple parser that assumes each sequence is on 4 lines,</span>
+<span class="sd">        1st and 3rd for the headers, 2nd for the sequence and 4th the quality</span>
+<span class="sd">        scores</span>
+
+<span class="sd">    Arguments:</span>
+<span class="sd">        file_handle (str, file): fastq file to open, can be a file name or a</span>
+<span class="sd">            file handle</span>
+<span class="sd">        num_qual (bool): if *False* (default), the quality score will be</span>
+<span class="sd">            returned as ASCII character, if *True* a numpy array.</span>
+
+<span class="sd">    Yields:</span>
+<span class="sd">        tuple: first element is the sequence name/header, the second element is</span>
+<span class="sd">        the sequence, the third is the quality score. The quality scores are</span>
+<span class="sd">        kept as a string if *num_qual* is False (default) and converted to a</span>
+<span class="sd">        numpy array with correct values (0-41) if *num_qual* is True</span>
+
+<span class="sd">    Raises:</span>
+<span class="sd">        ValueError: if the headers in both sequence and quality scores are not</span>
+<span class="sd">        valid. This implies that the sequence/qualities have carriage returns</span>
+<span class="sd">        or the file is truncated.</span>
+
+<span class="sd">        TypeError: if the qualities are in a format different than sanger</span>
+<span class="sd">        (min 0, max 40) or illumina-1.8 (0, 41)</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="n">file_handle</span> <span class="o">=</span> <span class="n">open_file</span><span class="p">(</span><span class="n">file_handle</span><span class="p">,</span> <span class="s1">&#39;r&#39;</span><span class="p">)</span>
+
+    <span class="k">if</span> <span class="nb">getattr</span><span class="p">(</span><span class="n">file_handle</span><span class="p">,</span> <span class="s1">&#39;name&#39;</span><span class="p">,</span> <span class="kc">None</span><span class="p">)</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="n">LOG</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;Reading fastq file (</span><span class="si">%s</span><span class="s2">)&quot;</span><span class="p">,</span> <span class="n">file_handle</span><span class="o">.</span><span class="n">name</span><span class="p">)</span>
+
+    <span class="n">check_qual</span> <span class="o">=</span> <span class="kc">True</span>
+
+    <span class="n">sequence_count</span> <span class="o">=</span> <span class="mi">0</span>
+
+    <span class="k">while</span> <span class="kc">True</span><span class="p">:</span>
+        <span class="n">header1</span> <span class="o">=</span> <span class="n">file_handle</span><span class="o">.</span><span class="n">readline</span><span class="p">()</span><span class="o">.</span><span class="n">decode</span><span class="p">(</span><span class="s1">&#39;ascii&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span>
+        <span class="c1"># Reached the end of the file</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="n">header1</span><span class="p">:</span>
+            <span class="k">break</span>
+
+        <span class="n">seq</span> <span class="o">=</span> <span class="n">file_handle</span><span class="o">.</span><span class="n">readline</span><span class="p">()</span><span class="o">.</span><span class="n">decode</span><span class="p">(</span><span class="s1">&#39;ascii&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span>
+
+        <span class="n">header2</span> <span class="o">=</span> <span class="n">file_handle</span><span class="o">.</span><span class="n">readline</span><span class="p">()</span><span class="o">.</span><span class="n">decode</span><span class="p">(</span><span class="s1">&#39;ascii&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span>
+        <span class="n">qualities</span> <span class="o">=</span> <span class="n">file_handle</span><span class="o">.</span><span class="n">readline</span><span class="p">()</span><span class="o">.</span><span class="n">decode</span><span class="p">(</span><span class="s1">&#39;ascii&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span>
+
+        <span class="k">if</span> <span class="p">(</span><span class="n">header1</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">!=</span> <span class="s1">&#39;@&#39;</span><span class="p">)</span> <span class="ow">or</span> <span class="p">(</span><span class="n">header2</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">!=</span> <span class="s1">&#39;+&#39;</span><span class="p">):</span>
+            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span>
+                <span class="s2">&quot;The sequence and quality headers are not valid &#39;</span><span class="si">{}</span><span class="s2">&#39; != &#39;</span><span class="si">{}</span><span class="s2">&#39;&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">header1</span><span class="p">,</span> <span class="n">header2</span><span class="p">)</span>
+            <span class="p">)</span>
+
+        <span class="n">header1</span> <span class="o">=</span> <span class="n">header1</span><span class="p">[</span><span class="mi">1</span><span class="p">:]</span>
+        <span class="n">header2</span> <span class="o">=</span> <span class="n">header2</span><span class="p">[</span><span class="mi">1</span><span class="p">:]</span>
+
+        <span class="k">if</span> <span class="n">check_qual</span><span class="p">:</span>
+            <span class="n">qual_type</span> <span class="o">=</span> <span class="n">check_fastq_type</span><span class="p">(</span><span class="n">qualities</span><span class="p">)</span>
+            <span class="k">if</span> <span class="n">qual_type</span> <span class="ow">not</span> <span class="ow">in</span> <span class="p">(</span><span class="s1">&#39;sanger&#39;</span><span class="p">,</span> <span class="s1">&#39;illumina-1.8&#39;</span><span class="p">):</span>
+                <span class="k">raise</span> <span class="ne">TypeError</span><span class="p">(</span>
+                    <span class="s1">&#39;Quality scores are in &quot;</span><span class="si">{}</span><span class="s1">&quot; format. You must convert them to Sanger (phred33)&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">qual_type</span><span class="p">)</span>
+                <span class="p">)</span>
+            <span class="n">check_qual</span> <span class="o">=</span> <span class="kc">False</span>
+
+        <span class="k">if</span> <span class="n">num_qual</span><span class="p">:</span>
+            <span class="n">qualities</span> <span class="o">=</span> <span class="n">numpy</span><span class="o">.</span><span class="n">fromiter</span><span class="p">((</span><span class="nb">ord</span><span class="p">(</span><span class="n">x</span><span class="p">)</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">qualities</span><span class="p">),</span> <span class="n">numpy</span><span class="o">.</span><span class="n">int</span><span class="p">)</span> <span class="o">-</span> <span class="mi">33</span>
+
+        <span class="n">sequence_count</span> <span class="o">+=</span> <span class="mi">1</span>
+
+        <span class="k">yield</span> <span class="n">header1</span><span class="p">,</span> <span class="n">seq</span><span class="p">,</span> <span class="n">qualities</span>
+
+    <span class="n">LOG</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;Read </span><span class="si">%d</span><span class="s2"> fastq sequences&quot;</span><span class="p">,</span> <span class="n">sequence_count</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="load_fastq_rename"><a class="viewcode-back" href="../../../api/mgkit.io.fastq.html#mgkit.io.fastq.load_fastq_rename">[docs]</a><span class="k">def</span> <span class="nf">load_fastq_rename</span><span class="p">(</span><span class="n">file_handle</span><span class="p">,</span> <span class="n">num_qual</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">name_func</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    .. versionadded:: 0.3.3</span>
+
+<span class="sd">    Mirrors the same functionality in :func:`mgkit.io.fasta.load_fasta_rename`.</span>
+<span class="sd">    Renames the header of the sequences using *name_func*, which is called on</span>
+<span class="sd">    each header. By default, the behaviour is to keep the header to the left of</span>
+<span class="sd">    the first space (BLAST behaviour).</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="k">if</span> <span class="n">name_func</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="k">def</span> <span class="nf">name_func</span><span class="p">(</span><span class="n">header</span><span class="p">):</span> <span class="k">return</span> <span class="n">header</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">&#39; &#39;</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span>
+
+    <span class="k">for</span> <span class="n">header</span><span class="p">,</span> <span class="n">seq</span><span class="p">,</span> <span class="n">qual</span> <span class="ow">in</span> <span class="n">load_fastq</span><span class="p">(</span><span class="n">file_handle</span><span class="p">,</span> <span class="n">num_qual</span><span class="o">=</span><span class="n">num_qual</span><span class="p">):</span>
+        <span class="k">yield</span> <span class="n">name_func</span><span class="p">(</span><span class="n">header</span><span class="p">),</span> <span class="n">seq</span><span class="p">,</span> <span class="n">qual</span></div>
+</pre></div>
+
+           </div>
+           
+          </div>
+          <footer>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2013-2015, Francesco Rubino
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

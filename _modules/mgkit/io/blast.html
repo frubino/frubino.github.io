@@ -1,0 +1,550 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>mgkit.io.blast &mdash; MGKit: Metagenomic framework 0.5.0 documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+  <script type="text/javascript" src="../../../_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../../../" src="../../../_static/documentation_options.js"></script>
+        <script type="text/javascript" src="../../../_static/jquery.js"></script>
+        <script type="text/javascript" src="../../../_static/underscore.js"></script>
+        <script type="text/javascript" src="../../../_static/doctools.js"></script>
+        <script type="text/javascript" src="../../../_static/language_data.js"></script>
+        <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+        <script async="async" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+        <script type="text/x-mathjax-config">MathJax.Hub.Config({"tex2jax": {"inlineMath": [["$", "$"], ["\\(", "\\)"]], "processEscapes": true, "ignoreClass": "document", "processClass": "math|output_area"}})</script>
+    
+    <script type="text/javascript" src="../../../_static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="../../../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../../../_static/graphviz.css" type="text/css" />
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../../../index.html" class="icon icon-home"> MGKit: Metagenomic framework
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                0.5.0
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../introduction.html">Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../install.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../pipeline/index.html">Metagenomic Pipeline</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../scripts/index.html">Scripts Details</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../examples/index.html">Example Notebooks</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../gff.html">MGKit GFF Specifications</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../library.html">Library Reference</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../changes.html">Changes</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../index.html">MGKit: Metagenomic framework</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../../../index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="../../index.html">Module code</a> &raquo;</li>
+        
+          <li><a href="../../mgkit.html">mgkit</a> &raquo;</li>
+        
+      <li>mgkit.io.blast</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <h1>Source code for mgkit.io.blast</h1><div class="highlight"><pre>
+<span></span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">Blast routines and parsers</span>
+
+<span class="sd">&quot;&quot;&quot;</span>
+<span class="kn">import</span> <span class="nn">logging</span>
+<span class="kn">from</span> <span class="nn">builtins</span> <span class="kn">import</span> <span class="nb">range</span><span class="p">,</span> <span class="nb">zip</span>
+<span class="kn">from</span> <span class="nn">future.utils</span> <span class="kn">import</span> <span class="n">viewitems</span>
+<span class="kn">from</span> <span class="nn">.</span> <span class="kn">import</span> <span class="n">gff</span>
+<span class="kn">from</span> <span class="nn">.</span> <span class="kn">import</span> <span class="n">open_file</span>
+
+<span class="n">NUM_LINES</span> <span class="o">=</span> <span class="mi">10</span> <span class="o">**</span> <span class="mi">6</span>
+
+<span class="n">LOG</span> <span class="o">=</span> <span class="n">logging</span><span class="o">.</span><span class="n">getLogger</span><span class="p">(</span><span class="vm">__name__</span><span class="p">)</span>
+
+
+<div class="viewcode-block" id="add_blast_result_to_annotation"><a class="viewcode-back" href="../../../api/mgkit.io.blast.html#mgkit.io.blast.add_blast_result_to_annotation">[docs]</a><span class="k">def</span> <span class="nf">add_blast_result_to_annotation</span><span class="p">(</span><span class="n">annotation</span><span class="p">,</span> <span class="n">gi_taxa_dict</span><span class="p">,</span> <span class="n">taxonomy</span><span class="p">,</span>
+                                   <span class="n">threshold</span><span class="o">=</span><span class="mi">60</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    .. deprecated:: 0.4.0</span>
+
+<span class="sd">    Adds blast information to a GFF annotation.</span>
+
+<span class="sd">    :param annotation: GFF annotation object</span>
+<span class="sd">    :param dict gi_taxa_dict: dictionary returned by</span>
+<span class="sd">        :func:`parse_gi_taxa_table`.</span>
+<span class="sd">    :param taxonomy: Uniprot taxonomy, used to add the taxon name to the</span>
+<span class="sd">        annotation</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="k">try</span><span class="p">:</span>
+        <span class="n">hit</span> <span class="o">=</span> <span class="n">gi_taxa_dict</span><span class="p">[</span><span class="n">annotation</span><span class="o">.</span><span class="n">attributes</span><span class="o">.</span><span class="n">ko_idx</span><span class="p">]</span>
+    <span class="k">except</span> <span class="ne">KeyError</span><span class="p">:</span>
+        <span class="k">return</span>
+
+    <span class="k">if</span> <span class="n">hit</span><span class="o">.</span><span class="n">score</span> <span class="o">&lt;=</span> <span class="n">threshold</span><span class="p">:</span>
+        <span class="k">return</span>
+
+    <span class="k">try</span><span class="p">:</span>
+        <span class="c1"># skips if the ID is not in the Uniprot Taxonomy</span>
+        <span class="n">annotation</span><span class="o">.</span><span class="n">attributes</span><span class="o">.</span><span class="n">blast_taxon</span> <span class="o">=</span> <span class="n">taxonomy</span><span class="p">[</span><span class="n">hit</span><span class="o">.</span><span class="n">taxon_id</span><span class="p">]</span><span class="o">.</span><span class="n">s_name</span>
+        <span class="n">annotation</span><span class="o">.</span><span class="n">attributes</span><span class="o">.</span><span class="n">blast_taxon_idx</span> <span class="o">=</span> <span class="n">hit</span><span class="o">.</span><span class="n">taxon_id</span>
+    <span class="k">except</span> <span class="ne">KeyError</span><span class="p">:</span>
+        <span class="k">return</span></div>
+
+
+<div class="viewcode-block" id="parse_blast_tab"><a class="viewcode-back" href="../../../api/mgkit.io.blast.html#mgkit.io.blast.parse_blast_tab">[docs]</a><span class="k">def</span> <span class="nf">parse_blast_tab</span><span class="p">(</span><span class="n">file_handle</span><span class="p">,</span> <span class="n">seq_id</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">ret_col</span><span class="o">=</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">6</span><span class="p">,</span> <span class="mi">7</span><span class="p">,</span> <span class="mi">11</span><span class="p">),</span>
+                    <span class="n">key_func</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">value_funcs</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    .. versionadded:: 0.1.12</span>
+
+<span class="sd">    Parses blast output tab format, returning for each line a key (the query</span>
+<span class="sd">    id) and the columns requested in a tuple.</span>
+
+<span class="sd">    Arguments:</span>
+<span class="sd">        file_handle (file): file name or file handle for the blast ouput</span>
+<span class="sd">        seq_id (int): index for the column which has the query id</span>
+<span class="sd">        ret_col (list, None): list of indexes for the columns to be returned or</span>
+<span class="sd">            *None* if all columns must be returned</span>
+<span class="sd">        key_func (None, func): function to transform the query id value in the</span>
+<span class="sd">            key returned. If *None*, the query id is used</span>
+<span class="sd">        value_funcs (None, list): list of functions to transform the value of</span>
+<span class="sd">            all the requested columns. If *None* the values are not converted</span>
+
+<span class="sd">    Yields:</span>
+<span class="sd">        tuple: iterator of tuples with the first element being the query id</span>
+<span class="sd">        after key_func is applied, if requested and the second element of</span>
+<span class="sd">        the tuple is a tuple with the requested columns *ret_col*</span>
+
+<span class="sd">    .. table:: BLAST+ used with `-outfmt 6`, default columns</span>
+
+<span class="sd">        +--------------+--------------------------------+</span>
+<span class="sd">        | column index |          description           |</span>
+<span class="sd">        +==============+================================+</span>
+<span class="sd">        |            0 | query name                     |</span>
+<span class="sd">        +--------------+--------------------------------+</span>
+<span class="sd">        |            1 | subject name                   |</span>
+<span class="sd">        +--------------+--------------------------------+</span>
+<span class="sd">        |            2 | percent identities             |</span>
+<span class="sd">        +--------------+--------------------------------+</span>
+<span class="sd">        |            3 | aligned length                 |</span>
+<span class="sd">        +--------------+--------------------------------+</span>
+<span class="sd">        |            4 | number of mismatched positions |</span>
+<span class="sd">        +--------------+--------------------------------+</span>
+<span class="sd">        |            5 | number of gap positions        |</span>
+<span class="sd">        +--------------+--------------------------------+</span>
+<span class="sd">        |            6 | query sequence start           |</span>
+<span class="sd">        +--------------+--------------------------------+</span>
+<span class="sd">        |            7 | query sequence end             |</span>
+<span class="sd">        +--------------+--------------------------------+</span>
+<span class="sd">        |            8 | subject sequence start         |</span>
+<span class="sd">        +--------------+--------------------------------+</span>
+<span class="sd">        |            9 | subject sequence end           |</span>
+<span class="sd">        +--------------+--------------------------------+</span>
+<span class="sd">        |           10 | e-value                        |</span>
+<span class="sd">        +--------------+--------------------------------+</span>
+<span class="sd">        |           11 | bit score                      |</span>
+<span class="sd">        +--------------+--------------------------------+</span>
+
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="k">if</span> <span class="n">key_func</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="k">def</span> <span class="nf">key_func</span><span class="p">(</span><span class="n">x</span><span class="p">):</span> <span class="k">return</span> <span class="n">x</span>
+
+    <span class="k">if</span> <span class="n">ret_col</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="n">ret_col</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="mi">12</span><span class="p">))</span>
+
+    <span class="k">if</span> <span class="n">value_funcs</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="n">value_funcs</span> <span class="o">=</span> <span class="p">[</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">x</span> <span class="k">for</span> <span class="n">y</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">ret_col</span><span class="p">))]</span>
+
+    <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">file_handle</span><span class="p">,</span> <span class="nb">str</span><span class="p">):</span>
+        <span class="n">file_handle</span> <span class="o">=</span> <span class="n">open_file</span><span class="p">(</span><span class="n">file_handle</span><span class="p">,</span> <span class="s1">&#39;r&#39;</span><span class="p">)</span>
+
+    <span class="n">LOG</span><span class="o">.</span><span class="n">info</span><span class="p">(</span>
+        <span class="s2">&quot;Reading BLAST results from file (</span><span class="si">%s</span><span class="s2">)&quot;</span><span class="p">,</span>
+        <span class="nb">getattr</span><span class="p">(</span><span class="n">file_handle</span><span class="p">,</span> <span class="s1">&#39;name&#39;</span><span class="p">,</span> <span class="nb">repr</span><span class="p">(</span><span class="n">file_handle</span><span class="p">))</span>
+    <span class="p">)</span>
+
+    <span class="n">lineno</span> <span class="o">=</span> <span class="mi">0</span>
+    <span class="n">comments</span> <span class="o">=</span> <span class="mi">0</span>
+
+    <span class="k">for</span> <span class="n">lineno</span><span class="p">,</span> <span class="n">line</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">file_handle</span><span class="p">):</span>
+        <span class="n">line</span> <span class="o">=</span> <span class="n">line</span><span class="o">.</span><span class="n">decode</span><span class="p">(</span><span class="s1">&#39;ascii&#39;</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">line</span><span class="o">.</span><span class="n">startswith</span><span class="p">(</span><span class="s1">&#39;#&#39;</span><span class="p">):</span>
+            <span class="n">comments</span> <span class="o">+=</span> <span class="mi">1</span>
+            <span class="k">continue</span>
+
+        <span class="n">line</span> <span class="o">=</span> <span class="n">line</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span>
+
+        <span class="k">if</span> <span class="ow">not</span> <span class="n">line</span><span class="p">:</span>
+            <span class="k">continue</span>
+
+        <span class="n">line</span> <span class="o">=</span> <span class="n">line</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">&#39;</span><span class="se">\t</span><span class="s1">&#39;</span><span class="p">)</span>
+        <span class="n">key</span> <span class="o">=</span> <span class="n">key_func</span><span class="p">(</span><span class="n">line</span><span class="p">[</span><span class="n">seq_id</span><span class="p">])</span>
+        <span class="n">values</span> <span class="o">=</span> <span class="nb">tuple</span><span class="p">(</span>
+            <span class="n">func</span><span class="p">(</span><span class="n">line</span><span class="p">[</span><span class="n">index</span><span class="p">])</span>
+            <span class="k">for</span> <span class="n">index</span><span class="p">,</span> <span class="n">func</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="n">ret_col</span><span class="p">,</span> <span class="n">value_funcs</span><span class="p">)</span>
+        <span class="p">)</span>
+
+        <span class="k">yield</span> <span class="n">key</span><span class="p">,</span> <span class="n">values</span>
+
+    <span class="n">LOG</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s1">&#39;Read </span><span class="si">%d</span><span class="s1"> BLAST records&#39;</span><span class="p">,</span> <span class="n">lineno</span> <span class="o">+</span> <span class="mi">1</span> <span class="o">-</span> <span class="n">comments</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="parse_uniprot_blast"><a class="viewcode-back" href="../../../api/mgkit.io.blast.html#mgkit.io.blast.parse_uniprot_blast">[docs]</a><span class="k">def</span> <span class="nf">parse_uniprot_blast</span><span class="p">(</span><span class="n">file_handle</span><span class="p">,</span> <span class="n">bitscore</span><span class="o">=</span><span class="mi">40</span><span class="p">,</span> <span class="n">db</span><span class="o">=</span><span class="s1">&#39;UNIPROT-SP&#39;</span><span class="p">,</span> <span class="n">dbq</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span>
+                        <span class="n">name_func</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">feat_type</span><span class="o">=</span><span class="s1">&#39;CDS&#39;</span><span class="p">,</span> <span class="n">seq_lengths</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    .. versionadded:: 0.1.12</span>
+
+<span class="sd">    .. versionchanged:: 0.1.13</span>
+<span class="sd">        added *name_func* argument</span>
+
+<span class="sd">    .. versionchanged:: 0.2.1</span>
+<span class="sd">        added *feat_type*</span>
+
+<span class="sd">    .. versionchanged:: 0.2.3</span>
+<span class="sd">        added *seq_lengths* and added subject *start* and *end* and *e-value*</span>
+
+<span class="sd">    Parses BLAST results in tabular format using :func:`parse_blast_tab`,</span>
+<span class="sd">    applying a basic bitscore filter. Returns the annotations associated with</span>
+<span class="sd">    each BLAST hit.</span>
+
+<span class="sd">    Arguments:</span>
+<span class="sd">        file_handle (str, file): file name or open file handle</span>
+<span class="sd">        bitscore (int, float): the minimum bitscore for an annotation to be</span>
+<span class="sd">            accepted</span>
+<span class="sd">        db (str): database used</span>
+<span class="sd">        dbq (int): an index indicating the quality of the sequence database</span>
+<span class="sd">            used; this value is used in the filtering of annotations</span>
+<span class="sd">        name_func (func): function to convert the name of the database</span>
+<span class="sd">            sequences. Defaults to `lambda x: x.split(&#39;|&#39;)[1]`, which can be</span>
+<span class="sd">            be used with fasta files provided by Uniprot</span>
+<span class="sd">        feat_type (str): feature type in the GFF</span>
+<span class="sd">        seq_lengths (dict): dictionary with the sequences lengths, used to</span>
+<span class="sd">            deduct the frame of the &#39;-&#39; strand</span>
+
+<span class="sd">    Yields:</span>
+<span class="sd">        Annotation: instances of :class:`mgkit.io.gff.Annotation` instance of</span>
+<span class="sd">        each BLAST hit.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="k">if</span> <span class="n">name_func</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="k">def</span> <span class="nf">name_func</span><span class="p">(</span><span class="n">x</span><span class="p">):</span> <span class="k">return</span> <span class="n">x</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">&#39;|&#39;</span><span class="p">)[</span><span class="mi">1</span><span class="p">]</span>
+
+    <span class="n">ret_col</span> <span class="o">=</span> <span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">6</span><span class="p">,</span> <span class="mi">7</span><span class="p">,</span> <span class="mi">8</span><span class="p">,</span> <span class="mi">9</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="mi">11</span><span class="p">)</span>
+
+    <span class="c1"># the second function extract the Uniprot ID from the sequence header</span>
+    <span class="n">value_funcs</span> <span class="o">=</span> <span class="p">(</span>
+        <span class="nb">str</span><span class="p">,</span>
+        <span class="n">name_func</span><span class="p">,</span>
+        <span class="nb">float</span><span class="p">,</span>
+        <span class="nb">int</span><span class="p">,</span>
+        <span class="nb">int</span><span class="p">,</span>
+        <span class="nb">int</span><span class="p">,</span>
+        <span class="nb">int</span><span class="p">,</span>
+        <span class="nb">float</span><span class="p">,</span>
+        <span class="nb">float</span>
+    <span class="p">)</span>
+
+    <span class="k">for</span> <span class="n">seq_id</span><span class="p">,</span> <span class="n">hit</span> <span class="ow">in</span> <span class="n">parse_blast_tab</span><span class="p">(</span><span class="n">file_handle</span><span class="p">,</span> <span class="n">ret_col</span><span class="o">=</span><span class="n">ret_col</span><span class="p">,</span>
+                                       <span class="n">value_funcs</span><span class="o">=</span><span class="n">value_funcs</span><span class="p">):</span>
+        <span class="k">if</span> <span class="n">hit</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">&lt;</span> <span class="n">bitscore</span><span class="p">:</span>
+            <span class="k">continue</span>
+
+        <span class="n">seq_len</span> <span class="o">=</span> <span class="kc">None</span> <span class="k">if</span> <span class="n">seq_lengths</span> <span class="ow">is</span> <span class="kc">None</span> <span class="k">else</span> <span class="n">seq_lengths</span><span class="p">[</span><span class="n">seq_id</span><span class="p">]</span>
+
+        <span class="k">yield</span> <span class="n">gff</span><span class="o">.</span><span class="n">from_nuc_blast</span><span class="p">(</span><span class="n">hit</span><span class="p">,</span> <span class="n">db</span><span class="o">=</span><span class="n">db</span><span class="p">,</span> <span class="n">dbq</span><span class="o">=</span><span class="n">dbq</span><span class="p">,</span> <span class="n">feat_type</span><span class="o">=</span><span class="n">feat_type</span><span class="p">,</span>
+                                 <span class="n">seq_len</span><span class="o">=</span><span class="n">seq_len</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="parse_fragment_blast"><a class="viewcode-back" href="../../../api/mgkit.io.blast.html#mgkit.io.blast.parse_fragment_blast">[docs]</a><span class="k">def</span> <span class="nf">parse_fragment_blast</span><span class="p">(</span><span class="n">file_handle</span><span class="p">,</span> <span class="n">bitscore</span><span class="o">=</span><span class="mf">40.0</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    .. versionadded:: 0.1.13</span>
+
+<span class="sd">    Parse the output of a BLAST output where the sequences are the single</span>
+<span class="sd">    annotations, so the sequence names are the *uid* of the annotations.</span>
+
+<span class="sd">    The only returned values are the best hits, maxed by bitscore and identity.</span>
+
+<span class="sd">    Arguments:</span>
+<span class="sd">        file_handle (str, file): file name or open file handle</span>
+<span class="sd">        bitscore (float): minimum bitscore for accepting a hit</span>
+
+<span class="sd">    Yields:</span>
+<span class="sd">        tuple: a tuple whose first element is the *uid* (the sequence name) and</span>
+<span class="sd">        the second is the a list of tuples whose first element is the GID (NCBI</span>
+<span class="sd">        identifier), the second one is the identity and the third is the</span>
+<span class="sd">        bitscore of the hit.</span>
+
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="n">value_funcs</span> <span class="o">=</span> <span class="p">(</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">x</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">&#39;|&#39;</span><span class="p">)[</span><span class="mi">1</span><span class="p">],</span> <span class="nb">float</span><span class="p">,</span> <span class="nb">float</span><span class="p">)</span>
+
+    <span class="n">iterator</span> <span class="o">=</span> <span class="n">parse_blast_tab</span><span class="p">(</span>
+        <span class="n">file_handle</span><span class="p">,</span>
+        <span class="n">ret_col</span><span class="o">=</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">11</span><span class="p">),</span>
+        <span class="n">value_funcs</span><span class="o">=</span><span class="n">value_funcs</span>
+    <span class="p">)</span>
+
+    <span class="n">uidmap</span> <span class="o">=</span> <span class="p">{}</span>
+
+    <span class="k">for</span> <span class="n">uid</span><span class="p">,</span> <span class="n">hit</span> <span class="ow">in</span> <span class="n">iterator</span><span class="p">:</span>
+
+        <span class="k">if</span> <span class="n">hit</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">&lt;</span> <span class="n">bitscore</span><span class="p">:</span>
+            <span class="k">continue</span>
+
+        <span class="k">try</span><span class="p">:</span>
+            <span class="n">uidmap</span><span class="p">[</span><span class="n">uid</span><span class="p">]</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">hit</span><span class="p">)</span>
+        <span class="k">except</span> <span class="ne">KeyError</span><span class="p">:</span>
+            <span class="n">uidmap</span><span class="p">[</span><span class="n">uid</span><span class="p">]</span> <span class="o">=</span> <span class="p">[</span><span class="n">hit</span><span class="p">]</span>
+
+    <span class="k">for</span> <span class="n">uid</span><span class="p">,</span> <span class="n">hits</span> <span class="ow">in</span> <span class="n">viewitems</span><span class="p">(</span><span class="n">uidmap</span><span class="p">):</span>
+        <span class="c1"># returns the hit with the max bitscore and max identity</span>
+        <span class="k">yield</span> <span class="n">uid</span><span class="p">,</span> <span class="n">hits</span></div>
+
+
+<div class="viewcode-block" id="parse_accession_taxa_table"><a class="viewcode-back" href="../../../api/mgkit.io.blast.html#mgkit.io.blast.parse_accession_taxa_table">[docs]</a><span class="k">def</span> <span class="nf">parse_accession_taxa_table</span><span class="p">(</span><span class="n">file_handle</span><span class="p">,</span> <span class="n">acc_ids</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">key</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">value</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span>
+                               <span class="n">num_lines</span><span class="o">=</span><span class="n">NUM_LINES</span><span class="p">,</span> <span class="n">no_zero</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    .. versionadded:: 0.2.5</span>
+
+<span class="sd">    .. versionchanged:: 0.3.0</span>
+<span class="sd">        added *no_zero*</span>
+
+<span class="sd">    This function superseeds :func:`parse_gi_taxa_table`, since NCBI is</span>
+<span class="sd">    deprecating the GIDs in favor of accessions like *X53318*. The new file can</span>
+<span class="sd">    be found at the NCBI `ftp://ftp.ncbi.nih.gov/pub/taxonomy/accession2taxid`,</span>
+<span class="sd">    for DNA sequences (*nt* DB) *nucl_gb.accession2taxid.gz*.</span>
+
+<span class="sd">    The file contains 4 columns, the first one is the accession without its</span>
+<span class="sd">    version, the second one includes the version, the third column is the</span>
+<span class="sd">    taxonomic identifier and the fourth is either the old GID or **na**.</span>
+
+<span class="sd">    The column used as key is the *second*, since by default the fasta headers</span>
+<span class="sd">    used in NCBI DBs use the versioned identifier. To use the GID as key, the</span>
+<span class="sd">    *key* parameter can be set to 3, but if no identifier is found (*na* as per</span>
+<span class="sd">    the file README), the line is skipped.</span>
+
+<span class="sd">    Arguments:</span>
+<span class="sd">        file_handle (str, file): file name or open file handle</span>
+<span class="sd">        acc_ids (None, list): if it&#39;s not `None` only the keys included in the</span>
+<span class="sd">            passed `acc_ids` list will be returned</span>
+<span class="sd">        key (int): 0-based index for the column to use as accession. Defaults</span>
+<span class="sd">            to the versioned accession that is used in GenBank fasta files.</span>
+<span class="sd">        num_lines (None, int): number of which a message is logged. If None,</span>
+<span class="sd">            no message is logged</span>
+<span class="sd">        no_zero (bool): if True (default) a key with taxon_id of 0 is not yield</span>
+
+<span class="sd">    .. note::</span>
+
+<span class="sd">        GIDs are being phased out in September 2016:</span>
+<span class="sd">        http://www.ncbi.nlm.nih.gov/news/03-02-2016-phase-out-of-GI-numbers/</span>
+
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="n">file_handle</span> <span class="o">=</span> <span class="n">open_file</span><span class="p">(</span><span class="n">file_handle</span><span class="p">,</span> <span class="s1">&#39;rb&#39;</span><span class="p">)</span>
+
+    <span class="n">LOG</span><span class="o">.</span><span class="n">info</span><span class="p">(</span>
+        <span class="s2">&quot;Reading taxonomic information from file (</span><span class="si">%s</span><span class="s2">)&quot;</span><span class="p">,</span>
+        <span class="nb">getattr</span><span class="p">(</span><span class="n">file_handle</span><span class="p">,</span> <span class="s1">&#39;name&#39;</span><span class="p">,</span> <span class="nb">repr</span><span class="p">(</span><span class="n">file_handle</span><span class="p">))</span>
+    <span class="p">)</span>
+
+    <span class="k">if</span> <span class="n">acc_ids</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="n">acc_ids</span> <span class="o">=</span> <span class="nb">set</span><span class="p">(</span><span class="n">acc_ids</span><span class="p">)</span>
+
+    <span class="n">zero_acc</span> <span class="o">=</span> <span class="mi">0</span>
+
+    <span class="n">idx</span> <span class="o">=</span> <span class="mi">0</span>
+
+    <span class="k">for</span> <span class="n">idx</span><span class="p">,</span> <span class="n">line</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">file_handle</span><span class="p">):</span>
+        <span class="n">line</span> <span class="o">=</span> <span class="n">line</span><span class="o">.</span><span class="n">decode</span><span class="p">(</span><span class="s1">&#39;ascii&#39;</span><span class="p">)</span>
+        <span class="c1"># skip header</span>
+        <span class="k">if</span> <span class="n">line</span><span class="o">.</span><span class="n">startswith</span><span class="p">(</span><span class="s1">&#39;accession&#39;</span><span class="p">):</span>
+            <span class="k">continue</span>
+
+        <span class="k">if</span> <span class="p">(</span><span class="n">num_lines</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">)</span> <span class="ow">and</span> <span class="p">((</span><span class="n">idx</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span> <span class="o">%</span> <span class="n">num_lines</span> <span class="o">==</span> <span class="mi">0</span><span class="p">):</span>
+            <span class="n">LOG</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;Parsed </span><span class="si">%d</span><span class="s2"> lines&quot;</span><span class="p">,</span> <span class="n">idx</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span>
+
+        <span class="n">line</span> <span class="o">=</span> <span class="n">line</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">&#39;</span><span class="se">\t</span><span class="s1">&#39;</span><span class="p">)</span>
+
+        <span class="n">acc_id</span> <span class="o">=</span> <span class="n">line</span><span class="p">[</span><span class="n">key</span><span class="p">]</span>
+
+        <span class="k">if</span> <span class="p">(</span><span class="n">acc_ids</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">)</span> <span class="ow">and</span> <span class="p">(</span><span class="n">acc_id</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">acc_ids</span><span class="p">):</span>
+            <span class="k">continue</span>
+
+        <span class="c1"># this is the case if the column used as key is the fourth (GID) and</span>
+        <span class="c1"># the GID is not available for that accession. The best case is to skip</span>
+        <span class="k">if</span> <span class="n">acc_id</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span> <span class="o">==</span> <span class="s1">&#39;na&#39;</span><span class="p">:</span>
+            <span class="k">continue</span>
+
+        <span class="n">taxon_id</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">line</span><span class="p">[</span><span class="n">value</span><span class="p">])</span>
+
+        <span class="c1"># in cases where 0 is the organism (doesn&#39;t exist in the taxonomy)</span>
+        <span class="k">if</span> <span class="n">no_zero</span> <span class="ow">and</span> <span class="p">(</span><span class="n">taxon_id</span> <span class="o">==</span> <span class="mi">0</span><span class="p">):</span>
+            <span class="c1"># LOG.warning(&quot;accession &#39;%s&#39; has taxon_id 0&quot;, acc_id)</span>
+            <span class="n">zero_acc</span> <span class="o">+=</span> <span class="mi">1</span>
+            <span class="k">continue</span>
+
+        <span class="k">yield</span> <span class="n">acc_id</span><span class="p">,</span> <span class="n">taxon_id</span>
+
+    <span class="k">if</span> <span class="n">no_zero</span> <span class="ow">and</span> <span class="p">(</span><span class="n">zero_acc</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">):</span>
+        <span class="n">LOG</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="s2">&quot;</span><span class="si">%d</span><span class="s2"> accessions have taxon_id 0&quot;</span><span class="p">,</span> <span class="n">zero_acc</span><span class="p">)</span>
+
+    <span class="k">if</span> <span class="n">idx</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+        <span class="n">LOG</span><span class="o">.</span><span class="n">error</span><span class="p">(</span><span class="s2">&quot;The file passed is empty&quot;</span><span class="p">)</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">LOG</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;Parsed </span><span class="si">%d</span><span class="s2"> lines&quot;</span><span class="p">,</span> <span class="n">idx</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span></div>
+</pre></div>
+
+           </div>
+           
+          </div>
+          <footer>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2013-2015, Francesco Rubino
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

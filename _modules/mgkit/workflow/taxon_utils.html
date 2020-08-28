@@ -1,0 +1,953 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>mgkit.workflow.taxon_utils &mdash; MGKit: Metagenomic framework 0.5.0 documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+  <script type="text/javascript" src="../../../_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../../../" src="../../../_static/documentation_options.js"></script>
+        <script type="text/javascript" src="../../../_static/jquery.js"></script>
+        <script type="text/javascript" src="../../../_static/underscore.js"></script>
+        <script type="text/javascript" src="../../../_static/doctools.js"></script>
+        <script type="text/javascript" src="../../../_static/language_data.js"></script>
+        <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+        <script async="async" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+        <script type="text/x-mathjax-config">MathJax.Hub.Config({"tex2jax": {"inlineMath": [["$", "$"], ["\\(", "\\)"]], "processEscapes": true, "ignoreClass": "document", "processClass": "math|output_area"}})</script>
+    
+    <script type="text/javascript" src="../../../_static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="../../../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../../../_static/graphviz.css" type="text/css" />
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../../../index.html" class="icon icon-home"> MGKit: Metagenomic framework
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                0.5.0
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../introduction.html">Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../install.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../pipeline/index.html">Metagenomic Pipeline</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../scripts/index.html">Scripts Details</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../examples/index.html">Example Notebooks</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../gff.html">MGKit GFF Specifications</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../library.html">Library Reference</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../changes.html">Changes</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../index.html">MGKit: Metagenomic framework</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../../../index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="../../index.html">Module code</a> &raquo;</li>
+        
+          <li><a href="../../mgkit.html">mgkit</a> &raquo;</li>
+        
+      <li>mgkit.workflow.taxon_utils</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <h1>Source code for mgkit.workflow.taxon_utils</h1><div class="highlight"><pre>
+<span></span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">The script contains commands used to access functionality related to</span>
+<span class="sd">taxonomy, without the need to write ad-hoc code for functionality that</span>
+<span class="sd">can be part of a workflow. One example is access to the the last common</span>
+<span class="sd">ancestor function contained in the :mod:`mgkit.taxon`.</span>
+
+<span class="sd">Last Common Ancestor (lca and lca_line)</span>
+<span class="sd">***************************************</span>
+
+<span class="sd">These commands expose the functionality of</span>
+<span class="sd">:func:`last_common_ancestor_multiple`, making it accessible via the command</span>
+<span class="sd">line. They differ in the input file format and the choice of output files.</span>
+
+<span class="sd">the *lca* command can be used to define the last common ancestor of contigs</span>
+<span class="sd">from the annotation in a GFF file. The command uses the *taxon_ids* from all</span>
+<span class="sd">annotations belonging to a contig/sequence, if they have a **bitscore** higher</span>
+<span class="sd">or equal to the one passed (50 by default). The default output of the command</span>
+<span class="sd">is a tab separated file where the first column is the contig/sequence name,</span>
+<span class="sd">the taxon_id of the last common ancestor, its scientific/common name and its</span>
+<span class="sd">lineage.</span>
+
+<span class="sd">For example::</span>
+
+<span class="sd">    contig_21   172788  uncultured phototrophic eukaryote   cellular organisms,environmental samples</span>
+
+<span class="sd">If the *-r* is used, by passing the fasta file containing the nucleotide</span>
+<span class="sd">sequences the output file is a GFF where for each an annotation for the full</span>
+<span class="sd">contig length contains the same information of the tab separated file format.</span>
+
+<span class="sd">The **lca_line** command accept as input a file where each line consist of a</span>
+<span class="sd">list of taxon_ids. The separator for the list can be changed and it defaults to</span>
+<span class="sd">TAB. The last common ancestor for all taxa on a line is searched. The ouput of</span>
+<span class="sd">this command is the same as the tab separated file of the **lca** command, with</span>
+<span class="sd">the difference that instead of the first column, which in this command becames</span>
+<span class="sd">a list of all *taxon_ids* that were used to find the last common ancestor for</span>
+<span class="sd">that line. The list of *taxon_ids* is separated by semicolon &quot;;&quot;.</span>
+
+<span class="sd">.. note::</span>
+
+<span class="sd">    Both also accept the *-n* option, to report the config/line and the</span>
+<span class="sd">    taxon_ids that had no common ancestors. These are treated as errors and do</span>
+<span class="sd">    not appear in the output file.</span>
+
+<span class="sd">Krona Output</span>
+<span class="sd">############</span>
+
+<span class="sd">.. versionadded:: 0.3.0</span>
+
+<span class="sd">The *lca* command supports the writing of a file compatible with Krona. The</span>
+<span class="sd">output file can be used with the *ktImportText/ImportText.pl* script included</span>
+<span class="sd">with `KronaTools &lt;https://github.com/marbl/Krona/wiki&gt;`_. Specifically, the</span>
+<span class="sd">output from *taxon_utils* will be a file with all the lineages found (tab</span>
+<span class="sd">separated), that can be used with::</span>
+
+<span class="sd">    $ ktImportText -q taxon_utils_ouput</span>
+
+<span class="sd">Note the use of *-q* to make the script count the lineages. Sequences with no</span>
+<span class="sd">LCA found will be marked as *No LCA* in the graph, the *-n* is not required.</span>
+
+<span class="sd">.. note::</span>
+
+<span class="sd">    Please note that the output won&#39;t include any sequence that didn&#39;t have a</span>
+<span class="sd">    hit with the software used. If that&#39;s important, the **-kt** option can be</span>
+<span class="sd">    used to add a number of *Unknown* lines at the end, to read the total</span>
+<span class="sd">    supplied.</span>
+
+<span class="sd">Filter by Taxon</span>
+<span class="sd">***************</span>
+
+<span class="sd">The **filter** command of this script allows to filter a GFF file using the</span>
+<span class="sd">*taxon_id* attribute to include only some annotations, or exclude some. The</span>
+<span class="sd">filter is based on the `mgkit.taxon.is_ancestor` function, and the</span>
+<span class="sd">`mgkit.filter.taxon.filter_taxon_by_id_list`. It can also filter a table (tab</span>
+<span class="sd">separated values) when the first element is an ID and the second is a taxon_id.</span>
+<span class="sd">An example of a table of this sort is the output of the `download-ncbi-taxa.sh`</span>
+<span class="sd">and `download-uniprot-taxa.sh`, where each accession of a database is associated</span>
+<span class="sd">to a taxon_id.</span>
+
+<span class="sd">Multiple taxon_id can be passed, either for inclusion or exclusion. If both</span>
+<span class="sd">exclusion and inclusion is used, the first check is on the inclusion and then on</span>
+<span class="sd">the exclusion. In alternative to passing taxon_id, taxon_names can be passed,</span>
+<span class="sd">with values such as &#39;cellular organisms&#39; that needs to be quoted. Example::</span>
+
+<span class="sd">    $ taxon-utils filter -i 2 -in archaea -en prevotella -t taxonomy.pickle in.gff out.gff</span>
+
+<span class="sd">Which will keep only line that are from Bacteria (taxon_id=2) and exclude those</span>
+<span class="sd">from the genus *Prevotella*. It will be also include Archaea.</span>
+
+<span class="sd">Multiple inclusion and exclusion flags can be put::</span>
+
+<span class="sd">    $ taxon-utils filter -i 2 -i 2172 -t taxonomy in.gff out.gff</span>
+
+<span class="sd">In particular, the inclusion flag is tested first and then the exclusion is</span>
+<span class="sd">tested. So a line like this one:</span>
+
+<span class="sd">.. code-block:: bash</span>
+
+<span class="sd">    printf &quot;TEST\\t838\\nTEST\\t1485&quot; | taxon-utils filter -p -t taxonomy.pickle -i 2 -i 1485 -e 838</span>
+
+<span class="sd">Will produce **TEST 1485**, because both Prevotella (838) and Clostridium (1485)</span>
+<span class="sd">are Bacteria (2) OR Prevotella, but Prevotella must be excluded according to</span>
+<span class="sd">the exclusion option. This line also illustrate that a tab-separated file, where</span>
+<span class="sd">the second column contains taxon IDs, can be filtered. In particular it can be</span>
+<span class="sd">applied to files produced by `download-ncbi-taxa.sh` or</span>
+<span class="sd">`download-uniprot-taxa.sh` (see :ref:`download-taxonomy`).</span>
+
+<span class="sd">.. warning::</span>
+
+<span class="sd">    Annotations with no taxon_id are not included in the output of both filters</span>
+
+<span class="sd">Convert Taxa Tables to HDF5</span>
+<span class="sd">***************************</span>
+
+<span class="sd">This command is used to convert the taxa tables download from Uniprot and NCBI,</span>
+<span class="sd">using the scripts mentioned in :ref:`download-data`,</span>
+<span class="sd">`download-uniprot-taxa.sh` and `download-ncbi-taxa` into a HDF5 file that can</span>
+<span class="sd">be used with the *addtaxa* command in :ref:`add-gff-info`.</span>
+
+<span class="sd">The advantage is a faster lookup of the IDs. The other is a smaller memory</span>
+<span class="sd">footprint when a great number of annotations are kept in memory.</span>
+
+<span class="sd">Extract taxonomy</span>
+<span class="sd">****************</span>
+
+<span class="sd">This command allows to print the taxonomy in a file created with MGKit. The</span>
+<span class="sd">default behaviour is to print the scientific name, taxon_id, rank and lineage</span>
+<span class="sd">(only ranked taxa) in a tab separated file (or standard output).</span>
+
+<span class="sd">Besides the option to change the column separator, it is possible to only</span>
+<span class="sd">print specific taxa (case insensitive search, but need the correct name) and</span>
+<span class="sd">print headers for the output table.</span>
+
+<span class="sd">Changes</span>
+<span class="sd">*******</span>
+
+<span class="sd">.. versionchanged:: 0.5.0</span>
+<span class="sd">    added *get* command to taxon-utils to print the taxonomy or search in it</span>
+
+<span class="sd">.. versionchanged:: 0.3.4</span>
+<span class="sd">    changed interface and behaviour for *filter*, also now can filter tables;</span>
+<span class="sd">    *lca* has changed the interface and allows the output of a 2 column table</span>
+
+<span class="sd">.. versionchanged:: 0.3.1</span>
+<span class="sd">    added *to_hdf* command</span>
+
+<span class="sd">.. versionchanged:: 0.3.1</span>
+<span class="sd">    added *-j* option to *lca*, which outputs a JSON file with the LCA results</span>
+
+<span class="sd">.. versionchanged:: 0.3.0</span>
+<span class="sd">    added *-k* and *-kt* options for Krona output, lineage now includes the LCA</span>
+<span class="sd">    also added *-a* option to select between lineages with only ranked taxa.</span>
+<span class="sd">    Now it defaults to all components.</span>
+
+<span class="sd">.. versionchanged:: 0.2.6</span>
+<span class="sd">    added *feat-type* option to *lca* command, added phylum output to nolca</span>
+
+<span class="sd">.. versionadded:: 0.2.5</span>
+
+<span class="sd">&quot;&quot;&quot;</span>
+<span class="kn">from</span> <span class="nn">__future__</span> <span class="kn">import</span> <span class="n">division</span>
+<span class="kn">from</span> <span class="nn">builtins</span> <span class="kn">import</span> <span class="nb">range</span>
+<span class="kn">from</span> <span class="nn">future.utils</span> <span class="kn">import</span> <span class="n">viewvalues</span>
+<span class="kn">import</span> <span class="nn">logging</span>
+<span class="kn">import</span> <span class="nn">functools</span>
+<span class="kn">import</span> <span class="nn">json</span>
+<span class="kn">import</span> <span class="nn">click</span>
+<span class="kn">import</span> <span class="nn">mgkit</span>
+<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="kn">from</span> <span class="nn">tqdm</span> <span class="kn">import</span> <span class="n">tqdm</span>
+<span class="kn">from</span> <span class="nn">.</span> <span class="kn">import</span> <span class="n">utils</span>
+<span class="kn">from</span> <span class="nn">mgkit.io</span> <span class="kn">import</span> <span class="n">gff</span><span class="p">,</span> <span class="n">fasta</span><span class="p">,</span> <span class="n">blast</span>
+<span class="kn">from</span> <span class="nn">mgkit</span> <span class="kn">import</span> <span class="n">taxon</span>
+<span class="kn">from</span> <span class="nn">mgkit.simple_cache</span> <span class="kn">import</span> <span class="n">memoize</span>
+<span class="kn">from</span> <span class="nn">mgkit.filter.taxon</span> <span class="kn">import</span> <span class="n">filter_taxon_by_id_list</span>
+
+
+<span class="n">LOG</span> <span class="o">=</span> <span class="n">logging</span><span class="o">.</span><span class="n">getLogger</span><span class="p">(</span><span class="vm">__name__</span><span class="p">)</span>
+
+
+<span class="nd">@click</span><span class="o">.</span><span class="n">group</span><span class="p">()</span>
+<span class="nd">@click</span><span class="o">.</span><span class="n">version_option</span><span class="p">()</span>
+<span class="nd">@utils</span><span class="o">.</span><span class="n">cite_option</span>
+<span class="k">def</span> <span class="nf">main</span><span class="p">():</span>
+    <span class="s2">&quot;Main function&quot;</span>
+    <span class="k">pass</span>
+
+
+<div class="viewcode-block" id="write_lca_gff"><a class="viewcode-back" href="../../../api/mgkit.workflow.taxon_utils.html#mgkit.workflow.taxon_utils.write_lca_gff">[docs]</a><span class="k">def</span> <span class="nf">write_lca_gff</span><span class="p">(</span><span class="n">file_handle</span><span class="p">,</span> <span class="n">seq_id</span><span class="p">,</span> <span class="n">seq</span><span class="p">,</span> <span class="n">taxon_id</span><span class="p">,</span> <span class="n">taxon_name</span><span class="p">,</span> <span class="n">lineage</span><span class="p">,</span>
+                  <span class="n">feat_type</span><span class="p">):</span>
+    <span class="n">annotation</span> <span class="o">=</span> <span class="n">gff</span><span class="o">.</span><span class="n">from_sequence</span><span class="p">(</span>
+        <span class="n">seq_id</span><span class="p">,</span>
+        <span class="n">seq</span><span class="p">,</span>
+        <span class="n">feat_type</span><span class="o">=</span><span class="n">feat_type</span><span class="p">,</span>
+        <span class="n">taxon_id</span><span class="o">=</span><span class="n">taxon_id</span><span class="p">,</span>
+        <span class="n">taxon_name</span><span class="o">=</span><span class="n">taxon_name</span><span class="p">,</span>
+        <span class="n">lineage</span><span class="o">=</span><span class="n">lineage</span>
+    <span class="p">)</span>
+    <span class="n">annotation</span><span class="o">.</span><span class="n">to_file</span><span class="p">(</span><span class="n">file_handle</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="write_lca_tab"><a class="viewcode-back" href="../../../api/mgkit.workflow.taxon_utils.html#mgkit.workflow.taxon_utils.write_lca_tab">[docs]</a><span class="k">def</span> <span class="nf">write_lca_tab</span><span class="p">(</span><span class="n">file_handle</span><span class="p">,</span> <span class="n">seq_id</span><span class="p">,</span> <span class="n">taxon_id</span><span class="p">,</span> <span class="n">taxon_name</span><span class="p">,</span> <span class="n">rank</span><span class="p">,</span> <span class="n">lineage</span><span class="p">):</span>
+    <span class="n">file_handle</span><span class="o">.</span><span class="n">write</span><span class="p">(</span>
+        <span class="s2">&quot;</span><span class="si">{}</span><span class="se">\t</span><span class="si">{}</span><span class="se">\t</span><span class="si">{}</span><span class="se">\t</span><span class="si">{}</span><span class="se">\t</span><span class="si">{}</span><span class="se">\n</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span>
+            <span class="n">seq_id</span><span class="p">,</span>
+            <span class="n">taxon_id</span><span class="p">,</span>
+            <span class="n">taxon_name</span><span class="p">,</span>
+            <span class="n">rank</span><span class="p">,</span>
+            <span class="n">lineage</span>
+        <span class="p">)</span><span class="o">.</span><span class="n">encode</span><span class="p">(</span><span class="s1">&#39;ascii&#39;</span><span class="p">)</span>
+    <span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="write_lca_tab_simple"><a class="viewcode-back" href="../../../api/mgkit.workflow.taxon_utils.html#mgkit.workflow.taxon_utils.write_lca_tab_simple">[docs]</a><span class="k">def</span> <span class="nf">write_lca_tab_simple</span><span class="p">(</span><span class="n">file_handle</span><span class="p">,</span> <span class="n">seq_id</span><span class="p">,</span> <span class="n">taxon_id</span><span class="p">):</span>
+    <span class="n">file_handle</span><span class="o">.</span><span class="n">write</span><span class="p">(</span>
+        <span class="s2">&quot;</span><span class="si">{}</span><span class="se">\t</span><span class="si">{}</span><span class="se">\n</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">seq_id</span><span class="p">,</span> <span class="n">taxon_id</span><span class="p">)</span><span class="o">.</span><span class="n">encode</span><span class="p">(</span><span class="s1">&#39;ascii&#39;</span><span class="p">)</span>
+    <span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="get_taxon_info"><a class="viewcode-back" href="../../../api/mgkit.workflow.taxon_utils.html#mgkit.workflow.taxon_utils.get_taxon_info">[docs]</a><span class="k">def</span> <span class="nf">get_taxon_info</span><span class="p">(</span><span class="n">taxonomy</span><span class="p">,</span> <span class="n">taxon_id</span><span class="p">,</span> <span class="n">only_ranked</span><span class="p">):</span>
+    <span class="k">if</span> <span class="n">taxonomy</span><span class="p">[</span><span class="n">taxon_id</span><span class="p">]</span><span class="o">.</span><span class="n">s_name</span><span class="p">:</span>
+        <span class="n">taxon_name</span> <span class="o">=</span> <span class="n">taxonomy</span><span class="p">[</span><span class="n">taxon_id</span><span class="p">]</span><span class="o">.</span><span class="n">s_name</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">taxon_name</span> <span class="o">=</span> <span class="n">taxonomy</span><span class="p">[</span><span class="n">taxon_id</span><span class="p">]</span><span class="o">.</span><span class="n">c_name</span>
+    <span class="n">lineage</span> <span class="o">=</span> <span class="s1">&#39;,&#39;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span>
+        <span class="n">tx</span>
+        <span class="k">for</span> <span class="n">tx</span> <span class="ow">in</span> <span class="n">taxon</span><span class="o">.</span><span class="n">get_lineage</span><span class="p">(</span><span class="n">taxonomy</span><span class="p">,</span> <span class="n">taxon_id</span><span class="p">,</span> <span class="n">names</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">only_ranked</span><span class="o">=</span><span class="n">only_ranked</span><span class="p">,</span> <span class="n">with_last</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">tx</span>
+    <span class="p">)</span>
+    <span class="k">return</span> <span class="n">taxon_name</span><span class="p">,</span> <span class="n">lineage</span></div>
+
+
+<div class="viewcode-block" id="write_no_lca"><a class="viewcode-back" href="../../../api/mgkit.workflow.taxon_utils.html#mgkit.workflow.taxon_utils.write_no_lca">[docs]</a><span class="k">def</span> <span class="nf">write_no_lca</span><span class="p">(</span><span class="n">file_handle</span><span class="p">,</span> <span class="n">seq_id</span><span class="p">,</span> <span class="n">taxon_ids</span><span class="p">,</span> <span class="n">extra</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+    <span class="n">file_handle</span><span class="o">.</span><span class="n">write</span><span class="p">(</span>
+        <span class="s2">&quot;</span><span class="si">{}</span><span class="se">\t</span><span class="si">{}</span><span class="se">\t</span><span class="si">{}</span><span class="se">\n</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span>
+            <span class="n">seq_id</span><span class="p">,</span>
+            <span class="s1">&#39;,&#39;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="n">taxon_id</span><span class="p">)</span> <span class="k">for</span> <span class="n">taxon_id</span> <span class="ow">in</span> <span class="nb">set</span><span class="p">(</span><span class="n">taxon_ids</span><span class="p">)),</span>
+            <span class="s1">&#39;&#39;</span> <span class="k">if</span> <span class="n">extra</span> <span class="ow">is</span> <span class="kc">None</span> <span class="k">else</span> <span class="s1">&#39;,&#39;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">extra</span><span class="p">)</span>
+        <span class="p">)</span><span class="o">.</span><span class="n">encode</span><span class="p">(</span><span class="s1">&#39;ascii&#39;</span><span class="p">)</span>
+    <span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="write_krona"><a class="viewcode-back" href="../../../api/mgkit.workflow.taxon_utils.html#mgkit.workflow.taxon_utils.write_krona">[docs]</a><span class="k">def</span> <span class="nf">write_krona</span><span class="p">(</span><span class="n">file_handle</span><span class="p">,</span> <span class="n">taxonomy</span><span class="p">,</span> <span class="n">taxon_id</span><span class="p">,</span> <span class="n">only_ranked</span><span class="p">):</span>
+    <span class="k">if</span> <span class="n">taxon_id</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="n">lineage</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;No LCA&#39;</span><span class="p">]</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">lineage</span> <span class="o">=</span> <span class="n">taxon</span><span class="o">.</span><span class="n">get_lineage</span><span class="p">(</span>
+            <span class="n">taxonomy</span><span class="p">,</span>
+            <span class="n">taxon_id</span><span class="p">,</span>
+            <span class="n">names</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+            <span class="n">only_ranked</span><span class="o">=</span><span class="n">only_ranked</span><span class="p">,</span>
+            <span class="n">with_last</span><span class="o">=</span><span class="kc">True</span>
+        <span class="p">)</span>
+    <span class="n">file_handle</span><span class="o">.</span><span class="n">write</span><span class="p">(</span>
+        <span class="s1">&#39;</span><span class="si">{}</span><span class="se">\n</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="s1">&#39;</span><span class="se">\t</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">lineage</span><span class="p">))</span><span class="o">.</span><span class="n">encode</span><span class="p">(</span><span class="s1">&#39;ascii&#39;</span><span class="p">)</span>
+    <span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="write_json"><a class="viewcode-back" href="../../../api/mgkit.workflow.taxon_utils.html#mgkit.workflow.taxon_utils.write_json">[docs]</a><span class="k">def</span> <span class="nf">write_json</span><span class="p">(</span><span class="n">lca_dict</span><span class="p">,</span> <span class="n">seq_id</span><span class="p">,</span> <span class="n">taxonomy</span><span class="p">,</span> <span class="n">taxon_id</span><span class="p">,</span> <span class="n">only_ranked</span><span class="p">):</span>
+    <span class="k">if</span> <span class="n">taxon_id</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="n">lineage</span> <span class="o">=</span> <span class="s2">&quot;&quot;</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">lineage</span> <span class="o">=</span> <span class="n">taxon</span><span class="o">.</span><span class="n">get_lineage</span><span class="p">(</span>
+            <span class="n">taxonomy</span><span class="p">,</span>
+            <span class="n">taxon_id</span><span class="p">,</span>
+            <span class="n">names</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+            <span class="n">only_ranked</span><span class="o">=</span><span class="n">only_ranked</span><span class="p">,</span>
+            <span class="n">with_last</span><span class="o">=</span><span class="kc">True</span>
+        <span class="p">)</span>
+
+    <span class="n">lca_dict</span><span class="p">[</span><span class="n">seq_id</span><span class="p">]</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">(</span>
+        <span class="n">taxon_id</span><span class="o">=</span><span class="n">taxon_id</span><span class="p">,</span>
+        <span class="n">lineage</span><span class="o">=</span><span class="s1">&#39;;&#39;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">lineage</span><span class="p">),</span>
+    <span class="p">)</span></div>
+
+
+<span class="nd">@main</span><span class="o">.</span><span class="n">command</span><span class="p">(</span><span class="s1">&#39;lca&#39;</span><span class="p">,</span> <span class="n">help</span><span class="o">=</span><span class="s2">&quot;&quot;&quot;Finds the last common ancestor for each sequence</span>
+<span class="s2">              in a GFF file&quot;&quot;&quot;</span><span class="p">)</span>
+<span class="nd">@click</span><span class="o">.</span><span class="n">option</span><span class="p">(</span><span class="s1">&#39;-v&#39;</span><span class="p">,</span> <span class="s1">&#39;--verbose&#39;</span><span class="p">,</span> <span class="n">is_flag</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="nd">@click</span><span class="o">.</span><span class="n">option</span><span class="p">(</span><span class="s1">&#39;-t&#39;</span><span class="p">,</span> <span class="s1">&#39;--taxonomy&#39;</span><span class="p">,</span> <span class="n">required</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">help</span><span class="o">=</span><span class="s1">&#39;Taxonomy file&#39;</span><span class="p">)</span>
+<span class="nd">@click</span><span class="o">.</span><span class="n">option</span><span class="p">(</span><span class="s1">&#39;-n&#39;</span><span class="p">,</span> <span class="s1">&#39;--no-lca&#39;</span><span class="p">,</span> <span class="nb">type</span><span class="o">=</span><span class="n">click</span><span class="o">.</span><span class="n">File</span><span class="p">(</span><span class="s1">&#39;wb&#39;</span><span class="p">),</span> <span class="n">default</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+              <span class="n">help</span><span class="o">=</span><span class="s1">&#39;File to which write records with no LCA&#39;</span><span class="p">)</span>
+<span class="nd">@click</span><span class="o">.</span><span class="n">option</span><span class="p">(</span><span class="s1">&#39;-a&#39;</span><span class="p">,</span> <span class="s1">&#39;--only-ranked&#39;</span><span class="p">,</span> <span class="n">is_flag</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">default</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+              <span class="n">help</span><span class="o">=</span><span class="s1">&#39;&#39;&#39;If set, only taxa that have a rank will be used in the lineageself. This is not advised for lineages such as Viruses, where the top levels have no rank&#39;&#39;&#39;</span><span class="p">)</span>
+<span class="nd">@click</span><span class="o">.</span><span class="n">option</span><span class="p">(</span><span class="s1">&#39;-b&#39;</span><span class="p">,</span> <span class="s1">&#39;--bitscore&#39;</span><span class="p">,</span> <span class="n">default</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="nb">type</span><span class="o">=</span><span class="n">click</span><span class="o">.</span><span class="n">FLOAT</span><span class="p">,</span> <span class="n">show_default</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+              <span class="n">help</span><span class="o">=</span><span class="s1">&#39;Minimum bitscore accepted&#39;</span><span class="p">)</span>
+<span class="nd">@click</span><span class="o">.</span><span class="n">option</span><span class="p">(</span><span class="s1">&#39;-m&#39;</span><span class="p">,</span> <span class="s1">&#39;--rename&#39;</span><span class="p">,</span> <span class="n">is_flag</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">default</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+              <span class="n">help</span><span class="o">=</span><span class="s1">&#39;Emulates BLAST behaviour for headers (keep left of first space)&#39;</span><span class="p">)</span>
+<span class="nd">@click</span><span class="o">.</span><span class="n">option</span><span class="p">(</span><span class="s1">&#39;-s&#39;</span><span class="p">,</span> <span class="s1">&#39;--sorted&#39;</span><span class="p">,</span> <span class="n">is_flag</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">default</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+              <span class="n">help</span><span class="o">=</span><span class="s1">&#39;&#39;&#39;If the GFF file is sorted (all of a sequence annotations are contiguos) can use less memory, `sort -s -k 1,1` can be used&#39;&#39;&#39;</span><span class="p">)</span>
+<span class="nd">@click</span><span class="o">.</span><span class="n">option</span><span class="p">(</span><span class="s1">&#39;-ft&#39;</span><span class="p">,</span> <span class="s1">&#39;--feat-type&#39;</span><span class="p">,</span> <span class="n">default</span><span class="o">=</span><span class="s1">&#39;LCA&#39;</span><span class="p">,</span> <span class="n">show_default</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+              <span class="n">help</span><span class="o">=</span><span class="s1">&#39;Feature type used if the output is a GFF (default is *LCA*)&#39;</span><span class="p">)</span>
+<span class="nd">@click</span><span class="o">.</span><span class="n">option</span><span class="p">(</span><span class="s1">&#39;-r&#39;</span><span class="p">,</span> <span class="s1">&#39;--reference&#39;</span><span class="p">,</span> <span class="n">default</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="nb">type</span><span class="o">=</span><span class="n">click</span><span class="o">.</span><span class="n">File</span><span class="p">(</span><span class="s1">&#39;rb&#39;</span><span class="p">),</span>
+              <span class="n">help</span><span class="o">=</span><span class="s1">&#39;Reference file for the GFF, if supplied a GFF file is the output&#39;</span><span class="p">)</span>
+<span class="nd">@click</span><span class="o">.</span><span class="n">option</span><span class="p">(</span><span class="s1">&#39;-p&#39;</span><span class="p">,</span> <span class="s1">&#39;--simple-table&#39;</span><span class="p">,</span> <span class="n">is_flag</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">default</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+              <span class="n">help</span><span class="o">=</span><span class="s1">&#39;Uses a 2 column table format (seq_id taxon_id) TAB separated&#39;</span><span class="p">)</span>
+<span class="nd">@click</span><span class="o">.</span><span class="n">option</span><span class="p">(</span><span class="s1">&#39;-kt&#39;</span><span class="p">,</span> <span class="s1">&#39;--krona-total&#39;</span><span class="p">,</span> <span class="nb">type</span><span class="o">=</span><span class="n">click</span><span class="o">.</span><span class="n">INT</span><span class="p">,</span> <span class="n">default</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+              <span class="n">help</span><span class="o">=</span><span class="s1">&#39;&#39;&#39;Total number of raw sequences (used to output correct percentages in Krona&#39;&#39;&#39;</span><span class="p">)</span>
+<span class="nd">@click</span><span class="o">.</span><span class="n">option</span><span class="p">(</span><span class="s1">&#39;-f&#39;</span><span class="p">,</span> <span class="s1">&#39;--out-format&#39;</span><span class="p">,</span> <span class="n">default</span><span class="o">=</span><span class="s1">&#39;tab&#39;</span><span class="p">,</span> <span class="n">show_default</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+              <span class="nb">type</span><span class="o">=</span><span class="n">click</span><span class="o">.</span><span class="n">Choice</span><span class="p">([</span><span class="s1">&#39;krona&#39;</span><span class="p">,</span> <span class="s1">&#39;json&#39;</span><span class="p">,</span> <span class="s1">&#39;tab&#39;</span><span class="p">,</span> <span class="s1">&#39;gff&#39;</span><span class="p">]),</span>
+              <span class="n">help</span><span class="o">=</span><span class="s1">&#39;Format of output file&#39;</span><span class="p">)</span>
+<span class="nd">@click</span><span class="o">.</span><span class="n">option</span><span class="p">(</span><span class="s1">&#39;--progress&#39;</span><span class="p">,</span> <span class="n">default</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">is_flag</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+              <span class="n">help</span><span class="o">=</span><span class="s2">&quot;Shows Progress Bar&quot;</span><span class="p">)</span>
+<span class="nd">@click</span><span class="o">.</span><span class="n">argument</span><span class="p">(</span><span class="s1">&#39;gff-file&#39;</span><span class="p">,</span> <span class="nb">type</span><span class="o">=</span><span class="n">click</span><span class="o">.</span><span class="n">File</span><span class="p">(</span><span class="s1">&#39;rb&#39;</span><span class="p">),</span> <span class="n">default</span><span class="o">=</span><span class="s1">&#39;-&#39;</span><span class="p">)</span>
+<span class="nd">@click</span><span class="o">.</span><span class="n">argument</span><span class="p">(</span><span class="s1">&#39;output-file&#39;</span><span class="p">,</span> <span class="nb">type</span><span class="o">=</span><span class="n">click</span><span class="o">.</span><span class="n">File</span><span class="p">(</span><span class="s1">&#39;wb&#39;</span><span class="p">),</span> <span class="n">default</span><span class="o">=</span><span class="s1">&#39;-&#39;</span><span class="p">)</span>
+<span class="k">def</span> <span class="nf">lca_contig_command</span><span class="p">(</span><span class="n">verbose</span><span class="p">,</span> <span class="n">taxonomy</span><span class="p">,</span> <span class="n">no_lca</span><span class="p">,</span> <span class="n">only_ranked</span><span class="p">,</span> <span class="n">bitscore</span><span class="p">,</span>
+                       <span class="n">rename</span><span class="p">,</span> <span class="nb">sorted</span><span class="p">,</span> <span class="n">feat_type</span><span class="p">,</span> <span class="n">reference</span><span class="p">,</span> <span class="n">simple_table</span><span class="p">,</span>
+                       <span class="n">krona_total</span><span class="p">,</span> <span class="n">out_format</span><span class="p">,</span> <span class="n">progress</span><span class="p">,</span> <span class="n">gff_file</span><span class="p">,</span>
+                       <span class="n">output_file</span><span class="p">):</span>
+    <span class="n">mgkit</span><span class="o">.</span><span class="n">logger</span><span class="o">.</span><span class="n">config_log</span><span class="p">(</span><span class="n">level</span><span class="o">=</span><span class="n">logging</span><span class="o">.</span><span class="n">DEBUG</span> <span class="k">if</span> <span class="n">verbose</span> <span class="k">else</span> <span class="n">logging</span><span class="o">.</span><span class="n">INFO</span><span class="p">)</span>
+    <span class="n">LOG</span><span class="o">.</span><span class="n">info</span><span class="p">(</span>
+        <span class="s1">&#39;Writing to file (</span><span class="si">%s</span><span class="s1">)&#39;</span><span class="p">,</span>
+        <span class="nb">getattr</span><span class="p">(</span><span class="n">output_file</span><span class="p">,</span> <span class="s1">&#39;name&#39;</span><span class="p">,</span> <span class="nb">repr</span><span class="p">(</span><span class="n">output_file</span><span class="p">))</span>
+    <span class="p">)</span>
+
+    <span class="k">if</span> <span class="p">(</span><span class="n">out_format</span> <span class="o">==</span> <span class="s1">&#39;gff&#39;</span><span class="p">)</span> <span class="ow">and</span> <span class="p">(</span><span class="n">reference</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">):</span>
+        <span class="n">utils</span><span class="o">.</span><span class="n">exit_script</span><span class="p">(</span>
+            <span class="s1">&#39;The output format *gff* requires a FASTA file, passed with -r&#39;</span><span class="p">,</span> <span class="mi">3</span><span class="p">)</span>
+
+    <span class="k">if</span> <span class="n">no_lca</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="n">LOG</span><span class="o">.</span><span class="n">info</span><span class="p">(</span>
+            <span class="s2">&quot;Writing contigs/taxon_ids of contigs with no LCA to (</span><span class="si">%s</span><span class="s2">)&quot;</span><span class="p">,</span>
+            <span class="nb">getattr</span><span class="p">(</span><span class="n">no_lca</span><span class="p">,</span> <span class="s1">&#39;name&#39;</span><span class="p">,</span> <span class="nb">repr</span><span class="p">(</span><span class="n">no_lca</span><span class="p">))</span>
+        <span class="p">)</span>
+
+    <span class="n">taxonomy</span> <span class="o">=</span> <span class="n">taxon</span><span class="o">.</span><span class="n">Taxonomy</span><span class="p">(</span><span class="n">taxonomy</span><span class="p">)</span>
+
+    <span class="k">if</span> <span class="n">reference</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="n">seqs</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">(</span>
+            <span class="n">fasta</span><span class="o">.</span><span class="n">load_fasta_rename</span><span class="p">(</span><span class="n">reference</span><span class="p">)</span> <span class="k">if</span> <span class="n">rename</span> <span class="k">else</span> <span class="n">fasta</span><span class="o">.</span><span class="n">load_fasta</span><span class="p">(</span><span class="n">reference</span><span class="p">)</span>
+        <span class="p">)</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">seqs</span> <span class="o">=</span> <span class="kc">None</span>
+
+    <span class="c1"># basic filter for the presence of a taxon_id and bitscore</span>
+    <span class="n">annotations_iter</span> <span class="o">=</span> <span class="p">(</span>
+        <span class="n">annotation</span>
+        <span class="k">for</span> <span class="n">annotation</span> <span class="ow">in</span> <span class="n">gff</span><span class="o">.</span><span class="n">parse_gff</span><span class="p">(</span><span class="n">gff_file</span><span class="p">)</span>
+        <span class="c1"># only use annotations whose bitscore pass the filter</span>
+        <span class="c1"># and have a taxon_id</span>
+        <span class="k">if</span> <span class="p">(</span>
+            <span class="p">(</span><span class="n">annotation</span><span class="o">.</span><span class="n">bitscore</span> <span class="o">&gt;=</span> <span class="n">bitscore</span><span class="p">)</span> <span class="ow">or</span>
+            <span class="p">(</span><span class="n">annotation</span><span class="o">.</span><span class="n">bitscore</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">)</span>
+            <span class="p">)</span> <span class="ow">and</span> <span class="p">(</span><span class="n">annotation</span><span class="o">.</span><span class="n">taxon_id</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">)</span> <span class="ow">and</span>
+            <span class="c1"># redundant probably, but used in cases when a taxon_id was deleted</span>
+            <span class="c1"># from the taxonomy</span>
+            <span class="p">(</span><span class="n">annotation</span><span class="o">.</span><span class="n">taxon_id</span> <span class="ow">in</span> <span class="n">taxonomy</span><span class="p">)</span>
+    <span class="p">)</span>
+
+    <span class="k">if</span> <span class="nb">sorted</span><span class="p">:</span>
+        <span class="n">LOG</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;Input GFF is assumed sorted&quot;</span><span class="p">)</span>
+        <span class="n">annotations</span> <span class="o">=</span> <span class="n">gff</span><span class="o">.</span><span class="n">group_annotations_sorted</span><span class="p">(</span>
+            <span class="n">annotations_iter</span><span class="p">,</span>
+            <span class="k">lambda</span> <span class="n">annotation</span><span class="p">:</span> <span class="n">annotation</span><span class="o">.</span><span class="n">seq_id</span>
+        <span class="p">)</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="c1"># groups the annotations by sequence, in case they&#39;re not sorted</span>
+        <span class="n">annotations</span> <span class="o">=</span> <span class="n">viewvalues</span><span class="p">(</span><span class="n">gff</span><span class="o">.</span><span class="n">group_annotations</span><span class="p">(</span>
+            <span class="n">annotations_iter</span><span class="p">,</span>
+            <span class="k">lambda</span> <span class="n">annotation</span><span class="p">:</span> <span class="n">annotation</span><span class="o">.</span><span class="n">seq_id</span>
+        <span class="p">))</span>
+
+    <span class="n">count</span> <span class="o">=</span> <span class="mi">0</span>
+    <span class="n">lca_dict</span> <span class="o">=</span> <span class="p">{}</span>
+    <span class="k">if</span> <span class="n">progress</span><span class="p">:</span>
+        <span class="n">annotations</span> <span class="o">=</span> <span class="n">tqdm</span><span class="p">(</span><span class="n">annotations</span><span class="p">)</span>
+    <span class="k">for</span> <span class="n">seq_ann</span> <span class="ow">in</span> <span class="n">annotations</span><span class="p">:</span>
+        <span class="n">count</span> <span class="o">+=</span> <span class="mi">1</span>
+        <span class="n">seq_id</span> <span class="o">=</span> <span class="n">seq_ann</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">seq_id</span>
+        <span class="k">try</span><span class="p">:</span>
+            <span class="n">taxon_id</span> <span class="o">=</span> <span class="n">taxon</span><span class="o">.</span><span class="n">last_common_ancestor_multiple</span><span class="p">(</span>
+                <span class="n">taxonomy</span><span class="p">,</span>
+                <span class="p">(</span><span class="n">annotation</span><span class="o">.</span><span class="n">taxon_id</span> <span class="k">for</span> <span class="n">annotation</span> <span class="ow">in</span> <span class="n">seq_ann</span><span class="p">)</span>
+            <span class="p">)</span>
+        <span class="k">except</span> <span class="n">taxon</span><span class="o">.</span><span class="n">NoLcaFound</span> <span class="k">as</span> <span class="n">error</span><span class="p">:</span>
+            <span class="n">LOG</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="s2">&quot;No LCA found for </span><span class="si">%s</span><span class="s2"> (</span><span class="si">%s</span><span class="s2">)&quot;</span><span class="p">,</span> <span class="n">seq_id</span><span class="p">,</span> <span class="n">error</span><span class="p">)</span>
+            <span class="k">if</span> <span class="n">no_lca</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+                <span class="n">write_no_lca</span><span class="p">(</span>
+                    <span class="n">no_lca</span><span class="p">,</span>
+                    <span class="n">seq_id</span><span class="p">,</span>
+                    <span class="p">(</span><span class="n">annotation</span><span class="o">.</span><span class="n">taxon_id</span> <span class="k">for</span> <span class="n">annotation</span> <span class="ow">in</span> <span class="n">seq_ann</span><span class="p">),</span>
+                    <span class="n">extra</span><span class="o">=</span><span class="nb">set</span><span class="p">(</span>
+                        <span class="n">taxonomy</span><span class="o">.</span><span class="n">get_ranked_taxon</span><span class="p">(</span>
+                            <span class="n">annotation</span><span class="o">.</span><span class="n">taxon_id</span><span class="p">,</span>
+                            <span class="s1">&#39;phylum&#39;</span>
+                        <span class="p">)</span><span class="o">.</span><span class="n">s_name</span>
+                        <span class="k">for</span> <span class="n">annotation</span> <span class="ow">in</span> <span class="n">seq_ann</span>
+                    <span class="p">)</span>
+                <span class="p">)</span>
+            <span class="k">if</span> <span class="n">out_format</span> <span class="o">==</span> <span class="s1">&#39;krona&#39;</span><span class="p">:</span>
+                <span class="n">write_krona</span><span class="p">(</span><span class="n">output_file</span><span class="p">,</span> <span class="n">taxonomy</span><span class="p">,</span> <span class="kc">None</span><span class="p">,</span> <span class="kc">False</span><span class="p">)</span>
+            <span class="k">continue</span>
+
+        <span class="n">taxon_name</span><span class="p">,</span> <span class="n">lineage</span> <span class="o">=</span> <span class="n">get_taxon_info</span><span class="p">(</span>
+            <span class="n">taxonomy</span><span class="p">,</span>
+            <span class="n">taxon_id</span><span class="p">,</span>
+            <span class="n">only_ranked</span>
+        <span class="p">)</span>
+        <span class="k">if</span> <span class="n">out_format</span> <span class="o">==</span> <span class="s1">&#39;gff&#39;</span><span class="p">:</span>
+            <span class="n">write_lca_gff</span><span class="p">(</span>
+                <span class="n">output_file</span><span class="p">,</span>
+                <span class="n">seq_id</span><span class="p">,</span>
+                <span class="n">seqs</span><span class="p">[</span><span class="n">seq_id</span><span class="p">],</span>
+                <span class="n">taxon_id</span><span class="p">,</span>
+                <span class="n">taxon_name</span><span class="p">,</span>
+                <span class="n">lineage</span><span class="p">,</span>
+                <span class="n">feat_type</span>
+            <span class="p">)</span>
+        <span class="k">elif</span> <span class="n">out_format</span> <span class="o">==</span> <span class="s1">&#39;krona&#39;</span><span class="p">:</span>
+            <span class="n">write_krona</span><span class="p">(</span>
+                <span class="n">output_file</span><span class="p">,</span>
+                <span class="n">taxonomy</span><span class="p">,</span>
+                <span class="n">taxon_id</span><span class="p">,</span>
+                <span class="n">only_ranked</span>
+            <span class="p">)</span>
+        <span class="k">elif</span> <span class="n">out_format</span> <span class="o">==</span> <span class="s1">&#39;json&#39;</span><span class="p">:</span>
+            <span class="n">write_json</span><span class="p">(</span>
+                <span class="n">lca_dict</span><span class="p">,</span>
+                <span class="n">seq_id</span><span class="p">,</span>
+                <span class="n">taxonomy</span><span class="p">,</span>
+                <span class="n">taxon_id</span><span class="p">,</span>
+                <span class="n">only_ranked</span>
+            <span class="p">)</span>
+        <span class="k">elif</span> <span class="n">out_format</span> <span class="o">==</span> <span class="s1">&#39;tab&#39;</span><span class="p">:</span>
+            <span class="k">if</span> <span class="n">simple_table</span><span class="p">:</span>
+                <span class="n">write_lca_tab_simple</span><span class="p">(</span><span class="n">output_file</span><span class="p">,</span> <span class="n">seq_id</span><span class="p">,</span> <span class="n">taxon_id</span><span class="p">)</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="n">write_lca_tab</span><span class="p">(</span>
+                    <span class="n">output_file</span><span class="p">,</span>
+                    <span class="n">seq_id</span><span class="p">,</span>
+                    <span class="n">taxon_id</span><span class="p">,</span>
+                    <span class="n">taxon_name</span><span class="p">,</span>
+                    <span class="n">taxonomy</span><span class="p">[</span><span class="n">taxon_id</span><span class="p">]</span><span class="o">.</span><span class="n">rank</span><span class="p">,</span>
+                    <span class="n">lineage</span>
+                <span class="p">)</span>
+    <span class="k">if</span> <span class="p">(</span><span class="n">out_format</span> <span class="o">==</span> <span class="s1">&#39;krona&#39;</span><span class="p">)</span> <span class="ow">and</span> <span class="p">(</span><span class="n">krona_total</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">):</span>
+        <span class="k">for</span> <span class="n">index</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">count</span><span class="p">,</span> <span class="n">krona_total</span><span class="p">):</span>
+            <span class="n">output_file</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s1">&#39;Unknown</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">)</span>
+
+    <span class="k">if</span> <span class="n">out_format</span> <span class="o">==</span> <span class="s1">&#39;json&#39;</span><span class="p">:</span>
+        <span class="n">output_file</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">json</span><span class="o">.</span><span class="n">dumps</span><span class="p">(</span><span class="n">lca_dict</span><span class="p">,</span> <span class="n">indent</span><span class="o">=</span><span class="mi">4</span><span class="p">)</span><span class="o">.</span><span class="n">encode</span><span class="p">(</span><span class="s1">&#39;ascii&#39;</span><span class="p">))</span>
+
+
+<span class="nd">@main</span><span class="o">.</span><span class="n">command</span><span class="p">(</span><span class="s1">&#39;lca_line&#39;</span><span class="p">,</span> <span class="n">help</span><span class="o">=</span><span class="s2">&quot;&quot;&quot;Finds the last common ancestor for all IDs in</span>
+<span class="s2">              a text file line&quot;&quot;&quot;</span><span class="p">)</span>
+<span class="nd">@click</span><span class="o">.</span><span class="n">option</span><span class="p">(</span><span class="s1">&#39;-v&#39;</span><span class="p">,</span> <span class="s1">&#39;--verbose&#39;</span><span class="p">,</span> <span class="n">is_flag</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="nd">@click</span><span class="o">.</span><span class="n">option</span><span class="p">(</span><span class="s1">&#39;-t&#39;</span><span class="p">,</span> <span class="s1">&#39;--taxonomy&#39;</span><span class="p">,</span> <span class="n">required</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">help</span><span class="o">=</span><span class="s1">&#39;Taxonomy file&#39;</span><span class="p">)</span>
+<span class="nd">@click</span><span class="o">.</span><span class="n">option</span><span class="p">(</span><span class="s1">&#39;-n&#39;</span><span class="p">,</span> <span class="s1">&#39;--no-lca&#39;</span><span class="p">,</span> <span class="nb">type</span><span class="o">=</span><span class="n">click</span><span class="o">.</span><span class="n">File</span><span class="p">(</span><span class="s1">&#39;wb&#39;</span><span class="p">),</span> <span class="n">default</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+              <span class="n">help</span><span class="o">=</span><span class="s1">&#39;File to which write records with no LCA&#39;</span><span class="p">)</span>
+<span class="nd">@click</span><span class="o">.</span><span class="n">option</span><span class="p">(</span><span class="s1">&#39;-a&#39;</span><span class="p">,</span> <span class="s1">&#39;--only-ranked&#39;</span><span class="p">,</span> <span class="n">is_flag</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">default</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+              <span class="n">help</span><span class="o">=</span><span class="s1">&#39;&#39;&#39;If set, only taxa that have a rank will be used in the lineageself. This is not advised for lineages such as Viruses, where the top levels have no rank&#39;&#39;&#39;</span><span class="p">)</span>
+<span class="nd">@click</span><span class="o">.</span><span class="n">option</span><span class="p">(</span><span class="s1">&#39;-s&#39;</span><span class="p">,</span> <span class="s1">&#39;--separator&#39;</span><span class="p">,</span> <span class="n">default</span><span class="o">=</span><span class="s1">&#39;</span><span class="se">\t</span><span class="s1">&#39;</span><span class="p">,</span>
+              <span class="n">help</span><span class="o">=</span><span class="s1">&#39;separator for taxon_ids (defaults to TAB)&#39;</span><span class="p">)</span>
+<span class="nd">@click</span><span class="o">.</span><span class="n">argument</span><span class="p">(</span><span class="s1">&#39;input-file&#39;</span><span class="p">,</span> <span class="nb">type</span><span class="o">=</span><span class="n">click</span><span class="o">.</span><span class="n">File</span><span class="p">(</span><span class="s1">&#39;rb&#39;</span><span class="p">),</span> <span class="n">default</span><span class="o">=</span><span class="s1">&#39;-&#39;</span><span class="p">)</span>
+<span class="nd">@click</span><span class="o">.</span><span class="n">argument</span><span class="p">(</span><span class="s1">&#39;output-file&#39;</span><span class="p">,</span> <span class="nb">type</span><span class="o">=</span><span class="n">click</span><span class="o">.</span><span class="n">File</span><span class="p">(</span><span class="s1">&#39;wb&#39;</span><span class="p">),</span> <span class="n">default</span><span class="o">=</span><span class="s1">&#39;-&#39;</span><span class="p">)</span>
+<span class="k">def</span> <span class="nf">lca_line_command</span><span class="p">(</span><span class="n">verbose</span><span class="p">,</span> <span class="n">taxonomy</span><span class="p">,</span> <span class="n">no_lca</span><span class="p">,</span> <span class="n">only_ranked</span><span class="p">,</span> <span class="n">separator</span><span class="p">,</span>
+                     <span class="n">input_file</span><span class="p">,</span> <span class="n">output_file</span><span class="p">):</span>
+    <span class="n">mgkit</span><span class="o">.</span><span class="n">logger</span><span class="o">.</span><span class="n">config_log</span><span class="p">(</span><span class="n">level</span><span class="o">=</span><span class="n">logging</span><span class="o">.</span><span class="n">DEBUG</span> <span class="k">if</span> <span class="n">verbose</span> <span class="k">else</span> <span class="n">logging</span><span class="o">.</span><span class="n">INFO</span><span class="p">)</span>
+    <span class="n">LOG</span><span class="o">.</span><span class="n">info</span><span class="p">(</span>
+        <span class="s1">&#39;Writing to file (</span><span class="si">%s</span><span class="s1">)&#39;</span><span class="p">,</span>
+        <span class="nb">getattr</span><span class="p">(</span><span class="n">output_file</span><span class="p">,</span> <span class="s1">&#39;name&#39;</span><span class="p">,</span> <span class="nb">repr</span><span class="p">(</span><span class="n">output_file</span><span class="p">))</span>
+    <span class="p">)</span>
+
+    <span class="k">if</span> <span class="n">no_lca</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="n">LOG</span><span class="o">.</span><span class="n">info</span><span class="p">(</span>
+            <span class="s2">&quot;Writing taxon_ids of lines with no LCA to (</span><span class="si">%s</span><span class="s2">)&quot;</span><span class="p">,</span>
+            <span class="nb">getattr</span><span class="p">(</span><span class="n">no_lca</span><span class="p">,</span> <span class="s1">&#39;name&#39;</span><span class="p">,</span> <span class="nb">repr</span><span class="p">(</span><span class="n">no_lca</span><span class="p">))</span>
+        <span class="p">)</span>
+
+    <span class="n">taxonomy</span> <span class="o">=</span> <span class="n">taxon</span><span class="o">.</span><span class="n">Taxonomy</span><span class="p">(</span><span class="n">taxonomy</span><span class="p">)</span>
+
+    <span class="k">for</span> <span class="n">line</span> <span class="ow">in</span> <span class="n">input_file</span><span class="p">:</span>
+        <span class="n">line</span> <span class="o">=</span> <span class="n">line</span><span class="o">.</span><span class="n">decode</span><span class="p">(</span><span class="s1">&#39;ascii&#39;</span><span class="p">)</span>
+        <span class="n">taxon_ids</span> <span class="o">=</span> <span class="p">[</span>
+            <span class="nb">int</span><span class="p">(</span><span class="n">taxon_id</span><span class="p">)</span>
+            <span class="k">for</span> <span class="n">taxon_id</span> <span class="ow">in</span> <span class="n">line</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="n">separator</span><span class="p">)</span>
+        <span class="p">]</span>
+        <span class="k">try</span><span class="p">:</span>
+            <span class="n">taxon_id</span> <span class="o">=</span> <span class="n">taxon</span><span class="o">.</span><span class="n">last_common_ancestor_multiple</span><span class="p">(</span>
+                <span class="n">taxonomy</span><span class="p">,</span>
+                <span class="n">taxon_ids</span>
+            <span class="p">)</span>
+        <span class="k">except</span> <span class="n">taxon</span><span class="o">.</span><span class="n">NoLcaFound</span> <span class="k">as</span> <span class="n">error</span><span class="p">:</span>
+            <span class="n">LOG</span><span class="o">.</span><span class="n">error</span><span class="p">(</span><span class="s2">&quot;No LCA found for </span><span class="si">%s</span><span class="s2"> (</span><span class="si">%s</span><span class="s2">)&quot;</span><span class="p">,</span> <span class="n">taxon_ids</span><span class="p">,</span> <span class="n">error</span><span class="p">)</span>
+            <span class="k">if</span> <span class="n">no_lca</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+                <span class="n">write_no_lca</span><span class="p">(</span>
+                    <span class="n">no_lca</span><span class="p">,</span>
+                    <span class="s1">&#39;&#39;</span><span class="p">,</span>
+                    <span class="n">taxon_ids</span>
+                <span class="p">)</span>
+            <span class="k">continue</span>
+        <span class="n">taxon_name</span><span class="p">,</span> <span class="n">lineage</span> <span class="o">=</span> <span class="n">get_taxon_info</span><span class="p">(</span><span class="n">taxonomy</span><span class="p">,</span> <span class="n">taxon_id</span><span class="p">,</span> <span class="n">only_ranked</span><span class="p">)</span>
+        <span class="n">write_lca_tab</span><span class="p">(</span>
+            <span class="n">output_file</span><span class="p">,</span>
+            <span class="s1">&#39;;&#39;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="n">x</span><span class="p">)</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">taxon_ids</span><span class="p">),</span>
+            <span class="n">taxon_id</span><span class="p">,</span>
+            <span class="n">taxon_name</span><span class="p">,</span>
+            <span class="n">taxonomy</span><span class="p">[</span><span class="n">taxon_id</span><span class="p">]</span><span class="o">.</span><span class="n">rank</span><span class="p">,</span>
+            <span class="n">lineage</span>
+        <span class="p">)</span>
+
+
+<div class="viewcode-block" id="validate_taxon_ids"><a class="viewcode-back" href="../../../api/mgkit.workflow.taxon_utils.html#mgkit.workflow.taxon_utils.validate_taxon_ids">[docs]</a><span class="k">def</span> <span class="nf">validate_taxon_ids</span><span class="p">(</span><span class="n">taxon_ids</span><span class="p">,</span> <span class="n">taxonomy</span><span class="p">):</span>
+    <span class="n">taxon_ids</span> <span class="o">=</span> <span class="nb">set</span><span class="p">(</span><span class="n">taxon_ids</span><span class="p">)</span>
+    <span class="n">broken</span> <span class="o">=</span> <span class="kc">False</span>
+    <span class="k">for</span> <span class="n">taxon_id</span> <span class="ow">in</span> <span class="n">taxon_ids</span><span class="p">:</span>
+        <span class="k">if</span> <span class="n">taxon_id</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">taxonomy</span><span class="p">:</span>
+            <span class="n">LOG</span><span class="o">.</span><span class="n">critical</span><span class="p">(</span>
+                <span class="s2">&quot;taxon_id </span><span class="si">%d</span><span class="s2"> was not found in the taxonomy&quot;</span><span class="p">,</span>
+                <span class="n">taxon_id</span>
+            <span class="p">)</span>
+            <span class="n">broken</span> <span class="o">=</span> <span class="kc">True</span>
+    <span class="k">if</span> <span class="n">broken</span><span class="p">:</span>
+        <span class="n">utils</span><span class="o">.</span><span class="n">exit_script</span><span class="p">(</span>
+            <span class="s2">&quot;Some of taxon_ids were not found&quot;</span><span class="p">,</span> <span class="mi">1</span>
+        <span class="p">)</span>
+    <span class="k">return</span> <span class="n">taxon_ids</span></div>
+
+
+<div class="viewcode-block" id="validate_taxon_names"><a class="viewcode-back" href="../../../api/mgkit.workflow.taxon_utils.html#mgkit.workflow.taxon_utils.validate_taxon_names">[docs]</a><span class="k">def</span> <span class="nf">validate_taxon_names</span><span class="p">(</span><span class="n">taxon_names</span><span class="p">,</span> <span class="n">taxonomy</span><span class="p">):</span>
+
+    <span class="n">broken</span> <span class="o">=</span> <span class="kc">False</span>
+    <span class="n">taxon_ids</span> <span class="o">=</span> <span class="nb">set</span><span class="p">()</span>
+    <span class="k">for</span> <span class="n">taxon_name</span> <span class="ow">in</span> <span class="n">taxon_names</span><span class="p">:</span>
+        <span class="k">try</span><span class="p">:</span>
+            <span class="n">taxon_id</span> <span class="o">=</span> <span class="n">taxonomy</span><span class="o">.</span><span class="n">find_by_name</span><span class="p">(</span><span class="n">taxon_name</span><span class="p">)</span>
+        <span class="k">except</span> <span class="ne">KeyError</span><span class="p">:</span>
+            <span class="n">LOG</span><span class="o">.</span><span class="n">critical</span><span class="p">(</span><span class="s2">&quot;&#39;</span><span class="si">%s</span><span class="s2">&#39; was not found in the taxonomy&quot;</span><span class="p">,</span> <span class="n">taxon_name</span><span class="p">)</span>
+            <span class="n">broken</span> <span class="o">=</span> <span class="kc">True</span>
+            <span class="k">continue</span>
+        <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">taxon_id</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">1</span><span class="p">:</span>
+            <span class="n">LOG</span><span class="o">.</span><span class="n">critical</span><span class="p">(</span>
+                <span class="s2">&quot;&#39;</span><span class="si">%s</span><span class="s2">&#39; was found multiple times in the taxonomy: (</span><span class="si">%s</span><span class="s2">)&quot;</span><span class="p">,</span>
+                <span class="n">taxon_name</span><span class="p">,</span>
+                <span class="s1">&#39;, &#39;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="n">tid</span><span class="p">)</span> <span class="k">for</span> <span class="n">tid</span> <span class="ow">in</span> <span class="n">taxon_id</span><span class="p">)</span>
+            <span class="p">)</span>
+            <span class="n">broken</span> <span class="o">=</span> <span class="kc">True</span>
+            <span class="k">continue</span>
+        <span class="c1"># takes the first (and only) taxon_id from the list returned</span>
+        <span class="n">taxon_ids</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">taxon_id</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+
+    <span class="k">if</span> <span class="n">broken</span><span class="p">:</span>
+        <span class="n">utils</span><span class="o">.</span><span class="n">exit_script</span><span class="p">(</span>
+            <span class="s2">&quot;Some of taxon_names were not found&quot;</span><span class="p">,</span> <span class="mi">2</span>
+        <span class="p">)</span>
+    <span class="k">return</span> <span class="n">taxon_ids</span></div>
+
+
+<span class="nd">@main</span><span class="o">.</span><span class="n">command</span><span class="p">(</span><span class="s1">&#39;filter&#39;</span><span class="p">,</span> <span class="n">help</span><span class="o">=</span><span class="s2">&quot;Filter a GFF file or a table based on taxonomy&quot;</span><span class="p">)</span>
+<span class="nd">@click</span><span class="o">.</span><span class="n">option</span><span class="p">(</span><span class="s1">&#39;-v&#39;</span><span class="p">,</span> <span class="s1">&#39;--verbose&#39;</span><span class="p">,</span> <span class="n">is_flag</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="nd">@click</span><span class="o">.</span><span class="n">option</span><span class="p">(</span><span class="s1">&#39;-p&#39;</span><span class="p">,</span> <span class="s1">&#39;--table&#39;</span><span class="p">,</span> <span class="n">is_flag</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">default</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+<span class="nd">@click</span><span class="o">.</span><span class="n">option</span><span class="p">(</span><span class="s1">&#39;-t&#39;</span><span class="p">,</span> <span class="s1">&#39;--taxonomy&#39;</span><span class="p">,</span> <span class="n">required</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">help</span><span class="o">=</span><span class="s1">&#39;Taxonomy file&#39;</span><span class="p">)</span>
+<span class="nd">@click</span><span class="o">.</span><span class="n">option</span><span class="p">(</span><span class="s1">&#39;-i&#39;</span><span class="p">,</span> <span class="s1">&#39;--include-taxon-id&#39;</span><span class="p">,</span> <span class="n">multiple</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">default</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+              <span class="nb">type</span><span class="o">=</span><span class="n">click</span><span class="o">.</span><span class="n">INT</span><span class="p">,</span> <span class="n">help</span><span class="o">=</span><span class="s1">&#39;Include only taxon_ids&#39;</span><span class="p">)</span>
+<span class="nd">@click</span><span class="o">.</span><span class="n">option</span><span class="p">(</span><span class="s1">&#39;-in&#39;</span><span class="p">,</span> <span class="s1">&#39;--include-taxon-name&#39;</span><span class="p">,</span> <span class="n">multiple</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">default</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+              <span class="n">help</span><span class="o">=</span><span class="s1">&#39;Include only taxon_names&#39;</span><span class="p">)</span>
+<span class="nd">@click</span><span class="o">.</span><span class="n">option</span><span class="p">(</span><span class="s1">&#39;-e&#39;</span><span class="p">,</span> <span class="s1">&#39;--exclude-taxon-id&#39;</span><span class="p">,</span> <span class="n">multiple</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">default</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+              <span class="nb">type</span><span class="o">=</span><span class="n">click</span><span class="o">.</span><span class="n">INT</span><span class="p">,</span> <span class="n">help</span><span class="o">=</span><span class="s1">&#39;Exclude taxon_ids&#39;</span><span class="p">)</span>
+<span class="nd">@click</span><span class="o">.</span><span class="n">option</span><span class="p">(</span><span class="s1">&#39;-en&#39;</span><span class="p">,</span> <span class="s1">&#39;--exclude-taxon-name&#39;</span><span class="p">,</span> <span class="n">multiple</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">default</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+              <span class="n">help</span><span class="o">=</span><span class="s1">&#39;Exclude taxon_names&#39;</span><span class="p">)</span>
+<span class="nd">@click</span><span class="o">.</span><span class="n">option</span><span class="p">(</span><span class="s1">&#39;--progress&#39;</span><span class="p">,</span> <span class="n">default</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">is_flag</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+              <span class="n">help</span><span class="o">=</span><span class="s2">&quot;Shows Progress Bar&quot;</span><span class="p">)</span>
+<span class="nd">@click</span><span class="o">.</span><span class="n">argument</span><span class="p">(</span><span class="s1">&#39;input-file&#39;</span><span class="p">,</span> <span class="nb">type</span><span class="o">=</span><span class="n">click</span><span class="o">.</span><span class="n">File</span><span class="p">(</span><span class="s1">&#39;rb&#39;</span><span class="p">),</span> <span class="n">default</span><span class="o">=</span><span class="s1">&#39;-&#39;</span><span class="p">)</span>
+<span class="nd">@click</span><span class="o">.</span><span class="n">argument</span><span class="p">(</span><span class="s1">&#39;output-file&#39;</span><span class="p">,</span> <span class="nb">type</span><span class="o">=</span><span class="n">click</span><span class="o">.</span><span class="n">File</span><span class="p">(</span><span class="s1">&#39;wb&#39;</span><span class="p">),</span> <span class="n">default</span><span class="o">=</span><span class="s1">&#39;-&#39;</span><span class="p">)</span>
+<span class="k">def</span> <span class="nf">filter_taxa_command</span><span class="p">(</span><span class="n">verbose</span><span class="p">,</span> <span class="n">table</span><span class="p">,</span> <span class="n">taxonomy</span><span class="p">,</span> <span class="n">include_taxon_id</span><span class="p">,</span>
+                        <span class="n">include_taxon_name</span><span class="p">,</span> <span class="n">exclude_taxon_id</span><span class="p">,</span>
+                        <span class="n">exclude_taxon_name</span><span class="p">,</span> <span class="n">progress</span><span class="p">,</span> <span class="n">input_file</span><span class="p">,</span> <span class="n">output_file</span><span class="p">):</span>
+    <span class="n">mgkit</span><span class="o">.</span><span class="n">logger</span><span class="o">.</span><span class="n">config_log</span><span class="p">(</span><span class="n">level</span><span class="o">=</span><span class="n">logging</span><span class="o">.</span><span class="n">DEBUG</span> <span class="k">if</span> <span class="n">verbose</span> <span class="k">else</span> <span class="n">logging</span><span class="o">.</span><span class="n">INFO</span><span class="p">)</span>
+
+    <span class="n">LOG</span><span class="o">.</span><span class="n">info</span><span class="p">(</span>
+        <span class="s1">&#39;Writing to file (</span><span class="si">%s</span><span class="s1">)&#39;</span><span class="p">,</span>
+        <span class="nb">getattr</span><span class="p">(</span><span class="n">output_file</span><span class="p">,</span> <span class="s1">&#39;name&#39;</span><span class="p">,</span> <span class="nb">repr</span><span class="p">(</span><span class="n">output_file</span><span class="p">))</span>
+    <span class="p">)</span>
+
+    <span class="n">taxonomy</span> <span class="o">=</span> <span class="n">taxon</span><span class="o">.</span><span class="n">Taxonomy</span><span class="p">(</span><span class="n">taxonomy</span><span class="p">)</span>
+
+    <span class="n">exclude_ids</span> <span class="o">=</span> <span class="n">validate_taxon_ids</span><span class="p">(</span><span class="n">exclude_taxon_id</span><span class="p">,</span> <span class="n">taxonomy</span><span class="p">)</span> <span class="o">|</span> \
+        <span class="n">validate_taxon_names</span><span class="p">(</span><span class="n">exclude_taxon_name</span><span class="p">,</span> <span class="n">taxonomy</span><span class="p">)</span>
+
+    <span class="n">include_ids</span> <span class="o">=</span> <span class="n">validate_taxon_ids</span><span class="p">(</span><span class="n">include_taxon_id</span><span class="p">,</span> <span class="n">taxonomy</span><span class="p">)</span> <span class="o">|</span> \
+        <span class="n">validate_taxon_names</span><span class="p">(</span><span class="n">include_taxon_name</span><span class="p">,</span> <span class="n">taxonomy</span><span class="p">)</span>
+
+    <span class="k">if</span> <span class="n">exclude_ids</span><span class="p">:</span>
+        <span class="n">LOG</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;Excluding Taxa: </span><span class="si">%s</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">exclude_ids</span><span class="p">)</span>
+        <span class="n">exclude_func</span> <span class="o">=</span> <span class="n">functools</span><span class="o">.</span><span class="n">partial</span><span class="p">(</span>
+            <span class="n">filter_taxon_by_id_list</span><span class="p">,</span>
+            <span class="n">filter_list</span><span class="o">=</span><span class="n">exclude_ids</span><span class="p">,</span>
+            <span class="n">exclude</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+            <span class="n">func</span><span class="o">=</span><span class="n">functools</span><span class="o">.</span><span class="n">partial</span><span class="p">(</span>
+                <span class="n">taxon</span><span class="o">.</span><span class="n">is_ancestor</span><span class="p">,</span>
+                <span class="n">taxonomy</span>
+            <span class="p">)</span>
+        <span class="p">)</span>
+        <span class="n">exclude_func</span> <span class="o">=</span> <span class="n">memoize</span><span class="p">(</span><span class="n">exclude_func</span><span class="p">)</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">exclude_func</span> <span class="o">=</span> <span class="kc">None</span>
+    <span class="k">if</span> <span class="n">include_ids</span><span class="p">:</span>
+        <span class="n">LOG</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;Only include Taxa: </span><span class="si">%s</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">include_ids</span><span class="p">)</span>
+        <span class="n">include_func</span> <span class="o">=</span> <span class="n">functools</span><span class="o">.</span><span class="n">partial</span><span class="p">(</span>
+            <span class="n">filter_taxon_by_id_list</span><span class="p">,</span>
+            <span class="n">filter_list</span><span class="o">=</span><span class="n">include_ids</span><span class="p">,</span>
+            <span class="n">exclude</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+            <span class="n">func</span><span class="o">=</span><span class="n">functools</span><span class="o">.</span><span class="n">partial</span><span class="p">(</span>
+                <span class="n">taxon</span><span class="o">.</span><span class="n">is_ancestor</span><span class="p">,</span>
+                <span class="n">taxonomy</span>
+            <span class="p">)</span>
+        <span class="p">)</span>
+        <span class="n">include_func</span> <span class="o">=</span> <span class="n">memoize</span><span class="p">(</span><span class="n">include_func</span><span class="p">)</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">include_func</span> <span class="o">=</span> <span class="kc">None</span>
+
+    <span class="k">if</span> <span class="n">table</span><span class="p">:</span>
+        <span class="n">iterator</span> <span class="o">=</span> <span class="n">blast</span><span class="o">.</span><span class="n">parse_accession_taxa_table</span><span class="p">(</span><span class="n">input_file</span><span class="p">,</span> <span class="n">key</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">value</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span>
+                                                    <span class="n">num_lines</span><span class="o">=</span><span class="kc">None</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">progress</span><span class="p">:</span>
+            <span class="n">iterator</span> <span class="o">=</span> <span class="n">tqdm</span><span class="p">(</span><span class="n">iterator</span><span class="p">)</span>
+        <span class="k">for</span> <span class="n">acc_id</span><span class="p">,</span> <span class="n">taxon_id</span> <span class="ow">in</span> <span class="n">iterator</span><span class="p">:</span>
+            <span class="k">if</span> <span class="n">include_func</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+                <span class="k">if</span> <span class="ow">not</span> <span class="n">include_func</span><span class="p">(</span><span class="n">taxon_id</span><span class="p">):</span>
+                    <span class="k">continue</span>
+            <span class="k">if</span> <span class="n">exclude_func</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+                <span class="k">if</span> <span class="ow">not</span> <span class="n">exclude_func</span><span class="p">(</span><span class="n">taxon_id</span><span class="p">):</span>
+                    <span class="k">continue</span>
+            <span class="n">output_file</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s2">&quot;</span><span class="si">{}</span><span class="se">\t</span><span class="si">{}</span><span class="se">\n</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">acc_id</span><span class="p">,</span> <span class="n">taxon_id</span><span class="p">)</span><span class="o">.</span><span class="n">encode</span><span class="p">(</span><span class="s1">&#39;ascii&#39;</span><span class="p">))</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">iterator</span> <span class="o">=</span> <span class="n">gff</span><span class="o">.</span><span class="n">parse_gff</span><span class="p">(</span><span class="n">input_file</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">progress</span><span class="p">:</span>
+            <span class="n">iterator</span> <span class="o">=</span> <span class="n">tqdm</span><span class="p">(</span><span class="n">iterator</span><span class="p">)</span>
+        <span class="k">for</span> <span class="n">annotation</span> <span class="ow">in</span> <span class="n">iterator</span><span class="p">:</span>
+            <span class="k">if</span> <span class="n">annotation</span><span class="o">.</span><span class="n">taxon_id</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+                <span class="k">continue</span>
+            <span class="k">if</span> <span class="n">include_func</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+                <span class="k">if</span> <span class="ow">not</span> <span class="n">include_func</span><span class="p">(</span><span class="n">annotation</span><span class="o">.</span><span class="n">taxon_id</span><span class="p">):</span>
+                    <span class="k">continue</span>
+            <span class="k">if</span> <span class="n">exclude_func</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+                <span class="k">if</span> <span class="ow">not</span> <span class="n">exclude_func</span><span class="p">(</span><span class="n">annotation</span><span class="o">.</span><span class="n">taxon_id</span><span class="p">):</span>
+                    <span class="k">continue</span>
+            <span class="n">annotation</span><span class="o">.</span><span class="n">to_file</span><span class="p">(</span><span class="n">output_file</span><span class="p">)</span>
+
+
+<span class="nd">@main</span><span class="o">.</span><span class="n">command</span><span class="p">(</span><span class="s1">&#39;to_hdf&#39;</span><span class="p">,</span> <span class="n">help</span><span class="o">=</span><span class="s2">&quot;&quot;&quot;Convert a taxa table to HDF5, with the input as</span>
+<span class="s2">              tabular format, defaults to stdin. Output file, defaults to</span>
+<span class="s2">              (taxa-table.hf5)&quot;&quot;&quot;</span><span class="p">)</span>
+<span class="nd">@click</span><span class="o">.</span><span class="n">option</span><span class="p">(</span><span class="s1">&#39;-v&#39;</span><span class="p">,</span> <span class="s1">&#39;--verbose&#39;</span><span class="p">,</span> <span class="n">is_flag</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="nd">@click</span><span class="o">.</span><span class="n">option</span><span class="p">(</span><span class="s1">&#39;-n&#39;</span><span class="p">,</span> <span class="s1">&#39;--table-name&#39;</span><span class="p">,</span> <span class="n">default</span><span class="o">=</span><span class="s1">&#39;taxa&#39;</span><span class="p">,</span> <span class="n">show_default</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+              <span class="n">help</span><span class="o">=</span><span class="s1">&#39;Name of the table/storage to use&#39;</span><span class="p">)</span>
+<span class="nd">@click</span><span class="o">.</span><span class="n">option</span><span class="p">(</span><span class="s1">&#39;-w&#39;</span><span class="p">,</span> <span class="s1">&#39;--overwrite&#39;</span><span class="p">,</span> <span class="n">default</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">is_flag</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+              <span class="n">help</span><span class="o">=</span><span class="s1">&#39;Overwrite the file, instead of appending to it&#39;</span><span class="p">)</span>
+<span class="nd">@click</span><span class="o">.</span><span class="n">option</span><span class="p">(</span><span class="s1">&#39;-s&#39;</span><span class="p">,</span> <span class="s1">&#39;--index-size&#39;</span><span class="p">,</span> <span class="n">default</span><span class="o">=</span><span class="mi">12</span><span class="p">,</span> <span class="nb">type</span><span class="o">=</span><span class="n">click</span><span class="o">.</span><span class="n">INT</span><span class="p">,</span>
+              <span class="n">show_default</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+              <span class="n">help</span><span class="o">=</span><span class="s1">&#39;Maximum number of characters for the gene_id&#39;</span><span class="p">)</span>
+<span class="nd">@click</span><span class="o">.</span><span class="n">option</span><span class="p">(</span><span class="s1">&#39;-c&#39;</span><span class="p">,</span> <span class="s1">&#39;--chunk-size&#39;</span><span class="p">,</span> <span class="n">default</span><span class="o">=</span><span class="mi">5000000</span><span class="p">,</span> <span class="nb">type</span><span class="o">=</span><span class="n">click</span><span class="o">.</span><span class="n">INT</span><span class="p">,</span>
+              <span class="n">show_default</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+              <span class="n">help</span><span class="o">=</span><span class="s1">&#39;Chunk size to use when reading the input file&#39;</span><span class="p">)</span>
+<span class="nd">@click</span><span class="o">.</span><span class="n">option</span><span class="p">(</span><span class="s1">&#39;--progress&#39;</span><span class="p">,</span> <span class="n">default</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">is_flag</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+              <span class="n">help</span><span class="o">=</span><span class="s2">&quot;Shows Progress Bar&quot;</span><span class="p">)</span>
+<span class="nd">@click</span><span class="o">.</span><span class="n">argument</span><span class="p">(</span><span class="s1">&#39;input_file&#39;</span><span class="p">,</span> <span class="nb">type</span><span class="o">=</span><span class="n">click</span><span class="o">.</span><span class="n">File</span><span class="p">(</span><span class="s1">&#39;rb&#39;</span><span class="p">),</span> <span class="n">default</span><span class="o">=</span><span class="s1">&#39;-&#39;</span><span class="p">)</span>
+<span class="nd">@click</span><span class="o">.</span><span class="n">argument</span><span class="p">(</span><span class="s1">&#39;output_file&#39;</span><span class="p">,</span> <span class="n">default</span><span class="o">=</span><span class="s1">&#39;taxa-table.hf5&#39;</span><span class="p">)</span>
+<span class="k">def</span> <span class="nf">taxa_table_command</span><span class="p">(</span><span class="n">verbose</span><span class="p">,</span> <span class="n">table_name</span><span class="p">,</span> <span class="n">overwrite</span><span class="p">,</span> <span class="n">index_size</span><span class="p">,</span> <span class="n">chunk_size</span><span class="p">,</span>
+                       <span class="n">progress</span><span class="p">,</span> <span class="n">input_file</span><span class="p">,</span> <span class="n">output_file</span><span class="p">):</span>
+
+    <span class="n">mgkit</span><span class="o">.</span><span class="n">logger</span><span class="o">.</span><span class="n">config_log</span><span class="p">(</span><span class="n">level</span><span class="o">=</span><span class="n">logging</span><span class="o">.</span><span class="n">DEBUG</span> <span class="k">if</span> <span class="n">verbose</span> <span class="k">else</span> <span class="n">logging</span><span class="o">.</span><span class="n">INFO</span><span class="p">)</span>
+
+    <span class="n">hdf</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">HDFStore</span><span class="p">(</span>
+        <span class="n">output_file</span><span class="p">,</span>
+        <span class="n">mode</span><span class="o">=</span><span class="s1">&#39;w&#39;</span> <span class="k">if</span> <span class="n">overwrite</span> <span class="k">else</span> <span class="s1">&#39;a&#39;</span>
+    <span class="p">)</span>
+
+    <span class="n">iterator</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_table</span><span class="p">(</span>
+        <span class="n">input_file</span><span class="p">,</span> <span class="n">header</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+        <span class="n">squeeze</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+        <span class="n">index_col</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span>
+        <span class="n">engine</span><span class="o">=</span><span class="s1">&#39;c&#39;</span><span class="p">,</span>
+        <span class="n">chunksize</span><span class="o">=</span><span class="n">chunk_size</span><span class="p">,</span>
+        <span class="n">names</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;taxon_id&#39;</span><span class="p">]</span>
+    <span class="p">)</span>
+    <span class="n">LOG</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s1">&#39;Reading Taxa Table from file (</span><span class="si">%s</span><span class="s1">)&#39;</span><span class="p">,</span> <span class="n">input_file</span><span class="o">.</span><span class="n">name</span><span class="p">)</span>
+    <span class="n">LOG</span><span class="o">.</span><span class="n">info</span><span class="p">(</span>
+        <span class="s1">&#39;Writing HDF5 file (</span><span class="si">%s</span><span class="s1">) Table (</span><span class="si">%s</span><span class="s1">) - Overwrite: </span><span class="si">%s</span><span class="s1">&#39;</span><span class="p">,</span>
+        <span class="n">output_file</span><span class="p">,</span>
+        <span class="n">table_name</span><span class="p">,</span>
+        <span class="n">overwrite</span>
+    <span class="p">)</span>
+    <span class="k">if</span> <span class="n">progress</span><span class="p">:</span>
+        <span class="n">iterator</span> <span class="o">=</span> <span class="n">tqdm</span><span class="p">(</span><span class="n">iterator</span><span class="p">)</span>
+    <span class="k">for</span> <span class="n">chunk</span> <span class="ow">in</span> <span class="n">iterator</span><span class="p">:</span>
+        <span class="n">hdf</span><span class="o">.</span><span class="n">append</span><span class="p">(</span>
+            <span class="n">table_name</span><span class="p">,</span>
+            <span class="n">chunk</span><span class="p">,</span>
+            <span class="n">min_itemsize</span><span class="o">=</span><span class="n">index_size</span><span class="p">,</span>
+            <span class="n">index</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+            <span class="c1"># data_columns=False</span>
+        <span class="p">)</span>
+
+    <span class="n">LOG</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s1">&#39;Creating Indices&#39;</span><span class="p">)</span>
+    <span class="n">hdf</span><span class="o">.</span><span class="n">create_table_index</span><span class="p">(</span><span class="n">table_name</span><span class="p">,</span> <span class="n">optlevel</span><span class="o">=</span><span class="mi">9</span><span class="p">,</span> <span class="n">kind</span><span class="o">=</span><span class="s1">&#39;full&#39;</span><span class="p">)</span>
+    <span class="n">hdf</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+
+    <span class="n">LOG</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;It&#39;s reccomended to compress the file with `ptrepack`&quot;</span><span class="p">)</span>
+    <span class="n">LOG</span><span class="o">.</span><span class="n">info</span><span class="p">(</span>
+        <span class="s2">&quot;e.g. ptrepack --propindexes --complevel 9 --complib blosc </span><span class="si">%s</span><span class="s2">:/ taxa-table-compressed.hf5:/&quot;</span><span class="p">,</span>
+        <span class="n">output_file</span>
+    <span class="p">)</span>
+
+
+<div class="viewcode-block" id="output_taxon_line"><a class="viewcode-back" href="../../../api/mgkit.workflow.taxon_utils.html#mgkit.workflow.taxon_utils.output_taxon_line">[docs]</a><span class="k">def</span> <span class="nf">output_taxon_line</span><span class="p">(</span><span class="n">taxonomy</span><span class="p">,</span> <span class="n">taxon_id</span><span class="p">,</span> <span class="n">sep</span><span class="o">=</span><span class="s1">&#39;</span><span class="se">\t</span><span class="s1">&#39;</span><span class="p">):</span>
+    <span class="n">taxon_name</span> <span class="o">=</span> <span class="n">taxonomy</span><span class="p">[</span><span class="n">taxon_id</span><span class="p">]</span><span class="o">.</span><span class="n">s_name</span>
+    <span class="n">lineage</span> <span class="o">=</span> <span class="n">taxonomy</span><span class="o">.</span><span class="n">get_lineage_string</span><span class="p">(</span><span class="n">taxon_id</span><span class="p">)</span>
+    <span class="n">rank</span> <span class="o">=</span> <span class="n">taxonomy</span><span class="p">[</span><span class="n">taxon_id</span><span class="p">]</span><span class="o">.</span><span class="n">rank</span>
+
+    <span class="k">return</span> <span class="n">sep</span><span class="o">.</span><span class="n">join</span><span class="p">([</span><span class="n">taxon_name</span><span class="p">,</span> <span class="nb">str</span><span class="p">(</span><span class="n">taxon_id</span><span class="p">),</span> <span class="n">rank</span><span class="p">,</span> <span class="n">lineage</span><span class="p">])</span> <span class="o">+</span> <span class="s1">&#39;</span><span class="se">\n</span><span class="s1">&#39;</span></div>
+
+
+<span class="nd">@main</span><span class="o">.</span><span class="n">command</span><span class="p">(</span><span class="s1">&#39;get&#39;</span><span class="p">,</span> <span class="n">help</span><span class="o">=</span><span class="s2">&quot;&quot;&quot;Extract the taxonomy as a CSV file&quot;&quot;&quot;</span><span class="p">)</span>
+<span class="nd">@click</span><span class="o">.</span><span class="n">option</span><span class="p">(</span><span class="s1">&#39;-v&#39;</span><span class="p">,</span> <span class="s1">&#39;--verbose&#39;</span><span class="p">,</span> <span class="n">is_flag</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="nd">@click</span><span class="o">.</span><span class="n">option</span><span class="p">(</span><span class="s1">&#39;-d&#39;</span><span class="p">,</span> <span class="s1">&#39;--header&#39;</span><span class="p">,</span> <span class="n">is_flag</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+              <span class="n">help</span><span class="o">=</span><span class="s1">&#39;Include header in the output&#39;</span><span class="p">)</span>
+<span class="nd">@click</span><span class="o">.</span><span class="n">option</span><span class="p">(</span><span class="s1">&#39;-s&#39;</span><span class="p">,</span> <span class="s1">&#39;--separator&#39;</span><span class="p">,</span> <span class="n">default</span><span class="o">=</span><span class="s1">&#39;</span><span class="se">\t</span><span class="s1">&#39;</span><span class="p">,</span> <span class="n">help</span><span class="o">=</span><span class="s1">&#39;column separator&#39;</span><span class="p">)</span>
+<span class="nd">@click</span><span class="o">.</span><span class="n">option</span><span class="p">(</span><span class="s1">&#39;-o&#39;</span><span class="p">,</span> <span class="s1">&#39;--only-names&#39;</span><span class="p">,</span> <span class="n">multiple</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="nb">type</span><span class="o">=</span><span class="n">click</span><span class="o">.</span><span class="n">STRING</span><span class="p">,</span>
+              <span class="n">help</span><span class="o">=</span><span class="s1">&#39;Only get matched taxon names&#39;</span><span class="p">)</span>
+<span class="nd">@click</span><span class="o">.</span><span class="n">argument</span><span class="p">(</span><span class="s1">&#39;taxonomy_file&#39;</span><span class="p">,</span> <span class="nb">type</span><span class="o">=</span><span class="n">click</span><span class="o">.</span><span class="n">File</span><span class="p">(</span><span class="s1">&#39;rb&#39;</span><span class="p">))</span>
+<span class="nd">@click</span><span class="o">.</span><span class="n">argument</span><span class="p">(</span><span class="s1">&#39;output_file&#39;</span><span class="p">,</span> <span class="nb">type</span><span class="o">=</span><span class="n">click</span><span class="o">.</span><span class="n">File</span><span class="p">(</span><span class="s1">&#39;w&#39;</span><span class="p">),</span> <span class="n">default</span><span class="o">=</span><span class="s1">&#39;-&#39;</span><span class="p">)</span>
+<span class="k">def</span> <span class="nf">get_taxonomy</span><span class="p">(</span><span class="n">verbose</span><span class="p">,</span> <span class="n">header</span><span class="p">,</span> <span class="n">separator</span><span class="p">,</span> <span class="n">only_names</span><span class="p">,</span> <span class="n">taxonomy_file</span><span class="p">,</span>
+                 <span class="n">output_file</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    .. versionadded:: 0.5.0</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">mgkit</span><span class="o">.</span><span class="n">logger</span><span class="o">.</span><span class="n">config_log</span><span class="p">(</span><span class="n">level</span><span class="o">=</span><span class="n">logging</span><span class="o">.</span><span class="n">DEBUG</span> <span class="k">if</span> <span class="n">verbose</span> <span class="k">else</span> <span class="n">logging</span><span class="o">.</span><span class="n">INFO</span><span class="p">)</span>
+
+    <span class="n">taxonomy</span> <span class="o">=</span> <span class="n">taxon</span><span class="o">.</span><span class="n">Taxonomy</span><span class="p">(</span><span class="n">taxonomy_file</span><span class="p">)</span>
+
+    <span class="k">if</span> <span class="n">header</span><span class="p">:</span>
+        <span class="n">output_file</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">separator</span><span class="o">.</span><span class="n">join</span><span class="p">(</span>
+            <span class="p">[</span><span class="s1">&#39;Taxon Name&#39;</span><span class="p">,</span> <span class="s1">&#39;taxon_id&#39;</span><span class="p">,</span> <span class="s1">&#39;Rank&#39;</span><span class="p">,</span> <span class="s1">&#39;Lineage&#39;</span><span class="p">])</span> <span class="o">+</span> <span class="s1">&#39;</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">)</span>
+
+    <span class="k">if</span> <span class="n">only_names</span><span class="p">:</span>
+        <span class="n">taxon_ids</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="k">for</span> <span class="n">taxon_name</span> <span class="ow">in</span> <span class="n">only_names</span><span class="p">:</span>
+            <span class="k">try</span><span class="p">:</span>
+                <span class="n">taxon_ids</span><span class="o">.</span><span class="n">extend</span><span class="p">(</span><span class="n">taxonomy</span><span class="o">.</span><span class="n">find_by_name</span><span class="p">(</span><span class="n">taxon_name</span><span class="p">))</span>
+            <span class="k">except</span> <span class="ne">KeyError</span><span class="p">:</span>
+                <span class="n">LOG</span><span class="o">.</span><span class="n">error</span><span class="p">(</span><span class="s2">&quot;Taxon &#39;</span><span class="si">%s</span><span class="s2">&#39; not found&quot;</span><span class="p">,</span> <span class="n">taxon_name</span><span class="p">)</span>
+        <span class="k">for</span> <span class="n">taxon_id</span> <span class="ow">in</span> <span class="n">taxon_ids</span><span class="p">:</span>
+            <span class="n">line</span> <span class="o">=</span> <span class="n">output_taxon_line</span><span class="p">(</span><span class="n">taxonomy</span><span class="p">,</span> <span class="n">taxon_id</span><span class="p">,</span> <span class="n">sep</span><span class="o">=</span><span class="n">separator</span><span class="p">)</span>
+            <span class="n">output_file</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">line</span><span class="p">)</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="k">for</span> <span class="n">taxon_obj</span> <span class="ow">in</span> <span class="n">taxonomy</span><span class="p">:</span>
+            <span class="n">line</span> <span class="o">=</span> <span class="n">output_taxon_line</span><span class="p">(</span><span class="n">taxonomy</span><span class="p">,</span> <span class="n">taxon_obj</span><span class="o">.</span><span class="n">taxon_id</span><span class="p">,</span>
+                                     <span class="n">sep</span><span class="o">=</span><span class="n">separator</span><span class="p">)</span>
+            <span class="n">output_file</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">line</span><span class="p">)</span>
+</pre></div>
+
+           </div>
+           
+          </div>
+          <footer>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2013-2015, Francesco Rubino
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

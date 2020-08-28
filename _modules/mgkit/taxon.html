@@ -1,0 +1,1494 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>mgkit.taxon &mdash; MGKit: Metagenomic framework 0.5.0 documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+  <script type="text/javascript" src="../../_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
+        <script type="text/javascript" src="../../_static/jquery.js"></script>
+        <script type="text/javascript" src="../../_static/underscore.js"></script>
+        <script type="text/javascript" src="../../_static/doctools.js"></script>
+        <script type="text/javascript" src="../../_static/language_data.js"></script>
+        <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+        <script async="async" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+        <script type="text/x-mathjax-config">MathJax.Hub.Config({"tex2jax": {"inlineMath": [["$", "$"], ["\\(", "\\)"]], "processEscapes": true, "ignoreClass": "document", "processClass": "math|output_area"}})</script>
+    
+    <script type="text/javascript" src="../../_static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../../_static/graphviz.css" type="text/css" />
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../../index.html" class="icon icon-home"> MGKit: Metagenomic framework
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                0.5.0
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="../../introduction.html">Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../install.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../pipeline/index.html">Metagenomic Pipeline</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../scripts/index.html">Scripts Details</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../examples/index.html">Example Notebooks</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../gff.html">MGKit GFF Specifications</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../library.html">Library Reference</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../changes.html">Changes</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">MGKit: Metagenomic framework</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../../index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="../index.html">Module code</a> &raquo;</li>
+        
+          <li><a href="../mgkit.html">mgkit</a> &raquo;</li>
+        
+      <li>mgkit.taxon</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <h1>Source code for mgkit.taxon</h1><div class="highlight"><pre>
+<span></span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">This module gives access to Uniprot taxonomy data. It also defines classes</span>
+<span class="sd">to filter, order and group data by taxa</span>
+<span class="sd">&quot;&quot;&quot;</span>
+<span class="kn">from</span> <span class="nn">builtins</span> <span class="kn">import</span> <span class="nb">object</span>
+<span class="kn">from</span> <span class="nn">functools</span> <span class="kn">import</span> <span class="n">reduce</span>
+<span class="kn">import</span> <span class="nn">logging</span>
+<span class="kn">import</span> <span class="nn">sys</span>
+<span class="kn">import</span> <span class="nn">itertools</span>
+<span class="kn">import</span> <span class="nn">collections</span>
+<span class="kn">from</span> <span class="nn">future.utils</span> <span class="kn">import</span> <span class="n">viewitems</span><span class="p">,</span> <span class="n">viewvalues</span>
+<span class="kn">from</span> <span class="nn">.io</span> <span class="kn">import</span> <span class="n">open_file</span>
+<span class="kn">import</span> <span class="nn">pickle</span>
+
+
+<span class="n">LOG</span> <span class="o">=</span> <span class="n">logging</span><span class="o">.</span><span class="n">getLogger</span><span class="p">(</span><span class="vm">__name__</span><span class="p">)</span>
+
+<span class="n">ALGAE</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s1">&#39;haptophyceae&#39;</span><span class="p">:</span> <span class="mi">2830</span><span class="p">,</span>
+    <span class="s1">&#39;chlorophyta&#39;</span><span class="p">:</span> <span class="mi">3041</span><span class="p">,</span>
+    <span class="s1">&#39;stramenopiles&#39;</span><span class="p">:</span> <span class="mi">33634</span><span class="p">,</span>
+    <span class="s1">&#39;cryptophyta&#39;</span><span class="p">:</span> <span class="mi">3027</span><span class="p">,</span>
+    <span class="s1">&#39;rhodophyta&#39;</span><span class="p">:</span> <span class="mi">2763</span><span class="p">,</span>
+<span class="p">}</span>
+
+<span class="c1"># superkingdoms</span>
+<span class="n">BACTERIA</span> <span class="o">=</span> <span class="mi">2</span>
+<span class="n">ARCHAEA</span> <span class="o">=</span> <span class="mi">2157</span>
+<span class="n">VIRUS</span> <span class="o">=</span> <span class="mi">10239</span>
+
+<span class="n">CELLULAR_ORGANISMS</span> <span class="o">=</span> <span class="mi">131567</span>
+
+<span class="c1"># kingdoms</span>
+<span class="n">FUNGI</span> <span class="o">=</span> <span class="mi">4751</span>
+<span class="n">VIRIDIPLANTAE</span> <span class="o">=</span> <span class="mi">33090</span>
+<span class="n">METAZOA</span> <span class="o">=</span> <span class="mi">33208</span>
+<span class="n">EUKARYOTA</span> <span class="o">=</span> <span class="mi">2759</span>
+
+<span class="n">PROTISTS</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="c1"># &#39;apicomplexa&#39;, alveolata</span>
+    <span class="c1"># &#39;ciliophora&#39;, alveolata</span>
+    <span class="s1">&#39;alveolata&#39;</span><span class="p">:</span> <span class="mi">33630</span><span class="p">,</span>
+    <span class="s1">&#39;amoebozoa&#39;</span><span class="p">:</span> <span class="mi">554915</span><span class="p">,</span>
+    <span class="s1">&#39;apusozoa&#39;</span><span class="p">:</span> <span class="mi">554296</span><span class="p">,</span>
+    <span class="s1">&#39;breviatea&#39;</span><span class="p">:</span> <span class="mi">1401294</span><span class="p">,</span>
+    <span class="s1">&#39;centroheliozoa&#39;</span><span class="p">:</span> <span class="mi">193537</span><span class="p">,</span>
+    <span class="s1">&#39;choanoflagellida&#39;</span><span class="p">:</span> <span class="mi">28009</span><span class="p">,</span>
+    <span class="s1">&#39;diplomonadida&#39;</span><span class="p">:</span> <span class="mi">5738</span><span class="p">,</span>
+    <span class="s1">&#39;euglenozoa&#39;</span><span class="p">:</span> <span class="mi">33682</span><span class="p">,</span>
+    <span class="s1">&#39;formicata&#39;</span><span class="p">:</span> <span class="mi">207245</span><span class="p">,</span>
+    <span class="s1">&#39;heterolobosea&#39;</span><span class="p">:</span> <span class="mi">5752</span><span class="p">,</span>
+    <span class="s1">&#39;jakobida&#39;</span><span class="p">:</span> <span class="mi">556282</span><span class="p">,</span>
+    <span class="s1">&#39;malawimonadidae&#39;</span><span class="p">:</span> <span class="mi">136087</span><span class="p">,</span>
+    <span class="s1">&#39;oxymonadida&#39;</span><span class="p">:</span> <span class="mi">66288</span><span class="p">,</span>
+    <span class="s1">&#39;parabasalia&#39;</span><span class="p">:</span> <span class="mi">5719</span><span class="p">,</span>
+    <span class="s1">&#39;rhizaria&#39;</span><span class="p">:</span> <span class="mi">543769</span><span class="p">,</span>
+<span class="p">}</span>
+
+<span class="n">PLANTS</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s1">&#39;streptophyta&#39;</span><span class="p">:</span> <span class="mi">35493</span><span class="p">,</span>
+<span class="p">}</span>
+
+<span class="n">TAXON_ROOTS</span> <span class="o">=</span> <span class="p">(</span>
+    <span class="s1">&#39;archaea&#39;</span><span class="p">,</span>  <span class="c1"># 2157</span>
+    <span class="s1">&#39;bacteria&#39;</span><span class="p">,</span>  <span class="c1"># 2</span>
+    <span class="s1">&#39;fungi&#39;</span><span class="p">,</span>  <span class="c1"># 4751</span>
+    <span class="s1">&#39;metazoa&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;environmental samples&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;viruses&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;viroids&#39;</span>
+    <span class="s1">&#39;eukaryota&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;other sequences&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;unidentified&#39;</span>
+<span class="p">)</span> <span class="o">+</span> <span class="nb">tuple</span><span class="p">(</span><span class="n">PROTISTS</span><span class="p">)</span> <span class="o">+</span> <span class="nb">tuple</span><span class="p">(</span><span class="n">PLANTS</span><span class="p">)</span> <span class="o">+</span> <span class="nb">tuple</span><span class="p">(</span><span class="n">ALGAE</span><span class="p">)</span>
+<span class="s2">&quot;Root taxa used in analysis and filtering&quot;</span>
+
+<span class="n">TAXON_RANKS</span> <span class="o">=</span> <span class="p">(</span>
+    <span class="s1">&#39;superkingdom&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;kingdom&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;phylum&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;class&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;subclass&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;order&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;family&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;genus&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;species&#39;</span>
+<span class="p">)</span>
+<span class="s2">&quot;Taxonomy ranks included in the pickled data&quot;</span>
+
+<span class="n">TaxonTuple</span> <span class="o">=</span> <span class="n">collections</span><span class="o">.</span><span class="n">namedtuple</span><span class="p">(</span>
+    <span class="s1">&#39;UniprotTaxonTuple&#39;</span><span class="p">,</span>
+    <span class="p">(</span><span class="s1">&#39;taxon_id&#39;</span><span class="p">,</span> <span class="s1">&#39;s_name&#39;</span><span class="p">,</span> <span class="s1">&#39;c_name&#39;</span><span class="p">,</span> <span class="s1">&#39;rank&#39;</span><span class="p">,</span> <span class="s1">&#39;lineage&#39;</span><span class="p">,</span> <span class="s1">&#39;parent_id&#39;</span><span class="p">)</span>
+<span class="p">)</span>
+<span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">A representation of a Uniprot Taxon</span>
+<span class="sd">&quot;&quot;&quot;</span>
+
+<span class="c1"># To be deprecated to avoid confusion</span>
+<span class="n">UniprotTaxonTuple</span> <span class="o">=</span> <span class="n">TaxonTuple</span>
+
+
+<div class="viewcode-block" id="parse_uniprot_taxon"><a class="viewcode-back" href="../../api/mgkit.taxon.html#mgkit.taxon.parse_uniprot_taxon">[docs]</a><span class="k">def</span> <span class="nf">parse_uniprot_taxon</span><span class="p">(</span><span class="n">line</span><span class="p">,</span> <span class="n">light</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    .. versionchanged:: 0.1.13</span>
+<span class="sd">        now accepts empty scientific names, for root taxa</span>
+
+<span class="sd">    .. versionchanged:: 0.2.1</span>
+<span class="sd">        added *light* parameter</span>
+
+<span class="sd">    .. deprecated:: 0.4.0</span>
+
+<span class="sd">    Parses a Uniprot taxonomy file (tab delimited) line and returns a</span>
+<span class="sd">    UniprotTaxonTuple instance. If *light* is True, lineage is not stored to</span>
+<span class="sd">    decrease the memory usage. This is now the default.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">line</span> <span class="o">=</span> <span class="n">line</span><span class="o">.</span><span class="n">decode</span><span class="p">(</span><span class="s1">&#39;ascii&#39;</span><span class="p">)</span>
+    <span class="n">line</span> <span class="o">=</span> <span class="n">line</span><span class="o">.</span><span class="n">rstrip</span><span class="p">()</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">&#39;</span><span class="se">\t</span><span class="s1">&#39;</span><span class="p">)</span>
+    <span class="n">taxon_id</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">line</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+    <span class="k">try</span><span class="p">:</span>
+        <span class="n">s_name</span> <span class="o">=</span> <span class="n">line</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span>
+    <span class="k">except</span> <span class="ne">IndexError</span><span class="p">:</span>
+        <span class="n">s_name</span> <span class="o">=</span> <span class="s1">&#39;&#39;</span>
+    <span class="k">try</span><span class="p">:</span>
+        <span class="n">c_name</span> <span class="o">=</span> <span class="n">line</span><span class="p">[</span><span class="mi">3</span><span class="p">]</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span> <span class="k">if</span> <span class="n">line</span><span class="p">[</span><span class="mi">3</span><span class="p">]</span> <span class="k">else</span> <span class="s1">&#39;&#39;</span>
+    <span class="k">except</span> <span class="ne">IndexError</span><span class="p">:</span>
+        <span class="n">c_name</span> <span class="o">=</span> <span class="s1">&#39;&#39;</span>
+    <span class="k">try</span><span class="p">:</span>
+        <span class="n">rank</span> <span class="o">=</span> <span class="n">line</span><span class="p">[</span><span class="mi">7</span><span class="p">]</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span>
+    <span class="k">except</span> <span class="ne">IndexError</span><span class="p">:</span>
+        <span class="n">rank</span> <span class="o">=</span> <span class="kc">None</span>
+    <span class="k">try</span><span class="p">:</span>
+        <span class="k">if</span> <span class="n">light</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">IndexError</span>
+        <span class="n">lineage</span> <span class="o">=</span> <span class="nb">tuple</span><span class="p">(</span><span class="n">x</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">line</span><span class="p">[</span><span class="mi">8</span><span class="p">]</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">&#39;; &#39;</span><span class="p">))</span>
+    <span class="k">except</span> <span class="ne">IndexError</span><span class="p">:</span>
+        <span class="n">lineage</span> <span class="o">=</span> <span class="p">(</span><span class="kc">None</span><span class="p">,)</span>
+    <span class="k">try</span><span class="p">:</span>
+        <span class="n">parent_id</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">line</span><span class="p">[</span><span class="mi">9</span><span class="p">])</span>
+    <span class="k">except</span> <span class="p">(</span><span class="ne">ValueError</span><span class="p">,</span> <span class="ne">IndexError</span><span class="p">):</span>
+        <span class="n">parent_id</span> <span class="o">=</span> <span class="kc">None</span>
+    <span class="k">return</span> <span class="n">UniprotTaxonTuple</span><span class="p">(</span>
+        <span class="n">taxon_id</span><span class="p">,</span>
+        <span class="n">s_name</span><span class="p">,</span>
+        <span class="n">c_name</span><span class="p">,</span>
+        <span class="n">rank</span><span class="p">,</span>
+        <span class="n">lineage</span><span class="p">,</span>
+        <span class="n">parent_id</span>
+    <span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="parse_ncbi_taxonomy_merged_file"><a class="viewcode-back" href="../../api/mgkit.taxon.html#mgkit.taxon.parse_ncbi_taxonomy_merged_file">[docs]</a><span class="k">def</span> <span class="nf">parse_ncbi_taxonomy_merged_file</span><span class="p">(</span><span class="n">file_handle</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    .. versionadded:: 0.2.3</span>
+
+<span class="sd">    Parses the *merged.dmp* file where the merged taxon_id are stored. Available</span>
+<span class="sd">    at ftp://ftp.ncbi.nlm.nih.gov/pub/taxonomy/</span>
+
+<span class="sd">    Arguments:</span>
+<span class="sd">        file_handle (str, file): file name or handle to the file</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        dict: dictionary with merged_id -&gt; taxon_id</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">file_handle</span> <span class="o">=</span> <span class="n">open_file</span><span class="p">(</span><span class="n">file_handle</span><span class="p">,</span> <span class="s1">&#39;r&#39;</span><span class="p">)</span>
+
+    <span class="n">LOG</span><span class="o">.</span><span class="n">info</span><span class="p">(</span>
+        <span class="s2">&quot;Reading NCBI taxonomy merged file </span><span class="si">%s</span><span class="s2">&quot;</span><span class="p">,</span>
+        <span class="nb">getattr</span><span class="p">(</span><span class="n">file_handle</span><span class="p">,</span> <span class="s1">&#39;name&#39;</span><span class="p">,</span> <span class="nb">repr</span><span class="p">(</span><span class="n">file_handle</span><span class="p">))</span>
+    <span class="p">)</span>
+
+    <span class="n">merged_taxa</span> <span class="o">=</span> <span class="p">{}</span>
+
+    <span class="k">for</span> <span class="n">line</span> <span class="ow">in</span> <span class="n">file_handle</span><span class="p">:</span>
+        <span class="n">line</span> <span class="o">=</span> <span class="n">line</span><span class="o">.</span><span class="n">decode</span><span class="p">(</span><span class="s1">&#39;ascii&#39;</span><span class="p">)</span>
+        <span class="n">merged_id</span><span class="p">,</span> <span class="n">taxon_id</span> <span class="o">=</span> <span class="p">[</span><span class="n">col</span> <span class="k">for</span> <span class="n">col</span> <span class="ow">in</span> <span class="n">line</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">&#39;</span><span class="se">\t</span><span class="s1">&#39;</span><span class="p">)</span> <span class="k">if</span> <span class="n">col</span> <span class="o">!=</span> <span class="s1">&#39;|&#39;</span><span class="p">]</span>
+        <span class="n">merged_taxa</span><span class="p">[</span><span class="nb">int</span><span class="p">(</span><span class="n">merged_id</span><span class="p">)]</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">taxon_id</span><span class="p">)</span>
+
+    <span class="k">return</span> <span class="n">merged_taxa</span></div>
+
+
+<div class="viewcode-block" id="parse_ncbi_taxonomy_names_file"><a class="viewcode-back" href="../../api/mgkit.taxon.html#mgkit.taxon.parse_ncbi_taxonomy_names_file">[docs]</a><span class="k">def</span> <span class="nf">parse_ncbi_taxonomy_names_file</span><span class="p">(</span><span class="n">file_handle</span><span class="p">,</span> <span class="n">name_classes</span><span class="o">=</span><span class="p">(</span><span class="s1">&#39;scientific name&#39;</span><span class="p">,</span> <span class="s1">&#39;common name&#39;</span><span class="p">)):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    .. versionadded:: 0.2.3</span>
+
+<span class="sd">    Parses the *names.dmp* file where the names associated to a taxon_id are</span>
+<span class="sd">    stored. Available at ftp://ftp.ncbi.nlm.nih.gov/pub/taxonomy/</span>
+
+<span class="sd">    Arguments:</span>
+<span class="sd">        file_handle (str, file): file name or handle to the file</span>
+<span class="sd">        name_classes (tuple): name classes to save, only the scientific and</span>
+<span class="sd">            common name are stored</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        dict: dictionary with merged_id -&gt; taxon_id</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="n">file_handle</span> <span class="o">=</span> <span class="n">open_file</span><span class="p">(</span><span class="n">file_handle</span><span class="p">,</span> <span class="s1">&#39;r&#39;</span><span class="p">)</span>
+
+    <span class="n">LOG</span><span class="o">.</span><span class="n">info</span><span class="p">(</span>
+        <span class="s2">&quot;Reading NCBI taxonomy names file </span><span class="si">%s</span><span class="s2">&quot;</span><span class="p">,</span>
+        <span class="nb">getattr</span><span class="p">(</span><span class="n">file_handle</span><span class="p">,</span> <span class="s1">&#39;name&#39;</span><span class="p">,</span> <span class="nb">repr</span><span class="p">(</span><span class="n">file_handle</span><span class="p">))</span>
+    <span class="p">)</span>
+
+    <span class="n">taxa_names</span> <span class="o">=</span> <span class="p">{}</span>
+
+    <span class="k">for</span> <span class="n">line</span> <span class="ow">in</span> <span class="n">file_handle</span><span class="p">:</span>
+        <span class="n">line</span> <span class="o">=</span> <span class="n">line</span><span class="o">.</span><span class="n">decode</span><span class="p">(</span><span class="s1">&#39;ascii&#39;</span><span class="p">)</span>
+        <span class="n">taxon_id</span><span class="p">,</span> <span class="n">taxon_name</span><span class="p">,</span> <span class="n">uniq_name</span><span class="p">,</span> <span class="n">name_class</span> <span class="o">=</span> <span class="p">[</span>
+            <span class="n">col</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span>
+            <span class="k">for</span> <span class="n">col</span> <span class="ow">in</span> <span class="n">line</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">&#39;</span><span class="se">\t</span><span class="s1">&#39;</span><span class="p">)</span>
+            <span class="k">if</span> <span class="n">col</span> <span class="o">!=</span> <span class="s1">&#39;|&#39;</span>
+        <span class="p">]</span>
+        <span class="n">taxon_id</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">taxon_id</span><span class="p">)</span>
+
+        <span class="k">if</span> <span class="n">name_class</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">name_classes</span><span class="p">:</span>
+            <span class="k">continue</span>
+
+        <span class="k">if</span> <span class="n">taxon_id</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">taxa_names</span><span class="p">:</span>
+            <span class="n">taxa_names</span><span class="p">[</span><span class="n">taxon_id</span><span class="p">]</span> <span class="o">=</span> <span class="p">{}</span>
+
+        <span class="n">taxa_names</span><span class="p">[</span><span class="n">taxon_id</span><span class="p">][</span><span class="n">name_class</span><span class="p">]</span> <span class="o">=</span> <span class="n">taxon_name</span>
+
+    <span class="k">return</span> <span class="n">taxa_names</span></div>
+
+
+<div class="viewcode-block" id="parse_ncbi_taxonomy_nodes_file"><a class="viewcode-back" href="../../api/mgkit.taxon.html#mgkit.taxon.parse_ncbi_taxonomy_nodes_file">[docs]</a><span class="k">def</span> <span class="nf">parse_ncbi_taxonomy_nodes_file</span><span class="p">(</span><span class="n">file_handle</span><span class="p">,</span> <span class="n">taxa_names</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    .. versionadded:: 0.2.3</span>
+
+<span class="sd">    Parses the *nodes.dmp* file where the nodes of the taxonomy are stored.</span>
+<span class="sd">    Available at ftp://ftp.ncbi.nlm.nih.gov/pub/taxonomy/.</span>
+
+<span class="sd">    Arguments:</span>
+<span class="sd">        file_handle (str, file): file name or handle to the file</span>
+<span class="sd">        taxa_names (dict): dictionary with the taxa names (returned from</span>
+<span class="sd">            :func:`parse_ncbi_taxonomy_names_file`)</span>
+
+<span class="sd">    Yields:</span>
+<span class="sd">        TaxonTuple: TaxonTuple instance</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="n">file_handle</span> <span class="o">=</span> <span class="n">open_file</span><span class="p">(</span><span class="n">file_handle</span><span class="p">,</span> <span class="s1">&#39;r&#39;</span><span class="p">)</span>
+
+    <span class="n">LOG</span><span class="o">.</span><span class="n">info</span><span class="p">(</span>
+        <span class="s2">&quot;Reading NCBI taxonomy nodes file </span><span class="si">%s</span><span class="s2">&quot;</span><span class="p">,</span>
+        <span class="nb">getattr</span><span class="p">(</span><span class="n">file_handle</span><span class="p">,</span> <span class="s1">&#39;name&#39;</span><span class="p">,</span> <span class="nb">repr</span><span class="p">(</span><span class="n">file_handle</span><span class="p">))</span>
+    <span class="p">)</span>
+
+    <span class="k">for</span> <span class="n">line</span> <span class="ow">in</span> <span class="n">file_handle</span><span class="p">:</span>
+        <span class="n">line</span> <span class="o">=</span> <span class="n">line</span><span class="o">.</span><span class="n">decode</span><span class="p">(</span><span class="s1">&#39;ascii&#39;</span><span class="p">)</span>
+        <span class="n">line</span> <span class="o">=</span> <span class="p">[</span><span class="n">col</span> <span class="k">for</span> <span class="n">col</span> <span class="ow">in</span> <span class="n">line</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">&#39;</span><span class="se">\t</span><span class="s1">&#39;</span><span class="p">)</span> <span class="k">if</span> <span class="n">col</span> <span class="o">!=</span> <span class="s1">&#39;|&#39;</span><span class="p">]</span>
+        <span class="n">taxon_id</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">line</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+        <span class="n">parent_id</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">line</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>
+        <span class="k">if</span> <span class="n">parent_id</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span>
+            <span class="c1"># NCBI uses 1 as the root, but the rest of the functions expect None</span>
+            <span class="n">parent_id</span> <span class="o">=</span> <span class="kc">None</span>
+        <span class="n">rank</span> <span class="o">=</span> <span class="n">line</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span>
+
+        <span class="n">s_name</span> <span class="o">=</span> <span class="s1">&#39;&#39;</span>
+        <span class="n">c_name</span> <span class="o">=</span> <span class="s1">&#39;&#39;</span>
+
+        <span class="k">if</span> <span class="n">taxa_names</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="k">try</span><span class="p">:</span>
+                <span class="n">names</span> <span class="o">=</span> <span class="n">taxa_names</span><span class="p">[</span><span class="n">taxon_id</span><span class="p">]</span>
+            <span class="k">except</span> <span class="ne">KeyError</span><span class="p">:</span>
+                <span class="n">names</span> <span class="o">=</span> <span class="p">{}</span>
+            <span class="n">s_name</span> <span class="o">=</span> <span class="n">names</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;scientific name&#39;</span><span class="p">,</span> <span class="s1">&#39;&#39;</span><span class="p">)</span>
+            <span class="n">c_name</span> <span class="o">=</span> <span class="n">names</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;common name&#39;</span><span class="p">,</span> <span class="s1">&#39;&#39;</span><span class="p">)</span>
+
+        <span class="k">yield</span> <span class="n">TaxonTuple</span><span class="p">(</span>
+            <span class="n">taxon_id</span><span class="p">,</span>
+            <span class="n">s_name</span><span class="p">,</span>
+            <span class="n">c_name</span><span class="p">,</span>
+            <span class="n">rank</span><span class="p">,</span>
+            <span class="p">(</span><span class="kc">None</span><span class="p">,),</span>  <span class="c1"># lineage is not found in the NCBI taxonomy dump</span>
+            <span class="n">parent_id</span>
+        <span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="Taxonomy"><a class="viewcode-back" href="../../api/mgkit.taxon.html#mgkit.taxon.Taxonomy">[docs]</a><span class="k">class</span> <span class="nc">Taxonomy</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Class that contains the whole Uniprot taxonomy. Defines some methods to</span>
+<span class="sd">    easy access of taxonomy. Follows the conventions of NCBI Taxonomy.</span>
+
+<span class="sd">    Defines:</span>
+
+<span class="sd">    * methods to load taxonomy from a pickle file or a generic file handle</span>
+<span class="sd">    * can be iterated over and returns a generator its UniprotTaxon instances</span>
+<span class="sd">    * can be used as a dictionary, in which the key is a taxon_id and the value</span>
+<span class="sd">      is its UniprotTaxon instance</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">fname</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        :param str fname: file name of the pickled data.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_taxa</span> <span class="o">=</span> <span class="p">{}</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_name_map</span> <span class="o">=</span> <span class="p">{}</span>
+        <span class="k">if</span> <span class="n">fname</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">load_data</span><span class="p">(</span><span class="n">fname</span><span class="p">)</span>
+
+<div class="viewcode-block" id="Taxonomy.parse_gtdb_lineage"><a class="viewcode-back" href="../../api/mgkit.taxon.html#mgkit.taxon.Taxonomy.parse_gtdb_lineage">[docs]</a>    <span class="nd">@staticmethod</span>
+    <span class="k">def</span> <span class="nf">parse_gtdb_lineage</span><span class="p">(</span><span class="n">lineage</span><span class="p">,</span> <span class="n">sep</span><span class="o">=</span><span class="s1">&#39;;&#39;</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        .. versionadded:: 0.3.3</span>
+
+<span class="sd">        Parse a GTDB lineage, one that defines the rank as a single letter,</span>
+<span class="sd">        followed by **__** for each taxon name. Taxa are separated by semicolon</span>
+<span class="sd">        by default. Also the **domain** rank is renamed into **superkingdom**</span>
+<span class="sd">        to allow mixing of taxonomies.</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            dict: dictionary with the parsed lineage, which can be passed to</span>
+<span class="sd">            :meth:`Taxonomy.add_lineage`</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">lineage_dict</span> <span class="o">=</span> <span class="p">{}</span>
+        <span class="n">ranks</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">(</span><span class="n">d</span><span class="o">=</span><span class="s1">&#39;superkingdom&#39;</span><span class="p">,</span> <span class="n">f</span><span class="o">=</span><span class="s1">&#39;family&#39;</span><span class="p">,</span> <span class="n">p</span><span class="o">=</span><span class="s1">&#39;phylum&#39;</span><span class="p">,</span> <span class="n">o</span><span class="o">=</span><span class="s1">&#39;order&#39;</span><span class="p">,</span> <span class="n">g</span><span class="o">=</span><span class="s1">&#39;genus&#39;</span><span class="p">,</span> <span class="n">s</span><span class="o">=</span><span class="s1">&#39;species&#39;</span><span class="p">,</span> <span class="n">c</span><span class="o">=</span><span class="s1">&#39;class&#39;</span><span class="p">)</span>
+        <span class="k">for</span> <span class="n">taxon_name</span> <span class="ow">in</span> <span class="n">lineage</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="n">sep</span><span class="p">):</span>
+            <span class="n">rank</span><span class="p">,</span> <span class="n">taxon_name</span> <span class="o">=</span> <span class="n">taxon_name</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">&#39;__&#39;</span><span class="p">)</span>
+            <span class="k">if</span> <span class="ow">not</span> <span class="n">taxon_name</span><span class="p">:</span>
+                <span class="k">continue</span>
+            <span class="n">lineage_dict</span><span class="p">[</span><span class="n">ranks</span><span class="p">[</span><span class="n">rank</span><span class="p">]]</span> <span class="o">=</span> <span class="n">taxon_name</span>
+        <span class="k">return</span> <span class="n">lineage_dict</span></div>
+
+<div class="viewcode-block" id="Taxonomy.read_from_gtdb_taxonomy"><a class="viewcode-back" href="../../api/mgkit.taxon.html#mgkit.taxon.Taxonomy.read_from_gtdb_taxonomy">[docs]</a>    <span class="k">def</span> <span class="nf">read_from_gtdb_taxonomy</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">file_handle</span><span class="p">,</span> <span class="n">use_gtdb_name</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">sep</span><span class="o">=</span><span class="s1">&#39;</span><span class="se">\t</span><span class="s1">&#39;</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        .. versionadded:: 0.3.0</span>
+
+<span class="sd">        .. versionchanged:: 0.3.1</span>
+<span class="sd">            replaced *domain* with *superkingdom* to support *get_lineage*</span>
+
+<span class="sd">        Reads a GTDB taxonomy file (tab separated genome_id/taxonomy) and</span>
+<span class="sd">        populate the taxonomy instance. The method also return a dictionary of</span>
+<span class="sd">        genome_id -&gt; taxon_id.</span>
+
+<span class="sd">        Arguments:</span>
+<span class="sd">            file_handle (file): file with the taxonomy</span>
+<span class="sd">            use_gtdb_name (bool): if True, the names are kept as-is in the</span>
+<span class="sd">                *s_name* attribute of :class:`TaxonTuple` and the</span>
+<span class="sd">                &quot;cleaned&quot; version in *c_name* (e.g. f__Ammonifexaceae -&gt;</span>
+<span class="sd">                Ammonifexaceae). If False, the values are switched</span>
+<span class="sd">            sep (str): separator between the columns of the file</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            dict: dictionary of genome_id -&gt; taxon_id, reflecting the created</span>
+<span class="sd">            taxonomy</span>
+
+<span class="sd">        .. note::</span>
+
+<span class="sd">            the taxon_id are generated, so there&#39;s no guarantee they will be</span>
+<span class="sd">            the same in a successive execution</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">file_handle</span><span class="p">,</span> <span class="nb">str</span><span class="p">):</span>
+            <span class="n">file_handle</span> <span class="o">=</span> <span class="n">open_file</span><span class="p">(</span><span class="n">file_handle</span><span class="p">,</span> <span class="s1">&#39;r&#39;</span><span class="p">)</span>
+
+        <span class="n">LOG</span><span class="o">.</span><span class="n">info</span><span class="p">(</span>
+            <span class="s2">&quot;Reading GTDB taxonomy from file (</span><span class="si">%s</span><span class="s2">)&quot;</span><span class="p">,</span>
+            <span class="nb">getattr</span><span class="p">(</span><span class="n">file_handle</span><span class="p">,</span> <span class="s1">&#39;name&#39;</span><span class="p">,</span> <span class="nb">repr</span><span class="p">(</span><span class="n">file_handle</span><span class="p">))</span>
+        <span class="p">)</span>
+
+        <span class="n">genome_ids</span> <span class="o">=</span> <span class="p">{}</span>
+
+        <span class="c1"># ranks used in GTDB</span>
+        <span class="n">ranks</span> <span class="o">=</span> <span class="p">{</span>
+            <span class="s1">&#39;g&#39;</span><span class="p">:</span> <span class="s1">&#39;genus&#39;</span><span class="p">,</span>
+            <span class="s1">&#39;f&#39;</span><span class="p">:</span> <span class="s1">&#39;family&#39;</span><span class="p">,</span>
+            <span class="s1">&#39;p&#39;</span><span class="p">:</span> <span class="s1">&#39;phylum&#39;</span><span class="p">,</span>
+            <span class="s1">&#39;o&#39;</span><span class="p">:</span> <span class="s1">&#39;order&#39;</span><span class="p">,</span>
+            <span class="s1">&#39;d&#39;</span><span class="p">:</span> <span class="s1">&#39;superkingdom&#39;</span><span class="p">,</span>
+            <span class="s1">&#39;s&#39;</span><span class="p">:</span> <span class="s1">&#39;species&#39;</span><span class="p">,</span>
+            <span class="s1">&#39;c&#39;</span><span class="p">:</span> <span class="s1">&#39;class&#39;</span>
+        <span class="p">}</span>
+
+        <span class="n">taxon_ids</span> <span class="o">=</span> <span class="p">{}</span>
+        <span class="n">count</span> <span class="o">=</span> <span class="mi">1</span>
+        <span class="k">for</span> <span class="n">line</span> <span class="ow">in</span> <span class="n">file_handle</span><span class="p">:</span>
+            <span class="n">line</span> <span class="o">=</span> <span class="n">line</span><span class="o">.</span><span class="n">decode</span><span class="p">(</span><span class="s1">&#39;ascii&#39;</span><span class="p">)</span>
+            <span class="c1"># expecting the table to be the exported file from GTDB</span>
+            <span class="k">try</span><span class="p">:</span>
+                <span class="c1"># print line.strip().split(sep)</span>
+                <span class="n">genome_id</span><span class="p">,</span> <span class="n">line</span> <span class="o">=</span> <span class="n">line</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="n">sep</span><span class="p">)</span>
+                <span class="c1"># in case there&#39;s no gtdb taxonomy</span>
+            <span class="k">except</span> <span class="ne">ValueError</span><span class="p">:</span>
+                <span class="k">continue</span>
+
+            <span class="n">line</span> <span class="o">=</span> <span class="p">[</span>
+                <span class="n">taxon_name</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span>
+                <span class="k">for</span> <span class="n">taxon_name</span> <span class="ow">in</span> <span class="n">line</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">&#39;;&#39;</span><span class="p">)</span>
+                <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">taxon_name</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">3</span>
+            <span class="p">]</span>
+
+            <span class="k">if</span> <span class="ow">not</span> <span class="n">line</span><span class="p">:</span>
+                <span class="k">continue</span>
+
+            <span class="c1"># if no parent, use None as the NCBI taxonomy</span>
+            <span class="n">parent_id</span> <span class="o">=</span> <span class="kc">None</span>
+            <span class="k">for</span> <span class="n">taxon_name</span> <span class="ow">in</span> <span class="n">line</span><span class="p">:</span>
+
+                <span class="c1"># register a taxo_id for unknown taxon</span>
+                <span class="k">if</span> <span class="n">taxon_name</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">taxon_ids</span><span class="p">:</span>
+                    <span class="n">taxon_ids</span><span class="p">[</span><span class="n">taxon_name</span><span class="p">]</span> <span class="o">=</span> <span class="n">count</span>
+                    <span class="n">count</span> <span class="o">+=</span> <span class="mi">1</span>
+
+                <span class="n">taxon_id</span> <span class="o">=</span> <span class="n">taxon_ids</span><span class="p">[</span><span class="n">taxon_name</span><span class="p">]</span>
+                <span class="k">try</span><span class="p">:</span>
+                    <span class="n">rank</span> <span class="o">=</span> <span class="n">ranks</span><span class="p">[</span><span class="n">taxon_name</span><span class="p">[</span><span class="mi">0</span><span class="p">]]</span>
+                <span class="k">except</span> <span class="ne">KeyError</span><span class="p">:</span>
+                    <span class="k">raise</span> <span class="ne">KeyError</span>
+
+                <span class="c1"># keep the full gtdb name in the common name</span>
+                <span class="c1"># cut the scientific name to remove the rank information</span>
+                <span class="n">common_name</span> <span class="o">=</span> <span class="n">taxon_name</span>
+                <span class="n">taxon_name</span> <span class="o">=</span> <span class="n">taxon_name</span><span class="p">[</span><span class="mi">3</span><span class="p">:]</span>
+                <span class="c1"># but if th use_gtdb_name option is True, switch them</span>
+                <span class="k">if</span> <span class="n">use_gtdb_name</span><span class="p">:</span>
+                    <span class="n">taxon_name</span><span class="p">,</span> <span class="n">common_name</span> <span class="o">=</span> <span class="n">common_name</span><span class="p">,</span> <span class="n">taxon_name</span>
+
+                <span class="bp">self</span><span class="p">[</span><span class="n">taxon_id</span><span class="p">]</span> <span class="o">=</span> <span class="n">TaxonTuple</span><span class="p">(</span>
+                    <span class="n">taxon_id</span><span class="p">,</span>
+                    <span class="n">taxon_name</span><span class="p">,</span>
+                    <span class="n">common_name</span><span class="p">,</span>
+                    <span class="n">rank</span><span class="p">,</span>
+                    <span class="p">(</span><span class="kc">None</span><span class="p">,),</span>
+                    <span class="n">parent_id</span>
+                <span class="p">)</span>
+                <span class="n">parent_id</span> <span class="o">=</span> <span class="n">taxon_id</span>
+            <span class="n">genome_ids</span><span class="p">[</span><span class="n">genome_id</span><span class="p">]</span> <span class="o">=</span> <span class="n">taxon_id</span>
+
+        <span class="k">return</span> <span class="n">genome_ids</span></div>
+
+<div class="viewcode-block" id="Taxonomy.read_from_ncbi_dump"><a class="viewcode-back" href="../../api/mgkit.taxon.html#mgkit.taxon.Taxonomy.read_from_ncbi_dump">[docs]</a>    <span class="k">def</span> <span class="nf">read_from_ncbi_dump</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">nodes_file</span><span class="p">,</span> <span class="n">names_file</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">merged_file</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">            .. versionadded:: 0.2.3</span>
+
+<span class="sd">            Uses the *nodes.dmp* and optionally *names.dmp*, *merged.dmp* files</span>
+<span class="sd">            from ftp://ftp.ncbi.nlm.nih.gov/pub/taxonomy/ to populate the</span>
+<span class="sd">            taxonomy.</span>
+
+<span class="sd">            Arguments:</span>
+<span class="sd">                nodes_file (str, file): file name or handle to the file</span>
+<span class="sd">                names_file (str, file, None): file name or handle to the file,</span>
+<span class="sd">                    if None, names won&#39;t be added to the taxa</span>
+<span class="sd">                merged_file (str, file, None): file name or handle to the file,</span>
+<span class="sd">                    if None, pointers to merged taxa won&#39;t be added</span>
+<span class="sd">            &quot;&quot;&quot;</span>
+
+        <span class="n">LOG</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;Reading NCBI taxonomy from file&quot;</span><span class="p">)</span>
+
+        <span class="k">if</span> <span class="n">names_file</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">taxa_names</span> <span class="o">=</span> <span class="n">parse_ncbi_taxonomy_names_file</span><span class="p">(</span><span class="n">names_file</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">taxa_names</span> <span class="o">=</span> <span class="kc">None</span>
+
+        <span class="k">for</span> <span class="n">taxon</span> <span class="ow">in</span> <span class="n">parse_ncbi_taxonomy_nodes_file</span><span class="p">(</span><span class="n">nodes_file</span><span class="p">,</span> <span class="n">taxa_names</span><span class="p">):</span>
+            <span class="bp">self</span><span class="p">[</span><span class="n">taxon</span><span class="o">.</span><span class="n">taxon_id</span><span class="p">]</span> <span class="o">=</span> <span class="n">taxon</span>
+
+        <span class="k">if</span> <span class="n">merged_file</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">merged_taxa</span> <span class="o">=</span> <span class="n">parse_ncbi_taxonomy_merged_file</span><span class="p">(</span><span class="n">merged_file</span><span class="p">)</span>
+
+            <span class="k">for</span> <span class="n">merged_id</span><span class="p">,</span> <span class="n">taxon_id</span> <span class="ow">in</span> <span class="n">viewitems</span><span class="p">(</span><span class="n">merged_taxa</span><span class="p">):</span>
+                <span class="bp">self</span><span class="p">[</span><span class="n">merged_id</span><span class="p">]</span> <span class="o">=</span> <span class="bp">self</span><span class="p">[</span><span class="n">taxon_id</span><span class="p">]</span></div>
+
+<div class="viewcode-block" id="Taxonomy.read_taxonomy"><a class="viewcode-back" href="../../api/mgkit.taxon.html#mgkit.taxon.Taxonomy.read_taxonomy">[docs]</a>    <span class="k">def</span> <span class="nf">read_taxonomy</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">f_handle</span><span class="p">,</span> <span class="n">light</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        .. versionchanged:: 0.2.1</span>
+<span class="sd">            added *light* parameter</span>
+
+<span class="sd">        .. deprecated:: 0.4.0</span>
+<span class="sd">            use :meth:`Taxonomy.read_from_ncbi_dump`</span>
+
+<span class="sd">        Reads taxonomy from a file handle.</span>
+<span class="sd">        The file needs to be a tab separated format return by a query on</span>
+<span class="sd">        Uniprot.  If *light* is True, lineage is not stored to decrease the</span>
+<span class="sd">        memory usage. This is now the default.</span>
+
+<span class="sd">        New taxa will be added, duplicated taxa will be skipped.</span>
+
+<span class="sd">        :param handle f_handle: file handle of the taxonomy file.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">try</span><span class="p">:</span>
+            <span class="n">LOG</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;Loading taxonomy from file </span><span class="si">%s</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">f_handle</span><span class="o">.</span><span class="n">name</span><span class="p">)</span>
+        <span class="k">except</span> <span class="ne">AttributeError</span><span class="p">:</span>
+            <span class="k">pass</span>
+
+        <span class="n">f_handle</span><span class="o">.</span><span class="n">readline</span><span class="p">()</span>
+
+        <span class="k">for</span> <span class="n">line</span> <span class="ow">in</span> <span class="n">f_handle</span><span class="p">:</span>
+            <span class="k">try</span><span class="p">:</span>
+                <span class="c1"># taxon = UniprotTaxon(line=line)</span>
+                <span class="n">taxon</span> <span class="o">=</span> <span class="n">parse_uniprot_taxon</span><span class="p">(</span><span class="n">line</span><span class="p">,</span> <span class="n">light</span><span class="o">=</span><span class="n">light</span><span class="p">)</span>
+            <span class="k">except</span> <span class="ne">Exception</span><span class="p">:</span>
+                <span class="c1"># print line.strip().split(&#39;\t&#39;)</span>
+                <span class="n">LOG</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s2">&quot;skipped line: </span><span class="si">%s</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">line</span><span class="p">)</span>
+                <span class="k">continue</span>
+            <span class="k">if</span> <span class="n">taxon</span><span class="o">.</span><span class="n">taxon_id</span> <span class="ow">in</span> <span class="bp">self</span><span class="p">:</span>
+                <span class="k">continue</span>
+            <span class="bp">self</span><span class="p">[</span><span class="n">taxon</span><span class="o">.</span><span class="n">taxon_id</span><span class="p">]</span> <span class="o">=</span> <span class="n">taxon</span></div>
+
+<div class="viewcode-block" id="Taxonomy.gen_name_map"><a class="viewcode-back" href="../../api/mgkit.taxon.html#mgkit.taxon.Taxonomy.gen_name_map">[docs]</a>    <span class="k">def</span> <span class="nf">gen_name_map</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        .. versionchanged:: 0.2.3</span>
+<span class="sd">            names are stored in the mapping as lowercase</span>
+
+<span class="sd">        Generate a name map, where to each scientific name in the taxonomy an</span>
+<span class="sd">        id is associated.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">LOG</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s1">&#39;Generate name map&#39;</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_name_map</span> <span class="o">=</span> <span class="p">{}</span>
+        <span class="k">for</span> <span class="n">taxon_obj</span> <span class="ow">in</span> <span class="bp">self</span><span class="p">:</span>
+            <span class="n">s_name</span> <span class="o">=</span> <span class="n">taxon_obj</span><span class="o">.</span><span class="n">s_name</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span>
+            <span class="k">try</span><span class="p">:</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">_name_map</span><span class="p">[</span><span class="n">s_name</span><span class="p">]</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">taxon_obj</span><span class="o">.</span><span class="n">taxon_id</span><span class="p">)</span>
+            <span class="k">except</span> <span class="ne">KeyError</span><span class="p">:</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">_name_map</span><span class="p">[</span><span class="n">s_name</span><span class="p">]</span> <span class="o">=</span> <span class="p">[</span><span class="n">taxon_obj</span><span class="o">.</span><span class="n">taxon_id</span><span class="p">]</span></div>
+
+<div class="viewcode-block" id="Taxonomy.load_data"><a class="viewcode-back" href="../../api/mgkit.taxon.html#mgkit.taxon.Taxonomy.load_data">[docs]</a>    <span class="k">def</span> <span class="nf">load_data</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">file_handle</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        .. versionchanged:: 0.2.3</span>
+<span class="sd">            now can use read *msgpack* serialised files</span>
+
+<span class="sd">        .. versionchanged:: 0.1.13</span>
+<span class="sd">            now accepts file handles and compressed files (if file names)</span>
+
+<span class="sd">        Loads serialised data from file name &quot;file_handle&quot; and accepts</span>
+<span class="sd">        compressed files.</span>
+
+<span class="sd">        if the *.msgpack* string is found in the file name, the *msgpack*</span>
+<span class="sd">        package is used instead of pickle</span>
+
+<span class="sd">        Arguments:</span>
+<span class="sd">            file_handle (str, file): file name to which save the instance data</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
+
+        <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">file_handle</span><span class="p">,</span> <span class="nb">str</span><span class="p">):</span>
+            <span class="n">file_handle</span> <span class="o">=</span> <span class="n">open_file</span><span class="p">(</span><span class="n">file_handle</span><span class="p">,</span> <span class="s1">&#39;rb&#39;</span><span class="p">)</span>
+
+        <span class="n">LOG</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;Loading taxonomy from file </span><span class="si">%s</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">file_handle</span><span class="o">.</span><span class="n">name</span><span class="p">)</span>
+
+        <span class="k">if</span> <span class="s1">&#39;.msgpack&#39;</span> <span class="ow">in</span> <span class="n">file_handle</span><span class="o">.</span><span class="n">name</span><span class="p">:</span>
+            <span class="kn">import</span> <span class="nn">msgpack</span>
+            <span class="n">merged</span> <span class="o">=</span> <span class="p">[]</span>
+            <span class="k">for</span> <span class="n">taxon_id</span><span class="p">,</span> <span class="n">taxon</span> <span class="ow">in</span> <span class="n">msgpack</span><span class="o">.</span><span class="n">Unpacker</span><span class="p">(</span><span class="n">file_handle</span><span class="p">,</span> <span class="n">use_list</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">raw</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
+                <span class="n">taxon</span> <span class="o">=</span> <span class="n">TaxonTuple</span><span class="p">(</span><span class="o">*</span><span class="n">taxon</span><span class="p">)</span>
+                <span class="c1"># if it&#39;s a merged taxon_id keep it and don&#39;t add it</span>
+                <span class="k">if</span> <span class="n">taxon_id</span> <span class="o">!=</span> <span class="n">taxon</span><span class="o">.</span><span class="n">taxon_id</span><span class="p">:</span>
+                    <span class="n">merged</span><span class="o">.</span><span class="n">append</span><span class="p">((</span><span class="n">taxon_id</span><span class="p">,</span> <span class="n">taxon</span><span class="o">.</span><span class="n">taxon_id</span><span class="p">))</span>
+                <span class="k">else</span><span class="p">:</span>
+                    <span class="bp">self</span><span class="p">[</span><span class="n">taxon_id</span><span class="p">]</span> <span class="o">=</span> <span class="n">taxon</span>
+            <span class="c1"># the list of merged ids is iterated over and pointers are added to</span>
+            <span class="c1"># the correct ids</span>
+            <span class="k">for</span> <span class="n">merged_id</span><span class="p">,</span> <span class="n">taxon_id</span> <span class="ow">in</span> <span class="n">merged</span><span class="p">:</span>
+                <span class="bp">self</span><span class="p">[</span><span class="n">merged_id</span><span class="p">]</span> <span class="o">=</span> <span class="bp">self</span><span class="p">[</span><span class="n">taxon_id</span><span class="p">]</span>
+
+        <span class="k">else</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_taxa</span> <span class="o">=</span> <span class="n">pickle</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="n">file_handle</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="Taxonomy.save_data"><a class="viewcode-back" href="../../api/mgkit.taxon.html#mgkit.taxon.Taxonomy.save_data">[docs]</a>    <span class="k">def</span> <span class="nf">save_data</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">file_handle</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        .. versionchanged:: 0.2.3</span>
+<span class="sd">            now can use *msgpack* to serialise</span>
+
+<span class="sd">        Saves taxonomy data to a file handle or file name, can write compressed</span>
+<span class="sd">        data if the file ends with &quot;.gz&quot;, &quot;.bz2&quot;</span>
+
+<span class="sd">        if the *.msgpack* string is found in the file name, the *msgpack*</span>
+<span class="sd">        package is used instead of pickle</span>
+
+<span class="sd">        Arguments:</span>
+<span class="sd">            file_handle (str, file): file name to which save the instance data</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+
+        <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">file_handle</span><span class="p">,</span> <span class="nb">str</span><span class="p">):</span>
+            <span class="n">file_handle</span> <span class="o">=</span> <span class="n">open_file</span><span class="p">(</span><span class="n">file_handle</span><span class="p">,</span> <span class="s1">&#39;wb&#39;</span><span class="p">)</span>
+
+        <span class="n">LOG</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;Saving taxonomy to file </span><span class="si">%s</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">file_handle</span><span class="o">.</span><span class="n">name</span><span class="p">)</span>
+
+        <span class="k">if</span> <span class="s1">&#39;.msgpack&#39;</span> <span class="ow">in</span> <span class="n">file_handle</span><span class="o">.</span><span class="n">name</span><span class="p">:</span>
+            <span class="kn">import</span> <span class="nn">msgpack</span>
+            <span class="k">for</span> <span class="n">taxon_id</span><span class="p">,</span> <span class="n">taxon</span> <span class="ow">in</span> <span class="n">viewitems</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_taxa</span><span class="p">):</span>
+                <span class="n">file_handle</span><span class="o">.</span><span class="n">write</span><span class="p">(</span>
+                    <span class="n">msgpack</span><span class="o">.</span><span class="n">packb</span><span class="p">((</span><span class="n">taxon_id</span><span class="p">,</span> <span class="n">taxon</span><span class="p">))</span>
+                <span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">pickle</span><span class="o">.</span><span class="n">dump</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_taxa</span><span class="p">,</span> <span class="n">file_handle</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="Taxonomy.find_by_name"><a class="viewcode-back" href="../../api/mgkit.taxon.html#mgkit.taxon.Taxonomy.find_by_name">[docs]</a>    <span class="k">def</span> <span class="nf">find_by_name</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">s_name</span><span class="p">,</span> <span class="n">rank</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">strict</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        .. versionchanged:: 0.2.3</span>
+<span class="sd">            the search is now case insensitive</span>
+
+<span class="sd">        .. versionchanged:: 0.3.1</span>
+<span class="sd">            added *rank* and *strict* parameter</span>
+
+<span class="sd">        Returns the taxon IDs associated with the scientific name provided</span>
+
+<span class="sd">        Arguments:</span>
+<span class="sd">            s_name (str): the scientific name</span>
+<span class="sd">            rank (str, None): return only a taxon_id of a specific rank</span>
+<span class="sd">            strict (book): if True and *rank* is not None, KeyError will be</span>
+<span class="sd">                raised if multiple taxa have the same name and rank</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            list: a reference to the list of IDs that have for *s_name*, if</span>
+<span class="sd">            *rank* is None. If *rank* is not None and one taxon is found, its</span>
+<span class="sd">            taxon_id is returned, or None if no taxon is found. If *strict* is</span>
+<span class="sd">            True and *rank* is not None, the set of taxon_ids found is</span>
+<span class="sd">            resturned.</span>
+
+<span class="sd">        Raises:</span>
+<span class="sd">            KeyError: If multiple taxa are found, a *KeyError* exception is</span>
+<span class="sd">            raised.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">_name_map</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">gen_name_map</span><span class="p">()</span>
+
+        <span class="k">if</span> <span class="n">rank</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="k">return</span> <span class="nb">list</span><span class="p">(</span><span class="nb">set</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_name_map</span><span class="p">[</span><span class="n">s_name</span><span class="o">.</span><span class="n">lower</span><span class="p">()]))</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">taxon_ids</span> <span class="o">=</span> <span class="p">[</span>
+                <span class="n">taxon_id</span>
+                <span class="k">for</span> <span class="n">taxon_id</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">_name_map</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">s_name</span><span class="o">.</span><span class="n">lower</span><span class="p">(),</span> <span class="p">[])</span>
+                <span class="k">if</span> <span class="bp">self</span><span class="p">[</span><span class="n">taxon_id</span><span class="p">]</span><span class="o">.</span><span class="n">rank</span> <span class="o">==</span> <span class="n">rank</span>
+            <span class="p">]</span>
+            <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="nb">set</span><span class="p">(</span><span class="n">taxon_ids</span><span class="p">))</span> <span class="o">&gt;</span> <span class="mi">1</span><span class="p">:</span>
+                <span class="k">if</span> <span class="n">strict</span><span class="p">:</span>
+                    <span class="k">raise</span> <span class="ne">KeyError</span><span class="p">(</span>
+                        <span class="s2">&quot;More than one taxon (</span><span class="si">{}</span><span class="s2">) with rank </span><span class="si">{}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span>
+                            <span class="n">s_name</span><span class="p">,</span>
+                            <span class="n">rank</span>
+                        <span class="p">)</span>
+                    <span class="p">)</span>
+                <span class="k">else</span><span class="p">:</span>
+                    <span class="k">return</span> <span class="nb">set</span><span class="p">(</span><span class="n">taxon_ids</span><span class="p">)</span>
+            <span class="k">elif</span> <span class="nb">len</span><span class="p">(</span><span class="n">taxon_ids</span><span class="p">)</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+                <span class="k">return</span> <span class="kc">None</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="k">return</span> <span class="n">taxon_ids</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span></div>
+
+<div class="viewcode-block" id="Taxonomy.is_ancestor"><a class="viewcode-back" href="../../api/mgkit.taxon.html#mgkit.taxon.Taxonomy.is_ancestor">[docs]</a>    <span class="k">def</span> <span class="nf">is_ancestor</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">leaf_id</span><span class="p">,</span> <span class="n">anc_ids</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        .. versionchanged:: 0.1.13</span>
+<span class="sd">            now uses :func:`is_ancestor` and changed behavior</span>
+
+<span class="sd">        Checks if a taxon is the leaf of another one, or a list of taxa.</span>
+
+<span class="sd">        :param int leaf_id: leaf taxon id</span>
+<span class="sd">        :param int anc_ids: ancestor taxon id(s)</span>
+
+<span class="sd">        :return bool: True if the ancestor taxon is in the leaf taxon lineage</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
+
+        <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">anc_ids</span><span class="p">,</span> <span class="nb">int</span><span class="p">):</span>
+            <span class="n">anc_ids</span> <span class="o">=</span> <span class="p">[</span><span class="n">anc_ids</span><span class="p">]</span>
+
+        <span class="k">for</span> <span class="n">anc_id</span> <span class="ow">in</span> <span class="n">anc_ids</span><span class="p">:</span>
+            <span class="k">if</span> <span class="n">is_ancestor</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">leaf_id</span><span class="p">,</span> <span class="n">anc_id</span><span class="p">):</span>
+                <span class="k">return</span> <span class="kc">True</span>
+        <span class="k">return</span> <span class="kc">False</span></div>
+
+<div class="viewcode-block" id="Taxonomy.get_ranked_taxon"><a class="viewcode-back" href="../../api/mgkit.taxon.html#mgkit.taxon.Taxonomy.get_ranked_taxon">[docs]</a>    <span class="k">def</span> <span class="nf">get_ranked_taxon</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">taxon_id</span><span class="p">,</span> <span class="n">rank</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">ranks</span><span class="o">=</span><span class="n">TAXON_RANKS</span><span class="p">,</span> <span class="n">roots</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        .. versionchanged:: 0.1.13</span>
+<span class="sd">            added *roots* argument</span>
+
+<span class="sd">        Traverse the branch of which the *taxon* argument is the leaf backward,</span>
+<span class="sd">        to get the specific rank to which the *taxon* belongs to.</span>
+
+<span class="sd">        .. warning::</span>
+
+<span class="sd">            the *roots* options is kept for backward compatibility and should be</span>
+<span class="sd">            be set to *False*</span>
+
+<span class="sd">        :param taxon_id: id of the taxon or instance of :class:`UniprotTaxon`</span>
+<span class="sd">        :param str rank: string that specify the rank, if None, the first valid</span>
+<span class="sd">            rank will be searched. (i.e. the first with a value different from &#39;&#39;)</span>
+<span class="sd">        :param ranks: tuple of all taxonomy ranks, default to the default module</span>
+<span class="sd">            value</span>
+<span class="sd">        :param bool roots: if True, uses :data:`TAXON_ROOTS` to solve the root</span>
+<span class="sd">            taxa</span>
+<span class="sd">        :return: instance of :class:`TaxonTuple` for the rank found.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+
+        <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">taxon_id</span><span class="p">,</span> <span class="nb">int</span><span class="p">):</span>
+            <span class="n">ranked</span> <span class="o">=</span> <span class="bp">self</span><span class="p">[</span><span class="n">taxon_id</span><span class="p">]</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;Not a valid taxon_id: </span><span class="si">{0}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">taxon_id</span><span class="p">))</span>
+
+        <span class="k">while</span> <span class="kc">True</span><span class="p">:</span>
+            <span class="k">if</span> <span class="p">(</span><span class="n">rank</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">)</span> <span class="ow">and</span> <span class="p">(</span><span class="n">ranked</span><span class="o">.</span><span class="n">rank</span> <span class="o">!=</span> <span class="s1">&#39;&#39;</span><span class="p">):</span>
+                <span class="k">break</span>
+            <span class="k">elif</span> <span class="p">(</span><span class="n">ranked</span><span class="o">.</span><span class="n">rank</span> <span class="o">==</span> <span class="n">rank</span><span class="p">):</span>
+                <span class="k">break</span>
+            <span class="k">elif</span> <span class="p">(</span><span class="n">ranked</span><span class="o">.</span><span class="n">rank</span> <span class="ow">in</span> <span class="n">ranks</span><span class="p">)</span> <span class="ow">and</span> \
+                    <span class="p">(</span><span class="n">ranks</span><span class="o">.</span><span class="n">index</span><span class="p">(</span><span class="n">ranked</span><span class="o">.</span><span class="n">rank</span><span class="p">)</span> <span class="o">&lt;</span> <span class="n">ranks</span><span class="o">.</span><span class="n">index</span><span class="p">(</span><span class="n">rank</span><span class="p">)):</span>
+                <span class="k">break</span>
+            <span class="k">elif</span> <span class="n">ranked</span><span class="o">.</span><span class="n">parent_id</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+                <span class="k">break</span>
+            <span class="c1"># kept only for backward compatibility.</span>
+            <span class="c1"># needs a check to other scripts</span>
+            <span class="k">elif</span> <span class="n">roots</span> <span class="ow">and</span> <span class="p">(</span><span class="n">ranked</span><span class="o">.</span><span class="n">s_name</span> <span class="ow">in</span> <span class="n">TAXON_ROOTS</span><span class="p">):</span>
+                <span class="k">break</span>
+
+            <span class="n">ranked</span> <span class="o">=</span> <span class="bp">self</span><span class="p">[</span><span class="n">ranked</span><span class="o">.</span><span class="n">parent_id</span><span class="p">]</span>
+
+        <span class="k">return</span> <span class="n">ranked</span></div>
+
+<div class="viewcode-block" id="Taxonomy.get_ranked_id"><a class="viewcode-back" href="../../api/mgkit.taxon.html#mgkit.taxon.Taxonomy.get_ranked_id">[docs]</a>    <span class="k">def</span> <span class="nf">get_ranked_id</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">taxon_id</span><span class="p">,</span> <span class="n">rank</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">it</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">include_higher</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        .. versionadded:: 0.3.4</span>
+
+<span class="sd">        Gets the ranked taxon of another one. Useful when it&#39;s better to get a</span>
+<span class="sd">        taxon_id instead of an instance of :class:`TaxonTuple`. Internally, it</span>
+<span class="sd">        relies on :meth:`Taxonomy.get_ranked_taxon`.</span>
+
+<span class="sd">        Arguments:</span>
+<span class="sd">            taxon_id (int): taxon_id</span>
+<span class="sd">            rank (str or None): passed over</span>
+<span class="sd">            it (bool): determines the return value. if True, a list is returned</span>
+<span class="sd">            include_higher (bool): if True, any rank higher than the requested</span>
+<span class="sd">                may be returned. If False and the rank cannot be returned, None</span>
+<span class="sd">                is returned</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            int or list: The type returned is based on the *it* paramenter. If</span>
+<span class="sd">            *it* is True, the return value is a list with the *taxon_id* of the</span>
+<span class="sd">            ranked taxon as the sole value. If False, the returned value is the</span>
+<span class="sd">            *taxon_id*. *include_higher* determines if the return value should</span>
+<span class="sd">            be *None* if the exact rank was not found and *include_higher* is</span>
+<span class="sd">            False</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">taxon</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_ranked_taxon</span><span class="p">(</span><span class="n">taxon_id</span><span class="p">,</span> <span class="n">rank</span><span class="p">)</span>
+        <span class="k">if</span> <span class="p">(</span><span class="n">taxon</span><span class="o">.</span><span class="n">rank</span> <span class="o">!=</span> <span class="n">rank</span><span class="p">)</span> <span class="ow">and</span> <span class="p">(</span><span class="ow">not</span> <span class="n">include_higher</span><span class="p">):</span>
+            <span class="n">taxon</span> <span class="o">=</span> <span class="kc">None</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">taxon</span> <span class="o">=</span> <span class="n">taxon</span><span class="o">.</span><span class="n">taxon_id</span>
+        <span class="k">if</span> <span class="n">it</span><span class="p">:</span>
+            <span class="n">taxon</span> <span class="o">=</span> <span class="p">[</span><span class="n">taxon</span><span class="p">]</span>
+        <span class="k">return</span> <span class="n">taxon</span></div>
+
+<div class="viewcode-block" id="Taxonomy.is_ranked_below"><a class="viewcode-back" href="../../api/mgkit.taxon.html#mgkit.taxon.Taxonomy.is_ranked_below">[docs]</a>    <span class="k">def</span> <span class="nf">is_ranked_below</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">taxon_id</span><span class="p">,</span> <span class="n">rank</span><span class="p">,</span> <span class="n">equal</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        .. versionadded:: 0.4.0</span>
+
+<span class="sd">        Tests if a taxon_id is below the requested rank.</span>
+
+<span class="sd">        Arguments:</span>
+<span class="sd">            taxon_id (int): taxo_id to test</span>
+<span class="sd">            rank (str): rank requested</span>
+<span class="sd">            equal (bool): determines if the taxon_id tested may be of the</span>
+<span class="sd">                requested rank</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            bool: If the passed *taxon_id* is below the requested rank, it</span>
+<span class="sd">            returns *True*. If *taxon_id* is of the rank requested and *equal*</span>
+<span class="sd">            is True, the return value is *True*, if *equal* is False the return</span>
+<span class="sd">            value is *False*. The return value is *False* otherwise.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="p">(</span><span class="bp">self</span><span class="p">[</span><span class="n">taxon_id</span><span class="p">]</span><span class="o">.</span><span class="n">rank</span> <span class="o">==</span> <span class="n">rank</span><span class="p">)</span> <span class="ow">and</span> <span class="n">equal</span><span class="p">:</span>
+            <span class="k">return</span> <span class="kc">True</span>
+
+        <span class="n">taxon_id</span> <span class="o">=</span> <span class="bp">self</span><span class="p">[</span><span class="n">taxon_id</span><span class="p">]</span><span class="o">.</span><span class="n">parent_id</span>
+
+        <span class="k">while</span> <span class="p">(</span><span class="n">taxon_id</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">):</span>
+            <span class="k">if</span> <span class="bp">self</span><span class="p">[</span><span class="n">taxon_id</span><span class="p">]</span><span class="o">.</span><span class="n">rank</span> <span class="o">==</span> <span class="n">rank</span><span class="p">:</span>
+                <span class="k">return</span> <span class="kc">True</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="n">taxon_id</span> <span class="o">=</span> <span class="bp">self</span><span class="p">[</span><span class="n">taxon_id</span><span class="p">]</span><span class="o">.</span><span class="n">parent_id</span>
+
+        <span class="k">return</span> <span class="kc">False</span></div>
+
+<div class="viewcode-block" id="Taxonomy.get_name_map"><a class="viewcode-back" href="../../api/mgkit.taxon.html#mgkit.taxon.Taxonomy.get_name_map">[docs]</a>    <span class="k">def</span> <span class="nf">get_name_map</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="s2">&quot;Returns a taxon_id-&gt;s_name dictionary&quot;</span>
+
+        <span class="k">return</span> <span class="nb">dict</span><span class="p">(</span>
+            <span class="p">(</span><span class="n">taxon</span><span class="o">.</span><span class="n">taxon_id</span><span class="p">,</span> <span class="n">taxon</span><span class="o">.</span><span class="n">s_name</span><span class="p">)</span>
+            <span class="k">for</span> <span class="n">taxon</span> <span class="ow">in</span> <span class="bp">self</span>
+        <span class="p">)</span></div>
+
+<div class="viewcode-block" id="Taxonomy.get_lineage"><a class="viewcode-back" href="../../api/mgkit.taxon.html#mgkit.taxon.Taxonomy.get_lineage">[docs]</a>    <span class="k">def</span> <span class="nf">get_lineage</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">taxon_id</span><span class="p">,</span> <span class="n">names</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">only_ranked</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">with_last</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        .. versionadded:: 0.3.1</span>
+
+<span class="sd">        Proxy for :func:`get_lineage`, with changed defaults</span>
+
+<span class="sd">        Arguments:</span>
+<span class="sd">            taxon_id (int): taxon_id to return the lineage</span>
+<span class="sd">            names (bool): if the elements of the list are converted into the</span>
+<span class="sd">                scientific names</span>
+<span class="sd">            only_ranked (bool): only return the ranked taxa</span>
+<span class="sd">            with_last (bool): include the taxon_id passed to the list</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            list: the lineage of the passed taxon_id as a list of IDs or names</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+
+        <span class="k">return</span> <span class="n">get_lineage</span><span class="p">(</span>
+            <span class="bp">self</span><span class="p">,</span>
+            <span class="n">taxon_id</span><span class="p">,</span>
+            <span class="n">names</span><span class="o">=</span><span class="n">names</span><span class="p">,</span>
+            <span class="n">only_ranked</span><span class="o">=</span><span class="n">only_ranked</span><span class="p">,</span>
+            <span class="n">with_last</span><span class="o">=</span><span class="n">with_last</span>
+        <span class="p">)</span></div>
+
+<div class="viewcode-block" id="Taxonomy.get_lineage_string"><a class="viewcode-back" href="../../api/mgkit.taxon.html#mgkit.taxon.Taxonomy.get_lineage_string">[docs]</a>    <span class="k">def</span> <span class="nf">get_lineage_string</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">taxon_id</span><span class="p">,</span> <span class="n">only_ranked</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">with_last</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+                           <span class="n">sep</span><span class="o">=</span><span class="s1">&#39;;&#39;</span><span class="p">,</span> <span class="n">rank</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        .. versionadded:: 0.3.3</span>
+
+<span class="sd">        Generates a lineage string, with the possibility of getting another</span>
+<span class="sd">        ranked taxon (via :meth:`Taxonomy.get_ranked_taxon`) to another</span>
+<span class="sd">        rank, such as *phylum*.</span>
+
+<span class="sd">        Arguments:</span>
+<span class="sd">            taxon_id (int): taxon_id to return the lineage</span>
+<span class="sd">            only_ranked (bool): only return the ranked taxa</span>
+<span class="sd">            with_last (bool): include the taxon_id passed to the list</span>
+<span class="sd">            sep (str): separator used to join the lineage string</span>
+<span class="sd">            rank (int or None): if None the full lineage is returned, otherwise</span>
+<span class="sd">                the lineage will be cut to the specified rank</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            str: lineage string</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+
+        <span class="k">if</span> <span class="n">rank</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">taxon_id</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_ranked_taxon</span><span class="p">(</span><span class="n">taxon_id</span><span class="p">,</span> <span class="n">rank</span><span class="o">=</span><span class="n">rank</span><span class="p">)</span><span class="o">.</span><span class="n">taxon_id</span>
+
+        <span class="k">return</span> <span class="n">sep</span><span class="o">.</span><span class="n">join</span><span class="p">(</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">get_lineage</span><span class="p">(</span>
+                <span class="n">taxon_id</span><span class="p">,</span>
+                <span class="n">only_ranked</span><span class="o">=</span><span class="n">only_ranked</span><span class="p">,</span>
+                <span class="n">with_last</span><span class="o">=</span><span class="n">with_last</span><span class="p">,</span>
+                <span class="n">names</span><span class="o">=</span><span class="kc">True</span>
+            <span class="p">)</span>
+        <span class="p">)</span></div>
+
+<div class="viewcode-block" id="Taxonomy.add_taxon"><a class="viewcode-back" href="../../api/mgkit.taxon.html#mgkit.taxon.Taxonomy.add_taxon">[docs]</a>    <span class="k">def</span> <span class="nf">add_taxon</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">taxon_name</span><span class="p">,</span> <span class="n">common_name</span><span class="o">=</span><span class="s1">&#39;&#39;</span><span class="p">,</span> <span class="n">rank</span><span class="o">=</span><span class="s1">&#39;no rank&#39;</span><span class="p">,</span> <span class="n">parent_id</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        .. versionadded:: 0.3.1</span>
+
+<span class="sd">        Adds a taxon to the taxonomy. If a taxon with the same name and rank is</span>
+<span class="sd">        found, its taxon_id is returned, otherwise a new taxon_id is returned.</span>
+
+<span class="sd">        Arguments:</span>
+<span class="sd">            taxon_name (str): scientific name of the taxon</span>
+<span class="sd">            common_name (str): common name</span>
+<span class="sd">            rank (str): rank, defaults to &#39;no rank&#39;</span>
+<span class="sd">            parent_id (int): taxon_id of the parent, defaults to *None*, which</span>
+<span class="sd">                is the taxonomy root</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            int: the taxon_id of the added taxon (if new), or the taxon_id of</span>
+<span class="sd">            the taxon with the same name and rank found in the taxonomy</span>
+
+<span class="sd">        Raises:</span>
+<span class="sd">            KeyError: if more than one taxon has already the passed name and</span>
+<span class="sd">            rank and it can&#39;t be resolved by looking at the parent_id passed,</span>
+<span class="sd">            the exception is raised.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="c1"># Tries to find it in the name map</span>
+        <span class="n">taxon_id</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">find_by_name</span><span class="p">(</span><span class="n">taxon_name</span><span class="p">,</span> <span class="n">rank</span><span class="o">=</span><span class="n">rank</span><span class="p">,</span> <span class="n">strict</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+
+        <span class="c1"># Multiple taxa with the same name, check if the parent_id of any of</span>
+        <span class="c1"># them can be resolved</span>
+        <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">taxon_id</span><span class="p">,</span> <span class="nb">set</span><span class="p">):</span>
+            <span class="c1"># print taxon_id</span>
+            <span class="n">taxon_ids</span> <span class="o">=</span> <span class="n">taxon_id</span>
+            <span class="n">taxon_id</span> <span class="o">=</span> <span class="kc">None</span>
+            <span class="k">for</span> <span class="n">t_id</span> <span class="ow">in</span> <span class="n">taxon_ids</span><span class="p">:</span>
+                <span class="k">if</span> <span class="bp">self</span><span class="p">[</span><span class="n">t_id</span><span class="p">]</span><span class="o">.</span><span class="n">parent_id</span> <span class="o">==</span> <span class="n">parent_id</span><span class="p">:</span>
+                    <span class="n">taxon_id</span> <span class="o">=</span> <span class="n">t_id</span>
+
+            <span class="k">if</span> <span class="n">taxon_id</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+                <span class="k">raise</span> <span class="ne">KeyError</span><span class="p">(</span>
+                    <span class="s2">&quot;Multiple taxa (</span><span class="si">{}</span><span class="s2">, </span><span class="si">{}</span><span class="s2">) are in the taxonomy but cannot be associated with the parent_id (</span><span class="si">{}</span><span class="s2">) provided&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span>
+                        <span class="n">taxon_name</span><span class="p">,</span>
+                        <span class="n">rank</span><span class="p">,</span>
+                        <span class="n">parent_id</span>
+                    <span class="p">)</span>
+                <span class="p">)</span>
+
+        <span class="k">if</span> <span class="p">(</span><span class="n">taxon_id</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">)</span> <span class="ow">or</span> <span class="p">(</span><span class="bp">self</span><span class="p">[</span><span class="n">taxon_id</span><span class="p">]</span><span class="o">.</span><span class="n">parent_id</span> <span class="o">!=</span> <span class="n">parent_id</span><span class="p">):</span>
+            <span class="k">try</span><span class="p">:</span>
+                <span class="n">taxon_id</span> <span class="o">=</span> <span class="nb">max</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_taxa</span><span class="p">)</span> <span class="o">+</span> <span class="mi">1</span>
+            <span class="k">except</span> <span class="ne">ValueError</span><span class="p">:</span>
+                <span class="n">taxon_id</span> <span class="o">=</span> <span class="mi">1</span>
+
+            <span class="bp">self</span><span class="p">[</span><span class="n">taxon_id</span><span class="p">]</span> <span class="o">=</span> <span class="n">TaxonTuple</span><span class="p">(</span>
+                <span class="n">taxon_id</span><span class="p">,</span>
+                <span class="n">taxon_name</span><span class="p">,</span>
+                <span class="n">common_name</span><span class="p">,</span>
+                <span class="n">rank</span><span class="p">,</span>
+                <span class="p">(</span><span class="kc">None</span><span class="p">,),</span>
+                <span class="n">parent_id</span>
+            <span class="p">)</span>
+
+            <span class="c1"># adds the new name to the name map (which is initialised by</span>
+            <span class="c1"># find_by_name)</span>
+            <span class="k">try</span><span class="p">:</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">_name_map</span><span class="p">[</span><span class="n">taxon_name</span><span class="o">.</span><span class="n">lower</span><span class="p">()]</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">taxon_id</span><span class="p">)</span>
+            <span class="k">except</span> <span class="ne">KeyError</span><span class="p">:</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">_name_map</span><span class="p">[</span><span class="n">taxon_name</span><span class="o">.</span><span class="n">lower</span><span class="p">()]</span> <span class="o">=</span> <span class="p">[</span><span class="n">taxon_id</span><span class="p">]</span>
+
+        <span class="k">return</span> <span class="n">taxon_id</span></div>
+
+<div class="viewcode-block" id="Taxonomy.add_lineage"><a class="viewcode-back" href="../../api/mgkit.taxon.html#mgkit.taxon.Taxonomy.add_lineage">[docs]</a>    <span class="k">def</span> <span class="nf">add_lineage</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">**</span><span class="n">lineage</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        .. versionadded:: 0.3.1</span>
+
+<span class="sd">        Adds a lineage to the taxonomy. It&#39;s passed by keyword arguments, where</span>
+<span class="sd">        each key is a value in the `TAXON_RANKS` rankes and the value is the</span>
+<span class="sd">        scientific name. Appended underscores &#39;_&#39; will be stripped from the</span>
+<span class="sd">        rank name. This is for cases such as *class* where the key is a reserved</span>
+<span class="sd">        word in Python. Also one extra node can be added, such as</span>
+<span class="sd">        strain/cultivar/subspecies and so on, but one only is expected to be</span>
+<span class="sd">        passed.</span>
+
+<span class="sd">        Arguments:</span>
+<span class="sd">            lineage (dict): the lineage as a keyword arguments</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            int: the taxon_id of the last element in the lineage</span>
+
+<span class="sd">        Raises:</span>
+<span class="sd">            ValueError: if more than a keyword argument is not contained in</span>
+<span class="sd">            `TAXON_RANKS`</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">lineage</span> <span class="o">=</span> <span class="p">{</span>
+            <span class="n">key</span><span class="o">.</span><span class="n">rstrip</span><span class="p">(</span><span class="s1">&#39;_&#39;</span><span class="p">):</span> <span class="n">value</span>
+            <span class="k">for</span> <span class="n">key</span><span class="p">,</span> <span class="n">value</span> <span class="ow">in</span> <span class="n">viewitems</span><span class="p">(</span><span class="n">lineage</span><span class="p">)</span>
+        <span class="p">}</span>
+        <span class="n">extra_nodes</span> <span class="o">=</span> <span class="nb">set</span><span class="p">(</span><span class="n">lineage</span><span class="p">)</span> <span class="o">-</span> <span class="nb">set</span><span class="p">(</span><span class="n">TAXON_RANKS</span><span class="p">)</span>
+        <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">extra_nodes</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">1</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span>
+                <span class="s2">&quot;Expected at most a one lower level below species, found: </span><span class="si">{}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span>
+                    <span class="s1">&#39;, &#39;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">extra_nodes</span><span class="p">)</span>
+                <span class="p">)</span>
+            <span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">extra_nodes</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">extra_nodes</span><span class="p">)</span> <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">extra_nodes</span><span class="p">)</span> <span class="o">==</span> <span class="mi">1</span> <span class="k">else</span> <span class="p">[]</span>
+
+        <span class="n">ranks</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">TAXON_RANKS</span><span class="p">)</span> <span class="o">+</span> <span class="n">extra_nodes</span>
+
+        <span class="n">parent_ids</span> <span class="o">=</span> <span class="p">[</span><span class="kc">None</span><span class="p">]</span>
+        <span class="n">taxon_id</span> <span class="o">=</span> <span class="kc">None</span>
+        <span class="k">for</span> <span class="n">rank</span> <span class="ow">in</span> <span class="n">ranks</span><span class="p">:</span>
+            <span class="k">try</span><span class="p">:</span>
+                <span class="n">taxon_name</span> <span class="o">=</span> <span class="n">lineage</span><span class="p">[</span><span class="n">rank</span><span class="p">]</span>
+            <span class="k">except</span> <span class="ne">KeyError</span><span class="p">:</span>
+                <span class="k">continue</span>
+
+            <span class="k">if</span> <span class="ow">not</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">taxon_name</span><span class="p">,</span> <span class="nb">str</span><span class="p">):</span>
+                <span class="k">continue</span>
+
+            <span class="n">taxon_id</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">add_taxon</span><span class="p">(</span>
+                <span class="n">taxon_name</span><span class="p">,</span>
+                <span class="n">rank</span><span class="o">=</span><span class="n">rank</span><span class="p">,</span>
+                <span class="n">parent_id</span><span class="o">=</span><span class="n">parent_ids</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
+            <span class="p">)</span>
+            <span class="c1"># print taxon_id, rank, taxon_name, parent_ids[-1]</span>
+            <span class="n">parent_ids</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">taxon_id</span><span class="p">)</span>
+
+        <span class="k">return</span> <span class="n">taxon_id</span></div>
+
+<div class="viewcode-block" id="Taxonomy.drop_taxon"><a class="viewcode-back" href="../../api/mgkit.taxon.html#mgkit.taxon.Taxonomy.drop_taxon">[docs]</a>    <span class="k">def</span> <span class="nf">drop_taxon</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">taxon_id</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        .. versionadded:: 0.3.1</span>
+
+<span class="sd">        Drops a taxon and all taxa below it in the taxonomy. Also reset the</span>
+<span class="sd">        name map for conistency.</span>
+
+<span class="sd">        Arguments:</span>
+<span class="sd">            taxon_id (int): taxon_id to drop from the taxonomy</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">drop_keys</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="k">for</span> <span class="n">leaf_id</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">_taxa</span><span class="p">:</span>
+            <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">is_ancestor</span><span class="p">(</span><span class="n">leaf_id</span><span class="p">,</span> <span class="n">taxon_id</span><span class="p">):</span>
+                <span class="n">drop_keys</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">leaf_id</span><span class="p">)</span>
+
+        <span class="k">for</span> <span class="n">taxon_id</span> <span class="ow">in</span> <span class="n">drop_keys</span><span class="p">:</span>
+            <span class="k">del</span> <span class="bp">self</span><span class="o">.</span><span class="n">_taxa</span><span class="p">[</span><span class="n">taxon_id</span><span class="p">]</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">_name_map</span> <span class="o">=</span> <span class="p">{}</span></div>
+
+<div class="viewcode-block" id="Taxonomy.__getitem__"><a class="viewcode-back" href="../../api/mgkit.taxon.html#mgkit.taxon.Taxonomy.__getitem__">[docs]</a>    <span class="k">def</span> <span class="fm">__getitem__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">taxon_id</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Defines dictionary behavior. Key is a taxon_id, the returned value is a</span>
+<span class="sd">        UniprotTaxon instance</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_taxa</span><span class="p">[</span><span class="n">taxon_id</span><span class="p">]</span></div>
+
+    <span class="k">def</span> <span class="fm">__setitem__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">taxon_id</span><span class="p">,</span> <span class="n">taxon_obj</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_taxa</span><span class="p">[</span><span class="n">taxon_id</span><span class="p">]</span> <span class="o">=</span> <span class="n">taxon_obj</span>
+
+    <span class="k">def</span> <span class="fm">__delitem__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">taxon_id</span><span class="p">):</span>
+        <span class="k">del</span> <span class="bp">self</span><span class="o">.</span><span class="n">_taxa</span><span class="p">[</span><span class="n">taxon_id</span><span class="p">]</span>
+
+<div class="viewcode-block" id="Taxonomy.__iter__"><a class="viewcode-back" href="../../api/mgkit.taxon.html#mgkit.taxon.Taxonomy.__iter__">[docs]</a>    <span class="k">def</span> <span class="fm">__iter__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Defines iterable behavior. Returns a generator for UniprotTaxon instances</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">for</span> <span class="n">taxon</span> <span class="ow">in</span> <span class="n">viewvalues</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_taxa</span><span class="p">):</span>
+            <span class="k">yield</span> <span class="n">taxon</span></div>
+
+<div class="viewcode-block" id="Taxonomy.__len__"><a class="viewcode-back" href="../../api/mgkit.taxon.html#mgkit.taxon.Taxonomy.__len__">[docs]</a>    <span class="k">def</span> <span class="fm">__len__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Returns the number of taxa contained</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_taxa</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="Taxonomy.__contains__"><a class="viewcode-back" href="../../api/mgkit.taxon.html#mgkit.taxon.Taxonomy.__contains__">[docs]</a>    <span class="k">def</span> <span class="fm">__contains__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">taxon</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Returns True if the taxon is in the taxonomy</span>
+
+<span class="sd">        Accepts an int (check for taxon_id) or an instance of UniprotTaxon</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">taxon</span><span class="p">,</span> <span class="nb">int</span><span class="p">):</span>
+            <span class="k">return</span> <span class="n">taxon</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">_taxa</span>
+        <span class="k">return</span> <span class="kc">False</span></div>
+
+<div class="viewcode-block" id="Taxonomy.__repr__"><a class="viewcode-back" href="../../api/mgkit.taxon.html#mgkit.taxon.Taxonomy.__repr__">[docs]</a>    <span class="k">def</span> <span class="fm">__repr__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        .. versionadded:: 0.2.5</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="s2">&quot;</span><span class="si">{}</span><span class="s2"> - </span><span class="si">{}</span><span class="s2"> taxa&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="vm">__class__</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="p">))</span></div></div>
+
+
+<span class="n">UniprotTaxonomy</span> <span class="o">=</span> <span class="n">Taxonomy</span>
+
+
+<div class="viewcode-block" id="get_ancestor_map"><a class="viewcode-back" href="../../api/mgkit.taxon.html#mgkit.taxon.get_ancestor_map">[docs]</a><span class="k">def</span> <span class="nf">get_ancestor_map</span><span class="p">(</span><span class="n">leaf_ids</span><span class="p">,</span> <span class="n">anc_ids</span><span class="p">,</span> <span class="n">taxonomy</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    This function returns a dictionary where every leaf taxon is associated</span>
+<span class="sd">    with the right ancestors in anc_ids</span>
+
+<span class="sd">    ex. {clostridium: [bacteria, clostridia]}</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">anc_map</span> <span class="o">=</span> <span class="p">{}</span>
+
+    <span class="k">for</span> <span class="n">leaf_id</span> <span class="ow">in</span> <span class="n">leaf_ids</span><span class="p">:</span>
+        <span class="k">for</span> <span class="n">anc_id</span> <span class="ow">in</span> <span class="n">anc_ids</span><span class="p">:</span>
+            <span class="k">if</span> <span class="n">taxonomy</span><span class="o">.</span><span class="n">is_ancestor</span><span class="p">(</span><span class="n">leaf_id</span><span class="p">,</span> <span class="n">anc_id</span><span class="p">)</span> <span class="ow">or</span> <span class="p">(</span><span class="n">leaf_id</span> <span class="o">==</span> <span class="n">anc_id</span><span class="p">):</span>
+                <span class="k">try</span><span class="p">:</span>
+                    <span class="n">anc_map</span><span class="p">[</span><span class="n">leaf_id</span><span class="p">]</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">anc_id</span><span class="p">)</span>
+                <span class="k">except</span> <span class="ne">KeyError</span><span class="p">:</span>
+                    <span class="n">anc_map</span><span class="p">[</span><span class="n">leaf_id</span><span class="p">]</span> <span class="o">=</span> <span class="nb">set</span><span class="p">()</span>
+                    <span class="n">anc_map</span><span class="p">[</span><span class="n">leaf_id</span><span class="p">]</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">anc_id</span><span class="p">)</span>
+
+    <span class="k">return</span> <span class="n">anc_map</span></div>
+
+
+<div class="viewcode-block" id="is_ancestor"><a class="viewcode-back" href="../../api/mgkit.taxon.html#mgkit.taxon.is_ancestor">[docs]</a><span class="k">def</span> <span class="nf">is_ancestor</span><span class="p">(</span><span class="n">taxonomy</span><span class="p">,</span> <span class="n">taxon_id</span><span class="p">,</span> <span class="n">anc_id</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    .. versionchanged:: 0.1.16</span>
+<span class="sd">        if a *taxon_id* raises a KeyError, False is returned</span>
+
+<span class="sd">    Determine if the given taxon id (taxon_id) has anc_id as ancestor.</span>
+
+<span class="sd">    :param :class:`Taxonomy` taxonomy: taxonomy used to test</span>
+<span class="sd">    :param int taxon_id: leaf taxon to test</span>
+<span class="sd">    :param int anc_id: ancestor taxon to test against</span>
+
+<span class="sd">    :return bool: True if anc_id is an ancestor of taxon_id or their the same</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">if</span> <span class="n">taxon_id</span> <span class="o">==</span> <span class="n">anc_id</span><span class="p">:</span>
+        <span class="k">return</span> <span class="kc">True</span>
+
+    <span class="k">while</span> <span class="kc">True</span><span class="p">:</span>
+        <span class="c1"># if a taxon_id is not found, ancestry is invalid anyway, so it returns</span>
+        <span class="c1"># False</span>
+        <span class="k">try</span><span class="p">:</span>
+            <span class="n">taxon_id</span> <span class="o">=</span> <span class="n">taxonomy</span><span class="p">[</span><span class="n">taxon_id</span><span class="p">]</span><span class="o">.</span><span class="n">parent_id</span>
+        <span class="k">except</span> <span class="ne">KeyError</span><span class="p">:</span>
+            <span class="k">return</span> <span class="kc">False</span>
+        <span class="c1"># print taxon_id, anc_id</span>
+        <span class="k">if</span> <span class="n">anc_id</span> <span class="o">==</span> <span class="n">taxon_id</span><span class="p">:</span>
+            <span class="k">return</span> <span class="kc">True</span>
+        <span class="k">if</span> <span class="n">taxon_id</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="k">return</span> <span class="kc">False</span></div>
+
+
+<div class="viewcode-block" id="NoLcaFound"><a class="viewcode-back" href="../../api/mgkit.taxon.html#mgkit.taxon.NoLcaFound">[docs]</a><span class="k">class</span> <span class="nc">NoLcaFound</span><span class="p">(</span><span class="ne">Exception</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    .. versionadded:: 0.1.13</span>
+
+<span class="sd">    Raised if no lowest common ancestor can be found in the taxonomy</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">pass</span></div>
+
+
+<div class="viewcode-block" id="last_common_ancestor"><a class="viewcode-back" href="../../api/mgkit.taxon.html#mgkit.taxon.last_common_ancestor">[docs]</a><span class="k">def</span> <span class="nf">last_common_ancestor</span><span class="p">(</span><span class="n">taxonomy</span><span class="p">,</span> <span class="n">taxon_id1</span><span class="p">,</span> <span class="n">taxon_id2</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    .. versionadded:: 0.1.13</span>
+
+<span class="sd">    Finds the last common ancestor of two taxon IDs. An alias to this function</span>
+<span class="sd">    is in the same module, called *lowest_common_ancestor* for compatibility.</span>
+
+<span class="sd">    Arguments:</span>
+<span class="sd">        taxonomy: :class:`Taxonomy` instance used to test</span>
+<span class="sd">        taxon_id1 (int): first taxon ID</span>
+<span class="sd">        taxon_id2 (int): second taxon ID</span>
+
+<span class="sd">    Raturns:</span>
+<span class="sd">        int: taxon ID of the lowest common ancestor</span>
+
+<span class="sd">    Raises:</span>
+<span class="sd">        NoLcaFound: if no common ancestor can be found</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">lca_id</span> <span class="o">=</span> <span class="n">taxon_id1</span>
+
+    <span class="k">while</span> <span class="kc">True</span><span class="p">:</span>
+        <span class="k">if</span> <span class="n">is_ancestor</span><span class="p">(</span><span class="n">taxonomy</span><span class="p">,</span> <span class="n">taxon_id2</span><span class="p">,</span> <span class="n">lca_id</span><span class="p">):</span>
+            <span class="k">break</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">lca_id</span> <span class="o">=</span> <span class="n">taxonomy</span><span class="p">[</span><span class="n">lca_id</span><span class="p">]</span><span class="o">.</span><span class="n">parent_id</span>
+            <span class="k">if</span> <span class="n">lca_id</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+                <span class="k">raise</span> <span class="n">NoLcaFound</span><span class="p">(</span><span class="s1">&#39;No common ancestry&#39;</span><span class="p">)</span>
+
+    <span class="k">return</span> <span class="n">lca_id</span></div>
+
+
+<span class="n">lowest_common_ancestor</span> <span class="o">=</span> <span class="n">last_common_ancestor</span>
+
+
+<div class="viewcode-block" id="distance_taxa_ancestor"><a class="viewcode-back" href="../../api/mgkit.taxon.html#mgkit.taxon.distance_taxa_ancestor">[docs]</a><span class="k">def</span> <span class="nf">distance_taxa_ancestor</span><span class="p">(</span><span class="n">taxonomy</span><span class="p">,</span> <span class="n">taxon_id</span><span class="p">,</span> <span class="n">anc_id</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    .. versionadded:: 0.1.16</span>
+
+<span class="sd">    Function to calculate the distance between a taxon and the given ancestor</span>
+
+<span class="sd">    The distance is equal to the number of step in the taxonomy taken to arrive</span>
+<span class="sd">    at the ancestor.</span>
+
+<span class="sd">    Arguments:</span>
+<span class="sd">        taxonomy: :class:`Taxonomy` instance</span>
+<span class="sd">        taxon_id (int): taxonomic identifier</span>
+<span class="sd">        anc_id (int): taxonomic identifier of the ancestor</span>
+
+<span class="sd">    Raturns:</span>
+<span class="sd">        int: distance between *taxon_id* and it ancestor *anc_id*</span>
+
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">distance</span> <span class="o">=</span> <span class="mi">0</span>
+
+    <span class="k">while</span> <span class="kc">True</span><span class="p">:</span>
+        <span class="k">if</span> <span class="n">anc_id</span> <span class="o">==</span> <span class="n">taxon_id</span><span class="p">:</span>
+            <span class="k">break</span>
+        <span class="n">taxon_id</span> <span class="o">=</span> <span class="n">taxonomy</span><span class="p">[</span><span class="n">taxon_id</span><span class="p">]</span><span class="o">.</span><span class="n">parent_id</span>
+        <span class="n">distance</span> <span class="o">+=</span> <span class="mi">1</span>
+
+    <span class="k">return</span> <span class="n">distance</span></div>
+
+
+<div class="viewcode-block" id="distance_two_taxa"><a class="viewcode-back" href="../../api/mgkit.taxon.html#mgkit.taxon.distance_two_taxa">[docs]</a><span class="k">def</span> <span class="nf">distance_two_taxa</span><span class="p">(</span><span class="n">taxonomy</span><span class="p">,</span> <span class="n">taxon_id1</span><span class="p">,</span> <span class="n">taxon_id2</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    .. versionadded:: 0.1.16</span>
+
+<span class="sd">    Calculate the distance between two taxa. The distance is equal to the sum</span>
+<span class="sd">    steps it takes to traverse the taxonomy until their last common ancestor.</span>
+
+<span class="sd">    Arguments:</span>
+<span class="sd">        taxonomy: :class:`Taxonomy` instance</span>
+<span class="sd">        taxon_id1 (int): taxonomic identifier of first taxon</span>
+<span class="sd">        taxon_id2 (int): taxonomic identifier of second taxon</span>
+
+<span class="sd">    Raturns:</span>
+<span class="sd">        int: distance between *taxon_id1* and *taxon_id2*</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">lca_id</span> <span class="o">=</span> <span class="n">last_common_ancestor</span><span class="p">(</span><span class="n">taxonomy</span><span class="p">,</span> <span class="n">taxon_id1</span><span class="p">,</span> <span class="n">taxon_id2</span><span class="p">)</span>
+
+    <span class="k">return</span> <span class="nb">sum</span><span class="p">(</span>
+        <span class="n">distance_taxa_ancestor</span><span class="p">(</span><span class="n">taxonomy</span><span class="p">,</span> <span class="n">taxon_id</span><span class="p">,</span> <span class="n">lca_id</span><span class="p">)</span>
+        <span class="k">for</span> <span class="n">taxon_id</span> <span class="ow">in</span> <span class="p">(</span><span class="n">taxon_id1</span><span class="p">,</span> <span class="n">taxon_id2</span><span class="p">)</span>
+    <span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="taxa_distance_matrix"><a class="viewcode-back" href="../../api/mgkit.taxon.html#mgkit.taxon.taxa_distance_matrix">[docs]</a><span class="k">def</span> <span class="nf">taxa_distance_matrix</span><span class="p">(</span><span class="n">taxonomy</span><span class="p">,</span> <span class="n">taxon_ids</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    .. versionadded:: 0.1.16</span>
+
+<span class="sd">    Given a list of taxonomic identifiers, returns a distance matrix in a</span>
+<span class="sd">    pairwise manner by using :func:`distance_two_taxa` on all possible</span>
+<span class="sd">    two element combinations of *taxon_ids*.</span>
+
+<span class="sd">    Arguments:</span>
+<span class="sd">        taxonomy: :class:`Taxonomy` instance</span>
+<span class="sd">        taxon_ids (iterable): list taxonomic identifiers</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        pandas.DataFrame: matrix with the pairwise distances of all *taxon_ids*</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="kn">import</span> <span class="nn">pandas</span>
+
+    <span class="n">matrix</span> <span class="o">=</span> <span class="n">pandas</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">index</span><span class="o">=</span><span class="n">taxon_ids</span><span class="p">,</span> <span class="n">columns</span><span class="o">=</span><span class="n">taxon_ids</span><span class="p">)</span><span class="o">.</span><span class="n">fillna</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+
+    <span class="k">for</span> <span class="n">taxon_id1</span><span class="p">,</span> <span class="n">taxon_id2</span> <span class="ow">in</span> <span class="n">itertools</span><span class="o">.</span><span class="n">combinations</span><span class="p">(</span><span class="n">taxon_ids</span><span class="p">,</span> <span class="mi">2</span><span class="p">):</span>
+        <span class="n">distance</span> <span class="o">=</span> <span class="n">distance_two_taxa</span><span class="p">(</span><span class="n">taxonomy</span><span class="p">,</span> <span class="n">taxon_id1</span><span class="p">,</span> <span class="n">taxon_id2</span><span class="p">)</span>
+        <span class="n">matrix</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">taxon_id1</span><span class="p">,</span> <span class="n">taxon_id2</span><span class="p">]</span> <span class="o">=</span> <span class="n">distance</span>
+        <span class="n">matrix</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">taxon_id2</span><span class="p">,</span> <span class="n">taxon_id1</span><span class="p">]</span> <span class="o">=</span> <span class="n">distance</span>
+
+    <span class="k">return</span> <span class="n">matrix</span></div>
+
+
+<div class="viewcode-block" id="get_lineage"><a class="viewcode-back" href="../../api/mgkit.taxon.html#mgkit.taxon.get_lineage">[docs]</a><span class="k">def</span> <span class="nf">get_lineage</span><span class="p">(</span><span class="n">taxonomy</span><span class="p">,</span> <span class="n">taxon_id</span><span class="p">,</span> <span class="n">names</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">only_ranked</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+                <span class="n">with_last</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    .. versionadded:: 0.2.1</span>
+
+<span class="sd">    .. versionchanged:: 0.2.5</span>
+<span class="sd">        added *only_ranked*</span>
+
+<span class="sd">    .. versionchanged:: 0.3.0</span>
+<span class="sd">        added *with_last*</span>
+
+<span class="sd">    Returns the lineage of a taxon_id, as a list of taxon_id or taxa names</span>
+
+<span class="sd">    Arguments:</span>
+<span class="sd">        taxonomy: a :class:`Taxonomy` instance</span>
+<span class="sd">        taxon_id (int): taxon_id whose lineage to return</span>
+<span class="sd">        names (bool): if True, the returned list contains the names of the taxa</span>
+<span class="sd">            instead of the taxon_id</span>
+<span class="sd">        only_ranked (bool): if True, only taxonomic levels whose rank is in</span>
+<span class="sd">            data:`TAXON_RANKS` will be returned</span>
+<span class="sd">        with_last (bool): if True, the passed taxon_id is included in the</span>
+<span class="sd">            lineage</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        list: lineage of the taxon_id, the elements are `int` if names is False,</span>
+<span class="sd">        and `str` when *names* is True. If a taxon has no scientific name, the</span>
+<span class="sd">        common name is used. If *only_ranked* is True, the returned list only</span>
+<span class="sd">        contains ranked taxa (according to :data:`TAXON_RANKS`).</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">lineage</span> <span class="o">=</span> <span class="p">[]</span>
+
+    <span class="k">if</span> <span class="n">with_last</span><span class="p">:</span>
+        <span class="n">lineage</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">taxon_id</span><span class="p">)</span>
+
+    <span class="k">while</span> <span class="kc">True</span><span class="p">:</span>
+        <span class="n">taxon_id</span> <span class="o">=</span> <span class="n">taxonomy</span><span class="p">[</span><span class="n">taxon_id</span><span class="p">]</span><span class="o">.</span><span class="n">parent_id</span>
+        <span class="k">if</span> <span class="n">taxon_id</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="k">break</span>
+        <span class="k">if</span> <span class="n">only_ranked</span> <span class="ow">and</span> <span class="p">(</span><span class="n">taxonomy</span><span class="p">[</span><span class="n">taxon_id</span><span class="p">]</span><span class="o">.</span><span class="n">rank</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">TAXON_RANKS</span><span class="p">):</span>
+            <span class="k">continue</span>
+        <span class="n">lineage</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">taxon_id</span><span class="p">)</span>
+
+    <span class="k">if</span> <span class="n">names</span><span class="p">:</span>
+        <span class="n">lineage</span> <span class="o">=</span> <span class="p">[</span>
+            <span class="n">taxonomy</span><span class="p">[</span><span class="n">x</span><span class="p">]</span><span class="o">.</span><span class="n">s_name</span> <span class="k">if</span> <span class="n">taxonomy</span><span class="p">[</span><span class="n">x</span><span class="p">]</span><span class="o">.</span><span class="n">s_name</span> <span class="k">else</span> <span class="n">taxonomy</span><span class="p">[</span><span class="n">x</span><span class="p">]</span><span class="o">.</span><span class="n">c_name</span>
+            <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">lineage</span>
+        <span class="p">]</span>
+
+    <span class="k">return</span> <span class="nb">list</span><span class="p">(</span><span class="nb">reversed</span><span class="p">(</span><span class="n">lineage</span><span class="p">))</span></div>
+
+
+<div class="viewcode-block" id="last_common_ancestor_multiple"><a class="viewcode-back" href="../../api/mgkit.taxon.html#mgkit.taxon.last_common_ancestor_multiple">[docs]</a><span class="k">def</span> <span class="nf">last_common_ancestor_multiple</span><span class="p">(</span><span class="n">taxonomy</span><span class="p">,</span> <span class="n">taxon_ids</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    .. versionadded:: 0.2.5</span>
+
+<span class="sd">    Applies :func:`last_common_ancestor` to an iterable that yields *taxon_id*</span>
+<span class="sd">    while removing any *None* values. If the list is of one element, that</span>
+<span class="sd">    *taxon_id* is returned.</span>
+
+<span class="sd">    Arguments:</span>
+<span class="sd">        taxonomy: instance of :class:`Taxonomy`</span>
+<span class="sd">        taxon_ids (iterable): an iterable that yields taxon_id</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        int: the *taxon_id* that is the last common ancestor of all taxon_ids</span>
+<span class="sd">        passed</span>
+
+<span class="sd">    Raises:</span>
+<span class="sd">        NoLcaFound: when no common ancestry is found or the number of</span>
+<span class="sd">        *taxon_ids* is 0</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="n">taxon_ids</span> <span class="o">=</span> <span class="p">[</span>
+        <span class="n">taxon_id</span>
+        <span class="k">for</span> <span class="n">taxon_id</span> <span class="ow">in</span> <span class="n">taxon_ids</span>
+        <span class="k">if</span> <span class="n">taxon_id</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span>
+    <span class="p">]</span>
+
+    <span class="k">if</span> <span class="ow">not</span> <span class="n">taxon_ids</span><span class="p">:</span>
+        <span class="k">raise</span> <span class="n">NoLcaFound</span><span class="p">(</span><span class="s1">&#39;Empty *taxon_ids*&#39;</span><span class="p">)</span>
+
+    <span class="k">return</span> <span class="n">reduce</span><span class="p">(</span>
+        <span class="k">lambda</span> <span class="n">x1</span><span class="p">,</span> <span class="n">x2</span><span class="p">:</span> <span class="n">last_common_ancestor</span><span class="p">(</span><span class="n">taxonomy</span><span class="p">,</span> <span class="n">x1</span><span class="p">,</span> <span class="n">x2</span><span class="p">),</span>
+        <span class="nb">set</span><span class="p">(</span><span class="n">taxon_ids</span><span class="p">)</span>
+    <span class="p">)</span></div>
+</pre></div>
+
+           </div>
+           
+          </div>
+          <footer>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2013-2015, Francesco Rubino
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

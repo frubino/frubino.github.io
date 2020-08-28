@@ -1,0 +1,579 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>sampling-utils - Resampling Utilities &mdash; MGKit: Metagenomic framework 0.5.0 documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+  <script type="text/javascript" src="../_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+        <script type="text/javascript" src="../_static/jquery.js"></script>
+        <script type="text/javascript" src="../_static/underscore.js"></script>
+        <script type="text/javascript" src="../_static/doctools.js"></script>
+        <script type="text/javascript" src="../_static/language_data.js"></script>
+        <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+        <script async="async" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+        <script type="text/x-mathjax-config">MathJax.Hub.Config({"tex2jax": {"inlineMath": [["$", "$"], ["\\(", "\\)"]], "processEscapes": true, "ignoreClass": "document", "processClass": "math|output_area"}})</script>
+    
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/graphviz.css" type="text/css" />
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="edit-gff - GFF Viewer and Editor" href="edit_gff.html" />
+    <link rel="prev" title="json2gff - Convert JSON to GFF" href="json2gff.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../index.html" class="icon icon-home"> MGKit: Metagenomic framework
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                0.5.0
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../introduction.html">Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../install.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../pipeline/index.html">Metagenomic Pipeline</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">Scripts Details</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="blast2gff.html">blast2gff - Convert BLAST output to GFF</a></li>
+<li class="toctree-l2"><a class="reference internal" href="filter-gff.html">filter-gff - Filter GFF annotations</a></li>
+<li class="toctree-l2"><a class="reference internal" href="add-gff-info.html">add-gff-info - Add informations to GFF annotations</a></li>
+<li class="toctree-l2"><a class="reference internal" href="get-gff-info.html">get-gff-info - Extract informations to GFF annotations</a></li>
+<li class="toctree-l2"><a class="reference internal" href="hmmer2gff.html">hmmer2gff - Convert HMMER output to GFF</a></li>
+<li class="toctree-l2"><a class="reference internal" href="snp_analysis.html">snp_parser - SNPs analysis</a></li>
+<li class="toctree-l2"><a class="reference internal" href="download-taxonomy.html">Download Taxonomy</a></li>
+<li class="toctree-l2"><a class="reference internal" href="download-taxonomy.html#download-accession-taxonid">Download Accession/TaxonID</a></li>
+<li class="toctree-l2"><a class="reference internal" href="taxon_utils.html">taxon-utils - Taxonomy Utilities</a></li>
+<li class="toctree-l2"><a class="reference internal" href="fasta-utils.html">fasta-utils - Fasta Utilities</a></li>
+<li class="toctree-l2"><a class="reference internal" href="fastq-utils.html">fastq-utils - Fastq Utilities</a></li>
+<li class="toctree-l2"><a class="reference internal" href="json2gff.html">json2gff - Convert JSON to GFF</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">sampling-utils - Resampling Utilities</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#module-mgkit.workflow.sampling_utils">Overview</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#resampling-utilities">Resampling Utilities</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#options">Options</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#sampling-utils">sampling-utils</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="edit_gff.html">edit-gff - GFF Viewer and Editor</a></li>
+<li class="toctree-l2"><a class="reference internal" href="pnps_gen.html">pnps-gen - pN/pS Table Generation</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../examples/index.html">Example Notebooks</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../gff.html">MGKit GFF Specifications</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../library.html">Library Reference</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../changes.html">Changes</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">MGKit: Metagenomic framework</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="index.html">Scripts Details</a> &raquo;</li>
+        
+      <li>sampling-utils - Resampling Utilities</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="../_sources/scripts/sampling-utils.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  
+<style>
+/* CSS overrides for sphinx_rtd_theme */
+
+/* 24px margin */
+.nbinput.nblast.container,
+.nboutput.nblast.container {
+    margin-bottom: 19px;  /* padding has already 5px */
+}
+
+/* ... except between code cells! */
+.nblast.container + .nbinput.container {
+    margin-top: -19px;
+}
+
+.admonition > p:before {
+    margin-right: 4px;  /* make room for the exclamation icon */
+}
+
+/* Fix math alignment, see https://github.com/rtfd/sphinx_rtd_theme/pull/686 */
+.math {
+    text-align: unset;
+}
+</style>
+<div class="section" id="sampling-utils-resampling-utilities">
+<span id="sampling-utils"></span><h1>sampling-utils - Resampling Utilities<a class="headerlink" href="#sampling-utils-resampling-utilities" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="module-mgkit.workflow.sampling_utils">
+<span id="overview"></span><h2>Overview<a class="headerlink" href="#module-mgkit.workflow.sampling_utils" title="Permalink to this headline">¶</a></h2>
+<div class="versionadded">
+<p><span class="versionmodified added">New in version 0.3.1.</span></p>
+</div>
+<div class="section" id="resampling-utilities">
+<h3>Resampling Utilities<a class="headerlink" href="#resampling-utilities" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="sample-command">
+<h4><em>sample</em> command<a class="headerlink" href="#sample-command" title="Permalink to this headline">¶</a></h4>
+<p>This command samples from a Fasta or FastQ file, based on a probability defined
+by the user (0.001 or 1 / 1000 by default, <em>-r</em> parameter), for a maximum number
+of sequences (100,000 by default, <em>-x</em> parameter). By default 1 sample is
+extracted, but as many as desired can be taken, by using the <em>-n</em> parameter.</p>
+<p>The sequence file in input can be either be passed to the standard input or as
+last parameter on the command line. By defult a Fasta is expected, unless the
+<em>-q</em> parameter is passed.</p>
+<p>The <em>-p</em> parameter specifies the prefix to be used, and if the output files can
+be gzipped using the <em>-z</em> parameter.</p>
+</div>
+<div class="section" id="sample-stream-command">
+<h4><em>sample_stream</em> command<a class="headerlink" href="#sample-stream-command" title="Permalink to this headline">¶</a></h4>
+<p>It works in the same way as <em>sample</em>, however the file is sampled only once and
+the output is the stdout by default. This can be convenient if streams are a
+preferred way to sample the file.</p>
+</div>
+<div class="section" id="sync-command">
+<h4><em>sync</em> command<a class="headerlink" href="#sync-command" title="Permalink to this headline">¶</a></h4>
+<p>Used to keep in sync forward and reverse read files in paired-end FASTQ.
+The scenario is that the <em>sample</em> command was used to resample a FASTQ file,
+usually the forward, but we need the reverse as well. In this case, the resampled
+file, called <em>master</em> is passed to the <em>-m</em> option and the input file is
+the file that is to be synced (reverse). The input file is scanned until the same header is
+found in the master file and when that happens, the sequence is written. The
+next sequence is then read from the master file and the process is repeated until all
+sequence in the master file are found in the input file. This implies having
+the 2 files sorted in the same way, which is what the <em>sample</em> command does.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>the old casava format is not supported by this command at the moment, as
+it’s unusual to find it in SRA or other repositories as well.</p>
+</div>
+</div>
+<div class="section" id="rand-seq-command">
+<h4><em>rand_seq</em> command<a class="headerlink" href="#rand-seq-command" title="Permalink to this headline">¶</a></h4>
+<p>Generate random FastA/Q sequences, allowing the specification of GC content and
+number of sequences being coding or random. If the output format chosen is
+FastQ, qualities are generated using a decreasing model with added noise. A
+constant model can be specified instead with a switch. Parameters such GC,
+length and the type of model can be infered by passing a FastA/Q file, with
+the quality model fit using a LOWESS (using <a class="reference internal" href="../api/mgkit.utils.sequence.html#mgkit.utils.sequence.extrapolate_model" title="mgkit.utils.sequence.extrapolate_model"><code class="xref py py-func docutils literal notranslate"><span class="pre">mgkit.utils.sequence.extrapolate_model()</span></code></a>).
+The noise in that case is model as the a normal distribution fitted from the
+qualities along the sequence deviating from the fitted LOWSS and scaled back by
+half to avoid too drastic changes in the qualities. Also the qualities are
+clipped at 40 to avoid compatibility problems with FastQ readers. If inferred,
+the model can be saved (as a pickle file) and loaded back for analysis</p>
+</div>
+<div class="section" id="changes">
+<h4>Changes<a class="headerlink" href="#changes" title="Permalink to this headline">¶</a></h4>
+<div class="versionchanged">
+<p><span class="versionmodified changed">Changed in version 0.3.4: </span>using <em>click</em> instead of <em>argparse. Now *rand_seq</em> can save and reload models</p>
+</div>
+<div class="versionchanged">
+<p><span class="versionmodified changed">Changed in version 0.3.3: </span>added <em>sync</em>, <em>sample_stream</em> and <em>rand_seq</em> commnads</p>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="options">
+<h2>Options<a class="headerlink" href="#options" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="sampling-utils">
+<h3>sampling-utils<a class="headerlink" href="#sampling-utils" title="Permalink to this headline">¶</a></h3>
+<p>Main function</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>sampling-utils <span class="o">[</span>OPTIONS<span class="o">]</span> COMMAND <span class="o">[</span>ARGS<span class="o">]</span>...
+</pre></div>
+</div>
+<p class="rubric">Options</p>
+<dl class="option">
+<dt id="cmdoption-sampling-utils-version">
+<code class="sig-name descname">--version</code><code class="sig-prename descclassname"></code><a class="headerlink" href="#cmdoption-sampling-utils-version" title="Permalink to this definition">¶</a></dt>
+<dd><p>Show the version and exit.</p>
+</dd></dl>
+
+<dl class="option">
+<dt id="cmdoption-sampling-utils-cite">
+<code class="sig-name descname">--cite</code><code class="sig-prename descclassname"></code><a class="headerlink" href="#cmdoption-sampling-utils-cite" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<div class="section" id="sampling-utils-rand-seq">
+<h4>rand_seq<a class="headerlink" href="#sampling-utils-rand-seq" title="Permalink to this headline">¶</a></h4>
+<p>Generates random FastA/Q sequences</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>sampling-utils rand_seq <span class="o">[</span>OPTIONS<span class="o">]</span> <span class="o">[</span>OUTPUT_FILE<span class="o">]</span>
+</pre></div>
+</div>
+<p class="rubric">Options</p>
+<dl class="option">
+<dt id="cmdoption-sampling-utils-rand-seq-v">
+<code class="sig-name descname">-v</code><code class="sig-prename descclassname"></code><code class="sig-prename descclassname">, </code><code class="sig-name descname">--verbose</code><code class="sig-prename descclassname"></code><a class="headerlink" href="#cmdoption-sampling-utils-rand-seq-v" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="option">
+<dt id="cmdoption-sampling-utils-rand-seq-n">
+<code class="sig-name descname">-n</code><code class="sig-prename descclassname"></code><code class="sig-prename descclassname">, </code><code class="sig-name descname">--num-seqs</code><code class="sig-prename descclassname"> &lt;num_seqs&gt;</code><a class="headerlink" href="#cmdoption-sampling-utils-rand-seq-n" title="Permalink to this definition">¶</a></dt>
+<dd><p>Number of sequences to generate  [default: 1000]</p>
+</dd></dl>
+
+<dl class="option">
+<dt id="cmdoption-sampling-utils-rand-seq-gc">
+<code class="sig-name descname">-gc</code><code class="sig-prename descclassname"></code><code class="sig-prename descclassname">, </code><code class="sig-name descname">--gc-content</code><code class="sig-prename descclassname"> &lt;gc_content&gt;</code><a class="headerlink" href="#cmdoption-sampling-utils-rand-seq-gc" title="Permalink to this definition">¶</a></dt>
+<dd><p>GC content (defaults to .5 out of 1)  [default: 0.5]</p>
+</dd></dl>
+
+<dl class="option">
+<dt id="cmdoption-sampling-utils-rand-seq-i">
+<code class="sig-name descname">-i</code><code class="sig-prename descclassname"></code><code class="sig-prename descclassname">, </code><code class="sig-name descname">--infer-params</code><code class="sig-prename descclassname"> &lt;infer_params&gt;</code><a class="headerlink" href="#cmdoption-sampling-utils-rand-seq-i" title="Permalink to this definition">¶</a></dt>
+<dd><p>Infer parameters GC content and Quality model from file</p>
+</dd></dl>
+
+<dl class="option">
+<dt id="cmdoption-sampling-utils-rand-seq-r">
+<code class="sig-name descname">-r</code><code class="sig-prename descclassname"></code><code class="sig-prename descclassname">, </code><code class="sig-name descname">--coding-prop</code><code class="sig-prename descclassname"> &lt;coding_prop&gt;</code><a class="headerlink" href="#cmdoption-sampling-utils-rand-seq-r" title="Permalink to this definition">¶</a></dt>
+<dd><p>Proportion of coding sequences  [default: 0.0]</p>
+</dd></dl>
+
+<dl class="option">
+<dt id="cmdoption-sampling-utils-rand-seq-l">
+<code class="sig-name descname">-l</code><code class="sig-prename descclassname"></code><code class="sig-prename descclassname">, </code><code class="sig-name descname">--length</code><code class="sig-prename descclassname"> &lt;length&gt;</code><a class="headerlink" href="#cmdoption-sampling-utils-rand-seq-l" title="Permalink to this definition">¶</a></dt>
+<dd><p>Sequence length  [default: 150]</p>
+</dd></dl>
+
+<dl class="option">
+<dt id="cmdoption-sampling-utils-rand-seq-d">
+<code class="sig-name descname">-d</code><code class="sig-prename descclassname"></code><code class="sig-prename descclassname">, </code><code class="sig-name descname">--const-model</code><code class="sig-prename descclassname"></code><a class="headerlink" href="#cmdoption-sampling-utils-rand-seq-d" title="Permalink to this definition">¶</a></dt>
+<dd><p>Use a model with constant qualities + noise</p>
+</dd></dl>
+
+<dl class="option">
+<dt id="cmdoption-sampling-utils-rand-seq-x">
+<code class="sig-name descname">-x</code><code class="sig-prename descclassname"></code><code class="sig-prename descclassname">, </code><code class="sig-name descname">--dist-loc</code><code class="sig-prename descclassname"> &lt;dist_loc&gt;</code><a class="headerlink" href="#cmdoption-sampling-utils-rand-seq-x" title="Permalink to this definition">¶</a></dt>
+<dd><p>Use as the starting point quality  [default: 30.0]</p>
+</dd></dl>
+
+<dl class="option">
+<dt id="cmdoption-sampling-utils-rand-seq-q">
+<code class="sig-name descname">-q</code><code class="sig-prename descclassname"></code><code class="sig-prename descclassname">, </code><code class="sig-name descname">--fastq</code><code class="sig-prename descclassname"></code><a class="headerlink" href="#cmdoption-sampling-utils-rand-seq-q" title="Permalink to this definition">¶</a></dt>
+<dd><p>The output file is a FastQ file</p>
+</dd></dl>
+
+<dl class="option">
+<dt id="cmdoption-sampling-utils-rand-seq-m">
+<code class="sig-name descname">-m</code><code class="sig-prename descclassname"></code><code class="sig-prename descclassname">, </code><code class="sig-name descname">--save-model</code><code class="sig-prename descclassname"> &lt;save_model&gt;</code><a class="headerlink" href="#cmdoption-sampling-utils-rand-seq-m" title="Permalink to this definition">¶</a></dt>
+<dd><p>Save inferred qualities model to a pickle file</p>
+</dd></dl>
+
+<dl class="option">
+<dt id="cmdoption-sampling-utils-rand-seq-a">
+<code class="sig-name descname">-a</code><code class="sig-prename descclassname"></code><code class="sig-prename descclassname">, </code><code class="sig-name descname">--read-model</code><code class="sig-prename descclassname"> &lt;read_model&gt;</code><a class="headerlink" href="#cmdoption-sampling-utils-rand-seq-a" title="Permalink to this definition">¶</a></dt>
+<dd><p>Load qualities model from a pickle file</p>
+</dd></dl>
+
+<dl class="option">
+<dt id="cmdoption-sampling-utils-rand-seq-progress">
+<code class="sig-name descname">--progress</code><code class="sig-prename descclassname"></code><a class="headerlink" href="#cmdoption-sampling-utils-rand-seq-progress" title="Permalink to this definition">¶</a></dt>
+<dd><p>Shows Progress Bar</p>
+</dd></dl>
+
+<p class="rubric">Arguments</p>
+<dl class="option">
+<dt id="cmdoption-sampling-utils-rand-seq-arg-output-file">
+<code class="sig-name descname">OUTPUT_FILE</code><code class="sig-prename descclassname"></code><a class="headerlink" href="#cmdoption-sampling-utils-rand-seq-arg-output-file" title="Permalink to this definition">¶</a></dt>
+<dd><p>Optional argument</p>
+</dd></dl>
+
+</div>
+<div class="section" id="sampling-utils-sample">
+<h4>sample<a class="headerlink" href="#sampling-utils-sample" title="Permalink to this headline">¶</a></h4>
+<p>Sample a FastA/Q multiple times</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>sampling-utils sample <span class="o">[</span>OPTIONS<span class="o">]</span> <span class="o">[</span>INPUT_FILE<span class="o">]</span>
+</pre></div>
+</div>
+<p class="rubric">Options</p>
+<dl class="option">
+<dt id="cmdoption-sampling-utils-sample-v">
+<code class="sig-name descname">-v</code><code class="sig-prename descclassname"></code><code class="sig-prename descclassname">, </code><code class="sig-name descname">--verbose</code><code class="sig-prename descclassname"></code><a class="headerlink" href="#cmdoption-sampling-utils-sample-v" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="option">
+<dt id="cmdoption-sampling-utils-sample-p">
+<code class="sig-name descname">-p</code><code class="sig-prename descclassname"></code><code class="sig-prename descclassname">, </code><code class="sig-name descname">--prefix</code><code class="sig-prename descclassname"> &lt;prefix&gt;</code><a class="headerlink" href="#cmdoption-sampling-utils-sample-p" title="Permalink to this definition">¶</a></dt>
+<dd><p>Prefix for the file name(s) in output  [default: sample]</p>
+</dd></dl>
+
+<dl class="option">
+<dt id="cmdoption-sampling-utils-sample-n">
+<code class="sig-name descname">-n</code><code class="sig-prename descclassname"></code><code class="sig-prename descclassname">, </code><code class="sig-name descname">--number</code><code class="sig-prename descclassname"> &lt;number&gt;</code><a class="headerlink" href="#cmdoption-sampling-utils-sample-n" title="Permalink to this definition">¶</a></dt>
+<dd><p>Number of samples to take  [default: 1]</p>
+</dd></dl>
+
+<dl class="option">
+<dt id="cmdoption-sampling-utils-sample-r">
+<code class="sig-name descname">-r</code><code class="sig-prename descclassname"></code><code class="sig-prename descclassname">, </code><code class="sig-name descname">--prob</code><code class="sig-prename descclassname"> &lt;prob&gt;</code><a class="headerlink" href="#cmdoption-sampling-utils-sample-r" title="Permalink to this definition">¶</a></dt>
+<dd><p>Probability of picking a sequence  [default: 0.001]</p>
+</dd></dl>
+
+<dl class="option">
+<dt id="cmdoption-sampling-utils-sample-x">
+<code class="sig-name descname">-x</code><code class="sig-prename descclassname"></code><code class="sig-prename descclassname">, </code><code class="sig-name descname">--max-seq</code><code class="sig-prename descclassname"> &lt;max_seq&gt;</code><a class="headerlink" href="#cmdoption-sampling-utils-sample-x" title="Permalink to this definition">¶</a></dt>
+<dd><p>Maximum number of sequences  [default: 100000]</p>
+</dd></dl>
+
+<dl class="option">
+<dt id="cmdoption-sampling-utils-sample-q">
+<code class="sig-name descname">-q</code><code class="sig-prename descclassname"></code><code class="sig-prename descclassname">, </code><code class="sig-name descname">--fastq</code><code class="sig-prename descclassname"></code><a class="headerlink" href="#cmdoption-sampling-utils-sample-q" title="Permalink to this definition">¶</a></dt>
+<dd><p>The input file is a fastq file</p>
+</dd></dl>
+
+<dl class="option">
+<dt id="cmdoption-sampling-utils-sample-z">
+<code class="sig-name descname">-z</code><code class="sig-prename descclassname"></code><code class="sig-prename descclassname">, </code><code class="sig-name descname">--gzip</code><code class="sig-prename descclassname"></code><a class="headerlink" href="#cmdoption-sampling-utils-sample-z" title="Permalink to this definition">¶</a></dt>
+<dd><p>gzip output files</p>
+</dd></dl>
+
+<p class="rubric">Arguments</p>
+<dl class="option">
+<dt id="cmdoption-sampling-utils-sample-arg-input-file">
+<code class="sig-name descname">INPUT_FILE</code><code class="sig-prename descclassname"></code><a class="headerlink" href="#cmdoption-sampling-utils-sample-arg-input-file" title="Permalink to this definition">¶</a></dt>
+<dd><p>Optional argument</p>
+</dd></dl>
+
+</div>
+<div class="section" id="sampling-utils-sample-stream">
+<h4>sample_stream<a class="headerlink" href="#sampling-utils-sample-stream" title="Permalink to this headline">¶</a></h4>
+<p>Samples a FastA/Q one time, alternative
+to sample if multiple sampling is not needed</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>sampling-utils sample_stream <span class="o">[</span>OPTIONS<span class="o">]</span> <span class="o">[</span>INPUT_FILE<span class="o">]</span> <span class="o">[</span>OUTPUT_FILE<span class="o">]</span>
+</pre></div>
+</div>
+<p class="rubric">Options</p>
+<dl class="option">
+<dt id="cmdoption-sampling-utils-sample-stream-v">
+<code class="sig-name descname">-v</code><code class="sig-prename descclassname"></code><code class="sig-prename descclassname">, </code><code class="sig-name descname">--verbose</code><code class="sig-prename descclassname"></code><a class="headerlink" href="#cmdoption-sampling-utils-sample-stream-v" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="option">
+<dt id="cmdoption-sampling-utils-sample-stream-r">
+<code class="sig-name descname">-r</code><code class="sig-prename descclassname"></code><code class="sig-prename descclassname">, </code><code class="sig-name descname">--prob</code><code class="sig-prename descclassname"> &lt;prob&gt;</code><a class="headerlink" href="#cmdoption-sampling-utils-sample-stream-r" title="Permalink to this definition">¶</a></dt>
+<dd><p>Probability of picking a sequence</p>
+</dd></dl>
+
+<dl class="option">
+<dt id="cmdoption-sampling-utils-sample-stream-x">
+<code class="sig-name descname">-x</code><code class="sig-prename descclassname"></code><code class="sig-prename descclassname">, </code><code class="sig-name descname">--max-seq</code><code class="sig-prename descclassname"> &lt;max_seq&gt;</code><a class="headerlink" href="#cmdoption-sampling-utils-sample-stream-x" title="Permalink to this definition">¶</a></dt>
+<dd><p>Maximum number of sequences</p>
+</dd></dl>
+
+<dl class="option">
+<dt id="cmdoption-sampling-utils-sample-stream-q">
+<code class="sig-name descname">-q</code><code class="sig-prename descclassname"></code><code class="sig-prename descclassname">, </code><code class="sig-name descname">--fastq</code><code class="sig-prename descclassname"></code><a class="headerlink" href="#cmdoption-sampling-utils-sample-stream-q" title="Permalink to this definition">¶</a></dt>
+<dd><p>The input file is a fastq file</p>
+</dd></dl>
+
+<p class="rubric">Arguments</p>
+<dl class="option">
+<dt id="cmdoption-sampling-utils-sample-stream-arg-input-file">
+<code class="sig-name descname">INPUT_FILE</code><code class="sig-prename descclassname"></code><a class="headerlink" href="#cmdoption-sampling-utils-sample-stream-arg-input-file" title="Permalink to this definition">¶</a></dt>
+<dd><p>Optional argument</p>
+</dd></dl>
+
+<dl class="option">
+<dt id="cmdoption-sampling-utils-sample-stream-arg-output-file">
+<code class="sig-name descname">OUTPUT_FILE</code><code class="sig-prename descclassname"></code><a class="headerlink" href="#cmdoption-sampling-utils-sample-stream-arg-output-file" title="Permalink to this definition">¶</a></dt>
+<dd><p>Optional argument</p>
+</dd></dl>
+
+</div>
+<div class="section" id="sampling-utils-sync">
+<h4>sync<a class="headerlink" href="#sampling-utils-sync" title="Permalink to this headline">¶</a></h4>
+<p>Syncs a FastQ file generated with <em>sample</em> with
+the original pair of files.</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>sampling-utils sync <span class="o">[</span>OPTIONS<span class="o">]</span> <span class="o">[</span>INPUT_FILE<span class="o">]</span> <span class="o">[</span>OUTPUT_FILE<span class="o">]</span>
+</pre></div>
+</div>
+<p class="rubric">Options</p>
+<dl class="option">
+<dt id="cmdoption-sampling-utils-sync-v">
+<code class="sig-name descname">-v</code><code class="sig-prename descclassname"></code><code class="sig-prename descclassname">, </code><code class="sig-name descname">--verbose</code><code class="sig-prename descclassname"></code><a class="headerlink" href="#cmdoption-sampling-utils-sync-v" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="option">
+<dt id="cmdoption-sampling-utils-sync-m">
+<code class="sig-name descname">-m</code><code class="sig-prename descclassname"></code><code class="sig-prename descclassname">, </code><code class="sig-name descname">--master-file</code><code class="sig-prename descclassname"> &lt;master_file&gt;</code><a class="headerlink" href="#cmdoption-sampling-utils-sync-m" title="Permalink to this definition">¶</a></dt>
+<dd><p>Resampled FastQ file that is out of sync with the original pair  [required]</p>
+</dd></dl>
+
+<p class="rubric">Arguments</p>
+<dl class="option">
+<dt id="cmdoption-sampling-utils-sync-arg-input-file">
+<code class="sig-name descname">INPUT_FILE</code><code class="sig-prename descclassname"></code><a class="headerlink" href="#cmdoption-sampling-utils-sync-arg-input-file" title="Permalink to this definition">¶</a></dt>
+<dd><p>Optional argument</p>
+</dd></dl>
+
+<dl class="option">
+<dt id="cmdoption-sampling-utils-sync-arg-output-file">
+<code class="sig-name descname">OUTPUT_FILE</code><code class="sig-prename descclassname"></code><a class="headerlink" href="#cmdoption-sampling-utils-sync-arg-output-file" title="Permalink to this definition">¶</a></dt>
+<dd><p>Optional argument</p>
+</dd></dl>
+
+</div>
+</div>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="edit_gff.html" class="btn btn-neutral float-right" title="edit-gff - GFF Viewer and Editor" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="json2gff.html" class="btn btn-neutral float-left" title="json2gff - Convert JSON to GFF" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2013-2015, Francesco Rubino
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

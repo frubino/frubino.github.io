@@ -1,0 +1,616 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>mgkit.workflow.sampling_utils &mdash; MGKit: Metagenomic framework 0.5.0 documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+  <script type="text/javascript" src="../../../_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../../../" src="../../../_static/documentation_options.js"></script>
+        <script type="text/javascript" src="../../../_static/jquery.js"></script>
+        <script type="text/javascript" src="../../../_static/underscore.js"></script>
+        <script type="text/javascript" src="../../../_static/doctools.js"></script>
+        <script type="text/javascript" src="../../../_static/language_data.js"></script>
+        <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+        <script async="async" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+        <script type="text/x-mathjax-config">MathJax.Hub.Config({"tex2jax": {"inlineMath": [["$", "$"], ["\\(", "\\)"]], "processEscapes": true, "ignoreClass": "document", "processClass": "math|output_area"}})</script>
+    
+    <script type="text/javascript" src="../../../_static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="../../../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../../../_static/graphviz.css" type="text/css" />
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../../../index.html" class="icon icon-home"> MGKit: Metagenomic framework
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                0.5.0
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../introduction.html">Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../install.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../pipeline/index.html">Metagenomic Pipeline</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../scripts/index.html">Scripts Details</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../examples/index.html">Example Notebooks</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../gff.html">MGKit GFF Specifications</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../library.html">Library Reference</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../changes.html">Changes</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../index.html">MGKit: Metagenomic framework</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../../../index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="../../index.html">Module code</a> &raquo;</li>
+        
+          <li><a href="../../mgkit.html">mgkit</a> &raquo;</li>
+        
+      <li>mgkit.workflow.sampling_utils</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <h1>Source code for mgkit.workflow.sampling_utils</h1><div class="highlight"><pre>
+<span></span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">.. versionadded:: 0.3.1</span>
+
+<span class="sd">Resampling Utilities</span>
+<span class="sd">====================</span>
+
+<span class="sd">*sample* command</span>
+<span class="sd">----------------</span>
+
+<span class="sd">This command samples from a Fasta or FastQ file, based on a probability defined</span>
+<span class="sd">by the user (0.001 or 1 / 1000 by default, *-r* parameter), for a maximum number</span>
+<span class="sd">of sequences (100,000 by default, *-x* parameter). By default 1 sample is</span>
+<span class="sd">extracted, but as many as desired can be taken, by using the *-n* parameter.</span>
+
+<span class="sd">The sequence file in input can be either be passed to the standard input or as</span>
+<span class="sd">last parameter on the command line. By defult a Fasta is expected, unless the</span>
+<span class="sd">*-q* parameter is passed.</span>
+
+<span class="sd">The *-p* parameter specifies the prefix to be used, and if the output files can</span>
+<span class="sd">be gzipped using the *-z* parameter.</span>
+
+<span class="sd">*sample_stream* command</span>
+<span class="sd">-----------------------</span>
+
+<span class="sd">It works in the same way as *sample*, however the file is sampled only once and</span>
+<span class="sd">the output is the stdout by default. This can be convenient if streams are a</span>
+<span class="sd">preferred way to sample the file.</span>
+
+<span class="sd">*sync* command</span>
+<span class="sd">--------------</span>
+
+<span class="sd">Used to keep in sync forward and reverse read files in paired-end FASTQ.</span>
+<span class="sd">The scenario is that the *sample* command was used to resample a FASTQ file,</span>
+<span class="sd">usually the forward, but we need the reverse as well. In this case, the resampled</span>
+<span class="sd">file, called *master* is passed to the *-m* option and the input file is</span>
+<span class="sd">the file that is to be synced (reverse). The input file is scanned until the same header is</span>
+<span class="sd">found in the master file and when that happens, the sequence is written. The</span>
+<span class="sd">next sequence is then read from the master file and the process is repeated until all</span>
+<span class="sd">sequence in the master file are found in the input file. This implies having</span>
+<span class="sd">the 2 files sorted in the same way, which is what the *sample* command does.</span>
+
+<span class="sd">.. note::</span>
+
+<span class="sd">    the old casava format is not supported by this command at the moment, as</span>
+<span class="sd">    it&#39;s unusual to find it in SRA or other repositories as well.</span>
+
+<span class="sd">*rand_seq* command</span>
+<span class="sd">------------------</span>
+
+<span class="sd">Generate random FastA/Q sequences, allowing the specification of GC content and</span>
+<span class="sd">number of sequences being coding or random. If the output format chosen is</span>
+<span class="sd">FastQ, qualities are generated using a decreasing model with added noise. A</span>
+<span class="sd">constant model can be specified instead with a switch. Parameters such GC,</span>
+<span class="sd">length and the type of model can be infered by passing a FastA/Q file, with</span>
+<span class="sd">the quality model fit using a LOWESS (using :func:`mgkit.utils.sequence.extrapolate_model`).</span>
+<span class="sd">The noise in that case is model as the a normal distribution fitted from the</span>
+<span class="sd">qualities along the sequence deviating from the fitted LOWSS and scaled back by</span>
+<span class="sd">half to avoid too drastic changes in the qualities. Also the qualities are</span>
+<span class="sd">clipped at 40 to avoid compatibility problems with FastQ readers. If inferred,</span>
+<span class="sd">the model can be saved (as a pickle file) and loaded back for analysis</span>
+
+<span class="sd">Changes</span>
+<span class="sd">-------</span>
+
+<span class="sd">.. versionchanged:: 0.3.4</span>
+<span class="sd">    using *click* instead of *argparse. Now *rand_seq* can save and reload models</span>
+
+<span class="sd">.. versionchanged:: 0.3.3</span>
+<span class="sd">    added *sync*, *sample_stream* and *rand_seq* commnads</span>
+
+<span class="sd">&quot;&quot;&quot;</span>
+<span class="kn">from</span> <span class="nn">__future__</span> <span class="kn">import</span> <span class="n">division</span>
+<span class="kn">from</span> <span class="nn">builtins</span> <span class="kn">import</span> <span class="nb">range</span><span class="p">,</span> <span class="nb">zip</span>
+<span class="kn">import</span> <span class="nn">logging</span>
+<span class="kn">import</span> <span class="nn">itertools</span>
+<span class="kn">import</span> <span class="nn">uuid</span>
+<span class="kn">import</span> <span class="nn">click</span>
+<span class="kn">import</span> <span class="nn">numpy</span>
+<span class="kn">import</span> <span class="nn">scipy.stats</span>
+<span class="kn">import</span> <span class="nn">pickle</span>
+<span class="kn">from</span> <span class="nn">tqdm</span> <span class="kn">import</span> <span class="n">tqdm</span>
+<span class="kn">import</span> <span class="nn">mgkit</span>
+<span class="kn">from</span> <span class="nn">.</span> <span class="kn">import</span> <span class="n">utils</span>
+<span class="kn">from</span> <span class="nn">..utils</span> <span class="kn">import</span> <span class="n">sequence</span>
+<span class="kn">from</span> <span class="nn">mgkit.io</span> <span class="kn">import</span> <span class="n">fasta</span><span class="p">,</span> <span class="n">open_file</span>
+<span class="kn">from</span> <span class="nn">mgkit.io.fastq</span> <span class="kn">import</span> <span class="n">load_fastq</span><span class="p">,</span> <span class="n">write_fastq_sequence</span><span class="p">,</span> <span class="n">choose_header_type</span>
+
+<span class="n">LOG</span> <span class="o">=</span> <span class="n">logging</span><span class="o">.</span><span class="n">getLogger</span><span class="p">(</span><span class="vm">__name__</span><span class="p">)</span>
+
+
+<span class="nd">@click</span><span class="o">.</span><span class="n">group</span><span class="p">()</span>
+<span class="nd">@click</span><span class="o">.</span><span class="n">version_option</span><span class="p">()</span>
+<span class="nd">@utils</span><span class="o">.</span><span class="n">cite_option</span>
+<span class="k">def</span> <span class="nf">main</span><span class="p">():</span>
+    <span class="s2">&quot;Main function&quot;</span>
+    <span class="k">pass</span>
+
+
+<div class="viewcode-block" id="infer_parameters"><a class="viewcode-back" href="../../../api/mgkit.workflow.sampling_utils.html#mgkit.workflow.sampling_utils.infer_parameters">[docs]</a><span class="k">def</span> <span class="nf">infer_parameters</span><span class="p">(</span><span class="n">file_handle</span><span class="p">,</span> <span class="n">fastq_bool</span><span class="p">,</span> <span class="n">progress</span><span class="p">):</span>
+    <span class="n">LOG</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;Extrapolating model from file </span><span class="si">%s</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">file_handle</span><span class="o">.</span><span class="n">name</span><span class="p">)</span>
+
+    <span class="k">if</span> <span class="n">fastq_bool</span><span class="p">:</span>
+        <span class="n">it</span> <span class="o">=</span> <span class="n">load_fastq</span><span class="p">(</span><span class="n">file_handle</span><span class="p">,</span> <span class="n">num_qual</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+        <span class="n">quals</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">it</span> <span class="o">=</span> <span class="n">fasta</span><span class="o">.</span><span class="n">load_fasta</span><span class="p">(</span><span class="n">file_handle</span><span class="p">)</span>
+
+    <span class="k">if</span> <span class="n">progress</span><span class="p">:</span>
+        <span class="n">it</span> <span class="o">=</span> <span class="n">tqdm</span><span class="p">(</span><span class="n">it</span><span class="p">)</span>
+
+    <span class="n">gc_content</span> <span class="o">=</span> <span class="p">[]</span>
+
+    <span class="n">length</span> <span class="o">=</span> <span class="mi">0</span>
+
+    <span class="k">for</span> <span class="n">record</span> <span class="ow">in</span> <span class="n">it</span><span class="p">:</span>
+        <span class="n">length</span> <span class="o">=</span> <span class="nb">max</span><span class="p">(</span><span class="n">length</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">record</span><span class="p">[</span><span class="mi">1</span><span class="p">]))</span>
+        <span class="n">gc_content</span><span class="o">.</span><span class="n">append</span><span class="p">(</span>
+            <span class="n">sequence</span><span class="o">.</span><span class="n">sequence_gc_content</span><span class="p">(</span><span class="n">record</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>
+        <span class="p">)</span>
+        <span class="k">if</span> <span class="n">fastq_bool</span><span class="p">:</span>
+            <span class="n">quals</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">record</span><span class="p">[</span><span class="mi">2</span><span class="p">])</span>
+
+    <span class="k">if</span> <span class="n">fastq_bool</span><span class="p">:</span>
+        <span class="n">model</span> <span class="o">=</span> <span class="n">sequence</span><span class="o">.</span><span class="n">extrapolate_model</span><span class="p">(</span><span class="n">quals</span><span class="p">)</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">model</span> <span class="o">=</span> <span class="kc">None</span>
+
+    <span class="n">gc_content</span> <span class="o">=</span> <span class="n">numpy</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">gc_content</span><span class="p">)</span>
+
+    <span class="k">return</span> <span class="n">length</span><span class="p">,</span> <span class="n">gc_content</span><span class="p">,</span> <span class="n">model</span></div>
+
+
+<span class="nd">@main</span><span class="o">.</span><span class="n">command</span><span class="p">(</span><span class="s1">&#39;rand_seq&#39;</span><span class="p">,</span> <span class="n">help</span><span class="o">=</span><span class="s1">&#39;Generates random FastA/Q sequences&#39;</span><span class="p">)</span>
+<span class="nd">@click</span><span class="o">.</span><span class="n">option</span><span class="p">(</span><span class="s1">&#39;-v&#39;</span><span class="p">,</span> <span class="s1">&#39;--verbose&#39;</span><span class="p">,</span> <span class="n">is_flag</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="nd">@click</span><span class="o">.</span><span class="n">option</span><span class="p">(</span><span class="s1">&#39;-n&#39;</span><span class="p">,</span> <span class="s1">&#39;--num-seqs&#39;</span><span class="p">,</span> <span class="n">default</span><span class="o">=</span><span class="mi">1000</span><span class="p">,</span> <span class="nb">type</span><span class="o">=</span><span class="n">click</span><span class="o">.</span><span class="n">INT</span><span class="p">,</span> <span class="n">show_default</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+              <span class="n">help</span><span class="o">=</span><span class="s1">&#39;Number of sequences to generate&#39;</span><span class="p">)</span>
+<span class="nd">@click</span><span class="o">.</span><span class="n">option</span><span class="p">(</span><span class="s1">&#39;-gc&#39;</span><span class="p">,</span> <span class="s1">&#39;--gc-content&#39;</span><span class="p">,</span> <span class="n">default</span><span class="o">=.</span><span class="mi">5</span><span class="p">,</span> <span class="nb">type</span><span class="o">=</span><span class="n">click</span><span class="o">.</span><span class="n">FLOAT</span><span class="p">,</span> <span class="n">show_default</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+              <span class="n">help</span><span class="o">=</span><span class="s1">&#39;GC content (defaults to .5 out of 1)&#39;</span><span class="p">)</span>
+<span class="nd">@click</span><span class="o">.</span><span class="n">option</span><span class="p">(</span><span class="s1">&#39;-i&#39;</span><span class="p">,</span> <span class="s1">&#39;--infer-params&#39;</span><span class="p">,</span> <span class="n">default</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="nb">type</span><span class="o">=</span><span class="n">click</span><span class="o">.</span><span class="n">File</span><span class="p">(</span><span class="s1">&#39;rb&#39;</span><span class="p">,</span> <span class="n">lazy</span><span class="o">=</span><span class="kc">False</span><span class="p">),</span>
+              <span class="n">help</span><span class="o">=</span><span class="s1">&#39;Infer parameters GC content and Quality model from file&#39;</span><span class="p">)</span>
+<span class="nd">@click</span><span class="o">.</span><span class="n">option</span><span class="p">(</span><span class="s1">&#39;-r&#39;</span><span class="p">,</span> <span class="s1">&#39;--coding-prop&#39;</span><span class="p">,</span> <span class="n">default</span><span class="o">=</span><span class="mf">0.</span><span class="p">,</span> <span class="nb">type</span><span class="o">=</span><span class="n">click</span><span class="o">.</span><span class="n">FLOAT</span><span class="p">,</span> <span class="n">show_default</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+              <span class="n">help</span><span class="o">=</span><span class="s1">&#39;Proportion of coding sequences&#39;</span><span class="p">)</span>
+<span class="nd">@click</span><span class="o">.</span><span class="n">option</span><span class="p">(</span><span class="s1">&#39;-l&#39;</span><span class="p">,</span> <span class="s1">&#39;--length&#39;</span><span class="p">,</span> <span class="n">default</span><span class="o">=</span><span class="mi">150</span><span class="p">,</span> <span class="nb">type</span><span class="o">=</span><span class="n">click</span><span class="o">.</span><span class="n">INT</span><span class="p">,</span> <span class="n">show_default</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+              <span class="n">help</span><span class="o">=</span><span class="s1">&#39;Sequence length&#39;</span><span class="p">)</span>
+<span class="nd">@click</span><span class="o">.</span><span class="n">option</span><span class="p">(</span><span class="s1">&#39;-d&#39;</span><span class="p">,</span> <span class="s1">&#39;--const-model&#39;</span><span class="p">,</span> <span class="n">default</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">is_flag</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+              <span class="n">help</span><span class="o">=</span><span class="s1">&#39;Use a model with constant qualities + noise&#39;</span><span class="p">)</span>
+<span class="nd">@click</span><span class="o">.</span><span class="n">option</span><span class="p">(</span><span class="s1">&#39;-x&#39;</span><span class="p">,</span> <span class="s1">&#39;--dist-loc&#39;</span><span class="p">,</span> <span class="n">default</span><span class="o">=</span><span class="mf">30.</span><span class="p">,</span> <span class="nb">type</span><span class="o">=</span><span class="n">click</span><span class="o">.</span><span class="n">FLOAT</span><span class="p">,</span> <span class="n">show_default</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+              <span class="n">help</span><span class="o">=</span><span class="s1">&#39;Use as the starting point quality&#39;</span><span class="p">)</span>
+<span class="nd">@click</span><span class="o">.</span><span class="n">option</span><span class="p">(</span><span class="s1">&#39;-q&#39;</span><span class="p">,</span> <span class="s1">&#39;--fastq&#39;</span><span class="p">,</span> <span class="n">default</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">is_flag</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+              <span class="n">help</span><span class="o">=</span><span class="s1">&#39;The output file is a FastQ file&#39;</span><span class="p">)</span>
+<span class="nd">@click</span><span class="o">.</span><span class="n">option</span><span class="p">(</span><span class="s1">&#39;-m&#39;</span><span class="p">,</span> <span class="s1">&#39;--save-model&#39;</span><span class="p">,</span> <span class="n">default</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="nb">type</span><span class="o">=</span><span class="n">click</span><span class="o">.</span><span class="n">File</span><span class="p">(</span><span class="s1">&#39;wb&#39;</span><span class="p">,</span> <span class="n">lazy</span><span class="o">=</span><span class="kc">False</span><span class="p">),</span>
+              <span class="n">help</span><span class="o">=</span><span class="s1">&#39;Save inferred qualities model to a pickle file&#39;</span><span class="p">)</span>
+<span class="nd">@click</span><span class="o">.</span><span class="n">option</span><span class="p">(</span><span class="s1">&#39;-a&#39;</span><span class="p">,</span> <span class="s1">&#39;--read-model&#39;</span><span class="p">,</span> <span class="n">default</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="nb">type</span><span class="o">=</span><span class="n">click</span><span class="o">.</span><span class="n">File</span><span class="p">(</span><span class="s1">&#39;rb&#39;</span><span class="p">,</span> <span class="n">lazy</span><span class="o">=</span><span class="kc">False</span><span class="p">),</span>
+              <span class="n">help</span><span class="o">=</span><span class="s1">&#39;Load qualities model from a pickle file&#39;</span><span class="p">)</span>
+<span class="nd">@click</span><span class="o">.</span><span class="n">option</span><span class="p">(</span><span class="s1">&#39;--progress&#39;</span><span class="p">,</span> <span class="n">default</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">is_flag</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+              <span class="n">help</span><span class="o">=</span><span class="s2">&quot;Shows Progress Bar&quot;</span><span class="p">)</span>
+<span class="nd">@click</span><span class="o">.</span><span class="n">argument</span><span class="p">(</span><span class="s1">&#39;output_file&#39;</span><span class="p">,</span> <span class="nb">type</span><span class="o">=</span><span class="n">click</span><span class="o">.</span><span class="n">File</span><span class="p">(</span><span class="s1">&#39;wb&#39;</span><span class="p">,</span> <span class="n">lazy</span><span class="o">=</span><span class="kc">False</span><span class="p">),</span> <span class="n">default</span><span class="o">=</span><span class="s1">&#39;-&#39;</span><span class="p">)</span>
+<span class="k">def</span> <span class="nf">rand_sequence_command</span><span class="p">(</span><span class="n">verbose</span><span class="p">,</span> <span class="n">num_seqs</span><span class="p">,</span> <span class="n">gc_content</span><span class="p">,</span> <span class="n">infer_params</span><span class="p">,</span>
+                          <span class="n">coding_prop</span><span class="p">,</span> <span class="n">length</span><span class="p">,</span> <span class="n">const_model</span><span class="p">,</span> <span class="n">dist_loc</span><span class="p">,</span> <span class="n">fastq</span><span class="p">,</span>
+                          <span class="n">save_model</span><span class="p">,</span> <span class="n">read_model</span><span class="p">,</span> <span class="n">progress</span><span class="p">,</span> <span class="n">output_file</span><span class="p">):</span>
+
+    <span class="n">mgkit</span><span class="o">.</span><span class="n">logger</span><span class="o">.</span><span class="n">config_log</span><span class="p">(</span><span class="n">level</span><span class="o">=</span><span class="n">logging</span><span class="o">.</span><span class="n">DEBUG</span> <span class="k">if</span> <span class="n">verbose</span> <span class="k">else</span> <span class="n">logging</span><span class="o">.</span><span class="n">INFO</span><span class="p">)</span>
+
+    <span class="k">if</span> <span class="n">fastq</span><span class="p">:</span>
+        <span class="c1"># default values, unless infer_parameters is used</span>
+        <span class="n">min_qual</span> <span class="o">=</span> <span class="mi">0</span>
+        <span class="n">max_qual</span> <span class="o">=</span> <span class="mi">60</span>
+        <span class="k">if</span> <span class="n">const_model</span><span class="p">:</span>
+            <span class="n">LOG</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;Using constant model with loc=</span><span class="si">%.1f</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">dist_loc</span><span class="p">)</span>
+            <span class="n">model</span> <span class="o">=</span> <span class="n">sequence</span><span class="o">.</span><span class="n">qualities_model_constant</span><span class="p">(</span>
+                <span class="n">length</span><span class="o">=</span><span class="n">length</span><span class="p">,</span>
+                <span class="n">loc</span><span class="o">=</span><span class="n">dist_loc</span>
+            <span class="p">)</span>
+        <span class="k">elif</span> <span class="n">infer_params</span><span class="p">:</span>
+            <span class="n">length</span><span class="p">,</span> <span class="n">gc_content</span><span class="p">,</span> <span class="n">model</span> <span class="o">=</span> <span class="n">infer_parameters</span><span class="p">(</span>
+                <span class="n">infer_params</span><span class="p">,</span>
+                <span class="n">fastq</span><span class="p">,</span>
+                <span class="n">progress</span>
+            <span class="p">)</span>
+            <span class="n">min_qual</span><span class="p">,</span> <span class="n">max_qual</span> <span class="o">=</span> <span class="n">model</span><span class="p">[</span><span class="mi">2</span><span class="p">:]</span>
+            <span class="n">model</span> <span class="o">=</span> <span class="n">model</span><span class="p">[:</span><span class="mi">2</span><span class="p">]</span>
+        <span class="k">elif</span> <span class="n">read_model</span><span class="p">:</span>
+            <span class="n">LOG</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s1">&#39;Reading saved model&#39;</span><span class="p">)</span>
+            <span class="n">read_model</span> <span class="o">=</span> <span class="n">pickle</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="n">read_model</span><span class="p">)</span>
+            <span class="n">gc_content</span> <span class="o">=</span> <span class="n">read_model</span><span class="p">[</span><span class="s1">&#39;gc_content&#39;</span><span class="p">]</span>
+            <span class="n">lw</span> <span class="o">=</span> <span class="n">read_model</span><span class="p">[</span><span class="s1">&#39;lw&#39;</span><span class="p">]</span>
+            <span class="n">length</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">lw</span><span class="p">)</span>
+            <span class="n">model</span> <span class="o">=</span> <span class="p">(</span>
+                <span class="n">lw</span><span class="p">,</span>
+                <span class="nb">getattr</span><span class="p">(</span><span class="n">scipy</span><span class="o">.</span><span class="n">stats</span><span class="p">,</span> <span class="n">read_model</span><span class="p">[</span><span class="s1">&#39;dist_family&#39;</span><span class="p">])(</span><span class="o">*</span><span class="n">read_model</span><span class="p">[</span><span class="s1">&#39;dist&#39;</span><span class="p">])</span>
+            <span class="p">)</span>
+            <span class="c1"># tries to read the min/max quality params, otherwise keep defaults</span>
+            <span class="k">try</span><span class="p">:</span>
+                <span class="n">min_qual</span> <span class="o">=</span> <span class="n">read_model</span><span class="p">[</span><span class="s1">&#39;min_qual&#39;</span><span class="p">]</span>
+                <span class="n">max_qual</span> <span class="o">=</span> <span class="n">read_model</span><span class="p">[</span><span class="s1">&#39;max_qual&#39;</span><span class="p">]</span>
+            <span class="k">except</span> <span class="ne">KeyError</span><span class="p">:</span>
+                <span class="k">pass</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">LOG</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;Using decrease model with loc=</span><span class="si">%.1f</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">dist_loc</span><span class="p">)</span>
+            <span class="n">model</span> <span class="o">=</span> <span class="n">sequence</span><span class="o">.</span><span class="n">qualities_model_decrease</span><span class="p">(</span>
+                <span class="n">length</span><span class="o">=</span><span class="n">length</span><span class="p">,</span>
+                <span class="n">loc</span><span class="o">=</span><span class="n">dist_loc</span>
+            <span class="p">)</span>
+
+        <span class="k">if</span> <span class="n">save_model</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">LOG</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s1">&#39;Saving model to file (</span><span class="si">%s</span><span class="s1">)&#39;</span><span class="p">,</span>
+                     <span class="nb">getattr</span><span class="p">(</span><span class="n">save_model</span><span class="p">,</span> <span class="s1">&#39;name&#39;</span><span class="p">,</span> <span class="nb">repr</span><span class="p">(</span><span class="n">save_model</span><span class="p">)))</span>
+            <span class="n">pickle</span><span class="o">.</span><span class="n">dump</span><span class="p">(</span>
+                <span class="nb">dict</span><span class="p">(</span><span class="n">lw</span><span class="o">=</span><span class="n">model</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">dist</span><span class="o">=</span><span class="n">model</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">args</span><span class="p">,</span> <span class="n">dist_family</span><span class="o">=</span><span class="s1">&#39;norm&#39;</span><span class="p">,</span>
+                     <span class="n">gc_content</span><span class="o">=</span><span class="n">gc_content</span><span class="p">,</span> <span class="n">max_qual</span><span class="o">=</span><span class="n">max_qual</span><span class="p">,</span>
+                     <span class="n">min_qual</span><span class="o">=</span><span class="n">min_qual</span><span class="p">),</span>
+                <span class="n">save_model</span>
+            <span class="p">)</span>
+
+    <span class="c1"># A C T G</span>
+    <span class="n">prob</span> <span class="o">=</span> <span class="p">[</span>
+        <span class="p">(</span><span class="mi">1</span> <span class="o">-</span> <span class="n">gc_content</span><span class="p">)</span> <span class="o">/</span> <span class="mf">2.</span><span class="p">,</span>
+        <span class="n">gc_content</span> <span class="o">/</span> <span class="mf">2.</span>
+    <span class="p">]</span> <span class="o">*</span> <span class="mi">2</span>
+
+    <span class="n">LOG</span><span class="o">.</span><span class="n">info</span><span class="p">(</span>
+        <span class="s1">&#39;</span><span class="si">%d</span><span class="s1"> Sequences, with a length of </span><span class="si">%d</span><span class="s1"> - coding proportion: </span><span class="si">%.1f</span><span class="s1">&#39;</span><span class="p">,</span>
+        <span class="n">num_seqs</span><span class="p">,</span>
+        <span class="n">length</span><span class="p">,</span>
+        <span class="n">coding_prop</span>
+    <span class="p">)</span>
+    <span class="n">LOG</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;Probability A </span><span class="si">%.2f</span><span class="s2">, C </span><span class="si">%.2f</span><span class="s2">, T </span><span class="si">%.2f</span><span class="s2">, G </span><span class="si">%.2f</span><span class="s2">&quot;</span><span class="p">,</span> <span class="o">*</span><span class="n">prob</span><span class="p">)</span>
+
+    <span class="n">num_coding</span> <span class="o">=</span> <span class="n">numpy</span><span class="o">.</span><span class="n">round</span><span class="p">(</span><span class="n">num_seqs</span> <span class="o">*</span> <span class="n">coding_prop</span><span class="p">)</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">int</span><span class="p">)</span>
+    <span class="n">seq_it</span> <span class="o">=</span> <span class="n">itertools</span><span class="o">.</span><span class="n">chain</span><span class="p">(</span>
+        <span class="n">sequence</span><span class="o">.</span><span class="n">random_sequences_codon</span><span class="p">(</span><span class="n">n</span><span class="o">=</span><span class="n">num_coding</span><span class="p">,</span> <span class="n">length</span><span class="o">=</span><span class="n">length</span><span class="p">),</span>
+        <span class="n">sequence</span><span class="o">.</span><span class="n">random_sequences</span><span class="p">(</span>
+            <span class="n">n</span><span class="o">=</span><span class="n">num_seqs</span> <span class="o">-</span> <span class="n">num_coding</span><span class="p">,</span>
+            <span class="n">length</span><span class="o">=</span><span class="n">length</span><span class="p">,</span>
+            <span class="n">p</span><span class="o">=</span><span class="n">prob</span>
+        <span class="p">)</span>
+    <span class="p">)</span>
+    <span class="k">if</span> <span class="n">fastq</span><span class="p">:</span>
+        <span class="n">qual_it</span> <span class="o">=</span> <span class="n">sequence</span><span class="o">.</span><span class="n">random_qualities</span><span class="p">(</span>
+            <span class="n">n</span><span class="o">=</span><span class="n">num_seqs</span><span class="p">,</span>
+            <span class="n">length</span><span class="o">=</span><span class="n">length</span><span class="p">,</span>
+            <span class="n">model</span><span class="o">=</span><span class="n">model</span><span class="p">,</span>
+            <span class="n">max_qual</span><span class="o">=</span><span class="n">max_qual</span><span class="p">,</span>
+            <span class="n">min_qual</span><span class="o">=</span><span class="n">min_qual</span><span class="p">,</span>
+        <span class="p">)</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">qual_it</span> <span class="o">=</span> <span class="n">itertools</span><span class="o">.</span><span class="n">repeat</span><span class="p">(</span><span class="n">num_seqs</span><span class="p">)</span>
+
+    <span class="k">if</span> <span class="n">progress</span><span class="p">:</span>
+        <span class="n">qual_it</span> <span class="o">=</span> <span class="n">tqdm</span><span class="p">(</span><span class="n">qual_it</span><span class="p">,</span> <span class="n">total</span><span class="o">=</span><span class="n">num_seqs</span><span class="p">)</span>
+
+    <span class="k">for</span> <span class="n">seq</span><span class="p">,</span> <span class="n">qual</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="n">seq_it</span><span class="p">,</span> <span class="n">qual_it</span><span class="p">):</span>
+        <span class="n">seq_id</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span><span class="n">uuid</span><span class="o">.</span><span class="n">uuid4</span><span class="p">())</span>
+        <span class="k">if</span> <span class="n">fastq</span><span class="p">:</span>
+            <span class="n">write_fastq_sequence</span><span class="p">(</span><span class="n">output_file</span><span class="p">,</span> <span class="n">seq_id</span><span class="p">,</span> <span class="n">seq</span><span class="p">,</span> <span class="n">qual</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">fasta</span><span class="o">.</span><span class="n">write_fasta_sequence</span><span class="p">(</span><span class="n">output_file</span><span class="p">,</span> <span class="n">seq_id</span><span class="p">,</span> <span class="n">seq</span><span class="p">)</span>
+
+
+<div class="viewcode-block" id="compare_header"><a class="viewcode-back" href="../../../api/mgkit.workflow.sampling_utils.html#mgkit.workflow.sampling_utils.compare_header">[docs]</a><span class="k">def</span> <span class="nf">compare_header</span><span class="p">(</span><span class="n">header1</span><span class="p">,</span> <span class="n">header2</span><span class="p">,</span> <span class="n">header_type</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+
+    <span class="k">if</span> <span class="n">header_type</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">header1</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">==</span> <span class="n">header2</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">header1</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">&#39; &#39;</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span> <span class="o">==</span> <span class="n">header2</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">&#39; &#39;</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span></div>
+
+
+<span class="nd">@main</span><span class="o">.</span><span class="n">command</span><span class="p">(</span><span class="s1">&#39;sync&#39;</span><span class="p">,</span> <span class="n">help</span><span class="o">=</span><span class="s2">&quot;&quot;&quot;Syncs a FastQ file generated with *sample* with</span>
+<span class="s2">              the original pair of files.&quot;&quot;&quot;</span><span class="p">)</span>
+<span class="nd">@click</span><span class="o">.</span><span class="n">option</span><span class="p">(</span><span class="s1">&#39;-v&#39;</span><span class="p">,</span> <span class="s1">&#39;--verbose&#39;</span><span class="p">,</span> <span class="n">is_flag</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="nd">@click</span><span class="o">.</span><span class="n">option</span><span class="p">(</span><span class="s1">&#39;-m&#39;</span><span class="p">,</span> <span class="s1">&#39;--master-file&#39;</span><span class="p">,</span> <span class="nb">type</span><span class="o">=</span><span class="n">click</span><span class="o">.</span><span class="n">File</span><span class="p">(</span><span class="s1">&#39;rb&#39;</span><span class="p">,</span> <span class="n">lazy</span><span class="o">=</span><span class="kc">False</span><span class="p">),</span> <span class="n">required</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+              <span class="n">help</span><span class="o">=</span><span class="s1">&#39;Resampled FastQ file that is out of sync with the original pair&#39;</span><span class="p">)</span>
+<span class="nd">@click</span><span class="o">.</span><span class="n">argument</span><span class="p">(</span><span class="s1">&#39;input-file&#39;</span><span class="p">,</span> <span class="nb">type</span><span class="o">=</span><span class="n">click</span><span class="o">.</span><span class="n">File</span><span class="p">(</span><span class="s1">&#39;rb&#39;</span><span class="p">,</span> <span class="n">lazy</span><span class="o">=</span><span class="kc">False</span><span class="p">),</span> <span class="n">default</span><span class="o">=</span><span class="s1">&#39;-&#39;</span><span class="p">)</span>
+<span class="nd">@click</span><span class="o">.</span><span class="n">argument</span><span class="p">(</span><span class="s1">&#39;output-file&#39;</span><span class="p">,</span> <span class="nb">type</span><span class="o">=</span><span class="n">click</span><span class="o">.</span><span class="n">File</span><span class="p">(</span><span class="s1">&#39;wb&#39;</span><span class="p">,</span> <span class="n">lazy</span><span class="o">=</span><span class="kc">False</span><span class="p">),</span> <span class="n">default</span><span class="o">=</span><span class="s1">&#39;-&#39;</span><span class="p">)</span>
+<span class="k">def</span> <span class="nf">fq_sync_command</span><span class="p">(</span><span class="n">verbose</span><span class="p">,</span> <span class="n">master_file</span><span class="p">,</span> <span class="n">input_file</span><span class="p">,</span> <span class="n">output_file</span><span class="p">):</span>
+
+    <span class="n">mgkit</span><span class="o">.</span><span class="n">logger</span><span class="o">.</span><span class="n">config_log</span><span class="p">(</span><span class="n">level</span><span class="o">=</span><span class="n">logging</span><span class="o">.</span><span class="n">DEBUG</span> <span class="k">if</span> <span class="n">verbose</span> <span class="k">else</span> <span class="n">logging</span><span class="o">.</span><span class="n">INFO</span><span class="p">)</span>
+
+    <span class="n">master_file</span> <span class="o">=</span> <span class="n">load_fastq</span><span class="p">(</span><span class="n">master_file</span><span class="p">,</span> <span class="n">num_qual</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+    <span class="n">master_header</span> <span class="o">=</span> <span class="nb">next</span><span class="p">(</span><span class="n">master_file</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span>
+
+    <span class="n">header_type</span> <span class="o">=</span> <span class="n">choose_header_type</span><span class="p">(</span><span class="n">master_header</span><span class="p">)</span>
+
+    <span class="n">written_count</span> <span class="o">=</span> <span class="mi">0</span>
+
+    <span class="k">for</span> <span class="n">header</span><span class="p">,</span> <span class="n">seq</span><span class="p">,</span> <span class="n">qual</span> <span class="ow">in</span> <span class="n">load_fastq</span><span class="p">(</span><span class="n">input_file</span><span class="p">,</span> <span class="n">num_qual</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
+
+        <span class="k">if</span> <span class="n">compare_header</span><span class="p">(</span><span class="n">master_header</span><span class="p">,</span> <span class="n">header</span><span class="p">,</span> <span class="n">header_type</span><span class="p">):</span>
+            <span class="n">write_fastq_sequence</span><span class="p">(</span><span class="n">output_file</span><span class="p">,</span> <span class="n">header</span><span class="p">,</span> <span class="n">seq</span><span class="p">,</span> <span class="n">qual</span><span class="p">)</span>
+            <span class="n">written_count</span> <span class="o">+=</span> <span class="mi">1</span>
+            <span class="k">try</span><span class="p">:</span>
+                <span class="n">master_header</span> <span class="o">=</span> <span class="nb">next</span><span class="p">(</span><span class="n">master_file</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span>
+            <span class="k">except</span> <span class="ne">StopIteration</span><span class="p">:</span>
+                <span class="k">break</span>
+
+    <span class="n">LOG</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;Wrote </span><span class="si">%d</span><span class="s2"> FASTQ sequences&quot;</span><span class="p">,</span> <span class="n">written_count</span><span class="p">)</span>
+
+
+<span class="nd">@main</span><span class="o">.</span><span class="n">command</span><span class="p">(</span><span class="s1">&#39;sample&#39;</span><span class="p">,</span> <span class="n">help</span><span class="o">=</span><span class="s1">&#39;Sample a FastA/Q multiple times&#39;</span><span class="p">)</span>
+<span class="nd">@click</span><span class="o">.</span><span class="n">option</span><span class="p">(</span><span class="s1">&#39;-v&#39;</span><span class="p">,</span> <span class="s1">&#39;--verbose&#39;</span><span class="p">,</span> <span class="n">is_flag</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="nd">@click</span><span class="o">.</span><span class="n">option</span><span class="p">(</span><span class="s1">&#39;-p&#39;</span><span class="p">,</span> <span class="s1">&#39;--prefix&#39;</span><span class="p">,</span> <span class="n">default</span><span class="o">=</span><span class="s1">&#39;sample&#39;</span><span class="p">,</span> <span class="n">show_default</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+              <span class="n">help</span><span class="o">=</span><span class="s1">&#39;Prefix for the file name(s) in output&#39;</span><span class="p">)</span>
+<span class="nd">@click</span><span class="o">.</span><span class="n">option</span><span class="p">(</span><span class="s1">&#39;-n&#39;</span><span class="p">,</span> <span class="s1">&#39;--number&#39;</span><span class="p">,</span> <span class="nb">type</span><span class="o">=</span><span class="n">click</span><span class="o">.</span><span class="n">INT</span><span class="p">,</span> <span class="n">default</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">show_default</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+              <span class="n">help</span><span class="o">=</span><span class="s1">&#39;Number of samples to take&#39;</span><span class="p">)</span>
+<span class="nd">@click</span><span class="o">.</span><span class="n">option</span><span class="p">(</span><span class="s1">&#39;-r&#39;</span><span class="p">,</span> <span class="s1">&#39;--prob&#39;</span><span class="p">,</span> <span class="nb">type</span><span class="o">=</span><span class="n">click</span><span class="o">.</span><span class="n">FLOAT</span><span class="p">,</span> <span class="n">default</span><span class="o">=</span><span class="mi">10</span><span class="o">**-</span><span class="mi">3</span><span class="p">,</span>
+              <span class="n">show_default</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">help</span><span class="o">=</span><span class="s1">&#39;Probability of picking a sequence&#39;</span><span class="p">)</span>
+<span class="nd">@click</span><span class="o">.</span><span class="n">option</span><span class="p">(</span><span class="s1">&#39;-x&#39;</span><span class="p">,</span> <span class="s1">&#39;--max-seq&#39;</span><span class="p">,</span> <span class="nb">type</span><span class="o">=</span><span class="n">click</span><span class="o">.</span><span class="n">INT</span><span class="p">,</span> <span class="n">default</span><span class="o">=</span><span class="mi">10</span><span class="o">**</span><span class="mi">5</span><span class="p">,</span>
+              <span class="n">show_default</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">help</span><span class="o">=</span><span class="s1">&#39;Maximum number of sequences&#39;</span><span class="p">)</span>
+<span class="nd">@click</span><span class="o">.</span><span class="n">option</span><span class="p">(</span><span class="s1">&#39;-q&#39;</span><span class="p">,</span> <span class="s1">&#39;--fastq&#39;</span><span class="p">,</span> <span class="n">default</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">is_flag</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+              <span class="n">help</span><span class="o">=</span><span class="s1">&#39;The input file is a fastq file&#39;</span><span class="p">)</span>
+<span class="nd">@click</span><span class="o">.</span><span class="n">option</span><span class="p">(</span><span class="s1">&#39;-z&#39;</span><span class="p">,</span> <span class="s1">&#39;--gzip&#39;</span><span class="p">,</span> <span class="n">is_flag</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">default</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+              <span class="n">help</span><span class="o">=</span><span class="s1">&#39;gzip output files&#39;</span><span class="p">)</span>
+<span class="nd">@click</span><span class="o">.</span><span class="n">argument</span><span class="p">(</span><span class="s1">&#39;input-file&#39;</span><span class="p">,</span> <span class="nb">type</span><span class="o">=</span><span class="n">click</span><span class="o">.</span><span class="n">File</span><span class="p">(</span><span class="s1">&#39;rb&#39;</span><span class="p">,</span> <span class="n">lazy</span><span class="o">=</span><span class="kc">False</span><span class="p">),</span> <span class="n">default</span><span class="o">=</span><span class="s1">&#39;-&#39;</span><span class="p">)</span>
+<span class="k">def</span> <span class="nf">sample_command</span><span class="p">(</span><span class="n">verbose</span><span class="p">,</span> <span class="n">prefix</span><span class="p">,</span> <span class="n">number</span><span class="p">,</span> <span class="n">prob</span><span class="p">,</span> <span class="n">max_seq</span><span class="p">,</span> <span class="n">fastq</span><span class="p">,</span> <span class="n">gzip</span><span class="p">,</span>
+                   <span class="n">input_file</span><span class="p">):</span>
+    <span class="n">mgkit</span><span class="o">.</span><span class="n">logger</span><span class="o">.</span><span class="n">config_log</span><span class="p">(</span><span class="n">level</span><span class="o">=</span><span class="n">logging</span><span class="o">.</span><span class="n">DEBUG</span> <span class="k">if</span> <span class="n">verbose</span> <span class="k">else</span> <span class="n">logging</span><span class="o">.</span><span class="n">INFO</span><span class="p">)</span>
+    <span class="n">LOG</span><span class="o">.</span><span class="n">info</span><span class="p">(</span>
+        <span class="s2">&quot;Sampling </span><span class="si">%s</span><span class="s2"> file (</span><span class="si">%d</span><span class="s2">) chunks with prefix (</span><span class="si">%s</span><span class="s2">)&quot;</span><span class="p">,</span>
+        <span class="s1">&#39;FastQ&#39;</span> <span class="k">if</span> <span class="n">fastq</span> <span class="k">else</span> <span class="s1">&#39;Fasta&#39;</span><span class="p">,</span>
+        <span class="n">number</span><span class="p">,</span>
+        <span class="n">prefix</span>
+    <span class="p">)</span>
+
+    <span class="k">if</span> <span class="p">(</span><span class="n">prob</span> <span class="o">&gt;</span> <span class="mi">1</span><span class="p">)</span> <span class="ow">or</span> <span class="p">(</span><span class="n">prob</span> <span class="o">&lt;=</span> <span class="mi">0</span><span class="p">):</span>
+        <span class="n">utils</span><span class="o">.</span><span class="n">exit_script</span><span class="p">(</span>
+            <span class="s2">&quot;The probability value (</span><span class="si">{}</span><span class="s2">) is outside the correct range&quot;</span> <span class="o">+</span>
+            <span class="s2">&quot; (0 &lt; p &lt;= 1)&quot;</span><span class="p">,</span>
+            <span class="mi">1</span>
+        <span class="p">)</span>
+
+    <span class="n">dist</span> <span class="o">=</span> <span class="n">scipy</span><span class="o">.</span><span class="n">stats</span><span class="o">.</span><span class="n">binom</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">prob</span><span class="p">)</span>
+
+    <span class="n">LOG</span><span class="o">.</span><span class="n">info</span><span class="p">(</span>
+        <span class="s2">&quot;Probability of picking a sequence (</span><span class="si">%.5f</span><span class="s2">), max number of seqs </span><span class="si">%d</span><span class="s2">&quot;</span><span class="p">,</span>
+        <span class="n">prob</span><span class="p">,</span>
+        <span class="n">max_seq</span>
+    <span class="p">)</span>
+    <span class="n">name_mask</span> <span class="o">=</span> <span class="s2">&quot;</span><span class="si">%s</span><span class="s2">-</span><span class="si">{0:05}</span><span class="s2">.</span><span class="si">%s</span><span class="s2">&quot;</span> <span class="o">%</span> <span class="p">(</span><span class="n">prefix</span><span class="p">,</span> <span class="s1">&#39;fq&#39;</span> <span class="k">if</span> <span class="n">fastq</span> <span class="k">else</span> <span class="s1">&#39;fa&#39;</span><span class="p">)</span>
+
+    <span class="k">if</span> <span class="n">gzip</span><span class="p">:</span>
+        <span class="n">name_mask</span> <span class="o">+=</span> <span class="s1">&#39;.gz&#39;</span>
+        <span class="n">LOG</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;Output files will be compressed (gzip)&quot;</span><span class="p">)</span>
+
+    <span class="n">output_files</span> <span class="o">=</span> <span class="p">[</span>
+        <span class="nb">dict</span><span class="p">(</span>
+            <span class="n">h</span><span class="o">=</span><span class="n">open_file</span><span class="p">(</span><span class="n">name_mask</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">i</span><span class="p">),</span> <span class="s1">&#39;wb&#39;</span><span class="p">),</span>
+            <span class="n">c</span><span class="o">=</span><span class="mi">0</span>
+        <span class="p">)</span>
+        <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">number</span><span class="p">)</span>
+    <span class="p">]</span>
+
+    <span class="n">load_func</span> <span class="o">=</span> <span class="n">load_fastq</span> <span class="k">if</span> <span class="n">fastq</span> <span class="k">else</span> <span class="n">fasta</span><span class="o">.</span><span class="n">load_fasta</span>
+    <span class="n">write_func</span> <span class="o">=</span> <span class="n">write_fastq_sequence</span> <span class="k">if</span> <span class="n">fastq</span> <span class="k">else</span> <span class="n">fasta</span><span class="o">.</span><span class="n">write_fasta_sequence</span>
+
+    <span class="k">for</span> <span class="n">seq</span> <span class="ow">in</span> <span class="n">load_func</span><span class="p">(</span><span class="n">input_file</span><span class="p">):</span>
+        <span class="c1"># reached the maximum number of sequences for all samples</span>
+        <span class="k">if</span> <span class="nb">all</span><span class="p">(</span><span class="n">x</span><span class="p">[</span><span class="s1">&#39;c&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="n">max_seq</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">output_files</span><span class="p">):</span>
+            <span class="k">break</span>
+
+        <span class="k">for</span> <span class="n">output</span> <span class="ow">in</span> <span class="n">output_files</span><span class="p">:</span>
+            <span class="k">if</span> <span class="n">output</span><span class="p">[</span><span class="s1">&#39;c&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="n">max_seq</span><span class="p">:</span>
+                <span class="k">continue</span>
+
+            <span class="k">if</span> <span class="n">dist</span><span class="o">.</span><span class="n">rvs</span><span class="p">():</span>
+                <span class="n">write_func</span><span class="p">(</span><span class="n">output</span><span class="p">[</span><span class="s1">&#39;h&#39;</span><span class="p">],</span> <span class="o">*</span><span class="n">seq</span><span class="p">)</span>
+                <span class="n">output</span><span class="p">[</span><span class="s1">&#39;c&#39;</span><span class="p">]</span> <span class="o">+=</span> <span class="mi">1</span>
+
+
+<span class="nd">@main</span><span class="o">.</span><span class="n">command</span><span class="p">(</span><span class="s1">&#39;sample_stream&#39;</span><span class="p">,</span> <span class="n">help</span><span class="o">=</span><span class="s2">&quot;&quot;&quot;Samples a FastA/Q one time, alternative</span>
+<span class="s2">              to sample if multiple sampling is not needed&quot;&quot;&quot;</span><span class="p">)</span>
+<span class="nd">@click</span><span class="o">.</span><span class="n">option</span><span class="p">(</span><span class="s1">&#39;-v&#39;</span><span class="p">,</span> <span class="s1">&#39;--verbose&#39;</span><span class="p">,</span> <span class="n">is_flag</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="nd">@click</span><span class="o">.</span><span class="n">option</span><span class="p">(</span><span class="s1">&#39;-r&#39;</span><span class="p">,</span> <span class="s1">&#39;--prob&#39;</span><span class="p">,</span> <span class="nb">type</span><span class="o">=</span><span class="n">click</span><span class="o">.</span><span class="n">FLOAT</span><span class="p">,</span> <span class="n">default</span><span class="o">=</span><span class="mi">10</span><span class="o">**-</span><span class="mi">3</span><span class="p">,</span>
+              <span class="n">help</span><span class="o">=</span><span class="s1">&#39;Probability of picking a sequence&#39;</span><span class="p">)</span>
+<span class="nd">@click</span><span class="o">.</span><span class="n">option</span><span class="p">(</span><span class="s1">&#39;-x&#39;</span><span class="p">,</span> <span class="s1">&#39;--max-seq&#39;</span><span class="p">,</span> <span class="nb">type</span><span class="o">=</span><span class="n">click</span><span class="o">.</span><span class="n">INT</span><span class="p">,</span> <span class="n">default</span><span class="o">=</span><span class="mi">10</span><span class="o">**</span><span class="mi">5</span><span class="p">,</span>
+              <span class="n">help</span><span class="o">=</span><span class="s1">&#39;Maximum number of sequences&#39;</span><span class="p">)</span>
+<span class="nd">@click</span><span class="o">.</span><span class="n">option</span><span class="p">(</span><span class="s1">&#39;-q&#39;</span><span class="p">,</span> <span class="s1">&#39;--fastq&#39;</span><span class="p">,</span> <span class="n">default</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">is_flag</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+              <span class="n">help</span><span class="o">=</span><span class="s1">&#39;The input file is a fastq file&#39;</span><span class="p">)</span>
+<span class="nd">@click</span><span class="o">.</span><span class="n">argument</span><span class="p">(</span><span class="s1">&#39;input-file&#39;</span><span class="p">,</span> <span class="nb">type</span><span class="o">=</span><span class="n">click</span><span class="o">.</span><span class="n">File</span><span class="p">(</span><span class="s1">&#39;rb&#39;</span><span class="p">,</span> <span class="n">lazy</span><span class="o">=</span><span class="kc">False</span><span class="p">),</span> <span class="n">default</span><span class="o">=</span><span class="s1">&#39;-&#39;</span><span class="p">)</span>
+<span class="nd">@click</span><span class="o">.</span><span class="n">argument</span><span class="p">(</span><span class="s1">&#39;output-file&#39;</span><span class="p">,</span> <span class="nb">type</span><span class="o">=</span><span class="n">click</span><span class="o">.</span><span class="n">File</span><span class="p">(</span><span class="s1">&#39;wb&#39;</span><span class="p">,</span> <span class="n">lazy</span><span class="o">=</span><span class="kc">False</span><span class="p">),</span> <span class="n">default</span><span class="o">=</span><span class="s1">&#39;-&#39;</span><span class="p">)</span>
+<span class="k">def</span> <span class="nf">stream_sample_command</span><span class="p">(</span><span class="n">verbose</span><span class="p">,</span> <span class="n">prob</span><span class="p">,</span> <span class="n">max_seq</span><span class="p">,</span> <span class="n">fastq</span><span class="p">,</span> <span class="n">input_file</span><span class="p">,</span>
+                          <span class="n">output_file</span><span class="p">):</span>
+    <span class="n">mgkit</span><span class="o">.</span><span class="n">logger</span><span class="o">.</span><span class="n">config_log</span><span class="p">(</span><span class="n">level</span><span class="o">=</span><span class="n">logging</span><span class="o">.</span><span class="n">DEBUG</span> <span class="k">if</span> <span class="n">verbose</span> <span class="k">else</span> <span class="n">logging</span><span class="o">.</span><span class="n">INFO</span><span class="p">)</span>
+
+    <span class="k">if</span> <span class="p">(</span><span class="n">prob</span> <span class="o">&gt;</span> <span class="mi">1</span><span class="p">)</span> <span class="ow">or</span> <span class="p">(</span><span class="n">prob</span> <span class="o">&lt;=</span> <span class="mi">0</span><span class="p">):</span>
+        <span class="n">utils</span><span class="o">.</span><span class="n">exit_script</span><span class="p">(</span>
+            <span class="s2">&quot;The probability value (</span><span class="si">{}</span><span class="s2">) is outside the correct range&quot;</span> <span class="o">+</span>
+            <span class="s2">&quot; (0 &lt; p &lt;= 1)&quot;</span><span class="p">,</span>
+            <span class="mi">1</span>
+        <span class="p">)</span>
+
+    <span class="n">dist</span> <span class="o">=</span> <span class="n">scipy</span><span class="o">.</span><span class="n">stats</span><span class="o">.</span><span class="n">binom</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">prob</span><span class="p">)</span>
+
+    <span class="n">LOG</span><span class="o">.</span><span class="n">info</span><span class="p">(</span>
+        <span class="s2">&quot;Probability of picking a sequence (</span><span class="si">%.5f</span><span class="s2">), max number of seqs </span><span class="si">%d</span><span class="s2">&quot;</span><span class="p">,</span>
+        <span class="n">prob</span><span class="p">,</span>
+        <span class="n">max_seq</span>
+    <span class="p">)</span>
+
+    <span class="n">load_func</span> <span class="o">=</span> <span class="n">load_fastq</span> <span class="k">if</span> <span class="n">fastq</span> <span class="k">else</span> <span class="n">fasta</span><span class="o">.</span><span class="n">load_fasta</span>
+    <span class="n">write_func</span> <span class="o">=</span> <span class="n">write_fastq_sequence</span> <span class="k">if</span> <span class="n">fastq</span> <span class="k">else</span> <span class="n">fasta</span><span class="o">.</span><span class="n">write_fasta_sequence</span>
+
+    <span class="n">count</span> <span class="o">=</span> <span class="mi">0</span>
+
+    <span class="k">for</span> <span class="n">index</span><span class="p">,</span> <span class="n">seq</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">load_func</span><span class="p">(</span><span class="n">input_file</span><span class="p">)):</span>
+        <span class="c1"># reached the maximum number of sequences for all samples</span>
+        <span class="k">if</span> <span class="n">count</span> <span class="o">&gt;=</span> <span class="n">max_seq</span><span class="p">:</span>
+            <span class="n">LOG</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s1">&#39;Read the first </span><span class="si">%d</span><span class="s1"> sequences&#39;</span><span class="p">,</span> <span class="n">index</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span>
+            <span class="k">break</span>
+
+        <span class="k">if</span> <span class="n">dist</span><span class="o">.</span><span class="n">rvs</span><span class="p">():</span>
+            <span class="n">write_func</span><span class="p">(</span><span class="n">output_file</span><span class="p">,</span> <span class="o">*</span><span class="n">seq</span><span class="p">)</span>
+            <span class="n">count</span> <span class="o">+=</span> <span class="mi">1</span>
+</pre></div>
+
+           </div>
+           
+          </div>
+          <footer>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2013-2015, Francesco Rubino
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

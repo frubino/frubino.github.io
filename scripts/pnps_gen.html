@@ -1,0 +1,498 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>pnps-gen - pN/pS Table Generation &mdash; MGKit: Metagenomic framework 0.5.0 documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+  <script type="text/javascript" src="../_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+        <script type="text/javascript" src="../_static/jquery.js"></script>
+        <script type="text/javascript" src="../_static/underscore.js"></script>
+        <script type="text/javascript" src="../_static/doctools.js"></script>
+        <script type="text/javascript" src="../_static/language_data.js"></script>
+        <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+        <script async="async" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+        <script type="text/x-mathjax-config">MathJax.Hub.Config({"tex2jax": {"inlineMath": [["$", "$"], ["\\(", "\\)"]], "processEscapes": true, "ignoreClass": "document", "processClass": "math|output_area"}})</script>
+    
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/graphviz.css" type="text/css" />
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Example Notebooks" href="../examples/index.html" />
+    <link rel="prev" title="edit-gff - GFF Viewer and Editor" href="edit_gff.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../index.html" class="icon icon-home"> MGKit: Metagenomic framework
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                0.5.0
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../introduction.html">Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../install.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../pipeline/index.html">Metagenomic Pipeline</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">Scripts Details</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="blast2gff.html">blast2gff - Convert BLAST output to GFF</a></li>
+<li class="toctree-l2"><a class="reference internal" href="filter-gff.html">filter-gff - Filter GFF annotations</a></li>
+<li class="toctree-l2"><a class="reference internal" href="add-gff-info.html">add-gff-info - Add informations to GFF annotations</a></li>
+<li class="toctree-l2"><a class="reference internal" href="get-gff-info.html">get-gff-info - Extract informations to GFF annotations</a></li>
+<li class="toctree-l2"><a class="reference internal" href="hmmer2gff.html">hmmer2gff - Convert HMMER output to GFF</a></li>
+<li class="toctree-l2"><a class="reference internal" href="snp_analysis.html">snp_parser - SNPs analysis</a></li>
+<li class="toctree-l2"><a class="reference internal" href="download-taxonomy.html">Download Taxonomy</a></li>
+<li class="toctree-l2"><a class="reference internal" href="download-taxonomy.html#download-accession-taxonid">Download Accession/TaxonID</a></li>
+<li class="toctree-l2"><a class="reference internal" href="taxon_utils.html">taxon-utils - Taxonomy Utilities</a></li>
+<li class="toctree-l2"><a class="reference internal" href="fasta-utils.html">fasta-utils - Fasta Utilities</a></li>
+<li class="toctree-l2"><a class="reference internal" href="fastq-utils.html">fastq-utils - Fastq Utilities</a></li>
+<li class="toctree-l2"><a class="reference internal" href="json2gff.html">json2gff - Convert JSON to GFF</a></li>
+<li class="toctree-l2"><a class="reference internal" href="sampling-utils.html">sampling-utils - Resampling Utilities</a></li>
+<li class="toctree-l2"><a class="reference internal" href="edit_gff.html">edit-gff - GFF Viewer and Editor</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">pnps-gen - pN/pS Table Generation</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#module-mgkit.workflow.pnps_gen">Overview</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#calculates-pn-ps-values">Calculates pN/pS values</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#calculate-rank-pn-ps">Calculate Rank pN/pS</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#calculate-gene-rank-pn-ps">Calculate Gene/Rank pN/pS</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#changes">Changes</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#options">Options</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#pnps-gen">pnps-gen</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../examples/index.html">Example Notebooks</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../gff.html">MGKit GFF Specifications</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../library.html">Library Reference</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../changes.html">Changes</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">MGKit: Metagenomic framework</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="index.html">Scripts Details</a> &raquo;</li>
+        
+      <li>pnps-gen - pN/pS Table Generation</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="../_sources/scripts/pnps_gen.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  
+<style>
+/* CSS overrides for sphinx_rtd_theme */
+
+/* 24px margin */
+.nbinput.nblast.container,
+.nboutput.nblast.container {
+    margin-bottom: 19px;  /* padding has already 5px */
+}
+
+/* ... except between code cells! */
+.nblast.container + .nbinput.container {
+    margin-top: -19px;
+}
+
+.admonition > p:before {
+    margin-right: 4px;  /* make room for the exclamation icon */
+}
+
+/* Fix math alignment, see https://github.com/rtfd/sphinx_rtd_theme/pull/686 */
+.math {
+    text-align: unset;
+}
+</style>
+<div class="section" id="pnps-gen-pn-ps-table-generation">
+<span id="pnps-gen"></span><h1>pnps-gen - pN/pS Table Generation<a class="headerlink" href="#pnps-gen-pn-ps-table-generation" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="module-mgkit.workflow.pnps_gen">
+<span id="overview"></span><h2>Overview<a class="headerlink" href="#module-mgkit.workflow.pnps_gen" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="calculates-pn-ps-values">
+<h3>Calculates pN/pS values<a class="headerlink" href="#calculates-pn-ps-values" title="Permalink to this headline">¶</a></h3>
+<p>This script calculates pN/pS using the data produced by the script
+<span class="xref std std-ref">snp_parser</span>. The result table is a CSV file.</p>
+</div>
+<div class="section" id="calculate-rank-pn-ps">
+<h3>Calculate Rank pN/pS<a class="headerlink" href="#calculate-rank-pn-ps" title="Permalink to this headline">¶</a></h3>
+<p>The <cite>rank</cite> command of the script reads SNPs information and calculate for each
+element of a specific taxonomic rank (species, genus, family, etc.) its pN/pS.</p>
+<p>For example, choosing the rank <em>genus</em> a table will be produced, similar to:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Prevotella</span><span class="p">,</span><span class="mf">0.0001</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mf">1.1</span><span class="p">,</span><span class="mf">0.4</span>
+<span class="n">Methanobrevibacter</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mf">0.5</span><span class="p">,</span><span class="mf">0.6</span><span class="p">,</span><span class="mf">0.8</span>
+</pre></div>
+</div>
+<p>A pN/pS value for each genus and sample (4 in this case) will be calculated.</p>
+<p>It is important to specify the taxonomic IDs to include in tha calculations. By
+default only bacteria are included. To get those values, the taxonomy can be
+queried using <cite>taxon-utils get</cite>.</p>
+</div>
+<div class="section" id="calculate-gene-rank-pn-ps">
+<h3>Calculate Gene/Rank pN/pS<a class="headerlink" href="#calculate-gene-rank-pn-ps" title="Permalink to this headline">¶</a></h3>
+<p>The <cite>full</cite> command create a gene/taxon table of pN/pS, internally is a pandas
+MultiIndex DataFrame, written in CSV format after script execution. The
+difference with the <cite>rank</cite> is the pN/pS calculation is for each gene/taxon and
+by default the <cite>gene_id</cite> from the original GFF file is used (which is stored
+in the file generated by <cite>snp_parser</cite>). If other gene IDs needs to be used, a
+table file can be provided, which can be passed in two column formats.</p>
+<p>The default in MGKit is to use Uniprot gene IDs for the functions, but we may
+want to examine the Kegg Orthologs instead. A table can be passed where the
+first column in the gene_id stored in the GFF file and the second is the KO:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Q7N6F9</span>  <span class="n">K05685</span>
+<span class="n">Q7N6F9</span>  <span class="n">K01242</span>
+<span class="n">G7E4F2</span>  <span class="n">K05625</span>
+</pre></div>
+</div>
+<p>The <cite>Q7N6F9</cite> gene_id is repeated because it has multiple correspondences to KOs
+and this format needs to be selected using the <cite>-2</cite> option of the command.</p>
+<p>The default type of table expected by the command is a table with a gene ID as
+first column one or more tab separated columns with mappings. The previous
+table would look like this:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Q7N6F9</span>  <span class="n">K05685</span>  <span class="n">K01242</span>
+<span class="n">G7E4F2</span>  <span class="n">K05625</span>
+</pre></div>
+</div>
+<p>These tables can be created from the original GFF file, assuming that mappings
+to KO, EC Numbers are included, with a command line like this:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">edit</span><span class="o">-</span><span class="n">gff</span> <span class="n">view</span> <span class="o">-</span><span class="n">a</span> <span class="n">gene_id</span> <span class="o">-</span><span class="n">a</span> <span class="n">map_KO</span> <span class="n">final</span><span class="o">.</span><span class="n">contigs</span><span class="o">-</span><span class="n">a3</span><span class="o">.</span><span class="n">gff</span><span class="o">.</span><span class="n">gz</span> <span class="o">|</span> <span class="n">tr</span> <span class="s1">&#39;,&#39;</span> <span class="s1">&#39;      &#39;</span>
+</pre></div>
+</div>
+<p>Extracting the KOs (which are comma separated in a MGKit GFF file) and changing
+any comma to <em>tab</em>. This table can be passed to the script and will make it
+possible to calculate the pN/pS for the KOs associated to the genes. Only gene
+IDs present in this file have a calculated pN/pS.</p>
+</div>
+<div class="section" id="changes">
+<h3>Changes<a class="headerlink" href="#changes" title="Permalink to this headline">¶</a></h3>
+<div class="versionadded">
+<p><span class="versionmodified added">New in version 0.5.0.</span></p>
+</div>
+</div>
+</div>
+<div class="section" id="options">
+<h2>Options<a class="headerlink" href="#options" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="pnps-gen">
+<h3>pnps-gen<a class="headerlink" href="#pnps-gen" title="Permalink to this headline">¶</a></h3>
+<p>Main function</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>pnps-gen <span class="o">[</span>OPTIONS<span class="o">]</span> COMMAND <span class="o">[</span>ARGS<span class="o">]</span>...
+</pre></div>
+</div>
+<p class="rubric">Options</p>
+<dl class="option">
+<dt id="cmdoption-pnps-gen-version">
+<code class="sig-name descname">--version</code><code class="sig-prename descclassname"></code><a class="headerlink" href="#cmdoption-pnps-gen-version" title="Permalink to this definition">¶</a></dt>
+<dd><p>Show the version and exit.</p>
+</dd></dl>
+
+<dl class="option">
+<dt id="cmdoption-pnps-gen-cite">
+<code class="sig-name descname">--cite</code><code class="sig-prename descclassname"></code><a class="headerlink" href="#cmdoption-pnps-gen-cite" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<div class="section" id="pnps-gen-full">
+<h4>full<a class="headerlink" href="#pnps-gen-full" title="Permalink to this headline">¶</a></h4>
+<p>Calculates pN/pS</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>pnps-gen full <span class="o">[</span>OPTIONS<span class="o">]</span> <span class="o">[</span>TXT_FILE<span class="o">]</span>
+</pre></div>
+</div>
+<p class="rubric">Options</p>
+<dl class="option">
+<dt id="cmdoption-pnps-gen-full-v">
+<code class="sig-name descname">-v</code><code class="sig-prename descclassname"></code><code class="sig-prename descclassname">, </code><code class="sig-name descname">--verbose</code><code class="sig-prename descclassname"></code><a class="headerlink" href="#cmdoption-pnps-gen-full-v" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="option">
+<dt id="cmdoption-pnps-gen-full-t">
+<code class="sig-name descname">-t</code><code class="sig-prename descclassname"></code><code class="sig-prename descclassname">, </code><code class="sig-name descname">--taxonomy</code><code class="sig-prename descclassname"> &lt;taxonomy&gt;</code><a class="headerlink" href="#cmdoption-pnps-gen-full-t" title="Permalink to this definition">¶</a></dt>
+<dd><p>Taxonomy file  [required]</p>
+</dd></dl>
+
+<dl class="option">
+<dt id="cmdoption-pnps-gen-full-s">
+<code class="sig-name descname">-s</code><code class="sig-prename descclassname"></code><code class="sig-prename descclassname">, </code><code class="sig-name descname">--snp-data</code><code class="sig-prename descclassname"> &lt;snp_data&gt;</code><a class="headerlink" href="#cmdoption-pnps-gen-full-s" title="Permalink to this definition">¶</a></dt>
+<dd><p>SNP data, output of <cite>snp_parser</cite>  [required]</p>
+</dd></dl>
+
+<dl class="option">
+<dt id="cmdoption-pnps-gen-full-r">
+<code class="sig-name descname">-r</code><code class="sig-prename descclassname"></code><code class="sig-prename descclassname">, </code><code class="sig-name descname">--rank</code><code class="sig-prename descclassname"> &lt;rank&gt;</code><a class="headerlink" href="#cmdoption-pnps-gen-full-r" title="Permalink to this definition">¶</a></dt>
+<dd><p>Taxonomic rank</p>
+<dl class="field-list simple">
+<dt class="field-odd">Options</dt>
+<dd class="field-odd"><p>superkingdom|kingdom|phylum|class|subclass|order|family|genus|species</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="option">
+<dt id="cmdoption-pnps-gen-full-m">
+<code class="sig-name descname">-m</code><code class="sig-prename descclassname"></code><code class="sig-prename descclassname">, </code><code class="sig-name descname">--min-num</code><code class="sig-prename descclassname"> &lt;min_num&gt;</code><a class="headerlink" href="#cmdoption-pnps-gen-full-m" title="Permalink to this definition">¶</a></dt>
+<dd><p>Minimum number of samples with a pN/pS to accept  [default: 2]</p>
+</dd></dl>
+
+<dl class="option">
+<dt id="cmdoption-pnps-gen-full-c">
+<code class="sig-name descname">-c</code><code class="sig-prename descclassname"></code><code class="sig-prename descclassname">, </code><code class="sig-name descname">--min-cov</code><code class="sig-prename descclassname"> &lt;min_cov&gt;</code><a class="headerlink" href="#cmdoption-pnps-gen-full-c" title="Permalink to this definition">¶</a></dt>
+<dd><p>Minimum coverage for SNPs to be accepted  [default: 4]</p>
+</dd></dl>
+
+<dl class="option">
+<dt id="cmdoption-pnps-gen-full-i">
+<code class="sig-name descname">-i</code><code class="sig-prename descclassname"></code><code class="sig-prename descclassname">, </code><code class="sig-name descname">--taxon_ids</code><code class="sig-prename descclassname"> &lt;taxon_ids&gt;</code><a class="headerlink" href="#cmdoption-pnps-gen-full-i" title="Permalink to this definition">¶</a></dt>
+<dd><p>Taxon IDs to include  [default: 2]</p>
+</dd></dl>
+
+<dl class="option">
+<dt id="cmdoption-pnps-gen-full-g">
+<code class="sig-name descname">-g</code><code class="sig-prename descclassname"></code><code class="sig-prename descclassname">, </code><code class="sig-name descname">--gene-map</code><code class="sig-prename descclassname"> &lt;gene_map&gt;</code><a class="headerlink" href="#cmdoption-pnps-gen-full-g" title="Permalink to this definition">¶</a></dt>
+<dd><p>Dictionary to map <em>gene_id</em> to another ID</p>
+</dd></dl>
+
+<dl class="option">
+<dt id="cmdoption-pnps-gen-full-2">
+<code class="sig-name descname">-2</code><code class="sig-prename descclassname"></code><code class="sig-prename descclassname">, </code><code class="sig-name descname">--two-columns</code><code class="sig-prename descclassname"></code><a class="headerlink" href="#cmdoption-pnps-gen-full-2" title="Permalink to this definition">¶</a></dt>
+<dd><p>gene-map is a two columns table with repeated keys</p>
+</dd></dl>
+
+<dl class="option">
+<dt id="cmdoption-pnps-gen-full-p">
+<code class="sig-name descname">-p</code><code class="sig-prename descclassname"></code><code class="sig-prename descclassname">, </code><code class="sig-name descname">--separator</code><code class="sig-prename descclassname"> &lt;separator&gt;</code><a class="headerlink" href="#cmdoption-pnps-gen-full-p" title="Permalink to this definition">¶</a></dt>
+<dd><p>column separator for gene-map file  [default:   ]</p>
+</dd></dl>
+
+<p class="rubric">Arguments</p>
+<dl class="option">
+<dt id="cmdoption-pnps-gen-full-arg-txt-file">
+<code class="sig-name descname">TXT_FILE</code><code class="sig-prename descclassname"></code><a class="headerlink" href="#cmdoption-pnps-gen-full-arg-txt-file" title="Permalink to this definition">¶</a></dt>
+<dd><p>Optional argument</p>
+</dd></dl>
+
+</div>
+<div class="section" id="pnps-gen-rank">
+<h4>rank<a class="headerlink" href="#pnps-gen-rank" title="Permalink to this headline">¶</a></h4>
+<p>Calculates pN/pS for a taxonomic rank</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>pnps-gen rank <span class="o">[</span>OPTIONS<span class="o">]</span> <span class="o">[</span>TXT_FILE<span class="o">]</span>
+</pre></div>
+</div>
+<p class="rubric">Options</p>
+<dl class="option">
+<dt id="cmdoption-pnps-gen-rank-v">
+<code class="sig-name descname">-v</code><code class="sig-prename descclassname"></code><code class="sig-prename descclassname">, </code><code class="sig-name descname">--verbose</code><code class="sig-prename descclassname"></code><a class="headerlink" href="#cmdoption-pnps-gen-rank-v" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="option">
+<dt id="cmdoption-pnps-gen-rank-t">
+<code class="sig-name descname">-t</code><code class="sig-prename descclassname"></code><code class="sig-prename descclassname">, </code><code class="sig-name descname">--taxonomy</code><code class="sig-prename descclassname"> &lt;taxonomy&gt;</code><a class="headerlink" href="#cmdoption-pnps-gen-rank-t" title="Permalink to this definition">¶</a></dt>
+<dd><p>Taxonomy file  [required]</p>
+</dd></dl>
+
+<dl class="option">
+<dt id="cmdoption-pnps-gen-rank-s">
+<code class="sig-name descname">-s</code><code class="sig-prename descclassname"></code><code class="sig-prename descclassname">, </code><code class="sig-name descname">--snp-data</code><code class="sig-prename descclassname"> &lt;snp_data&gt;</code><a class="headerlink" href="#cmdoption-pnps-gen-rank-s" title="Permalink to this definition">¶</a></dt>
+<dd><p>SNP data, output of <cite>snp_parser</cite>  [required]</p>
+</dd></dl>
+
+<dl class="option">
+<dt id="cmdoption-pnps-gen-rank-r">
+<code class="sig-name descname">-r</code><code class="sig-prename descclassname"></code><code class="sig-prename descclassname">, </code><code class="sig-name descname">--rank</code><code class="sig-prename descclassname"> &lt;rank&gt;</code><a class="headerlink" href="#cmdoption-pnps-gen-rank-r" title="Permalink to this definition">¶</a></dt>
+<dd><p>Taxonomic rank  [default: order]</p>
+<dl class="field-list simple">
+<dt class="field-odd">Options</dt>
+<dd class="field-odd"><p>superkingdom|kingdom|phylum|class|subclass|order|family|genus|species</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="option">
+<dt id="cmdoption-pnps-gen-rank-m">
+<code class="sig-name descname">-m</code><code class="sig-prename descclassname"></code><code class="sig-prename descclassname">, </code><code class="sig-name descname">--min-num</code><code class="sig-prename descclassname"> &lt;min_num&gt;</code><a class="headerlink" href="#cmdoption-pnps-gen-rank-m" title="Permalink to this definition">¶</a></dt>
+<dd><p>Minimum number of samples with a pN/pS to accept  [default: 2]</p>
+</dd></dl>
+
+<dl class="option">
+<dt id="cmdoption-pnps-gen-rank-c">
+<code class="sig-name descname">-c</code><code class="sig-prename descclassname"></code><code class="sig-prename descclassname">, </code><code class="sig-name descname">--min-cov</code><code class="sig-prename descclassname"> &lt;min_cov&gt;</code><a class="headerlink" href="#cmdoption-pnps-gen-rank-c" title="Permalink to this definition">¶</a></dt>
+<dd><p>Minimum coverage for SNPs to be accepted  [default: 4]</p>
+</dd></dl>
+
+<dl class="option">
+<dt id="cmdoption-pnps-gen-rank-i">
+<code class="sig-name descname">-i</code><code class="sig-prename descclassname"></code><code class="sig-prename descclassname">, </code><code class="sig-name descname">--taxon_ids</code><code class="sig-prename descclassname"> &lt;taxon_ids&gt;</code><a class="headerlink" href="#cmdoption-pnps-gen-rank-i" title="Permalink to this definition">¶</a></dt>
+<dd><p>Taxon IDs to include  [default: 2]</p>
+</dd></dl>
+
+<p class="rubric">Arguments</p>
+<dl class="option">
+<dt id="cmdoption-pnps-gen-rank-arg-txt-file">
+<code class="sig-name descname">TXT_FILE</code><code class="sig-prename descclassname"></code><a class="headerlink" href="#cmdoption-pnps-gen-rank-arg-txt-file" title="Permalink to this definition">¶</a></dt>
+<dd><p>Optional argument</p>
+</dd></dl>
+
+</div>
+</div>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="../examples/index.html" class="btn btn-neutral float-right" title="Example Notebooks" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="edit_gff.html" class="btn btn-neutral float-left" title="edit-gff - GFF Viewer and Editor" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2013-2015, Francesco Rubino
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

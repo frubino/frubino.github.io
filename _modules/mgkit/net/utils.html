@@ -1,0 +1,265 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>mgkit.net.utils &mdash; MGKit: Metagenomic framework 0.5.0 documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+  <script type="text/javascript" src="../../../_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../../../" src="../../../_static/documentation_options.js"></script>
+        <script type="text/javascript" src="../../../_static/jquery.js"></script>
+        <script type="text/javascript" src="../../../_static/underscore.js"></script>
+        <script type="text/javascript" src="../../../_static/doctools.js"></script>
+        <script type="text/javascript" src="../../../_static/language_data.js"></script>
+        <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+        <script async="async" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+        <script type="text/x-mathjax-config">MathJax.Hub.Config({"tex2jax": {"inlineMath": [["$", "$"], ["\\(", "\\)"]], "processEscapes": true, "ignoreClass": "document", "processClass": "math|output_area"}})</script>
+    
+    <script type="text/javascript" src="../../../_static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="../../../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../../../_static/graphviz.css" type="text/css" />
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../../../index.html" class="icon icon-home"> MGKit: Metagenomic framework
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                0.5.0
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../introduction.html">Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../install.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../pipeline/index.html">Metagenomic Pipeline</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../scripts/index.html">Scripts Details</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../examples/index.html">Example Notebooks</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../gff.html">MGKit GFF Specifications</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../library.html">Library Reference</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../changes.html">Changes</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../index.html">MGKit: Metagenomic framework</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../../../index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="../../index.html">Module code</a> &raquo;</li>
+        
+          <li><a href="../../mgkit.html">mgkit</a> &raquo;</li>
+        
+      <li>mgkit.net.utils</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <h1>Source code for mgkit.net.utils</h1><div class="highlight"><pre>
+<span></span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">Utility functions for the network package</span>
+<span class="sd">&quot;&quot;&quot;</span>
+<span class="kn">import</span> <span class="nn">requests</span>
+
+
+<div class="viewcode-block" id="url_open"><a class="viewcode-back" href="../../../api/mgkit.net.utils.html#mgkit.net.utils.url_open">[docs]</a><span class="k">def</span> <span class="nf">url_open</span><span class="p">(</span><span class="n">url</span><span class="p">,</span> <span class="n">data</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">headers</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">agent</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">get</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">stream</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    .. versionchanged:: 0.3.4</span>
+<span class="sd">        now uses *requests*</span>
+
+<span class="sd">    Arguments:</span>
+<span class="sd">        url (str): url to request</span>
+<span class="sd">        data (dict): parameters to pass to the request</span>
+<span class="sd">        headers (dict): any additional headers</span>
+<span class="sd">        agent (str): user agent to use</span>
+<span class="sd">        get (bool): True if the request is a GET, False for POST</span>
+<span class="sd">        stream (bool): returns an iterator to stream over</span>
+
+<span class="sd">    :param str url: url to request</span>
+<span class="sd">    :param str data: data to add to the request</span>
+<span class="sd">    :param bool compress: if the response should be compressed</span>
+<span class="sd">    :param str agent: if supplied, the &#39;User-Agent&#39; header we&#39;ll be added to</span>
+<span class="sd">        the request</span>
+<span class="sd">    :return: the response handle</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">if</span> <span class="p">(</span><span class="n">agent</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">)</span> <span class="ow">and</span> <span class="p">(</span><span class="n">headers</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">):</span>
+        <span class="n">headers</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;user-agent&#39;</span><span class="p">:</span> <span class="n">agent</span><span class="p">}</span>
+    <span class="k">if</span> <span class="n">get</span><span class="p">:</span>
+        <span class="n">request</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">url</span><span class="p">,</span> <span class="n">params</span><span class="o">=</span><span class="n">data</span><span class="p">,</span> <span class="n">headers</span><span class="o">=</span><span class="n">headers</span><span class="p">,</span> <span class="n">stream</span><span class="o">=</span><span class="n">stream</span><span class="p">)</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">request</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">post</span><span class="p">(</span><span class="n">url</span><span class="p">,</span> <span class="n">params</span><span class="o">=</span><span class="n">data</span><span class="p">,</span> <span class="n">headers</span><span class="o">=</span><span class="n">headers</span><span class="p">,</span> <span class="n">stream</span><span class="o">=</span><span class="n">stream</span><span class="p">)</span>
+
+    <span class="k">if</span> <span class="n">stream</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">request</span><span class="o">.</span><span class="n">iter_lines</span><span class="p">()</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">request</span></div>
+
+
+<div class="viewcode-block" id="url_read"><a class="viewcode-back" href="../../../api/mgkit.net.utils.html#mgkit.net.utils.url_read">[docs]</a><span class="k">def</span> <span class="nf">url_read</span><span class="p">(</span><span class="n">url</span><span class="p">,</span> <span class="n">data</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">agent</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">headers</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">get</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    .. versionchanged:: 0.3.4</span>
+<span class="sd">        now uses *requests*, removed *compressed* and added *headers*, *get*</span>
+
+<span class="sd">    Opens an URL and reads the</span>
+
+<span class="sd">    Wrapper of :func:`url_open` which reads the full response</span>
+
+<span class="sd">    Arguments:</span>
+<span class="sd">        url (str): url to request</span>
+<span class="sd">        data (dict or None): data to add to the request</span>
+<span class="sd">        headers (dict or None): additional headers</span>
+<span class="sd">        agent (str or None): if supplied, the &#39;User-Agent&#39; header we&#39;ll be</span>
+<span class="sd">            added to the request</span>
+<span class="sd">        get (bool): uses a GET operation if True, POST if False</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        str: the response data</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">request</span> <span class="o">=</span> <span class="n">url_open</span><span class="p">(</span><span class="n">url</span><span class="p">,</span> <span class="n">data</span><span class="o">=</span><span class="n">data</span><span class="p">,</span> <span class="n">agent</span><span class="o">=</span><span class="n">agent</span><span class="p">,</span> <span class="n">headers</span><span class="o">=</span><span class="n">headers</span><span class="p">,</span> <span class="n">get</span><span class="o">=</span><span class="n">get</span><span class="p">,</span> <span class="n">stream</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">request</span><span class="o">.</span><span class="n">text</span></div>
+</pre></div>
+
+           </div>
+           
+          </div>
+          <footer>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2013-2015, Francesco Rubino
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

@@ -1,0 +1,521 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>mgkit.snps.classes &mdash; MGKit: Metagenomic framework 0.5.0 documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+  <script type="text/javascript" src="../../../_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../../../" src="../../../_static/documentation_options.js"></script>
+        <script type="text/javascript" src="../../../_static/jquery.js"></script>
+        <script type="text/javascript" src="../../../_static/underscore.js"></script>
+        <script type="text/javascript" src="../../../_static/doctools.js"></script>
+        <script type="text/javascript" src="../../../_static/language_data.js"></script>
+        <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+        <script async="async" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+        <script type="text/x-mathjax-config">MathJax.Hub.Config({"tex2jax": {"inlineMath": [["$", "$"], ["\\(", "\\)"]], "processEscapes": true, "ignoreClass": "document", "processClass": "math|output_area"}})</script>
+    
+    <script type="text/javascript" src="../../../_static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="../../../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../../../_static/graphviz.css" type="text/css" />
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../../../index.html" class="icon icon-home"> MGKit: Metagenomic framework
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                0.5.0
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../introduction.html">Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../install.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../pipeline/index.html">Metagenomic Pipeline</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../scripts/index.html">Scripts Details</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../examples/index.html">Example Notebooks</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../gff.html">MGKit GFF Specifications</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../library.html">Library Reference</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../changes.html">Changes</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../index.html">MGKit: Metagenomic framework</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../../../index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="../../index.html">Module code</a> &raquo;</li>
+        
+          <li><a href="../../mgkit.html">mgkit</a> &raquo;</li>
+        
+      <li>mgkit.snps.classes</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <h1>Source code for mgkit.snps.classes</h1><div class="highlight"><pre>
+<span></span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">Manage SNP data.</span>
+
+<span class="sd">&quot;&quot;&quot;</span>
+<span class="kn">from</span> <span class="nn">__future__</span> <span class="kn">import</span> <span class="n">division</span>
+<span class="kn">from</span> <span class="nn">builtins</span> <span class="kn">import</span> <span class="nb">object</span>
+<span class="kn">import</span> <span class="nn">logging</span>
+<span class="kn">import</span> <span class="nn">enum</span>
+<span class="kn">import</span> <span class="nn">json</span>
+
+<span class="kn">from</span> <span class="nn">..</span> <span class="kn">import</span> <span class="n">DependencyError</span>
+
+<span class="k">try</span><span class="p">:</span>
+    <span class="kn">import</span> <span class="nn">numpy</span>
+<span class="k">except</span> <span class="ne">ImportError</span><span class="p">:</span>
+    <span class="k">raise</span> <span class="n">DependencyError</span><span class="p">(</span><span class="s1">&#39;numpy&#39;</span><span class="p">)</span>
+
+<span class="n">LOG</span> <span class="o">=</span> <span class="n">logging</span><span class="o">.</span><span class="n">getLogger</span><span class="p">(</span><span class="vm">__name__</span><span class="p">)</span>
+
+
+<div class="viewcode-block" id="RatioMixIn"><a class="viewcode-back" href="../../../api/mgkit.snps.classes.html#mgkit.snps.classes.RatioMixIn">[docs]</a><span class="k">class</span> <span class="nc">RatioMixIn</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
+<div class="viewcode-block" id="RatioMixIn.calc_ratio"><a class="viewcode-back" href="../../../api/mgkit.snps.classes.html#mgkit.snps.classes.RatioMixIn.calc_ratio">[docs]</a>    <span class="k">def</span> <span class="nf">calc_ratio</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">haplotypes</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        .. versionchanged:: 0.2.2</span>
+<span class="sd">            split the function to handle *flag_value* in another method</span>
+
+<span class="sd">        Calculate :math:`\\frac {pN}{pS}` for the gene.</span>
+
+<span class="sd">        .. math::</span>
+<span class="sd">            :label: pn-ps</span>
+
+<span class="sd">            \\frac {pN}{pS} = \\frac{ ^{oN}/_{eN}}{ ^{oS}/_{eS}}</span>
+
+<span class="sd">        WHere:</span>
+
+<span class="sd">        * oN (number of non-synonymous - **nonsyn**)</span>
+<span class="sd">        * eN (expected number of non-synonymous - **exp_nonsyn**)</span>
+<span class="sd">        * oS (number of synonymous - **syn**)</span>
+<span class="sd">        * eS (expected number of synonymous - **exp_syn**)</span>
+
+<span class="sd">        Arguments:</span>
+<span class="sd">            flag_value (bool): when there&#39;s no way to calculate the ratio, the</span>
+<span class="sd">                possible cases will be flagged with a negative number. This</span>
+<span class="sd">                allows to make substitutions for these values</span>
+<span class="sd">            haplotypes (bool): if true, coverage information is not used,</span>
+<span class="sd">                because the SNPs are assumed to come from an alignment that has</span>
+<span class="sd">                sequences having haplotypes</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            float: the :math:`\\frac {pN}{pS}` for the gene.</span>
+
+<span class="sd">            .. note::</span>
+
+<span class="sd">                Because pN or pS can be 0, and the return value would be NaN,</span>
+<span class="sd">                we take in account some special cases. The default return value</span>
+<span class="sd">                in this cases is :const:`numpy.nan`.</span>
+
+<span class="sd">            * Both synonymous and non-synonymous values are 0:</span>
+
+<span class="sd">                * if both the syn and nonsyn attributes are 0 but there&#39;s</span>
+<span class="sd">                  coverage for this gene, we return a 0, as there&#39;s no</span>
+<span class="sd">                  evolution in this gene. Before, the coverage was checked by</span>
+<span class="sd">                  this method against either the passed *min_cov* parameter</span>
+<span class="sd">                  that was equal to :data:`MIN_COV`. Now the case is for the</span>
+<span class="sd">                  user to check the coverage and functions in</span>
+<span class="sd">                  :mod:`mgkit.snps.conv_func` do that. If enough coverage was</span>
+<span class="sd">                  achieved, the *haplotypes* parameter can be used to return a</span>
+<span class="sd">                  0</span>
+
+<span class="sd">            All other cases return a NaN value</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
+
+        <span class="c1"># Both values are non-zero</span>
+        <span class="k">if</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">nonsyn</span> <span class="o">!=</span> <span class="mi">0</span><span class="p">)</span> <span class="ow">and</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">syn</span> <span class="o">!=</span> <span class="mi">0</span><span class="p">):</span>
+            <span class="n">pn_value</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">nonsyn</span> <span class="o">/</span> <span class="bp">self</span><span class="o">.</span><span class="n">exp_nonsyn</span>
+            <span class="n">ps_value</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">syn</span> <span class="o">/</span> <span class="bp">self</span><span class="o">.</span><span class="n">exp_syn</span>
+            <span class="k">return</span> <span class="n">pn_value</span> <span class="o">/</span> <span class="n">ps_value</span>
+        <span class="c1"># case in which a the SNPs come from haplotypes, in this case we don&#39;t</span>
+        <span class="c1"># need to check for coverage to return a 0 for this special case</span>
+        <span class="k">elif</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">nonsyn</span> <span class="o">==</span> <span class="mi">0</span><span class="p">)</span> <span class="ow">and</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">syn</span> <span class="o">==</span> <span class="mi">0</span><span class="p">)</span> <span class="ow">and</span> <span class="n">haplotypes</span><span class="p">:</span>
+            <span class="k">return</span> <span class="mi">0</span>
+
+        <span class="k">return</span> <span class="n">numpy</span><span class="o">.</span><span class="n">nan</span></div>
+
+<div class="viewcode-block" id="RatioMixIn.calc_ratio_flag"><a class="viewcode-back" href="../../../api/mgkit.snps.classes.html#mgkit.snps.classes.RatioMixIn.calc_ratio_flag">[docs]</a>    <span class="k">def</span> <span class="nf">calc_ratio_flag</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        .. versionadded:: 0.2.2</span>
+
+<span class="sd">        Handles cases where it&#39;s important to flag the returned value, as</span>
+<span class="sd">        explained in :meth:`GeneSNP.calc_ratio`, and when the both the number</span>
+<span class="sd">        of synonymous and non-synonymous is greater than 0, the pN/pS value is</span>
+<span class="sd">        returned.</span>
+
+<span class="sd">        * The number of non-synonymous is greater than 0 but the number of</span>
+<span class="sd">              synonymous is 0:</span>
+
+<span class="sd">                * if **flag_value** is **True**, the returned value is **-1**</span>
+
+<span class="sd">            * The number of synonymous is greater than 0 but the number of</span>
+<span class="sd">              non-synonymous is 0:</span>
+
+<span class="sd">                * if **flag_value** is **True**, the returned value is **-2**</span>
+
+<span class="sd">        +------------+------------+--------------+</span>
+<span class="sd">        | :math:`oS` | :math:`oN` | return value |</span>
+<span class="sd">        +============+============+==============+</span>
+<span class="sd">        | &gt;0         | &gt;0         | **pN/pS**    |</span>
+<span class="sd">        +------------+------------+--------------+</span>
+<span class="sd">        | 0          | 0          | **-3**       |</span>
+<span class="sd">        +------------+------------+--------------+</span>
+<span class="sd">        | &gt;0         | 0          | **-1**       |</span>
+<span class="sd">        +------------+------------+--------------+</span>
+<span class="sd">        | 0          | &gt;0         | **-2**       |</span>
+<span class="sd">        +------------+------------+--------------+</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="c1"># Both values are non-zero</span>
+        <span class="k">if</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">nonsyn</span> <span class="o">!=</span> <span class="mi">0</span><span class="p">)</span> <span class="ow">and</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">syn</span> <span class="o">!=</span> <span class="mi">0</span><span class="p">):</span>
+            <span class="n">pn_value</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">nonsyn</span> <span class="o">/</span> <span class="bp">self</span><span class="o">.</span><span class="n">exp_nonsyn</span>
+            <span class="n">ps_value</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">syn</span> <span class="o">/</span> <span class="bp">self</span><span class="o">.</span><span class="n">exp_syn</span>
+            <span class="k">return</span> <span class="n">pn_value</span> <span class="o">/</span> <span class="n">ps_value</span>
+
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">nonsyn</span> <span class="o">!=</span> <span class="mi">0</span><span class="p">:</span>
+            <span class="c1"># there&#39;s at least non-synonymous count but no synonymous one</span>
+            <span class="c1"># this will be converted in the max value for the matrix or</span>
+            <span class="c1"># to some other value (-1 flag this case)</span>
+            <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">syn</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+                <span class="k">return</span> <span class="o">-</span><span class="mi">1</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="c1"># there&#39;s at least a synonymous count but no non-synonymous one</span>
+            <span class="c1"># this will be converted in the max value for the matrix or</span>
+            <span class="c1"># to some other value (-2 flag this case)</span>
+            <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">syn</span> <span class="o">!=</span> <span class="mi">0</span><span class="p">:</span>
+                <span class="k">return</span> <span class="o">-</span><span class="mi">2</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="c1"># There&#39;s no changes in the gene at at all. It should be</span>
+                <span class="c1"># checked if that gene has coverage.</span>
+                <span class="k">return</span> <span class="o">-</span><span class="mi">3</span></div></div>
+
+
+<div class="viewcode-block" id="SNPType"><a class="viewcode-back" href="../../../api/mgkit.snps.classes.html#mgkit.snps.classes.SNPType">[docs]</a><span class="k">class</span> <span class="nc">SNPType</span><span class="p">(</span><span class="n">enum</span><span class="o">.</span><span class="n">Enum</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    .. versionadded:: 0.1.13</span>
+
+<span class="sd">    Enum that defines SNP types. Supported at the moment:</span>
+
+<span class="sd">    * unknown = 0</span>
+<span class="sd">    * syn (synonymous) = 1</span>
+<span class="sd">    * nonsyn (non-synonymous) = 2</span>
+
+<span class="sd">    .. note::</span>
+
+<span class="sd">        No support is planned at the moment to support indel mutations</span>
+
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">unknown</span> <span class="o">=</span> <span class="mi">0</span>
+    <span class="n">syn</span> <span class="o">=</span> <span class="mi">1</span>
+    <span class="n">nonsyn</span> <span class="o">=</span> <span class="mi">2</span></div>
+
+
+<div class="viewcode-block" id="GeneSNP"><a class="viewcode-back" href="../../../api/mgkit.snps.classes.html#mgkit.snps.classes.GeneSNP">[docs]</a><span class="k">class</span> <span class="nc">GeneSNP</span><span class="p">(</span><span class="n">RatioMixIn</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    .. versionadded:: 0.1.13</span>
+
+<span class="sd">    Class defining gene and synonymous/non-synonymous SNPs.</span>
+
+<span class="sd">    It defines background synonymous/non-synonymous attributes and only has a</span>
+<span class="sd">    method right now, which calculate pN/pS ratio. The method is added through</span>
+<span class="sd">    a mixin object, so the ratio can be customised and be shared with the old</span>
+<span class="sd">    implementation.</span>
+
+<span class="sd">    Attributes:</span>
+<span class="sd">        uid (str): unique id for the isoform (to be referenced in a GFF file)</span>
+<span class="sd">        gene_id (str): gene id</span>
+<span class="sd">        taxon_id (int): gene taxon</span>
+<span class="sd">        exp_syn (int): expected synonymous changes</span>
+<span class="sd">        exp_nonsyn (int): expected non-synonymous changes</span>
+<span class="sd">        coverage (int): gene coverage</span>
+<span class="sd">        snps (list): list of SNPs associated with the gene, each element is a</span>
+<span class="sd">            tuple with the position (relative to the gene start), the second is</span>
+<span class="sd">            the nucleotidic change and the third is the aa SNP type as defined</span>
+<span class="sd">            by :class:`SNPType`.</span>
+
+<span class="sd">    .. note::</span>
+
+<span class="sd">        The main difference with the :class:`GeneSyn` is that all snps are kept</span>
+<span class="sd">        and `syn` and `nonsyn` are not attributes but properties that return</span>
+<span class="sd">        the count of synonymous and non-synonymous SNPs in the `snps` list.</span>
+
+<span class="sd">    .. warning::</span>
+
+<span class="sd">        This class uses more memory than :class:`GeneSyn` because it doesn&#39;t</span>
+<span class="sd">        use __slots__, it may be changed in later versions.</span>
+
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">uid</span> <span class="o">=</span> <span class="kc">None</span>
+    <span class="n">gene_id</span> <span class="o">=</span> <span class="kc">None</span>
+    <span class="n">taxon_id</span> <span class="o">=</span> <span class="kc">None</span>
+    <span class="n">exp_syn</span> <span class="o">=</span> <span class="kc">None</span>
+    <span class="n">exp_nonsyn</span> <span class="o">=</span> <span class="kc">None</span>
+    <span class="n">coverage</span> <span class="o">=</span> <span class="kc">None</span>
+    <span class="n">snps</span> <span class="o">=</span> <span class="kc">None</span>
+
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">gene_id</span><span class="o">=</span><span class="s1">&#39;&#39;</span><span class="p">,</span> <span class="n">taxon_id</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">exp_syn</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">exp_nonsyn</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span>
+                 <span class="n">coverage</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">snps</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">uid</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">json_data</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        If json_data is passed, that&#39;s used to initialise the instance</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+
+        <span class="k">if</span> <span class="n">json_data</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">from_json</span><span class="p">(</span><span class="n">json_data</span><span class="p">)</span>
+            <span class="k">return</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">uid</span> <span class="o">=</span> <span class="n">uid</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">gene_id</span> <span class="o">=</span> <span class="n">gene_id</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">taxon_id</span> <span class="o">=</span> <span class="n">taxon_id</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">exp_syn</span> <span class="o">=</span> <span class="n">exp_syn</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">exp_nonsyn</span> <span class="o">=</span> <span class="n">exp_nonsyn</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">coverage</span> <span class="o">=</span> <span class="n">coverage</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">snps</span> <span class="o">=</span> <span class="p">[]</span> <span class="k">if</span> <span class="n">snps</span> <span class="ow">is</span> <span class="kc">None</span> <span class="k">else</span> <span class="n">snps</span>
+
+<div class="viewcode-block" id="GeneSNP.add_snp"><a class="viewcode-back" href="../../../api/mgkit.snps.classes.html#mgkit.snps.classes.GeneSNP.add_snp">[docs]</a>    <span class="k">def</span> <span class="nf">add_snp</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">position</span><span class="p">,</span> <span class="n">change</span><span class="p">,</span> <span class="n">snp_type</span><span class="o">=</span><span class="n">SNPType</span><span class="o">.</span><span class="n">unknown</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Adds a SNP to the list</span>
+
+<span class="sd">        Arguments:</span>
+<span class="sd">            position (int): SNP position, relative to the gene start</span>
+<span class="sd">            change (str): nucleotidic change</span>
+<span class="sd">            snp_type (enum): one of the values defined in :class:`SNPType`</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">snps</span><span class="o">.</span><span class="n">append</span><span class="p">(</span>
+            <span class="p">(</span><span class="n">position</span><span class="p">,</span> <span class="n">change</span><span class="p">,</span> <span class="n">snp_type</span><span class="p">)</span>
+        <span class="p">)</span></div>
+
+<div class="viewcode-block" id="GeneSNP.add"><a class="viewcode-back" href="../../../api/mgkit.snps.classes.html#mgkit.snps.classes.GeneSNP.add">[docs]</a>    <span class="k">def</span> <span class="nf">add</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">other</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Inplace addition of another instance values. No check for them being</span>
+<span class="sd">        the same gene/taxon, it&#39;s up to the user to check that they can be</span>
+<span class="sd">        added together.</span>
+
+<span class="sd">        Arguments:</span>
+<span class="sd">            other: instance of :class:`GeneSyn` to add</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">snps</span><span class="o">.</span><span class="n">extend</span><span class="p">(</span><span class="n">other</span><span class="o">.</span><span class="n">snps</span><span class="p">)</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">exp_syn</span> <span class="o">+=</span> <span class="n">other</span><span class="o">.</span><span class="n">exp_syn</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">exp_nonsyn</span> <span class="o">+=</span> <span class="n">other</span><span class="o">.</span><span class="n">exp_nonsyn</span>
+
+        <span class="k">if</span> <span class="n">other</span><span class="o">.</span><span class="n">coverage</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">coverage</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">coverage</span> <span class="o">=</span> <span class="n">other</span><span class="o">.</span><span class="n">coverage</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">coverage</span> <span class="o">+=</span> <span class="n">other</span><span class="o">.</span><span class="n">coverage</span></div>
+
+<div class="viewcode-block" id="GeneSNP.to_json"><a class="viewcode-back" href="../../../api/mgkit.snps.classes.html#mgkit.snps.classes.GeneSNP.to_json">[docs]</a>    <span class="k">def</span> <span class="nf">to_json</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Returns a json definition of the instance</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            str: json representation of the instance</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="n">json</span><span class="o">.</span><span class="n">dumps</span><span class="p">(</span>
+            <span class="p">{</span>
+                <span class="s1">&#39;uid&#39;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">uid</span><span class="p">,</span>
+                <span class="s1">&#39;gene_id&#39;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">gene_id</span><span class="p">,</span>
+                <span class="s1">&#39;exp_syn&#39;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">exp_syn</span><span class="p">,</span>
+                <span class="s1">&#39;exp_nonsyn&#39;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">exp_nonsyn</span><span class="p">,</span>
+                <span class="s1">&#39;taxon_id&#39;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">taxon_id</span><span class="p">,</span>
+                <span class="s1">&#39;coverage&#39;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">coverage</span><span class="p">,</span>
+                <span class="s1">&#39;snps&#39;</span><span class="p">:</span> <span class="p">[</span>
+                    <span class="p">(</span><span class="n">pos</span><span class="p">,</span> <span class="n">change</span><span class="p">,</span> <span class="n">snptype</span><span class="o">.</span><span class="n">value</span><span class="p">)</span>
+                    <span class="k">for</span> <span class="n">pos</span><span class="p">,</span> <span class="n">change</span><span class="p">,</span> <span class="n">snptype</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">snps</span>
+                <span class="p">]</span>
+            <span class="p">}</span>
+        <span class="p">)</span></div>
+
+<div class="viewcode-block" id="GeneSNP.from_json"><a class="viewcode-back" href="../../../api/mgkit.snps.classes.html#mgkit.snps.classes.GeneSNP.from_json">[docs]</a>    <span class="k">def</span> <span class="nf">from_json</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">data</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Instantiate the instance with values from a json definition</span>
+
+<span class="sd">        Arguments:</span>
+<span class="sd">            data (str): json representation, as returned by</span>
+<span class="sd">                :meth:`GeneSNP.to_json`</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">data</span> <span class="o">=</span> <span class="n">json</span><span class="o">.</span><span class="n">loads</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">uid</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span><span class="n">data</span><span class="p">[</span><span class="s1">&#39;uid&#39;</span><span class="p">])</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">gene_id</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span><span class="n">data</span><span class="p">[</span><span class="s1">&#39;gene_id&#39;</span><span class="p">])</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">exp_syn</span> <span class="o">=</span> <span class="n">data</span><span class="p">[</span><span class="s1">&#39;exp_syn&#39;</span><span class="p">]</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">exp_nonsyn</span> <span class="o">=</span> <span class="n">data</span><span class="p">[</span><span class="s1">&#39;exp_nonsyn&#39;</span><span class="p">]</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">taxon_id</span> <span class="o">=</span> <span class="n">data</span><span class="p">[</span><span class="s1">&#39;taxon_id&#39;</span><span class="p">]</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">coverage</span> <span class="o">=</span> <span class="n">data</span><span class="p">[</span><span class="s1">&#39;coverage&#39;</span><span class="p">]</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">snps</span> <span class="o">=</span> <span class="p">[</span>
+            <span class="p">(</span><span class="n">pos</span><span class="p">,</span> <span class="nb">str</span><span class="p">(</span><span class="n">change</span><span class="p">),</span> <span class="n">SNPType</span><span class="p">(</span><span class="n">snptype</span><span class="p">))</span>
+            <span class="k">for</span> <span class="n">pos</span><span class="p">,</span> <span class="n">change</span><span class="p">,</span> <span class="n">snptype</span> <span class="ow">in</span> <span class="n">data</span><span class="p">[</span><span class="s1">&#39;snps&#39;</span><span class="p">]</span>
+        <span class="p">]</span></div>
+
+    <span class="k">def</span> <span class="nf">_cache_values</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_syn</span> <span class="o">=</span> <span class="nb">sum</span><span class="p">(</span><span class="mi">1</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">snps</span> <span class="k">if</span> <span class="n">x</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span> <span class="ow">is</span> <span class="n">SNPType</span><span class="o">.</span><span class="n">syn</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_nonsyn</span> <span class="o">=</span> <span class="nb">sum</span><span class="p">(</span><span class="mi">1</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">snps</span> <span class="k">if</span> <span class="n">x</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span> <span class="ow">is</span> <span class="n">SNPType</span><span class="o">.</span><span class="n">nonsyn</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">_get_cached</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">attr</span><span class="p">):</span>
+        <span class="k">if</span> <span class="p">(</span><span class="nb">getattr</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="s1">&#39;_nsnps&#39;</span><span class="p">,</span> <span class="kc">None</span><span class="p">)</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">)</span> <span class="ow">or</span> \
+                <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_nsnps</span> <span class="o">!=</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">snps</span><span class="p">)):</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_cache_values</span><span class="p">()</span>
+        <span class="k">return</span> <span class="nb">getattr</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">attr</span><span class="p">)</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">syn</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="s2">&quot;Returns the expected synonymous changes&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_get_cached</span><span class="p">(</span><span class="s1">&#39;_syn&#39;</span><span class="p">)</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">nonsyn</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="s2">&quot;Returns the expected non-synonymous changes&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_get_cached</span><span class="p">(</span><span class="s1">&#39;_nonsyn&#39;</span><span class="p">)</span></div>
+</pre></div>
+
+           </div>
+           
+          </div>
+          <footer>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2013-2015, Francesco Rubino
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

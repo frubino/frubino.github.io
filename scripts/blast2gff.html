@@ -1,0 +1,563 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>blast2gff - Convert BLAST output to GFF &mdash; MGKit: Metagenomic framework 0.5.0 documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+  <script type="text/javascript" src="../_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+        <script type="text/javascript" src="../_static/jquery.js"></script>
+        <script type="text/javascript" src="../_static/underscore.js"></script>
+        <script type="text/javascript" src="../_static/doctools.js"></script>
+        <script type="text/javascript" src="../_static/language_data.js"></script>
+        <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+        <script async="async" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+        <script type="text/x-mathjax-config">MathJax.Hub.Config({"tex2jax": {"inlineMath": [["$", "$"], ["\\(", "\\)"]], "processEscapes": true, "ignoreClass": "document", "processClass": "math|output_area"}})</script>
+    
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/graphviz.css" type="text/css" />
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="filter-gff - Filter GFF annotations" href="filter-gff.html" />
+    <link rel="prev" title="Scripts Details" href="index.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../index.html" class="icon icon-home"> MGKit: Metagenomic framework
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                0.5.0
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../introduction.html">Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../install.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../pipeline/index.html">Metagenomic Pipeline</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">Scripts Details</a><ul class="current">
+<li class="toctree-l2 current"><a class="current reference internal" href="#">blast2gff - Convert BLAST output to GFF</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#module-mgkit.workflow.blast2gff">Overview</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#uniprot">Uniprot</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#blastdb">BlastDB</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#changes">Changes</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#options">Options</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#blast2gff">blast2gff</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="filter-gff.html">filter-gff - Filter GFF annotations</a></li>
+<li class="toctree-l2"><a class="reference internal" href="add-gff-info.html">add-gff-info - Add informations to GFF annotations</a></li>
+<li class="toctree-l2"><a class="reference internal" href="get-gff-info.html">get-gff-info - Extract informations to GFF annotations</a></li>
+<li class="toctree-l2"><a class="reference internal" href="hmmer2gff.html">hmmer2gff - Convert HMMER output to GFF</a></li>
+<li class="toctree-l2"><a class="reference internal" href="snp_analysis.html">snp_parser - SNPs analysis</a></li>
+<li class="toctree-l2"><a class="reference internal" href="download-taxonomy.html">Download Taxonomy</a></li>
+<li class="toctree-l2"><a class="reference internal" href="download-taxonomy.html#download-accession-taxonid">Download Accession/TaxonID</a></li>
+<li class="toctree-l2"><a class="reference internal" href="taxon_utils.html">taxon-utils - Taxonomy Utilities</a></li>
+<li class="toctree-l2"><a class="reference internal" href="fasta-utils.html">fasta-utils - Fasta Utilities</a></li>
+<li class="toctree-l2"><a class="reference internal" href="fastq-utils.html">fastq-utils - Fastq Utilities</a></li>
+<li class="toctree-l2"><a class="reference internal" href="json2gff.html">json2gff - Convert JSON to GFF</a></li>
+<li class="toctree-l2"><a class="reference internal" href="sampling-utils.html">sampling-utils - Resampling Utilities</a></li>
+<li class="toctree-l2"><a class="reference internal" href="edit_gff.html">edit-gff - GFF Viewer and Editor</a></li>
+<li class="toctree-l2"><a class="reference internal" href="pnps_gen.html">pnps-gen - pN/pS Table Generation</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../examples/index.html">Example Notebooks</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../gff.html">MGKit GFF Specifications</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../library.html">Library Reference</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../changes.html">Changes</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">MGKit: Metagenomic framework</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="index.html">Scripts Details</a> &raquo;</li>
+        
+      <li>blast2gff - Convert BLAST output to GFF</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="../_sources/scripts/blast2gff.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  
+<style>
+/* CSS overrides for sphinx_rtd_theme */
+
+/* 24px margin */
+.nbinput.nblast.container,
+.nboutput.nblast.container {
+    margin-bottom: 19px;  /* padding has already 5px */
+}
+
+/* ... except between code cells! */
+.nblast.container + .nbinput.container {
+    margin-top: -19px;
+}
+
+.admonition > p:before {
+    margin-right: 4px;  /* make room for the exclamation icon */
+}
+
+/* Fix math alignment, see https://github.com/rtfd/sphinx_rtd_theme/pull/686 */
+.math {
+    text-align: unset;
+}
+</style>
+<div class="section" id="blast2gff-convert-blast-output-to-gff">
+<span id="blast2gff"></span><h1>blast2gff - Convert BLAST output to GFF<a class="headerlink" href="#blast2gff-convert-blast-output-to-gff" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="module-mgkit.workflow.blast2gff">
+<span id="overview"></span><h2>Overview<a class="headerlink" href="#module-mgkit.workflow.blast2gff" title="Permalink to this headline">¶</a></h2>
+<p>Blast output conversion in GFF requires a BLAST+ tabular format which can be
+obtained by using the <cite>–outfmt 6</cite> option with the default columns, as
+specified in <a class="reference internal" href="../api/mgkit.io.blast.html#mgkit.io.blast.parse_blast_tab" title="mgkit.io.blast.parse_blast_tab"><code class="xref py py-func docutils literal notranslate"><span class="pre">mgkit.io.blast.parse_blast_tab()</span></code></a>. The script can get data
+from the standard in and ouputs GFF lines on the standard output by default.</p>
+<div class="section" id="uniprot">
+<h3>Uniprot<a class="headerlink" href="#uniprot" title="Permalink to this headline">¶</a></h3>
+<p>The Function <a class="reference internal" href="../api/mgkit.io.blast.html#mgkit.io.blast.parse_uniprot_blast" title="mgkit.io.blast.parse_uniprot_blast"><code class="xref py py-func docutils literal notranslate"><span class="pre">mgkit.io.blast.parse_uniprot_blast()</span></code></a> is used, which filters
+BLAST hits based on bitscore and adds by default a <em>db</em> attribute to the
+annotation with the value <em>UNIPROT-SP</em>, indicating that the SwissProt db is
+used and a <em>dbq</em> attribute with the value 10. The feature type used in the GFF
+is CDS.</p>
+<div><svg height="120" viewBox="0 0 712 120" width="712" xmlns="http://www.w3.org/2000/svg" xmlns:inkspace="http://www.inkscape.org/namespaces/inkscape" xmlns:xlink="http://www.w3.org/1999/xlink">
+  <defs id="defs_block">
+    <filter height="1.504" id="filter_blur" inkspace:collect="always" width="1.1575" x="-0.07875" y="-0.252">
+      <feGaussianBlur id="feGaussianBlur3780" inkspace:collect="always" stdDeviation="4.2" />
+    </filter>
+  </defs>
+  <title>blockdiag</title>
+  <desc />
+  <polygon fill="rgb(0,0,0)" points="91,46 195,46 171,86 67,86 91,46" stroke="rgb(0,0,0)" style="filter:url(#filter_blur);opacity:0.7;fill-opacity:1" />
+  <rect fill="rgb(0,0,0)" height="40" stroke="rgb(0,0,0)" style="filter:url(#filter_blur);opacity:0.7;fill-opacity:1" width="200" x="259" y="46" />
+  <rect fill="rgb(0,0,0)" height="40" stroke="rgb(0,0,0)" style="filter:url(#filter_blur);opacity:0.7;fill-opacity:1" width="128" x="523" y="46" />
+  <polygon fill="rgb(55,126,184)" points="88,40 192,40 168,80 64,80 88,40" stroke="rgb(0,0,0)" />
+  <text fill="rgb(255,255,255)" font-family="sans-serif" font-size="11" font-style="normal" font-weight="normal" text-anchor="middle" textLength="36" x="128.0" y="66">BLAST+</text>
+  <rect fill="rgb(228,26,28)" height="40" stroke="rgb(0,0,0)" width="200" x="256" y="40" />
+  <text fill="rgb(255,255,255)" font-family="sans-serif" font-size="16" font-style="normal" font-weight="normal" text-anchor="middle" textLength="165" x="356.5" y="68">parse_uniprot_blast</text>
+  <rect fill="rgb(77,175,74)" height="40" stroke="rgb(0,0,0)" width="128" x="520" y="40" />
+  <text fill="rgb(255,255,255)" font-family="sans-serif" font-size="11" font-style="normal" font-weight="normal" text-anchor="middle" textLength="18" x="584.0" y="66">GFF</text>
+  <path d="M 192 60 L 248 60" fill="none" stroke="rgb(0,0,0)" />
+  <polygon fill="rgb(0,0,0)" points="255,60 248,56 248,64 255,60" stroke="rgb(0,0,0)" />
+  <path d="M 456 60 L 512 60" fill="none" stroke="rgb(0,0,0)" />
+  <polygon fill="rgb(0,0,0)" points="519,60 512,56 512,64 519,60" stroke="rgb(0,0,0)" />
+</svg>
+</div>
+</div>
+<div class="section" id="blastdb">
+<h3>BlastDB<a class="headerlink" href="#blastdb" title="Permalink to this headline">¶</a></h3>
+<p>If a BlastDB, such as <em>nt</em> or <em>nr</em> was used, the <strong>blastdb</strong> command offers
+some quick defaults to parse BLAST results.</p>
+<p>It now includes options to control the way the sequence header are formatted.
+Options to change the separator used, as well as the column used as <em>gene_id</em>.
+This was added because at the moment the GI identifier (the second column in
+the header) is used, but it’s being phased out in favour of the embl/gb/dbj
+(right now the fourth column in the header). This should easy the transition to
+the new format and makes it easier to adapt an older pipeline/blastdb to newer
+files (like the ID to TAXA files).</p>
+<p>The header from the a <em>ncbi-nt</em> header looks like this:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">gi</span><span class="o">|</span><span class="mi">160361034</span><span class="o">|</span><span class="n">gb</span><span class="o">|</span><span class="n">CP000884</span><span class="o">.</span><span class="mi">1</span>
+</pre></div>
+</div>
+<p>This is the default output accepted by the <em>blastdb</em> command. The fields are
+separated by <strong>|</strong> (pipe) and the GI is used (–gene-index 1, since internally
+the string is split by the separator and the second element is take - lists
+indices are 0-based in Python). This output uses the following options:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">--</span><span class="n">header</span><span class="o">-</span><span class="n">sep</span> <span class="s1">&#39;|&#39;</span> <span class="o">--</span><span class="n">gene</span><span class="o">-</span><span class="n">index</span> <span class="mi">1</span>
+</pre></div>
+</div>
+<p>Notice the single quotes to pass the pipe symbol, since <em>bash</em> would interpret
+it as pipeing to the next coommand otherwise. This is the default.</p>
+<p>In case, for the same header, we want to use the <em>gb</em> identifier, the only
+option to be specified is:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">--</span><span class="n">gene</span><span class="o">-</span><span class="n">index</span> <span class="mi">3</span>
+</pre></div>
+</div>
+<p>This will get the fourth element of the header (since we’re splitting by pipe).</p>
+<p>As in the <em>uniprot</em> command, the <em>gene_id</em> can be set to use the whole header,
+using the <em>-n</em> option. Useful in case the <em>BLAST</em> db that was used was custom
+made. While pipe is used in major databases, it was made the default, by if the
+db used has different conventions the separator can be changed. There’s also
+the options of later changing the <em>gene_id</em> in the output GFF if necessary.</p>
+</div>
+<div class="section" id="changes">
+<h3>Changes<a class="headerlink" href="#changes" title="Permalink to this headline">¶</a></h3>
+<div class="versionchanged">
+<p><span class="versionmodified changed">Changed in version 0.3.4: </span>using <em>click</em> instead of <em>argparse</em></p>
+</div>
+<div class="versionchanged">
+<p><span class="versionmodified changed">Changed in version 0.2.6: </span>added <em>-r</em> option to <em>blastdb</em></p>
+</div>
+<div class="versionchanged">
+<p><span class="versionmodified changed">Changed in version 0.2.5: </span>added more options to give user control to the <em>blastdb</em> command</p>
+</div>
+<div class="versionadded">
+<p><span class="versionmodified added">New in version 0.2.3: </span>added <em>–fasta-file</em> option, added more data from a blsat hit</p>
+</div>
+<div class="versionadded">
+<p><span class="versionmodified added">New in version 0.2.2: </span>added <em>blastdb</em> command</p>
+</div>
+<div class="versionchanged">
+<p><span class="versionmodified changed">Changed in version 0.2.1: </span>added <em>-ft</em> option</p>
+</div>
+<div class="versionchanged">
+<p><span class="versionmodified changed">Changed in version 0.1.13: </span>added <em>-n</em> and <em>-k</em> parameters to <em>uniprot</em> command</p>
+</div>
+<div class="versionadded">
+<p><span class="versionmodified added">New in version 0.1.12.</span></p>
+</div>
+</div>
+</div>
+<div class="section" id="options">
+<h2>Options<a class="headerlink" href="#options" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="blast2gff">
+<h3>blast2gff<a class="headerlink" href="#blast2gff" title="Permalink to this headline">¶</a></h3>
+<p>Main function</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>blast2gff <span class="o">[</span>OPTIONS<span class="o">]</span> COMMAND <span class="o">[</span>ARGS<span class="o">]</span>...
+</pre></div>
+</div>
+<p class="rubric">Options</p>
+<dl class="option">
+<dt id="cmdoption-blast2gff-version">
+<code class="sig-name descname">--version</code><code class="sig-prename descclassname"></code><a class="headerlink" href="#cmdoption-blast2gff-version" title="Permalink to this definition">¶</a></dt>
+<dd><p>Show the version and exit.</p>
+</dd></dl>
+
+<dl class="option">
+<dt id="cmdoption-blast2gff-cite">
+<code class="sig-name descname">--cite</code><code class="sig-prename descclassname"></code><a class="headerlink" href="#cmdoption-blast2gff-cite" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<div class="section" id="blast2gff-blastdb">
+<h4>blastdb<a class="headerlink" href="#blast2gff-blastdb" title="Permalink to this headline">¶</a></h4>
+<p>Reads a BLAST output file [blast-file] in tabular format (using -outfmt 6) and
+outputs a GFF file [gff-file]</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>blast2gff blastdb <span class="o">[</span>OPTIONS<span class="o">]</span> <span class="o">[</span>BLAST_FILE<span class="o">]</span> <span class="o">[</span>GFF_FILE<span class="o">]</span>
+</pre></div>
+</div>
+<p class="rubric">Options</p>
+<dl class="option">
+<dt id="cmdoption-blast2gff-blastdb-v">
+<code class="sig-name descname">-v</code><code class="sig-prename descclassname"></code><code class="sig-prename descclassname">, </code><code class="sig-name descname">--verbose</code><code class="sig-prename descclassname"></code><a class="headerlink" href="#cmdoption-blast2gff-blastdb-v" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="option">
+<dt id="cmdoption-blast2gff-blastdb-db">
+<code class="sig-name descname">-db</code><code class="sig-prename descclassname"></code><code class="sig-prename descclassname">, </code><code class="sig-name descname">--db-used</code><code class="sig-prename descclassname"> &lt;db_used&gt;</code><a class="headerlink" href="#cmdoption-blast2gff-blastdb-db" title="Permalink to this definition">¶</a></dt>
+<dd><p>blastdb used  [default: NCBI-NT]</p>
+</dd></dl>
+
+<dl class="option">
+<dt id="cmdoption-blast2gff-blastdb-n">
+<code class="sig-name descname">-n</code><code class="sig-prename descclassname"></code><code class="sig-prename descclassname">, </code><code class="sig-name descname">--no-split</code><code class="sig-prename descclassname"></code><a class="headerlink" href="#cmdoption-blast2gff-blastdb-n" title="Permalink to this definition">¶</a></dt>
+<dd><p>if used, the script assumes that the sequence header will be used as gene_id</p>
+</dd></dl>
+
+<dl class="option">
+<dt id="cmdoption-blast2gff-blastdb-s">
+<code class="sig-name descname">-s</code><code class="sig-prename descclassname"></code><code class="sig-prename descclassname">, </code><code class="sig-name descname">--header-sep</code><code class="sig-prename descclassname"> &lt;header_sep&gt;</code><a class="headerlink" href="#cmdoption-blast2gff-blastdb-s" title="Permalink to this definition">¶</a></dt>
+<dd><p>The separator for the header, defaults to ‘|’ (pipe)  [default: <a href="#id1"><span class="problematic" id="id2">|</span></a>]</p>
+</dd></dl>
+
+<dl class="option">
+<dt id="cmdoption-blast2gff-blastdb-i">
+<code class="sig-name descname">-i</code><code class="sig-prename descclassname"></code><code class="sig-prename descclassname">, </code><code class="sig-name descname">--gene-index</code><code class="sig-prename descclassname"> &lt;gene_index&gt;</code><a class="headerlink" href="#cmdoption-blast2gff-blastdb-i" title="Permalink to this definition">¶</a></dt>
+<dd><p>Which of the header columns (0-based) to use as gene_id (defaults to 1 - the second column)  [default: 1]</p>
+</dd></dl>
+
+<dl class="option">
+<dt id="cmdoption-blast2gff-blastdb-r">
+<code class="sig-name descname">-r</code><code class="sig-prename descclassname"></code><code class="sig-prename descclassname">, </code><code class="sig-name descname">--remove-version</code><code class="sig-prename descclassname"></code><a class="headerlink" href="#cmdoption-blast2gff-blastdb-r" title="Permalink to this definition">¶</a></dt>
+<dd><p>if used, the script removes the <em>version</em> information from the gene_id</p>
+</dd></dl>
+
+<dl class="option">
+<dt id="cmdoption-blast2gff-blastdb-a">
+<code class="sig-name descname">-a</code><code class="sig-prename descclassname"></code><code class="sig-prename descclassname">, </code><code class="sig-name descname">--fasta-file</code><code class="sig-prename descclassname"> &lt;fasta_file&gt;</code><a class="headerlink" href="#cmdoption-blast2gff-blastdb-a" title="Permalink to this definition">¶</a></dt>
+<dd><p>Optional FASTA file with the query sequences</p>
+</dd></dl>
+
+<dl class="option">
+<dt id="cmdoption-blast2gff-blastdb-dbq">
+<code class="sig-name descname">-dbq</code><code class="sig-prename descclassname"></code><code class="sig-prename descclassname">, </code><code class="sig-name descname">--db-quality</code><code class="sig-prename descclassname"> &lt;db_quality&gt;</code><a class="headerlink" href="#cmdoption-blast2gff-blastdb-dbq" title="Permalink to this definition">¶</a></dt>
+<dd><p>Quality of the DB used  [default: 10]</p>
+</dd></dl>
+
+<dl class="option">
+<dt id="cmdoption-blast2gff-blastdb-b">
+<code class="sig-name descname">-b</code><code class="sig-prename descclassname"></code><code class="sig-prename descclassname">, </code><code class="sig-name descname">--bitscore</code><code class="sig-prename descclassname"> &lt;bitscore&gt;</code><a class="headerlink" href="#cmdoption-blast2gff-blastdb-b" title="Permalink to this definition">¶</a></dt>
+<dd><p>Minimum bitscore to keep the annotation  [default: 0.0]</p>
+</dd></dl>
+
+<dl class="option">
+<dt id="cmdoption-blast2gff-blastdb-k">
+<code class="sig-name descname">-k</code><code class="sig-prename descclassname"></code><code class="sig-prename descclassname">, </code><code class="sig-name descname">--attr-value</code><code class="sig-prename descclassname"> &lt;attr_value&gt;</code><a class="headerlink" href="#cmdoption-blast2gff-blastdb-k" title="Permalink to this definition">¶</a></dt>
+<dd><p>Additional attribute and value to add to each annotation, in the form attr:value</p>
+</dd></dl>
+
+<dl class="option">
+<dt id="cmdoption-blast2gff-blastdb-ft">
+<code class="sig-name descname">-ft</code><code class="sig-prename descclassname"></code><code class="sig-prename descclassname">, </code><code class="sig-name descname">--feat-type</code><code class="sig-prename descclassname"> &lt;feat_type&gt;</code><a class="headerlink" href="#cmdoption-blast2gff-blastdb-ft" title="Permalink to this definition">¶</a></dt>
+<dd><p>Feature type to use in the GFF  [default: CDS]</p>
+</dd></dl>
+
+<dl class="option">
+<dt id="cmdoption-blast2gff-blastdb-progress">
+<code class="sig-name descname">--progress</code><code class="sig-prename descclassname"></code><a class="headerlink" href="#cmdoption-blast2gff-blastdb-progress" title="Permalink to this definition">¶</a></dt>
+<dd><p>Shows Progress Bar</p>
+</dd></dl>
+
+<p class="rubric">Arguments</p>
+<dl class="option">
+<dt id="cmdoption-blast2gff-blastdb-arg-blast-file">
+<code class="sig-name descname">BLAST_FILE</code><code class="sig-prename descclassname"></code><a class="headerlink" href="#cmdoption-blast2gff-blastdb-arg-blast-file" title="Permalink to this definition">¶</a></dt>
+<dd><p>Optional argument</p>
+</dd></dl>
+
+<dl class="option">
+<dt id="cmdoption-blast2gff-blastdb-arg-gff-file">
+<code class="sig-name descname">GFF_FILE</code><code class="sig-prename descclassname"></code><a class="headerlink" href="#cmdoption-blast2gff-blastdb-arg-gff-file" title="Permalink to this definition">¶</a></dt>
+<dd><p>Optional argument</p>
+</dd></dl>
+
+</div>
+<div class="section" id="blast2gff-uniprot">
+<h4>uniprot<a class="headerlink" href="#blast2gff-uniprot" title="Permalink to this headline">¶</a></h4>
+<p>Reads a BLAST output file [blast-file] in tabular format (using -outfmt 6) from
+a Uniprot DB and outputs a GFF file [gff-file]</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>blast2gff uniprot <span class="o">[</span>OPTIONS<span class="o">]</span> <span class="o">[</span>BLAST_FILE<span class="o">]</span> <span class="o">[</span>GFF_FILE<span class="o">]</span>
+</pre></div>
+</div>
+<p class="rubric">Options</p>
+<dl class="option">
+<dt id="cmdoption-blast2gff-uniprot-v">
+<code class="sig-name descname">-v</code><code class="sig-prename descclassname"></code><code class="sig-prename descclassname">, </code><code class="sig-name descname">--verbose</code><code class="sig-prename descclassname"></code><a class="headerlink" href="#cmdoption-blast2gff-uniprot-v" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="option">
+<dt id="cmdoption-blast2gff-uniprot-db">
+<code class="sig-name descname">-db</code><code class="sig-prename descclassname"></code><code class="sig-prename descclassname">, </code><code class="sig-name descname">--db-used</code><code class="sig-prename descclassname"> &lt;db_used&gt;</code><a class="headerlink" href="#cmdoption-blast2gff-uniprot-db" title="Permalink to this definition">¶</a></dt>
+<dd><p>Uniprot database used with BLAST  [default: UNIPROT-SP]</p>
+</dd></dl>
+
+<dl class="option">
+<dt id="cmdoption-blast2gff-uniprot-n">
+<code class="sig-name descname">-n</code><code class="sig-prename descclassname"></code><code class="sig-prename descclassname">, </code><code class="sig-name descname">--no-split</code><code class="sig-prename descclassname"></code><a class="headerlink" href="#cmdoption-blast2gff-uniprot-n" title="Permalink to this definition">¶</a></dt>
+<dd><p>if used, the script assumes that the sequence header will be used as gene_id</p>
+</dd></dl>
+
+<dl class="option">
+<dt id="cmdoption-blast2gff-uniprot-a">
+<code class="sig-name descname">-a</code><code class="sig-prename descclassname"></code><code class="sig-prename descclassname">, </code><code class="sig-name descname">--fasta-file</code><code class="sig-prename descclassname"> &lt;fasta_file&gt;</code><a class="headerlink" href="#cmdoption-blast2gff-uniprot-a" title="Permalink to this definition">¶</a></dt>
+<dd><p>Optional FASTA file with the query sequences</p>
+</dd></dl>
+
+<dl class="option">
+<dt id="cmdoption-blast2gff-uniprot-dbq">
+<code class="sig-name descname">-dbq</code><code class="sig-prename descclassname"></code><code class="sig-prename descclassname">, </code><code class="sig-name descname">--db-quality</code><code class="sig-prename descclassname"> &lt;db_quality&gt;</code><a class="headerlink" href="#cmdoption-blast2gff-uniprot-dbq" title="Permalink to this definition">¶</a></dt>
+<dd><p>Quality of the DB used  [default: 10]</p>
+</dd></dl>
+
+<dl class="option">
+<dt id="cmdoption-blast2gff-uniprot-b">
+<code class="sig-name descname">-b</code><code class="sig-prename descclassname"></code><code class="sig-prename descclassname">, </code><code class="sig-name descname">--bitscore</code><code class="sig-prename descclassname"> &lt;bitscore&gt;</code><a class="headerlink" href="#cmdoption-blast2gff-uniprot-b" title="Permalink to this definition">¶</a></dt>
+<dd><p>Minimum bitscore to keep the annotation  [default: 0.0]</p>
+</dd></dl>
+
+<dl class="option">
+<dt id="cmdoption-blast2gff-uniprot-k">
+<code class="sig-name descname">-k</code><code class="sig-prename descclassname"></code><code class="sig-prename descclassname">, </code><code class="sig-name descname">--attr-value</code><code class="sig-prename descclassname"> &lt;attr_value&gt;</code><a class="headerlink" href="#cmdoption-blast2gff-uniprot-k" title="Permalink to this definition">¶</a></dt>
+<dd><p>Additional attribute and value to add to each annotation, in the form attr:value</p>
+</dd></dl>
+
+<dl class="option">
+<dt id="cmdoption-blast2gff-uniprot-ft">
+<code class="sig-name descname">-ft</code><code class="sig-prename descclassname"></code><code class="sig-prename descclassname">, </code><code class="sig-name descname">--feat-type</code><code class="sig-prename descclassname"> &lt;feat_type&gt;</code><a class="headerlink" href="#cmdoption-blast2gff-uniprot-ft" title="Permalink to this definition">¶</a></dt>
+<dd><p>Feature type to use in the GFF  [default: CDS]</p>
+</dd></dl>
+
+<dl class="option">
+<dt id="cmdoption-blast2gff-uniprot-progress">
+<code class="sig-name descname">--progress</code><code class="sig-prename descclassname"></code><a class="headerlink" href="#cmdoption-blast2gff-uniprot-progress" title="Permalink to this definition">¶</a></dt>
+<dd><p>Shows Progress Bar</p>
+</dd></dl>
+
+<p class="rubric">Arguments</p>
+<dl class="option">
+<dt id="cmdoption-blast2gff-uniprot-arg-blast-file">
+<code class="sig-name descname">BLAST_FILE</code><code class="sig-prename descclassname"></code><a class="headerlink" href="#cmdoption-blast2gff-uniprot-arg-blast-file" title="Permalink to this definition">¶</a></dt>
+<dd><p>Optional argument</p>
+</dd></dl>
+
+<dl class="option">
+<dt id="cmdoption-blast2gff-uniprot-arg-gff-file">
+<code class="sig-name descname">GFF_FILE</code><code class="sig-prename descclassname"></code><a class="headerlink" href="#cmdoption-blast2gff-uniprot-arg-gff-file" title="Permalink to this definition">¶</a></dt>
+<dd><p>Optional argument</p>
+</dd></dl>
+
+</div>
+</div>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="filter-gff.html" class="btn btn-neutral float-right" title="filter-gff - Filter GFF annotations" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="index.html" class="btn btn-neutral float-left" title="Scripts Details" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2013-2015, Francesco Rubino
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

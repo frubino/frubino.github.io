@@ -1,0 +1,511 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>mgkit.net.embl &mdash; MGKit: Metagenomic framework 0.5.0 documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+  <script type="text/javascript" src="../../../_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../../../" src="../../../_static/documentation_options.js"></script>
+        <script type="text/javascript" src="../../../_static/jquery.js"></script>
+        <script type="text/javascript" src="../../../_static/underscore.js"></script>
+        <script type="text/javascript" src="../../../_static/doctools.js"></script>
+        <script type="text/javascript" src="../../../_static/language_data.js"></script>
+        <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+        <script async="async" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+        <script type="text/x-mathjax-config">MathJax.Hub.Config({"tex2jax": {"inlineMath": [["$", "$"], ["\\(", "\\)"]], "processEscapes": true, "ignoreClass": "document", "processClass": "math|output_area"}})</script>
+    
+    <script type="text/javascript" src="../../../_static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="../../../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../../../_static/graphviz.css" type="text/css" />
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../../../index.html" class="icon icon-home"> MGKit: Metagenomic framework
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                0.5.0
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../introduction.html">Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../install.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../pipeline/index.html">Metagenomic Pipeline</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../scripts/index.html">Scripts Details</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../examples/index.html">Example Notebooks</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../gff.html">MGKit GFF Specifications</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../library.html">Library Reference</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../changes.html">Changes</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../index.html">MGKit: Metagenomic framework</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../../../index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="../../index.html">Module code</a> &raquo;</li>
+        
+          <li><a href="../../mgkit.html">mgkit</a> &raquo;</li>
+        
+      <li>mgkit.net.embl</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <h1>Source code for mgkit.net.embl</h1><div class="highlight"><pre>
+<span></span><span class="s2">&quot;Access EMBL Services&quot;</span>
+
+<span class="kn">from</span> <span class="nn">builtins</span> <span class="kn">import</span> <span class="nb">range</span>
+<span class="kn">import</span> <span class="nn">logging</span>
+<span class="kn">import</span> <span class="nn">re</span>
+<span class="kn">import</span> <span class="nn">gzip</span>
+<span class="kn">from</span> <span class="nn">.</span> <span class="kn">import</span> <span class="n">url_read</span>
+<span class="kn">import</span> <span class="nn">requests</span>
+<span class="kn">import</span> <span class="nn">mgkit</span>
+<span class="k">try</span><span class="p">:</span>
+    <span class="kn">from</span> <span class="nn">cStringIO</span> <span class="kn">import</span> <span class="n">StringIO</span>
+<span class="k">except</span> <span class="ne">ImportError</span><span class="p">:</span>
+    <span class="kn">from</span> <span class="nn">io</span> <span class="kn">import</span> <span class="n">BytesIO</span> <span class="k">as</span> <span class="n">StringIO</span>
+
+
+<div class="viewcode-block" id="NoEntryFound"><a class="viewcode-back" href="../../../api/mgkit.net.embl.html#mgkit.net.embl.NoEntryFound">[docs]</a><span class="k">class</span> <span class="nc">NoEntryFound</span><span class="p">(</span><span class="ne">Exception</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Raised if no sequences where found by :func:`get_sequences_by_ids`, the</span>
+<span class="sd">    check is based on the :data:`NONE_FOUND` variable.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">pass</span></div>
+
+
+<div class="viewcode-block" id="EntryNotFound"><a class="viewcode-back" href="../../../api/mgkit.net.embl.html#mgkit.net.embl.EntryNotFound">[docs]</a><span class="k">class</span> <span class="nc">EntryNotFound</span><span class="p">(</span><span class="ne">Exception</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Raised if at least one entry was not found by :func:`get_sequences_by_ids`.</span>
+<span class="sd">    :data:`NOT_FOUND` is used to check if any entry wasn&#39;t downloaded.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">pass</span></div>
+
+
+<span class="n">URL_REST</span> <span class="o">=</span> <span class="s2">&quot;http://www.ebi.ac.uk/Tools/dbfetch/dbfetch/&quot;</span>
+<span class="s2">&quot;Base URL for EMBL DBFetch REST API&quot;</span>
+
+<span class="n">URL_DATAWAREHOUSE</span> <span class="o">=</span> <span class="s2">&quot;http://www.ebi.ac.uk/ena/data/warehouse/search?&quot;</span>
+
+<span class="n">EMBL_DBID</span> <span class="o">=</span> <span class="s1">&#39;embl_cds&#39;</span>
+<span class="s2">&quot;Default database id&quot;</span>
+
+<span class="n">NOT_FOUND</span> <span class="o">=</span> <span class="sa">r</span><span class="s2">&quot;Entry: .+? not found.\n&quot;</span>
+<span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">Appears in the resulting fasta (not tried on other formats) in the case that at</span>
+<span class="sd">least one entry wasn&#39;t found.</span>
+<span class="sd">&quot;&quot;&quot;</span>
+
+<span class="n">SUPPRESSED</span> <span class="o">=</span> <span class="s2">&quot;suppressed at the submitter&#39;s request on&quot;</span>
+
+<span class="n">NONE_FOUND</span> <span class="o">=</span> <span class="sa">r</span><span class="s2">&quot;ERROR 12.+?.\n?&quot;</span>
+<span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">Regular expression to check if no entry was found, used by :exc:`NoEntryFound`</span>
+<span class="sd">&quot;&quot;&quot;</span>
+
+<span class="n">LOG</span> <span class="o">=</span> <span class="n">logging</span><span class="o">.</span><span class="n">getLogger</span><span class="p">(</span><span class="vm">__name__</span><span class="p">)</span>
+<span class="s2">&quot;Log instance for this module&quot;</span>
+
+
+<div class="viewcode-block" id="get_sequences_by_ids"><a class="viewcode-back" href="../../../api/mgkit.net.embl.html#mgkit.net.embl.get_sequences_by_ids">[docs]</a><span class="k">def</span> <span class="nf">get_sequences_by_ids</span><span class="p">(</span><span class="n">embl_ids</span><span class="p">,</span> <span class="n">contact</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">out_format</span><span class="o">=</span><span class="s1">&#39;fasta&#39;</span><span class="p">,</span>
+                         <span class="n">num_req</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span> <span class="n">embl_db</span><span class="o">=</span><span class="n">EMBL_DBID</span><span class="p">,</span> <span class="n">strict</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    .. versionchanged:: 0.3.4</span>
+<span class="sd">        removed *compress* as it&#39;s bases on the `requests` package</span>
+
+<span class="sd">    Downloads entries using EBI REST API. It can download one entry at a</span>
+<span class="sd">    time or accept an iterable and all sequences will be downloaded in batches</span>
+<span class="sd">    of at most num_req.</span>
+
+<span class="sd">    It&#39;s fairly general, so can be customised, from the DB used to the output</span>
+<span class="sd">    format: all batches are simply concatenate.</span>
+
+<span class="sd">    .. note::</span>
+
+<span class="sd">        There are some checks on the some errors reported by the EMBL api, but</span>
+<span class="sd">        not documented, in particular two errors, which are just reported as</span>
+<span class="sd">        text lines in the fasta file (the only one tested at this time).</span>
+
+<span class="sd">        The are two possible cases:</span>
+
+<span class="sd">        * if no entry was found :exc:`NoEntryFound` will be raised.</span>
+<span class="sd">        * if at least one entry wasn&#39;t found:</span>
+
+<span class="sd">          * if strict is False (the default) the error will be just logged as a</span>
+<span class="sd">            debug message</span>
+<span class="sd">          * if strict is True :exc:`EntryNotFound` is raised</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        embl_ids (iterable, str): list of ids to download</span>
+<span class="sd">        contact (str): email address to be passed in the query</span>
+<span class="sd">        format (str): format of the entry</span>
+<span class="sd">        num_req (int): number of entries to download with each request</span>
+<span class="sd">        embl_db (str): db to which the ids refer to</span>
+<span class="sd">        strict (bool): if True, a check on the number of entries retrieved is</span>
+<span class="sd">            performed</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        str: the entries requested</span>
+
+<span class="sd">    Raises:</span>
+<span class="sd">        EntryNotFound: if at least an entry was not found</span>
+<span class="sd">        NoEntryFound: if NO entry were found</span>
+
+<span class="sd">    .. warning::</span>
+
+<span class="sd">        The number of sequences that can be downloaded at a time is 11, it</span>
+<span class="sd">        seems, since the returned sequences for each request was at most 11. I</span>
+<span class="sd">        didn&#39;t find any mention of this in the API docs, but it may be a</span>
+<span class="sd">        restriction that&#39;s temporary.</span>
+
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">embl_ids</span><span class="p">,</span> <span class="nb">str</span><span class="p">):</span>
+        <span class="n">embl_ids</span> <span class="o">=</span> <span class="p">[</span><span class="n">embl_ids</span><span class="p">]</span>
+    <span class="k">elif</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">embl_ids</span><span class="p">,</span> <span class="p">(</span><span class="nb">set</span><span class="p">,</span> <span class="nb">dict</span><span class="p">)):</span>
+        <span class="n">embl_ids</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">embl_ids</span><span class="p">)</span>
+
+    <span class="n">splitter</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">compile</span><span class="p">(</span><span class="n">NOT_FOUND</span><span class="p">)</span>
+    <span class="n">error_re</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">compile</span><span class="p">(</span><span class="n">NONE_FOUND</span><span class="p">)</span>
+
+    <span class="n">entries</span> <span class="o">=</span> <span class="p">[]</span>
+
+    <span class="k">for</span> <span class="n">idx</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">embl_ids</span><span class="p">),</span> <span class="n">num_req</span><span class="p">):</span>
+
+        <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">embl_ids</span><span class="p">)</span> <span class="o">&gt;</span> <span class="n">num_req</span><span class="p">:</span>
+            <span class="n">LOG</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s2">&quot;Downloading ids - range </span><span class="si">%d</span><span class="s2">-</span><span class="si">%d</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">idx</span> <span class="o">+</span> <span class="mi">1</span><span class="p">,</span> <span class="n">idx</span> <span class="o">+</span> <span class="n">num_req</span><span class="p">)</span>
+
+        <span class="n">request_params</span> <span class="o">=</span> <span class="s2">&quot;</span><span class="si">{db_id}</span><span class="s2">/</span><span class="si">{entry_id}</span><span class="s2">/</span><span class="si">{format}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span>
+            <span class="n">db_id</span><span class="o">=</span><span class="n">embl_db</span><span class="p">,</span>
+            <span class="n">entry_id</span><span class="o">=</span><span class="s1">&#39;,&#39;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">embl_ids</span><span class="p">[</span><span class="n">idx</span><span class="p">:</span><span class="n">idx</span><span class="o">+</span><span class="n">num_req</span><span class="p">]),</span>
+            <span class="nb">format</span><span class="o">=</span><span class="n">out_format</span>
+        <span class="p">)</span>
+
+        <span class="n">request_url</span> <span class="o">=</span> <span class="n">URL_REST</span> <span class="o">+</span> <span class="n">request_params</span>
+
+        <span class="n">seqs</span> <span class="o">=</span> <span class="n">url_read</span><span class="p">(</span><span class="n">request_url</span><span class="p">,</span> <span class="n">agent</span><span class="o">=</span><span class="n">contact</span><span class="p">)</span>
+
+        <span class="c1"># it seems that they add at the end of each request two newlines</span>
+        <span class="c1"># (should be just one)</span>
+        <span class="n">seqs</span> <span class="o">=</span> <span class="n">seqs</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s1">&#39;</span><span class="se">\n\n</span><span class="s1">&#39;</span><span class="p">,</span> <span class="s1">&#39;</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">)</span>
+
+        <span class="k">if</span> <span class="n">splitter</span><span class="o">.</span><span class="n">search</span><span class="p">(</span><span class="n">seqs</span><span class="p">):</span>
+            <span class="k">if</span> <span class="n">strict</span><span class="p">:</span>
+                <span class="k">raise</span> <span class="n">EntryNotFound</span><span class="p">(</span><span class="s2">&quot;At least one Entry was not found&quot;</span><span class="p">)</span>
+            <span class="n">LOG</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s2">&quot;At least one Entry was not found&quot;</span><span class="p">)</span>
+            <span class="n">entries</span><span class="o">.</span><span class="n">extend</span><span class="p">(</span><span class="n">splitter</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="n">seqs</span><span class="p">))</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">entries</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">seqs</span><span class="p">)</span>
+
+    <span class="n">entries</span> <span class="o">=</span> <span class="s1">&#39;&#39;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">entries</span><span class="p">)</span>
+
+    <span class="c1"># check for suppressed entries</span>
+    <span class="n">entries</span> <span class="o">=</span> <span class="s1">&#39;</span><span class="se">\n</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span>
+        <span class="n">line</span> <span class="k">for</span> <span class="n">line</span> <span class="ow">in</span> <span class="n">entries</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">&#39;</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">line</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="n">SUPPRESSED</span><span class="p">)</span> <span class="o">==</span> <span class="o">-</span><span class="mi">1</span>
+    <span class="p">)</span>
+
+    <span class="k">if</span> <span class="n">error_re</span><span class="o">.</span><span class="n">search</span><span class="p">(</span><span class="n">entries</span><span class="p">):</span>
+        <span class="c1"># if there&#39;s no sequences or we want all sequences to be downloaded</span>
+        <span class="k">if</span> <span class="n">entries</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="s1">&#39;&gt;&#39;</span><span class="p">)</span> <span class="o">==</span> <span class="o">-</span><span class="mi">1</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="n">NoEntryFound</span><span class="p">(</span><span class="s2">&quot;No entry found&quot;</span><span class="p">)</span>
+        <span class="k">elif</span> <span class="n">strict</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="n">EntryNotFound</span><span class="p">(</span><span class="s2">&quot;At least one Entry was not found&quot;</span><span class="p">)</span>
+        <span class="c1"># in case there&#39;s at least one sequence that was retrieved</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">entries</span> <span class="o">=</span> <span class="s1">&#39;&#39;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">error_re</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="n">entries</span><span class="p">))</span>
+            <span class="n">LOG</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s2">&quot;At least one Entry was not found&quot;</span><span class="p">)</span>
+
+    <span class="k">return</span> <span class="n">entries</span></div>
+
+
+<div class="viewcode-block" id="dbfetch"><a class="viewcode-back" href="../../../api/mgkit.net.embl.html#mgkit.net.embl.dbfetch">[docs]</a><span class="k">def</span> <span class="nf">dbfetch</span><span class="p">(</span><span class="n">embl_ids</span><span class="p">,</span> <span class="n">db</span><span class="o">=</span><span class="s1">&#39;embl&#39;</span><span class="p">,</span> <span class="n">contact</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">out_format</span><span class="o">=</span><span class="s1">&#39;seqxml&#39;</span><span class="p">,</span>
+            <span class="n">num_req</span><span class="o">=</span><span class="mi">10</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    .. versionadded:: 0.1.12</span>
+
+<span class="sd">    Function that allows to use dbfetch service (REST). More information on the</span>
+<span class="sd">    output formats and the database available at the</span>
+<span class="sd">    `service page &lt;http://www.ebi.ac.uk/Tools/dbfetch/syntax.jsp&gt;`_</span>
+
+<span class="sd">    Arguments:</span>
+<span class="sd">        embl_ids (str, iterable): list or single sequence id to retrieve</span>
+<span class="sd">        db (str): database from which retrieve the sequence data</span>
+<span class="sd">        contact (str): email contact to use as per EMBL guidlines</span>
+<span class="sd">        out_format (str): output format, depends on database</span>
+<span class="sd">        num_req (int): number of ids per request</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        list: a list with the results from each request sent. Each request sent</span>
+<span class="sd">        has a maximum number *num_req* of ids, so the number of items in the</span>
+<span class="sd">        list depends by the number of ids in *embl_ids* and the value of</span>
+<span class="sd">        *num_req*.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">embl_ids</span><span class="p">,</span> <span class="nb">str</span><span class="p">):</span>
+        <span class="n">embl_ids</span> <span class="o">=</span> <span class="p">[</span><span class="n">embl_ids</span><span class="p">]</span>
+    <span class="k">elif</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">embl_ids</span><span class="p">,</span> <span class="p">(</span><span class="nb">set</span><span class="p">,</span> <span class="nb">dict</span><span class="p">)):</span>
+        <span class="n">embl_ids</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">embl_ids</span><span class="p">)</span>
+
+    <span class="n">entries</span> <span class="o">=</span> <span class="p">[]</span>
+
+    <span class="k">for</span> <span class="n">idx</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">embl_ids</span><span class="p">),</span> <span class="n">num_req</span><span class="p">):</span>
+
+        <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">embl_ids</span><span class="p">)</span> <span class="o">&gt;</span> <span class="n">num_req</span><span class="p">:</span>
+            <span class="n">LOG</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;Downloading ids - range </span><span class="si">%d</span><span class="s2">-</span><span class="si">%d</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">idx</span> <span class="o">+</span> <span class="mi">1</span><span class="p">,</span> <span class="n">idx</span> <span class="o">+</span> <span class="n">num_req</span><span class="p">)</span>
+
+        <span class="n">request_params</span> <span class="o">=</span> <span class="s2">&quot;</span><span class="si">{db_id}</span><span class="s2">/</span><span class="si">{entry_id}</span><span class="s2">/</span><span class="si">{format}</span><span class="s2">?style=raw&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span>
+            <span class="n">db_id</span><span class="o">=</span><span class="n">db</span><span class="p">,</span>
+            <span class="n">entry_id</span><span class="o">=</span><span class="s1">&#39;,&#39;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">embl_ids</span><span class="p">[</span><span class="n">idx</span><span class="p">:</span><span class="n">idx</span><span class="o">+</span><span class="n">num_req</span><span class="p">]),</span>
+            <span class="nb">format</span><span class="o">=</span><span class="n">out_format</span>
+        <span class="p">)</span>
+
+        <span class="n">request_url</span> <span class="o">=</span> <span class="n">URL_REST</span> <span class="o">+</span> <span class="n">request_params</span>
+
+        <span class="k">if</span> <span class="n">mgkit</span><span class="o">.</span><span class="n">DEBUG</span><span class="p">:</span>
+            <span class="n">LOG</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="n">request_url</span><span class="p">)</span>
+
+        <span class="n">entries</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">url_read</span><span class="p">(</span><span class="n">request_url</span><span class="p">,</span> <span class="n">agent</span><span class="o">=</span><span class="n">contact</span><span class="p">))</span>
+
+    <span class="k">return</span> <span class="n">entries</span></div>
+
+
+<div class="viewcode-block" id="datawarehouse_search"><a class="viewcode-back" href="../../../api/mgkit.net.embl.html#mgkit.net.embl.datawarehouse_search">[docs]</a><span class="k">def</span> <span class="nf">datawarehouse_search</span><span class="p">(</span><span class="n">query</span><span class="p">,</span> <span class="n">domain</span><span class="o">=</span><span class="s1">&#39;sequence&#39;</span><span class="p">,</span> <span class="n">result</span><span class="o">=</span><span class="s1">&#39;sequence_release&#39;</span><span class="p">,</span>
+                         <span class="n">display</span><span class="o">=</span><span class="s1">&#39;fasta&#39;</span><span class="p">,</span> <span class="n">offset</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">length</span><span class="o">=</span><span class="mi">100000</span><span class="p">,</span>
+                         <span class="n">contact</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">download</span><span class="o">=</span><span class="s1">&#39;gzip&#39;</span><span class="p">,</span> <span class="n">url</span><span class="o">=</span><span class="n">URL_DATAWAREHOUSE</span><span class="p">,</span>
+                         <span class="n">fields</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    .. versionchanged:: 0.2.3</span>
+<span class="sd">        added *fields* parameter to retrieve tab separated information</span>
+
+<span class="sd">    .. versionadded:: 0.1.13</span>
+
+<span class="sd">    Perform a datawarehouse search on EMBL dbs. Instructions on the query</span>
+<span class="sd">    language used to query the datawarehouse are available at `this page</span>
+<span class="sd">    &lt;http://www.ebi.ac.uk/ena/about/browser#data_warehouse&gt;`_ with more details</span>
+<span class="sd">    about the databases domains `at this page</span>
+<span class="sd">    &lt;http://www.ebi.ac.uk/ena/data/warehouse/usage&gt;`_</span>
+
+<span class="sd">    Arguments:</span>
+<span class="sd">        query (str): query for the search enging</span>
+<span class="sd">        domain (str): database domain to search</span>
+<span class="sd">        result (str): domain result requested</span>
+<span class="sd">        display (str): display option (format to retrieve the entries)</span>
+<span class="sd">        offset (int): the offset of the search results, defaults to the first</span>
+<span class="sd">        length (int): number of results to retrieve at the specified offset</span>
+<span class="sd">            and the limit is automatically set a 100,000 records for query</span>
+<span class="sd">        contact (str): email of the user</span>
+<span class="sd">        download (str): type of response. Gzip responses are automatically</span>
+<span class="sd">            decompressed</span>
+<span class="sd">        url (str): base URL for the resource</span>
+<span class="sd">        fields (None, iterable): must be an iterable of fields to be returned</span>
+<span class="sd">            if display is set to *report*</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        str: the raw request</span>
+
+<span class="sd">    Examples:</span>
+<span class="sd">        Querying EMBL for all sequences of type rRNA of the  *Clostridium*</span>
+<span class="sd">        genus. Only from the EMBL release database in fasta format:</span>
+
+<span class="sd">        &gt;&gt;&gt; query = &#39;tax_tree(1485) AND mol_type=&quot;rRNA&quot;&#39;</span>
+<span class="sd">        &gt;&gt;&gt; result = &#39;sequence_release&#39;</span>
+<span class="sd">        &gt;&gt;&gt; display = &#39;fasta&#39;</span>
+<span class="sd">        &gt;&gt;&gt; data = embl.datawarehouse_search(query, result=result,</span>
+<span class="sd">        ... display=display)</span>
+<span class="sd">        &gt;&gt;&gt; len(data)</span>
+<span class="sd">        35919</span>
+
+<span class="sd">        Each entry taxon_id from the same data can be retrieved using *report*</span>
+<span class="sd">        as the *display* option and *fields* an iterable of fields to just</span>
+<span class="sd">        (&#39;accession&#39;, tax_id&#39;):</span>
+
+<span class="sd">        &gt;&gt;&gt; query = &#39;tax_tree(1485) AND mol_type=&quot;rRNA&quot;&#39;</span>
+<span class="sd">        &gt;&gt;&gt; result = &#39;sequence_release&#39;</span>
+<span class="sd">        &gt;&gt;&gt; display = &#39;report&#39;</span>
+<span class="sd">        &gt;&gt;&gt; fields = (&#39;accession&#39;, &#39;tax_id&#39;)</span>
+<span class="sd">        &gt;&gt;&gt; data = embl.datawarehouse_search(query, result=result,</span>
+<span class="sd">            display=display, fields=fields)</span>
+
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="n">params</span> <span class="o">=</span> <span class="p">{</span>
+        <span class="s1">&#39;query&#39;</span><span class="p">:</span> <span class="n">query</span><span class="p">,</span>
+        <span class="s1">&#39;domain&#39;</span><span class="p">:</span> <span class="n">domain</span><span class="p">,</span>
+        <span class="s1">&#39;result&#39;</span><span class="p">:</span> <span class="n">result</span><span class="p">,</span>
+        <span class="s1">&#39;display&#39;</span><span class="p">:</span> <span class="n">display</span><span class="p">,</span>
+        <span class="s1">&#39;offset&#39;</span><span class="p">:</span> <span class="n">offset</span><span class="p">,</span>
+        <span class="s1">&#39;length&#39;</span><span class="p">:</span> <span class="n">length</span><span class="p">,</span>
+        <span class="s1">&#39;download&#39;</span><span class="p">:</span> <span class="n">download</span>
+    <span class="p">}</span>
+
+    <span class="c1"># if display=&#39;report&#39;, fields can be used to display, but download needs to</span>
+    <span class="c1"># be &#39;txt&#39;</span>
+    <span class="k">if</span> <span class="n">display</span> <span class="o">==</span> <span class="s1">&#39;report&#39;</span><span class="p">:</span>
+        <span class="n">params</span><span class="p">[</span><span class="s1">&#39;download&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">download</span> <span class="o">=</span> <span class="s1">&#39;txt&#39;</span>
+        <span class="k">try</span><span class="p">:</span>
+            <span class="n">params</span><span class="p">[</span><span class="s1">&#39;fields&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="s1">&#39;,&#39;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">fields</span><span class="p">)</span>
+        <span class="k">except</span> <span class="ne">TypeError</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span>
+                <span class="s2">&quot;the &#39;fields&#39; parameter must be an iteratble if display is &quot;</span>
+                <span class="s2">&quot;equal to &#39;report&#39;&quot;</span>
+                <span class="p">)</span>
+
+    <span class="n">stream</span> <span class="o">=</span> <span class="kc">True</span> <span class="k">if</span> <span class="n">download</span> <span class="o">==</span> <span class="s1">&#39;gzip&#39;</span> <span class="k">else</span> <span class="kc">False</span>
+    <span class="n">request</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">url</span><span class="p">,</span> <span class="n">params</span><span class="p">,</span> <span class="n">headers</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;user-agent&#39;</span><span class="p">:</span> <span class="n">contact</span><span class="p">},</span> <span class="n">stream</span><span class="o">=</span><span class="n">stream</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">download</span> <span class="o">==</span> <span class="s1">&#39;gzip&#39;</span><span class="p">:</span>
+        <span class="n">data</span> <span class="o">=</span> <span class="n">StringIO</span><span class="p">(</span><span class="n">request</span><span class="o">.</span><span class="n">raw</span><span class="o">.</span><span class="n">read</span><span class="p">())</span>
+        <span class="n">data</span> <span class="o">=</span> <span class="n">gzip</span><span class="o">.</span><span class="n">GzipFile</span><span class="p">(</span><span class="n">mode</span><span class="o">=</span><span class="s1">&#39;rb&#39;</span><span class="p">,</span> <span class="n">fileobj</span><span class="o">=</span><span class="n">data</span><span class="p">)</span><span class="o">.</span><span class="n">read</span><span class="p">()</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">data</span> <span class="o">=</span> <span class="n">request</span><span class="o">.</span><span class="n">text</span>
+
+    <span class="k">return</span> <span class="n">data</span></div>
+</pre></div>
+
+           </div>
+           
+          </div>
+          <footer>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2013-2015, Francesco Rubino
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>
