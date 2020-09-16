@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>pnps-gen - pN/pS Table Generation &mdash; MGKit: Metagenomic framework 0.5.0 documentation</title>
+  <title>pnps-gen - pN/pS Table Generation &mdash; MGKit: Metagenomic framework 0.5.1 documentation</title>
   
 
   
@@ -64,7 +64,7 @@
             
             
               <div class="version">
-                0.5.0
+                0.5.1
               </div>
             
           
@@ -229,7 +229,9 @@
 <div class="section" id="calculate-rank-pn-ps">
 <h3>Calculate Rank pN/pS<a class="headerlink" href="#calculate-rank-pn-ps" title="Permalink to this headline">¶</a></h3>
 <p>The <cite>rank</cite> command of the script reads SNPs information and calculate for each
-element of a specific taxonomic rank (species, genus, family, etc.) its pN/pS.</p>
+element of a specific taxonomic rank (species, genus, family, etc.) its pN/pS.
+Another option is the <em>None</em> rank, which makes the script use the taxonomic ID
+found in the annotations.</p>
 <p>For example, choosing the rank <em>genus</em> a table will be produced, similar to:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Prevotella</span><span class="p">,</span><span class="mf">0.0001</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mf">1.1</span><span class="p">,</span><span class="mf">0.4</span>
 <span class="n">Methanobrevibacter</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mf">0.5</span><span class="p">,</span><span class="mf">0.6</span><span class="p">,</span><span class="mf">0.8</span>
@@ -274,6 +276,9 @@ to KO, EC Numbers are included, with a command line like this:</p>
 any comma to <em>tab</em>. This table can be passed to the script and will make it
 possible to calculate the pN/pS for the KOs associated to the genes. Only gene
 IDs present in this file have a calculated pN/pS.</p>
+<p>Normally you combine the all isoforms with the same the <em>gene_id</em> to produce a
+single pN/pS, but if it’s needed, the <cite>-u</cite> option can be used to calculate a
+pN/pS for each line in the GFF file.</p>
 </div>
 <div class="section" id="changes">
 <h3>Changes<a class="headerlink" href="#changes" title="Permalink to this headline">¶</a></h3>
@@ -329,10 +334,10 @@ IDs present in this file have a calculated pN/pS.</p>
 <dl class="option">
 <dt id="cmdoption-pnps-gen-full-r">
 <code class="sig-name descname">-r</code><code class="sig-prename descclassname"></code><code class="sig-prename descclassname">, </code><code class="sig-name descname">--rank</code><code class="sig-prename descclassname"> &lt;rank&gt;</code><a class="headerlink" href="#cmdoption-pnps-gen-full-r" title="Permalink to this definition">¶</a></dt>
-<dd><p>Taxonomic rank</p>
+<dd><p>Taxonomic rank  [default: order]</p>
 <dl class="field-list simple">
 <dt class="field-odd">Options</dt>
-<dd class="field-odd"><p>superkingdom|kingdom|phylum|class|subclass|order|family|genus|species</p>
+<dd class="field-odd"><p>superkingdom|kingdom|phylum|class|order|family|genus|species|None</p>
 </dd>
 </dl>
 </dd></dl>
@@ -356,6 +361,12 @@ IDs present in this file have a calculated pN/pS.</p>
 </dd></dl>
 
 <dl class="option">
+<dt id="cmdoption-pnps-gen-full-u">
+<code class="sig-name descname">-u</code><code class="sig-prename descclassname"></code><code class="sig-prename descclassname">, </code><code class="sig-name descname">--use-uid</code><code class="sig-prename descclassname"></code><a class="headerlink" href="#cmdoption-pnps-gen-full-u" title="Permalink to this definition">¶</a></dt>
+<dd><p>Use uids from the GFF file instead of gene_id as genes  [default: False]</p>
+</dd></dl>
+
+<dl class="option">
 <dt id="cmdoption-pnps-gen-full-g">
 <code class="sig-name descname">-g</code><code class="sig-prename descclassname"></code><code class="sig-prename descclassname">, </code><code class="sig-name descname">--gene-map</code><code class="sig-prename descclassname"> &lt;gene_map&gt;</code><a class="headerlink" href="#cmdoption-pnps-gen-full-g" title="Permalink to this definition">¶</a></dt>
 <dd><p>Dictionary to map <em>gene_id</em> to another ID</p>
@@ -371,6 +382,12 @@ IDs present in this file have a calculated pN/pS.</p>
 <dt id="cmdoption-pnps-gen-full-p">
 <code class="sig-name descname">-p</code><code class="sig-prename descclassname"></code><code class="sig-prename descclassname">, </code><code class="sig-name descname">--separator</code><code class="sig-prename descclassname"> &lt;separator&gt;</code><a class="headerlink" href="#cmdoption-pnps-gen-full-p" title="Permalink to this definition">¶</a></dt>
 <dd><p>column separator for gene-map file  [default:   ]</p>
+</dd></dl>
+
+<dl class="option">
+<dt id="cmdoption-pnps-gen-full-l">
+<code class="sig-name descname">-l</code><code class="sig-prename descclassname"></code><code class="sig-prename descclassname">, </code><code class="sig-name descname">--lineage</code><code class="sig-prename descclassname"></code><a class="headerlink" href="#cmdoption-pnps-gen-full-l" title="Permalink to this definition">¶</a></dt>
+<dd><p>Use lineage string instead of taxon_id  [default: False]</p>
 </dd></dl>
 
 <p class="rubric">Arguments</p>
@@ -411,7 +428,7 @@ IDs present in this file have a calculated pN/pS.</p>
 <dd><p>Taxonomic rank  [default: order]</p>
 <dl class="field-list simple">
 <dt class="field-odd">Options</dt>
-<dd class="field-odd"><p>superkingdom|kingdom|phylum|class|subclass|order|family|genus|species</p>
+<dd class="field-odd"><p>superkingdom|kingdom|phylum|class|order|family|genus|species|None</p>
 </dd>
 </dl>
 </dd></dl>
@@ -432,6 +449,18 @@ IDs present in this file have a calculated pN/pS.</p>
 <dt id="cmdoption-pnps-gen-rank-i">
 <code class="sig-name descname">-i</code><code class="sig-prename descclassname"></code><code class="sig-prename descclassname">, </code><code class="sig-name descname">--taxon_ids</code><code class="sig-prename descclassname"> &lt;taxon_ids&gt;</code><a class="headerlink" href="#cmdoption-pnps-gen-rank-i" title="Permalink to this definition">¶</a></dt>
 <dd><p>Taxon IDs to include  [default: 2]</p>
+</dd></dl>
+
+<dl class="option">
+<dt id="cmdoption-pnps-gen-rank-u">
+<code class="sig-name descname">-u</code><code class="sig-prename descclassname"></code><code class="sig-prename descclassname">, </code><code class="sig-name descname">--unstack</code><code class="sig-prename descclassname"></code><a class="headerlink" href="#cmdoption-pnps-gen-rank-u" title="Permalink to this definition">¶</a></dt>
+<dd><p>Samples are not in columns but as an array  [default: False]</p>
+</dd></dl>
+
+<dl class="option">
+<dt id="cmdoption-pnps-gen-rank-l">
+<code class="sig-name descname">-l</code><code class="sig-prename descclassname"></code><code class="sig-prename descclassname">, </code><code class="sig-name descname">--lineage</code><code class="sig-prename descclassname"></code><a class="headerlink" href="#cmdoption-pnps-gen-rank-l" title="Permalink to this definition">¶</a></dt>
+<dd><p>Use lineage string instead of taxon_id  [default: False]</p>
 </dd></dl>
 
 <p class="rubric">Arguments</p>

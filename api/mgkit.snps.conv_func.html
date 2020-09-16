@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>mgkit.snps.conv_func module &mdash; MGKit: Metagenomic framework 0.5.0 documentation</title>
+  <title>mgkit.snps.conv_func module &mdash; MGKit: Metagenomic framework 0.5.1 documentation</title>
   
 
   
@@ -64,7 +64,7 @@
             
             
               <div class="version">
-                0.5.0
+                0.5.1
               </div>
             
           
@@ -347,12 +347,15 @@ is ‘gene’</p>
 
 <dl class="function">
 <dt id="mgkit.snps.conv_func.get_gene_taxon_dataframe">
-<code class="sig-prename descclassname">mgkit.snps.conv_func.</code><code class="sig-name descname">get_gene_taxon_dataframe</code><span class="sig-paren">(</span><em class="sig-param">snp_data</em>, <em class="sig-param">taxonomy</em>, <em class="sig-param">gene_map</em>, <em class="sig-param">min_num=3</em>, <em class="sig-param">rank='genus'</em>, <em class="sig-param">index_type=None</em>, <em class="sig-param">filters=None</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/mgkit/snps/conv_func.html#get_gene_taxon_dataframe"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#mgkit.snps.conv_func.get_gene_taxon_dataframe" title="Permalink to this definition">¶</a></dt>
+<code class="sig-prename descclassname">mgkit.snps.conv_func.</code><code class="sig-name descname">get_gene_taxon_dataframe</code><span class="sig-paren">(</span><em class="sig-param">snp_data</em>, <em class="sig-param">taxonomy</em>, <em class="sig-param">gene_map</em>, <em class="sig-param">min_num=3</em>, <em class="sig-param">rank='genus'</em>, <em class="sig-param">index_type=None</em>, <em class="sig-param">filters=None</em>, <em class="sig-param">use_uid=False</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/mgkit/snps/conv_func.html#get_gene_taxon_dataframe"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#mgkit.snps.conv_func.get_gene_taxon_dataframe" title="Permalink to this definition">¶</a></dt>
 <dd><div class="versionadded">
 <p><span class="versionmodified added">New in version 0.1.12.</span></p>
 </div>
 <div class="versionchanged">
 <p><span class="versionmodified changed">Changed in version 0.2.2: </span>added <em>filters</em> argument</p>
+</div>
+<div class="versionchanged">
+<p><span class="versionmodified changed">Changed in version 0.5.1: </span>gene_map can be <em>None</em>, use_uid can be passed to the underline function</p>
 </div>
 <div class="admonition-todo admonition" id="id1">
 <p class="admonition-title">Todo</p>
@@ -375,6 +378,7 @@ data</p></li>
 <li><p><strong>index_type</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.8)"><em>str</em></a><em>, </em><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.8)"><em>None</em></a>) – type of index to return</p></li>
 <li><p><strong>filters</strong> (<em>iterable</em>) – list of filters to apply, otherwise uses the
 default filters</p></li>
+<li><p><strong>use_uid</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.8)"><em>bool</em></a>) – instead of using <em>gene_id</em>, uses <em>uid</em> as gene ID</p></li>
 </ul>
 </dd>
 <dt class="field-even">Returns</dt>

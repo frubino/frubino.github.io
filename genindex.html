@@ -9,7 +9,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>Index &mdash; MGKit: Metagenomic framework 0.5.0 documentation</title>
+  <title>Index &mdash; MGKit: Metagenomic framework 0.5.1 documentation</title>
   
 
   
@@ -63,7 +63,7 @@
             
             
               <div class="version">
-                0.5.0
+                0.5.1
               </div>
             
           
@@ -661,6 +661,10 @@
       <ul>
         <li><a href="scripts/add-gff-info.html#cmdoption-add-gff-info-uniprot-l">add-gff-info-uniprot command line option</a>
 </li>
+        <li><a href="scripts/pnps_gen.html#cmdoption-pnps-gen-full-l">pnps-gen-full command line option</a>
+</li>
+        <li><a href="scripts/pnps_gen.html#cmdoption-pnps-gen-rank-l">pnps-gen-rank command line option</a>
+</li>
       </ul></li>
       <li>
     --mapping &lt;mapping&gt;
@@ -1205,8 +1209,6 @@
         <li><a href="scripts/taxon_utils.html#cmdoption-taxon-utils-lca-line-t">taxon-utils-lca_line command line option</a>
 </li>
       </ul></li>
-  </ul></td>
-  <td style="width: 33%; vertical-align: top;"><ul>
       <li>
     --trans-table &lt;trans_table&gt;
 
@@ -1214,6 +1216,8 @@
         <li><a href="scripts/fasta-utils.html#cmdoption-fasta-utils-translate-t">fasta-utils-translate command line option</a>
 </li>
       </ul></li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
       <li>
     --two-columns
 
@@ -1231,10 +1235,24 @@
 </li>
       </ul></li>
       <li>
+    --unstack
+
+      <ul>
+        <li><a href="scripts/pnps_gen.html#cmdoption-pnps-gen-rank-u">pnps-gen-rank command line option</a>
+</li>
+      </ul></li>
+      <li>
     --use-accession
 
       <ul>
         <li><a href="scripts/add-gff-info.html#cmdoption-add-gff-info-pfam-a">add-gff-info-pfam command line option</a>
+</li>
+      </ul></li>
+      <li>
+    --use-uid
+
+      <ul>
+        <li><a href="scripts/pnps_gen.html#cmdoption-pnps-gen-full-u">pnps-gen-full command line option</a>
 </li>
       </ul></li>
       <li>
@@ -1657,6 +1675,10 @@
 </li>
         <li><a href="scripts/filter-gff.html#cmdoption-filter-gff-sequence-l">filter-gff-sequence command line option</a>
 </li>
+        <li><a href="scripts/pnps_gen.html#cmdoption-pnps-gen-full-l">pnps-gen-full command line option</a>
+</li>
+        <li><a href="scripts/pnps_gen.html#cmdoption-pnps-gen-rank-l">pnps-gen-rank command line option</a>
+</li>
         <li><a href="scripts/sampling-utils.html#cmdoption-sampling-utils-rand-seq-l">sampling-utils-rand_seq command line option</a>
 </li>
       </ul></li>
@@ -1852,6 +1874,15 @@
         <li><a href="scripts/taxon_utils.html#cmdoption-taxon-utils-lca-t">taxon-utils-lca command line option</a>
 </li>
         <li><a href="scripts/taxon_utils.html#cmdoption-taxon-utils-lca-line-t">taxon-utils-lca_line command line option</a>
+</li>
+      </ul></li>
+      <li>
+    -u
+
+      <ul>
+        <li><a href="scripts/pnps_gen.html#cmdoption-pnps-gen-full-u">pnps-gen-full command line option</a>
+</li>
+        <li><a href="scripts/pnps_gen.html#cmdoption-pnps-gen-rank-u">pnps-gen-rank command line option</a>
 </li>
       </ul></li>
       <li>
@@ -4444,6 +4475,8 @@
       <ul>
         <li><a href="scripts/pnps_gen.html#cmdoption-pnps-gen-full-g">--gene-map &lt;gene_map&gt;</a>
 </li>
+        <li><a href="scripts/pnps_gen.html#cmdoption-pnps-gen-full-l">--lineage</a>
+</li>
         <li><a href="scripts/pnps_gen.html#cmdoption-pnps-gen-full-c">--min-cov &lt;min_cov&gt;</a>
 </li>
         <li><a href="scripts/pnps_gen.html#cmdoption-pnps-gen-full-m">--min-num &lt;min_num&gt;</a>
@@ -4460,6 +4493,8 @@
 </li>
         <li><a href="scripts/pnps_gen.html#cmdoption-pnps-gen-full-2">--two-columns</a>
 </li>
+        <li><a href="scripts/pnps_gen.html#cmdoption-pnps-gen-full-u">--use-uid</a>
+</li>
         <li><a href="scripts/pnps_gen.html#cmdoption-pnps-gen-full-v">--verbose</a>
 </li>
         <li><a href="scripts/pnps_gen.html#cmdoption-pnps-gen-full-2">-2</a>
@@ -4470,6 +4505,8 @@
 </li>
         <li><a href="scripts/pnps_gen.html#cmdoption-pnps-gen-full-i">-i</a>
 </li>
+        <li><a href="scripts/pnps_gen.html#cmdoption-pnps-gen-full-l">-l</a>
+</li>
         <li><a href="scripts/pnps_gen.html#cmdoption-pnps-gen-full-m">-m</a>
 </li>
         <li><a href="scripts/pnps_gen.html#cmdoption-pnps-gen-full-p">-p</a>
@@ -4479,6 +4516,8 @@
         <li><a href="scripts/pnps_gen.html#cmdoption-pnps-gen-full-s">-s</a>
 </li>
         <li><a href="scripts/pnps_gen.html#cmdoption-pnps-gen-full-t">-t</a>
+</li>
+        <li><a href="scripts/pnps_gen.html#cmdoption-pnps-gen-full-u">-u</a>
 </li>
         <li><a href="scripts/pnps_gen.html#cmdoption-pnps-gen-full-v">-v</a>
 </li>
@@ -4491,6 +4530,8 @@
     pnps-gen-rank command line option
 
       <ul>
+        <li><a href="scripts/pnps_gen.html#cmdoption-pnps-gen-rank-l">--lineage</a>
+</li>
         <li><a href="scripts/pnps_gen.html#cmdoption-pnps-gen-rank-c">--min-cov &lt;min_cov&gt;</a>
 </li>
         <li><a href="scripts/pnps_gen.html#cmdoption-pnps-gen-rank-m">--min-num &lt;min_num&gt;</a>
@@ -4503,11 +4544,15 @@
 </li>
         <li><a href="scripts/pnps_gen.html#cmdoption-pnps-gen-rank-t">--taxonomy &lt;taxonomy&gt;</a>
 </li>
+        <li><a href="scripts/pnps_gen.html#cmdoption-pnps-gen-rank-u">--unstack</a>
+</li>
         <li><a href="scripts/pnps_gen.html#cmdoption-pnps-gen-rank-v">--verbose</a>
 </li>
         <li><a href="scripts/pnps_gen.html#cmdoption-pnps-gen-rank-c">-c</a>
 </li>
         <li><a href="scripts/pnps_gen.html#cmdoption-pnps-gen-rank-i">-i</a>
+</li>
+        <li><a href="scripts/pnps_gen.html#cmdoption-pnps-gen-rank-l">-l</a>
 </li>
         <li><a href="scripts/pnps_gen.html#cmdoption-pnps-gen-rank-m">-m</a>
 </li>
@@ -4516,6 +4561,8 @@
         <li><a href="scripts/pnps_gen.html#cmdoption-pnps-gen-rank-s">-s</a>
 </li>
         <li><a href="scripts/pnps_gen.html#cmdoption-pnps-gen-rank-t">-t</a>
+</li>
+        <li><a href="scripts/pnps_gen.html#cmdoption-pnps-gen-rank-u">-u</a>
 </li>
         <li><a href="scripts/pnps_gen.html#cmdoption-pnps-gen-rank-v">-v</a>
 </li>

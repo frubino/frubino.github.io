@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>mgkit.snps.conv_func &mdash; MGKit: Metagenomic framework 0.5.0 documentation</title>
+  <title>mgkit.snps.conv_func &mdash; MGKit: Metagenomic framework 0.5.1 documentation</title>
   
 
   
@@ -62,7 +62,7 @@
             
             
               <div class="version">
-                0.5.0
+                0.5.1
               </div>
             
           
@@ -317,12 +317,16 @@
 
 
 <div class="viewcode-block" id="get_gene_taxon_dataframe"><a class="viewcode-back" href="../../../api/mgkit.snps.conv_func.html#mgkit.snps.conv_func.get_gene_taxon_dataframe">[docs]</a><span class="k">def</span> <span class="nf">get_gene_taxon_dataframe</span><span class="p">(</span><span class="n">snp_data</span><span class="p">,</span> <span class="n">taxonomy</span><span class="p">,</span> <span class="n">gene_map</span><span class="p">,</span> <span class="n">min_num</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span>
-                             <span class="n">rank</span><span class="o">=</span><span class="s1">&#39;genus&#39;</span><span class="p">,</span> <span class="n">index_type</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">filters</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+                             <span class="n">rank</span><span class="o">=</span><span class="s1">&#39;genus&#39;</span><span class="p">,</span> <span class="n">index_type</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">filters</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+                             <span class="n">use_uid</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    .. versionadded:: 0.1.12</span>
 
 <span class="sd">    .. versionchanged:: 0.2.2</span>
 <span class="sd">        added *filters* argument</span>
+
+<span class="sd">    .. versionchanged:: 0.5.1</span>
+<span class="sd">        gene_map can be *None*, use_uid can be passed to the underline function</span>
 
 <span class="sd">    .. todo::</span>
 
@@ -345,6 +349,7 @@
 <span class="sd">        index_type (str, None): type of index to return</span>
 <span class="sd">        filters (iterable): list of filters to apply, otherwise uses the</span>
 <span class="sd">            default filters</span>
+<span class="sd">        use_uid (bool): instead of using *gene_id*, uses *uid* as gene ID</span>
 
 <span class="sd">    Returns:</span>
 <span class="sd">        DataFrame: :class:`pandas.DataFrame` of pN/pS values. The index type</span>
@@ -372,8 +377,9 @@
         <span class="n">min_num</span><span class="p">,</span>
         <span class="n">filters</span><span class="p">,</span>
         <span class="n">taxon_func</span><span class="o">=</span><span class="n">taxon_func</span><span class="p">,</span>
-        <span class="n">gene_func</span><span class="o">=</span><span class="n">gene_func</span><span class="p">,</span>
-        <span class="n">index_type</span><span class="o">=</span><span class="n">index_type</span>
+        <span class="n">gene_func</span><span class="o">=</span><span class="kc">None</span> <span class="k">if</span> <span class="n">gene_map</span> <span class="ow">is</span> <span class="kc">None</span> <span class="k">else</span> <span class="n">gene_func</span><span class="p">,</span>
+        <span class="n">index_type</span><span class="o">=</span><span class="n">index_type</span><span class="p">,</span>
+        <span class="n">use_uid</span><span class="o">=</span><span class="n">use_uid</span>
     <span class="p">)</span>
 
     <span class="k">return</span> <span class="n">dataframe</span></div>
