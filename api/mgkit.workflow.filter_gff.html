@@ -1,42 +1,43 @@
 
 
 <!DOCTYPE html>
-<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
-<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<html class="writer-html5" lang="en" >
 <head>
   <meta charset="utf-8">
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>mgkit.workflow.filter_gff module &mdash; MGKit: Metagenomic framework 0.5.1 documentation</title>
+  <title>mgkit.workflow.filter_gff module &mdash; MGKit: Metagenomic framework 0.5.3 documentation</title>
   
-
-  
-  
-  
-  
-
-  
-  <script type="text/javascript" src="../_static/js/modernizr.min.js"></script>
-  
-    
-      <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
-        <script type="text/javascript" src="../_static/jquery.js"></script>
-        <script type="text/javascript" src="../_static/underscore.js"></script>
-        <script type="text/javascript" src="../_static/doctools.js"></script>
-        <script type="text/javascript" src="../_static/language_data.js"></script>
-        <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
-        <script async="async" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
-        <script type="text/x-mathjax-config">MathJax.Hub.Config({"tex2jax": {"inlineMath": [["$", "$"], ["\\(", "\\)"]], "processEscapes": true, "ignoreClass": "document", "processClass": "math|output_area"}})</script>
-    
-    <script type="text/javascript" src="../_static/js/theme.js"></script>
-
-    
 
   
   <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
   <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
   <link rel="stylesheet" href="../_static/graphviz.css" type="text/css" />
+
+  
+  
+  
+  
+
+  
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/underscore.js"></script>
+        <script src="../_static/doctools.js"></script>
+        <script src="../_static/language_data.js"></script>
+        <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+        <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+        <script type="text/x-mathjax-config">MathJax.Hub.Config({"tex2jax": {"inlineMath": [["$", "$"], ["\\(", "\\)"]], "processEscapes": true, "ignoreClass": "document", "processClass": "math|output_area"}})</script>
+    
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+
+    
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
     <link rel="next" title="mgkit.workflow.hmmer2gff module" href="mgkit.workflow.hmmer2gff.html" />
@@ -54,7 +55,7 @@
           
 
           
-            <a href="../index.html" class="icon icon-home"> MGKit: Metagenomic framework
+            <a href="../index.html" class="icon icon-home" alt="Documentation Home"> MGKit: Metagenomic framework
           
 
           
@@ -64,7 +65,7 @@
             
             
               <div class="version">
-                0.5.1
+                0.5.3
               </div>
             
           
@@ -81,6 +82,7 @@
           
         </div>
 
+        
         <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
           
             
@@ -186,6 +188,7 @@
             
           
         </div>
+        
       </div>
     </nav>
 
@@ -224,7 +227,7 @@
 
   <ul class="wy-breadcrumbs">
     
-      <li><a href="../index.html">Docs</a> &raquo;</li>
+      <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
         
           <li><a href="../library.html">Library Reference</a> &raquo;</li>
         
@@ -440,48 +443,48 @@ commands</p>
 <p><span class="versionmodified changed">Changed in version 0.4.4: </span><em>overlap</em> command: added option to not use the strand information and
 added an option to make multiple passes of overlap for each sequence</p>
 </div>
-<dl class="function">
+<dl class="py function">
 <dt id="mgkit.workflow.filter_gff.filter_eq">
-<code class="sig-prename descclassname">mgkit.workflow.filter_gff.</code><code class="sig-name descname">filter_eq</code><span class="sig-paren">(</span><em class="sig-param">annotation</em>, <em class="sig-param">attr=None</em>, <em class="sig-param">value=None</em>, <em class="sig-param">conv=None</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/mgkit/workflow/filter_gff.html#filter_eq"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#mgkit.workflow.filter_gff.filter_eq" title="Permalink to this definition">¶</a></dt>
+<code class="sig-prename descclassname">mgkit.workflow.filter_gff.</code><code class="sig-name descname">filter_eq</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">annotation</span></em>, <em class="sig-param"><span class="n">attr</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">value</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">conv</span><span class="o">=</span><span class="default_value">None</span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/mgkit/workflow/filter_gff.html#filter_eq"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#mgkit.workflow.filter_gff.filter_eq" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
-<dl class="function">
+<dl class="py function">
 <dt id="mgkit.workflow.filter_gff.filter_gt">
-<code class="sig-prename descclassname">mgkit.workflow.filter_gff.</code><code class="sig-name descname">filter_gt</code><span class="sig-paren">(</span><em class="sig-param">annotation</em>, <em class="sig-param">attr=None</em>, <em class="sig-param">value=None</em>, <em class="sig-param">conv=None</em>, <em class="sig-param">equal=None</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/mgkit/workflow/filter_gff.html#filter_gt"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#mgkit.workflow.filter_gff.filter_gt" title="Permalink to this definition">¶</a></dt>
+<code class="sig-prename descclassname">mgkit.workflow.filter_gff.</code><code class="sig-name descname">filter_gt</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">annotation</span></em>, <em class="sig-param"><span class="n">attr</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">value</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">conv</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">equal</span><span class="o">=</span><span class="default_value">None</span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/mgkit/workflow/filter_gff.html#filter_gt"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#mgkit.workflow.filter_gff.filter_gt" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
-<dl class="function">
+<dl class="py function">
 <dt id="mgkit.workflow.filter_gff.filter_in">
-<code class="sig-prename descclassname">mgkit.workflow.filter_gff.</code><code class="sig-name descname">filter_in</code><span class="sig-paren">(</span><em class="sig-param">annotation</em>, <em class="sig-param">attr=None</em>, <em class="sig-param">value=None</em>, <em class="sig-param">conv=None</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/mgkit/workflow/filter_gff.html#filter_in"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#mgkit.workflow.filter_gff.filter_in" title="Permalink to this definition">¶</a></dt>
+<code class="sig-prename descclassname">mgkit.workflow.filter_gff.</code><code class="sig-name descname">filter_in</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">annotation</span></em>, <em class="sig-param"><span class="n">attr</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">value</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">conv</span><span class="o">=</span><span class="default_value">None</span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/mgkit/workflow/filter_gff.html#filter_in"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#mgkit.workflow.filter_gff.filter_in" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
-<dl class="function">
+<dl class="py function">
 <dt id="mgkit.workflow.filter_gff.filter_lt">
-<code class="sig-prename descclassname">mgkit.workflow.filter_gff.</code><code class="sig-name descname">filter_lt</code><span class="sig-paren">(</span><em class="sig-param">annotation</em>, <em class="sig-param">attr=None</em>, <em class="sig-param">value=None</em>, <em class="sig-param">conv=None</em>, <em class="sig-param">equal=None</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/mgkit/workflow/filter_gff.html#filter_lt"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#mgkit.workflow.filter_gff.filter_lt" title="Permalink to this definition">¶</a></dt>
+<code class="sig-prename descclassname">mgkit.workflow.filter_gff.</code><code class="sig-name descname">filter_lt</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">annotation</span></em>, <em class="sig-param"><span class="n">attr</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">value</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">conv</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">equal</span><span class="o">=</span><span class="default_value">None</span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/mgkit/workflow/filter_gff.html#filter_lt"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#mgkit.workflow.filter_gff.filter_lt" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
-<dl class="function">
+<dl class="py function">
 <dt id="mgkit.workflow.filter_gff.find_comparison">
-<code class="sig-prename descclassname">mgkit.workflow.filter_gff.</code><code class="sig-name descname">find_comparison</code><span class="sig-paren">(</span><em class="sig-param">comparison</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/mgkit/workflow/filter_gff.html#find_comparison"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#mgkit.workflow.filter_gff.find_comparison" title="Permalink to this definition">¶</a></dt>
+<code class="sig-prename descclassname">mgkit.workflow.filter_gff.</code><code class="sig-name descname">find_comparison</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">comparison</span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/mgkit/workflow/filter_gff.html#find_comparison"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#mgkit.workflow.filter_gff.find_comparison" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
-<dl class="function">
+<dl class="py function">
 <dt id="mgkit.workflow.filter_gff.make_choose_func">
-<code class="sig-prename descclassname">mgkit.workflow.filter_gff.</code><code class="sig-name descname">make_choose_func</code><span class="sig-paren">(</span><em class="sig-param">values</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/mgkit/workflow/filter_gff.html#make_choose_func"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#mgkit.workflow.filter_gff.make_choose_func" title="Permalink to this definition">¶</a></dt>
+<code class="sig-prename descclassname">mgkit.workflow.filter_gff.</code><code class="sig-name descname">make_choose_func</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">values</span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/mgkit/workflow/filter_gff.html#make_choose_func"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#mgkit.workflow.filter_gff.make_choose_func" title="Permalink to this definition">¶</a></dt>
 <dd><p>Builds the function used to choose between two annotations.</p>
 </dd></dl>
 
-<dl class="function">
+<dl class="py function">
 <dt id="mgkit.workflow.filter_gff.perseq_calc_threshold">
-<code class="sig-prename descclassname">mgkit.workflow.filter_gff.</code><code class="sig-name descname">perseq_calc_threshold</code><span class="sig-paren">(</span><em class="sig-param">annotations</em>, <em class="sig-param">attribute</em>, <em class="sig-param">function</em>, <em class="sig-param">func_arg=None</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/mgkit/workflow/filter_gff.html#perseq_calc_threshold"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#mgkit.workflow.filter_gff.perseq_calc_threshold" title="Permalink to this definition">¶</a></dt>
+<code class="sig-prename descclassname">mgkit.workflow.filter_gff.</code><code class="sig-name descname">perseq_calc_threshold</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">annotations</span></em>, <em class="sig-param"><span class="n">attribute</span></em>, <em class="sig-param"><span class="n">function</span></em>, <em class="sig-param"><span class="n">func_arg</span><span class="o">=</span><span class="default_value">None</span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/mgkit/workflow/filter_gff.html#perseq_calc_threshold"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#mgkit.workflow.filter_gff.perseq_calc_threshold" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
-<dl class="function">
+<dl class="py function">
 <dt id="mgkit.workflow.filter_gff.setup_filters">
-<code class="sig-prename descclassname">mgkit.workflow.filter_gff.</code><code class="sig-name descname">setup_filters</code><span class="sig-paren">(</span><em class="sig-param">str_eq</em>, <em class="sig-param">str_in</em>, <em class="sig-param">num_eq</em>, <em class="sig-param">num_ge</em>, <em class="sig-param">num_le</em>, <em class="sig-param">num_gt</em>, <em class="sig-param">num_lt</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/mgkit/workflow/filter_gff.html#setup_filters"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#mgkit.workflow.filter_gff.setup_filters" title="Permalink to this definition">¶</a></dt>
+<code class="sig-prename descclassname">mgkit.workflow.filter_gff.</code><code class="sig-name descname">setup_filters</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">str_eq</span></em>, <em class="sig-param"><span class="n">str_in</span></em>, <em class="sig-param"><span class="n">num_eq</span></em>, <em class="sig-param"><span class="n">num_ge</span></em>, <em class="sig-param"><span class="n">num_le</span></em>, <em class="sig-param"><span class="n">num_gt</span></em>, <em class="sig-param"><span class="n">num_lt</span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/mgkit/workflow/filter_gff.html#setup_filters"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#mgkit.workflow.filter_gff.setup_filters" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
-<dl class="function">
+<dl class="py function">
 <dt id="mgkit.workflow.filter_gff.validate_params">
 <code class="sig-prename descclassname">mgkit.workflow.filter_gff.</code><code class="sig-name descname">validate_params</code><span class="sig-paren">(</span><em class="sig-param">ctx</em>, <em class="sig-param">param</em>, <em class="sig-param">values</em>, <em class="sig-param">convert=&lt;class 'str'&gt;</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/mgkit/workflow/filter_gff.html#validate_params"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#mgkit.workflow.filter_gff.validate_params" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
@@ -509,11 +512,19 @@ added an option to make multiple passes of overlap for each sequence</p>
 
   <div role="contentinfo">
     <p>
-        &copy; Copyright 2013-2015, Francesco Rubino
+        
+        &copy; Copyright 2013-2020, Francesco Rubino
 
     </p>
   </div>
-  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+    
+    
+    
+    Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a
+    
+    <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a>
+    
+    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
 
 </footer>
 
@@ -524,7 +535,6 @@ added an option to make multiple passes of overlap for each sequence</p>
 
   </div>
   
-
 
   <script type="text/javascript">
       jQuery(function () {

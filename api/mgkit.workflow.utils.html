@@ -1,42 +1,43 @@
 
 
 <!DOCTYPE html>
-<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
-<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<html class="writer-html5" lang="en" >
 <head>
   <meta charset="utf-8">
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>mgkit.workflow.utils module &mdash; MGKit: Metagenomic framework 0.5.1 documentation</title>
+  <title>mgkit.workflow.utils module &mdash; MGKit: Metagenomic framework 0.5.3 documentation</title>
   
-
-  
-  
-  
-  
-
-  
-  <script type="text/javascript" src="../_static/js/modernizr.min.js"></script>
-  
-    
-      <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
-        <script type="text/javascript" src="../_static/jquery.js"></script>
-        <script type="text/javascript" src="../_static/underscore.js"></script>
-        <script type="text/javascript" src="../_static/doctools.js"></script>
-        <script type="text/javascript" src="../_static/language_data.js"></script>
-        <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
-        <script async="async" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
-        <script type="text/x-mathjax-config">MathJax.Hub.Config({"tex2jax": {"inlineMath": [["$", "$"], ["\\(", "\\)"]], "processEscapes": true, "ignoreClass": "document", "processClass": "math|output_area"}})</script>
-    
-    <script type="text/javascript" src="../_static/js/theme.js"></script>
-
-    
 
   
   <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
   <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
   <link rel="stylesheet" href="../_static/graphviz.css" type="text/css" />
+
+  
+  
+  
+  
+
+  
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/underscore.js"></script>
+        <script src="../_static/doctools.js"></script>
+        <script src="../_static/language_data.js"></script>
+        <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+        <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+        <script type="text/x-mathjax-config">MathJax.Hub.Config({"tex2jax": {"inlineMath": [["$", "$"], ["\\(", "\\)"]], "processEscapes": true, "ignoreClass": "document", "processClass": "math|output_area"}})</script>
+    
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+
+    
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
     <link rel="next" title="mgkit.align module" href="mgkit.align.html" />
@@ -54,7 +55,7 @@
           
 
           
-            <a href="../index.html" class="icon icon-home"> MGKit: Metagenomic framework
+            <a href="../index.html" class="icon icon-home" alt="Documentation Home"> MGKit: Metagenomic framework
           
 
           
@@ -64,7 +65,7 @@
             
             
               <div class="version">
-                0.5.1
+                0.5.3
               </div>
             
           
@@ -81,6 +82,7 @@
           
         </div>
 
+        
         <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
           
             
@@ -179,6 +181,7 @@
             
           
         </div>
+        
       </div>
     </nav>
 
@@ -217,7 +220,7 @@
 
   <ul class="wy-breadcrumbs">
     
-      <li><a href="../index.html">Docs</a> &raquo;</li>
+      <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
         
           <li><a href="../library.html">Library Reference</a> &raquo;</li>
         
@@ -271,41 +274,41 @@
 <div class="section" id="module-mgkit.workflow.utils">
 <span id="mgkit-workflow-utils-module"></span><h1>mgkit.workflow.utils module<a class="headerlink" href="#module-mgkit.workflow.utils" title="Permalink to this headline">¶</a></h1>
 <p>Utility functions for workflows</p>
-<dl class="class">
+<dl class="py class">
 <dt id="mgkit.workflow.utils.CiteAction">
-<em class="property">class </em><code class="sig-prename descclassname">mgkit.workflow.utils.</code><code class="sig-name descname">CiteAction</code><span class="sig-paren">(</span><em class="sig-param">option_strings</em>, <em class="sig-param">dest='==SUPPRESS=='</em>, <em class="sig-param">default='==SUPPRESS=='</em>, <em class="sig-param">help='Show citation for the framework'</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/mgkit/workflow/utils.html#CiteAction"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#mgkit.workflow.utils.CiteAction" title="Permalink to this definition">¶</a></dt>
-<dd><p>Bases: <a class="reference external" href="https://docs.python.org/3/library/argparse.html#argparse.Action" title="(in Python v3.8)"><code class="xref py py-class docutils literal notranslate"><span class="pre">argparse.Action</span></code></a></p>
+<em class="property">class </em><code class="sig-prename descclassname">mgkit.workflow.utils.</code><code class="sig-name descname">CiteAction</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">option_strings</span></em>, <em class="sig-param"><span class="n">dest</span><span class="o">=</span><span class="default_value">'==SUPPRESS=='</span></em>, <em class="sig-param"><span class="n">default</span><span class="o">=</span><span class="default_value">'==SUPPRESS=='</span></em>, <em class="sig-param"><span class="n">help</span><span class="o">=</span><span class="default_value">'Show citation for the framework'</span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/mgkit/workflow/utils.html#CiteAction"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#mgkit.workflow.utils.CiteAction" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference external" href="https://docs.python.org/3/library/argparse.html#argparse.Action" title="(in Python v3.9)"><code class="xref py py-class docutils literal notranslate"><span class="pre">argparse.Action</span></code></a></p>
 <p>Argparse action to print the citation, using the <a class="reference internal" href="mgkit.html#mgkit.cite" title="mgkit.cite"><code class="xref py py-func docutils literal notranslate"><span class="pre">mgkit.cite()</span></code></a>
 function.</p>
 </dd></dl>
 
-<dl class="class">
+<dl class="py class">
 <dt id="mgkit.workflow.utils.PrintManAction">
-<em class="property">class </em><code class="sig-prename descclassname">mgkit.workflow.utils.</code><code class="sig-name descname">PrintManAction</code><span class="sig-paren">(</span><em class="sig-param">option_strings</em>, <em class="sig-param">dest='==SUPPRESS=='</em>, <em class="sig-param">default='==SUPPRESS=='</em>, <em class="sig-param">help='Show the script manual'</em>, <em class="sig-param">manual=''</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/mgkit/workflow/utils.html#PrintManAction"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#mgkit.workflow.utils.PrintManAction" title="Permalink to this definition">¶</a></dt>
-<dd><p>Bases: <a class="reference external" href="https://docs.python.org/3/library/argparse.html#argparse.Action" title="(in Python v3.8)"><code class="xref py py-class docutils literal notranslate"><span class="pre">argparse.Action</span></code></a></p>
+<em class="property">class </em><code class="sig-prename descclassname">mgkit.workflow.utils.</code><code class="sig-name descname">PrintManAction</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">option_strings</span></em>, <em class="sig-param"><span class="n">dest</span><span class="o">=</span><span class="default_value">'==SUPPRESS=='</span></em>, <em class="sig-param"><span class="n">default</span><span class="o">=</span><span class="default_value">'==SUPPRESS=='</span></em>, <em class="sig-param"><span class="n">help</span><span class="o">=</span><span class="default_value">'Show the script manual'</span></em>, <em class="sig-param"><span class="n">manual</span><span class="o">=</span><span class="default_value">''</span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/mgkit/workflow/utils.html#PrintManAction"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#mgkit.workflow.utils.PrintManAction" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference external" href="https://docs.python.org/3/library/argparse.html#argparse.Action" title="(in Python v3.9)"><code class="xref py py-class docutils literal notranslate"><span class="pre">argparse.Action</span></code></a></p>
 <div class="versionadded">
 <p><span class="versionmodified added">New in version 0.2.6.</span></p>
 </div>
 <p>Argparse action to print the manual</p>
 </dd></dl>
 
-<dl class="function">
+<dl class="py function">
 <dt id="mgkit.workflow.utils.add_basic_options">
-<code class="sig-prename descclassname">mgkit.workflow.utils.</code><code class="sig-name descname">add_basic_options</code><span class="sig-paren">(</span><em class="sig-param">parser</em>, <em class="sig-param">manual=''</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/mgkit/workflow/utils.html#add_basic_options"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#mgkit.workflow.utils.add_basic_options" title="Permalink to this definition">¶</a></dt>
+<code class="sig-prename descclassname">mgkit.workflow.utils.</code><code class="sig-name descname">add_basic_options</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">parser</span></em>, <em class="sig-param"><span class="n">manual</span><span class="o">=</span><span class="default_value">''</span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/mgkit/workflow/utils.html#add_basic_options"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#mgkit.workflow.utils.add_basic_options" title="Permalink to this definition">¶</a></dt>
 <dd><div class="versionchanged">
 <p><span class="versionmodified changed">Changed in version 0.2.6: </span>added <em>quiet</em> option</p>
 </div>
 <p>Adds verbose and version options to the option parser</p>
 </dd></dl>
 
-<dl class="function">
+<dl class="py function">
 <dt id="mgkit.workflow.utils.cite_callback">
-<code class="sig-prename descclassname">mgkit.workflow.utils.</code><code class="sig-name descname">cite_callback</code><span class="sig-paren">(</span><em class="sig-param">ctx</em>, <em class="sig-param">param</em>, <em class="sig-param">value</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/mgkit/workflow/utils.html#cite_callback"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#mgkit.workflow.utils.cite_callback" title="Permalink to this definition">¶</a></dt>
+<code class="sig-prename descclassname">mgkit.workflow.utils.</code><code class="sig-name descname">cite_callback</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">ctx</span></em>, <em class="sig-param"><span class="n">param</span></em>, <em class="sig-param"><span class="n">value</span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/mgkit/workflow/utils.html#cite_callback"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#mgkit.workflow.utils.cite_callback" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
-<dl class="function">
+<dl class="py function">
 <dt id="mgkit.workflow.utils.exit_script">
-<code class="sig-prename descclassname">mgkit.workflow.utils.</code><code class="sig-name descname">exit_script</code><span class="sig-paren">(</span><em class="sig-param">message</em>, <em class="sig-param">ret_value</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/mgkit/workflow/utils.html#exit_script"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#mgkit.workflow.utils.exit_script" title="Permalink to this definition">¶</a></dt>
+<code class="sig-prename descclassname">mgkit.workflow.utils.</code><code class="sig-name descname">exit_script</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">message</span></em>, <em class="sig-param"><span class="n">ret_value</span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/mgkit/workflow/utils.html#exit_script"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#mgkit.workflow.utils.exit_script" title="Permalink to this definition">¶</a></dt>
 <dd><p>Used to exit the script with a return value</p>
 </dd></dl>
 
@@ -331,11 +334,19 @@ function.</p>
 
   <div role="contentinfo">
     <p>
-        &copy; Copyright 2013-2015, Francesco Rubino
+        
+        &copy; Copyright 2013-2020, Francesco Rubino
 
     </p>
   </div>
-  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+    
+    
+    
+    Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a
+    
+    <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a>
+    
+    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
 
 </footer>
 
@@ -346,7 +357,6 @@ function.</p>
 
   </div>
   
-
 
   <script type="text/javascript">
       jQuery(function () {

@@ -1,42 +1,43 @@
 
 
 <!DOCTYPE html>
-<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
-<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<html class="writer-html5" lang="en" >
 <head>
   <meta charset="utf-8">
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>mgkit.mappings.utils module &mdash; MGKit: Metagenomic framework 0.5.1 documentation</title>
+  <title>mgkit.mappings.utils module &mdash; MGKit: Metagenomic framework 0.5.3 documentation</title>
   
-
-  
-  
-  
-  
-
-  
-  <script type="text/javascript" src="../_static/js/modernizr.min.js"></script>
-  
-    
-      <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
-        <script type="text/javascript" src="../_static/jquery.js"></script>
-        <script type="text/javascript" src="../_static/underscore.js"></script>
-        <script type="text/javascript" src="../_static/doctools.js"></script>
-        <script type="text/javascript" src="../_static/language_data.js"></script>
-        <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
-        <script async="async" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
-        <script type="text/x-mathjax-config">MathJax.Hub.Config({"tex2jax": {"inlineMath": [["$", "$"], ["\\(", "\\)"]], "processEscapes": true, "ignoreClass": "document", "processClass": "math|output_area"}})</script>
-    
-    <script type="text/javascript" src="../_static/js/theme.js"></script>
-
-    
 
   
   <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
   <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
   <link rel="stylesheet" href="../_static/graphviz.css" type="text/css" />
+
+  
+  
+  
+  
+
+  
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/underscore.js"></script>
+        <script src="../_static/doctools.js"></script>
+        <script src="../_static/language_data.js"></script>
+        <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+        <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+        <script type="text/x-mathjax-config">MathJax.Hub.Config({"tex2jax": {"inlineMath": [["$", "$"], ["\\(", "\\)"]], "processEscapes": true, "ignoreClass": "document", "processClass": "math|output_area"}})</script>
+    
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+
+    
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
     <link rel="next" title="mgkit.net package" href="mgkit.net.html" />
@@ -54,7 +55,7 @@
           
 
           
-            <a href="../index.html" class="icon icon-home"> MGKit: Metagenomic framework
+            <a href="../index.html" class="icon icon-home" alt="Documentation Home"> MGKit: Metagenomic framework
           
 
           
@@ -64,7 +65,7 @@
             
             
               <div class="version">
-                0.5.1
+                0.5.3
               </div>
             
           
@@ -81,6 +82,7 @@
           
         </div>
 
+        
         <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
           
             
@@ -179,6 +181,7 @@
             
           
         </div>
+        
       </div>
     </nav>
 
@@ -217,7 +220,7 @@
 
   <ul class="wy-breadcrumbs">
     
-      <li><a href="../index.html">Docs</a> &raquo;</li>
+      <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
         
           <li><a href="../library.html">Library Reference</a> &raquo;</li>
         
@@ -271,9 +274,9 @@
 <div class="section" id="module-mgkit.mappings.utils">
 <span id="mgkit-mappings-utils-module"></span><h1>mgkit.mappings.utils module<a class="headerlink" href="#module-mgkit.mappings.utils" title="Permalink to this headline">¶</a></h1>
 <p>Utilities to map genes</p>
-<dl class="function">
+<dl class="py function">
 <dt id="mgkit.mappings.utils.count_genes_in_mapping">
-<code class="sig-prename descclassname">mgkit.mappings.utils.</code><code class="sig-name descname">count_genes_in_mapping</code><span class="sig-paren">(</span><em class="sig-param">gene_lists</em>, <em class="sig-param">labels</em>, <em class="sig-param">mapping</em>, <em class="sig-param">normalise=False</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/mgkit/mappings/utils.html#count_genes_in_mapping"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#mgkit.mappings.utils.count_genes_in_mapping" title="Permalink to this definition">¶</a></dt>
+<code class="sig-prename descclassname">mgkit.mappings.utils.</code><code class="sig-name descname">count_genes_in_mapping</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">gene_lists</span></em>, <em class="sig-param"><span class="n">labels</span></em>, <em class="sig-param"><span class="n">mapping</span></em>, <em class="sig-param"><span class="n">normalise</span><span class="o">=</span><span class="default_value">False</span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/mgkit/mappings/utils.html#count_genes_in_mapping"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#mgkit.mappings.utils.count_genes_in_mapping" title="Permalink to this definition">¶</a></dt>
 <dd><p>Maps lists of ids to a mapping dictionary, returning a
 <code class="xref py py-class docutils literal notranslate"><span class="pre">pandas.DataFrame</span></code> in which the rows are the labels provided and
 the columns the categories to which the ids map. Each element of the matrix
@@ -287,9 +290,9 @@ of ids that can be mapped to mapping</p></li>
 <li><p><strong>labels</strong> (<em>iterable</em>) – an iterable of strings that defines the labels to
 be used in the resulting rows in the <code class="xref py py-class docutils literal notranslate"><span class="pre">pandas.DataFrame</span></code>; must
 have the same length as gene_lists</p></li>
-<li><p><strong>mapping</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.8)"><em>dict</em></a>) – a dictionary in the form:
+<li><p><strong>mapping</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.9)"><em>dict</em></a>) – a dictionary in the form:
 gene_id-&gt;[cat1, cat2, .., catN]</p></li>
-<li><p><strong>normalise</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.8)"><em>bool</em></a>) – if True the counts are normalised over the total for
+<li><p><strong>normalise</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.9)"><em>bool</em></a>) – if True the counts are normalised over the total for
 each row.</p></li>
 </ul>
 </dd>
@@ -299,16 +302,16 @@ each row.</p></li>
 </dl>
 </dd></dl>
 
-<dl class="function">
+<dl class="py function">
 <dt id="mgkit.mappings.utils.group_annotation_by_mapping">
-<code class="sig-prename descclassname">mgkit.mappings.utils.</code><code class="sig-name descname">group_annotation_by_mapping</code><span class="sig-paren">(</span><em class="sig-param">annotations</em>, <em class="sig-param">mapping</em>, <em class="sig-param">attr='ko'</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/mgkit/mappings/utils.html#group_annotation_by_mapping"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#mgkit.mappings.utils.group_annotation_by_mapping" title="Permalink to this definition">¶</a></dt>
+<code class="sig-prename descclassname">mgkit.mappings.utils.</code><code class="sig-name descname">group_annotation_by_mapping</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">annotations</span></em>, <em class="sig-param"><span class="n">mapping</span></em>, <em class="sig-param"><span class="n">attr</span><span class="o">=</span><span class="default_value">'ko'</span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/mgkit/mappings/utils.html#group_annotation_by_mapping"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#mgkit.mappings.utils.group_annotation_by_mapping" title="Permalink to this definition">¶</a></dt>
 <dd><p>Group annotations by mapping dictionary</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>annotations</strong> (<em>iterable</em>) – iterable of <code class="xref py py-class docutils literal notranslate"><span class="pre">gff.GFFKeg</span></code> instances</p></li>
-<li><p><strong>mapping</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.8)"><em>dict</em></a>) – dictionary with mappings for the attribute requested</p></li>
-<li><p><strong>attr</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.8)"><em>str</em></a>) – attribute of the annotation to be used as key in mapping</p></li>
+<li><p><strong>mapping</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.9)"><em>dict</em></a>) – dictionary with mappings for the attribute requested</p></li>
+<li><p><strong>attr</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)"><em>str</em></a>) – attribute of the annotation to be used as key in mapping</p></li>
 </ul>
 </dd>
 <dt class="field-even">Return dict</dt>
@@ -339,11 +342,19 @@ each row.</p></li>
 
   <div role="contentinfo">
     <p>
-        &copy; Copyright 2013-2015, Francesco Rubino
+        
+        &copy; Copyright 2013-2020, Francesco Rubino
 
     </p>
   </div>
-  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+    
+    
+    
+    Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a
+    
+    <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a>
+    
+    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
 
 </footer>
 
@@ -354,7 +365,6 @@ each row.</p></li>
 
   </div>
   
-
 
   <script type="text/javascript">
       jQuery(function () {

@@ -1,42 +1,43 @@
 
 
 <!DOCTYPE html>
-<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
-<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<html class="writer-html5" lang="en" >
 <head>
   <meta charset="utf-8">
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>mgkit.io.utils module &mdash; MGKit: Metagenomic framework 0.5.1 documentation</title>
+  <title>mgkit.io.utils module &mdash; MGKit: Metagenomic framework 0.5.3 documentation</title>
   
-
-  
-  
-  
-  
-
-  
-  <script type="text/javascript" src="../_static/js/modernizr.min.js"></script>
-  
-    
-      <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
-        <script type="text/javascript" src="../_static/jquery.js"></script>
-        <script type="text/javascript" src="../_static/underscore.js"></script>
-        <script type="text/javascript" src="../_static/doctools.js"></script>
-        <script type="text/javascript" src="../_static/language_data.js"></script>
-        <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
-        <script async="async" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
-        <script type="text/x-mathjax-config">MathJax.Hub.Config({"tex2jax": {"inlineMath": [["$", "$"], ["\\(", "\\)"]], "processEscapes": true, "ignoreClass": "document", "processClass": "math|output_area"}})</script>
-    
-    <script type="text/javascript" src="../_static/js/theme.js"></script>
-
-    
 
   
   <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
   <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
   <link rel="stylesheet" href="../_static/graphviz.css" type="text/css" />
+
+  
+  
+  
+  
+
+  
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/underscore.js"></script>
+        <script src="../_static/doctools.js"></script>
+        <script src="../_static/language_data.js"></script>
+        <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+        <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+        <script type="text/x-mathjax-config">MathJax.Hub.Config({"tex2jax": {"inlineMath": [["$", "$"], ["\\(", "\\)"]], "processEscapes": true, "ignoreClass": "document", "processClass": "math|output_area"}})</script>
+    
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+
+    
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
     <link rel="next" title="mgkit.mappings package" href="mgkit.mappings.html" />
@@ -54,7 +55,7 @@
           
 
           
-            <a href="../index.html" class="icon icon-home"> MGKit: Metagenomic framework
+            <a href="../index.html" class="icon icon-home" alt="Documentation Home"> MGKit: Metagenomic framework
           
 
           
@@ -64,7 +65,7 @@
             
             
               <div class="version">
-                0.5.1
+                0.5.3
               </div>
             
           
@@ -81,6 +82,7 @@
           
         </div>
 
+        
         <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
           
             
@@ -179,6 +181,7 @@
             
           
         </div>
+        
       </div>
     </nav>
 
@@ -217,7 +220,7 @@
 
   <ul class="wy-breadcrumbs">
     
-      <li><a href="../index.html">Docs</a> &raquo;</li>
+      <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
         
           <li><a href="../library.html">Library Reference</a> &raquo;</li>
         
@@ -271,23 +274,23 @@
 <div class="section" id="module-mgkit.io.utils">
 <span id="mgkit-io-utils-module"></span><h1>mgkit.io.utils module<a class="headerlink" href="#module-mgkit.io.utils" title="Permalink to this headline">¶</a></h1>
 <p>Various utilities to help read and process files</p>
-<dl class="exception">
+<dl class="py exception">
 <dt id="mgkit.io.utils.UnsupportedFormat">
 <em class="property">exception </em><code class="sig-prename descclassname">mgkit.io.utils.</code><code class="sig-name descname">UnsupportedFormat</code><a class="reference internal" href="../_modules/mgkit/io/utils.html#UnsupportedFormat"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#mgkit.io.utils.UnsupportedFormat" title="Permalink to this definition">¶</a></dt>
-<dd><p>Bases: <a class="reference external" href="https://docs.python.org/3/library/exceptions.html#OSError" title="(in Python v3.8)"><code class="xref py py-class docutils literal notranslate"><span class="pre">OSError</span></code></a></p>
+<dd><p>Bases: <a class="reference external" href="https://docs.python.org/3/library/exceptions.html#OSError" title="(in Python v3.9)"><code class="xref py py-class docutils literal notranslate"><span class="pre">OSError</span></code></a></p>
 <p>Raised if the a file can’t be opened with the correct module</p>
 </dd></dl>
 
-<dl class="function">
+<dl class="py function">
 <dt id="mgkit.io.utils.compressed_handle">
-<code class="sig-prename descclassname">mgkit.io.utils.</code><code class="sig-name descname">compressed_handle</code><span class="sig-paren">(</span><em class="sig-param">file_handle</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/mgkit/io/utils.html#compressed_handle"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#mgkit.io.utils.compressed_handle" title="Permalink to this definition">¶</a></dt>
+<code class="sig-prename descclassname">mgkit.io.utils.</code><code class="sig-name descname">compressed_handle</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">file_handle</span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/mgkit/io/utils.html#compressed_handle"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#mgkit.io.utils.compressed_handle" title="Permalink to this definition">¶</a></dt>
 <dd><div class="versionadded">
 <p><span class="versionmodified added">New in version 0.1.13.</span></p>
 </div>
 <p>Tries to wrap a file handle in the appropriate compressed file class.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><p><strong>file_handle</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.8)"><em>str</em></a>) – file handle</p>
+<dd class="field-odd"><p><strong>file_handle</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)"><em>str</em></a>) – file handle</p>
 </dd>
 <dt class="field-even">Returns</dt>
 <dd class="field-even"><p>the same file handle if no suitable compressed file class is
@@ -302,9 +305,9 @@ found or the new file_handle which supports the compression</p>
 </dl>
 </dd></dl>
 
-<dl class="function">
+<dl class="py function">
 <dt id="mgkit.io.utils.group_tuples_by_key">
-<code class="sig-prename descclassname">mgkit.io.utils.</code><code class="sig-name descname">group_tuples_by_key</code><span class="sig-paren">(</span><em class="sig-param">iterator</em>, <em class="sig-param">key_func=None</em>, <em class="sig-param">skip_elements=0</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/mgkit/io/utils.html#group_tuples_by_key"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#mgkit.io.utils.group_tuples_by_key" title="Permalink to this definition">¶</a></dt>
+<code class="sig-prename descclassname">mgkit.io.utils.</code><code class="sig-name descname">group_tuples_by_key</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">iterator</span></em>, <em class="sig-param"><span class="n">key_func</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">skip_elements</span><span class="o">=</span><span class="default_value">0</span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/mgkit/io/utils.html#group_tuples_by_key"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#mgkit.io.utils.group_tuples_by_key" title="Permalink to this definition">¶</a></dt>
 <dd><div class="versionadded">
 <p><span class="versionmodified added">New in version 0.3.1.</span></p>
 </div>
@@ -324,7 +327,7 @@ to be used.</p>
 <li><p><strong>iterator</strong> (<em>iterable</em>) – iterator to be grouped</p></li>
 <li><p><strong>key_func</strong> (<em>func</em>) – function that accepts a element and returns its
 associated key</p></li>
-<li><p><strong>skip_elements</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.8)"><em>int</em></a>) – number of elements to skip at the start</p></li>
+<li><p><strong>skip_elements</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.9)"><em>int</em></a>) – number of elements to skip at the start</p></li>
 </ul>
 </dd>
 <dt class="field-even">Yields</dt>
@@ -333,9 +336,9 @@ associated key</p></li>
 </dl>
 </dd></dl>
 
-<dl class="function">
+<dl class="py function">
 <dt id="mgkit.io.utils.open_file">
-<code class="sig-prename descclassname">mgkit.io.utils.</code><code class="sig-name descname">open_file</code><span class="sig-paren">(</span><em class="sig-param">file_name</em>, <em class="sig-param">mode='r'</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/mgkit/io/utils.html#open_file"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#mgkit.io.utils.open_file" title="Permalink to this definition">¶</a></dt>
+<code class="sig-prename descclassname">mgkit.io.utils.</code><code class="sig-name descname">open_file</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">file_name</span></em>, <em class="sig-param"><span class="n">mode</span><span class="o">=</span><span class="default_value">'r'</span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/mgkit/io/utils.html#open_file"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#mgkit.io.utils.open_file" title="Permalink to this definition">¶</a></dt>
 <dd><div class="versionadded">
 <p><span class="versionmodified added">New in version 0.1.12.</span></p>
 </div>
@@ -355,8 +358,8 @@ best to use the <cite>open</cite> builtin.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>file_name</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.8)"><em>str</em></a>) – file name</p></li>
-<li><p><strong>mode</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.8)"><em>str</em></a>) – mode used to open the file</p></li>
+<li><p><strong>file_name</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)"><em>str</em></a>) – file name</p></li>
+<li><p><strong>mode</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)"><em>str</em></a>) – mode used to open the file</p></li>
 </ul>
 </dd>
 <dt class="field-even">Returns</dt>
@@ -371,9 +374,9 @@ best to use the <cite>open</cite> builtin.</p>
 </dl>
 </dd></dl>
 
-<dl class="function">
+<dl class="py function">
 <dt id="mgkit.io.utils.split_write">
-<code class="sig-prename descclassname">mgkit.io.utils.</code><code class="sig-name descname">split_write</code><span class="sig-paren">(</span><em class="sig-param">records</em>, <em class="sig-param">name_mask</em>, <em class="sig-param">write_func</em>, <em class="sig-param">num_files=2</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/mgkit/io/utils.html#split_write"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#mgkit.io.utils.split_write" title="Permalink to this definition">¶</a></dt>
+<code class="sig-prename descclassname">mgkit.io.utils.</code><code class="sig-name descname">split_write</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">records</span></em>, <em class="sig-param"><span class="n">name_mask</span></em>, <em class="sig-param"><span class="n">write_func</span></em>, <em class="sig-param"><span class="n">num_files</span><span class="o">=</span><span class="default_value">2</span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/mgkit/io/utils.html#split_write"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#mgkit.io.utils.split_write" title="Permalink to this definition">¶</a></dt>
 <dd><div class="versionadded">
 <p><span class="versionmodified added">New in version 0.1.13.</span></p>
 </div>
@@ -385,12 +388,12 @@ index of the pieces.</p>
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>records</strong> (<em>iterable</em>) – an iterable that returns a object to be saved</p></li>
-<li><p><strong>name_mask</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.8)"><em>str</em></a>) – a string used as template for the output file names
+<li><p><strong>name_mask</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)"><em>str</em></a>) – a string used as template for the output file names
 on which the function applies <code class="xref py py-func docutils literal notranslate"><span class="pre">string.format()</span></code></p></li>
 <li><p><strong>write_func</strong> (<em>func</em>) – a function that is called to write to the files. It
 needs to accept a file handles as first argument and the record
 returned by <cite>records</cite> as the second argument</p></li>
-<li><p><strong>num_files</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.8)"><em>int</em></a>) – the number of files to split the records</p></li>
+<li><p><strong>num_files</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.9)"><em>int</em></a>) – the number of files to split the records</p></li>
 </ul>
 </dd>
 </dl>
@@ -418,11 +421,19 @@ returned by <cite>records</cite> as the second argument</p></li>
 
   <div role="contentinfo">
     <p>
-        &copy; Copyright 2013-2015, Francesco Rubino
+        
+        &copy; Copyright 2013-2020, Francesco Rubino
 
     </p>
   </div>
-  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+    
+    
+    
+    Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a
+    
+    <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a>
+    
+    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
 
 </footer>
 
@@ -433,7 +444,6 @@ returned by <cite>records</cite> as the second argument</p></li>
 
   </div>
   
-
 
   <script type="text/javascript">
       jQuery(function () {

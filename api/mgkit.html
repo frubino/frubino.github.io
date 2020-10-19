@@ -1,42 +1,43 @@
 
 
 <!DOCTYPE html>
-<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
-<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<html class="writer-html5" lang="en" >
 <head>
   <meta charset="utf-8">
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>mgkit package &mdash; MGKit: Metagenomic framework 0.5.1 documentation</title>
+  <title>mgkit package &mdash; MGKit: Metagenomic framework 0.5.3 documentation</title>
   
-
-  
-  
-  
-  
-
-  
-  <script type="text/javascript" src="../_static/js/modernizr.min.js"></script>
-  
-    
-      <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
-        <script type="text/javascript" src="../_static/jquery.js"></script>
-        <script type="text/javascript" src="../_static/underscore.js"></script>
-        <script type="text/javascript" src="../_static/doctools.js"></script>
-        <script type="text/javascript" src="../_static/language_data.js"></script>
-        <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
-        <script async="async" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
-        <script type="text/x-mathjax-config">MathJax.Hub.Config({"tex2jax": {"inlineMath": [["$", "$"], ["\\(", "\\)"]], "processEscapes": true, "ignoreClass": "document", "processClass": "math|output_area"}})</script>
-    
-    <script type="text/javascript" src="../_static/js/theme.js"></script>
-
-    
 
   
   <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
   <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
   <link rel="stylesheet" href="../_static/graphviz.css" type="text/css" />
+
+  
+  
+  
+  
+
+  
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/underscore.js"></script>
+        <script src="../_static/doctools.js"></script>
+        <script src="../_static/language_data.js"></script>
+        <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+        <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+        <script type="text/x-mathjax-config">MathJax.Hub.Config({"tex2jax": {"inlineMath": [["$", "$"], ["\\(", "\\)"]], "processEscapes": true, "ignoreClass": "document", "processClass": "math|output_area"}})</script>
+    
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+
+    
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
     <link rel="next" title="mgkit.counts package" href="mgkit.counts.html" />
@@ -54,7 +55,7 @@
           
 
           
-            <a href="../index.html" class="icon icon-home"> MGKit: Metagenomic framework
+            <a href="../index.html" class="icon icon-home" alt="Documentation Home"> MGKit: Metagenomic framework
           
 
           
@@ -64,7 +65,7 @@
             
             
               <div class="version">
-                0.5.1
+                0.5.3
               </div>
             
           
@@ -81,6 +82,7 @@
           
         </div>
 
+        
         <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
           
             
@@ -205,6 +207,7 @@
             
           
         </div>
+        
       </div>
     </nav>
 
@@ -243,7 +246,7 @@
 
   <ul class="wy-breadcrumbs">
     
-      <li><a href="../index.html">Docs</a> &raquo;</li>
+      <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
         
           <li><a href="../library.html">Library Reference</a> &raquo;</li>
         
@@ -514,27 +517,27 @@
 <div class="section" id="module-mgkit">
 <span id="module-contents"></span><h2>Module contents<a class="headerlink" href="#module-mgkit" title="Permalink to this headline">¶</a></h2>
 <p>Metagenomics Framework</p>
-<dl class="data">
+<dl class="py data">
 <dt id="mgkit.DEBUG">
 <code class="sig-prename descclassname">mgkit.</code><code class="sig-name descname">DEBUG</code><em class="property"> = False</em><a class="headerlink" href="#mgkit.DEBUG" title="Permalink to this definition">¶</a></dt>
 <dd><p>Debug switch for a few functions</p>
 </dd></dl>
 
-<dl class="exception">
+<dl class="py exception">
 <dt id="mgkit.DependencyError">
-<em class="property">exception </em><code class="sig-prename descclassname">mgkit.</code><code class="sig-name descname">DependencyError</code><span class="sig-paren">(</span><em class="sig-param">package</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/mgkit.html#DependencyError"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#mgkit.DependencyError" title="Permalink to this definition">¶</a></dt>
-<dd><p>Bases: <a class="reference external" href="https://docs.python.org/3/library/exceptions.html#Exception" title="(in Python v3.8)"><code class="xref py py-class docutils literal notranslate"><span class="pre">Exception</span></code></a></p>
+<em class="property">exception </em><code class="sig-prename descclassname">mgkit.</code><code class="sig-name descname">DependencyError</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">package</span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/mgkit.html#DependencyError"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#mgkit.DependencyError" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference external" href="https://docs.python.org/3/library/exceptions.html#Exception" title="(in Python v3.9)"><code class="xref py py-class docutils literal notranslate"><span class="pre">Exception</span></code></a></p>
 <p>Raised if an optional requirement is needed</p>
 </dd></dl>
 
-<dl class="function">
+<dl class="py function">
 <dt id="mgkit.check_version">
-<code class="sig-prename descclassname">mgkit.</code><code class="sig-name descname">check_version</code><span class="sig-paren">(</span><em class="sig-param">version</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/mgkit.html#check_version"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#mgkit.check_version" title="Permalink to this definition">¶</a></dt>
+<code class="sig-prename descclassname">mgkit.</code><code class="sig-name descname">check_version</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">version</span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/mgkit.html#check_version"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#mgkit.check_version" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
-<dl class="function">
+<dl class="py function">
 <dt id="mgkit.cite">
-<code class="sig-prename descclassname">mgkit.</code><code class="sig-name descname">cite</code><span class="sig-paren">(</span><em class="sig-param">file_handle=&lt;_io.TextIOWrapper name='&lt;stderr&gt;' mode='w' encoding='UTF-8'&gt;</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/mgkit.html#cite"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#mgkit.cite" title="Permalink to this definition">¶</a></dt>
+<code class="sig-prename descclassname">mgkit.</code><code class="sig-name descname">cite</code><span class="sig-paren">(</span><em class="sig-param">file_handle=&lt;_io.TextIOWrapper name='&lt;stderr&gt;' mode='w' encoding='utf-8'&gt;</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/mgkit.html#cite"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#mgkit.cite" title="Permalink to this definition">¶</a></dt>
 <dd><p>Print citation to the specified stream</p>
 </dd></dl>
 
@@ -561,11 +564,19 @@
 
   <div role="contentinfo">
     <p>
-        &copy; Copyright 2013-2015, Francesco Rubino
+        
+        &copy; Copyright 2013-2020, Francesco Rubino
 
     </p>
   </div>
-  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+    
+    
+    
+    Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a
+    
+    <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a>
+    
+    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
 
 </footer>
 
@@ -576,7 +587,6 @@
 
   </div>
   
-
 
   <script type="text/javascript">
       jQuery(function () {

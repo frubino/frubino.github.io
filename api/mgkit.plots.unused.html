@@ -1,42 +1,43 @@
 
 
 <!DOCTYPE html>
-<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
-<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<html class="writer-html5" lang="en" >
 <head>
   <meta charset="utf-8">
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>mgkit.plots.unused module &mdash; MGKit: Metagenomic framework 0.5.1 documentation</title>
+  <title>mgkit.plots.unused module &mdash; MGKit: Metagenomic framework 0.5.3 documentation</title>
   
-
-  
-  
-  
-  
-
-  
-  <script type="text/javascript" src="../_static/js/modernizr.min.js"></script>
-  
-    
-      <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
-        <script type="text/javascript" src="../_static/jquery.js"></script>
-        <script type="text/javascript" src="../_static/underscore.js"></script>
-        <script type="text/javascript" src="../_static/doctools.js"></script>
-        <script type="text/javascript" src="../_static/language_data.js"></script>
-        <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
-        <script async="async" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
-        <script type="text/x-mathjax-config">MathJax.Hub.Config({"tex2jax": {"inlineMath": [["$", "$"], ["\\(", "\\)"]], "processEscapes": true, "ignoreClass": "document", "processClass": "math|output_area"}})</script>
-    
-    <script type="text/javascript" src="../_static/js/theme.js"></script>
-
-    
 
   
   <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
   <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
   <link rel="stylesheet" href="../_static/graphviz.css" type="text/css" />
+
+  
+  
+  
+  
+
+  
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/underscore.js"></script>
+        <script src="../_static/doctools.js"></script>
+        <script src="../_static/language_data.js"></script>
+        <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+        <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+        <script type="text/x-mathjax-config">MathJax.Hub.Config({"tex2jax": {"inlineMath": [["$", "$"], ["\\(", "\\)"]], "processEscapes": true, "ignoreClass": "document", "processClass": "math|output_area"}})</script>
+    
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+
+    
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
     <link rel="next" title="mgkit.plots.utils module" href="mgkit.plots.utils.html" />
@@ -54,7 +55,7 @@
           
 
           
-            <a href="../index.html" class="icon icon-home"> MGKit: Metagenomic framework
+            <a href="../index.html" class="icon icon-home" alt="Documentation Home"> MGKit: Metagenomic framework
           
 
           
@@ -64,7 +65,7 @@
             
             
               <div class="version">
-                0.5.1
+                0.5.3
               </div>
             
           
@@ -81,6 +82,7 @@
           
         </div>
 
+        
         <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
           
             
@@ -179,6 +181,7 @@
             
           
         </div>
+        
       </div>
     </nav>
 
@@ -217,7 +220,7 @@
 
   <ul class="wy-breadcrumbs">
     
-      <li><a href="../index.html">Docs</a> &raquo;</li>
+      <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
         
           <li><a href="../library.html">Library Reference</a> &raquo;</li>
         
@@ -274,15 +277,15 @@
 <p><span class="versionmodified added">New in version 0.1.14.</span></p>
 </div>
 <p>Code deprecated or untested</p>
-<dl class="data">
+<dl class="py data">
 <dt id="mgkit.plots.unused.TAXON_COLOURS">
 <code class="sig-prename descclassname">mgkit.plots.unused.</code><code class="sig-name descname">TAXON_COLOURS</code><em class="property"> = {'archaea': '#4daf4a', 'bacteria': '#377eb8', 'ciliophora': '#984ea3', 'fungi': '#ff7f00', 'streptophyta': '#e41a1c'}</em><a class="headerlink" href="#mgkit.plots.unused.TAXON_COLOURS" title="Permalink to this definition">¶</a></dt>
 <dd><p>Default colours for root taxa</p>
 </dd></dl>
 
-<dl class="function">
+<dl class="py function">
 <dt id="mgkit.plots.unused.barchart_categories">
-<code class="sig-prename descclassname">mgkit.plots.unused.</code><code class="sig-name descname">barchart_categories</code><span class="sig-paren">(</span><em class="sig-param">data</em>, <em class="sig-param">colours=None</em>, <em class="sig-param">title=''</em>, <em class="sig-param">tickfont='small'</em>, <em class="sig-param">xlabel_dict=None</em>, <em class="sig-param">barlabel_dict=None</em>, <em class="sig-param">width=0.9</em>, <em class="sig-param">rotation='vertical'</em>, <em class="sig-param">file_name=None</em>, <em class="sig-param">fig_size=None</em>, <em class="sig-param">fig_aspect=None</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/mgkit/plots/unused.html#barchart_categories"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#mgkit.plots.unused.barchart_categories" title="Permalink to this definition">¶</a></dt>
+<code class="sig-prename descclassname">mgkit.plots.unused.</code><code class="sig-name descname">barchart_categories</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">data</span></em>, <em class="sig-param"><span class="n">colours</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">title</span><span class="o">=</span><span class="default_value">''</span></em>, <em class="sig-param"><span class="n">tickfont</span><span class="o">=</span><span class="default_value">'small'</span></em>, <em class="sig-param"><span class="n">xlabel_dict</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">barlabel_dict</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">width</span><span class="o">=</span><span class="default_value">0.9</span></em>, <em class="sig-param"><span class="n">rotation</span><span class="o">=</span><span class="default_value">'vertical'</span></em>, <em class="sig-param"><span class="n">file_name</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">fig_size</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">fig_aspect</span><span class="o">=</span><span class="default_value">None</span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/mgkit/plots/unused.html#barchart_categories"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#mgkit.plots.unused.barchart_categories" title="Permalink to this definition">¶</a></dt>
 <dd><dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
@@ -305,9 +308,9 @@ Defaults to rows’ names</p></li>
 </dl>
 </dd></dl>
 
-<dl class="function">
+<dl class="py function">
 <dt id="mgkit.plots.unused.get_taxon_colors_new">
-<code class="sig-prename descclassname">mgkit.plots.unused.</code><code class="sig-name descname">get_taxon_colors_new</code><span class="sig-paren">(</span><em class="sig-param">taxa</em>, <em class="sig-param">taxonomy</em>, <em class="sig-param">default_colour='#ffff33'</em><span class="sig-paren">)</span><a class="headerlink" href="#mgkit.plots.unused.get_taxon_colors_new" title="Permalink to this definition">¶</a></dt>
+<code class="sig-prename descclassname">mgkit.plots.unused.</code><code class="sig-name descname">get_taxon_colors_new</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">taxa</span></em>, <em class="sig-param"><span class="n">taxonomy</span></em>, <em class="sig-param"><span class="n">default_colour</span><span class="o">=</span><span class="default_value">'#ffff33'</span></em><span class="sig-paren">)</span><a class="headerlink" href="#mgkit.plots.unused.get_taxon_colors_new" title="Permalink to this definition">¶</a></dt>
 <dd><p>Returns a dictionary of taxa and their assigned colours based on
 <a class="reference internal" href="#mgkit.plots.unused.TAXON_COLOURS" title="mgkit.plots.unused.TAXON_COLOURS"><code class="xref py py-data docutils literal notranslate"><span class="pre">TAXON_COLOURS</span></code></a> and the taxonomy provided. Uses the
 <code class="xref py py-func docutils literal notranslate"><span class="pre">taxon.Taxonomy.get_taxon_root()</span></code> to determine the root of a
@@ -327,18 +330,18 @@ taxon</p></li>
 </dl>
 </dd></dl>
 
-<dl class="function">
+<dl class="py function">
 <dt id="mgkit.plots.unused.lineplot_values_on_second_axis">
-<code class="sig-prename descclassname">mgkit.plots.unused.</code><code class="sig-name descname">lineplot_values_on_second_axis</code><span class="sig-paren">(</span><em class="sig-param">gene_num</em>, <em class="sig-param">axis</em>, <em class="sig-param">colour='c'</em>, <em class="sig-param">ylabel=''</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/mgkit/plots/unused.html#lineplot_values_on_second_axis"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#mgkit.plots.unused.lineplot_values_on_second_axis" title="Permalink to this definition">¶</a></dt>
+<code class="sig-prename descclassname">mgkit.plots.unused.</code><code class="sig-name descname">lineplot_values_on_second_axis</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">gene_num</span></em>, <em class="sig-param"><span class="n">axis</span></em>, <em class="sig-param"><span class="n">colour</span><span class="o">=</span><span class="default_value">'c'</span></em>, <em class="sig-param"><span class="n">ylabel</span><span class="o">=</span><span class="default_value">''</span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/mgkit/plots/unused.html#lineplot_values_on_second_axis"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#mgkit.plots.unused.lineplot_values_on_second_axis" title="Permalink to this definition">¶</a></dt>
 <dd><div class="deprecated">
 <p><span class="versionmodified deprecated">Deprecated since version 0.1.13.</span></p>
 </div>
 <p>Adds a lineplot on a second axis using twinx</p>
 </dd></dl>
 
-<dl class="function">
+<dl class="py function">
 <dt id="mgkit.plots.unused.map_taxon_to_colours">
-<code class="sig-prename descclassname">mgkit.plots.unused.</code><code class="sig-name descname">map_taxon_to_colours</code><span class="sig-paren">(</span><em class="sig-param">taxa</em>, <em class="sig-param">taxonomy</em>, <em class="sig-param">default_colour='#ffff33'</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/mgkit/plots/unused.html#map_taxon_to_colours"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#mgkit.plots.unused.map_taxon_to_colours" title="Permalink to this definition">¶</a></dt>
+<code class="sig-prename descclassname">mgkit.plots.unused.</code><code class="sig-name descname">map_taxon_to_colours</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">taxa</span></em>, <em class="sig-param"><span class="n">taxonomy</span></em>, <em class="sig-param"><span class="n">default_colour</span><span class="o">=</span><span class="default_value">'#ffff33'</span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/mgkit/plots/unused.html#map_taxon_to_colours"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#mgkit.plots.unused.map_taxon_to_colours" title="Permalink to this definition">¶</a></dt>
 <dd><p>Returns a dictionary of taxa and their assigned colours based on
 <a class="reference internal" href="#mgkit.plots.unused.TAXON_COLOURS" title="mgkit.plots.unused.TAXON_COLOURS"><code class="xref py py-data docutils literal notranslate"><span class="pre">TAXON_COLOURS</span></code></a> and the taxonomy provided. Uses the
 <code class="xref py py-func docutils literal notranslate"><span class="pre">taxon.Taxonomy.get_taxon_root()</span></code> to determine the root of a
@@ -358,40 +361,40 @@ taxon</p></li>
 </dl>
 </dd></dl>
 
-<dl class="function">
+<dl class="py function">
 <dt id="mgkit.plots.unused.plot_contig_assignment_bar">
-<code class="sig-prename descclassname">mgkit.plots.unused.</code><code class="sig-name descname">plot_contig_assignment_bar</code><span class="sig-paren">(</span><em class="sig-param">series</em>, <em class="sig-param">taxon_colours=None</em>, <em class="sig-param">log_scale=False</em>, <em class="sig-param">index=None</em>, <em class="sig-param">file_name=None</em>, <em class="sig-param">fig_aspect=None</em>, <em class="sig-param">xlabels_size=8</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/mgkit/plots/unused.html#plot_contig_assignment_bar"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#mgkit.plots.unused.plot_contig_assignment_bar" title="Permalink to this definition">¶</a></dt>
+<code class="sig-prename descclassname">mgkit.plots.unused.</code><code class="sig-name descname">plot_contig_assignment_bar</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">series</span></em>, <em class="sig-param"><span class="n">taxon_colours</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">log_scale</span><span class="o">=</span><span class="default_value">False</span></em>, <em class="sig-param"><span class="n">index</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">file_name</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">fig_aspect</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">xlabels_size</span><span class="o">=</span><span class="default_value">8</span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/mgkit/plots/unused.html#plot_contig_assignment_bar"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#mgkit.plots.unused.plot_contig_assignment_bar" title="Permalink to this definition">¶</a></dt>
 <dd><p>Plots barchart for contig assignment</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>series</strong> – <code class="xref py py-class docutils literal notranslate"><span class="pre">pandas.Series</span></code> instance with the data</p></li>
-<li><p><strong>taxon_colours</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.8)"><em>dict</em></a>) – colour of the bars for each taxon</p></li>
-<li><p><strong>log_scale</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.8)"><em>bool</em></a>) – if True the y axis is log scaled</p></li>
-<li><p><strong>fig_aspect</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#tuple" title="(in Python v3.8)"><em>tuple</em></a>) – tuple with figure size</p></li>
-<li><p><strong>xlabels_size</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.8)"><em>int</em></a>) – size of the taxon labels</p></li>
+<li><p><strong>taxon_colours</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.9)"><em>dict</em></a>) – colour of the bars for each taxon</p></li>
+<li><p><strong>log_scale</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.9)"><em>bool</em></a>) – if True the y axis is log scaled</p></li>
+<li><p><strong>fig_aspect</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#tuple" title="(in Python v3.9)"><em>tuple</em></a>) – tuple with figure size</p></li>
+<li><p><strong>xlabels_size</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.9)"><em>int</em></a>) – size of the taxon labels</p></li>
 <li><p><strong>index</strong> – optional <code class="xref py py-class docutils literal notranslate"><span class="pre">pandas.Index</span></code> used to reindex the series</p></li>
-<li><p><strong>file_name</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.8)"><em>str</em></a>) – name of the file to write the graph to</p></li>
+<li><p><strong>file_name</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)"><em>str</em></a>) – name of the file to write the graph to</p></li>
 </ul>
 </dd>
 </dl>
 </dd></dl>
 
-<dl class="function">
+<dl class="py function">
 <dt id="mgkit.plots.unused.plot_scatter_2d">
-<code class="sig-prename descclassname">mgkit.plots.unused.</code><code class="sig-name descname">plot_scatter_2d</code><span class="sig-paren">(</span><em class="sig-param">data</em>, <em class="sig-param">labels</em>, <em class="sig-param">colours=None</em>, <em class="sig-param">pointsize=10.0</em>, <em class="sig-param">title=''</em>, <em class="sig-param">xlabel=''</em>, <em class="sig-param">ylabel=''</em>, <em class="sig-param">centers=None</em>, <em class="sig-param">marker='*'</em>, <em class="sig-param">marker_colour=None</em>, <em class="sig-param">markersize=None</em>, <em class="sig-param">hull_points=True</em>, <em class="sig-param">linewidth=0.2</em>, <em class="sig-param">legend=True</em>, <em class="sig-param">anno_center=True</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/mgkit/plots/unused.html#plot_scatter_2d"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#mgkit.plots.unused.plot_scatter_2d" title="Permalink to this definition">¶</a></dt>
+<code class="sig-prename descclassname">mgkit.plots.unused.</code><code class="sig-name descname">plot_scatter_2d</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">data</span></em>, <em class="sig-param"><span class="n">labels</span></em>, <em class="sig-param"><span class="n">colours</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">pointsize</span><span class="o">=</span><span class="default_value">10.0</span></em>, <em class="sig-param"><span class="n">title</span><span class="o">=</span><span class="default_value">''</span></em>, <em class="sig-param"><span class="n">xlabel</span><span class="o">=</span><span class="default_value">''</span></em>, <em class="sig-param"><span class="n">ylabel</span><span class="o">=</span><span class="default_value">''</span></em>, <em class="sig-param"><span class="n">centers</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">marker</span><span class="o">=</span><span class="default_value">'*'</span></em>, <em class="sig-param"><span class="n">marker_colour</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">markersize</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">hull_points</span><span class="o">=</span><span class="default_value">True</span></em>, <em class="sig-param"><span class="n">linewidth</span><span class="o">=</span><span class="default_value">0.2</span></em>, <em class="sig-param"><span class="n">legend</span><span class="o">=</span><span class="default_value">True</span></em>, <em class="sig-param"><span class="n">anno_center</span><span class="o">=</span><span class="default_value">True</span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/mgkit/plots/unused.html#plot_scatter_2d"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#mgkit.plots.unused.plot_scatter_2d" title="Permalink to this definition">¶</a></dt>
 <dd><p>Scatter plot in 2d. Used for cluster results</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>data</strong> (<em>array</em>) – <code class="xref py py-class docutils literal notranslate"><span class="pre">numpy.array</span></code> with shape n, 2</p></li>
 <li><p><strong>labels</strong> (<em>array</em>) – labels to categorise samples</p></li>
-<li><p><strong>colours</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.8)"><em>dict</em></a>) – dictionary whose keys are the labels and the values
+<li><p><strong>colours</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.9)"><em>dict</em></a>) – dictionary whose keys are the labels and the values
 are valid <code class="xref py py-mod docutils literal notranslate"><span class="pre">matplotlib</span></code> colours</p></li>
-<li><p><strong>pointsize</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.8)"><em>int</em></a>) – point size</p></li>
-<li><p><strong>title</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.8)"><em>str</em></a>) – plot title</p></li>
-<li><p><strong>xlabel</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.8)"><em>str</em></a>) – label for x axis</p></li>
-<li><p><strong>ylabel</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.8)"><em>str</em></a>) – label for y axis</p></li>
+<li><p><strong>pointsize</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.9)"><em>int</em></a>) – point size</p></li>
+<li><p><strong>title</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)"><em>str</em></a>) – plot title</p></li>
+<li><p><strong>xlabel</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)"><em>str</em></a>) – label for x axis</p></li>
+<li><p><strong>ylabel</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)"><em>str</em></a>) – label for y axis</p></li>
 </ul>
 </dd>
 <dt class="field-even">Returns</dt>
@@ -400,22 +403,22 @@ are valid <code class="xref py py-mod docutils literal notranslate"><span class=
 </dl>
 </dd></dl>
 
-<dl class="function">
+<dl class="py function">
 <dt id="mgkit.plots.unused.plot_scatter_3d">
-<code class="sig-prename descclassname">mgkit.plots.unused.</code><code class="sig-name descname">plot_scatter_3d</code><span class="sig-paren">(</span><em class="sig-param">data</em>, <em class="sig-param">labels</em>, <em class="sig-param">colours=None</em>, <em class="sig-param">pointsize=10.0</em>, <em class="sig-param">title=''</em>, <em class="sig-param">xlabel=''</em>, <em class="sig-param">ylabel=''</em>, <em class="sig-param">zlabel=''</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/mgkit/plots/unused.html#plot_scatter_3d"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#mgkit.plots.unused.plot_scatter_3d" title="Permalink to this definition">¶</a></dt>
+<code class="sig-prename descclassname">mgkit.plots.unused.</code><code class="sig-name descname">plot_scatter_3d</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">data</span></em>, <em class="sig-param"><span class="n">labels</span></em>, <em class="sig-param"><span class="n">colours</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">pointsize</span><span class="o">=</span><span class="default_value">10.0</span></em>, <em class="sig-param"><span class="n">title</span><span class="o">=</span><span class="default_value">''</span></em>, <em class="sig-param"><span class="n">xlabel</span><span class="o">=</span><span class="default_value">''</span></em>, <em class="sig-param"><span class="n">ylabel</span><span class="o">=</span><span class="default_value">''</span></em>, <em class="sig-param"><span class="n">zlabel</span><span class="o">=</span><span class="default_value">''</span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/mgkit/plots/unused.html#plot_scatter_3d"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#mgkit.plots.unused.plot_scatter_3d" title="Permalink to this definition">¶</a></dt>
 <dd><p>Scatter plot in 3d. Used for cluster results</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>data</strong> (<em>array</em>) – <code class="xref py py-class docutils literal notranslate"><span class="pre">numpy.array</span></code> with shape n, 3</p></li>
 <li><p><strong>labels</strong> (<em>array</em>) – labels to categorise samples</p></li>
-<li><p><strong>colours</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.8)"><em>dict</em></a>) – dictionary whose keys are the labels and the values
+<li><p><strong>colours</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.9)"><em>dict</em></a>) – dictionary whose keys are the labels and the values
 are valid <code class="xref py py-mod docutils literal notranslate"><span class="pre">matplotlib</span></code> colours</p></li>
-<li><p><strong>pointsize</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.8)"><em>int</em></a>) – point size</p></li>
-<li><p><strong>title</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.8)"><em>str</em></a>) – plot title</p></li>
-<li><p><strong>xlabel</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.8)"><em>str</em></a>) – label for x axis</p></li>
-<li><p><strong>ylabel</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.8)"><em>str</em></a>) – label for y axis</p></li>
-<li><p><strong>zlabel</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.8)"><em>str</em></a>) – label for z axis</p></li>
+<li><p><strong>pointsize</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.9)"><em>int</em></a>) – point size</p></li>
+<li><p><strong>title</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)"><em>str</em></a>) – plot title</p></li>
+<li><p><strong>xlabel</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)"><em>str</em></a>) – label for x axis</p></li>
+<li><p><strong>ylabel</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)"><em>str</em></a>) – label for y axis</p></li>
+<li><p><strong>zlabel</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)"><em>str</em></a>) – label for z axis</p></li>
 </ul>
 </dd>
 <dt class="field-even">Returns</dt>
@@ -424,25 +427,25 @@ are valid <code class="xref py py-mod docutils literal notranslate"><span class=
 </dl>
 </dd></dl>
 
-<dl class="function">
+<dl class="py function">
 <dt id="mgkit.plots.unused.scatter_gene_values">
-<code class="sig-prename descclassname">mgkit.plots.unused.</code><code class="sig-name descname">scatter_gene_values</code><span class="sig-paren">(</span><em class="sig-param">gene_dict</em>, <em class="sig-param">xlabel='Profile pN/pS'</em>, <em class="sig-param">ylabel='Rumen pN/pS'</em>, <em class="sig-param">title=''</em>, <em class="sig-param">colours=None</em>, <em class="sig-param">file_name=None</em>, <em class="sig-param">plot_order=None</em>, <em class="sig-param">line_colour='r'</em>, <em class="sig-param">max_limit=None</em>, <em class="sig-param">axes=None</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/mgkit/plots/unused.html#scatter_gene_values"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#mgkit.plots.unused.scatter_gene_values" title="Permalink to this definition">¶</a></dt>
+<code class="sig-prename descclassname">mgkit.plots.unused.</code><code class="sig-name descname">scatter_gene_values</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">gene_dict</span></em>, <em class="sig-param"><span class="n">xlabel</span><span class="o">=</span><span class="default_value">'Profile pN/pS'</span></em>, <em class="sig-param"><span class="n">ylabel</span><span class="o">=</span><span class="default_value">'Rumen pN/pS'</span></em>, <em class="sig-param"><span class="n">title</span><span class="o">=</span><span class="default_value">''</span></em>, <em class="sig-param"><span class="n">colours</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">file_name</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">plot_order</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">line_colour</span><span class="o">=</span><span class="default_value">'r'</span></em>, <em class="sig-param"><span class="n">max_limit</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">axes</span><span class="o">=</span><span class="default_value">None</span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/mgkit/plots/unused.html#scatter_gene_values"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#mgkit.plots.unused.scatter_gene_values" title="Permalink to this definition">¶</a></dt>
 <dd><p>Plots gene-taxon pN/pS from profiles against their observed values.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>gene_dict</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.8)"><em>dict</em></a>) – dictionary that contains the data</p></li>
-<li><p><strong>xlabel</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.8)"><em>str</em></a>) – label for x axis</p></li>
-<li><p><strong>ylabel</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.8)"><em>str</em></a>) – label for y axis</p></li>
-<li><p><strong>title</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.8)"><em>str</em></a>) – graph title</p></li>
+<li><p><strong>gene_dict</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.9)"><em>dict</em></a>) – dictionary that contains the data</p></li>
+<li><p><strong>xlabel</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)"><em>str</em></a>) – label for x axis</p></li>
+<li><p><strong>ylabel</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)"><em>str</em></a>) – label for y axis</p></li>
+<li><p><strong>title</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)"><em>str</em></a>) – graph title</p></li>
 <li><p><strong>colours</strong> – colours used in for the different datasets; defaults to
 TAXON_COLOURS</p></li>
-<li><p><strong>file_name</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.8)"><em>str</em></a>) – path to which the graph is to be saved (by default)
+<li><p><strong>file_name</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)"><em>str</em></a>) – path to which the graph is to be saved (by default)
 it doesn’t write to disk</p></li>
 <li><p><strong>plot_order</strong> (<em>iterable</em>) – the order used in plotting the data points;
 default to the order of the gene_dict dictionary keys</p></li>
 <li><p><strong>coloUr</strong> – valid colour for the lines in the plot</p></li>
-<li><p><strong>max_limit</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.8)"><em>float</em></a>) – used to put a limit on the plot</p></li>
+<li><p><strong>max_limit</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.9)"><em>float</em></a>) – used to put a limit on the plot</p></li>
 <li><p><strong>axes</strong> – optional axes used to draw the scatter plot</p></li>
 </ul>
 </dd>
@@ -474,11 +477,19 @@ default to the order of the gene_dict dictionary keys</p></li>
 
   <div role="contentinfo">
     <p>
-        &copy; Copyright 2013-2015, Francesco Rubino
+        
+        &copy; Copyright 2013-2020, Francesco Rubino
 
     </p>
   </div>
-  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+    
+    
+    
+    Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a
+    
+    <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a>
+    
+    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
 
 </footer>
 
@@ -489,7 +500,6 @@ default to the order of the gene_dict dictionary keys</p></li>
 
   </div>
   
-
 
   <script type="text/javascript">
       jQuery(function () {

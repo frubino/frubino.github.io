@@ -1,42 +1,43 @@
 
 
 <!DOCTYPE html>
-<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
-<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<html class="writer-html5" lang="en" >
 <head>
   <meta charset="utf-8">
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>mgkit.graphs module &mdash; MGKit: Metagenomic framework 0.5.1 documentation</title>
+  <title>mgkit.graphs module &mdash; MGKit: Metagenomic framework 0.5.3 documentation</title>
   
-
-  
-  
-  
-  
-
-  
-  <script type="text/javascript" src="../_static/js/modernizr.min.js"></script>
-  
-    
-      <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
-        <script type="text/javascript" src="../_static/jquery.js"></script>
-        <script type="text/javascript" src="../_static/underscore.js"></script>
-        <script type="text/javascript" src="../_static/doctools.js"></script>
-        <script type="text/javascript" src="../_static/language_data.js"></script>
-        <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
-        <script async="async" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
-        <script type="text/x-mathjax-config">MathJax.Hub.Config({"tex2jax": {"inlineMath": [["$", "$"], ["\\(", "\\)"]], "processEscapes": true, "ignoreClass": "document", "processClass": "math|output_area"}})</script>
-    
-    <script type="text/javascript" src="../_static/js/theme.js"></script>
-
-    
 
   
   <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
   <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
   <link rel="stylesheet" href="../_static/graphviz.css" type="text/css" />
+
+  
+  
+  
+  
+
+  
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/underscore.js"></script>
+        <script src="../_static/doctools.js"></script>
+        <script src="../_static/language_data.js"></script>
+        <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+        <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+        <script type="text/x-mathjax-config">MathJax.Hub.Config({"tex2jax": {"inlineMath": [["$", "$"], ["\\(", "\\)"]], "processEscapes": true, "ignoreClass": "document", "processClass": "math|output_area"}})</script>
+    
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+
+    
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
     <link rel="next" title="mgkit.kegg module" href="mgkit.kegg.html" />
@@ -54,7 +55,7 @@
           
 
           
-            <a href="../index.html" class="icon icon-home"> MGKit: Metagenomic framework
+            <a href="../index.html" class="icon icon-home" alt="Documentation Home"> MGKit: Metagenomic framework
           
 
           
@@ -64,7 +65,7 @@
             
             
               <div class="version">
-                0.5.1
+                0.5.3
               </div>
             
           
@@ -81,6 +82,7 @@
           
         </div>
 
+        
         <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
           
             
@@ -179,6 +181,7 @@
             
           
         </div>
+        
       </div>
     </nav>
 
@@ -217,7 +220,7 @@
 
   <ul class="wy-breadcrumbs">
     
-      <li><a href="../index.html">Docs</a> &raquo;</li>
+      <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
         
           <li><a href="../library.html">Library Reference</a> &raquo;</li>
         
@@ -266,396 +269,8 @@
     text-align: unset;
 }
 </style>
-<div class="section" id="module-mgkit.graphs">
-<span id="mgkit-graphs-module"></span><h1>mgkit.graphs module<a class="headerlink" href="#module-mgkit.graphs" title="Permalink to this headline">¶</a></h1>
-<div class="versionadded">
-<p><span class="versionmodified added">New in version 0.1.12.</span></p>
-</div>
-<p>Graph module</p>
-<dl class="data">
-<dt id="mgkit.graphs.EDGE_LINKS">
-<code class="sig-prename descclassname">mgkit.graphs.</code><code class="sig-name descname">EDGE_LINKS</code><em class="property"> = [(&lt;function &lt;lambda&gt;&gt;, 'CP_LINK', 0.0), (&lt;function &lt;lambda&gt;&gt;, 'KO_LINK', 0.0)]</em><a class="headerlink" href="#mgkit.graphs.EDGE_LINKS" title="Permalink to this definition">¶</a></dt>
-<dd><p>Sample edge_links for <a class="reference internal" href="#mgkit.graphs.link_graph" title="mgkit.graphs.link_graph"><code class="xref py py-func docutils literal notranslate"><span class="pre">link_graph()</span></code></a></p>
-</dd></dl>
-
-<dl class="class">
-<dt id="mgkit.graphs.Reaction">
-<em class="property">class </em><code class="sig-prename descclassname">mgkit.graphs.</code><code class="sig-name descname">Reaction</code><span class="sig-paren">(</span><em class="sig-param">kegg_id</em>, <em class="sig-param">substrates</em>, <em class="sig-param">products</em>, <em class="sig-param">reversible</em>, <em class="sig-param">orthologs</em>, <em class="sig-param">pathway</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/mgkit/graphs.html#Reaction"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#mgkit.graphs.Reaction" title="Permalink to this definition">¶</a></dt>
-<dd><p>Bases: <a class="reference external" href="https://docs.python.org/3/library/functions.html#object" title="(in Python v3.8)"><code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></a></p>
-<div class="versionadded">
-<p><span class="versionmodified added">New in version 0.4.0.</span></p>
-</div>
-<p>Object used to hold information about a reaction entry in Kegg</p>
-<dl class="method">
-<dt id="mgkit.graphs.Reaction.__eq__">
-<code class="sig-name descname">__eq__</code><span class="sig-paren">(</span><em class="sig-param">other</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/mgkit/graphs.html#Reaction.__eq__"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#mgkit.graphs.Reaction.__eq__" title="Permalink to this definition">¶</a></dt>
-<dd><p>Tests equality by comparing the IDs and the compounds</p>
-</dd></dl>
-
-<dl class="method">
-<dt id="mgkit.graphs.Reaction.cmp_compounds">
-<code class="sig-name descname">cmp_compounds</code><span class="sig-paren">(</span><em class="sig-param">other</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/mgkit/graphs.html#Reaction.cmp_compounds"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#mgkit.graphs.Reaction.cmp_compounds" title="Permalink to this definition">¶</a></dt>
-<dd><p>Compares the substrates and products of the current instance with those
-of another one, using information about the reversibility of the
-reaction.</p>
-</dd></dl>
-
-<dl class="attribute">
-<dt id="mgkit.graphs.Reaction.irreversible_paths">
-<code class="sig-name descname">irreversible_paths</code><em class="property"> = None</em><a class="headerlink" href="#mgkit.graphs.Reaction.irreversible_paths" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="attribute">
-<dt id="mgkit.graphs.Reaction.kegg_id">
-<code class="sig-name descname">kegg_id</code><em class="property"> = None</em><a class="headerlink" href="#mgkit.graphs.Reaction.kegg_id" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="attribute">
-<dt id="mgkit.graphs.Reaction.orthologs">
-<code class="sig-name descname">orthologs</code><em class="property"> = None</em><a class="headerlink" href="#mgkit.graphs.Reaction.orthologs" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="method">
-<dt id="mgkit.graphs.Reaction.pathways">
-<em class="property">property </em><code class="sig-name descname">pathways</code><a class="headerlink" href="#mgkit.graphs.Reaction.pathways" title="Permalink to this definition">¶</a></dt>
-<dd><p>Set which includes all the pathways in which the reaction was found</p>
-</dd></dl>
-
-<dl class="attribute">
-<dt id="mgkit.graphs.Reaction.products">
-<code class="sig-name descname">products</code><em class="property"> = None</em><a class="headerlink" href="#mgkit.graphs.Reaction.products" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="method">
-<dt id="mgkit.graphs.Reaction.reversible">
-<em class="property">property </em><code class="sig-name descname">reversible</code><a class="headerlink" href="#mgkit.graphs.Reaction.reversible" title="Permalink to this definition">¶</a></dt>
-<dd><p>Property that returns the reversibility of the reaction according to
-the information in the pathways. Returns True if the number of pathways
-in which the reaction was observed as reversible is greater or equal
-than the number of pathwaysin which the reaction was observerd as
-irreversible.</p>
-</dd></dl>
-
-<dl class="attribute">
-<dt id="mgkit.graphs.Reaction.reversible_paths">
-<code class="sig-name descname">reversible_paths</code><em class="property"> = None</em><a class="headerlink" href="#mgkit.graphs.Reaction.reversible_paths" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="attribute">
-<dt id="mgkit.graphs.Reaction.substrates">
-<code class="sig-name descname">substrates</code><em class="property"> = None</em><a class="headerlink" href="#mgkit.graphs.Reaction.substrates" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="method">
-<dt id="mgkit.graphs.Reaction.to_edges">
-<code class="sig-name descname">to_edges</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/mgkit/graphs.html#Reaction.to_edges"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#mgkit.graphs.Reaction.to_edges" title="Permalink to this definition">¶</a></dt>
-<dd><p>Returns a generator of edges to be used when building a graph, along
-with an attribute that specify if the reaction is reversible.</p>
-</dd></dl>
-
-<dl class="method">
-<dt id="mgkit.graphs.Reaction.to_edges_compounds">
-<code class="sig-name descname">to_edges_compounds</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/mgkit/graphs.html#Reaction.to_edges_compounds"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#mgkit.graphs.Reaction.to_edges_compounds" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="method">
-<dt id="mgkit.graphs.Reaction.to_nodes">
-<code class="sig-name descname">to_nodes</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/mgkit/graphs.html#Reaction.to_nodes"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#mgkit.graphs.Reaction.to_nodes" title="Permalink to this definition">¶</a></dt>
-<dd><p>Returns a generator that returns the nodes associated with reaction,
-to be used in a graph, along with attributes about the type of node
-(reaction or compound).</p>
-</dd></dl>
-
-<dl class="method">
-<dt id="mgkit.graphs.Reaction.update">
-<code class="sig-name descname">update</code><span class="sig-paren">(</span><em class="sig-param">other</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/mgkit/graphs.html#Reaction.update"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#mgkit.graphs.Reaction.update" title="Permalink to this definition">¶</a></dt>
-<dd><p>Updates the current instance with information from another instance.
-the underlining sets that hold the information are update with those
-from the <cite>other</cite> instance.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Raises</dt>
-<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/exceptions.html#ValueError" title="(in Python v3.8)"><strong>ValueError</strong></a> – if the ID of the reaction is different</p>
-</dd>
-</dl>
-</dd></dl>
-
-</dd></dl>
-
-<dl class="function">
-<dt id="mgkit.graphs.add_module_compounds">
-<code class="sig-prename descclassname">mgkit.graphs.</code><code class="sig-name descname">add_module_compounds</code><span class="sig-paren">(</span><em class="sig-param">graph</em>, <em class="sig-param">rn_defs</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/mgkit/graphs.html#add_module_compounds"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#mgkit.graphs.add_module_compounds" title="Permalink to this definition">¶</a></dt>
-<dd><div class="versionadded">
-<p><span class="versionmodified added">New in version 0.3.1.</span></p>
-</div>
-<p>Modify in-place a graph, by adding additional compounds from a dictionary
-of definitions. It uses the reversible/irreversible information for each
-reaction to add the correct number of edges to the graph.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><ul class="simple">
-<li><p><strong>graph</strong> (<em>graph</em>) – a graph to update with additional compounds</p></li>
-<li><p><strong>rn_defs</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.8)"><em>dict</em></a>) – a dictionary, whose keys are reactions IDs and the
-values are instances of <code class="xref py py-class docutils literal notranslate"><span class="pre">mgkit.kegg.KeggReaction</span></code></p></li>
-</ul>
-</dd>
-</dl>
-</dd></dl>
-
-<dl class="function">
-<dt id="mgkit.graphs.annotate_graph_nodes">
-<code class="sig-prename descclassname">mgkit.graphs.</code><code class="sig-name descname">annotate_graph_nodes</code><span class="sig-paren">(</span><em class="sig-param">graph</em>, <em class="sig-param">attr</em>, <em class="sig-param">id_map</em>, <em class="sig-param">default=None</em>, <em class="sig-param">conv=None</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/mgkit/graphs.html#annotate_graph_nodes"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#mgkit.graphs.annotate_graph_nodes" title="Permalink to this definition">¶</a></dt>
-<dd><div class="versionadded">
-<p><span class="versionmodified added">New in version 0.1.12.</span></p>
-</div>
-<div class="versionchanged">
-<p><span class="versionmodified changed">Changed in version 0.4.0: </span>added <em>conv</em> parameter and reworked internals</p>
-</div>
-<p>Add/Changes nodes attribute <cite>attr</cite> using a dictionary of ids-&gt;values.</p>
-<div class="admonition note">
-<p class="admonition-title">Note</p>
-<p>If the id is not found in <cite>id_map</cite>:</p>
-<ul class="simple">
-<li><p>default is None: no value added for that node</p></li>
-<li><p>default is not None: the node attribute will be set to <cite>default</cite></p></li>
-</ul>
-</div>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><ul class="simple">
-<li><p><strong>graph</strong> – the graph to annotate</p></li>
-<li><p><strong>attr</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.8)"><em>str</em></a>) – the attribute to annotate</p></li>
-<li><p><strong>id_map</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.8)"><em>dict</em></a>) – the dictionary with the values for each node</p></li>
-<li><p><strong>default</strong> – the value used in case an <cite>id</cite> is not found in <cite>id_map</cite>, if
-None, the attribute is not set for missing values</p></li>
-<li><p><strong>conv</strong> (<em>func</em>) – function to convert the value to another type</p></li>
-</ul>
-</dd>
-</dl>
-</dd></dl>
-
-<dl class="function">
-<dt id="mgkit.graphs.build_graph">
-<code class="sig-prename descclassname">mgkit.graphs.</code><code class="sig-name descname">build_graph</code><span class="sig-paren">(</span><em class="sig-param">id_links</em>, <em class="sig-param">name</em>, <em class="sig-param">edge_type=''</em>, <em class="sig-param">weight=0.5</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/mgkit/graphs.html#build_graph"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#mgkit.graphs.build_graph" title="Permalink to this definition">¶</a></dt>
-<dd><div class="versionadded">
-<p><span class="versionmodified added">New in version 0.1.12.</span></p>
-</div>
-<p>Builds a networkx graph from a dictionary of nodes, as outputted by
-<a class="reference internal" href="mgkit.kegg.html#mgkit.kegg.KeggClientRest.get_pathway_links" title="mgkit.kegg.KeggClientRest.get_pathway_links"><code class="xref py py-meth docutils literal notranslate"><span class="pre">mgkit.kegg.KeggClientRest.get_pathway_links()</span></code></a>. The graph is
-undirected, and all edges weight are the same.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><ul class="simple">
-<li><p><strong>id_links</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.8)"><em>dict</em></a>) – dictionary with the links</p></li>
-<li><p><strong>name</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.8)"><em>str</em></a>) – name of the graph</p></li>
-<li><p><strong>edge_type</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.8)"><em>str</em></a>) – an optional name for the <cite>edge_type</cite> attribute
-set for each edge</p></li>
-<li><p><strong>weight</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.8)"><em>float</em></a>) – the weight assigned to each edge in the graph</p></li>
-</ul>
-</dd>
-<dt class="field-even">Returns</dt>
-<dd class="field-even"><p>an instance of <code class="xref py py-class docutils literal notranslate"><span class="pre">networkx.Graph</span></code></p>
-</dd>
-<dt class="field-odd">Return type</dt>
-<dd class="field-odd"><p>graph</p>
-</dd>
-</dl>
-</dd></dl>
-
-<dl class="function">
-<dt id="mgkit.graphs.build_weighted_graph">
-<code class="sig-prename descclassname">mgkit.graphs.</code><code class="sig-name descname">build_weighted_graph</code><span class="sig-paren">(</span><em class="sig-param">id_links</em>, <em class="sig-param">name</em>, <em class="sig-param">weights</em>, <em class="sig-param">edge_type=''</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/mgkit/graphs.html#build_weighted_graph"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#mgkit.graphs.build_weighted_graph" title="Permalink to this definition">¶</a></dt>
-<dd><div class="versionadded">
-<p><span class="versionmodified added">New in version 0.1.14.</span></p>
-</div>
-<p>Builds a networkx graph from a dictionary of nodes, as outputted by
-<a class="reference internal" href="mgkit.kegg.html#mgkit.kegg.KeggClientRest.get_pathway_links" title="mgkit.kegg.KeggClientRest.get_pathway_links"><code class="xref py py-meth docutils literal notranslate"><span class="pre">mgkit.kegg.KeggClientRest.get_pathway_links()</span></code></a>. The graph is
-undirected, and all edges weight are the same.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><ul class="simple">
-<li><p><strong>id_links</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.8)"><em>dict</em></a>) – dictionary with the links</p></li>
-<li><p><strong>name</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.8)"><em>str</em></a>) – name of the graph</p></li>
-<li><p><strong>edge_type</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.8)"><em>str</em></a>) – an optional name for the <cite>edge_type</cite> attribute
-set for each edge</p></li>
-<li><p><strong>weight</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.8)"><em>float</em></a>) – the weight assigned to each edge in the graph</p></li>
-</ul>
-</dd>
-<dt class="field-even">Returns</dt>
-<dd class="field-even"><p>an instance of <code class="xref py py-class docutils literal notranslate"><span class="pre">networkx.Graph</span></code></p>
-</dd>
-<dt class="field-odd">Return type</dt>
-<dd class="field-odd"><p>graph</p>
-</dd>
-</dl>
-</dd></dl>
-
-<dl class="function">
-<dt id="mgkit.graphs.copy_edges">
-<code class="sig-prename descclassname">mgkit.graphs.</code><code class="sig-name descname">copy_edges</code><span class="sig-paren">(</span><em class="sig-param">g</em>, <em class="sig-param">graph1</em>, <em class="sig-param">name=None</em>, <em class="sig-param">**kwd</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/mgkit/graphs.html#copy_edges"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#mgkit.graphs.copy_edges" title="Permalink to this definition">¶</a></dt>
-<dd><div class="versionadded">
-<p><span class="versionmodified added">New in version 0.1.12.</span></p>
-</div>
-<p>Used by <a class="reference internal" href="#mgkit.graphs.link_nodes" title="mgkit.graphs.link_nodes"><code class="xref py py-func docutils literal notranslate"><span class="pre">link_nodes()</span></code></a> to copy edges</p>
-</dd></dl>
-
-<dl class="function">
-<dt id="mgkit.graphs.copy_nodes">
-<code class="sig-prename descclassname">mgkit.graphs.</code><code class="sig-name descname">copy_nodes</code><span class="sig-paren">(</span><em class="sig-param">g</em>, <em class="sig-param">graph1</em>, <em class="sig-param">name=None</em>, <em class="sig-param">id_attr=None</em>, <em class="sig-param">**kwd</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/mgkit/graphs.html#copy_nodes"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#mgkit.graphs.copy_nodes" title="Permalink to this definition">¶</a></dt>
-<dd><div class="versionadded">
-<p><span class="versionmodified added">New in version 0.1.12.</span></p>
-</div>
-<p>Used by <a class="reference internal" href="#mgkit.graphs.link_nodes" title="mgkit.graphs.link_nodes"><code class="xref py py-func docutils literal notranslate"><span class="pre">link_nodes()</span></code></a> to copy nodes</p>
-</dd></dl>
-
-<dl class="function">
-<dt id="mgkit.graphs.filter_graph">
-<code class="sig-prename descclassname">mgkit.graphs.</code><code class="sig-name descname">filter_graph</code><span class="sig-paren">(</span><em class="sig-param">graph</em>, <em class="sig-param">id_list</em>, <em class="sig-param">filter_func=&lt;function &lt;lambda&gt;&gt;</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/mgkit/graphs.html#filter_graph"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#mgkit.graphs.filter_graph" title="Permalink to this definition">¶</a></dt>
-<dd><div class="versionadded">
-<p><span class="versionmodified added">New in version 0.1.12.</span></p>
-</div>
-<p>Filter a graph based on the <cite>id_list</cite> provided and the filter function
-used to test the id attribute of each node.</p>
-<p>A node is removed if <cite>filter_func</cite> returns True on a node and its id
-attribute is not in <cite>id_list</cite></p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><ul class="simple">
-<li><p><strong>graph</strong> – the graph to filter</p></li>
-<li><p><strong>id_list</strong> (<em>iterable</em>) – the list of nodes that are to remain in the
-graph</p></li>
-<li><p><strong>filter_func</strong> (<em>func</em>) – function which accept a single parameter and
-return a boolean</p></li>
-</ul>
-</dd>
-<dt class="field-even">Returns</dt>
-<dd class="field-even"><p>an instance of <code class="xref py py-class docutils literal notranslate"><span class="pre">networkx.Graph</span></code></p>
-</dd>
-<dt class="field-odd">Return type</dt>
-<dd class="field-odd"><p>graph</p>
-</dd>
-</dl>
-</dd></dl>
-
-<dl class="function">
-<dt id="mgkit.graphs.from_kgml">
-<code class="sig-prename descclassname">mgkit.graphs.</code><code class="sig-name descname">from_kgml</code><span class="sig-paren">(</span><em class="sig-param">entry</em>, <em class="sig-param">graph=None</em>, <em class="sig-param">rn_ids=None</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/mgkit/graphs.html#from_kgml"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#mgkit.graphs.from_kgml" title="Permalink to this definition">¶</a></dt>
-<dd><div class="versionadded">
-<p><span class="versionmodified added">New in version 0.3.1.</span></p>
-</div>
-<p>Given a KGML file (as string), representing a pathway in Kegg, returns a
-networkx DiGraph, using reaction directionality included in the KGML. If a
-reaction is reversible, 2 edges (from and to) for each compound/reaction
-pair are added, giving the bidirectionality.</p>
-<div class="admonition note">
-<p class="admonition-title">Note</p>
-<p>substrate and products included in a KGML don’t represent the complete
-reaction, excluding in general cofactors or more general terms.
-Those can be added using <a class="reference internal" href="#mgkit.graphs.add_module_compounds" title="mgkit.graphs.add_module_compounds"><code class="xref py py-func docutils literal notranslate"><span class="pre">add_module_compounds()</span></code></a>, which may be
-more useful when used with a restricted number of reactions (e.g.
-a module)</p>
-</div>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><ul class="simple">
-<li><p><strong>entry</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.8)"><em>str</em></a>) – KGML file as a string, or anything that can be passed to
-ElementTree</p></li>
-<li><p><strong>graph</strong> (<em>graph</em>) – an instance of a networkx DiGraph if the network is to
-be updated with a new KGML, if <cite>None</cite> a new one is created</p></li>
-<li><p><strong>rn_ids</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#set" title="(in Python v3.8)"><em>set</em></a>) – a set/list of reaction IDs that are to be included, if
-<cite>None</cite> all reactions are used</p></li>
-</ul>
-</dd>
-<dt class="field-even">Returns</dt>
-<dd class="field-even"><p>a networkx DiGraph with the reaction/compounds</p>
-</dd>
-<dt class="field-odd">Return type</dt>
-<dd class="field-odd"><p>graph</p>
-</dd>
-</dl>
-</dd></dl>
-
-<dl class="function">
-<dt id="mgkit.graphs.link_graph">
-<code class="sig-prename descclassname">mgkit.graphs.</code><code class="sig-name descname">link_graph</code><span class="sig-paren">(</span><em class="sig-param">graphs</em>, <em class="sig-param">edge_links</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/mgkit/graphs.html#link_graph"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#mgkit.graphs.link_graph" title="Permalink to this definition">¶</a></dt>
-<dd><div class="versionadded">
-<p><span class="versionmodified added">New in version 0.1.12.</span></p>
-</div>
-<p>Link nodes of a set of graphs using the specifics in edge_links.
-The resulting graph nodes are renamed, and the nodes that are shared
-between the graphs linked.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><ul class="simple">
-<li><p><strong>graphs</strong> – iterable of graphs</p></li>
-<li><p><strong>edge_links</strong> – iterable with function, edge_type and weight for the
-links between graphs</p></li>
-</ul>
-</dd>
-<dt class="field-even">Returns</dt>
-<dd class="field-even"><p>an instance of <code class="xref py py-class docutils literal notranslate"><span class="pre">networkx.Graph</span></code></p>
-</dd>
-<dt class="field-odd">Return type</dt>
-<dd class="field-odd"><p>graph</p>
-</dd>
-</dl>
-</dd></dl>
-
-<dl class="function">
-<dt id="mgkit.graphs.link_nodes">
-<code class="sig-prename descclassname">mgkit.graphs.</code><code class="sig-name descname">link_nodes</code><span class="sig-paren">(</span><em class="sig-param">g</em>, <em class="sig-param">graph1</em>, <em class="sig-param">graph2</em>, <em class="sig-param">id_filter</em>, <em class="sig-param">link_type</em>, <em class="sig-param">weight</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/mgkit/graphs.html#link_nodes"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#mgkit.graphs.link_nodes" title="Permalink to this definition">¶</a></dt>
-<dd><div class="versionadded">
-<p><span class="versionmodified added">New in version 0.1.12.</span></p>
-</div>
-<p>Used by <a class="reference internal" href="#mgkit.graphs.link_graph" title="mgkit.graphs.link_graph"><code class="xref py py-func docutils literal notranslate"><span class="pre">link_graph()</span></code></a> to link nodes with the same <em>id</em></p>
-</dd></dl>
-
-<dl class="function">
-<dt id="mgkit.graphs.merge_kgmls">
-<code class="sig-prename descclassname">mgkit.graphs.</code><code class="sig-name descname">merge_kgmls</code><span class="sig-paren">(</span><em class="sig-param">kgmls</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/mgkit/graphs.html#merge_kgmls"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#mgkit.graphs.merge_kgmls" title="Permalink to this definition">¶</a></dt>
-<dd><div class="versionadded">
-<p><span class="versionmodified added">New in version 0.4.0.</span></p>
-</div>
-<p>Parses multiple KGMLs and merges the reactions from them.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><p><strong>kgmls</strong> (<em>iterable</em>) – iterable of KGML files (content) to be passed to
-<a class="reference internal" href="#mgkit.graphs.parse_kgml_reactions" title="mgkit.graphs.parse_kgml_reactions"><code class="xref py py-func docutils literal notranslate"><span class="pre">parse_kgml_reactions()</span></code></a></p>
-</dd>
-<dt class="field-even">Returns</dt>
-<dd class="field-even"><p>dictionary with the reactions from amm te KGML files</p>
-</dd>
-<dt class="field-odd">Return type</dt>
-<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.8)">dict</a></p>
-</dd>
-</dl>
-</dd></dl>
-
-<dl class="function">
-<dt id="mgkit.graphs.parse_kgml_reactions">
-<code class="sig-prename descclassname">mgkit.graphs.</code><code class="sig-name descname">parse_kgml_reactions</code><span class="sig-paren">(</span><em class="sig-param">kgml</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/mgkit/graphs.html#parse_kgml_reactions"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#mgkit.graphs.parse_kgml_reactions" title="Permalink to this definition">¶</a></dt>
-<dd><div class="versionadded">
-<p><span class="versionmodified added">New in version 0.4.0.</span></p>
-</div>
-<p>Parses a KGML for reactions, returning a dictionary with instances of
-<a class="reference internal" href="#mgkit.graphs.Reaction" title="mgkit.graphs.Reaction"><code class="xref py py-class docutils literal notranslate"><span class="pre">Reaction</span></code></a> as values and the IDs as keys.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><p><strong>kgml</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.8)"><em>str</em></a>) – the KGML file content as a string (to be passed)</p>
-</dd>
-<dt class="field-even">Returns</dt>
-<dd class="field-even"><p>dictionary of ID-&gt;Reaction</p>
-</dd>
-<dt class="field-odd">Return type</dt>
-<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.8)">dict</a></p>
-</dd>
-</dl>
-</dd></dl>
-
-<dl class="function">
-<dt id="mgkit.graphs.rename_graph_nodes">
-<code class="sig-prename descclassname">mgkit.graphs.</code><code class="sig-name descname">rename_graph_nodes</code><span class="sig-paren">(</span><em class="sig-param">graph</em>, <em class="sig-param">name_func=None</em>, <em class="sig-param">exclude_ids=None</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/mgkit/graphs.html#rename_graph_nodes"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#mgkit.graphs.rename_graph_nodes" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
+<div class="section" id="mgkit-graphs-module">
+<h1>mgkit.graphs module<a class="headerlink" href="#mgkit-graphs-module" title="Permalink to this headline">¶</a></h1>
 </div>
 
 
@@ -678,11 +293,19 @@ links between graphs</p></li>
 
   <div role="contentinfo">
     <p>
-        &copy; Copyright 2013-2015, Francesco Rubino
+        
+        &copy; Copyright 2013-2020, Francesco Rubino
 
     </p>
   </div>
-  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+    
+    
+    
+    Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a
+    
+    <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a>
+    
+    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
 
 </footer>
 
@@ -693,7 +316,6 @@ links between graphs</p></li>
 
   </div>
   
-
 
   <script type="text/javascript">
       jQuery(function () {

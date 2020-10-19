@@ -1,42 +1,43 @@
 
 
 <!DOCTYPE html>
-<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
-<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<html class="writer-html5" lang="en" >
 <head>
   <meta charset="utf-8">
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>Abundance Plots &mdash; MGKit: Metagenomic framework 0.5.1 documentation</title>
+  <title>Abundance Plots &mdash; MGKit: Metagenomic framework 0.5.3 documentation</title>
   
-
-  
-  
-  
-  
-
-  
-  <script type="text/javascript" src="../../_static/js/modernizr.min.js"></script>
-  
-    
-      <script type="text/javascript" id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
-        <script type="text/javascript" src="../../_static/jquery.js"></script>
-        <script type="text/javascript" src="../../_static/underscore.js"></script>
-        <script type="text/javascript" src="../../_static/doctools.js"></script>
-        <script type="text/javascript" src="../../_static/language_data.js"></script>
-        <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
-        <script async="async" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
-        <script type="text/x-mathjax-config">MathJax.Hub.Config({"tex2jax": {"inlineMath": [["$", "$"], ["\\(", "\\)"]], "processEscapes": true, "ignoreClass": "document", "processClass": "math|output_area"}})</script>
-    
-    <script type="text/javascript" src="../../_static/js/theme.js"></script>
-
-    
 
   
   <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
   <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
   <link rel="stylesheet" href="../../_static/graphviz.css" type="text/css" />
+
+  
+  
+  
+  
+
+  
+  <!--[if lt IE 9]>
+    <script src="../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
+        <script src="../../_static/jquery.js"></script>
+        <script src="../../_static/underscore.js"></script>
+        <script src="../../_static/doctools.js"></script>
+        <script src="../../_static/language_data.js"></script>
+        <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+        <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+        <script type="text/x-mathjax-config">MathJax.Hub.Config({"tex2jax": {"inlineMath": [["$", "$"], ["\\(", "\\)"]], "processEscapes": true, "ignoreClass": "document", "processClass": "math|output_area"}})</script>
+    
+    <script type="text/javascript" src="../../_static/js/theme.js"></script>
+
+    
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
     <link rel="next" title="Boxplots" href="boxplot.html" />
@@ -54,7 +55,7 @@
           
 
           
-            <a href="../../index.html" class="icon icon-home"> MGKit: Metagenomic framework
+            <a href="../../index.html" class="icon icon-home" alt="Documentation Home"> MGKit: Metagenomic framework
           
 
           
@@ -64,7 +65,7 @@
             
             
               <div class="version">
-                0.5.1
+                0.5.3
               </div>
             
           
@@ -81,6 +82,7 @@
           
         </div>
 
+        
         <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
           
             
@@ -101,7 +103,7 @@
 </ul>
 </li>
 <li class="toctree-l3"><a class="reference internal" href="#Abundance-Plot-with-2-Samples">Abundance Plot with 2 Samples</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="#Grid">Grid</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id1">Grid</a></li>
 </ul>
 </li>
 </ul>
@@ -120,6 +122,7 @@
             
           
         </div>
+        
       </div>
     </nav>
 
@@ -158,7 +161,7 @@
 
   <ul class="wy-breadcrumbs">
     
-      <li><a href="../../index.html">Docs</a> &raquo;</li>
+      <li><a href="../../index.html" class="icon icon-home"></a> &raquo;</li>
         
           <li><a href="../index.html">Example Notebooks</a> &raquo;</li>
         
@@ -247,20 +250,33 @@ div.nboutput.container div.prompt pre {
 /* all prompts */
 div.nbinput.container div.prompt,
 div.nboutput.container div.prompt {
-    min-width: 5ex;
-    padding-top: 0.4em;
-    padding-right: 0.4em;
-    text-align: right;
-    flex: 0;
+    width: 4.5ex;
+    padding-top: 5px;
+    position: relative;
+    user-select: none;
 }
+
+div.nbinput.container div.prompt > div,
+div.nboutput.container div.prompt > div {
+    position: absolute;
+    right: 0;
+    margin-right: 0.3ex;
+}
+
 @media (max-width: 540px) {
     div.nbinput.container div.prompt,
     div.nboutput.container div.prompt {
+        width: unset;
         text-align: left;
         padding: 0.4em;
     }
     div.nboutput.container div.prompt.empty {
         padding: 0;
+    }
+
+    div.nbinput.container div.prompt > div,
+    div.nboutput.container div.prompt > div {
+        position: unset;
     }
 }
 
@@ -273,7 +289,6 @@ div.nboutput.container div.prompt pre {
 /* input/output area */
 div.nbinput.container div.input_area,
 div.nboutput.container div.output_area {
-    padding: 0.4em;
     -webkit-flex: 1;
     flex: 1;
     overflow: auto;
@@ -347,6 +362,27 @@ div.nboutput.container div.output_area.stderr {
 .ansi-bold { font-weight: bold; }
 .ansi-underline { text-decoration: underline; }
 
+
+div.nbinput.container div.input_area div[class*=highlight] > pre,
+div.nboutput.container div.output_area div[class*=highlight] > pre,
+div.nboutput.container div.output_area div[class*=highlight].math,
+div.nboutput.container div.output_area.rendered_html,
+div.nboutput.container div.output_area > div.output_javascript,
+div.nboutput.container div.output_area:not(.rendered_html) > img{
+    padding: 5px;
+}
+
+/* fix copybtn overflow problem in chromium (needed for 'sphinx_copybutton') */
+div.nbinput.container div.input_area > div[class^='highlight'],
+div.nboutput.container div.output_area > div[class^='highlight']{
+    overflow-y: hidden;
+}
+
+/* hide copybtn icon on prompts (needed for 'sphinx_copybutton') */
+.prompt a.copybtn {
+    display: none;
+}
+
 /* Some additional styling taken form the Jupyter notebook CSS */
 div.rendered_html table {
   border: none;
@@ -410,11 +446,11 @@ div.rendered_html tbody tr:hover {
 </pre></div>
 </div>
 <div class="input_area highlight-ipython2 notranslate"><div class="highlight"><pre>
-<span></span><span class="kn">import</span> <span class="nn">numpy</span>
-<span class="kn">import</span> <span class="nn">mgkit.plots</span>
-<span class="kn">import</span> <span class="nn">mgkit.plots.abund</span>
-<span class="kn">import</span> <span class="nn">seaborn</span> <span class="k">as</span> <span class="nn">sns</span>
-<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span></span>import numpy
+import mgkit.plots
+import mgkit.plots.abund
+import seaborn as sns
+import pandas as pd
 </pre></div>
 </div>
 </div>
@@ -423,9 +459,9 @@ div.rendered_html tbody tr:hover {
 </pre></div>
 </div>
 <div class="input_area highlight-ipython2 notranslate"><div class="highlight"><pre>
-<span></span><span class="n">n</span> <span class="o">=</span> <span class="mi">10</span>
-<span class="n">p</span> <span class="o">=</span> <span class="mf">0.50</span>
-<span class="n">size</span> <span class="o">=</span> <span class="mi">20</span>
+<span></span>n = 10
+p = 0.50
+size = 20
 </pre></div>
 </div>
 </div>
@@ -434,11 +470,11 @@ div.rendered_html tbody tr:hover {
 </pre></div>
 </div>
 <div class="input_area highlight-ipython2 notranslate"><div class="highlight"><pre>
-<span></span><span class="n">data</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">({</span>
-    <span class="s1">&#39;S1&#39;</span><span class="p">:</span> <span class="n">numpy</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">negative_binomial</span><span class="p">(</span><span class="n">n</span><span class="p">,</span> <span class="n">p</span><span class="p">,</span> <span class="n">size</span><span class="p">),</span>
-    <span class="s1">&#39;S2&#39;</span><span class="p">:</span> <span class="n">numpy</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">negative_binomial</span><span class="p">(</span><span class="n">n</span><span class="p">,</span> <span class="n">p</span> <span class="o">+</span> <span class="mf">0.1</span><span class="p">,</span> <span class="n">size</span><span class="p">),</span>
-    <span class="s1">&#39;S3&#39;</span><span class="p">:</span> <span class="n">numpy</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">negative_binomial</span><span class="p">(</span><span class="n">n</span><span class="p">,</span> <span class="n">p</span> <span class="o">-</span> <span class="mf">0.1</span><span class="p">,</span> <span class="n">size</span><span class="p">),</span>
-<span class="p">})</span>
+<span></span>data = pd.DataFrame({
+    &#39;S1&#39;: numpy.random.negative_binomial(n, p, size),
+    &#39;S2&#39;: numpy.random.negative_binomial(n, p + 0.1, size),
+    &#39;S3&#39;: numpy.random.negative_binomial(n, p - 0.1, size),
+})
 </pre></div>
 </div>
 </div>
@@ -451,11 +487,11 @@ div.rendered_html tbody tr:hover {
 </pre></div>
 </div>
 <div class="input_area highlight-ipython2 notranslate"><div class="highlight"><pre>
-<span></span><span class="c1"># First we need to draw the triangle grid</span>
-<span class="c1"># aspect should be equal to ensure that the triangle sides have the same length</span>
-<span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">mgkit</span><span class="o">.</span><span class="n">plots</span><span class="o">.</span><span class="n">get_single_figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mi">10</span><span class="p">),</span> <span class="n">aspect</span><span class="o">=</span><span class="s1">&#39;equal&#39;</span><span class="p">)</span>
-<span class="c1"># the labels passed are first drawn from bottom-left, then bottom-right and finally top</span>
-<span class="n">mgkit</span><span class="o">.</span><span class="n">plots</span><span class="o">.</span><span class="n">abund</span><span class="o">.</span><span class="n">draw_triangle_grid</span><span class="p">(</span><span class="n">ax</span><span class="p">,</span> <span class="n">labels</span><span class="o">=</span><span class="n">data</span><span class="o">.</span><span class="n">columns</span><span class="p">)</span>
+<span></span># First we need to draw the triangle grid
+# aspect should be equal to ensure that the triangle sides have the same length
+fig, ax = mgkit.plots.get_single_figure(figsize=(10, 10), aspect=&#39;equal&#39;)
+# the labels passed are first drawn from bottom-left, then bottom-right and finally top
+mgkit.plots.abund.draw_triangle_grid(ax, labels=data.columns)
 </pre></div>
 </div>
 </div>
@@ -471,9 +507,9 @@ div.rendered_html tbody tr:hover {
 </pre></div>
 </div>
 <div class="input_area highlight-ipython2 notranslate"><div class="highlight"><pre>
-<span></span><span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">mgkit</span><span class="o">.</span><span class="n">plots</span><span class="o">.</span><span class="n">get_single_figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mi">10</span><span class="p">),</span> <span class="n">aspect</span><span class="o">=</span><span class="s1">&#39;equal&#39;</span><span class="p">)</span>
-<span class="c1"># the style can be customised by passing the appropriate matplotlib line markers with the styles parameter</span>
-<span class="n">mgkit</span><span class="o">.</span><span class="n">plots</span><span class="o">.</span><span class="n">abund</span><span class="o">.</span><span class="n">draw_triangle_grid</span><span class="p">(</span><span class="n">ax</span><span class="p">,</span> <span class="n">labels</span><span class="o">=</span><span class="n">data</span><span class="o">.</span><span class="n">columns</span><span class="p">,</span> <span class="n">styles</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;--&#39;</span><span class="p">,</span> <span class="s1">&#39;-.&#39;</span><span class="p">,</span> <span class="s1">&#39;-&#39;</span><span class="p">])</span>
+<span></span>fig, ax = mgkit.plots.get_single_figure(figsize=(10, 10), aspect=&#39;equal&#39;)
+# the style can be customised by passing the appropriate matplotlib line markers with the styles parameter
+mgkit.plots.abund.draw_triangle_grid(ax, labels=data.columns, styles=[&#39;--&#39;, &#39;-.&#39;, &#39;-&#39;])
 </pre></div>
 </div>
 </div>
@@ -489,9 +525,9 @@ div.rendered_html tbody tr:hover {
 </pre></div>
 </div>
 <div class="input_area highlight-ipython2 notranslate"><div class="highlight"><pre>
-<span></span><span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">mgkit</span><span class="o">.</span><span class="n">plots</span><span class="o">.</span><span class="n">get_single_figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mi">10</span><span class="p">),</span> <span class="n">aspect</span><span class="o">=</span><span class="s1">&#39;equal&#39;</span><span class="p">)</span>
-<span class="c1"># The axis can be set to solid lines and the internals to dotted by passing None as styles value</span>
-<span class="n">mgkit</span><span class="o">.</span><span class="n">plots</span><span class="o">.</span><span class="n">abund</span><span class="o">.</span><span class="n">draw_triangle_grid</span><span class="p">(</span><span class="n">ax</span><span class="p">,</span> <span class="n">labels</span><span class="o">=</span><span class="n">data</span><span class="o">.</span><span class="n">columns</span><span class="p">,</span> <span class="n">styles</span><span class="o">=</span><span class="kc">None</span><span class="p">)</span>
+<span></span>fig, ax = mgkit.plots.get_single_figure(figsize=(10, 10), aspect=&#39;equal&#39;)
+# The axis can be set to solid lines and the internals to dotted by passing None as styles value
+mgkit.plots.abund.draw_triangle_grid(ax, labels=data.columns, styles=None)
 </pre></div>
 </div>
 </div>
@@ -510,10 +546,10 @@ div.rendered_html tbody tr:hover {
 </pre></div>
 </div>
 <div class="input_area highlight-ipython2 notranslate"><div class="highlight"><pre>
-<span></span><span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">mgkit</span><span class="o">.</span><span class="n">plots</span><span class="o">.</span><span class="n">get_single_figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mi">10</span><span class="p">),</span> <span class="n">aspect</span><span class="o">=</span><span class="s1">&#39;equal&#39;</span><span class="p">)</span>
-<span class="n">mgkit</span><span class="o">.</span><span class="n">plots</span><span class="o">.</span><span class="n">abund</span><span class="o">.</span><span class="n">draw_triangle_grid</span><span class="p">(</span><span class="n">ax</span><span class="p">,</span> <span class="n">labels</span><span class="o">=</span><span class="n">data</span><span class="o">.</span><span class="n">columns</span><span class="p">)</span>
-<span class="c1"># this function accept matrices with either two or three columns</span>
-<span class="n">mgkit</span><span class="o">.</span><span class="n">plots</span><span class="o">.</span><span class="n">abund</span><span class="o">.</span><span class="n">draw_circles</span><span class="p">(</span><span class="n">ax</span><span class="p">,</span> <span class="n">data</span><span class="p">)</span>
+<span></span>fig, ax = mgkit.plots.get_single_figure(figsize=(10, 10), aspect=&#39;equal&#39;)
+mgkit.plots.abund.draw_triangle_grid(ax, labels=data.columns)
+# this function accept matrices with either two or three columns
+mgkit.plots.abund.draw_circles(ax, data)
 </pre></div>
 </div>
 </div>
@@ -538,11 +574,11 @@ div.rendered_html tbody tr:hover {
 </pre></div>
 </div>
 <div class="input_area highlight-ipython2 notranslate"><div class="highlight"><pre>
-<span></span><span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">mgkit</span><span class="o">.</span><span class="n">plots</span><span class="o">.</span><span class="n">get_single_figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mi">10</span><span class="p">),</span> <span class="n">aspect</span><span class="o">=</span><span class="s1">&#39;equal&#39;</span><span class="p">)</span>
-<span class="n">mgkit</span><span class="o">.</span><span class="n">plots</span><span class="o">.</span><span class="n">abund</span><span class="o">.</span><span class="n">draw_triangle_grid</span><span class="p">(</span><span class="n">ax</span><span class="p">,</span> <span class="n">labels</span><span class="o">=</span><span class="n">data</span><span class="o">.</span><span class="n">columns</span><span class="p">)</span>
-<span class="c1"># col_func is any function that accept a value (an element of data.index) and returns a valid matplotlib color for it</span>
-<span class="n">col_func</span> <span class="o">=</span> <span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">sns</span><span class="o">.</span><span class="n">color_palette</span><span class="p">(</span><span class="s1">&#39;hls&#39;</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">data</span><span class="p">))[</span><span class="n">x</span><span class="p">]</span>
-<span class="n">mgkit</span><span class="o">.</span><span class="n">plots</span><span class="o">.</span><span class="n">abund</span><span class="o">.</span><span class="n">draw_circles</span><span class="p">(</span><span class="n">ax</span><span class="p">,</span> <span class="n">data</span><span class="p">,</span> <span class="n">col_func</span><span class="o">=</span><span class="n">col_func</span><span class="p">)</span>
+<span></span>fig, ax = mgkit.plots.get_single_figure(figsize=(10, 10), aspect=&#39;equal&#39;)
+mgkit.plots.abund.draw_triangle_grid(ax, labels=data.columns)
+# col_func is any function that accept a value (an element of data.index) and returns a valid matplotlib color for it
+col_func = lambda x: sns.color_palette(&#39;hls&#39;, len(data))[x]
+mgkit.plots.abund.draw_circles(ax, data, col_func=col_func)
 </pre></div>
 </div>
 </div>
@@ -567,10 +603,10 @@ div.rendered_html tbody tr:hover {
 </pre></div>
 </div>
 <div class="input_area highlight-ipython2 notranslate"><div class="highlight"><pre>
-<span></span><span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">mgkit</span><span class="o">.</span><span class="n">plots</span><span class="o">.</span><span class="n">get_single_figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mi">10</span><span class="p">),</span> <span class="n">aspect</span><span class="o">=</span><span class="s1">&#39;equal&#39;</span><span class="p">)</span>
-<span class="n">mgkit</span><span class="o">.</span><span class="n">plots</span><span class="o">.</span><span class="n">abund</span><span class="o">.</span><span class="n">draw_triangle_grid</span><span class="p">(</span><span class="n">ax</span><span class="p">,</span> <span class="n">labels</span><span class="o">=</span><span class="n">data</span><span class="o">.</span><span class="n">columns</span><span class="p">)</span>
-<span class="c1"># csize is the base size for the circle</span>
-<span class="n">mgkit</span><span class="o">.</span><span class="n">plots</span><span class="o">.</span><span class="n">abund</span><span class="o">.</span><span class="n">draw_circles</span><span class="p">(</span><span class="n">ax</span><span class="p">,</span> <span class="n">data</span><span class="p">,</span> <span class="n">col_func</span><span class="o">=</span><span class="n">col_func</span><span class="p">,</span> <span class="n">csize</span><span class="o">=</span><span class="mi">500</span><span class="p">)</span>
+<span></span>fig, ax = mgkit.plots.get_single_figure(figsize=(10, 10), aspect=&#39;equal&#39;)
+mgkit.plots.abund.draw_triangle_grid(ax, labels=data.columns)
+# csize is the base size for the circle
+mgkit.plots.abund.draw_circles(ax, data, col_func=col_func, csize=500)
 </pre></div>
 </div>
 </div>
@@ -595,17 +631,17 @@ div.rendered_html tbody tr:hover {
 </pre></div>
 </div>
 <div class="input_area highlight-ipython2 notranslate"><div class="highlight"><pre>
-<span></span><span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">mgkit</span><span class="o">.</span><span class="n">plots</span><span class="o">.</span><span class="n">get_single_figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mi">10</span><span class="p">),</span> <span class="n">aspect</span><span class="o">=</span><span class="s1">&#39;equal&#39;</span><span class="p">)</span>
-<span class="n">mgkit</span><span class="o">.</span><span class="n">plots</span><span class="o">.</span><span class="n">abund</span><span class="o">.</span><span class="n">draw_triangle_grid</span><span class="p">(</span><span class="n">ax</span><span class="p">,</span> <span class="n">labels</span><span class="o">=</span><span class="n">data</span><span class="o">.</span><span class="n">columns</span><span class="p">)</span>
-<span class="c1"># the sizescale parameter allows to specify a size factor for each row that is multiplied to the csize parameter</span>
-<span class="n">sizescale</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">Series</span><span class="p">(</span><span class="n">numpy</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">random</span><span class="p">(</span><span class="mi">20</span><span class="p">)</span> <span class="o">*</span> <span class="mi">3</span><span class="p">)</span>
-<span class="n">mgkit</span><span class="o">.</span><span class="n">plots</span><span class="o">.</span><span class="n">abund</span><span class="o">.</span><span class="n">draw_circles</span><span class="p">(</span>
-    <span class="n">ax</span><span class="p">,</span>
-    <span class="n">data</span><span class="p">,</span>
-    <span class="n">col_func</span><span class="o">=</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">sns</span><span class="o">.</span><span class="n">color_palette</span><span class="p">(</span><span class="s1">&#39;hls&#39;</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">data</span><span class="p">))[</span><span class="n">x</span><span class="p">],</span>
-    <span class="n">csize</span><span class="o">=</span><span class="mi">500</span><span class="p">,</span>
-    <span class="n">sizescale</span><span class="o">=</span><span class="n">sizescale</span>
-<span class="p">)</span>
+<span></span>fig, ax = mgkit.plots.get_single_figure(figsize=(10, 10), aspect=&#39;equal&#39;)
+mgkit.plots.abund.draw_triangle_grid(ax, labels=data.columns)
+# the sizescale parameter allows to specify a size factor for each row that is multiplied to the csize parameter
+sizescale = pd.Series(numpy.random.random(20) * 3)
+mgkit.plots.abund.draw_circles(
+    ax,
+    data,
+    col_func=lambda x: sns.color_palette(&#39;hls&#39;, len(data))[x],
+    csize=500,
+    sizescale=sizescale
+)
 </pre></div>
 </div>
 </div>
@@ -630,17 +666,17 @@ div.rendered_html tbody tr:hover {
 </pre></div>
 </div>
 <div class="input_area highlight-ipython2 notranslate"><div class="highlight"><pre>
-<span></span><span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">mgkit</span><span class="o">.</span><span class="n">plots</span><span class="o">.</span><span class="n">get_single_figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mi">10</span><span class="p">),</span> <span class="n">aspect</span><span class="o">=</span><span class="s1">&#39;equal&#39;</span><span class="p">)</span>
-<span class="n">mgkit</span><span class="o">.</span><span class="n">plots</span><span class="o">.</span><span class="n">abund</span><span class="o">.</span><span class="n">draw_triangle_grid</span><span class="p">(</span><span class="n">ax</span><span class="p">,</span> <span class="n">labels</span><span class="o">=</span><span class="n">data</span><span class="o">.</span><span class="n">columns</span><span class="p">)</span>
-<span class="c1"># the order parameter can be used to only plot only a subset of the point</span>
-<span class="n">mgkit</span><span class="o">.</span><span class="n">plots</span><span class="o">.</span><span class="n">abund</span><span class="o">.</span><span class="n">draw_circles</span><span class="p">(</span>
-    <span class="n">ax</span><span class="p">,</span>
-    <span class="n">data</span><span class="p">,</span>
-    <span class="n">col_func</span><span class="o">=</span><span class="n">col_func</span><span class="p">,</span>
-    <span class="n">csize</span><span class="o">=</span><span class="mi">500</span><span class="p">,</span>
-    <span class="n">sizescale</span><span class="o">=</span><span class="n">sizescale</span><span class="p">,</span>
-    <span class="n">order</span><span class="o">=</span><span class="n">data</span><span class="o">.</span><span class="n">index</span><span class="p">[:</span><span class="mi">10</span><span class="p">]</span>
-<span class="p">)</span>
+<span></span>fig, ax = mgkit.plots.get_single_figure(figsize=(10, 10), aspect=&#39;equal&#39;)
+mgkit.plots.abund.draw_triangle_grid(ax, labels=data.columns)
+# the order parameter can be used to only plot only a subset of the point
+mgkit.plots.abund.draw_circles(
+    ax,
+    data,
+    col_func=col_func,
+    csize=500,
+    sizescale=sizescale,
+    order=data.index[:10]
+)
 </pre></div>
 </div>
 </div>
@@ -665,17 +701,17 @@ div.rendered_html tbody tr:hover {
 </pre></div>
 </div>
 <div class="input_area highlight-ipython2 notranslate"><div class="highlight"><pre>
-<span></span><span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">mgkit</span><span class="o">.</span><span class="n">plots</span><span class="o">.</span><span class="n">get_single_figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mi">10</span><span class="p">),</span> <span class="n">aspect</span><span class="o">=</span><span class="s1">&#39;equal&#39;</span><span class="p">)</span>
-<span class="n">mgkit</span><span class="o">.</span><span class="n">plots</span><span class="o">.</span><span class="n">abund</span><span class="o">.</span><span class="n">draw_triangle_grid</span><span class="p">(</span><span class="n">ax</span><span class="p">,</span> <span class="n">labels</span><span class="o">=</span><span class="n">data</span><span class="o">.</span><span class="n">columns</span><span class="p">)</span>
-<span class="c1"># or also to make sure bigger circles are drawn first, below smaller ones</span>
-<span class="n">mgkit</span><span class="o">.</span><span class="n">plots</span><span class="o">.</span><span class="n">abund</span><span class="o">.</span><span class="n">draw_circles</span><span class="p">(</span>
-    <span class="n">ax</span><span class="p">,</span>
-    <span class="n">data</span><span class="p">,</span>
-    <span class="n">col_func</span><span class="o">=</span><span class="n">col_func</span><span class="p">,</span>
-    <span class="n">csize</span><span class="o">=</span><span class="mi">500</span><span class="p">,</span>
-    <span class="n">sizescale</span><span class="o">=</span><span class="n">sizescale</span><span class="p">,</span>
-    <span class="n">order</span><span class="o">=</span><span class="n">sizescale</span><span class="o">.</span><span class="n">sort_values</span><span class="p">(</span><span class="n">ascending</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">inplace</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span><span class="o">.</span><span class="n">index</span>
-<span class="p">)</span>
+<span></span>fig, ax = mgkit.plots.get_single_figure(figsize=(10, 10), aspect=&#39;equal&#39;)
+mgkit.plots.abund.draw_triangle_grid(ax, labels=data.columns)
+# or also to make sure bigger circles are drawn first, below smaller ones
+mgkit.plots.abund.draw_circles(
+    ax,
+    data,
+    col_func=col_func,
+    csize=500,
+    sizescale=sizescale,
+    order=sizescale.sort_values(ascending=False, inplace=False).index
+)
 </pre></div>
 </div>
 </div>
@@ -700,18 +736,18 @@ div.rendered_html tbody tr:hover {
 </pre></div>
 </div>
 <div class="input_area highlight-ipython2 notranslate"><div class="highlight"><pre>
-<span></span><span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">mgkit</span><span class="o">.</span><span class="n">plots</span><span class="o">.</span><span class="n">get_single_figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mi">10</span><span class="p">),</span> <span class="n">aspect</span><span class="o">=</span><span class="s1">&#39;equal&#39;</span><span class="p">)</span>
-<span class="n">mgkit</span><span class="o">.</span><span class="n">plots</span><span class="o">.</span><span class="n">abund</span><span class="o">.</span><span class="n">draw_triangle_grid</span><span class="p">(</span><span class="n">ax</span><span class="p">,</span> <span class="n">labels</span><span class="o">=</span><span class="n">data</span><span class="o">.</span><span class="n">columns</span><span class="p">)</span>
-<span class="c1"># trasparency of circles can be adjusted with the alpha parameter (between 0 and 1)</span>
-<span class="n">mgkit</span><span class="o">.</span><span class="n">plots</span><span class="o">.</span><span class="n">abund</span><span class="o">.</span><span class="n">draw_circles</span><span class="p">(</span>
-    <span class="n">ax</span><span class="p">,</span>
-    <span class="n">data</span><span class="p">,</span>
-    <span class="n">col_func</span><span class="o">=</span><span class="n">col_func</span><span class="p">,</span>
-    <span class="n">csize</span><span class="o">=</span><span class="mi">500</span><span class="p">,</span>
-    <span class="n">sizescale</span><span class="o">=</span><span class="n">sizescale</span><span class="p">,</span>
-    <span class="n">order</span><span class="o">=</span><span class="n">sizescale</span><span class="o">.</span><span class="n">sort_values</span><span class="p">(</span><span class="n">ascending</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">inplace</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span><span class="o">.</span><span class="n">index</span><span class="p">,</span>
-    <span class="n">alpha</span><span class="o">=</span><span class="mi">1</span>
-<span class="p">)</span>
+<span></span>fig, ax = mgkit.plots.get_single_figure(figsize=(10, 10), aspect=&#39;equal&#39;)
+mgkit.plots.abund.draw_triangle_grid(ax, labels=data.columns)
+# trasparency of circles can be adjusted with the alpha parameter (between 0 and 1)
+mgkit.plots.abund.draw_circles(
+    ax,
+    data,
+    col_func=col_func,
+    csize=500,
+    sizescale=sizescale,
+    order=sizescale.sort_values(ascending=False, inplace=False).index,
+    alpha=1
+)
 </pre></div>
 </div>
 </div>
@@ -736,19 +772,19 @@ div.rendered_html tbody tr:hover {
 </pre></div>
 </div>
 <div class="input_area highlight-ipython2 notranslate"><div class="highlight"><pre>
-<span></span><span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">mgkit</span><span class="o">.</span><span class="n">plots</span><span class="o">.</span><span class="n">get_single_figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mi">10</span><span class="p">),</span> <span class="n">aspect</span><span class="o">=</span><span class="s1">&#39;equal&#39;</span><span class="p">)</span>
-<span class="n">mgkit</span><span class="o">.</span><span class="n">plots</span><span class="o">.</span><span class="n">abund</span><span class="o">.</span><span class="n">draw_triangle_grid</span><span class="p">(</span><span class="n">ax</span><span class="p">,</span> <span class="n">labels</span><span class="o">=</span><span class="n">data</span><span class="o">.</span><span class="n">columns</span><span class="p">)</span>
-<span class="c1"># if lines are required around the circles, linewidths and edgecolor can be used to customise them</span>
-<span class="n">mgkit</span><span class="o">.</span><span class="n">plots</span><span class="o">.</span><span class="n">abund</span><span class="o">.</span><span class="n">draw_circles</span><span class="p">(</span>
-    <span class="n">ax</span><span class="p">,</span>
-    <span class="n">data</span><span class="p">,</span>
-    <span class="n">col_func</span><span class="o">=</span><span class="n">col_func</span><span class="p">,</span>
-    <span class="n">csize</span><span class="o">=</span><span class="mi">500</span><span class="p">,</span>
-    <span class="n">sizescale</span><span class="o">=</span><span class="n">sizescale</span><span class="p">,</span>
-    <span class="n">order</span><span class="o">=</span><span class="n">sizescale</span><span class="o">.</span><span class="n">sort_values</span><span class="p">(</span><span class="n">ascending</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">inplace</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span><span class="o">.</span><span class="n">index</span><span class="p">,</span>
-    <span class="n">linewidths</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span>
-    <span class="n">edgecolor</span><span class="o">=</span><span class="s1">&#39;k&#39;</span>
-<span class="p">)</span>
+<span></span>fig, ax = mgkit.plots.get_single_figure(figsize=(10, 10), aspect=&#39;equal&#39;)
+mgkit.plots.abund.draw_triangle_grid(ax, labels=data.columns)
+# if lines are required around the circles, linewidths and edgecolor can be used to customise them
+mgkit.plots.abund.draw_circles(
+    ax,
+    data,
+    col_func=col_func,
+    csize=500,
+    sizescale=sizescale,
+    order=sizescale.sort_values(ascending=False, inplace=False).index,
+    linewidths=1,
+    edgecolor=&#39;k&#39;
+)
 </pre></div>
 </div>
 </div>
@@ -772,18 +808,18 @@ div.rendered_html tbody tr:hover {
 </div>
 <div class="section" id="Abundance-Plot-with-2-Samples">
 <h2>Abundance Plot with 2 Samples<a class="headerlink" href="#Abundance-Plot-with-2-Samples" title="Permalink to this headline">¶</a></h2>
-<div class="section" id="Grid">
-<h3>Grid<a class="headerlink" href="#Grid" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="id1">
+<h3>Grid<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h3>
 <div class="nbinput docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[15]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython2 notranslate"><div class="highlight"><pre>
-<span></span><span class="c1"># First we need to draw the 1D grid</span>
-<span class="c1"># aspect should be set to make sure the correct aspect ratio is drawn</span>
-<span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">mgkit</span><span class="o">.</span><span class="n">plots</span><span class="o">.</span><span class="n">get_single_figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mi">3</span><span class="p">),</span> <span class="n">aspect</span><span class="o">=</span><span class="mf">0.1</span><span class="p">)</span>
-<span class="c1"># the labels passed are drawn from left to right</span>
-<span class="n">mgkit</span><span class="o">.</span><span class="n">plots</span><span class="o">.</span><span class="n">abund</span><span class="o">.</span><span class="n">draw_1d_grid</span><span class="p">(</span><span class="n">ax</span><span class="p">,</span> <span class="n">labels</span><span class="o">=</span><span class="n">data</span><span class="o">.</span><span class="n">columns</span><span class="p">[:</span><span class="mi">2</span><span class="p">])</span>
+<span></span># First we need to draw the 1D grid
+# aspect should be set to make sure the correct aspect ratio is drawn
+fig, ax = mgkit.plots.get_single_figure(figsize=(10, 3), aspect=0.1)
+# the labels passed are drawn from left to right
+mgkit.plots.abund.draw_1d_grid(ax, labels=data.columns[:2])
 </pre></div>
 </div>
 </div>
@@ -799,18 +835,18 @@ div.rendered_html tbody tr:hover {
 </pre></div>
 </div>
 <div class="input_area highlight-ipython2 notranslate"><div class="highlight"><pre>
-<span></span><span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">mgkit</span><span class="o">.</span><span class="n">plots</span><span class="o">.</span><span class="n">get_single_figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mi">3</span><span class="p">),</span> <span class="n">aspect</span><span class="o">=</span><span class="mf">0.1</span><span class="p">)</span>
-<span class="n">mgkit</span><span class="o">.</span><span class="n">plots</span><span class="o">.</span><span class="n">abund</span><span class="o">.</span><span class="n">draw_1d_grid</span><span class="p">(</span><span class="n">ax</span><span class="p">,</span> <span class="n">labels</span><span class="o">=</span><span class="n">data</span><span class="o">.</span><span class="n">columns</span><span class="p">[:</span><span class="mi">2</span><span class="p">])</span>
-<span class="n">mgkit</span><span class="o">.</span><span class="n">plots</span><span class="o">.</span><span class="n">abund</span><span class="o">.</span><span class="n">draw_circles</span><span class="p">(</span>
-    <span class="n">ax</span><span class="p">,</span>
-    <span class="n">data</span><span class="o">.</span><span class="n">iloc</span><span class="p">[:,</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">]],</span>
-    <span class="n">col_func</span><span class="o">=</span><span class="n">col_func</span><span class="p">,</span>
-    <span class="n">csize</span><span class="o">=</span><span class="mi">500</span><span class="p">,</span>
-    <span class="n">sizescale</span><span class="o">=</span><span class="n">sizescale</span><span class="p">,</span>
-    <span class="n">order</span><span class="o">=</span><span class="n">sizescale</span><span class="o">.</span><span class="n">sort_values</span><span class="p">(</span><span class="n">ascending</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">inplace</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span><span class="o">.</span><span class="n">index</span><span class="p">,</span>
-    <span class="n">linewidths</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span>
-    <span class="n">edgecolor</span><span class="o">=</span><span class="s1">&#39;k&#39;</span>
-<span class="p">)</span>
+<span></span>fig, ax = mgkit.plots.get_single_figure(figsize=(10, 3), aspect=0.1)
+mgkit.plots.abund.draw_1d_grid(ax, labels=data.columns[:2])
+mgkit.plots.abund.draw_circles(
+    ax,
+    data.iloc[:, [0,1]],
+    col_func=col_func,
+    csize=500,
+    sizescale=sizescale,
+    order=sizescale.sort_values(ascending=False, inplace=False).index,
+    linewidths=1,
+    edgecolor=&#39;k&#39;
+)
 </pre></div>
 </div>
 </div>
@@ -854,11 +890,19 @@ div.rendered_html tbody tr:hover {
 
   <div role="contentinfo">
     <p>
-        &copy; Copyright 2013-2015, Francesco Rubino
+        
+        &copy; Copyright 2013-2020, Francesco Rubino
 
     </p>
   </div>
-  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+    
+    
+    
+    Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a
+    
+    <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a>
+    
+    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
 
 </footer>
 
@@ -869,7 +913,6 @@ div.rendered_html tbody tr:hover {
 
   </div>
   
-
 
   <script type="text/javascript">
       jQuery(function () {

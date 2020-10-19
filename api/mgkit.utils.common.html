@@ -1,42 +1,43 @@
 
 
 <!DOCTYPE html>
-<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
-<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<html class="writer-html5" lang="en" >
 <head>
   <meta charset="utf-8">
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>mgkit.utils.common module &mdash; MGKit: Metagenomic framework 0.5.1 documentation</title>
+  <title>mgkit.utils.common module &mdash; MGKit: Metagenomic framework 0.5.3 documentation</title>
   
-
-  
-  
-  
-  
-
-  
-  <script type="text/javascript" src="../_static/js/modernizr.min.js"></script>
-  
-    
-      <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
-        <script type="text/javascript" src="../_static/jquery.js"></script>
-        <script type="text/javascript" src="../_static/underscore.js"></script>
-        <script type="text/javascript" src="../_static/doctools.js"></script>
-        <script type="text/javascript" src="../_static/language_data.js"></script>
-        <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
-        <script async="async" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
-        <script type="text/x-mathjax-config">MathJax.Hub.Config({"tex2jax": {"inlineMath": [["$", "$"], ["\\(", "\\)"]], "processEscapes": true, "ignoreClass": "document", "processClass": "math|output_area"}})</script>
-    
-    <script type="text/javascript" src="../_static/js/theme.js"></script>
-
-    
 
   
   <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
   <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
   <link rel="stylesheet" href="../_static/graphviz.css" type="text/css" />
+
+  
+  
+  
+  
+
+  
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/underscore.js"></script>
+        <script src="../_static/doctools.js"></script>
+        <script src="../_static/language_data.js"></script>
+        <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+        <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+        <script type="text/x-mathjax-config">MathJax.Hub.Config({"tex2jax": {"inlineMath": [["$", "$"], ["\\(", "\\)"]], "processEscapes": true, "ignoreClass": "document", "processClass": "math|output_area"}})</script>
+    
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+
+    
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
     <link rel="next" title="mgkit.utils.dictionary module" href="mgkit.utils.dictionary.html" />
@@ -54,7 +55,7 @@
           
 
           
-            <a href="../index.html" class="icon icon-home"> MGKit: Metagenomic framework
+            <a href="../index.html" class="icon icon-home" alt="Documentation Home"> MGKit: Metagenomic framework
           
 
           
@@ -64,7 +65,7 @@
             
             
               <div class="version">
-                0.5.1
+                0.5.3
               </div>
             
           
@@ -81,6 +82,7 @@
           
         </div>
 
+        
         <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
           
             
@@ -179,6 +181,7 @@
             
           
         </div>
+        
       </div>
     </nav>
 
@@ -217,7 +220,7 @@
 
   <ul class="wy-breadcrumbs">
     
-      <li><a href="../index.html">Docs</a> &raquo;</li>
+      <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
         
           <li><a href="../library.html">Library Reference</a> &raquo;</li>
         
@@ -271,22 +274,22 @@
 <div class="section" id="module-mgkit.utils.common">
 <span id="mgkit-utils-common-module"></span><h1>mgkit.utils.common module<a class="headerlink" href="#module-mgkit.utils.common" title="Permalink to this headline">¶</a></h1>
 <p>Utility functions</p>
-<dl class="function">
+<dl class="py function">
 <dt id="mgkit.utils.common.apply_func_window">
-<code class="sig-prename descclassname">mgkit.utils.common.</code><code class="sig-name descname">apply_func_window</code><span class="sig-paren">(</span><em class="sig-param">func</em>, <em class="sig-param">data</em>, <em class="sig-param">window</em>, <em class="sig-param">step=0</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/mgkit/utils/common.html#apply_func_window"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#mgkit.utils.common.apply_func_window" title="Permalink to this definition">¶</a></dt>
+<code class="sig-prename descclassname">mgkit.utils.common.</code><code class="sig-name descname">apply_func_window</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">func</span></em>, <em class="sig-param"><span class="n">data</span></em>, <em class="sig-param"><span class="n">window</span></em>, <em class="sig-param"><span class="n">step</span><span class="o">=</span><span class="default_value">0</span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/mgkit/utils/common.html#apply_func_window"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#mgkit.utils.common.apply_func_window" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
-<dl class="function">
+<dl class="py function">
 <dt id="mgkit.utils.common.average_length">
-<code class="sig-prename descclassname">mgkit.utils.common.</code><code class="sig-name descname">average_length</code><span class="sig-paren">(</span><em class="sig-param">a1s</em>, <em class="sig-param">a1e</em>, <em class="sig-param">a2s</em>, <em class="sig-param">a2e</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/mgkit/utils/common.html#average_length"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#mgkit.utils.common.average_length" title="Permalink to this definition">¶</a></dt>
+<code class="sig-prename descclassname">mgkit.utils.common.</code><code class="sig-name descname">average_length</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">a1s</span></em>, <em class="sig-param"><span class="n">a1e</span></em>, <em class="sig-param"><span class="n">a2s</span></em>, <em class="sig-param"><span class="n">a2e</span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/mgkit/utils/common.html#average_length"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#mgkit.utils.common.average_length" title="Permalink to this definition">¶</a></dt>
 <dd><p>Given two sets of coordinates, a1 and a2, returns the average length.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>a1s</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.8)"><em>int</em></a>) – a1 leftmost number</p></li>
-<li><p><strong>a1e</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.8)"><em>int</em></a>) – a1 rightmost number</p></li>
-<li><p><strong>a2s</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.8)"><em>int</em></a>) – a2 leftmost number</p></li>
-<li><p><strong>a2e</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.8)"><em>int</em></a>) – a2 rightmost number</p></li>
+<li><p><strong>a1s</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.9)"><em>int</em></a>) – a1 leftmost number</p></li>
+<li><p><strong>a1e</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.9)"><em>int</em></a>) – a1 rightmost number</p></li>
+<li><p><strong>a2s</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.9)"><em>int</em></a>) – a2 leftmost number</p></li>
+<li><p><strong>a2e</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.9)"><em>int</em></a>) – a2 rightmost number</p></li>
 </ul>
 </dd>
 <dt class="field-even">Return float</dt>
@@ -295,16 +298,16 @@
 </dl>
 </dd></dl>
 
-<dl class="function">
+<dl class="py function">
 <dt id="mgkit.utils.common.between">
-<code class="sig-prename descclassname">mgkit.utils.common.</code><code class="sig-name descname">between</code><span class="sig-paren">(</span><em class="sig-param">pos</em>, <em class="sig-param">start</em>, <em class="sig-param">end</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/mgkit/utils/common.html#between"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#mgkit.utils.common.between" title="Permalink to this definition">¶</a></dt>
+<code class="sig-prename descclassname">mgkit.utils.common.</code><code class="sig-name descname">between</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">pos</span></em>, <em class="sig-param"><span class="n">start</span></em>, <em class="sig-param"><span class="n">end</span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/mgkit/utils/common.html#between"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#mgkit.utils.common.between" title="Permalink to this definition">¶</a></dt>
 <dd><p>Tests if a number is between two others</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>pos</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.8)"><em>int</em></a>) – number to test</p></li>
-<li><p><strong>start</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.8)"><em>int</em></a>) – leftmost number</p></li>
-<li><p><strong>end</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.8)"><em>int</em></a>) – rightmost number</p></li>
+<li><p><strong>pos</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.9)"><em>int</em></a>) – number to test</p></li>
+<li><p><strong>start</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.9)"><em>int</em></a>) – leftmost number</p></li>
+<li><p><strong>end</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.9)"><em>int</em></a>) – rightmost number</p></li>
 </ul>
 </dd>
 <dt class="field-even">Return bool</dt>
@@ -313,9 +316,9 @@
 </dl>
 </dd></dl>
 
-<dl class="function">
+<dl class="py function">
 <dt id="mgkit.utils.common.complement_ranges">
-<code class="sig-prename descclassname">mgkit.utils.common.</code><code class="sig-name descname">complement_ranges</code><span class="sig-paren">(</span><em class="sig-param">intervals</em>, <em class="sig-param">end=None</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/mgkit/utils/common.html#complement_ranges"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#mgkit.utils.common.complement_ranges" title="Permalink to this definition">¶</a></dt>
+<code class="sig-prename descclassname">mgkit.utils.common.</code><code class="sig-name descname">complement_ranges</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">intervals</span></em>, <em class="sig-param"><span class="n">end</span><span class="o">=</span><span class="default_value">None</span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/mgkit/utils/common.html#complement_ranges"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#mgkit.utils.common.complement_ranges" title="Permalink to this definition">¶</a></dt>
 <dd><div class="versionadded">
 <p><span class="versionmodified added">New in version 0.3.1.</span></p>
 </div>
@@ -335,7 +338,7 @@ sequence will make the function include a last range that includes it</p>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>intervals</strong> (<em>intervals</em>) – iterable where each element is a closed range
 (tuple)</p></li>
-<li><p><strong>end</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.8)"><em>int</em></a>) – if the end of the complement intervals is supposed to be
+<li><p><strong>end</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.9)"><em>int</em></a>) – if the end of the complement intervals is supposed to be
 outside the last range.</p></li>
 </ul>
 </dd>
@@ -343,11 +346,11 @@ outside the last range.</p></li>
 <dd class="field-even"><p>the list of intervals that complement the ones passed.</p>
 </dd>
 <dt class="field-odd">Return type</dt>
-<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.8)">list</a></p>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.9)">list</a></p>
 </dd>
 </dl>
 <p class="rubric">Examples</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">complement_ranges</span><span class="p">([(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">10</span><span class="p">),</span> <span class="p">(</span><span class="mi">11</span><span class="p">,</span> <span class="mi">20</span><span class="p">),</span> <span class="p">(</span><span class="mi">25</span><span class="p">,</span> <span class="mi">30</span><span class="p">)],</span> <span class="n">end</span><span class="o">=</span><span class="mi">100</span><span class="p">)</span>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">complement_ranges</span><span class="p">([(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">10</span><span class="p">),</span> <span class="p">(</span><span class="mi">11</span><span class="p">,</span> <span class="mi">20</span><span class="p">),</span> <span class="p">(</span><span class="mi">25</span><span class="p">,</span> <span class="mi">30</span><span class="p">)],</span> <span class="n">end</span><span class="o">=</span><span class="mi">100</span><span class="p">)</span>
 <span class="go">[(21, 24), (31, 100)]</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">complement_ranges</span><span class="p">([(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">10</span><span class="p">),</span> <span class="p">(</span><span class="mi">11</span><span class="p">,</span> <span class="mi">20</span><span class="p">),</span> <span class="p">(</span><span class="mi">25</span><span class="p">,</span> <span class="mi">30</span><span class="p">)])</span>
 <span class="go">[(21, 24)]</span>
@@ -359,18 +362,18 @@ outside the last range.</p></li>
 </div>
 </dd></dl>
 
-<dl class="function">
+<dl class="py function">
 <dt id="mgkit.utils.common.deprecated">
-<code class="sig-prename descclassname">mgkit.utils.common.</code><code class="sig-name descname">deprecated</code><span class="sig-paren">(</span><em class="sig-param">func</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/mgkit/utils/common.html#deprecated"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#mgkit.utils.common.deprecated" title="Permalink to this definition">¶</a></dt>
+<code class="sig-prename descclassname">mgkit.utils.common.</code><code class="sig-name descname">deprecated</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">func</span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/mgkit/utils/common.html#deprecated"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#mgkit.utils.common.deprecated" title="Permalink to this definition">¶</a></dt>
 <dd><p>This is a decorator which can be used to mark functions
 as deprecated. It will result in a warning being emitted
 when the function is used.</p>
 <p>from <a class="reference external" href="https://wiki.python.org/moin/PythonDecoratorLibrary">https://wiki.python.org/moin/PythonDecoratorLibrary</a></p>
 </dd></dl>
 
-<dl class="function">
+<dl class="py function">
 <dt id="mgkit.utils.common.range_intersect">
-<code class="sig-prename descclassname">mgkit.utils.common.</code><code class="sig-name descname">range_intersect</code><span class="sig-paren">(</span><em class="sig-param">start1</em>, <em class="sig-param">end1</em>, <em class="sig-param">start2</em>, <em class="sig-param">end2</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/mgkit/utils/common.html#range_intersect"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#mgkit.utils.common.range_intersect" title="Permalink to this definition">¶</a></dt>
+<code class="sig-prename descclassname">mgkit.utils.common.</code><code class="sig-name descname">range_intersect</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">start1</span></em>, <em class="sig-param"><span class="n">end1</span></em>, <em class="sig-param"><span class="n">start2</span></em>, <em class="sig-param"><span class="n">end2</span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/mgkit/utils/common.html#range_intersect"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#mgkit.utils.common.range_intersect" title="Permalink to this definition">¶</a></dt>
 <dd><div class="versionadded">
 <p><span class="versionmodified added">New in version 0.1.13.</span></p>
 </div>
@@ -379,10 +382,10 @@ that is the intersection of the two.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>start1</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.8)"><em>int</em></a>) – start position for the first range</p></li>
-<li><p><strong>end1</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.8)"><em>int</em></a>) – end position for the first range</p></li>
-<li><p><strong>start2</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.8)"><em>int</em></a>) – start position for the second range</p></li>
-<li><p><strong>end2</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.8)"><em>int</em></a>) – end position for the second range</p></li>
+<li><p><strong>start1</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.9)"><em>int</em></a>) – start position for the first range</p></li>
+<li><p><strong>end1</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.9)"><em>int</em></a>) – end position for the first range</p></li>
+<li><p><strong>start2</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.9)"><em>int</em></a>) – start position for the second range</p></li>
+<li><p><strong>end2</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.9)"><em>int</em></a>) – end position for the second range</p></li>
 </ul>
 </dd>
 <dt class="field-even">Returns</dt>
@@ -391,19 +394,19 @@ the intersection of the two ranges, or <em>None</em> if the intersection is
 empty</p>
 </dd>
 <dt class="field-odd">Return type</dt>
-<dd class="field-odd"><p>(<a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.8)">None</a>, <a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#tuple" title="(in Python v3.8)">tuple</a>)</p>
+<dd class="field-odd"><p>(<a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.9)">None</a>, <a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#tuple" title="(in Python v3.9)">tuple</a>)</p>
 </dd>
 </dl>
 </dd></dl>
 
-<dl class="function">
+<dl class="py function">
 <dt id="mgkit.utils.common.range_substract">
-<code class="sig-prename descclassname">mgkit.utils.common.</code><code class="sig-name descname">range_substract</code><span class="sig-paren">(</span><em class="sig-param">start1</em>, <em class="sig-param">end1</em>, <em class="sig-param">start2</em>, <em class="sig-param">end2</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/mgkit/utils/common.html#range_substract"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#mgkit.utils.common.range_substract" title="Permalink to this definition">¶</a></dt>
+<code class="sig-prename descclassname">mgkit.utils.common.</code><code class="sig-name descname">range_substract</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">start1</span></em>, <em class="sig-param"><span class="n">end1</span></em>, <em class="sig-param"><span class="n">start2</span></em>, <em class="sig-param"><span class="n">end2</span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/mgkit/utils/common.html#range_substract"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#mgkit.utils.common.range_substract" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
-<dl class="function">
+<dl class="py function">
 <dt id="mgkit.utils.common.ranges_length">
-<code class="sig-prename descclassname">mgkit.utils.common.</code><code class="sig-name descname">ranges_length</code><span class="sig-paren">(</span><em class="sig-param">ranges</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/mgkit/utils/common.html#ranges_length"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#mgkit.utils.common.ranges_length" title="Permalink to this definition">¶</a></dt>
+<code class="sig-prename descclassname">mgkit.utils.common.</code><code class="sig-name descname">ranges_length</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">ranges</span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/mgkit/utils/common.html#ranges_length"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#mgkit.utils.common.ranges_length" title="Permalink to this definition">¶</a></dt>
 <dd><div class="versionadded">
 <p><span class="versionmodified added">New in version 0.1.12.</span></p>
 </div>
@@ -424,14 +427,14 @@ will be wrong</p>
 <dd class="field-even"><p>sum of all ranges lengths</p>
 </dd>
 <dt class="field-odd">Return type</dt>
-<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.8)">int</a></p>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.9)">int</a></p>
 </dd>
 </dl>
 </dd></dl>
 
-<dl class="function">
+<dl class="py function">
 <dt id="mgkit.utils.common.union_range">
-<code class="sig-prename descclassname">mgkit.utils.common.</code><code class="sig-name descname">union_range</code><span class="sig-paren">(</span><em class="sig-param">start1</em>, <em class="sig-param">end1</em>, <em class="sig-param">start2</em>, <em class="sig-param">end2</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/mgkit/utils/common.html#union_range"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#mgkit.utils.common.union_range" title="Permalink to this definition">¶</a></dt>
+<code class="sig-prename descclassname">mgkit.utils.common.</code><code class="sig-name descname">union_range</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">start1</span></em>, <em class="sig-param"><span class="n">end1</span></em>, <em class="sig-param"><span class="n">start2</span></em>, <em class="sig-param"><span class="n">end2</span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/mgkit/utils/common.html#union_range"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#mgkit.utils.common.union_range" title="Permalink to this definition">¶</a></dt>
 <dd><div class="versionadded">
 <p><span class="versionmodified added">New in version 0.1.12.</span></p>
 </div>
@@ -454,11 +457,11 @@ returned. Works on both int and float numbers, even mixed.</p>
 overlap</p>
 </dd>
 <dt class="field-odd">Return type</dt>
-<dd class="field-odd"><p>(<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#tuple" title="(in Python v3.8)">tuple</a> or <a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.8)">None</a>)</p>
+<dd class="field-odd"><p>(<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#tuple" title="(in Python v3.9)">tuple</a> or <a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.9)">None</a>)</p>
 </dd>
 </dl>
 <p class="rubric">Example</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">union_range</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mi">13</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">10</span><span class="p">)</span>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">union_range</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mi">13</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">10</span><span class="p">)</span>
 <span class="go">(1, 13)</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">union_range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="mi">11</span><span class="p">,</span> <span class="mi">13</span><span class="p">)</span>
 <span class="go">(1, 13)</span>
@@ -468,9 +471,9 @@ overlap</p>
 </div>
 </dd></dl>
 
-<dl class="function">
+<dl class="py function">
 <dt id="mgkit.utils.common.union_ranges">
-<code class="sig-prename descclassname">mgkit.utils.common.</code><code class="sig-name descname">union_ranges</code><span class="sig-paren">(</span><em class="sig-param">intervals</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/mgkit/utils/common.html#union_ranges"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#mgkit.utils.common.union_ranges" title="Permalink to this definition">¶</a></dt>
+<code class="sig-prename descclassname">mgkit.utils.common.</code><code class="sig-name descname">union_ranges</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">intervals</span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/mgkit/utils/common.html#union_ranges"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#mgkit.utils.common.union_ranges" title="Permalink to this definition">¶</a></dt>
 <dd><div class="versionadded">
 <p><span class="versionmodified added">New in version 0.3.1.</span></p>
 </div>
@@ -485,11 +488,11 @@ elements.</p>
 <dd class="field-even"><p>the list of ranges that are the union of all elements passed</p>
 </dd>
 <dt class="field-odd">Return type</dt>
-<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.8)">list</a></p>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.9)">list</a></p>
 </dd>
 </dl>
 <p class="rubric">Examples</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">union_ranges</span><span class="p">([(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">),</span> <span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="mi">7</span><span class="p">),</span> <span class="p">(</span><span class="mi">6</span><span class="p">,</span> <span class="mi">12</span><span class="p">),</span> <span class="p">(</span><span class="mi">9</span><span class="p">,</span> <span class="mi">17</span><span class="p">),</span> <span class="p">(</span><span class="mi">18</span><span class="p">,</span> <span class="mi">20</span><span class="p">)])</span>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">union_ranges</span><span class="p">([(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">),</span> <span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="mi">7</span><span class="p">),</span> <span class="p">(</span><span class="mi">6</span><span class="p">,</span> <span class="mi">12</span><span class="p">),</span> <span class="p">(</span><span class="mi">9</span><span class="p">,</span> <span class="mi">17</span><span class="p">),</span> <span class="p">(</span><span class="mi">18</span><span class="p">,</span> <span class="mi">20</span><span class="p">)])</span>
 <span class="go">[(1, 20)]</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">union_ranges</span><span class="p">([(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">),</span> <span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="mi">7</span><span class="p">),</span> <span class="p">(</span><span class="mi">6</span><span class="p">,</span> <span class="mi">12</span><span class="p">),</span> <span class="p">(</span><span class="mi">9</span><span class="p">,</span> <span class="mi">14</span><span class="p">),</span> <span class="p">(</span><span class="mi">18</span><span class="p">,</span> <span class="mi">20</span><span class="p">)])</span>
 <span class="go">[(1, 14), (18, 20)]</span>
@@ -519,11 +522,19 @@ elements.</p>
 
   <div role="contentinfo">
     <p>
-        &copy; Copyright 2013-2015, Francesco Rubino
+        
+        &copy; Copyright 2013-2020, Francesco Rubino
 
     </p>
   </div>
-  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+    
+    
+    
+    Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a
+    
+    <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a>
+    
+    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
 
 </footer>
 
@@ -534,7 +545,6 @@ elements.</p>
 
   </div>
   
-
 
   <script type="text/javascript">
       jQuery(function () {

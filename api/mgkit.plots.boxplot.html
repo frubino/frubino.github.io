@@ -1,42 +1,43 @@
 
 
 <!DOCTYPE html>
-<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
-<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<html class="writer-html5" lang="en" >
 <head>
   <meta charset="utf-8">
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>mgkit.plots.boxplot module &mdash; MGKit: Metagenomic framework 0.5.1 documentation</title>
+  <title>mgkit.plots.boxplot module &mdash; MGKit: Metagenomic framework 0.5.3 documentation</title>
   
-
-  
-  
-  
-  
-
-  
-  <script type="text/javascript" src="../_static/js/modernizr.min.js"></script>
-  
-    
-      <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
-        <script type="text/javascript" src="../_static/jquery.js"></script>
-        <script type="text/javascript" src="../_static/underscore.js"></script>
-        <script type="text/javascript" src="../_static/doctools.js"></script>
-        <script type="text/javascript" src="../_static/language_data.js"></script>
-        <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
-        <script async="async" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
-        <script type="text/x-mathjax-config">MathJax.Hub.Config({"tex2jax": {"inlineMath": [["$", "$"], ["\\(", "\\)"]], "processEscapes": true, "ignoreClass": "document", "processClass": "math|output_area"}})</script>
-    
-    <script type="text/javascript" src="../_static/js/theme.js"></script>
-
-    
 
   
   <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
   <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
   <link rel="stylesheet" href="../_static/graphviz.css" type="text/css" />
+
+  
+  
+  
+  
+
+  
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/underscore.js"></script>
+        <script src="../_static/doctools.js"></script>
+        <script src="../_static/language_data.js"></script>
+        <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+        <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+        <script type="text/x-mathjax-config">MathJax.Hub.Config({"tex2jax": {"inlineMath": [["$", "$"], ["\\(", "\\)"]], "processEscapes": true, "ignoreClass": "document", "processClass": "math|output_area"}})</script>
+    
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+
+    
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
     <link rel="next" title="mgkit.plots.colors module" href="mgkit.plots.colors.html" />
@@ -54,7 +55,7 @@
           
 
           
-            <a href="../index.html" class="icon icon-home"> MGKit: Metagenomic framework
+            <a href="../index.html" class="icon icon-home" alt="Documentation Home"> MGKit: Metagenomic framework
           
 
           
@@ -64,7 +65,7 @@
             
             
               <div class="version">
-                0.5.1
+                0.5.3
               </div>
             
           
@@ -81,6 +82,7 @@
           
         </div>
 
+        
         <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
           
             
@@ -179,6 +181,7 @@
             
           
         </div>
+        
       </div>
     </nav>
 
@@ -217,7 +220,7 @@
 
   <ul class="wy-breadcrumbs">
     
-      <li><a href="../index.html">Docs</a> &raquo;</li>
+      <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
         
           <li><a href="../library.html">Library Reference</a> &raquo;</li>
         
@@ -274,9 +277,32 @@
 <p><span class="versionmodified added">New in version 0.1.14.</span></p>
 </div>
 <p>Code related to boxplots</p>
-<dl class="function">
+<dl class="py function">
+<dt id="mgkit.plots.boxplot.add_significance_to_boxplot">
+<code class="sig-prename descclassname">mgkit.plots.boxplot.</code><code class="sig-name descname">add_significance_to_boxplot</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">sign_indices</span></em>, <em class="sig-param"><span class="n">ax</span></em>, <em class="sig-param"><span class="n">pos</span></em>, <em class="sig-param"><span class="n">box_vert</span><span class="o">=</span><span class="default_value">True</span></em>, <em class="sig-param"><span class="n">fontsize</span><span class="o">=</span><span class="default_value">16</span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/mgkit/plots/boxplot.html#add_significance_to_boxplot"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#mgkit.plots.boxplot.add_significance_to_boxplot" title="Permalink to this definition">¶</a></dt>
+<dd><div class="versionadded">
+<p><span class="versionmodified added">New in version 0.1.16.</span></p>
+</div>
+<p>Add significance groups to boxplots</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>sign_indices</strong> (<em>iterable</em>) – iterable in which each element is a tuple;
+each element of the tuple is the numerical index of the position of
+the significant boxplot</p></li>
+<li><p><strong>ax</strong> – an axis instance</p></li>
+<li><p><strong>pos</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#tuple" title="(in Python v3.9)"><em>tuple</em></a>) – the 2 values are the coordinates for the top line, and the
+the lowest bound for the whisker</p></li>
+<li><p><strong>box_vert</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.9)"><em>bool</em></a>) – if the boxplot is vertical</p></li>
+<li><p><strong>fontsize</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.9)"><em>float</em></a>) – size for the * (star)</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
 <dt id="mgkit.plots.boxplot.add_values_to_boxplot">
-<code class="sig-prename descclassname">mgkit.plots.boxplot.</code><code class="sig-name descname">add_values_to_boxplot</code><span class="sig-paren">(</span><em class="sig-param">dataframe</em>, <em class="sig-param">ax</em>, <em class="sig-param">plot_data</em>, <em class="sig-param">plot_order</em>, <em class="sig-param">data_colours=None</em>, <em class="sig-param">alpha=0.5</em>, <em class="sig-param">s=80</em>, <em class="sig-param">marker='o'</em>, <em class="sig-param">linewidth=0.01</em>, <em class="sig-param">box_vert=False</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/mgkit/plots/boxplot.html#add_values_to_boxplot"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#mgkit.plots.boxplot.add_values_to_boxplot" title="Permalink to this definition">¶</a></dt>
+<code class="sig-prename descclassname">mgkit.plots.boxplot.</code><code class="sig-name descname">add_values_to_boxplot</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">dataframe</span></em>, <em class="sig-param"><span class="n">ax</span></em>, <em class="sig-param"><span class="n">plot_data</span></em>, <em class="sig-param"><span class="n">plot_order</span></em>, <em class="sig-param"><span class="n">data_colours</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">alpha</span><span class="o">=</span><span class="default_value">0.5</span></em>, <em class="sig-param"><span class="n">s</span><span class="o">=</span><span class="default_value">80</span></em>, <em class="sig-param"><span class="n">marker</span><span class="o">=</span><span class="default_value">'o'</span></em>, <em class="sig-param"><span class="n">linewidth</span><span class="o">=</span><span class="default_value">0.01</span></em>, <em class="sig-param"><span class="n">box_vert</span><span class="o">=</span><span class="default_value">False</span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/mgkit/plots/boxplot.html#add_values_to_boxplot"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#mgkit.plots.boxplot.add_values_to_boxplot" title="Permalink to this definition">¶</a></dt>
 <dd><div class="versionadded">
 <p><span class="versionmodified added">New in version 0.1.13.</span></p>
 </div>
@@ -302,81 +328,20 @@ horizontal (<em>box_vert</em>). The default will change in a later version.</p>
 <li><p><strong>ax</strong> – an axis instance</p></li>
 <li><p><strong>plot_data</strong> – return value from <a class="reference internal" href="#mgkit.plots.boxplot.boxplot_dataframe" title="mgkit.plots.boxplot.boxplot_dataframe"><code class="xref py py-func docutils literal notranslate"><span class="pre">boxplot_dataframe()</span></code></a></p></li>
 <li><p><strong>plot_order</strong> (<em>iterable</em>) – row order used to plot the boxes</p></li>
-<li><p><strong>data_colours</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.8)"><em>dict</em></a>) – colors used for the values</p></li>
-<li><p><strong>alpha</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.8)"><em>float</em></a>) – alpha value for the colour</p></li>
-<li><p><strong>s</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.8)"><em>int</em></a>) – size of the marker drawn</p></li>
-<li><p><strong>marker</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.8)"><em>str</em></a>) – one of the accepted matplotlib markers</p></li>
-<li><p><strong>linewidth</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.8)"><em>float</em></a>) – width of the line used to draw the marker</p></li>
-<li><p><strong>box_vert</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.8)"><em>bool</em></a>) – specify if the original boxplot is vertical or not</p></li>
+<li><p><strong>data_colours</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.9)"><em>dict</em></a>) – colors used for the values</p></li>
+<li><p><strong>alpha</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.9)"><em>float</em></a>) – alpha value for the colour</p></li>
+<li><p><strong>s</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.9)"><em>int</em></a>) – size of the marker drawn</p></li>
+<li><p><strong>marker</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)"><em>str</em></a>) – one of the accepted matplotlib markers</p></li>
+<li><p><strong>linewidth</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.9)"><em>float</em></a>) – width of the line used to draw the marker</p></li>
+<li><p><strong>box_vert</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.9)"><em>bool</em></a>) – specify if the original boxplot is vertical or not</p></li>
 </ul>
 </dd>
 </dl>
 </dd></dl>
 
-<dl class="function">
-<dt id="mgkit.plots.boxplot.add_significance_to_boxplot">
-<code class="sig-prename descclassname">mgkit.plots.boxplot.</code><code class="sig-name descname">add_significance_to_boxplot</code><span class="sig-paren">(</span><em class="sig-param">sign_indices</em>, <em class="sig-param">ax</em>, <em class="sig-param">pos</em>, <em class="sig-param">box_vert=True</em>, <em class="sig-param">fontsize=16</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/mgkit/plots/boxplot.html#add_significance_to_boxplot"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#mgkit.plots.boxplot.add_significance_to_boxplot" title="Permalink to this definition">¶</a></dt>
-<dd><div class="versionadded">
-<p><span class="versionmodified added">New in version 0.1.16.</span></p>
-</div>
-<p>Add significance groups to boxplots</p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><ul class="simple">
-<li><p><strong>sign_indices</strong> (<em>iterable</em>) – iterable in which each element is a tuple;
-each element of the tuple is the numerical index of the position of
-the significant boxplot</p></li>
-<li><p><strong>ax</strong> – an axis instance</p></li>
-<li><p><strong>pos</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#tuple" title="(in Python v3.8)"><em>tuple</em></a>) – the 2 values are the coordinates for the top line, and the
-the lowest bound for the whisker</p></li>
-<li><p><strong>box_vert</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.8)"><em>bool</em></a>) – if the boxplot is vertical</p></li>
-<li><p><strong>fontsize</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.8)"><em>float</em></a>) – size for the * (star)</p></li>
-</ul>
-</dd>
-</dl>
-</dd></dl>
-
-<dl class="function">
-<dt id="mgkit.plots.boxplot.boxplot_dataframe_multindex">
-<code class="sig-prename descclassname">mgkit.plots.boxplot.</code><code class="sig-name descname">boxplot_dataframe_multindex</code><span class="sig-paren">(</span><em class="sig-param">dataframe</em>, <em class="sig-param">axes</em>, <em class="sig-param">plot_order=None</em>, <em class="sig-param">label_map=None</em>, <em class="sig-param">fonts=None</em>, <em class="sig-param">fill_box=True</em>, <em class="sig-param">colours=None</em>, <em class="sig-param">data_colours=None</em>, <em class="sig-param">box_vert=True</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/mgkit/plots/boxplot.html#boxplot_dataframe_multindex"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#mgkit.plots.boxplot.boxplot_dataframe_multindex" title="Permalink to this definition">¶</a></dt>
-<dd><div class="versionadded">
-<p><span class="versionmodified added">New in version 0.1.13.</span></p>
-</div>
-<div class="admonition-todo admonition" id="id1">
-<p class="admonition-title">Todo</p>
-<p>documentation</p>
-</div>
-<p>The function draws a series of boxplots from a DataFrame object, whose
-order is directed by the iterable plot_order. The columns of each DataFrame
-row contains the values for each boxplot. An axes object is needed.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><ul class="simple">
-<li><p><strong>dataframe</strong> – dataframe to plot</p></li>
-<li><p><strong>plot_order</strong> (<em>iterable</em>) – row order used to plot the boxes</p></li>
-<li><p><strong>axes</strong> – an axes instance</p></li>
-<li><p><strong>label_map</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.8)"><em>dict</em></a>) – a map that converts the items in plot_order to a
-label used on the plot X axes</p></li>
-<li><p><strong>fonts</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.8)"><em>dict</em></a>) – dictionary with properties for x axis labels,
-<code class="xref py py-data docutils literal notranslate"><span class="pre">DEFAULT_BOXPLOT_FONTCONF</span></code> is used by default</p></li>
-<li><p><strong>fill_box</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.8)"><em>bool</em></a>) – if True each box is filled with the same colour of
-its outline</p></li>
-<li><p><strong>colours</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.8)"><em>dict</em></a>) – dictionary with properties for each boxplot if
-data_colours is None, whi overrides box, whiskers and fliers. Defaults
-to <code class="xref py py-data docutils literal notranslate"><span class="pre">DEFAULT_BOXPLOT_COLOURS</span></code></p></li>
-<li><p><strong>data_colours</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.8)"><em>dict</em></a>) – dictionary of colours for each boxplot, a set of
-colours can be obtained using func:<cite>map_taxon_to_colours</cite></p></li>
-</ul>
-</dd>
-<dt class="field-even">Returns</dt>
-<dd class="field-even"><p>the plot data same as matplotlib boxplot function</p>
-</dd>
-</dl>
-</dd></dl>
-
-<dl class="function">
+<dl class="py function">
 <dt id="mgkit.plots.boxplot.boxplot_dataframe">
-<code class="sig-prename descclassname">mgkit.plots.boxplot.</code><code class="sig-name descname">boxplot_dataframe</code><span class="sig-paren">(</span><em class="sig-param">dataframe</em>, <em class="sig-param">plot_order</em>, <em class="sig-param">ax</em>, <em class="sig-param">label_map=None</em>, <em class="sig-param">fonts=None</em>, <em class="sig-param">fill_box=True</em>, <em class="sig-param">colours=None</em>, <em class="sig-param">data_colours=None</em>, <em class="sig-param">box_vert=True</em>, <em class="sig-param">widths=0.5</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/mgkit/plots/boxplot.html#boxplot_dataframe"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#mgkit.plots.boxplot.boxplot_dataframe" title="Permalink to this definition">¶</a></dt>
+<code class="sig-prename descclassname">mgkit.plots.boxplot.</code><code class="sig-name descname">boxplot_dataframe</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">dataframe</span></em>, <em class="sig-param"><span class="n">plot_order</span></em>, <em class="sig-param"><span class="n">ax</span></em>, <em class="sig-param"><span class="n">label_map</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">fonts</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">fill_box</span><span class="o">=</span><span class="default_value">True</span></em>, <em class="sig-param"><span class="n">colours</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">data_colours</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">box_vert</span><span class="o">=</span><span class="default_value">True</span></em>, <em class="sig-param"><span class="n">widths</span><span class="o">=</span><span class="default_value">0.5</span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/mgkit/plots/boxplot.html#boxplot_dataframe"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#mgkit.plots.boxplot.boxplot_dataframe" title="Permalink to this definition">¶</a></dt>
 <dd><div class="versionadded">
 <p><span class="versionmodified added">New in version 0.1.7: </span>To move from an all-in-one drawing to a more modular one.</p>
 </div>
@@ -395,23 +360,61 @@ row contains the values for each boxplot. An ax object is needed.</p>
 <li><p><strong>dataframe</strong> – dataframe to plot</p></li>
 <li><p><strong>plot_order</strong> (<em>iterable</em>) – row order used to plot the boxes</p></li>
 <li><p><strong>ax</strong> – an axis instance</p></li>
-<li><p><strong>label_map</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.8)"><em>dict</em></a>) – a map that converts the items in plot_order to a
+<li><p><strong>label_map</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.9)"><em>dict</em></a>) – a map that converts the items in plot_order to a
 label used on the plot X ax</p></li>
-<li><p><strong>fonts</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.8)"><em>dict</em></a>) – dictionary with properties for x axis labels,
+<li><p><strong>fonts</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.9)"><em>dict</em></a>) – dictionary with properties for x axis labels,
 <code class="xref py py-data docutils literal notranslate"><span class="pre">DEFAULT_BOXPLOT_FONTCONF</span></code> is used by default</p></li>
-<li><p><strong>fill_box</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.8)"><em>bool</em></a>) – if True each box is filled with the same colour of
+<li><p><strong>fill_box</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.9)"><em>bool</em></a>) – if True each box is filled with the same colour of
 its outline</p></li>
-<li><p><strong>colours</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.8)"><em>dict</em></a>) – dictionary with properties for each boxplot if
+<li><p><strong>colours</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.9)"><em>dict</em></a>) – dictionary with properties for each boxplot if
 data_colours is None, whi overrides box, whiskers and fliers. Defaults
 to <code class="xref py py-data docutils literal notranslate"><span class="pre">DEFAULT_BOXPLOT_COLOURS</span></code></p></li>
-<li><p><strong>data_colours</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.8)"><em>dict</em></a>) – dictionary of colours for each boxplot, a set of
+<li><p><strong>data_colours</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.9)"><em>dict</em></a>) – dictionary of colours for each boxplot, a set of
 colours can be obtained using func:<cite>map_taxon_to_colours</cite></p></li>
-<li><p><strong>box_vert</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.8)"><em>bool</em></a>) – if False the boxplots are drawn horizontally</p></li>
-<li><p><strong>widths</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.8)"><em>float</em></a>) – width (scalar or array) of the boxplots width(s)</p></li>
+<li><p><strong>box_vert</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.9)"><em>bool</em></a>) – if False the boxplots are drawn horizontally</p></li>
+<li><p><strong>widths</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.9)"><em>float</em></a>) – width (scalar or array) of the boxplots width(s)</p></li>
 </ul>
 </dd>
 <dt class="field-even">Returns</dt>
 <dd class="field-even"><p>the plot data; same as matplotlib boxplot function</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt id="mgkit.plots.boxplot.boxplot_dataframe_multindex">
+<code class="sig-prename descclassname">mgkit.plots.boxplot.</code><code class="sig-name descname">boxplot_dataframe_multindex</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">dataframe</span></em>, <em class="sig-param"><span class="n">axes</span></em>, <em class="sig-param"><span class="n">plot_order</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">label_map</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">fonts</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">fill_box</span><span class="o">=</span><span class="default_value">True</span></em>, <em class="sig-param"><span class="n">colours</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">data_colours</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">box_vert</span><span class="o">=</span><span class="default_value">True</span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/mgkit/plots/boxplot.html#boxplot_dataframe_multindex"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#mgkit.plots.boxplot.boxplot_dataframe_multindex" title="Permalink to this definition">¶</a></dt>
+<dd><div class="versionadded">
+<p><span class="versionmodified added">New in version 0.1.13.</span></p>
+</div>
+<div class="admonition-todo admonition" id="id1">
+<p class="admonition-title">Todo</p>
+<p>documentation</p>
+</div>
+<p>The function draws a series of boxplots from a DataFrame object, whose
+order is directed by the iterable plot_order. The columns of each DataFrame
+row contains the values for each boxplot. An axes object is needed.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>dataframe</strong> – dataframe to plot</p></li>
+<li><p><strong>plot_order</strong> (<em>iterable</em>) – row order used to plot the boxes</p></li>
+<li><p><strong>axes</strong> – an axes instance</p></li>
+<li><p><strong>label_map</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.9)"><em>dict</em></a>) – a map that converts the items in plot_order to a
+label used on the plot X axes</p></li>
+<li><p><strong>fonts</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.9)"><em>dict</em></a>) – dictionary with properties for x axis labels,
+<code class="xref py py-data docutils literal notranslate"><span class="pre">DEFAULT_BOXPLOT_FONTCONF</span></code> is used by default</p></li>
+<li><p><strong>fill_box</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.9)"><em>bool</em></a>) – if True each box is filled with the same colour of
+its outline</p></li>
+<li><p><strong>colours</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.9)"><em>dict</em></a>) – dictionary with properties for each boxplot if
+data_colours is None, whi overrides box, whiskers and fliers. Defaults
+to <code class="xref py py-data docutils literal notranslate"><span class="pre">DEFAULT_BOXPLOT_COLOURS</span></code></p></li>
+<li><p><strong>data_colours</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.9)"><em>dict</em></a>) – dictionary of colours for each boxplot, a set of
+colours can be obtained using func:<cite>map_taxon_to_colours</cite></p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>the plot data same as matplotlib boxplot function</p>
 </dd>
 </dl>
 </dd></dl>
@@ -438,11 +441,19 @@ colours can be obtained using func:<cite>map_taxon_to_colours</cite></p></li>
 
   <div role="contentinfo">
     <p>
-        &copy; Copyright 2013-2015, Francesco Rubino
+        
+        &copy; Copyright 2013-2020, Francesco Rubino
 
     </p>
   </div>
-  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+    
+    
+    
+    Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a
+    
+    <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a>
+    
+    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
 
 </footer>
 
@@ -453,7 +464,6 @@ colours can be obtained using func:<cite>map_taxon_to_colours</cite></p></li>
 
   </div>
   
-
 
   <script type="text/javascript">
       jQuery(function () {

@@ -1,42 +1,43 @@
 
 
 <!DOCTYPE html>
-<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
-<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<html class="writer-html5" lang="en" >
 <head>
   <meta charset="utf-8">
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>mgkit.io.snpdat module &mdash; MGKit: Metagenomic framework 0.5.1 documentation</title>
+  <title>mgkit.io.snpdat module &mdash; MGKit: Metagenomic framework 0.5.3 documentation</title>
   
-
-  
-  
-  
-  
-
-  
-  <script type="text/javascript" src="../_static/js/modernizr.min.js"></script>
-  
-    
-      <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
-        <script type="text/javascript" src="../_static/jquery.js"></script>
-        <script type="text/javascript" src="../_static/underscore.js"></script>
-        <script type="text/javascript" src="../_static/doctools.js"></script>
-        <script type="text/javascript" src="../_static/language_data.js"></script>
-        <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
-        <script async="async" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
-        <script type="text/x-mathjax-config">MathJax.Hub.Config({"tex2jax": {"inlineMath": [["$", "$"], ["\\(", "\\)"]], "processEscapes": true, "ignoreClass": "document", "processClass": "math|output_area"}})</script>
-    
-    <script type="text/javascript" src="../_static/js/theme.js"></script>
-
-    
 
   
   <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
   <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
   <link rel="stylesheet" href="../_static/graphviz.css" type="text/css" />
+
+  
+  
+  
+  
+
+  
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/underscore.js"></script>
+        <script src="../_static/doctools.js"></script>
+        <script src="../_static/language_data.js"></script>
+        <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+        <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+        <script type="text/x-mathjax-config">MathJax.Hub.Config({"tex2jax": {"inlineMath": [["$", "$"], ["\\(", "\\)"]], "processEscapes": true, "ignoreClass": "document", "processClass": "math|output_area"}})</script>
+    
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+
+    
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
     <link rel="next" title="mgkit.io.uniprot module" href="mgkit.io.uniprot.html" />
@@ -54,7 +55,7 @@
           
 
           
-            <a href="../index.html" class="icon icon-home"> MGKit: Metagenomic framework
+            <a href="../index.html" class="icon icon-home" alt="Documentation Home"> MGKit: Metagenomic framework
           
 
           
@@ -64,7 +65,7 @@
             
             
               <div class="version">
-                0.5.1
+                0.5.3
               </div>
             
           
@@ -81,6 +82,7 @@
           
         </div>
 
+        
         <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
           
             
@@ -179,6 +181,7 @@
             
           
         </div>
+        
       </div>
     </nav>
 
@@ -217,7 +220,7 @@
 
   <ul class="wy-breadcrumbs">
     
-      <li><a href="../index.html">Docs</a> &raquo;</li>
+      <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
         
           <li><a href="../library.html">Library Reference</a> &raquo;</li>
         
@@ -271,441 +274,441 @@
 <div class="section" id="module-mgkit.io.snpdat">
 <span id="mgkit-io-snpdat-module"></span><h1>mgkit.io.snpdat module<a class="headerlink" href="#module-mgkit.io.snpdat" title="Permalink to this headline">¶</a></h1>
 <p>SNPDat reader</p>
-<dl class="class">
+<dl class="py class">
 <dt id="mgkit.io.snpdat.SNPDatRow">
-<em class="property">class </em><code class="sig-prename descclassname">mgkit.io.snpdat.</code><code class="sig-name descname">SNPDatRow</code><span class="sig-paren">(</span><em class="sig-param">line=None</em>, <em class="sig-param">rev_comp=None</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/mgkit/io/snpdat.html#SNPDatRow"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#mgkit.io.snpdat.SNPDatRow" title="Permalink to this definition">¶</a></dt>
-<dd><p>Bases: <a class="reference external" href="https://docs.python.org/3/library/functions.html#object" title="(in Python v3.8)"><code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></a></p>
+<em class="property">class </em><code class="sig-prename descclassname">mgkit.io.snpdat.</code><code class="sig-name descname">SNPDatRow</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">line</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">rev_comp</span><span class="o">=</span><span class="default_value">None</span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/mgkit/io/snpdat.html#SNPDatRow"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#mgkit.io.snpdat.SNPDatRow" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference external" href="https://docs.python.org/3/library/functions.html#object" title="(in Python v3.9)"><code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></a></p>
 <p>Class containing information ouputted by SNPDat in its result file. One
 instance contains information about a row in the file.</p>
-<dl class="attribute">
+<dl class="py attribute">
 <dt id="mgkit.io.snpdat.SNPDatRow.chr_name">
 <code class="sig-name descname">chr_name</code><a class="headerlink" href="#mgkit.io.snpdat.SNPDatRow.chr_name" title="Permalink to this definition">¶</a></dt>
 <dd><p>the queried SNPs chromosome ID</p>
 <dl class="field-list simple">
 <dt class="field-odd">Type</dt>
-<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.8)">str</a></p>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)">str</a></p>
 </dd>
 </dl>
 </dd></dl>
 
-<dl class="attribute">
+<dl class="py attribute">
 <dt id="mgkit.io.snpdat.SNPDatRow.chr_pos">
 <code class="sig-name descname">chr_pos</code><a class="headerlink" href="#mgkit.io.snpdat.SNPDatRow.chr_pos" title="Permalink to this definition">¶</a></dt>
 <dd><p>queried SNPs genomic location</p>
 <dl class="field-list simple">
 <dt class="field-odd">Type</dt>
-<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.8)">int</a></p>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.9)">int</a></p>
 </dd>
 </dl>
 </dd></dl>
 
-<dl class="attribute">
+<dl class="py attribute">
 <dt id="mgkit.io.snpdat.SNPDatRow.in_feat">
 <code class="sig-name descname">in_feat</code><a class="headerlink" href="#mgkit.io.snpdat.SNPDatRow.in_feat" title="Permalink to this definition">¶</a></dt>
 <dd><p>Whether or not the queried SNP was within a feature</p>
 <dl class="field-list simple">
 <dt class="field-odd">Type</dt>
-<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.8)">bool</a></p>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.9)">bool</a></p>
 </dd>
 </dl>
 </dd></dl>
 
-<dl class="attribute">
+<dl class="py attribute">
 <dt id="mgkit.io.snpdat.SNPDatRow.region">
 <code class="sig-name descname">region</code><a class="headerlink" href="#mgkit.io.snpdat.SNPDatRow.region" title="Permalink to this definition">¶</a></dt>
 <dd><p>Region containing the SNP; either exonic, intronic or
 intergenic</p>
 <dl class="field-list simple">
 <dt class="field-odd">Type</dt>
-<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.8)">str</a></p>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)">str</a></p>
 </dd>
 </dl>
 </dd></dl>
 
-<dl class="attribute">
+<dl class="py attribute">
 <dt id="mgkit.io.snpdat.SNPDatRow.feat_dist">
 <code class="sig-name descname">feat_dist</code><a class="headerlink" href="#mgkit.io.snpdat.SNPDatRow.feat_dist" title="Permalink to this definition">¶</a></dt>
 <dd><p>Distance to nearest feature</p>
 <dl class="field-list simple">
 <dt class="field-odd">Type</dt>
-<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.8)">int</a></p>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.9)">int</a></p>
 </dd>
 </dl>
 </dd></dl>
 
-<dl class="attribute">
+<dl class="py attribute">
 <dt id="mgkit.io.snpdat.SNPDatRow.feature">
 <code class="sig-name descname">feature</code><a class="headerlink" href="#mgkit.io.snpdat.SNPDatRow.feature" title="Permalink to this definition">¶</a></dt>
 <dd><p>Either the closest feature to the SNP or the feature
 containing the SNP</p>
 <dl class="field-list simple">
 <dt class="field-odd">Type</dt>
-<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.8)">str</a></p>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)">str</a></p>
 </dd>
 </dl>
 </dd></dl>
 
-<dl class="attribute">
+<dl class="py attribute">
 <dt id="mgkit.io.snpdat.SNPDatRow.num_features">
 <code class="sig-name descname">num_features</code><a class="headerlink" href="#mgkit.io.snpdat.SNPDatRow.num_features" title="Permalink to this definition">¶</a></dt>
 <dd><p>number of different features that the SNP is
 annotated to</p>
 <dl class="field-list simple">
 <dt class="field-odd">Type</dt>
-<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.8)">int</a></p>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.9)">int</a></p>
 </dd>
 </dl>
 </dd></dl>
 
-<dl class="attribute">
+<dl class="py attribute">
 <dt id="mgkit.io.snpdat.SNPDatRow.feat_num">
 <code class="sig-name descname">feat_num</code><a class="headerlink" href="#mgkit.io.snpdat.SNPDatRow.feat_num" title="Permalink to this definition">¶</a></dt>
 <dd><p>number of annotations of the current feature</p>
 <dl class="field-list simple">
 <dt class="field-odd">Type</dt>
-<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.8)">int</a></p>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.9)">int</a></p>
 </dd>
 </dl>
 </dd></dl>
 
-<dl class="attribute">
+<dl class="py attribute">
 <dt id="mgkit.io.snpdat.SNPDatRow.feat_start">
 <code class="sig-name descname">feat_start</code><a class="headerlink" href="#mgkit.io.snpdat.SNPDatRow.feat_start" title="Permalink to this definition">¶</a></dt>
 <dd><p>Start of feature (bp)</p>
 <dl class="field-list simple">
 <dt class="field-odd">Type</dt>
-<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.8)">int</a></p>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.9)">int</a></p>
 </dd>
 </dl>
 </dd></dl>
 
-<dl class="attribute">
+<dl class="py attribute">
 <dt id="mgkit.io.snpdat.SNPDatRow.feat_end">
 <code class="sig-name descname">feat_end</code><a class="headerlink" href="#mgkit.io.snpdat.SNPDatRow.feat_end" title="Permalink to this definition">¶</a></dt>
 <dd><p>End of feature (bp)</p>
 <dl class="field-list simple">
 <dt class="field-odd">Type</dt>
-<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.8)">int</a></p>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.9)">int</a></p>
 </dd>
 </dl>
 </dd></dl>
 
-<dl class="attribute">
+<dl class="py attribute">
 <dt id="mgkit.io.snpdat.SNPDatRow.gene_id">
 <code class="sig-name descname">gene_id</code><a class="headerlink" href="#mgkit.io.snpdat.SNPDatRow.gene_id" title="Permalink to this definition">¶</a></dt>
 <dd><p>gene ID for the current feature</p>
 <dl class="field-list simple">
 <dt class="field-odd">Type</dt>
-<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.8)">str</a></p>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)">str</a></p>
 </dd>
 </dl>
 </dd></dl>
 
-<dl class="attribute">
+<dl class="py attribute">
 <dt id="mgkit.io.snpdat.SNPDatRow.gene_name">
 <code class="sig-name descname">gene_name</code><a class="headerlink" href="#mgkit.io.snpdat.SNPDatRow.gene_name" title="Permalink to this definition">¶</a></dt>
 <dd><p>gene name for the current feature</p>
 <dl class="field-list simple">
 <dt class="field-odd">Type</dt>
-<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.8)">str</a></p>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)">str</a></p>
 </dd>
 </dl>
 </dd></dl>
 
-<dl class="attribute">
+<dl class="py attribute">
 <dt id="mgkit.io.snpdat.SNPDatRow.transcript_id">
 <code class="sig-name descname">transcript_id</code><a class="headerlink" href="#mgkit.io.snpdat.SNPDatRow.transcript_id" title="Permalink to this definition">¶</a></dt>
 <dd><p>transcript ID for the current feature</p>
 <dl class="field-list simple">
 <dt class="field-odd">Type</dt>
-<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.8)">str</a></p>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)">str</a></p>
 </dd>
 </dl>
 </dd></dl>
 
-<dl class="attribute">
+<dl class="py attribute">
 <dt id="mgkit.io.snpdat.SNPDatRow.transcript_name">
 <code class="sig-name descname">transcript_name</code><a class="headerlink" href="#mgkit.io.snpdat.SNPDatRow.transcript_name" title="Permalink to this definition">¶</a></dt>
 <dd><p>transcript name for the current feature</p>
 <dl class="field-list simple">
 <dt class="field-odd">Type</dt>
-<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.8)">str</a></p>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)">str</a></p>
 </dd>
 </dl>
 </dd></dl>
 
-<dl class="attribute">
+<dl class="py attribute">
 <dt id="mgkit.io.snpdat.SNPDatRow.exon">
 <code class="sig-name descname">exon</code><a class="headerlink" href="#mgkit.io.snpdat.SNPDatRow.exon" title="Permalink to this definition">¶</a></dt>
 <dd><p>exon that contains the current feature and the total
 number of annotated exons for the gene containing the feature</p>
 <dl class="field-list simple">
 <dt class="field-odd">Type</dt>
-<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#tuple" title="(in Python v3.8)">tuple</a></p>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#tuple" title="(in Python v3.9)">tuple</a></p>
 </dd>
 </dl>
 </dd></dl>
 
-<dl class="attribute">
+<dl class="py attribute">
 <dt id="mgkit.io.snpdat.SNPDatRow.strand">
 <code class="sig-name descname">strand</code><a class="headerlink" href="#mgkit.io.snpdat.SNPDatRow.strand" title="Permalink to this definition">¶</a></dt>
 <dd><p>strand sense of the feature</p>
 <dl class="field-list simple">
 <dt class="field-odd">Type</dt>
-<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.8)">str</a></p>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)">str</a></p>
 </dd>
 </dl>
 </dd></dl>
 
-<dl class="attribute">
+<dl class="py attribute">
 <dt id="mgkit.io.snpdat.SNPDatRow.ann_frame">
 <code class="sig-name descname">ann_frame</code><a class="headerlink" href="#mgkit.io.snpdat.SNPDatRow.ann_frame" title="Permalink to this definition">¶</a></dt>
 <dd><p>annotated reading frame (when contained in the GTF)</p>
 <dl class="field-list simple">
 <dt class="field-odd">Type</dt>
-<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.8)">str</a></p>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)">str</a></p>
 </dd>
 </dl>
 </dd></dl>
 
-<dl class="attribute">
+<dl class="py attribute">
 <dt id="mgkit.io.snpdat.SNPDatRow.frame">
 <code class="sig-name descname">frame</code><a class="headerlink" href="#mgkit.io.snpdat.SNPDatRow.frame" title="Permalink to this definition">¶</a></dt>
 <dd><p>reading frame estimated by SNPdat</p>
 <dl class="field-list simple">
 <dt class="field-odd">Type</dt>
-<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.8)">str</a></p>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)">str</a></p>
 </dd>
 </dl>
 </dd></dl>
 
-<dl class="attribute">
+<dl class="py attribute">
 <dt id="mgkit.io.snpdat.SNPDatRow.num_stops">
 <code class="sig-name descname">num_stops</code><a class="headerlink" href="#mgkit.io.snpdat.SNPDatRow.num_stops" title="Permalink to this definition">¶</a></dt>
 <dd><p>estimated number of stop codons in the estimated
 reading frame</p>
 <dl class="field-list simple">
 <dt class="field-odd">Type</dt>
-<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.8)">int</a></p>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.9)">int</a></p>
 </dd>
 </dl>
 </dd></dl>
 
-<dl class="attribute">
+<dl class="py attribute">
 <dt id="mgkit.io.snpdat.SNPDatRow.codon">
 <code class="sig-name descname">codon</code><a class="headerlink" href="#mgkit.io.snpdat.SNPDatRow.codon" title="Permalink to this definition">¶</a></dt>
 <dd><p>codon containing the SNP, position in the codon and
 reference base and mutation</p>
 <dl class="field-list simple">
 <dt class="field-odd">Type</dt>
-<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#tuple" title="(in Python v3.8)">tuple</a></p>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#tuple" title="(in Python v3.9)">tuple</a></p>
 </dd>
 </dl>
 </dd></dl>
 
-<dl class="attribute">
+<dl class="py attribute">
 <dt id="mgkit.io.snpdat.SNPDatRow.nuc_change">
 <code class="sig-name descname">nuc_change</code><a class="headerlink" href="#mgkit.io.snpdat.SNPDatRow.nuc_change" title="Permalink to this definition">¶</a></dt>
 <dd><p>amino acid for the reference codon and new
 amino acid with the mutation in place</p>
 <dl class="field-list simple">
 <dt class="field-odd">Type</dt>
-<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#tuple" title="(in Python v3.8)">tuple</a></p>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#tuple" title="(in Python v3.9)">tuple</a></p>
 </dd>
 </dl>
 </dd></dl>
 
-<dl class="attribute">
+<dl class="py attribute">
 <dt id="mgkit.io.snpdat.SNPDatRow.nuc_ref">
 <code class="sig-name descname">nuc_ref</code><a class="headerlink" href="#mgkit.io.snpdat.SNPDatRow.nuc_ref" title="Permalink to this definition">¶</a></dt>
 <dd><p>reference nucleotide</p>
 <dl class="field-list simple">
 <dt class="field-odd">Type</dt>
-<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.8)">str</a>, <a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.8)">None</a></p>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)">str</a>, <a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.9)">None</a></p>
 </dd>
 </dl>
 </dd></dl>
 
-<dl class="attribute">
+<dl class="py attribute">
 <dt id="mgkit.io.snpdat.SNPDatRow.aa_change">
 <code class="sig-name descname">aa_change</code><a class="headerlink" href="#mgkit.io.snpdat.SNPDatRow.aa_change" title="Permalink to this definition">¶</a></dt>
 <dd><p>amino acid for the reference codon and new amino
 acid with the mutation in place</p>
 <dl class="field-list simple">
 <dt class="field-odd">Type</dt>
-<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.8)">str</a></p>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)">str</a></p>
 </dd>
 </dl>
 </dd></dl>
 
-<dl class="attribute">
+<dl class="py attribute">
 <dt id="mgkit.io.snpdat.SNPDatRow.synonymous">
 <code class="sig-name descname">synonymous</code><a class="headerlink" href="#mgkit.io.snpdat.SNPDatRow.synonymous" title="Permalink to this definition">¶</a></dt>
 <dd><p>Whether or not the mutation is synonymous</p>
 <dl class="field-list simple">
 <dt class="field-odd">Type</dt>
-<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.8)">bool</a></p>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.9)">bool</a></p>
 </dd>
 </dl>
 </dd></dl>
 
-<dl class="attribute">
+<dl class="py attribute">
 <dt id="mgkit.io.snpdat.SNPDatRow.protein_id">
 <code class="sig-name descname">protein_id</code><a class="headerlink" href="#mgkit.io.snpdat.SNPDatRow.protein_id" title="Permalink to this definition">¶</a></dt>
 <dd><p>protein ID for the current feature</p>
 <dl class="field-list simple">
 <dt class="field-odd">Type</dt>
-<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.8)">str</a></p>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)">str</a></p>
 </dd>
 </dl>
 </dd></dl>
 
-<dl class="attribute">
+<dl class="py attribute">
 <dt id="mgkit.io.snpdat.SNPDatRow.messages">
 <code class="sig-name descname">messages</code><a class="headerlink" href="#mgkit.io.snpdat.SNPDatRow.messages" title="Permalink to this definition">¶</a></dt>
 <dd><p>messages in the SNPDat line</p>
 <dl class="field-list simple">
 <dt class="field-odd">Type</dt>
-<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.8)">str</a></p>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)">str</a></p>
 </dd>
 </dl>
 </dd></dl>
 
-<dl class="attribute">
-<dt>
-<code class="sig-name descname">aa_change</code></dt>
+<dl class="py attribute">
+<dt id="id0">
+<code class="sig-name descname">aa_change</code><a class="headerlink" href="#id0" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
-<dl class="attribute">
-<dt>
-<code class="sig-name descname">ann_frame</code></dt>
+<dl class="py attribute">
+<dt id="id1">
+<code class="sig-name descname">ann_frame</code><a class="headerlink" href="#id1" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
-<dl class="attribute">
-<dt>
-<code class="sig-name descname">chr_name</code></dt>
+<dl class="py attribute">
+<dt id="id2">
+<code class="sig-name descname">chr_name</code><a class="headerlink" href="#id2" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
-<dl class="attribute">
-<dt>
-<code class="sig-name descname">chr_pos</code></dt>
+<dl class="py attribute">
+<dt id="id3">
+<code class="sig-name descname">chr_pos</code><a class="headerlink" href="#id3" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
-<dl class="attribute">
-<dt>
-<code class="sig-name descname">codon</code></dt>
+<dl class="py attribute">
+<dt id="id4">
+<code class="sig-name descname">codon</code><a class="headerlink" href="#id4" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
-<dl class="attribute">
-<dt>
-<code class="sig-name descname">exon</code></dt>
+<dl class="py attribute">
+<dt id="id5">
+<code class="sig-name descname">exon</code><a class="headerlink" href="#id5" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
-<dl class="attribute">
-<dt>
-<code class="sig-name descname">feat_dist</code></dt>
+<dl class="py attribute">
+<dt id="id6">
+<code class="sig-name descname">feat_dist</code><a class="headerlink" href="#id6" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
-<dl class="attribute">
-<dt>
-<code class="sig-name descname">feat_end</code></dt>
+<dl class="py attribute">
+<dt id="id7">
+<code class="sig-name descname">feat_end</code><a class="headerlink" href="#id7" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
-<dl class="attribute">
-<dt>
-<code class="sig-name descname">feat_num</code></dt>
+<dl class="py attribute">
+<dt id="id8">
+<code class="sig-name descname">feat_num</code><a class="headerlink" href="#id8" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
-<dl class="attribute">
-<dt>
-<code class="sig-name descname">feat_start</code></dt>
+<dl class="py attribute">
+<dt id="id9">
+<code class="sig-name descname">feat_start</code><a class="headerlink" href="#id9" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
-<dl class="attribute">
-<dt>
-<code class="sig-name descname">feature</code></dt>
+<dl class="py attribute">
+<dt id="id10">
+<code class="sig-name descname">feature</code><a class="headerlink" href="#id10" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
-<dl class="attribute">
-<dt>
-<code class="sig-name descname">frame</code></dt>
+<dl class="py attribute">
+<dt id="id11">
+<code class="sig-name descname">frame</code><a class="headerlink" href="#id11" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
-<dl class="attribute">
-<dt>
-<code class="sig-name descname">gene_id</code></dt>
+<dl class="py attribute">
+<dt id="id12">
+<code class="sig-name descname">gene_id</code><a class="headerlink" href="#id12" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
-<dl class="attribute">
-<dt>
-<code class="sig-name descname">gene_name</code></dt>
+<dl class="py attribute">
+<dt id="id13">
+<code class="sig-name descname">gene_name</code><a class="headerlink" href="#id13" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
-<dl class="attribute">
-<dt>
-<code class="sig-name descname">in_feat</code></dt>
+<dl class="py attribute">
+<dt id="id14">
+<code class="sig-name descname">in_feat</code><a class="headerlink" href="#id14" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
-<dl class="attribute">
-<dt>
-<code class="sig-name descname">messages</code></dt>
+<dl class="py attribute">
+<dt id="id15">
+<code class="sig-name descname">messages</code><a class="headerlink" href="#id15" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
-<dl class="attribute">
-<dt>
-<code class="sig-name descname">nuc_change</code></dt>
+<dl class="py attribute">
+<dt id="id16">
+<code class="sig-name descname">nuc_change</code><a class="headerlink" href="#id16" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
-<dl class="attribute">
-<dt>
-<code class="sig-name descname">nuc_ref</code></dt>
+<dl class="py attribute">
+<dt id="id17">
+<code class="sig-name descname">nuc_ref</code><a class="headerlink" href="#id17" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
-<dl class="attribute">
-<dt>
-<code class="sig-name descname">num_features</code></dt>
+<dl class="py attribute">
+<dt id="id18">
+<code class="sig-name descname">num_features</code><a class="headerlink" href="#id18" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
-<dl class="attribute">
-<dt>
-<code class="sig-name descname">num_stops</code></dt>
+<dl class="py attribute">
+<dt id="id19">
+<code class="sig-name descname">num_stops</code><a class="headerlink" href="#id19" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
-<dl class="attribute">
-<dt>
-<code class="sig-name descname">protein_id</code></dt>
+<dl class="py attribute">
+<dt id="id20">
+<code class="sig-name descname">protein_id</code><a class="headerlink" href="#id20" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
-<dl class="attribute">
-<dt>
-<code class="sig-name descname">region</code></dt>
+<dl class="py attribute">
+<dt id="id21">
+<code class="sig-name descname">region</code><a class="headerlink" href="#id21" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
-<dl class="attribute">
-<dt>
-<code class="sig-name descname">strand</code></dt>
+<dl class="py attribute">
+<dt id="id22">
+<code class="sig-name descname">strand</code><a class="headerlink" href="#id22" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
-<dl class="attribute">
-<dt>
-<code class="sig-name descname">synonymous</code></dt>
+<dl class="py attribute">
+<dt id="id23">
+<code class="sig-name descname">synonymous</code><a class="headerlink" href="#id23" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
-<dl class="attribute">
-<dt>
-<code class="sig-name descname">transcript_id</code></dt>
+<dl class="py attribute">
+<dt id="id24">
+<code class="sig-name descname">transcript_id</code><a class="headerlink" href="#id24" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
-<dl class="attribute">
-<dt>
-<code class="sig-name descname">transcript_name</code></dt>
+<dl class="py attribute">
+<dt id="id25">
+<code class="sig-name descname">transcript_name</code><a class="headerlink" href="#id25" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 </dd></dl>
 
-<dl class="function">
+<dl class="py function">
 <dt id="mgkit.io.snpdat.snpdat_reader">
-<code class="sig-prename descclassname">mgkit.io.snpdat.</code><code class="sig-name descname">snpdat_reader</code><span class="sig-paren">(</span><em class="sig-param">f_handle</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/mgkit/io/snpdat.html#snpdat_reader"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#mgkit.io.snpdat.snpdat_reader" title="Permalink to this definition">¶</a></dt>
+<code class="sig-prename descclassname">mgkit.io.snpdat.</code><code class="sig-name descname">snpdat_reader</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">f_handle</span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/mgkit/io/snpdat.html#snpdat_reader"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#mgkit.io.snpdat.snpdat_reader" title="Permalink to this definition">¶</a></dt>
 <dd><p>Simple SNPDat reader.</p>
 <p>f_handle: file handle or string for the SNPDat result file</p>
 <dl class="field-list simple">
@@ -737,11 +740,19 @@ acid with the mutation in place</p>
 
   <div role="contentinfo">
     <p>
-        &copy; Copyright 2013-2015, Francesco Rubino
+        
+        &copy; Copyright 2013-2020, Francesco Rubino
 
     </p>
   </div>
-  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+    
+    
+    
+    Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a
+    
+    <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a>
+    
+    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
 
 </footer>
 
@@ -752,7 +763,6 @@ acid with the mutation in place</p>
 
   </div>
   
-
 
   <script type="text/javascript">
       jQuery(function () {

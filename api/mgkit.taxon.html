@@ -1,42 +1,43 @@
 
 
 <!DOCTYPE html>
-<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
-<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<html class="writer-html5" lang="en" >
 <head>
   <meta charset="utf-8">
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>mgkit.taxon module &mdash; MGKit: Metagenomic framework 0.5.1 documentation</title>
+  <title>mgkit.taxon module &mdash; MGKit: Metagenomic framework 0.5.3 documentation</title>
   
-
-  
-  
-  
-  
-
-  
-  <script type="text/javascript" src="../_static/js/modernizr.min.js"></script>
-  
-    
-      <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
-        <script type="text/javascript" src="../_static/jquery.js"></script>
-        <script type="text/javascript" src="../_static/underscore.js"></script>
-        <script type="text/javascript" src="../_static/doctools.js"></script>
-        <script type="text/javascript" src="../_static/language_data.js"></script>
-        <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
-        <script async="async" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
-        <script type="text/x-mathjax-config">MathJax.Hub.Config({"tex2jax": {"inlineMath": [["$", "$"], ["\\(", "\\)"]], "processEscapes": true, "ignoreClass": "document", "processClass": "math|output_area"}})</script>
-    
-    <script type="text/javascript" src="../_static/js/theme.js"></script>
-
-    
 
   
   <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
   <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
   <link rel="stylesheet" href="../_static/graphviz.css" type="text/css" />
+
+  
+  
+  
+  
+
+  
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/underscore.js"></script>
+        <script src="../_static/doctools.js"></script>
+        <script src="../_static/language_data.js"></script>
+        <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+        <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+        <script type="text/x-mathjax-config">MathJax.Hub.Config({"tex2jax": {"inlineMath": [["$", "$"], ["\\(", "\\)"]], "processEscapes": true, "ignoreClass": "document", "processClass": "math|output_area"}})</script>
+    
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+
+    
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
     <link rel="next" title="mgkit" href="modules.html" />
@@ -54,7 +55,7 @@
           
 
           
-            <a href="../index.html" class="icon icon-home"> MGKit: Metagenomic framework
+            <a href="../index.html" class="icon icon-home" alt="Documentation Home"> MGKit: Metagenomic framework
           
 
           
@@ -64,7 +65,7 @@
             
             
               <div class="version">
-                0.5.1
+                0.5.3
               </div>
             
           
@@ -81,6 +82,7 @@
           
         </div>
 
+        
         <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
           
             
@@ -179,6 +181,7 @@
             
           
         </div>
+        
       </div>
     </nav>
 
@@ -217,7 +220,7 @@
 
   <ul class="wy-breadcrumbs">
     
-      <li><a href="../index.html">Docs</a> &raquo;</li>
+      <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
         
           <li><a href="../library.html">Library Reference</a> &raquo;</li>
         
@@ -270,39 +273,39 @@
 <span id="mgkit-taxon-module"></span><h1>mgkit.taxon module<a class="headerlink" href="#module-mgkit.taxon" title="Permalink to this headline">¶</a></h1>
 <p>This module gives access to Uniprot taxonomy data. It also defines classes
 to filter, order and group data by taxa</p>
-<dl class="exception">
+<dl class="py exception">
 <dt id="mgkit.taxon.NoLcaFound">
 <em class="property">exception </em><code class="sig-prename descclassname">mgkit.taxon.</code><code class="sig-name descname">NoLcaFound</code><a class="reference internal" href="../_modules/mgkit/taxon.html#NoLcaFound"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#mgkit.taxon.NoLcaFound" title="Permalink to this definition">¶</a></dt>
-<dd><p>Bases: <a class="reference external" href="https://docs.python.org/3/library/exceptions.html#Exception" title="(in Python v3.8)"><code class="xref py py-class docutils literal notranslate"><span class="pre">Exception</span></code></a></p>
+<dd><p>Bases: <a class="reference external" href="https://docs.python.org/3/library/exceptions.html#Exception" title="(in Python v3.9)"><code class="xref py py-class docutils literal notranslate"><span class="pre">Exception</span></code></a></p>
 <div class="versionadded">
 <p><span class="versionmodified added">New in version 0.1.13.</span></p>
 </div>
 <p>Raised if no lowest common ancestor can be found in the taxonomy</p>
 </dd></dl>
 
-<dl class="data">
+<dl class="py data">
 <dt id="mgkit.taxon.TAXON_RANKS">
 <code class="sig-prename descclassname">mgkit.taxon.</code><code class="sig-name descname">TAXON_RANKS</code><em class="property"> = ('superkingdom', 'kingdom', 'phylum', 'class', 'subclass', 'order', 'family', 'genus', 'species')</em><a class="headerlink" href="#mgkit.taxon.TAXON_RANKS" title="Permalink to this definition">¶</a></dt>
 <dd><p>Taxonomy ranks included in the pickled data</p>
 </dd></dl>
 
-<dl class="data">
+<dl class="py data">
 <dt id="mgkit.taxon.TAXON_ROOTS">
 <code class="sig-prename descclassname">mgkit.taxon.</code><code class="sig-name descname">TAXON_ROOTS</code><em class="property"> = ('archaea', 'bacteria', 'fungi', 'metazoa', 'environmental samples', 'viruses', 'viroidseukaryota', 'other sequences', 'unidentified', 'alveolata', 'amoebozoa', 'apusozoa', 'breviatea', 'centroheliozoa', 'choanoflagellida', 'diplomonadida', 'euglenozoa', 'formicata', 'heterolobosea', 'jakobida', 'malawimonadidae', 'oxymonadida', 'parabasalia', 'rhizaria', 'streptophyta', 'haptophyceae', 'chlorophyta', 'stramenopiles', 'cryptophyta', 'rhodophyta')</em><a class="headerlink" href="#mgkit.taxon.TAXON_ROOTS" title="Permalink to this definition">¶</a></dt>
 <dd><p>Root taxa used in analysis and filtering</p>
 </dd></dl>
 
-<dl class="attribute">
+<dl class="py attribute">
 <dt id="mgkit.taxon.TaxonTuple">
 <code class="sig-prename descclassname">mgkit.taxon.</code><code class="sig-name descname">TaxonTuple</code><a class="headerlink" href="#mgkit.taxon.TaxonTuple" title="Permalink to this definition">¶</a></dt>
 <dd><p>A representation of a Uniprot Taxon</p>
 <p>alias of <a class="reference internal" href="#mgkit.taxon.UniprotTaxonTuple" title="mgkit.taxon.UniprotTaxonTuple"><code class="xref py py-class docutils literal notranslate"><span class="pre">mgkit.taxon.UniprotTaxonTuple</span></code></a></p>
 </dd></dl>
 
-<dl class="class">
+<dl class="py class">
 <dt id="mgkit.taxon.Taxonomy">
-<em class="property">class </em><code class="sig-prename descclassname">mgkit.taxon.</code><code class="sig-name descname">Taxonomy</code><span class="sig-paren">(</span><em class="sig-param">fname=None</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/mgkit/taxon.html#Taxonomy"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#mgkit.taxon.Taxonomy" title="Permalink to this definition">¶</a></dt>
-<dd><p>Bases: <a class="reference external" href="https://docs.python.org/3/library/functions.html#object" title="(in Python v3.8)"><code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></a></p>
+<em class="property">class </em><code class="sig-prename descclassname">mgkit.taxon.</code><code class="sig-name descname">Taxonomy</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">fname</span><span class="o">=</span><span class="default_value">None</span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/mgkit/taxon.html#Taxonomy"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#mgkit.taxon.Taxonomy" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference external" href="https://docs.python.org/3/library/functions.html#object" title="(in Python v3.9)"><code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></a></p>
 <p>Class that contains the whole Uniprot taxonomy. Defines some methods to
 easy access of taxonomy. Follows the conventions of NCBI Taxonomy.</p>
 <p>Defines:</p>
@@ -312,33 +315,33 @@ easy access of taxonomy. Follows the conventions of NCBI Taxonomy.</p>
 <li><p>can be used as a dictionary, in which the key is a taxon_id and the value
 is its UniprotTaxon instance</p></li>
 </ul>
-<dl class="method">
+<dl class="py method">
 <dt id="mgkit.taxon.Taxonomy.__contains__">
-<code class="sig-name descname">__contains__</code><span class="sig-paren">(</span><em class="sig-param">taxon</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/mgkit/taxon.html#Taxonomy.__contains__"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#mgkit.taxon.Taxonomy.__contains__" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">__contains__</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">taxon</span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/mgkit/taxon.html#Taxonomy.__contains__"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#mgkit.taxon.Taxonomy.__contains__" title="Permalink to this definition">¶</a></dt>
 <dd><p>Returns True if the taxon is in the taxonomy</p>
 <p>Accepts an int (check for taxon_id) or an instance of UniprotTaxon</p>
 </dd></dl>
 
-<dl class="method">
+<dl class="py method">
 <dt id="mgkit.taxon.Taxonomy.__getitem__">
-<code class="sig-name descname">__getitem__</code><span class="sig-paren">(</span><em class="sig-param">taxon_id</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/mgkit/taxon.html#Taxonomy.__getitem__"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#mgkit.taxon.Taxonomy.__getitem__" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">__getitem__</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">taxon_id</span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/mgkit/taxon.html#Taxonomy.__getitem__"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#mgkit.taxon.Taxonomy.__getitem__" title="Permalink to this definition">¶</a></dt>
 <dd><p>Defines dictionary behavior. Key is a taxon_id, the returned value is a
 UniprotTaxon instance</p>
 </dd></dl>
 
-<dl class="method">
+<dl class="py method">
 <dt id="mgkit.taxon.Taxonomy.__iter__">
 <code class="sig-name descname">__iter__</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/mgkit/taxon.html#Taxonomy.__iter__"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#mgkit.taxon.Taxonomy.__iter__" title="Permalink to this definition">¶</a></dt>
 <dd><p>Defines iterable behavior. Returns a generator for UniprotTaxon instances</p>
 </dd></dl>
 
-<dl class="method">
+<dl class="py method">
 <dt id="mgkit.taxon.Taxonomy.__len__">
 <code class="sig-name descname">__len__</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/mgkit/taxon.html#Taxonomy.__len__"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#mgkit.taxon.Taxonomy.__len__" title="Permalink to this definition">¶</a></dt>
 <dd><p>Returns the number of taxa contained</p>
 </dd></dl>
 
-<dl class="method">
+<dl class="py method">
 <dt id="mgkit.taxon.Taxonomy.__repr__">
 <code class="sig-name descname">__repr__</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/mgkit/taxon.html#Taxonomy.__repr__"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#mgkit.taxon.Taxonomy.__repr__" title="Permalink to this definition">¶</a></dt>
 <dd><div class="versionadded">
@@ -346,9 +349,9 @@ UniprotTaxon instance</p>
 </div>
 </dd></dl>
 
-<dl class="method">
+<dl class="py method">
 <dt id="mgkit.taxon.Taxonomy.add_lineage">
-<code class="sig-name descname">add_lineage</code><span class="sig-paren">(</span><em class="sig-param">**lineage</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/mgkit/taxon.html#Taxonomy.add_lineage"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#mgkit.taxon.Taxonomy.add_lineage" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">add_lineage</code><span class="sig-paren">(</span><em class="sig-param"><span class="o">**</span><span class="n">lineage</span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/mgkit/taxon.html#Taxonomy.add_lineage"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#mgkit.taxon.Taxonomy.add_lineage" title="Permalink to this definition">¶</a></dt>
 <dd><div class="versionadded">
 <p><span class="versionmodified added">New in version 0.3.1.</span></p>
 </div>
@@ -361,26 +364,26 @@ strain/cultivar/subspecies and so on, but one only is expected to be
 passed.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><p><strong>lineage</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.8)"><em>dict</em></a>) – the lineage as a keyword arguments</p>
+<dd class="field-odd"><p><strong>lineage</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.9)"><em>dict</em></a>) – the lineage as a keyword arguments</p>
 </dd>
 <dt class="field-even">Returns</dt>
 <dd class="field-even"><p>the taxon_id of the last element in the lineage</p>
 </dd>
 <dt class="field-odd">Return type</dt>
-<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.8)">int</a></p>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.9)">int</a></p>
 </dd>
 <dt class="field-even">Raises</dt>
 <dd class="field-even"><ul class="simple">
-<li><p><a class="reference external" href="https://docs.python.org/3/library/exceptions.html#ValueError" title="(in Python v3.8)"><strong>ValueError</strong></a> – if more than a keyword argument is not contained in</p></li>
+<li><p><a class="reference external" href="https://docs.python.org/3/library/exceptions.html#ValueError" title="(in Python v3.9)"><strong>ValueError</strong></a> – if more than a keyword argument is not contained in</p></li>
 <li><p><strong>TAXON_RANKS</strong> – </p></li>
 </ul>
 </dd>
 </dl>
 </dd></dl>
 
-<dl class="method">
+<dl class="py method">
 <dt id="mgkit.taxon.Taxonomy.add_taxon">
-<code class="sig-name descname">add_taxon</code><span class="sig-paren">(</span><em class="sig-param">taxon_name</em>, <em class="sig-param">common_name=''</em>, <em class="sig-param">rank='no rank'</em>, <em class="sig-param">parent_id=None</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/mgkit/taxon.html#Taxonomy.add_taxon"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#mgkit.taxon.Taxonomy.add_taxon" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">add_taxon</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">taxon_name</span></em>, <em class="sig-param"><span class="n">common_name</span><span class="o">=</span><span class="default_value">''</span></em>, <em class="sig-param"><span class="n">rank</span><span class="o">=</span><span class="default_value">'no rank'</span></em>, <em class="sig-param"><span class="n">parent_id</span><span class="o">=</span><span class="default_value">None</span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/mgkit/taxon.html#Taxonomy.add_taxon"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#mgkit.taxon.Taxonomy.add_taxon" title="Permalink to this definition">¶</a></dt>
 <dd><div class="versionadded">
 <p><span class="versionmodified added">New in version 0.3.1.</span></p>
 </div>
@@ -389,10 +392,10 @@ found, its taxon_id is returned, otherwise a new taxon_id is returned.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>taxon_name</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.8)"><em>str</em></a>) – scientific name of the taxon</p></li>
-<li><p><strong>common_name</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.8)"><em>str</em></a>) – common name</p></li>
-<li><p><strong>rank</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.8)"><em>str</em></a>) – rank, defaults to ‘no rank’</p></li>
-<li><p><strong>parent_id</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.8)"><em>int</em></a>) – taxon_id of the parent, defaults to <em>None</em>, which
+<li><p><strong>taxon_name</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)"><em>str</em></a>) – scientific name of the taxon</p></li>
+<li><p><strong>common_name</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)"><em>str</em></a>) – common name</p></li>
+<li><p><strong>rank</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)"><em>str</em></a>) – rank, defaults to ‘no rank’</p></li>
+<li><p><strong>parent_id</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.9)"><em>int</em></a>) – taxon_id of the parent, defaults to <em>None</em>, which
 is the taxonomy root</p></li>
 </ul>
 </dd>
@@ -401,11 +404,11 @@ is the taxonomy root</p></li>
 the taxon with the same name and rank found in the taxonomy</p>
 </dd>
 <dt class="field-odd">Return type</dt>
-<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.8)">int</a></p>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.9)">int</a></p>
 </dd>
 <dt class="field-even">Raises</dt>
 <dd class="field-even"><ul class="simple">
-<li><p><a class="reference external" href="https://docs.python.org/3/library/exceptions.html#KeyError" title="(in Python v3.8)"><strong>KeyError</strong></a> – if more than one taxon has already the passed name and</p></li>
+<li><p><a class="reference external" href="https://docs.python.org/3/library/exceptions.html#KeyError" title="(in Python v3.9)"><strong>KeyError</strong></a> – if more than one taxon has already the passed name and</p></li>
 <li><p><strong>rank and it can't be resolved by looking at the parent_id passed</strong><strong>,</strong> – </p></li>
 <li><p><strong>the exception is raised.</strong> – </p></li>
 </ul>
@@ -413,9 +416,9 @@ the taxon with the same name and rank found in the taxonomy</p>
 </dl>
 </dd></dl>
 
-<dl class="method">
+<dl class="py method">
 <dt id="mgkit.taxon.Taxonomy.drop_taxon">
-<code class="sig-name descname">drop_taxon</code><span class="sig-paren">(</span><em class="sig-param">taxon_id</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/mgkit/taxon.html#Taxonomy.drop_taxon"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#mgkit.taxon.Taxonomy.drop_taxon" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">drop_taxon</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">taxon_id</span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/mgkit/taxon.html#Taxonomy.drop_taxon"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#mgkit.taxon.Taxonomy.drop_taxon" title="Permalink to this definition">¶</a></dt>
 <dd><div class="versionadded">
 <p><span class="versionmodified added">New in version 0.3.1.</span></p>
 </div>
@@ -423,14 +426,14 @@ the taxon with the same name and rank found in the taxonomy</p>
 name map for conistency.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><p><strong>taxon_id</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.8)"><em>int</em></a>) – taxon_id to drop from the taxonomy</p>
+<dd class="field-odd"><p><strong>taxon_id</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.9)"><em>int</em></a>) – taxon_id to drop from the taxonomy</p>
 </dd>
 </dl>
 </dd></dl>
 
-<dl class="method">
+<dl class="py method">
 <dt id="mgkit.taxon.Taxonomy.find_by_name">
-<code class="sig-name descname">find_by_name</code><span class="sig-paren">(</span><em class="sig-param">s_name</em>, <em class="sig-param">rank=None</em>, <em class="sig-param">strict=True</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/mgkit/taxon.html#Taxonomy.find_by_name"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#mgkit.taxon.Taxonomy.find_by_name" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">find_by_name</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">s_name</span></em>, <em class="sig-param"><span class="n">rank</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">strict</span><span class="o">=</span><span class="default_value">True</span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/mgkit/taxon.html#Taxonomy.find_by_name"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#mgkit.taxon.Taxonomy.find_by_name" title="Permalink to this definition">¶</a></dt>
 <dd><div class="versionchanged">
 <p><span class="versionmodified changed">Changed in version 0.2.3: </span>the search is now case insensitive</p>
 </div>
@@ -441,8 +444,8 @@ name map for conistency.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>s_name</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.8)"><em>str</em></a>) – the scientific name</p></li>
-<li><p><strong>rank</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.8)"><em>str</em></a><em>, </em><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.8)"><em>None</em></a>) – return only a taxon_id of a specific rank</p></li>
+<li><p><strong>s_name</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)"><em>str</em></a>) – the scientific name</p></li>
+<li><p><strong>rank</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)"><em>str</em></a><em>, </em><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.9)"><em>None</em></a>) – return only a taxon_id of a specific rank</p></li>
 <li><p><strong>strict</strong> (<em>book</em>) – if True and <em>rank</em> is not None, KeyError will be
 raised if multiple taxa have the same name and rank</p></li>
 </ul>
@@ -455,18 +458,18 @@ True and <em>rank</em> is not None, the set of taxon_ids found is
 resturned.</p>
 </dd>
 <dt class="field-odd">Return type</dt>
-<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.8)">list</a></p>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.9)">list</a></p>
 </dd>
 <dt class="field-even">Raises</dt>
 <dd class="field-even"><ul class="simple">
-<li><p><a class="reference external" href="https://docs.python.org/3/library/exceptions.html#KeyError" title="(in Python v3.8)"><strong>KeyError</strong></a> – If multiple taxa are found, a <em>KeyError</em> exception is</p></li>
+<li><p><a class="reference external" href="https://docs.python.org/3/library/exceptions.html#KeyError" title="(in Python v3.9)"><strong>KeyError</strong></a> – If multiple taxa are found, a <em>KeyError</em> exception is</p></li>
 <li><p><strong>raised.</strong> – </p></li>
 </ul>
 </dd>
 </dl>
 </dd></dl>
 
-<dl class="method">
+<dl class="py method">
 <dt id="mgkit.taxon.Taxonomy.gen_name_map">
 <code class="sig-name descname">gen_name_map</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/mgkit/taxon.html#Taxonomy.gen_name_map"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#mgkit.taxon.Taxonomy.gen_name_map" title="Permalink to this definition">¶</a></dt>
 <dd><div class="versionchanged">
@@ -476,9 +479,9 @@ resturned.</p>
 id is associated.</p>
 </dd></dl>
 
-<dl class="method">
+<dl class="py method">
 <dt id="mgkit.taxon.Taxonomy.get_lineage">
-<code class="sig-name descname">get_lineage</code><span class="sig-paren">(</span><em class="sig-param">taxon_id</em>, <em class="sig-param">names=False</em>, <em class="sig-param">only_ranked=True</em>, <em class="sig-param">with_last=True</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/mgkit/taxon.html#Taxonomy.get_lineage"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#mgkit.taxon.Taxonomy.get_lineage" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">get_lineage</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">taxon_id</span></em>, <em class="sig-param"><span class="n">names</span><span class="o">=</span><span class="default_value">False</span></em>, <em class="sig-param"><span class="n">only_ranked</span><span class="o">=</span><span class="default_value">True</span></em>, <em class="sig-param"><span class="n">with_last</span><span class="o">=</span><span class="default_value">True</span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/mgkit/taxon.html#Taxonomy.get_lineage"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#mgkit.taxon.Taxonomy.get_lineage" title="Permalink to this definition">¶</a></dt>
 <dd><div class="versionadded">
 <p><span class="versionmodified added">New in version 0.3.1.</span></p>
 </div>
@@ -486,25 +489,25 @@ id is associated.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>taxon_id</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.8)"><em>int</em></a>) – taxon_id to return the lineage</p></li>
-<li><p><strong>names</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.8)"><em>bool</em></a>) – if the elements of the list are converted into the
+<li><p><strong>taxon_id</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.9)"><em>int</em></a>) – taxon_id to return the lineage</p></li>
+<li><p><strong>names</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.9)"><em>bool</em></a>) – if the elements of the list are converted into the
 scientific names</p></li>
-<li><p><strong>only_ranked</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.8)"><em>bool</em></a>) – only return the ranked taxa</p></li>
-<li><p><strong>with_last</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.8)"><em>bool</em></a>) – include the taxon_id passed to the list</p></li>
+<li><p><strong>only_ranked</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.9)"><em>bool</em></a>) – only return the ranked taxa</p></li>
+<li><p><strong>with_last</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.9)"><em>bool</em></a>) – include the taxon_id passed to the list</p></li>
 </ul>
 </dd>
 <dt class="field-even">Returns</dt>
 <dd class="field-even"><p>the lineage of the passed taxon_id as a list of IDs or names</p>
 </dd>
 <dt class="field-odd">Return type</dt>
-<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.8)">list</a></p>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.9)">list</a></p>
 </dd>
 </dl>
 </dd></dl>
 
-<dl class="method">
+<dl class="py method">
 <dt id="mgkit.taxon.Taxonomy.get_lineage_string">
-<code class="sig-name descname">get_lineage_string</code><span class="sig-paren">(</span><em class="sig-param">taxon_id</em>, <em class="sig-param">only_ranked=True</em>, <em class="sig-param">with_last=True</em>, <em class="sig-param">sep=';'</em>, <em class="sig-param">rank=None</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/mgkit/taxon.html#Taxonomy.get_lineage_string"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#mgkit.taxon.Taxonomy.get_lineage_string" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">get_lineage_string</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">taxon_id</span></em>, <em class="sig-param"><span class="n">only_ranked</span><span class="o">=</span><span class="default_value">True</span></em>, <em class="sig-param"><span class="n">with_last</span><span class="o">=</span><span class="default_value">True</span></em>, <em class="sig-param"><span class="n">sep</span><span class="o">=</span><span class="default_value">';'</span></em>, <em class="sig-param"><span class="n">rank</span><span class="o">=</span><span class="default_value">None</span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/mgkit/taxon.html#Taxonomy.get_lineage_string"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#mgkit.taxon.Taxonomy.get_lineage_string" title="Permalink to this definition">¶</a></dt>
 <dd><div class="versionadded">
 <p><span class="versionmodified added">New in version 0.3.3.</span></p>
 </div>
@@ -514,11 +517,11 @@ rank, such as <em>phylum</em>.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>taxon_id</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.8)"><em>int</em></a>) – taxon_id to return the lineage</p></li>
-<li><p><strong>only_ranked</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.8)"><em>bool</em></a>) – only return the ranked taxa</p></li>
-<li><p><strong>with_last</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.8)"><em>bool</em></a>) – include the taxon_id passed to the list</p></li>
-<li><p><strong>sep</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.8)"><em>str</em></a>) – separator used to join the lineage string</p></li>
-<li><p><strong>rank</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.8)"><em>int</em></a><em> or </em><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.8)"><em>None</em></a>) – if None the full lineage is returned, otherwise
+<li><p><strong>taxon_id</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.9)"><em>int</em></a>) – taxon_id to return the lineage</p></li>
+<li><p><strong>only_ranked</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.9)"><em>bool</em></a>) – only return the ranked taxa</p></li>
+<li><p><strong>with_last</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.9)"><em>bool</em></a>) – include the taxon_id passed to the list</p></li>
+<li><p><strong>sep</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)"><em>str</em></a>) – separator used to join the lineage string</p></li>
+<li><p><strong>rank</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.9)"><em>int</em></a><em> or </em><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.9)"><em>None</em></a>) – if None the full lineage is returned, otherwise
 the lineage will be cut to the specified rank</p></li>
 </ul>
 </dd>
@@ -526,20 +529,20 @@ the lineage will be cut to the specified rank</p></li>
 <dd class="field-even"><p>lineage string</p>
 </dd>
 <dt class="field-odd">Return type</dt>
-<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.8)">str</a></p>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)">str</a></p>
 </dd>
 </dl>
 </dd></dl>
 
-<dl class="method">
+<dl class="py method">
 <dt id="mgkit.taxon.Taxonomy.get_name_map">
 <code class="sig-name descname">get_name_map</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/mgkit/taxon.html#Taxonomy.get_name_map"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#mgkit.taxon.Taxonomy.get_name_map" title="Permalink to this definition">¶</a></dt>
 <dd><p>Returns a taxon_id-&gt;s_name dictionary</p>
 </dd></dl>
 
-<dl class="method">
+<dl class="py method">
 <dt id="mgkit.taxon.Taxonomy.get_ranked_id">
-<code class="sig-name descname">get_ranked_id</code><span class="sig-paren">(</span><em class="sig-param">taxon_id</em>, <em class="sig-param">rank=None</em>, <em class="sig-param">it=False</em>, <em class="sig-param">include_higher=True</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/mgkit/taxon.html#Taxonomy.get_ranked_id"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#mgkit.taxon.Taxonomy.get_ranked_id" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">get_ranked_id</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">taxon_id</span></em>, <em class="sig-param"><span class="n">rank</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">it</span><span class="o">=</span><span class="default_value">False</span></em>, <em class="sig-param"><span class="n">include_higher</span><span class="o">=</span><span class="default_value">True</span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/mgkit/taxon.html#Taxonomy.get_ranked_id"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#mgkit.taxon.Taxonomy.get_ranked_id" title="Permalink to this definition">¶</a></dt>
 <dd><div class="versionadded">
 <p><span class="versionmodified added">New in version 0.3.4.</span></p>
 </div>
@@ -549,10 +552,10 @@ relies on <a class="reference internal" href="#mgkit.taxon.Taxonomy.get_ranked_t
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>taxon_id</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.8)"><em>int</em></a>) – taxon_id</p></li>
-<li><p><strong>rank</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.8)"><em>str</em></a><em> or </em><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.8)"><em>None</em></a>) – passed over</p></li>
-<li><p><strong>it</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.8)"><em>bool</em></a>) – determines the return value. if True, a list is returned</p></li>
-<li><p><strong>include_higher</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.8)"><em>bool</em></a>) – if True, any rank higher than the requested
+<li><p><strong>taxon_id</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.9)"><em>int</em></a>) – taxon_id</p></li>
+<li><p><strong>rank</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)"><em>str</em></a><em> or </em><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.9)"><em>None</em></a>) – passed over</p></li>
+<li><p><strong>it</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.9)"><em>bool</em></a>) – determines the return value. if True, a list is returned</p></li>
+<li><p><strong>include_higher</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.9)"><em>bool</em></a>) – if True, any rank higher than the requested
 may be returned. If False and the rank cannot be returned, None
 is returned</p></li>
 </ul>
@@ -566,14 +569,14 @@ be <em>None</em> if the exact rank was not found and <em>include_higher</em> is
 False</p>
 </dd>
 <dt class="field-odd">Return type</dt>
-<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.8)">int</a> or <a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.8)">list</a></p>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.9)">int</a> or <a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.9)">list</a></p>
 </dd>
 </dl>
 </dd></dl>
 
-<dl class="method">
+<dl class="py method">
 <dt id="mgkit.taxon.Taxonomy.get_ranked_taxon">
-<code class="sig-name descname">get_ranked_taxon</code><span class="sig-paren">(</span><em class="sig-param">taxon_id</em>, <em class="sig-param">rank=None</em>, <em class="sig-param">ranks=('superkingdom'</em>, <em class="sig-param">'kingdom'</em>, <em class="sig-param">'phylum'</em>, <em class="sig-param">'class'</em>, <em class="sig-param">'subclass'</em>, <em class="sig-param">'order'</em>, <em class="sig-param">'family'</em>, <em class="sig-param">'genus'</em>, <em class="sig-param">'species')</em>, <em class="sig-param">roots=False</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/mgkit/taxon.html#Taxonomy.get_ranked_taxon"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#mgkit.taxon.Taxonomy.get_ranked_taxon" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">get_ranked_taxon</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">taxon_id</span></em>, <em class="sig-param"><span class="n">rank</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">ranks</span><span class="o">=</span><span class="default_value">'superkingdom', 'kingdom', 'phylum', 'class', 'subclass', 'order', 'family', 'genus', 'species'</span></em>, <em class="sig-param"><span class="n">roots</span><span class="o">=</span><span class="default_value">False</span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/mgkit/taxon.html#Taxonomy.get_ranked_taxon"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#mgkit.taxon.Taxonomy.get_ranked_taxon" title="Permalink to this definition">¶</a></dt>
 <dd><div class="versionchanged">
 <p><span class="versionmodified changed">Changed in version 0.1.13: </span>added <em>roots</em> argument</p>
 </div>
@@ -588,11 +591,11 @@ be set to <em>False</em></p>
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>taxon_id</strong> – id of the taxon or instance of <code class="xref py py-class docutils literal notranslate"><span class="pre">UniprotTaxon</span></code></p></li>
-<li><p><strong>rank</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.8)"><em>str</em></a>) – string that specify the rank, if None, the first valid
+<li><p><strong>rank</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)"><em>str</em></a>) – string that specify the rank, if None, the first valid
 rank will be searched. (i.e. the first with a value different from ‘’)</p></li>
 <li><p><strong>ranks</strong> – tuple of all taxonomy ranks, default to the default module
 value</p></li>
-<li><p><strong>roots</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.8)"><em>bool</em></a>) – if True, uses <a class="reference internal" href="#mgkit.taxon.TAXON_ROOTS" title="mgkit.taxon.TAXON_ROOTS"><code class="xref py py-data docutils literal notranslate"><span class="pre">TAXON_ROOTS</span></code></a> to solve the root
+<li><p><strong>roots</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.9)"><em>bool</em></a>) – if True, uses <a class="reference internal" href="#mgkit.taxon.TAXON_ROOTS" title="mgkit.taxon.TAXON_ROOTS"><code class="xref py py-data docutils literal notranslate"><span class="pre">TAXON_ROOTS</span></code></a> to solve the root
 taxa</p></li>
 </ul>
 </dd>
@@ -602,9 +605,9 @@ taxa</p></li>
 </dl>
 </dd></dl>
 
-<dl class="method">
+<dl class="py method">
 <dt id="mgkit.taxon.Taxonomy.is_ancestor">
-<code class="sig-name descname">is_ancestor</code><span class="sig-paren">(</span><em class="sig-param">leaf_id</em>, <em class="sig-param">anc_ids</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/mgkit/taxon.html#Taxonomy.is_ancestor"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#mgkit.taxon.Taxonomy.is_ancestor" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">is_ancestor</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">leaf_id</span></em>, <em class="sig-param"><span class="n">anc_ids</span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/mgkit/taxon.html#Taxonomy.is_ancestor"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#mgkit.taxon.Taxonomy.is_ancestor" title="Permalink to this definition">¶</a></dt>
 <dd><div class="versionchanged">
 <p><span class="versionmodified changed">Changed in version 0.1.13: </span>now uses <a class="reference internal" href="#mgkit.taxon.is_ancestor" title="mgkit.taxon.is_ancestor"><code class="xref py py-func docutils literal notranslate"><span class="pre">is_ancestor()</span></code></a> and changed behavior</p>
 </div>
@@ -612,8 +615,8 @@ taxa</p></li>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>leaf_id</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.8)"><em>int</em></a>) – leaf taxon id</p></li>
-<li><p><strong>anc_ids</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.8)"><em>int</em></a>) – ancestor taxon id(s)</p></li>
+<li><p><strong>leaf_id</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.9)"><em>int</em></a>) – leaf taxon id</p></li>
+<li><p><strong>anc_ids</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.9)"><em>int</em></a>) – ancestor taxon id(s)</p></li>
 </ul>
 </dd>
 <dt class="field-even">Return bool</dt>
@@ -622,9 +625,9 @@ taxa</p></li>
 </dl>
 </dd></dl>
 
-<dl class="method">
+<dl class="py method">
 <dt id="mgkit.taxon.Taxonomy.is_ranked_below">
-<code class="sig-name descname">is_ranked_below</code><span class="sig-paren">(</span><em class="sig-param">taxon_id</em>, <em class="sig-param">rank</em>, <em class="sig-param">equal=True</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/mgkit/taxon.html#Taxonomy.is_ranked_below"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#mgkit.taxon.Taxonomy.is_ranked_below" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">is_ranked_below</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">taxon_id</span></em>, <em class="sig-param"><span class="n">rank</span></em>, <em class="sig-param"><span class="n">equal</span><span class="o">=</span><span class="default_value">True</span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/mgkit/taxon.html#Taxonomy.is_ranked_below"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#mgkit.taxon.Taxonomy.is_ranked_below" title="Permalink to this definition">¶</a></dt>
 <dd><div class="versionadded">
 <p><span class="versionmodified added">New in version 0.4.0.</span></p>
 </div>
@@ -632,9 +635,9 @@ taxa</p></li>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>taxon_id</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.8)"><em>int</em></a>) – taxo_id to test</p></li>
-<li><p><strong>rank</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.8)"><em>str</em></a>) – rank requested</p></li>
-<li><p><strong>equal</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.8)"><em>bool</em></a>) – determines if the taxon_id tested may be of the
+<li><p><strong>taxon_id</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.9)"><em>int</em></a>) – taxo_id to test</p></li>
+<li><p><strong>rank</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)"><em>str</em></a>) – rank requested</p></li>
+<li><p><strong>equal</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.9)"><em>bool</em></a>) – determines if the taxon_id tested may be of the
 requested rank</p></li>
 </ul>
 </dd>
@@ -645,14 +648,14 @@ is True, the return value is <em>True</em>, if <em>equal</em> is False the retur
 value is <em>False</em>. The return value is <em>False</em> otherwise.</p>
 </dd>
 <dt class="field-odd">Return type</dt>
-<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.8)">bool</a></p>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.9)">bool</a></p>
 </dd>
 </dl>
 </dd></dl>
 
-<dl class="method">
+<dl class="py method">
 <dt id="mgkit.taxon.Taxonomy.load_data">
-<code class="sig-name descname">load_data</code><span class="sig-paren">(</span><em class="sig-param">file_handle</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/mgkit/taxon.html#Taxonomy.load_data"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#mgkit.taxon.Taxonomy.load_data" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">load_data</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">file_handle</span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/mgkit/taxon.html#Taxonomy.load_data"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#mgkit.taxon.Taxonomy.load_data" title="Permalink to this definition">¶</a></dt>
 <dd><div class="versionchanged">
 <p><span class="versionmodified changed">Changed in version 0.2.3: </span>now can use read <em>msgpack</em> serialised files</p>
 </div>
@@ -665,14 +668,14 @@ compressed files.</p>
 package is used instead of pickle</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><p><strong>file_handle</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.8)"><em>str</em></a><em>, </em><em>file</em>) – file name to which save the instance data</p>
+<dd class="field-odd"><p><strong>file_handle</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)"><em>str</em></a><em>, </em><em>file</em>) – file name to which save the instance data</p>
 </dd>
 </dl>
 </dd></dl>
 
-<dl class="method">
+<dl class="py method">
 <dt id="mgkit.taxon.Taxonomy.parse_gtdb_lineage">
-<em class="property">static </em><code class="sig-name descname">parse_gtdb_lineage</code><span class="sig-paren">(</span><em class="sig-param">lineage</em>, <em class="sig-param">sep=';'</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/mgkit/taxon.html#Taxonomy.parse_gtdb_lineage"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#mgkit.taxon.Taxonomy.parse_gtdb_lineage" title="Permalink to this definition">¶</a></dt>
+<em class="property">static </em><code class="sig-name descname">parse_gtdb_lineage</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">lineage</span></em>, <em class="sig-param"><span class="n">sep</span><span class="o">=</span><span class="default_value">';'</span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/mgkit/taxon.html#Taxonomy.parse_gtdb_lineage"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#mgkit.taxon.Taxonomy.parse_gtdb_lineage" title="Permalink to this definition">¶</a></dt>
 <dd><div class="versionadded">
 <p><span class="versionmodified added">New in version 0.3.3.</span></p>
 </div>
@@ -686,14 +689,14 @@ to allow mixing of taxonomies.</p>
 <a class="reference internal" href="#mgkit.taxon.Taxonomy.add_lineage" title="mgkit.taxon.Taxonomy.add_lineage"><code class="xref py py-meth docutils literal notranslate"><span class="pre">Taxonomy.add_lineage()</span></code></a></p>
 </dd>
 <dt class="field-even">Return type</dt>
-<dd class="field-even"><p><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.8)">dict</a></p>
+<dd class="field-even"><p><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.9)">dict</a></p>
 </dd>
 </dl>
 </dd></dl>
 
-<dl class="method">
+<dl class="py method">
 <dt id="mgkit.taxon.Taxonomy.read_from_gtdb_taxonomy">
-<code class="sig-name descname">read_from_gtdb_taxonomy</code><span class="sig-paren">(</span><em class="sig-param">file_handle</em>, <em class="sig-param">use_gtdb_name=True</em>, <em class="sig-param">sep='\t'</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/mgkit/taxon.html#Taxonomy.read_from_gtdb_taxonomy"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#mgkit.taxon.Taxonomy.read_from_gtdb_taxonomy" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">read_from_gtdb_taxonomy</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">file_handle</span></em>, <em class="sig-param"><span class="n">use_gtdb_name</span><span class="o">=</span><span class="default_value">True</span></em>, <em class="sig-param"><span class="n">sep</span><span class="o">=</span><span class="default_value">'\t'</span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/mgkit/taxon.html#Taxonomy.read_from_gtdb_taxonomy"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#mgkit.taxon.Taxonomy.read_from_gtdb_taxonomy" title="Permalink to this definition">¶</a></dt>
 <dd><div class="versionadded">
 <p><span class="versionmodified added">New in version 0.3.0.</span></p>
 </div>
@@ -707,11 +710,11 @@ genome_id -&gt; taxon_id.</p>
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>file_handle</strong> (<em>file</em>) – file with the taxonomy</p></li>
-<li><p><strong>use_gtdb_name</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.8)"><em>bool</em></a>) – if True, the names are kept as-is in the
+<li><p><strong>use_gtdb_name</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.9)"><em>bool</em></a>) – if True, the names are kept as-is in the
 <em>s_name</em> attribute of <a class="reference internal" href="#mgkit.taxon.TaxonTuple" title="mgkit.taxon.TaxonTuple"><code class="xref py py-class docutils literal notranslate"><span class="pre">TaxonTuple</span></code></a> and the
 “cleaned” version in <em>c_name</em> (e.g. f__Ammonifexaceae -&gt;
 Ammonifexaceae). If False, the values are switched</p></li>
-<li><p><strong>sep</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.8)"><em>str</em></a>) – separator between the columns of the file</p></li>
+<li><p><strong>sep</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)"><em>str</em></a>) – separator between the columns of the file</p></li>
 </ul>
 </dd>
 <dt class="field-even">Returns</dt>
@@ -719,7 +722,7 @@ Ammonifexaceae). If False, the values are switched</p></li>
 taxonomy</p>
 </dd>
 <dt class="field-odd">Return type</dt>
-<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.8)">dict</a></p>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.9)">dict</a></p>
 </dd>
 </dl>
 <div class="admonition note">
@@ -729,9 +732,9 @@ the same in a successive execution</p>
 </div>
 </dd></dl>
 
-<dl class="method">
+<dl class="py method">
 <dt id="mgkit.taxon.Taxonomy.read_from_ncbi_dump">
-<code class="sig-name descname">read_from_ncbi_dump</code><span class="sig-paren">(</span><em class="sig-param">nodes_file</em>, <em class="sig-param">names_file=None</em>, <em class="sig-param">merged_file=None</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/mgkit/taxon.html#Taxonomy.read_from_ncbi_dump"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#mgkit.taxon.Taxonomy.read_from_ncbi_dump" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">read_from_ncbi_dump</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">nodes_file</span></em>, <em class="sig-param"><span class="n">names_file</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">merged_file</span><span class="o">=</span><span class="default_value">None</span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/mgkit/taxon.html#Taxonomy.read_from_ncbi_dump"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#mgkit.taxon.Taxonomy.read_from_ncbi_dump" title="Permalink to this definition">¶</a></dt>
 <dd><div class="versionadded">
 <p><span class="versionmodified added">New in version 0.2.3.</span></p>
 </div>
@@ -741,19 +744,19 @@ taxonomy.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>nodes_file</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.8)"><em>str</em></a><em>, </em><em>file</em>) – file name or handle to the file</p></li>
-<li><p><strong>names_file</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.8)"><em>str</em></a><em>, </em><em>file</em><em>, </em><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.8)"><em>None</em></a>) – file name or handle to the file,
+<li><p><strong>nodes_file</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)"><em>str</em></a><em>, </em><em>file</em>) – file name or handle to the file</p></li>
+<li><p><strong>names_file</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)"><em>str</em></a><em>, </em><em>file</em><em>, </em><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.9)"><em>None</em></a>) – file name or handle to the file,
 if None, names won’t be added to the taxa</p></li>
-<li><p><strong>merged_file</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.8)"><em>str</em></a><em>, </em><em>file</em><em>, </em><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.8)"><em>None</em></a>) – file name or handle to the file,
+<li><p><strong>merged_file</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)"><em>str</em></a><em>, </em><em>file</em><em>, </em><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.9)"><em>None</em></a>) – file name or handle to the file,
 if None, pointers to merged taxa won’t be added</p></li>
 </ul>
 </dd>
 </dl>
 </dd></dl>
 
-<dl class="method">
+<dl class="py method">
 <dt id="mgkit.taxon.Taxonomy.read_taxonomy">
-<code class="sig-name descname">read_taxonomy</code><span class="sig-paren">(</span><em class="sig-param">f_handle</em>, <em class="sig-param">light=True</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/mgkit/taxon.html#Taxonomy.read_taxonomy"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#mgkit.taxon.Taxonomy.read_taxonomy" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">read_taxonomy</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">f_handle</span></em>, <em class="sig-param"><span class="n">light</span><span class="o">=</span><span class="default_value">True</span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/mgkit/taxon.html#Taxonomy.read_taxonomy"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#mgkit.taxon.Taxonomy.read_taxonomy" title="Permalink to this definition">¶</a></dt>
 <dd><div class="versionchanged">
 <p><span class="versionmodified changed">Changed in version 0.2.1: </span>added <em>light</em> parameter</p>
 </div>
@@ -772,9 +775,9 @@ memory usage. This is now the default.</p>
 </dl>
 </dd></dl>
 
-<dl class="method">
+<dl class="py method">
 <dt id="mgkit.taxon.Taxonomy.save_data">
-<code class="sig-name descname">save_data</code><span class="sig-paren">(</span><em class="sig-param">file_handle</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/mgkit/taxon.html#Taxonomy.save_data"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#mgkit.taxon.Taxonomy.save_data" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">save_data</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">file_handle</span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/mgkit/taxon.html#Taxonomy.save_data"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#mgkit.taxon.Taxonomy.save_data" title="Permalink to this definition">¶</a></dt>
 <dd><div class="versionchanged">
 <p><span class="versionmodified changed">Changed in version 0.2.3: </span>now can use <em>msgpack</em> to serialise</p>
 </div>
@@ -784,64 +787,64 @@ data if the file ends with “.gz”, “.bz2”</p>
 package is used instead of pickle</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><p><strong>file_handle</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.8)"><em>str</em></a><em>, </em><em>file</em>) – file name to which save the instance data</p>
+<dd class="field-odd"><p><strong>file_handle</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)"><em>str</em></a><em>, </em><em>file</em>) – file name to which save the instance data</p>
 </dd>
 </dl>
 </dd></dl>
 
 </dd></dl>
 
-<dl class="class">
+<dl class="py class">
 <dt id="mgkit.taxon.UniprotTaxonTuple">
-<em class="property">class </em><code class="sig-prename descclassname">mgkit.taxon.</code><code class="sig-name descname">UniprotTaxonTuple</code><span class="sig-paren">(</span><em class="sig-param">taxon_id</em>, <em class="sig-param">s_name</em>, <em class="sig-param">c_name</em>, <em class="sig-param">rank</em>, <em class="sig-param">lineage</em>, <em class="sig-param">parent_id</em><span class="sig-paren">)</span><a class="headerlink" href="#mgkit.taxon.UniprotTaxonTuple" title="Permalink to this definition">¶</a></dt>
-<dd><p>Bases: <a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#tuple" title="(in Python v3.8)"><code class="xref py py-class docutils literal notranslate"><span class="pre">tuple</span></code></a></p>
-<dl class="method">
+<em class="property">class </em><code class="sig-prename descclassname">mgkit.taxon.</code><code class="sig-name descname">UniprotTaxonTuple</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">taxon_id</span></em>, <em class="sig-param"><span class="n">s_name</span></em>, <em class="sig-param"><span class="n">c_name</span></em>, <em class="sig-param"><span class="n">rank</span></em>, <em class="sig-param"><span class="n">lineage</span></em>, <em class="sig-param"><span class="n">parent_id</span></em><span class="sig-paren">)</span><a class="headerlink" href="#mgkit.taxon.UniprotTaxonTuple" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#tuple" title="(in Python v3.9)"><code class="xref py py-class docutils literal notranslate"><span class="pre">tuple</span></code></a></p>
+<dl class="py attribute">
 <dt id="mgkit.taxon.UniprotTaxonTuple.c_name">
-<em class="property">property </em><code class="sig-name descname">c_name</code><a class="headerlink" href="#mgkit.taxon.UniprotTaxonTuple.c_name" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">c_name</code><a class="headerlink" href="#mgkit.taxon.UniprotTaxonTuple.c_name" title="Permalink to this definition">¶</a></dt>
 <dd><p>Alias for field number 2</p>
 </dd></dl>
 
-<dl class="method">
+<dl class="py attribute">
 <dt id="mgkit.taxon.UniprotTaxonTuple.lineage">
-<em class="property">property </em><code class="sig-name descname">lineage</code><a class="headerlink" href="#mgkit.taxon.UniprotTaxonTuple.lineage" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">lineage</code><a class="headerlink" href="#mgkit.taxon.UniprotTaxonTuple.lineage" title="Permalink to this definition">¶</a></dt>
 <dd><p>Alias for field number 4</p>
 </dd></dl>
 
-<dl class="method">
+<dl class="py attribute">
 <dt id="mgkit.taxon.UniprotTaxonTuple.parent_id">
-<em class="property">property </em><code class="sig-name descname">parent_id</code><a class="headerlink" href="#mgkit.taxon.UniprotTaxonTuple.parent_id" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">parent_id</code><a class="headerlink" href="#mgkit.taxon.UniprotTaxonTuple.parent_id" title="Permalink to this definition">¶</a></dt>
 <dd><p>Alias for field number 5</p>
 </dd></dl>
 
-<dl class="method">
+<dl class="py attribute">
 <dt id="mgkit.taxon.UniprotTaxonTuple.rank">
-<em class="property">property </em><code class="sig-name descname">rank</code><a class="headerlink" href="#mgkit.taxon.UniprotTaxonTuple.rank" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">rank</code><a class="headerlink" href="#mgkit.taxon.UniprotTaxonTuple.rank" title="Permalink to this definition">¶</a></dt>
 <dd><p>Alias for field number 3</p>
 </dd></dl>
 
-<dl class="method">
+<dl class="py attribute">
 <dt id="mgkit.taxon.UniprotTaxonTuple.s_name">
-<em class="property">property </em><code class="sig-name descname">s_name</code><a class="headerlink" href="#mgkit.taxon.UniprotTaxonTuple.s_name" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">s_name</code><a class="headerlink" href="#mgkit.taxon.UniprotTaxonTuple.s_name" title="Permalink to this definition">¶</a></dt>
 <dd><p>Alias for field number 1</p>
 </dd></dl>
 
-<dl class="method">
+<dl class="py attribute">
 <dt id="mgkit.taxon.UniprotTaxonTuple.taxon_id">
-<em class="property">property </em><code class="sig-name descname">taxon_id</code><a class="headerlink" href="#mgkit.taxon.UniprotTaxonTuple.taxon_id" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">taxon_id</code><a class="headerlink" href="#mgkit.taxon.UniprotTaxonTuple.taxon_id" title="Permalink to this definition">¶</a></dt>
 <dd><p>Alias for field number 0</p>
 </dd></dl>
 
 </dd></dl>
 
-<dl class="attribute">
+<dl class="py attribute">
 <dt id="mgkit.taxon.UniprotTaxonomy">
 <code class="sig-prename descclassname">mgkit.taxon.</code><code class="sig-name descname">UniprotTaxonomy</code><a class="headerlink" href="#mgkit.taxon.UniprotTaxonomy" title="Permalink to this definition">¶</a></dt>
 <dd><p>alias of <a class="reference internal" href="#mgkit.taxon.Taxonomy" title="mgkit.taxon.Taxonomy"><code class="xref py py-class docutils literal notranslate"><span class="pre">mgkit.taxon.Taxonomy</span></code></a></p>
 </dd></dl>
 
-<dl class="function">
+<dl class="py function">
 <dt id="mgkit.taxon.distance_taxa_ancestor">
-<code class="sig-prename descclassname">mgkit.taxon.</code><code class="sig-name descname">distance_taxa_ancestor</code><span class="sig-paren">(</span><em class="sig-param">taxonomy</em>, <em class="sig-param">taxon_id</em>, <em class="sig-param">anc_id</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/mgkit/taxon.html#distance_taxa_ancestor"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#mgkit.taxon.distance_taxa_ancestor" title="Permalink to this definition">¶</a></dt>
+<code class="sig-prename descclassname">mgkit.taxon.</code><code class="sig-name descname">distance_taxa_ancestor</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">taxonomy</span></em>, <em class="sig-param"><span class="n">taxon_id</span></em>, <em class="sig-param"><span class="n">anc_id</span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/mgkit/taxon.html#distance_taxa_ancestor"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#mgkit.taxon.distance_taxa_ancestor" title="Permalink to this definition">¶</a></dt>
 <dd><div class="versionadded">
 <p><span class="versionmodified added">New in version 0.1.16.</span></p>
 </div>
@@ -852,8 +855,8 @@ at the ancestor.</p>
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>taxonomy</strong> – <a class="reference internal" href="#mgkit.taxon.Taxonomy" title="mgkit.taxon.Taxonomy"><code class="xref py py-class docutils literal notranslate"><span class="pre">Taxonomy</span></code></a> instance</p></li>
-<li><p><strong>taxon_id</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.8)"><em>int</em></a>) – taxonomic identifier</p></li>
-<li><p><strong>anc_id</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.8)"><em>int</em></a>) – taxonomic identifier of the ancestor</p></li>
+<li><p><strong>taxon_id</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.9)"><em>int</em></a>) – taxonomic identifier</p></li>
+<li><p><strong>anc_id</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.9)"><em>int</em></a>) – taxonomic identifier of the ancestor</p></li>
 </ul>
 </dd>
 </dl>
@@ -863,9 +866,9 @@ at the ancestor.</p>
 </dl>
 </dd></dl>
 
-<dl class="function">
+<dl class="py function">
 <dt id="mgkit.taxon.distance_two_taxa">
-<code class="sig-prename descclassname">mgkit.taxon.</code><code class="sig-name descname">distance_two_taxa</code><span class="sig-paren">(</span><em class="sig-param">taxonomy</em>, <em class="sig-param">taxon_id1</em>, <em class="sig-param">taxon_id2</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/mgkit/taxon.html#distance_two_taxa"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#mgkit.taxon.distance_two_taxa" title="Permalink to this definition">¶</a></dt>
+<code class="sig-prename descclassname">mgkit.taxon.</code><code class="sig-name descname">distance_two_taxa</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">taxonomy</span></em>, <em class="sig-param"><span class="n">taxon_id1</span></em>, <em class="sig-param"><span class="n">taxon_id2</span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/mgkit/taxon.html#distance_two_taxa"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#mgkit.taxon.distance_two_taxa" title="Permalink to this definition">¶</a></dt>
 <dd><div class="versionadded">
 <p><span class="versionmodified added">New in version 0.1.16.</span></p>
 </div>
@@ -875,8 +878,8 @@ steps it takes to traverse the taxonomy until their last common ancestor.</p>
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>taxonomy</strong> – <a class="reference internal" href="#mgkit.taxon.Taxonomy" title="mgkit.taxon.Taxonomy"><code class="xref py py-class docutils literal notranslate"><span class="pre">Taxonomy</span></code></a> instance</p></li>
-<li><p><strong>taxon_id1</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.8)"><em>int</em></a>) – taxonomic identifier of first taxon</p></li>
-<li><p><strong>taxon_id2</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.8)"><em>int</em></a>) – taxonomic identifier of second taxon</p></li>
+<li><p><strong>taxon_id1</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.9)"><em>int</em></a>) – taxonomic identifier of first taxon</p></li>
+<li><p><strong>taxon_id2</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.9)"><em>int</em></a>) – taxonomic identifier of second taxon</p></li>
 </ul>
 </dd>
 </dl>
@@ -886,17 +889,17 @@ steps it takes to traverse the taxonomy until their last common ancestor.</p>
 </dl>
 </dd></dl>
 
-<dl class="function">
+<dl class="py function">
 <dt id="mgkit.taxon.get_ancestor_map">
-<code class="sig-prename descclassname">mgkit.taxon.</code><code class="sig-name descname">get_ancestor_map</code><span class="sig-paren">(</span><em class="sig-param">leaf_ids</em>, <em class="sig-param">anc_ids</em>, <em class="sig-param">taxonomy</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/mgkit/taxon.html#get_ancestor_map"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#mgkit.taxon.get_ancestor_map" title="Permalink to this definition">¶</a></dt>
+<code class="sig-prename descclassname">mgkit.taxon.</code><code class="sig-name descname">get_ancestor_map</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">leaf_ids</span></em>, <em class="sig-param"><span class="n">anc_ids</span></em>, <em class="sig-param"><span class="n">taxonomy</span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/mgkit/taxon.html#get_ancestor_map"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#mgkit.taxon.get_ancestor_map" title="Permalink to this definition">¶</a></dt>
 <dd><p>This function returns a dictionary where every leaf taxon is associated
 with the right ancestors in anc_ids</p>
 <p>ex. {clostridium: [bacteria, clostridia]}</p>
 </dd></dl>
 
-<dl class="function">
+<dl class="py function">
 <dt id="mgkit.taxon.get_lineage">
-<code class="sig-prename descclassname">mgkit.taxon.</code><code class="sig-name descname">get_lineage</code><span class="sig-paren">(</span><em class="sig-param">taxonomy</em>, <em class="sig-param">taxon_id</em>, <em class="sig-param">names=False</em>, <em class="sig-param">only_ranked=False</em>, <em class="sig-param">with_last=False</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/mgkit/taxon.html#get_lineage"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#mgkit.taxon.get_lineage" title="Permalink to this definition">¶</a></dt>
+<code class="sig-prename descclassname">mgkit.taxon.</code><code class="sig-name descname">get_lineage</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">taxonomy</span></em>, <em class="sig-param"><span class="n">taxon_id</span></em>, <em class="sig-param"><span class="n">names</span><span class="o">=</span><span class="default_value">False</span></em>, <em class="sig-param"><span class="n">only_ranked</span><span class="o">=</span><span class="default_value">False</span></em>, <em class="sig-param"><span class="n">with_last</span><span class="o">=</span><span class="default_value">False</span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/mgkit/taxon.html#get_lineage"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#mgkit.taxon.get_lineage" title="Permalink to this definition">¶</a></dt>
 <dd><div class="versionadded">
 <p><span class="versionmodified added">New in version 0.2.1.</span></p>
 </div>
@@ -911,12 +914,12 @@ with the right ancestors in anc_ids</p>
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>taxonomy</strong> – a <a class="reference internal" href="#mgkit.taxon.Taxonomy" title="mgkit.taxon.Taxonomy"><code class="xref py py-class docutils literal notranslate"><span class="pre">Taxonomy</span></code></a> instance</p></li>
-<li><p><strong>taxon_id</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.8)"><em>int</em></a>) – taxon_id whose lineage to return</p></li>
-<li><p><strong>names</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.8)"><em>bool</em></a>) – if True, the returned list contains the names of the taxa
+<li><p><strong>taxon_id</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.9)"><em>int</em></a>) – taxon_id whose lineage to return</p></li>
+<li><p><strong>names</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.9)"><em>bool</em></a>) – if True, the returned list contains the names of the taxa
 instead of the taxon_id</p></li>
-<li><p><strong>only_ranked</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.8)"><em>bool</em></a>) – if True, only taxonomic levels whose rank is in
+<li><p><strong>only_ranked</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.9)"><em>bool</em></a>) – if True, only taxonomic levels whose rank is in
 data:<cite>TAXON_RANKS</cite> will be returned</p></li>
-<li><p><strong>with_last</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.8)"><em>bool</em></a>) – if True, the passed taxon_id is included in the
+<li><p><strong>with_last</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.9)"><em>bool</em></a>) – if True, the passed taxon_id is included in the
 lineage</p></li>
 </ul>
 </dd>
@@ -927,14 +930,14 @@ common name is used. If <em>only_ranked</em> is True, the returned list only
 contains ranked taxa (according to <a class="reference internal" href="#mgkit.taxon.TAXON_RANKS" title="mgkit.taxon.TAXON_RANKS"><code class="xref py py-data docutils literal notranslate"><span class="pre">TAXON_RANKS</span></code></a>).</p>
 </dd>
 <dt class="field-odd">Return type</dt>
-<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.8)">list</a></p>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.9)">list</a></p>
 </dd>
 </dl>
 </dd></dl>
 
-<dl class="function">
+<dl class="py function">
 <dt id="mgkit.taxon.is_ancestor">
-<code class="sig-prename descclassname">mgkit.taxon.</code><code class="sig-name descname">is_ancestor</code><span class="sig-paren">(</span><em class="sig-param">taxonomy</em>, <em class="sig-param">taxon_id</em>, <em class="sig-param">anc_id</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/mgkit/taxon.html#is_ancestor"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#mgkit.taxon.is_ancestor" title="Permalink to this definition">¶</a></dt>
+<code class="sig-prename descclassname">mgkit.taxon.</code><code class="sig-name descname">is_ancestor</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">taxonomy</span></em>, <em class="sig-param"><span class="n">taxon_id</span></em>, <em class="sig-param"><span class="n">anc_id</span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/mgkit/taxon.html#is_ancestor"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#mgkit.taxon.is_ancestor" title="Permalink to this definition">¶</a></dt>
 <dd><div class="versionchanged">
 <p><span class="versionmodified changed">Changed in version 0.1.16: </span>if a <em>taxon_id</em> raises a KeyError, False is returned</p>
 </div>
@@ -949,9 +952,9 @@ contains ranked taxa (according to <a class="reference internal" href="#mgkit.ta
 </dl>
 </dd></dl>
 
-<dl class="function">
+<dl class="py function">
 <dt id="mgkit.taxon.last_common_ancestor">
-<code class="sig-prename descclassname">mgkit.taxon.</code><code class="sig-name descname">last_common_ancestor</code><span class="sig-paren">(</span><em class="sig-param">taxonomy</em>, <em class="sig-param">taxon_id1</em>, <em class="sig-param">taxon_id2</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/mgkit/taxon.html#last_common_ancestor"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#mgkit.taxon.last_common_ancestor" title="Permalink to this definition">¶</a></dt>
+<code class="sig-prename descclassname">mgkit.taxon.</code><code class="sig-name descname">last_common_ancestor</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">taxonomy</span></em>, <em class="sig-param"><span class="n">taxon_id1</span></em>, <em class="sig-param"><span class="n">taxon_id2</span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/mgkit/taxon.html#last_common_ancestor"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#mgkit.taxon.last_common_ancestor" title="Permalink to this definition">¶</a></dt>
 <dd><div class="versionadded">
 <p><span class="versionmodified added">New in version 0.1.13.</span></p>
 </div>
@@ -961,8 +964,8 @@ is in the same module, called <em>lowest_common_ancestor</em> for compatibility.
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>taxonomy</strong> – <a class="reference internal" href="#mgkit.taxon.Taxonomy" title="mgkit.taxon.Taxonomy"><code class="xref py py-class docutils literal notranslate"><span class="pre">Taxonomy</span></code></a> instance used to test</p></li>
-<li><p><strong>taxon_id1</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.8)"><em>int</em></a>) – first taxon ID</p></li>
-<li><p><strong>taxon_id2</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.8)"><em>int</em></a>) – second taxon ID</p></li>
+<li><p><strong>taxon_id1</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.9)"><em>int</em></a>) – first taxon ID</p></li>
+<li><p><strong>taxon_id2</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.9)"><em>int</em></a>) – second taxon ID</p></li>
 </ul>
 </dd>
 </dl>
@@ -977,9 +980,9 @@ is in the same module, called <em>lowest_common_ancestor</em> for compatibility.
 </dl>
 </dd></dl>
 
-<dl class="function">
+<dl class="py function">
 <dt id="mgkit.taxon.last_common_ancestor_multiple">
-<code class="sig-prename descclassname">mgkit.taxon.</code><code class="sig-name descname">last_common_ancestor_multiple</code><span class="sig-paren">(</span><em class="sig-param">taxonomy</em>, <em class="sig-param">taxon_ids</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/mgkit/taxon.html#last_common_ancestor_multiple"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#mgkit.taxon.last_common_ancestor_multiple" title="Permalink to this definition">¶</a></dt>
+<code class="sig-prename descclassname">mgkit.taxon.</code><code class="sig-name descname">last_common_ancestor_multiple</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">taxonomy</span></em>, <em class="sig-param"><span class="n">taxon_ids</span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/mgkit/taxon.html#last_common_ancestor_multiple"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#mgkit.taxon.last_common_ancestor_multiple" title="Permalink to this definition">¶</a></dt>
 <dd><div class="versionadded">
 <p><span class="versionmodified added">New in version 0.2.5.</span></p>
 </div>
@@ -998,7 +1001,7 @@ while removing any <em>None</em> values. If the list is of one element, that
 passed</p>
 </dd>
 <dt class="field-odd">Return type</dt>
-<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.8)">int</a></p>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.9)">int</a></p>
 </dd>
 <dt class="field-even">Raises</dt>
 <dd class="field-even"><ul class="simple">
@@ -1009,9 +1012,9 @@ passed</p>
 </dl>
 </dd></dl>
 
-<dl class="function">
+<dl class="py function">
 <dt id="mgkit.taxon.lowest_common_ancestor">
-<code class="sig-prename descclassname">mgkit.taxon.</code><code class="sig-name descname">lowest_common_ancestor</code><span class="sig-paren">(</span><em class="sig-param">taxonomy</em>, <em class="sig-param">taxon_id1</em>, <em class="sig-param">taxon_id2</em><span class="sig-paren">)</span><a class="headerlink" href="#mgkit.taxon.lowest_common_ancestor" title="Permalink to this definition">¶</a></dt>
+<code class="sig-prename descclassname">mgkit.taxon.</code><code class="sig-name descname">lowest_common_ancestor</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">taxonomy</span></em>, <em class="sig-param"><span class="n">taxon_id1</span></em>, <em class="sig-param"><span class="n">taxon_id2</span></em><span class="sig-paren">)</span><a class="headerlink" href="#mgkit.taxon.lowest_common_ancestor" title="Permalink to this definition">¶</a></dt>
 <dd><div class="versionadded">
 <p><span class="versionmodified added">New in version 0.1.13.</span></p>
 </div>
@@ -1021,8 +1024,8 @@ is in the same module, called <em>lowest_common_ancestor</em> for compatibility.
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>taxonomy</strong> – <a class="reference internal" href="#mgkit.taxon.Taxonomy" title="mgkit.taxon.Taxonomy"><code class="xref py py-class docutils literal notranslate"><span class="pre">Taxonomy</span></code></a> instance used to test</p></li>
-<li><p><strong>taxon_id1</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.8)"><em>int</em></a>) – first taxon ID</p></li>
-<li><p><strong>taxon_id2</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.8)"><em>int</em></a>) – second taxon ID</p></li>
+<li><p><strong>taxon_id1</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.9)"><em>int</em></a>) – first taxon ID</p></li>
+<li><p><strong>taxon_id2</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.9)"><em>int</em></a>) – second taxon ID</p></li>
 </ul>
 </dd>
 </dl>
@@ -1037,9 +1040,9 @@ is in the same module, called <em>lowest_common_ancestor</em> for compatibility.
 </dl>
 </dd></dl>
 
-<dl class="function">
+<dl class="py function">
 <dt id="mgkit.taxon.parse_ncbi_taxonomy_merged_file">
-<code class="sig-prename descclassname">mgkit.taxon.</code><code class="sig-name descname">parse_ncbi_taxonomy_merged_file</code><span class="sig-paren">(</span><em class="sig-param">file_handle</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/mgkit/taxon.html#parse_ncbi_taxonomy_merged_file"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#mgkit.taxon.parse_ncbi_taxonomy_merged_file" title="Permalink to this definition">¶</a></dt>
+<code class="sig-prename descclassname">mgkit.taxon.</code><code class="sig-name descname">parse_ncbi_taxonomy_merged_file</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">file_handle</span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/mgkit/taxon.html#parse_ncbi_taxonomy_merged_file"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#mgkit.taxon.parse_ncbi_taxonomy_merged_file" title="Permalink to this definition">¶</a></dt>
 <dd><div class="versionadded">
 <p><span class="versionmodified added">New in version 0.2.3.</span></p>
 </div>
@@ -1047,20 +1050,20 @@ is in the same module, called <em>lowest_common_ancestor</em> for compatibility.
 at <a class="reference external" href="ftp://ftp.ncbi.nlm.nih.gov/pub/taxonomy/">ftp://ftp.ncbi.nlm.nih.gov/pub/taxonomy/</a></p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><p><strong>file_handle</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.8)"><em>str</em></a><em>, </em><em>file</em>) – file name or handle to the file</p>
+<dd class="field-odd"><p><strong>file_handle</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)"><em>str</em></a><em>, </em><em>file</em>) – file name or handle to the file</p>
 </dd>
 <dt class="field-even">Returns</dt>
 <dd class="field-even"><p>dictionary with merged_id -&gt; taxon_id</p>
 </dd>
 <dt class="field-odd">Return type</dt>
-<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.8)">dict</a></p>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.9)">dict</a></p>
 </dd>
 </dl>
 </dd></dl>
 
-<dl class="function">
+<dl class="py function">
 <dt id="mgkit.taxon.parse_ncbi_taxonomy_names_file">
-<code class="sig-prename descclassname">mgkit.taxon.</code><code class="sig-name descname">parse_ncbi_taxonomy_names_file</code><span class="sig-paren">(</span><em class="sig-param">file_handle</em>, <em class="sig-param">name_classes=('scientific name'</em>, <em class="sig-param">'common name')</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/mgkit/taxon.html#parse_ncbi_taxonomy_names_file"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#mgkit.taxon.parse_ncbi_taxonomy_names_file" title="Permalink to this definition">¶</a></dt>
+<code class="sig-prename descclassname">mgkit.taxon.</code><code class="sig-name descname">parse_ncbi_taxonomy_names_file</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">file_handle</span></em>, <em class="sig-param"><span class="n">name_classes</span><span class="o">=</span><span class="default_value">'scientific name', 'common name'</span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/mgkit/taxon.html#parse_ncbi_taxonomy_names_file"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#mgkit.taxon.parse_ncbi_taxonomy_names_file" title="Permalink to this definition">¶</a></dt>
 <dd><div class="versionadded">
 <p><span class="versionmodified added">New in version 0.2.3.</span></p>
 </div>
@@ -1069,8 +1072,8 @@ stored. Available at <a class="reference external" href="ftp://ftp.ncbi.nlm.nih.
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>file_handle</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.8)"><em>str</em></a><em>, </em><em>file</em>) – file name or handle to the file</p></li>
-<li><p><strong>name_classes</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#tuple" title="(in Python v3.8)"><em>tuple</em></a>) – name classes to save, only the scientific and
+<li><p><strong>file_handle</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)"><em>str</em></a><em>, </em><em>file</em>) – file name or handle to the file</p></li>
+<li><p><strong>name_classes</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#tuple" title="(in Python v3.9)"><em>tuple</em></a>) – name classes to save, only the scientific and
 common name are stored</p></li>
 </ul>
 </dd>
@@ -1078,14 +1081,14 @@ common name are stored</p></li>
 <dd class="field-even"><p>dictionary with merged_id -&gt; taxon_id</p>
 </dd>
 <dt class="field-odd">Return type</dt>
-<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.8)">dict</a></p>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.9)">dict</a></p>
 </dd>
 </dl>
 </dd></dl>
 
-<dl class="function">
+<dl class="py function">
 <dt id="mgkit.taxon.parse_ncbi_taxonomy_nodes_file">
-<code class="sig-prename descclassname">mgkit.taxon.</code><code class="sig-name descname">parse_ncbi_taxonomy_nodes_file</code><span class="sig-paren">(</span><em class="sig-param">file_handle</em>, <em class="sig-param">taxa_names=None</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/mgkit/taxon.html#parse_ncbi_taxonomy_nodes_file"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#mgkit.taxon.parse_ncbi_taxonomy_nodes_file" title="Permalink to this definition">¶</a></dt>
+<code class="sig-prename descclassname">mgkit.taxon.</code><code class="sig-name descname">parse_ncbi_taxonomy_nodes_file</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">file_handle</span></em>, <em class="sig-param"><span class="n">taxa_names</span><span class="o">=</span><span class="default_value">None</span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/mgkit/taxon.html#parse_ncbi_taxonomy_nodes_file"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#mgkit.taxon.parse_ncbi_taxonomy_nodes_file" title="Permalink to this definition">¶</a></dt>
 <dd><div class="versionadded">
 <p><span class="versionmodified added">New in version 0.2.3.</span></p>
 </div>
@@ -1094,8 +1097,8 @@ Available at <a class="reference external" href="ftp://ftp.ncbi.nlm.nih.gov/pub/
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>file_handle</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.8)"><em>str</em></a><em>, </em><em>file</em>) – file name or handle to the file</p></li>
-<li><p><strong>taxa_names</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.8)"><em>dict</em></a>) – dictionary with the taxa names (returned from
+<li><p><strong>file_handle</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)"><em>str</em></a><em>, </em><em>file</em>) – file name or handle to the file</p></li>
+<li><p><strong>taxa_names</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.9)"><em>dict</em></a>) – dictionary with the taxa names (returned from
 <a class="reference internal" href="#mgkit.taxon.parse_ncbi_taxonomy_names_file" title="mgkit.taxon.parse_ncbi_taxonomy_names_file"><code class="xref py py-func docutils literal notranslate"><span class="pre">parse_ncbi_taxonomy_names_file()</span></code></a>)</p></li>
 </ul>
 </dd>
@@ -1105,9 +1108,9 @@ Available at <a class="reference external" href="ftp://ftp.ncbi.nlm.nih.gov/pub/
 </dl>
 </dd></dl>
 
-<dl class="function">
+<dl class="py function">
 <dt id="mgkit.taxon.parse_uniprot_taxon">
-<code class="sig-prename descclassname">mgkit.taxon.</code><code class="sig-name descname">parse_uniprot_taxon</code><span class="sig-paren">(</span><em class="sig-param">line</em>, <em class="sig-param">light=True</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/mgkit/taxon.html#parse_uniprot_taxon"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#mgkit.taxon.parse_uniprot_taxon" title="Permalink to this definition">¶</a></dt>
+<code class="sig-prename descclassname">mgkit.taxon.</code><code class="sig-name descname">parse_uniprot_taxon</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">line</span></em>, <em class="sig-param"><span class="n">light</span><span class="o">=</span><span class="default_value">True</span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/mgkit/taxon.html#parse_uniprot_taxon"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#mgkit.taxon.parse_uniprot_taxon" title="Permalink to this definition">¶</a></dt>
 <dd><div class="versionchanged">
 <p><span class="versionmodified changed">Changed in version 0.1.13: </span>now accepts empty scientific names, for root taxa</p>
 </div>
@@ -1122,9 +1125,9 @@ UniprotTaxonTuple instance. If <em>light</em> is True, lineage is not stored to
 decrease the memory usage. This is now the default.</p>
 </dd></dl>
 
-<dl class="function">
+<dl class="py function">
 <dt id="mgkit.taxon.taxa_distance_matrix">
-<code class="sig-prename descclassname">mgkit.taxon.</code><code class="sig-name descname">taxa_distance_matrix</code><span class="sig-paren">(</span><em class="sig-param">taxonomy</em>, <em class="sig-param">taxon_ids</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/mgkit/taxon.html#taxa_distance_matrix"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#mgkit.taxon.taxa_distance_matrix" title="Permalink to this definition">¶</a></dt>
+<code class="sig-prename descclassname">mgkit.taxon.</code><code class="sig-name descname">taxa_distance_matrix</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">taxonomy</span></em>, <em class="sig-param"><span class="n">taxon_ids</span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/mgkit/taxon.html#taxa_distance_matrix"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#mgkit.taxon.taxa_distance_matrix" title="Permalink to this definition">¶</a></dt>
 <dd><div class="versionadded">
 <p><span class="versionmodified added">New in version 0.1.16.</span></p>
 </div>
@@ -1169,11 +1172,19 @@ two element combinations of <em>taxon_ids</em>.</p>
 
   <div role="contentinfo">
     <p>
-        &copy; Copyright 2013-2015, Francesco Rubino
+        
+        &copy; Copyright 2013-2020, Francesco Rubino
 
     </p>
   </div>
-  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+    
+    
+    
+    Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a
+    
+    <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a>
+    
+    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
 
 </footer>
 
@@ -1184,7 +1195,6 @@ two element combinations of <em>taxon_ids</em>.</p>
 
   </div>
   
-
 
   <script type="text/javascript">
       jQuery(function () {

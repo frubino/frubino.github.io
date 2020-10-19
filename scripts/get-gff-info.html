@@ -1,42 +1,43 @@
 
 
 <!DOCTYPE html>
-<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
-<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<html class="writer-html5" lang="en" >
 <head>
   <meta charset="utf-8">
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>get-gff-info - Extract informations to GFF annotations &mdash; MGKit: Metagenomic framework 0.5.1 documentation</title>
+  <title>get-gff-info - Extract informations to GFF annotations &mdash; MGKit: Metagenomic framework 0.5.3 documentation</title>
   
-
-  
-  
-  
-  
-
-  
-  <script type="text/javascript" src="../_static/js/modernizr.min.js"></script>
-  
-    
-      <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
-        <script type="text/javascript" src="../_static/jquery.js"></script>
-        <script type="text/javascript" src="../_static/underscore.js"></script>
-        <script type="text/javascript" src="../_static/doctools.js"></script>
-        <script type="text/javascript" src="../_static/language_data.js"></script>
-        <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
-        <script async="async" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
-        <script type="text/x-mathjax-config">MathJax.Hub.Config({"tex2jax": {"inlineMath": [["$", "$"], ["\\(", "\\)"]], "processEscapes": true, "ignoreClass": "document", "processClass": "math|output_area"}})</script>
-    
-    <script type="text/javascript" src="../_static/js/theme.js"></script>
-
-    
 
   
   <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
   <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
   <link rel="stylesheet" href="../_static/graphviz.css" type="text/css" />
+
+  
+  
+  
+  
+
+  
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/underscore.js"></script>
+        <script src="../_static/doctools.js"></script>
+        <script src="../_static/language_data.js"></script>
+        <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+        <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+        <script type="text/x-mathjax-config">MathJax.Hub.Config({"tex2jax": {"inlineMath": [["$", "$"], ["\\(", "\\)"]], "processEscapes": true, "ignoreClass": "document", "processClass": "math|output_area"}})</script>
+    
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+
+    
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
     <link rel="next" title="hmmer2gff - Convert HMMER output to GFF" href="hmmer2gff.html" />
@@ -54,7 +55,7 @@
           
 
           
-            <a href="../index.html" class="icon icon-home"> MGKit: Metagenomic framework
+            <a href="../index.html" class="icon icon-home" alt="Documentation Home"> MGKit: Metagenomic framework
           
 
           
@@ -64,7 +65,7 @@
             
             
               <div class="version">
-                0.5.1
+                0.5.3
               </div>
             
           
@@ -81,6 +82,7 @@
           
         </div>
 
+        
         <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
           
             
@@ -135,6 +137,7 @@
             
           
         </div>
+        
       </div>
     </nav>
 
@@ -173,7 +176,7 @@
 
   <ul class="wy-breadcrumbs">
     
-      <li><a href="../index.html">Docs</a> &raquo;</li>
+      <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
         
           <li><a href="index.html">Scripts Details</a> &raquo;</li>
         
@@ -312,13 +315,13 @@ specific, or <cite>sort -s -k 1,1</cite> if not strand specific.</p>
 </pre></div>
 </div>
 <p class="rubric">Options</p>
-<dl class="option">
+<dl class="std option">
 <dt id="cmdoption-get-gff-info-version">
 <code class="sig-name descname">--version</code><code class="sig-prename descclassname"></code><a class="headerlink" href="#cmdoption-get-gff-info-version" title="Permalink to this definition">¶</a></dt>
 <dd><p>Show the version and exit.</p>
 </dd></dl>
 
-<dl class="option">
+<dl class="std option">
 <dt id="cmdoption-get-gff-info-cite">
 <code class="sig-name descname">--cite</code><code class="sig-prename descclassname"></code><a class="headerlink" href="#cmdoption-get-gff-info-cite" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
@@ -331,51 +334,51 @@ by annotations in [gff-file]</p>
 </pre></div>
 </div>
 <p class="rubric">Options</p>
-<dl class="option">
+<dl class="std option">
 <dt id="cmdoption-get-gff-info-cov-v">
 <code class="sig-name descname">-v</code><code class="sig-prename descclassname"></code><code class="sig-prename descclassname">, </code><code class="sig-name descname">--verbose</code><code class="sig-prename descclassname"></code><a class="headerlink" href="#cmdoption-get-gff-info-cov-v" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
-<dl class="option">
+<dl class="std option">
 <dt id="cmdoption-get-gff-info-cov-f">
 <code class="sig-name descname">-f</code><code class="sig-prename descclassname"></code><code class="sig-prename descclassname">, </code><code class="sig-name descname">--reference</code><code class="sig-prename descclassname"> &lt;reference&gt;</code><a class="headerlink" href="#cmdoption-get-gff-info-cov-f" title="Permalink to this definition">¶</a></dt>
-<dd><p>Reference FASTA file for the GFF  [required]</p>
+<dd><p><strong>Required</strong> Reference FASTA file for the GFF</p>
 </dd></dl>
 
-<dl class="option">
+<dl class="std option">
 <dt id="cmdoption-get-gff-info-cov-j">
 <code class="sig-name descname">-j</code><code class="sig-prename descclassname"></code><code class="sig-prename descclassname">, </code><code class="sig-name descname">--json-out</code><code class="sig-prename descclassname"></code><a class="headerlink" href="#cmdoption-get-gff-info-cov-j" title="Permalink to this definition">¶</a></dt>
 <dd><p>The output will be a JSON dictionary</p>
 </dd></dl>
 
-<dl class="option">
+<dl class="std option">
 <dt id="cmdoption-get-gff-info-cov-s">
 <code class="sig-name descname">-s</code><code class="sig-prename descclassname"></code><code class="sig-prename descclassname">, </code><code class="sig-name descname">--strand-specific</code><code class="sig-prename descclassname"></code><a class="headerlink" href="#cmdoption-get-gff-info-cov-s" title="Permalink to this definition">¶</a></dt>
 <dd><p>If the coverage must be calculated on each strand</p>
 </dd></dl>
 
-<dl class="option">
+<dl class="std option">
 <dt id="cmdoption-get-gff-info-cov-r">
 <code class="sig-name descname">-r</code><code class="sig-prename descclassname"></code><code class="sig-prename descclassname">, </code><code class="sig-name descname">--rename</code><code class="sig-prename descclassname"></code><a class="headerlink" href="#cmdoption-get-gff-info-cov-r" title="Permalink to this definition">¶</a></dt>
 <dd><p>Emulate BLAST output (use only the header part before the first space)</p>
 </dd></dl>
 
-<dl class="option">
+<dl class="std option">
 <dt id="cmdoption-get-gff-info-cov-progress">
 <code class="sig-name descname">--progress</code><code class="sig-prename descclassname"></code><a class="headerlink" href="#cmdoption-get-gff-info-cov-progress" title="Permalink to this definition">¶</a></dt>
 <dd><p>Shows Progress Bar</p>
 </dd></dl>
 
 <p class="rubric">Arguments</p>
-<dl class="option">
-<dt id="cmdoption-get-gff-info-cov-arg-gff-file">
-<code class="sig-name descname">GFF_FILE</code><code class="sig-prename descclassname"></code><a class="headerlink" href="#cmdoption-get-gff-info-cov-arg-gff-file" title="Permalink to this definition">¶</a></dt>
+<dl class="std option">
+<dt id="cmdoption-get-gff-info-cov-arg-GFF_FILE">
+<code class="sig-name descname">GFF_FILE</code><code class="sig-prename descclassname"></code><a class="headerlink" href="#cmdoption-get-gff-info-cov-arg-GFF_FILE" title="Permalink to this definition">¶</a></dt>
 <dd><p>Optional argument</p>
 </dd></dl>
 
-<dl class="option">
-<dt id="cmdoption-get-gff-info-cov-arg-output-file">
-<code class="sig-name descname">OUTPUT_FILE</code><code class="sig-prename descclassname"></code><a class="headerlink" href="#cmdoption-get-gff-info-cov-arg-output-file" title="Permalink to this definition">¶</a></dt>
+<dl class="std option">
+<dt id="cmdoption-get-gff-info-cov-arg-OUTPUT_FILE">
+<code class="sig-name descname">OUTPUT_FILE</code><code class="sig-prename descclassname"></code><a class="headerlink" href="#cmdoption-get-gff-info-cov-arg-OUTPUT_FILE" title="Permalink to this definition">¶</a></dt>
 <dd><p>Optional argument</p>
 </dd></dl>
 
@@ -388,21 +391,26 @@ by annotations in [gff-file]</p>
 </pre></div>
 </div>
 <p class="rubric">Options</p>
-<dl class="option">
+<dl class="std option">
 <dt id="cmdoption-get-gff-info-dbm-v">
 <code class="sig-name descname">-v</code><code class="sig-prename descclassname"></code><code class="sig-prename descclassname">, </code><code class="sig-name descname">--verbose</code><code class="sig-prename descclassname"></code><a class="headerlink" href="#cmdoption-get-gff-info-dbm-v" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
-<dl class="option">
+<dl class="std option">
 <dt id="cmdoption-get-gff-info-dbm-d">
 <code class="sig-name descname">-d</code><code class="sig-prename descclassname"></code><code class="sig-prename descclassname">, </code><code class="sig-name descname">--output-dir</code><code class="sig-prename descclassname"> &lt;output_dir&gt;</code><a class="headerlink" href="#cmdoption-get-gff-info-dbm-d" title="Permalink to this definition">¶</a></dt>
-<dd><p>Directory for the database  [default: gff-dbm]</p>
+<dd><p>Directory for the database</p>
+<dl class="field-list simple">
+<dt class="field-odd">Default</dt>
+<dd class="field-odd"><p>gff-dbm</p>
+</dd>
+</dl>
 </dd></dl>
 
 <p class="rubric">Arguments</p>
-<dl class="option">
-<dt id="cmdoption-get-gff-info-dbm-arg-gff-file">
-<code class="sig-name descname">GFF_FILE</code><code class="sig-prename descclassname"></code><a class="headerlink" href="#cmdoption-get-gff-info-dbm-arg-gff-file" title="Permalink to this definition">¶</a></dt>
+<dl class="std option">
+<dt id="cmdoption-get-gff-info-dbm-arg-GFF_FILE">
+<code class="sig-name descname">GFF_FILE</code><code class="sig-prename descclassname"></code><a class="headerlink" href="#cmdoption-get-gff-info-dbm-arg-GFF_FILE" title="Permalink to this definition">¶</a></dt>
 <dd><p>Optional argument</p>
 </dd></dl>
 
@@ -415,27 +423,32 @@ a GTF file [gtf-file]</p>
 </pre></div>
 </div>
 <p class="rubric">Options</p>
-<dl class="option">
+<dl class="std option">
 <dt id="cmdoption-get-gff-info-gtf-v">
 <code class="sig-name descname">-v</code><code class="sig-prename descclassname"></code><code class="sig-prename descclassname">, </code><code class="sig-name descname">--verbose</code><code class="sig-prename descclassname"></code><a class="headerlink" href="#cmdoption-get-gff-info-gtf-v" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
-<dl class="option">
+<dl class="std option">
 <dt id="cmdoption-get-gff-info-gtf-g">
 <code class="sig-name descname">-g</code><code class="sig-prename descclassname"></code><code class="sig-prename descclassname">, </code><code class="sig-name descname">--gene-id</code><code class="sig-prename descclassname"> &lt;gene_id&gt;</code><a class="headerlink" href="#cmdoption-get-gff-info-gtf-g" title="Permalink to this definition">¶</a></dt>
-<dd><p>GFF attribute to use for the GTF <em>gene_id</em> attribute  [default: gene_id]</p>
+<dd><p>GFF attribute to use for the GTF <em>gene_id</em> attribute</p>
+<dl class="field-list simple">
+<dt class="field-odd">Default</dt>
+<dd class="field-odd"><p>gene_id</p>
+</dd>
+</dl>
 </dd></dl>
 
 <p class="rubric">Arguments</p>
-<dl class="option">
-<dt id="cmdoption-get-gff-info-gtf-arg-gff-file">
-<code class="sig-name descname">GFF_FILE</code><code class="sig-prename descclassname"></code><a class="headerlink" href="#cmdoption-get-gff-info-gtf-arg-gff-file" title="Permalink to this definition">¶</a></dt>
+<dl class="std option">
+<dt id="cmdoption-get-gff-info-gtf-arg-GFF_FILE">
+<code class="sig-name descname">GFF_FILE</code><code class="sig-prename descclassname"></code><a class="headerlink" href="#cmdoption-get-gff-info-gtf-arg-GFF_FILE" title="Permalink to this definition">¶</a></dt>
 <dd><p>Optional argument</p>
 </dd></dl>
 
-<dl class="option">
-<dt id="cmdoption-get-gff-info-gtf-arg-gtf-file">
-<code class="sig-name descname">GTF_FILE</code><code class="sig-prename descclassname"></code><a class="headerlink" href="#cmdoption-get-gff-info-gtf-arg-gtf-file" title="Permalink to this definition">¶</a></dt>
+<dl class="std option">
+<dt id="cmdoption-get-gff-info-gtf-arg-GTF_FILE">
+<code class="sig-name descname">GTF_FILE</code><code class="sig-prename descclassname"></code><a class="headerlink" href="#cmdoption-get-gff-info-gtf-arg-GTF_FILE" title="Permalink to this definition">¶</a></dt>
 <dd><p>Optional argument</p>
 </dd></dl>
 
@@ -448,45 +461,45 @@ and makes output for MongoDB [output-file]</p>
 </pre></div>
 </div>
 <p class="rubric">Options</p>
-<dl class="option">
+<dl class="std option">
 <dt id="cmdoption-get-gff-info-mongodb-v">
 <code class="sig-name descname">-v</code><code class="sig-prename descclassname"></code><code class="sig-prename descclassname">, </code><code class="sig-name descname">--verbose</code><code class="sig-prename descclassname"></code><a class="headerlink" href="#cmdoption-get-gff-info-mongodb-v" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
-<dl class="option">
+<dl class="std option">
 <dt id="cmdoption-get-gff-info-mongodb-t">
 <code class="sig-name descname">-t</code><code class="sig-prename descclassname"></code><code class="sig-prename descclassname">, </code><code class="sig-name descname">--taxonomy</code><code class="sig-prename descclassname"> &lt;taxonomy&gt;</code><a class="headerlink" href="#cmdoption-get-gff-info-mongodb-t" title="Permalink to this definition">¶</a></dt>
 <dd><p>Taxonomy used to populate the lineage</p>
 </dd></dl>
 
-<dl class="option">
+<dl class="std option">
 <dt id="cmdoption-get-gff-info-mongodb-c">
 <code class="sig-name descname">-c</code><code class="sig-prename descclassname"></code><code class="sig-prename descclassname">, </code><code class="sig-name descname">--no-cache</code><code class="sig-prename descclassname"></code><a class="headerlink" href="#cmdoption-get-gff-info-mongodb-c" title="Permalink to this definition">¶</a></dt>
 <dd><p>No cache for the lineage function</p>
 </dd></dl>
 
-<dl class="option">
+<dl class="std option">
 <dt id="cmdoption-get-gff-info-mongodb-i">
 <code class="sig-name descname">-i</code><code class="sig-prename descclassname"></code><code class="sig-prename descclassname">, </code><code class="sig-name descname">--indent</code><code class="sig-prename descclassname"> &lt;indent&gt;</code><a class="headerlink" href="#cmdoption-get-gff-info-mongodb-i" title="Permalink to this definition">¶</a></dt>
 <dd><p>If used, the json will be written in a human readble form</p>
 </dd></dl>
 
-<dl class="option">
+<dl class="std option">
 <dt id="cmdoption-get-gff-info-mongodb-progress">
 <code class="sig-name descname">--progress</code><code class="sig-prename descclassname"></code><a class="headerlink" href="#cmdoption-get-gff-info-mongodb-progress" title="Permalink to this definition">¶</a></dt>
 <dd><p>Shows Progress Bar</p>
 </dd></dl>
 
 <p class="rubric">Arguments</p>
-<dl class="option">
-<dt id="cmdoption-get-gff-info-mongodb-arg-gff-file">
-<code class="sig-name descname">GFF_FILE</code><code class="sig-prename descclassname"></code><a class="headerlink" href="#cmdoption-get-gff-info-mongodb-arg-gff-file" title="Permalink to this definition">¶</a></dt>
+<dl class="std option">
+<dt id="cmdoption-get-gff-info-mongodb-arg-GFF_FILE">
+<code class="sig-name descname">GFF_FILE</code><code class="sig-prename descclassname"></code><a class="headerlink" href="#cmdoption-get-gff-info-mongodb-arg-GFF_FILE" title="Permalink to this definition">¶</a></dt>
 <dd><p>Optional argument</p>
 </dd></dl>
 
-<dl class="option">
-<dt id="cmdoption-get-gff-info-mongodb-arg-output-file">
-<code class="sig-name descname">OUTPUT_FILE</code><code class="sig-prename descclassname"></code><a class="headerlink" href="#cmdoption-get-gff-info-mongodb-arg-output-file" title="Permalink to this definition">¶</a></dt>
+<dl class="std option">
+<dt id="cmdoption-get-gff-info-mongodb-arg-OUTPUT_FILE">
+<code class="sig-name descname">OUTPUT_FILE</code><code class="sig-prename descclassname"></code><a class="headerlink" href="#cmdoption-get-gff-info-mongodb-arg-OUTPUT_FILE" title="Permalink to this definition">¶</a></dt>
 <dd><p>Optional argument</p>
 </dd></dl>
 
@@ -499,51 +512,51 @@ annotations from [gff-file] to [fasta-file]</p>
 </pre></div>
 </div>
 <p class="rubric">Options</p>
-<dl class="option">
+<dl class="std option">
 <dt id="cmdoption-get-gff-info-sequence-v">
 <code class="sig-name descname">-v</code><code class="sig-prename descclassname"></code><code class="sig-prename descclassname">, </code><code class="sig-name descname">--verbose</code><code class="sig-prename descclassname"></code><a class="headerlink" href="#cmdoption-get-gff-info-sequence-v" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
-<dl class="option">
+<dl class="std option">
 <dt id="cmdoption-get-gff-info-sequence-r">
 <code class="sig-name descname">-r</code><code class="sig-prename descclassname"></code><code class="sig-prename descclassname">, </code><code class="sig-name descname">--reverse</code><code class="sig-prename descclassname"></code><a class="headerlink" href="#cmdoption-get-gff-info-sequence-r" title="Permalink to this definition">¶</a></dt>
 <dd><p>Reverse complement sequences on the - strand</p>
 </dd></dl>
 
-<dl class="option">
+<dl class="std option">
 <dt id="cmdoption-get-gff-info-sequence-w">
 <code class="sig-name descname">-w</code><code class="sig-prename descclassname"></code><code class="sig-prename descclassname">, </code><code class="sig-name descname">--no-wrap</code><code class="sig-prename descclassname"></code><a class="headerlink" href="#cmdoption-get-gff-info-sequence-w" title="Permalink to this definition">¶</a></dt>
 <dd><p>Write the sequences on one line</p>
 </dd></dl>
 
-<dl class="option">
+<dl class="std option">
 <dt id="cmdoption-get-gff-info-sequence-s">
 <code class="sig-name descname">-s</code><code class="sig-prename descclassname"></code><code class="sig-prename descclassname">, </code><code class="sig-name descname">--split</code><code class="sig-prename descclassname"></code><a class="headerlink" href="#cmdoption-get-gff-info-sequence-s" title="Permalink to this definition">¶</a></dt>
 <dd><p>Split the sequence header of the reference at the first space, to emulate BLAST behaviour</p>
 </dd></dl>
 
-<dl class="option">
+<dl class="std option">
 <dt id="cmdoption-get-gff-info-sequence-f">
 <code class="sig-name descname">-f</code><code class="sig-prename descclassname"></code><code class="sig-prename descclassname">, </code><code class="sig-name descname">--reference</code><code class="sig-prename descclassname"> &lt;reference&gt;</code><a class="headerlink" href="#cmdoption-get-gff-info-sequence-f" title="Permalink to this definition">¶</a></dt>
 <dd><p>Fasta file containing the reference sequences of the GFF file</p>
 </dd></dl>
 
-<dl class="option">
+<dl class="std option">
 <dt id="cmdoption-get-gff-info-sequence-progress">
 <code class="sig-name descname">--progress</code><code class="sig-prename descclassname"></code><a class="headerlink" href="#cmdoption-get-gff-info-sequence-progress" title="Permalink to this definition">¶</a></dt>
 <dd><p>Shows Progress Bar</p>
 </dd></dl>
 
 <p class="rubric">Arguments</p>
-<dl class="option">
-<dt id="cmdoption-get-gff-info-sequence-arg-gff-file">
-<code class="sig-name descname">GFF_FILE</code><code class="sig-prename descclassname"></code><a class="headerlink" href="#cmdoption-get-gff-info-sequence-arg-gff-file" title="Permalink to this definition">¶</a></dt>
+<dl class="std option">
+<dt id="cmdoption-get-gff-info-sequence-arg-GFF_FILE">
+<code class="sig-name descname">GFF_FILE</code><code class="sig-prename descclassname"></code><a class="headerlink" href="#cmdoption-get-gff-info-sequence-arg-GFF_FILE" title="Permalink to this definition">¶</a></dt>
 <dd><p>Optional argument</p>
 </dd></dl>
 
-<dl class="option">
-<dt id="cmdoption-get-gff-info-sequence-arg-fasta-file">
-<code class="sig-name descname">FASTA_FILE</code><code class="sig-prename descclassname"></code><a class="headerlink" href="#cmdoption-get-gff-info-sequence-arg-fasta-file" title="Permalink to this definition">¶</a></dt>
+<dl class="std option">
+<dt id="cmdoption-get-gff-info-sequence-arg-FASTA_FILE">
+<code class="sig-name descname">FASTA_FILE</code><code class="sig-prename descclassname"></code><a class="headerlink" href="#cmdoption-get-gff-info-sequence-arg-FASTA_FILE" title="Permalink to this definition">¶</a></dt>
 <dd><p>Optional argument</p>
 </dd></dl>
 
@@ -556,33 +569,43 @@ several files starting with [prefix]</p>
 </pre></div>
 </div>
 <p class="rubric">Options</p>
-<dl class="option">
+<dl class="std option">
 <dt id="cmdoption-get-gff-info-split-v">
 <code class="sig-name descname">-v</code><code class="sig-prename descclassname"></code><code class="sig-prename descclassname">, </code><code class="sig-name descname">--verbose</code><code class="sig-prename descclassname"></code><a class="headerlink" href="#cmdoption-get-gff-info-split-v" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
-<dl class="option">
+<dl class="std option">
 <dt id="cmdoption-get-gff-info-split-p">
 <code class="sig-name descname">-p</code><code class="sig-prename descclassname"></code><code class="sig-prename descclassname">, </code><code class="sig-name descname">--prefix</code><code class="sig-prename descclassname"> &lt;prefix&gt;</code><a class="headerlink" href="#cmdoption-get-gff-info-split-p" title="Permalink to this definition">¶</a></dt>
-<dd><p>Prefix for the file name in output  [default: split]</p>
+<dd><p>Prefix for the file name in output</p>
+<dl class="field-list simple">
+<dt class="field-odd">Default</dt>
+<dd class="field-odd"><p>split</p>
+</dd>
+</dl>
 </dd></dl>
 
-<dl class="option">
+<dl class="std option">
 <dt id="cmdoption-get-gff-info-split-n">
 <code class="sig-name descname">-n</code><code class="sig-prename descclassname"></code><code class="sig-prename descclassname">, </code><code class="sig-name descname">--number</code><code class="sig-prename descclassname"> &lt;number&gt;</code><a class="headerlink" href="#cmdoption-get-gff-info-split-n" title="Permalink to this definition">¶</a></dt>
-<dd><p>Number of chunks into which split the GFF file  [default: 10]</p>
+<dd><p>Number of chunks into which split the GFF file</p>
+<dl class="field-list simple">
+<dt class="field-odd">Default</dt>
+<dd class="field-odd"><p>10</p>
+</dd>
+</dl>
 </dd></dl>
 
-<dl class="option">
+<dl class="std option">
 <dt id="cmdoption-get-gff-info-split-z">
 <code class="sig-name descname">-z</code><code class="sig-prename descclassname"></code><code class="sig-prename descclassname">, </code><code class="sig-name descname">--gzip</code><code class="sig-prename descclassname"></code><a class="headerlink" href="#cmdoption-get-gff-info-split-z" title="Permalink to this definition">¶</a></dt>
 <dd><p>gzip output files</p>
 </dd></dl>
 
 <p class="rubric">Arguments</p>
-<dl class="option">
-<dt id="cmdoption-get-gff-info-split-arg-gff-file">
-<code class="sig-name descname">GFF_FILE</code><code class="sig-prename descclassname"></code><a class="headerlink" href="#cmdoption-get-gff-info-split-arg-gff-file" title="Permalink to this definition">¶</a></dt>
+<dl class="std option">
+<dt id="cmdoption-get-gff-info-split-arg-GFF_FILE">
+<code class="sig-name descname">GFF_FILE</code><code class="sig-prename descclassname"></code><a class="headerlink" href="#cmdoption-get-gff-info-split-arg-GFF_FILE" title="Permalink to this definition">¶</a></dt>
 <dd><p>Optional argument</p>
 </dd></dl>
 
@@ -611,11 +634,19 @@ several files starting with [prefix]</p>
 
   <div role="contentinfo">
     <p>
-        &copy; Copyright 2013-2015, Francesco Rubino
+        
+        &copy; Copyright 2013-2020, Francesco Rubino
 
     </p>
   </div>
-  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+    
+    
+    
+    Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a
+    
+    <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a>
+    
+    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
 
 </footer>
 
@@ -626,7 +657,6 @@ several files starting with [prefix]</p>
 
   </div>
   
-
 
   <script type="text/javascript">
       jQuery(function () {

@@ -1,42 +1,43 @@
 
 
 <!DOCTYPE html>
-<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
-<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<html class="writer-html5" lang="en" >
 <head>
   <meta charset="utf-8">
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>mgkit.snps.mapper module &mdash; MGKit: Metagenomic framework 0.5.1 documentation</title>
+  <title>mgkit.snps.mapper module &mdash; MGKit: Metagenomic framework 0.5.3 documentation</title>
   
-
-  
-  
-  
-  
-
-  
-  <script type="text/javascript" src="../_static/js/modernizr.min.js"></script>
-  
-    
-      <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
-        <script type="text/javascript" src="../_static/jquery.js"></script>
-        <script type="text/javascript" src="../_static/underscore.js"></script>
-        <script type="text/javascript" src="../_static/doctools.js"></script>
-        <script type="text/javascript" src="../_static/language_data.js"></script>
-        <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
-        <script async="async" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
-        <script type="text/x-mathjax-config">MathJax.Hub.Config({"tex2jax": {"inlineMath": [["$", "$"], ["\\(", "\\)"]], "processEscapes": true, "ignoreClass": "document", "processClass": "math|output_area"}})</script>
-    
-    <script type="text/javascript" src="../_static/js/theme.js"></script>
-
-    
 
   
   <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
   <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
   <link rel="stylesheet" href="../_static/graphviz.css" type="text/css" />
+
+  
+  
+  
+  
+
+  
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/underscore.js"></script>
+        <script src="../_static/doctools.js"></script>
+        <script src="../_static/language_data.js"></script>
+        <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+        <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+        <script type="text/x-mathjax-config">MathJax.Hub.Config({"tex2jax": {"inlineMath": [["$", "$"], ["\\(", "\\)"]], "processEscapes": true, "ignoreClass": "document", "processClass": "math|output_area"}})</script>
+    
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+
+    
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
     <link rel="next" title="mgkit.utils package" href="mgkit.utils.html" />
@@ -54,7 +55,7 @@
           
 
           
-            <a href="../index.html" class="icon icon-home"> MGKit: Metagenomic framework
+            <a href="../index.html" class="icon icon-home" alt="Documentation Home"> MGKit: Metagenomic framework
           
 
           
@@ -64,7 +65,7 @@
             
             
               <div class="version">
-                0.5.1
+                0.5.3
               </div>
             
           
@@ -81,6 +82,7 @@
           
         </div>
 
+        
         <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
           
             
@@ -179,6 +181,7 @@
             
           
         </div>
+        
       </div>
     </nav>
 
@@ -217,7 +220,7 @@
 
   <ul class="wy-breadcrumbs">
     
-      <li><a href="../index.html">Docs</a> &raquo;</li>
+      <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
         
           <li><a href="../library.html">Library Reference</a> &raquo;</li>
         
@@ -272,16 +275,16 @@
 <span id="mgkit-snps-mapper-module"></span><h1>mgkit.snps.mapper module<a class="headerlink" href="#module-mgkit.snps.mapper" title="Permalink to this headline">¶</a></h1>
 <p>Mapping functions for SNPs - Should be move into an ‘iterator’ package to
 be shared with other modules?</p>
-<dl class="function">
+<dl class="py function">
 <dt id="mgkit.snps.mapper.map_gene_id">
-<code class="sig-prename descclassname">mgkit.snps.mapper.</code><code class="sig-name descname">map_gene_id</code><span class="sig-paren">(</span><em class="sig-param">gene_id</em>, <em class="sig-param">gene_map=None</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/mgkit/snps/mapper.html#map_gene_id"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#mgkit.snps.mapper.map_gene_id" title="Permalink to this definition">¶</a></dt>
+<code class="sig-prename descclassname">mgkit.snps.mapper.</code><code class="sig-name descname">map_gene_id</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">gene_id</span></em>, <em class="sig-param"><span class="n">gene_map</span><span class="o">=</span><span class="default_value">None</span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/mgkit/snps/mapper.html#map_gene_id"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#mgkit.snps.mapper.map_gene_id" title="Permalink to this definition">¶</a></dt>
 <dd><p>Returns an iterator for all the values of a dictionary. if gene_id is not
 found in the gene_map, an empty iterator is returned.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>gene_id</strong> (<em>immutable</em>) – gene_id or any other dictionary key.</p></li>
-<li><p><strong>gene_map</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.8)"><em>dict</em></a>) – a dictionary in the form key-&gt;[v1, v2, .. vN]</p></li>
+<li><p><strong>gene_map</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.9)"><em>dict</em></a>) – a dictionary in the form key-&gt;[v1, v2, .. vN]</p></li>
 </ul>
 </dd>
 <dt class="field-even">Returns</dt>
@@ -294,15 +297,15 @@ values</p>
 </dl>
 </dd></dl>
 
-<dl class="function">
+<dl class="py function">
 <dt id="mgkit.snps.mapper.map_taxon_id_to_ancestor">
-<code class="sig-prename descclassname">mgkit.snps.mapper.</code><code class="sig-name descname">map_taxon_id_to_ancestor</code><span class="sig-paren">(</span><em class="sig-param">taxon_id</em>, <em class="sig-param">anc_ids=None</em>, <em class="sig-param">func=None</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/mgkit/snps/mapper.html#map_taxon_id_to_ancestor"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#mgkit.snps.mapper.map_taxon_id_to_ancestor" title="Permalink to this definition">¶</a></dt>
+<code class="sig-prename descclassname">mgkit.snps.mapper.</code><code class="sig-name descname">map_taxon_id_to_ancestor</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">taxon_id</span></em>, <em class="sig-param"><span class="n">anc_ids</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">func</span><span class="o">=</span><span class="default_value">None</span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/mgkit/snps/mapper.html#map_taxon_id_to_ancestor"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#mgkit.snps.mapper.map_taxon_id_to_ancestor" title="Permalink to this definition">¶</a></dt>
 <dd><p>Given a taxon_id and a list of ancestors IDs, returns an iterator with the
 IDs that are ancestors of taxon_id.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>taxon_id</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.8)"><em>int</em></a>) – taxon ID to be mapped</p></li>
+<li><p><strong>taxon_id</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.9)"><em>int</em></a>) – taxon ID to be mapped</p></li>
 <li><p><strong>anc_ids</strong> (<em>iterable</em>) – taxon IDs to check for ancestry</p></li>
 <li><p><strong>func</strong> – function used to check for ancestry - partial function for
 <a class="reference internal" href="mgkit.taxon.html#mgkit.taxon.is_ancestor" title="mgkit.taxon.is_ancestor"><code class="xref py py-func docutils literal notranslate"><span class="pre">mgkit.taxon.is_ancestor()</span></code></a> that accepts taxon_id and anc_id</p></li>
@@ -322,9 +325,9 @@ on using func</p>
 </div>
 </dd></dl>
 
-<dl class="function">
+<dl class="py function">
 <dt id="mgkit.snps.mapper.map_taxon_id_to_rank">
-<code class="sig-prename descclassname">mgkit.snps.mapper.</code><code class="sig-name descname">map_taxon_id_to_rank</code><span class="sig-paren">(</span><em class="sig-param">taxon_id</em>, <em class="sig-param">rank=None</em>, <em class="sig-param">taxonomy=None</em>, <em class="sig-param">include_higher=False</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/mgkit/snps/mapper.html#map_taxon_id_to_rank"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#mgkit.snps.mapper.map_taxon_id_to_rank" title="Permalink to this definition">¶</a></dt>
+<code class="sig-prename descclassname">mgkit.snps.mapper.</code><code class="sig-name descname">map_taxon_id_to_rank</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">taxon_id</span></em>, <em class="sig-param"><span class="n">rank</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">taxonomy</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">include_higher</span><span class="o">=</span><span class="default_value">False</span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/mgkit/snps/mapper.html#map_taxon_id_to_rank"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#mgkit.snps.mapper.map_taxon_id_to_rank" title="Permalink to this definition">¶</a></dt>
 <dd><p>Given a taxon_id, returns an iterator with only the element that correspond
 to the requested rank. If the taxon returned by
 <a class="reference internal" href="mgkit.taxon.html#mgkit.taxon.Taxonomy.get_ranked_taxon" title="mgkit.taxon.Taxonomy.get_ranked_taxon"><code class="xref py py-class docutils literal notranslate"><span class="pre">mgkit.taxon.Taxonomy.get_ranked_taxon</span></code></a> has a different rank
@@ -333,9 +336,9 @@ and the returned taxon ID if True.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>taxon_id</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.8)"><em>int</em></a>) – taxon ID to be mapped</p></li>
-<li><p><strong>rank</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.8)"><em>str</em></a>) – taxon rank used (<a class="reference internal" href="mgkit.taxon.html#mgkit.taxon.TAXON_RANKS" title="mgkit.taxon.TAXON_RANKS"><code class="xref py py-data docutils literal notranslate"><span class="pre">mgkit.taxon.TAXON_RANKS</span></code></a>)</p></li>
-<li><p><strong>include_higher</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.8)"><em>bool</em></a>) – determines if a rank higher than the one
+<li><p><strong>taxon_id</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.9)"><em>int</em></a>) – taxon ID to be mapped</p></li>
+<li><p><strong>rank</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)"><em>str</em></a>) – taxon rank used (<a class="reference internal" href="mgkit.taxon.html#mgkit.taxon.TAXON_RANKS" title="mgkit.taxon.TAXON_RANKS"><code class="xref py py-data docutils literal notranslate"><span class="pre">mgkit.taxon.TAXON_RANKS</span></code></a>)</p></li>
+<li><p><strong>include_higher</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.9)"><em>bool</em></a>) – determines if a rank higher than the one
 requested is to be returned</p></li>
 </ul>
 </dd>
@@ -370,11 +373,19 @@ requested is to be returned</p></li>
 
   <div role="contentinfo">
     <p>
-        &copy; Copyright 2013-2015, Francesco Rubino
+        
+        &copy; Copyright 2013-2020, Francesco Rubino
 
     </p>
   </div>
-  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+    
+    
+    
+    Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a
+    
+    <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a>
+    
+    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
 
 </footer>
 
@@ -385,7 +396,6 @@ requested is to be returned</p></li>
 
   </div>
   
-
 
   <script type="text/javascript">
       jQuery(function () {

@@ -1,42 +1,43 @@
 
 
 <!DOCTYPE html>
-<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
-<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<html class="writer-html5" lang="en" >
 <head>
   <meta charset="utf-8">
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>mgkit.filter.gff module &mdash; MGKit: Metagenomic framework 0.5.1 documentation</title>
+  <title>mgkit.filter.gff module &mdash; MGKit: Metagenomic framework 0.5.3 documentation</title>
   
-
-  
-  
-  
-  
-
-  
-  <script type="text/javascript" src="../_static/js/modernizr.min.js"></script>
-  
-    
-      <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
-        <script type="text/javascript" src="../_static/jquery.js"></script>
-        <script type="text/javascript" src="../_static/underscore.js"></script>
-        <script type="text/javascript" src="../_static/doctools.js"></script>
-        <script type="text/javascript" src="../_static/language_data.js"></script>
-        <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
-        <script async="async" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
-        <script type="text/x-mathjax-config">MathJax.Hub.Config({"tex2jax": {"inlineMath": [["$", "$"], ["\\(", "\\)"]], "processEscapes": true, "ignoreClass": "document", "processClass": "math|output_area"}})</script>
-    
-    <script type="text/javascript" src="../_static/js/theme.js"></script>
-
-    
 
   
   <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
   <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
   <link rel="stylesheet" href="../_static/graphviz.css" type="text/css" />
+
+  
+  
+  
+  
+
+  
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/underscore.js"></script>
+        <script src="../_static/doctools.js"></script>
+        <script src="../_static/language_data.js"></script>
+        <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+        <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+        <script type="text/x-mathjax-config">MathJax.Hub.Config({"tex2jax": {"inlineMath": [["$", "$"], ["\\(", "\\)"]], "processEscapes": true, "ignoreClass": "document", "processClass": "math|output_area"}})</script>
+    
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+
+    
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
     <link rel="next" title="mgkit.filter.lists module" href="mgkit.filter.lists.html" />
@@ -54,7 +55,7 @@
           
 
           
-            <a href="../index.html" class="icon icon-home"> MGKit: Metagenomic framework
+            <a href="../index.html" class="icon icon-home" alt="Documentation Home"> MGKit: Metagenomic framework
           
 
           
@@ -64,7 +65,7 @@
             
             
               <div class="version">
-                0.5.1
+                0.5.3
               </div>
             
           
@@ -81,6 +82,7 @@
           
         </div>
 
+        
         <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
           
             
@@ -179,6 +181,7 @@
             
           
         </div>
+        
       </div>
     </nav>
 
@@ -217,7 +220,7 @@
 
   <ul class="wy-breadcrumbs">
     
-      <li><a href="../index.html">Docs</a> &raquo;</li>
+      <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
         
           <li><a href="../library.html">Library Reference</a> &raquo;</li>
         
@@ -271,9 +274,9 @@
 <div class="section" id="module-mgkit.filter.gff">
 <span id="mgkit-filter-gff-module"></span><h1>mgkit.filter.gff module<a class="headerlink" href="#module-mgkit.filter.gff" title="Permalink to this headline">¶</a></h1>
 <p>GFF filtering</p>
-<dl class="function">
+<dl class="py function">
 <dt id="mgkit.filter.gff.choose_annotation">
-<code class="sig-prename descclassname">mgkit.filter.gff.</code><code class="sig-name descname">choose_annotation</code><span class="sig-paren">(</span><em class="sig-param">ann1</em>, <em class="sig-param">ann2</em>, <em class="sig-param">overlap=100</em>, <em class="sig-param">choose_func=None</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/mgkit/filter/gff.html#choose_annotation"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#mgkit.filter.gff.choose_annotation" title="Permalink to this definition">¶</a></dt>
+<code class="sig-prename descclassname">mgkit.filter.gff.</code><code class="sig-name descname">choose_annotation</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">ann1</span></em>, <em class="sig-param"><span class="n">ann2</span></em>, <em class="sig-param"><span class="n">overlap</span><span class="o">=</span><span class="default_value">100</span></em>, <em class="sig-param"><span class="n">choose_func</span><span class="o">=</span><span class="default_value">None</span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/mgkit/filter/gff.html#choose_annotation"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#mgkit.filter.gff.choose_annotation" title="Permalink to this definition">¶</a></dt>
 <dd><div class="versionadded">
 <p><span class="versionmodified added">New in version 0.1.12.</span></p>
 </div>
@@ -292,9 +295,9 @@ result of <em>choose_func</em> is the the annotation to be discarderd. It return
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>ann1</strong> – instance of <a class="reference internal" href="mgkit.io.gff.html#mgkit.io.gff.Annotation" title="mgkit.io.gff.Annotation"><code class="xref py py-class docutils literal notranslate"><span class="pre">mgkit.io.gff.Annotation</span></code></a></p></li>
 <li><p><strong>ann2</strong> – instance of <a class="reference internal" href="mgkit.io.gff.html#mgkit.io.gff.Annotation" title="mgkit.io.gff.Annotation"><code class="xref py py-class docutils literal notranslate"><span class="pre">mgkit.io.gff.Annotation</span></code></a></p></li>
-<li><p><strong>overlap</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.8)"><em>int</em></a><em>, </em><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.8)"><em>float</em></a>) – number of bases overlap that trigger the
+<li><p><strong>overlap</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.9)"><em>int</em></a><em>, </em><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.9)"><em>float</em></a>) – number of bases overlap that trigger the
 filtering</p></li>
-<li><p><strong>choose_func</strong> (<a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.8)"><em>None</em></a><em>, </em><em>func</em>) – function that accepts <em>ann1</em> and <em>ann2</em> and
+<li><p><strong>choose_func</strong> (<a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.9)"><em>None</em></a><em>, </em><em>func</em>) – function that accepts <em>ann1</em> and <em>ann2</em> and
 return the one to be discarded or None if both are accepted</p></li>
 </ul>
 </dd>
@@ -303,7 +306,7 @@ return the one to be discarded or None if both are accepted</p></li>
 to be discarded or None, which is the result of <em>choose_func</em></p>
 </dd>
 <dt class="field-odd">Return type</dt>
-<dd class="field-odd"><p>(<a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.8)">None</a>, <a class="reference internal" href="mgkit.io.gff.html#mgkit.io.gff.Annotation" title="mgkit.io.gff.Annotation">Annotation</a>)</p>
+<dd class="field-odd"><p>(<a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.9)">None</a>, <a class="reference internal" href="mgkit.io.gff.html#mgkit.io.gff.Annotation" title="mgkit.io.gff.Annotation">Annotation</a>)</p>
 </dd>
 </dl>
 <div class="admonition note">
@@ -318,9 +321,9 @@ annotation with the lowest tuple value is the one to discard.</p>
 </div>
 </dd></dl>
 
-<dl class="function">
+<dl class="py function">
 <dt id="mgkit.filter.gff.filter_annotations">
-<code class="sig-prename descclassname">mgkit.filter.gff.</code><code class="sig-name descname">filter_annotations</code><span class="sig-paren">(</span><em class="sig-param">annotations</em>, <em class="sig-param">choose_func=None</em>, <em class="sig-param">sort_func=None</em>, <em class="sig-param">reverse=True</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/mgkit/filter/gff.html#filter_annotations"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#mgkit.filter.gff.filter_annotations" title="Permalink to this definition">¶</a></dt>
+<code class="sig-prename descclassname">mgkit.filter.gff.</code><code class="sig-name descname">filter_annotations</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">annotations</span></em>, <em class="sig-param"><span class="n">choose_func</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">sort_func</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">reverse</span><span class="o">=</span><span class="default_value">True</span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/mgkit/filter/gff.html#filter_annotations"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#mgkit.filter.gff.filter_annotations" title="Permalink to this definition">¶</a></dt>
 <dd><div class="versionadded">
 <p><span class="versionmodified added">New in version 0.1.12.</span></p>
 </div>
@@ -336,36 +339,36 @@ the lowest value.</p>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>annotations</strong> (<em>iterable</em>) – iterable of <a class="reference internal" href="mgkit.io.gff.html#mgkit.io.gff.Annotation" title="mgkit.io.gff.Annotation"><code class="xref py py-class docutils literal notranslate"><span class="pre">mgkit.io.gff.Annotation</span></code></a>
 instances</p></li>
-<li><p><strong>choose_func</strong> (<em>func</em><em>, </em><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.8)"><em>None</em></a>) – function used to select the <em>losing</em>
+<li><p><strong>choose_func</strong> (<em>func</em><em>, </em><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.9)"><em>None</em></a>) – function used to select the <em>losing</em>
 annotation; if <cite>None</cite>, it will be <a class="reference internal" href="#mgkit.filter.gff.choose_annotation" title="mgkit.filter.gff.choose_annotation"><code class="xref py py-func docutils literal notranslate"><span class="pre">choose_annotation()</span></code></a> with
 default values</p></li>
-<li><p><strong>sort_func</strong> (<em>func</em><em>, </em><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.8)"><em>None</em></a>) – by default the sorting key is the bitscore of
+<li><p><strong>sort_func</strong> (<em>func</em><em>, </em><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.9)"><em>None</em></a>) – by default the sorting key is the bitscore of
 the annotations</p></li>
-<li><p><strong>reverse</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.8)"><em>bool</em></a>) – passed to <cite>sorted</cite>, by default is reversed</p></li>
+<li><p><strong>reverse</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.9)"><em>bool</em></a>) – passed to <cite>sorted</cite>, by default is reversed</p></li>
 </ul>
 </dd>
 <dt class="field-even">Returns</dt>
 <dd class="field-even"><p>a set with the annotations that pass the filtering</p>
 </dd>
 <dt class="field-odd">Return type</dt>
-<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#set" title="(in Python v3.8)">set</a></p>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#set" title="(in Python v3.9)">set</a></p>
 </dd>
 </dl>
 </dd></dl>
 
-<dl class="function">
+<dl class="py function">
 <dt id="mgkit.filter.gff.filter_attr_num">
-<code class="sig-prename descclassname">mgkit.filter.gff.</code><code class="sig-name descname">filter_attr_num</code><span class="sig-paren">(</span><em class="sig-param">annotation</em>, <em class="sig-param">attr=None</em>, <em class="sig-param">value=None</em>, <em class="sig-param">greater=True</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/mgkit/filter/gff.html#filter_attr_num"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#mgkit.filter.gff.filter_attr_num" title="Permalink to this definition">¶</a></dt>
+<code class="sig-prename descclassname">mgkit.filter.gff.</code><code class="sig-name descname">filter_attr_num</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">annotation</span></em>, <em class="sig-param"><span class="n">attr</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">value</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">greater</span><span class="o">=</span><span class="default_value">True</span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/mgkit/filter/gff.html#filter_attr_num"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#mgkit.filter.gff.filter_attr_num" title="Permalink to this definition">¶</a></dt>
 <dd><p>Checks if an annotation <em>attr</em> dictionary contains a key whose value is
 greater than or equal, or lower than or equal, for the requested value</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>annotation</strong> – <a class="reference internal" href="mgkit.io.gff.html#mgkit.io.gff.Annotation" title="mgkit.io.gff.Annotation"><code class="xref py py-class docutils literal notranslate"><span class="pre">mgkit.io.gff.Annotation</span></code></a> instance</p></li>
-<li><p><strong>attr</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.8)"><em>str</em></a>) – key in the <a class="reference internal" href="mgkit.io.gff.html#mgkit.io.gff.Annotation.attr" title="mgkit.io.gff.Annotation.attr"><code class="xref py py-attr docutils literal notranslate"><span class="pre">mgkit.io.gff.Annotation.attr</span></code></a>
+<li><p><strong>attr</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)"><em>str</em></a>) – key in the <a class="reference internal" href="mgkit.io.gff.html#mgkit.io.gff.Annotation.attr" title="mgkit.io.gff.Annotation.attr"><code class="xref py py-attr docutils literal notranslate"><span class="pre">mgkit.io.gff.Annotation.attr</span></code></a>
 dictionary</p></li>
-<li><p><strong>value</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.8)"><em>int</em></a>) – the value to which we need to compare</p></li>
-<li><p><strong>greater</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.8)"><em>bool</em></a>) – if True the value must be equal or greater than and if
+<li><p><strong>value</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.9)"><em>int</em></a>) – the value to which we need to compare</p></li>
+<li><p><strong>greater</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.9)"><em>bool</em></a>) – if True the value must be equal or greater than and if
 False equal of lower than</p></li>
 </ul>
 </dd>
@@ -373,14 +376,14 @@ False equal of lower than</p></li>
 <dd class="field-even"><p>True if the test passes</p>
 </dd>
 <dt class="field-odd">Return type</dt>
-<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.8)">bool</a></p>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.9)">bool</a></p>
 </dd>
 </dl>
 </dd></dl>
 
-<dl class="function">
+<dl class="py function">
 <dt id="mgkit.filter.gff.filter_attr_num_s">
-<code class="sig-prename descclassname">mgkit.filter.gff.</code><code class="sig-name descname">filter_attr_num_s</code><span class="sig-paren">(</span><em class="sig-param">annotation</em>, <em class="sig-param">attr=None</em>, <em class="sig-param">value=None</em>, <em class="sig-param">greater=True</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/mgkit/filter/gff.html#filter_attr_num_s"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#mgkit.filter.gff.filter_attr_num_s" title="Permalink to this definition">¶</a></dt>
+<code class="sig-prename descclassname">mgkit.filter.gff.</code><code class="sig-name descname">filter_attr_num_s</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">annotation</span></em>, <em class="sig-param"><span class="n">attr</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">value</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">greater</span><span class="o">=</span><span class="default_value">True</span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/mgkit/filter/gff.html#filter_attr_num_s"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#mgkit.filter.gff.filter_attr_num_s" title="Permalink to this definition">¶</a></dt>
 <dd><div class="versionadded">
 <p><span class="versionmodified added">New in version 0.3.1.</span></p>
 </div>
@@ -390,10 +393,10 @@ greater or lower than the requested value</p>
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>annotation</strong> – <a class="reference internal" href="mgkit.io.gff.html#mgkit.io.gff.Annotation" title="mgkit.io.gff.Annotation"><code class="xref py py-class docutils literal notranslate"><span class="pre">mgkit.io.gff.Annotation</span></code></a> instance</p></li>
-<li><p><strong>attr</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.8)"><em>str</em></a>) – key in the <a class="reference internal" href="mgkit.io.gff.html#mgkit.io.gff.Annotation.attr" title="mgkit.io.gff.Annotation.attr"><code class="xref py py-attr docutils literal notranslate"><span class="pre">mgkit.io.gff.Annotation.attr</span></code></a>
+<li><p><strong>attr</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)"><em>str</em></a>) – key in the <a class="reference internal" href="mgkit.io.gff.html#mgkit.io.gff.Annotation.attr" title="mgkit.io.gff.Annotation.attr"><code class="xref py py-attr docutils literal notranslate"><span class="pre">mgkit.io.gff.Annotation.attr</span></code></a>
 dictionary</p></li>
-<li><p><strong>value</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.8)"><em>int</em></a>) – the value to which we need to compare</p></li>
-<li><p><strong>greater</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.8)"><em>bool</em></a>) – if True the value must be greater than and if
+<li><p><strong>value</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.9)"><em>int</em></a>) – the value to which we need to compare</p></li>
+<li><p><strong>greater</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.9)"><em>bool</em></a>) – if True the value must be greater than and if
 False lower than</p></li>
 </ul>
 </dd>
@@ -401,24 +404,24 @@ False lower than</p></li>
 <dd class="field-even"><p>True if the test passes</p>
 </dd>
 <dt class="field-odd">Return type</dt>
-<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.8)">bool</a></p>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.9)">bool</a></p>
 </dd>
 </dl>
 </dd></dl>
 
-<dl class="function">
+<dl class="py function">
 <dt id="mgkit.filter.gff.filter_attr_str">
-<code class="sig-prename descclassname">mgkit.filter.gff.</code><code class="sig-name descname">filter_attr_str</code><span class="sig-paren">(</span><em class="sig-param">annotation</em>, <em class="sig-param">attr=None</em>, <em class="sig-param">value=None</em>, <em class="sig-param">equal=True</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/mgkit/filter/gff.html#filter_attr_str"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#mgkit.filter.gff.filter_attr_str" title="Permalink to this definition">¶</a></dt>
+<code class="sig-prename descclassname">mgkit.filter.gff.</code><code class="sig-name descname">filter_attr_str</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">annotation</span></em>, <em class="sig-param"><span class="n">attr</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">value</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">equal</span><span class="o">=</span><span class="default_value">True</span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/mgkit/filter/gff.html#filter_attr_str"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#mgkit.filter.gff.filter_attr_str" title="Permalink to this definition">¶</a></dt>
 <dd><p>Checks if an annotation <em>attr</em> dictionary contains a key shose value is
 equal to, or contains the requested value</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>annotation</strong> – <a class="reference internal" href="mgkit.io.gff.html#mgkit.io.gff.Annotation" title="mgkit.io.gff.Annotation"><code class="xref py py-class docutils literal notranslate"><span class="pre">mgkit.io.gff.Annotation</span></code></a> instance</p></li>
-<li><p><strong>attr</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.8)"><em>str</em></a>) – key in the <a class="reference internal" href="mgkit.io.gff.html#mgkit.io.gff.Annotation.attr" title="mgkit.io.gff.Annotation.attr"><code class="xref py py-attr docutils literal notranslate"><span class="pre">mgkit.io.gff.Annotation.attr</span></code></a>
+<li><p><strong>attr</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)"><em>str</em></a>) – key in the <a class="reference internal" href="mgkit.io.gff.html#mgkit.io.gff.Annotation.attr" title="mgkit.io.gff.Annotation.attr"><code class="xref py py-attr docutils literal notranslate"><span class="pre">mgkit.io.gff.Annotation.attr</span></code></a>
 dictionary</p></li>
-<li><p><strong>value</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.8)"><em>int</em></a>) – the value to which we need to compare</p></li>
-<li><p><strong>equal</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.8)"><em>bool</em></a>) – if True the value must be equal and if False equal value
+<li><p><strong>value</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.9)"><em>int</em></a>) – the value to which we need to compare</p></li>
+<li><p><strong>equal</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.9)"><em>bool</em></a>) – if True the value must be equal and if False equal value
 must be contained</p></li>
 </ul>
 </dd>
@@ -426,20 +429,20 @@ must be contained</p></li>
 <dd class="field-even"><p>True if the test passes</p>
 </dd>
 <dt class="field-odd">Return type</dt>
-<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.8)">bool</a></p>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.9)">bool</a></p>
 </dd>
 </dl>
 </dd></dl>
 
-<dl class="function">
+<dl class="py function">
 <dt id="mgkit.filter.gff.filter_base">
-<code class="sig-prename descclassname">mgkit.filter.gff.</code><code class="sig-name descname">filter_base</code><span class="sig-paren">(</span><em class="sig-param">annotation</em>, <em class="sig-param">attr=None</em>, <em class="sig-param">value=None</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/mgkit/filter/gff.html#filter_base"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#mgkit.filter.gff.filter_base" title="Permalink to this definition">¶</a></dt>
+<code class="sig-prename descclassname">mgkit.filter.gff.</code><code class="sig-name descname">filter_base</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">annotation</span></em>, <em class="sig-param"><span class="n">attr</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">value</span><span class="o">=</span><span class="default_value">None</span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/mgkit/filter/gff.html#filter_base"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#mgkit.filter.gff.filter_base" title="Permalink to this definition">¶</a></dt>
 <dd><p>Checks if an annotation attribute is equal to the requested value</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>annotation</strong> – <a class="reference internal" href="mgkit.io.gff.html#mgkit.io.gff.Annotation" title="mgkit.io.gff.Annotation"><code class="xref py py-class docutils literal notranslate"><span class="pre">mgkit.io.gff.Annotation</span></code></a> instance</p></li>
-<li><p><strong>attr</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.8)"><em>str</em></a>) – attribute of the annotation</p></li>
+<li><p><strong>attr</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)"><em>str</em></a>) – attribute of the annotation</p></li>
 <li><p><strong>value</strong> – the value that the attribute should be equal to</p></li>
 </ul>
 </dd>
@@ -448,23 +451,23 @@ must be contained</p></li>
 otherwise</p>
 </dd>
 <dt class="field-odd">Return type</dt>
-<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.8)">bool</a></p>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.9)">bool</a></p>
 </dd>
 </dl>
 </dd></dl>
 
-<dl class="function">
+<dl class="py function">
 <dt id="mgkit.filter.gff.filter_base_num">
-<code class="sig-prename descclassname">mgkit.filter.gff.</code><code class="sig-name descname">filter_base_num</code><span class="sig-paren">(</span><em class="sig-param">annotation</em>, <em class="sig-param">attr=None</em>, <em class="sig-param">value=None</em>, <em class="sig-param">greater=True</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/mgkit/filter/gff.html#filter_base_num"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#mgkit.filter.gff.filter_base_num" title="Permalink to this definition">¶</a></dt>
+<code class="sig-prename descclassname">mgkit.filter.gff.</code><code class="sig-name descname">filter_base_num</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">annotation</span></em>, <em class="sig-param"><span class="n">attr</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">value</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">greater</span><span class="o">=</span><span class="default_value">True</span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/mgkit/filter/gff.html#filter_base_num"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#mgkit.filter.gff.filter_base_num" title="Permalink to this definition">¶</a></dt>
 <dd><p>Checks if an annotation attribute is greater, equal of lower than the
 requested value</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>annotation</strong> – <a class="reference internal" href="mgkit.io.gff.html#mgkit.io.gff.Annotation" title="mgkit.io.gff.Annotation"><code class="xref py py-class docutils literal notranslate"><span class="pre">mgkit.io.gff.Annotation</span></code></a> instance</p></li>
-<li><p><strong>attr</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.8)"><em>str</em></a>) – attribute of the annotation</p></li>
-<li><p><strong>value</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.8)"><em>int</em></a>) – the value to which the attribute should be compared to</p></li>
-<li><p><strong>greater</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.8)"><em>bool</em></a>) – if True the attribute value must be equal or greater
+<li><p><strong>attr</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)"><em>str</em></a>) – attribute of the annotation</p></li>
+<li><p><strong>value</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.9)"><em>int</em></a>) – the value to which the attribute should be compared to</p></li>
+<li><p><strong>greater</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.9)"><em>bool</em></a>) – if True the attribute value must be equal or greater
 than and if False equal of lower than</p></li>
 </ul>
 </dd>
@@ -472,22 +475,22 @@ than and if False equal of lower than</p></li>
 <dd class="field-even"><p>True if the test passes</p>
 </dd>
 <dt class="field-odd">Return type</dt>
-<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.8)">bool</a></p>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.9)">bool</a></p>
 </dd>
 </dl>
 </dd></dl>
 
-<dl class="function">
+<dl class="py function">
 <dt id="mgkit.filter.gff.filter_len">
-<code class="sig-prename descclassname">mgkit.filter.gff.</code><code class="sig-name descname">filter_len</code><span class="sig-paren">(</span><em class="sig-param">annotation</em>, <em class="sig-param">value=None</em>, <em class="sig-param">greater=True</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/mgkit/filter/gff.html#filter_len"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#mgkit.filter.gff.filter_len" title="Permalink to this definition">¶</a></dt>
+<code class="sig-prename descclassname">mgkit.filter.gff.</code><code class="sig-name descname">filter_len</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">annotation</span></em>, <em class="sig-param"><span class="n">value</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">greater</span><span class="o">=</span><span class="default_value">True</span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/mgkit/filter/gff.html#filter_len"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#mgkit.filter.gff.filter_len" title="Permalink to this definition">¶</a></dt>
 <dd><p>Checks if an annotation length is longer, equal of shorter than the
 requested value</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>annotation</strong> – <a class="reference internal" href="mgkit.io.gff.html#mgkit.io.gff.Annotation" title="mgkit.io.gff.Annotation"><code class="xref py py-class docutils literal notranslate"><span class="pre">mgkit.io.gff.Annotation</span></code></a> instance</p></li>
-<li><p><strong>value</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.8)"><em>int</em></a>) – the length to which the attribute should be compared to</p></li>
-<li><p><strong>greater</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.8)"><em>bool</em></a>) – if True the annotation length must be equal or greater
+<li><p><strong>value</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.9)"><em>int</em></a>) – the length to which the attribute should be compared to</p></li>
+<li><p><strong>greater</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.9)"><em>bool</em></a>) – if True the annotation length must be equal or greater
 than and if False equal of lower than</p></li>
 </ul>
 </dd>
@@ -495,7 +498,7 @@ than and if False equal of lower than</p></li>
 <dd class="field-even"><p>True if the test passes</p>
 </dd>
 <dt class="field-odd">Return type</dt>
-<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.8)">bool</a></p>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.9)">bool</a></p>
 </dd>
 </dl>
 </dd></dl>
@@ -522,11 +525,19 @@ than and if False equal of lower than</p></li>
 
   <div role="contentinfo">
     <p>
-        &copy; Copyright 2013-2015, Francesco Rubino
+        
+        &copy; Copyright 2013-2020, Francesco Rubino
 
     </p>
   </div>
-  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+    
+    
+    
+    Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a
+    
+    <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a>
+    
+    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
 
 </footer>
 
@@ -537,7 +548,6 @@ than and if False equal of lower than</p></li>
 
   </div>
   
-
 
   <script type="text/javascript">
       jQuery(function () {

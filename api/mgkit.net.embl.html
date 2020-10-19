@@ -1,42 +1,43 @@
 
 
 <!DOCTYPE html>
-<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
-<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<html class="writer-html5" lang="en" >
 <head>
   <meta charset="utf-8">
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>mgkit.net.embl module &mdash; MGKit: Metagenomic framework 0.5.1 documentation</title>
+  <title>mgkit.net.embl module &mdash; MGKit: Metagenomic framework 0.5.3 documentation</title>
   
-
-  
-  
-  
-  
-
-  
-  <script type="text/javascript" src="../_static/js/modernizr.min.js"></script>
-  
-    
-      <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
-        <script type="text/javascript" src="../_static/jquery.js"></script>
-        <script type="text/javascript" src="../_static/underscore.js"></script>
-        <script type="text/javascript" src="../_static/doctools.js"></script>
-        <script type="text/javascript" src="../_static/language_data.js"></script>
-        <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
-        <script async="async" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
-        <script type="text/x-mathjax-config">MathJax.Hub.Config({"tex2jax": {"inlineMath": [["$", "$"], ["\\(", "\\)"]], "processEscapes": true, "ignoreClass": "document", "processClass": "math|output_area"}})</script>
-    
-    <script type="text/javascript" src="../_static/js/theme.js"></script>
-
-    
 
   
   <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
   <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
   <link rel="stylesheet" href="../_static/graphviz.css" type="text/css" />
+
+  
+  
+  
+  
+
+  
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/underscore.js"></script>
+        <script src="../_static/doctools.js"></script>
+        <script src="../_static/language_data.js"></script>
+        <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+        <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+        <script type="text/x-mathjax-config">MathJax.Hub.Config({"tex2jax": {"inlineMath": [["$", "$"], ["\\(", "\\)"]], "processEscapes": true, "ignoreClass": "document", "processClass": "math|output_area"}})</script>
+    
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+
+    
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
     <link rel="next" title="mgkit.net.pfam module" href="mgkit.net.pfam.html" />
@@ -54,7 +55,7 @@
           
 
           
-            <a href="../index.html" class="icon icon-home"> MGKit: Metagenomic framework
+            <a href="../index.html" class="icon icon-home" alt="Documentation Home"> MGKit: Metagenomic framework
           
 
           
@@ -64,7 +65,7 @@
             
             
               <div class="version">
-                0.5.1
+                0.5.3
               </div>
             
           
@@ -81,6 +82,7 @@
           
         </div>
 
+        
         <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
           
             
@@ -179,6 +181,7 @@
             
           
         </div>
+        
       </div>
     </nav>
 
@@ -217,7 +220,7 @@
 
   <ul class="wy-breadcrumbs">
     
-      <li><a href="../index.html">Docs</a> &raquo;</li>
+      <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
         
           <li><a href="../library.html">Library Reference</a> &raquo;</li>
         
@@ -271,56 +274,56 @@
 <div class="section" id="module-mgkit.net.embl">
 <span id="mgkit-net-embl-module"></span><h1>mgkit.net.embl module<a class="headerlink" href="#module-mgkit.net.embl" title="Permalink to this headline">¶</a></h1>
 <p>Access EMBL Services</p>
-<dl class="data">
+<dl class="py data">
 <dt id="mgkit.net.embl.EMBL_DBID">
 <code class="sig-prename descclassname">mgkit.net.embl.</code><code class="sig-name descname">EMBL_DBID</code><em class="property"> = 'embl_cds'</em><a class="headerlink" href="#mgkit.net.embl.EMBL_DBID" title="Permalink to this definition">¶</a></dt>
 <dd><p>Default database id</p>
 </dd></dl>
 
-<dl class="exception">
+<dl class="py exception">
 <dt id="mgkit.net.embl.EntryNotFound">
 <em class="property">exception </em><code class="sig-prename descclassname">mgkit.net.embl.</code><code class="sig-name descname">EntryNotFound</code><a class="reference internal" href="../_modules/mgkit/net/embl.html#EntryNotFound"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#mgkit.net.embl.EntryNotFound" title="Permalink to this definition">¶</a></dt>
-<dd><p>Bases: <a class="reference external" href="https://docs.python.org/3/library/exceptions.html#Exception" title="(in Python v3.8)"><code class="xref py py-class docutils literal notranslate"><span class="pre">Exception</span></code></a></p>
+<dd><p>Bases: <a class="reference external" href="https://docs.python.org/3/library/exceptions.html#Exception" title="(in Python v3.9)"><code class="xref py py-class docutils literal notranslate"><span class="pre">Exception</span></code></a></p>
 <p>Raised if at least one entry was not found by <a class="reference internal" href="#mgkit.net.embl.get_sequences_by_ids" title="mgkit.net.embl.get_sequences_by_ids"><code class="xref py py-func docutils literal notranslate"><span class="pre">get_sequences_by_ids()</span></code></a>.
 <a class="reference internal" href="#mgkit.net.embl.NOT_FOUND" title="mgkit.net.embl.NOT_FOUND"><code class="xref py py-data docutils literal notranslate"><span class="pre">NOT_FOUND</span></code></a> is used to check if any entry wasn’t downloaded.</p>
 </dd></dl>
 
-<dl class="data">
+<dl class="py data">
 <dt id="mgkit.net.embl.LOG">
 <code class="sig-prename descclassname">mgkit.net.embl.</code><code class="sig-name descname">LOG</code><em class="property"> = &lt;Logger mgkit.net.embl (WARNING)&gt;</em><a class="headerlink" href="#mgkit.net.embl.LOG" title="Permalink to this definition">¶</a></dt>
 <dd><p>Log instance for this module</p>
 </dd></dl>
 
-<dl class="data">
+<dl class="py data">
 <dt id="mgkit.net.embl.NONE_FOUND">
 <code class="sig-prename descclassname">mgkit.net.embl.</code><code class="sig-name descname">NONE_FOUND</code><em class="property"> = 'ERROR 12.+?.\\n?'</em><a class="headerlink" href="#mgkit.net.embl.NONE_FOUND" title="Permalink to this definition">¶</a></dt>
 <dd><p>Regular expression to check if no entry was found, used by <a class="reference internal" href="#mgkit.net.embl.NoEntryFound" title="mgkit.net.embl.NoEntryFound"><code class="xref py py-exc docutils literal notranslate"><span class="pre">NoEntryFound</span></code></a></p>
 </dd></dl>
 
-<dl class="data">
+<dl class="py data">
 <dt id="mgkit.net.embl.NOT_FOUND">
 <code class="sig-prename descclassname">mgkit.net.embl.</code><code class="sig-name descname">NOT_FOUND</code><em class="property"> = 'Entry: .+? not found.\\n'</em><a class="headerlink" href="#mgkit.net.embl.NOT_FOUND" title="Permalink to this definition">¶</a></dt>
 <dd><p>Appears in the resulting fasta (not tried on other formats) in the case that at
 least one entry wasn’t found.</p>
 </dd></dl>
 
-<dl class="exception">
+<dl class="py exception">
 <dt id="mgkit.net.embl.NoEntryFound">
 <em class="property">exception </em><code class="sig-prename descclassname">mgkit.net.embl.</code><code class="sig-name descname">NoEntryFound</code><a class="reference internal" href="../_modules/mgkit/net/embl.html#NoEntryFound"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#mgkit.net.embl.NoEntryFound" title="Permalink to this definition">¶</a></dt>
-<dd><p>Bases: <a class="reference external" href="https://docs.python.org/3/library/exceptions.html#Exception" title="(in Python v3.8)"><code class="xref py py-class docutils literal notranslate"><span class="pre">Exception</span></code></a></p>
+<dd><p>Bases: <a class="reference external" href="https://docs.python.org/3/library/exceptions.html#Exception" title="(in Python v3.9)"><code class="xref py py-class docutils literal notranslate"><span class="pre">Exception</span></code></a></p>
 <p>Raised if no sequences where found by <a class="reference internal" href="#mgkit.net.embl.get_sequences_by_ids" title="mgkit.net.embl.get_sequences_by_ids"><code class="xref py py-func docutils literal notranslate"><span class="pre">get_sequences_by_ids()</span></code></a>, the
 check is based on the <a class="reference internal" href="#mgkit.net.embl.NONE_FOUND" title="mgkit.net.embl.NONE_FOUND"><code class="xref py py-data docutils literal notranslate"><span class="pre">NONE_FOUND</span></code></a> variable.</p>
 </dd></dl>
 
-<dl class="data">
+<dl class="py data">
 <dt id="mgkit.net.embl.URL_REST">
 <code class="sig-prename descclassname">mgkit.net.embl.</code><code class="sig-name descname">URL_REST</code><em class="property"> = 'http://www.ebi.ac.uk/Tools/dbfetch/dbfetch/'</em><a class="headerlink" href="#mgkit.net.embl.URL_REST" title="Permalink to this definition">¶</a></dt>
 <dd><p>Base URL for EMBL DBFetch REST API</p>
 </dd></dl>
 
-<dl class="function">
+<dl class="py function">
 <dt id="mgkit.net.embl.datawarehouse_search">
-<code class="sig-prename descclassname">mgkit.net.embl.</code><code class="sig-name descname">datawarehouse_search</code><span class="sig-paren">(</span><em class="sig-param">query</em>, <em class="sig-param">domain='sequence'</em>, <em class="sig-param">result='sequence_release'</em>, <em class="sig-param">display='fasta'</em>, <em class="sig-param">offset=0</em>, <em class="sig-param">length=100000</em>, <em class="sig-param">contact=None</em>, <em class="sig-param">download='gzip'</em>, <em class="sig-param">url='http://www.ebi.ac.uk/ena/data/warehouse/search?'</em>, <em class="sig-param">fields=None</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/mgkit/net/embl.html#datawarehouse_search"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#mgkit.net.embl.datawarehouse_search" title="Permalink to this definition">¶</a></dt>
+<code class="sig-prename descclassname">mgkit.net.embl.</code><code class="sig-name descname">datawarehouse_search</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">query</span></em>, <em class="sig-param"><span class="n">domain</span><span class="o">=</span><span class="default_value">'sequence'</span></em>, <em class="sig-param"><span class="n">result</span><span class="o">=</span><span class="default_value">'sequence_release'</span></em>, <em class="sig-param"><span class="n">display</span><span class="o">=</span><span class="default_value">'fasta'</span></em>, <em class="sig-param"><span class="n">offset</span><span class="o">=</span><span class="default_value">0</span></em>, <em class="sig-param"><span class="n">length</span><span class="o">=</span><span class="default_value">100000</span></em>, <em class="sig-param"><span class="n">contact</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">download</span><span class="o">=</span><span class="default_value">'gzip'</span></em>, <em class="sig-param"><span class="n">url</span><span class="o">=</span><span class="default_value">'http://www.ebi.ac.uk/ena/data/warehouse/search?'</span></em>, <em class="sig-param"><span class="n">fields</span><span class="o">=</span><span class="default_value">None</span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/mgkit/net/embl.html#datawarehouse_search"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#mgkit.net.embl.datawarehouse_search" title="Permalink to this definition">¶</a></dt>
 <dd><div class="versionchanged">
 <p><span class="versionmodified changed">Changed in version 0.2.3: </span>added <em>fields</em> parameter to retrieve tab separated information</p>
 </div>
@@ -333,18 +336,18 @@ about the databases domains <a class="reference external" href="http://www.ebi.a
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>query</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.8)"><em>str</em></a>) – query for the search enging</p></li>
-<li><p><strong>domain</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.8)"><em>str</em></a>) – database domain to search</p></li>
-<li><p><strong>result</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.8)"><em>str</em></a>) – domain result requested</p></li>
-<li><p><strong>display</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.8)"><em>str</em></a>) – display option (format to retrieve the entries)</p></li>
-<li><p><strong>offset</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.8)"><em>int</em></a>) – the offset of the search results, defaults to the first</p></li>
-<li><p><strong>length</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.8)"><em>int</em></a>) – number of results to retrieve at the specified offset
+<li><p><strong>query</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)"><em>str</em></a>) – query for the search enging</p></li>
+<li><p><strong>domain</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)"><em>str</em></a>) – database domain to search</p></li>
+<li><p><strong>result</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)"><em>str</em></a>) – domain result requested</p></li>
+<li><p><strong>display</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)"><em>str</em></a>) – display option (format to retrieve the entries)</p></li>
+<li><p><strong>offset</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.9)"><em>int</em></a>) – the offset of the search results, defaults to the first</p></li>
+<li><p><strong>length</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.9)"><em>int</em></a>) – number of results to retrieve at the specified offset
 and the limit is automatically set a 100,000 records for query</p></li>
-<li><p><strong>contact</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.8)"><em>str</em></a>) – email of the user</p></li>
-<li><p><strong>download</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.8)"><em>str</em></a>) – type of response. Gzip responses are automatically
+<li><p><strong>contact</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)"><em>str</em></a>) – email of the user</p></li>
+<li><p><strong>download</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)"><em>str</em></a>) – type of response. Gzip responses are automatically
 decompressed</p></li>
-<li><p><strong>url</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.8)"><em>str</em></a>) – base URL for the resource</p></li>
-<li><p><strong>fields</strong> (<a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.8)"><em>None</em></a><em>, </em><em>iterable</em>) – must be an iterable of fields to be returned
+<li><p><strong>url</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)"><em>str</em></a>) – base URL for the resource</p></li>
+<li><p><strong>fields</strong> (<a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.9)"><em>None</em></a><em>, </em><em>iterable</em>) – must be an iterable of fields to be returned
 if display is set to <em>report</em></p></li>
 </ul>
 </dd>
@@ -352,13 +355,13 @@ if display is set to <em>report</em></p></li>
 <dd class="field-even"><p>the raw request</p>
 </dd>
 <dt class="field-odd">Return type</dt>
-<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.8)">str</a></p>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)">str</a></p>
 </dd>
 </dl>
 <p class="rubric">Examples</p>
 <p>Querying EMBL for all sequences of type rRNA of the  <em>Clostridium</em>
 genus. Only from the EMBL release database in fasta format:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">query</span> <span class="o">=</span> <span class="s1">&#39;tax_tree(1485) AND mol_type=&quot;rRNA&quot;&#39;</span>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">query</span> <span class="o">=</span> <span class="s1">&#39;tax_tree(1485) AND mol_type=&quot;rRNA&quot;&#39;</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">result</span> <span class="o">=</span> <span class="s1">&#39;sequence_release&#39;</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">display</span> <span class="o">=</span> <span class="s1">&#39;fasta&#39;</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">data</span> <span class="o">=</span> <span class="n">embl</span><span class="o">.</span><span class="n">datawarehouse_search</span><span class="p">(</span><span class="n">query</span><span class="p">,</span> <span class="n">result</span><span class="o">=</span><span class="n">result</span><span class="p">,</span>
@@ -370,7 +373,7 @@ genus. Only from the EMBL release database in fasta format:</p>
 <p>Each entry taxon_id from the same data can be retrieved using <em>report</em>
 as the <em>display</em> option and <em>fields</em> an iterable of fields to just
 (‘accession’, tax_id’):</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">query</span> <span class="o">=</span> <span class="s1">&#39;tax_tree(1485) AND mol_type=&quot;rRNA&quot;&#39;</span>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">query</span> <span class="o">=</span> <span class="s1">&#39;tax_tree(1485) AND mol_type=&quot;rRNA&quot;&#39;</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">result</span> <span class="o">=</span> <span class="s1">&#39;sequence_release&#39;</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">display</span> <span class="o">=</span> <span class="s1">&#39;report&#39;</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">fields</span> <span class="o">=</span> <span class="p">(</span><span class="s1">&#39;accession&#39;</span><span class="p">,</span> <span class="s1">&#39;tax_id&#39;</span><span class="p">)</span>
@@ -380,9 +383,9 @@ as the <em>display</em> option and <em>fields</em> an iterable of fields to just
 </div>
 </dd></dl>
 
-<dl class="function">
+<dl class="py function">
 <dt id="mgkit.net.embl.dbfetch">
-<code class="sig-prename descclassname">mgkit.net.embl.</code><code class="sig-name descname">dbfetch</code><span class="sig-paren">(</span><em class="sig-param">embl_ids</em>, <em class="sig-param">db='embl'</em>, <em class="sig-param">contact=None</em>, <em class="sig-param">out_format='seqxml'</em>, <em class="sig-param">num_req=10</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/mgkit/net/embl.html#dbfetch"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#mgkit.net.embl.dbfetch" title="Permalink to this definition">¶</a></dt>
+<code class="sig-prename descclassname">mgkit.net.embl.</code><code class="sig-name descname">dbfetch</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">embl_ids</span></em>, <em class="sig-param"><span class="n">db</span><span class="o">=</span><span class="default_value">'embl'</span></em>, <em class="sig-param"><span class="n">contact</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">out_format</span><span class="o">=</span><span class="default_value">'seqxml'</span></em>, <em class="sig-param"><span class="n">num_req</span><span class="o">=</span><span class="default_value">10</span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/mgkit/net/embl.html#dbfetch"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#mgkit.net.embl.dbfetch" title="Permalink to this definition">¶</a></dt>
 <dd><div class="versionadded">
 <p><span class="versionmodified added">New in version 0.1.12.</span></p>
 </div>
@@ -392,11 +395,11 @@ output formats and the database available at the
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>embl_ids</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.8)"><em>str</em></a><em>, </em><em>iterable</em>) – list or single sequence id to retrieve</p></li>
-<li><p><strong>db</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.8)"><em>str</em></a>) – database from which retrieve the sequence data</p></li>
-<li><p><strong>contact</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.8)"><em>str</em></a>) – email contact to use as per EMBL guidlines</p></li>
-<li><p><strong>out_format</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.8)"><em>str</em></a>) – output format, depends on database</p></li>
-<li><p><strong>num_req</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.8)"><em>int</em></a>) – number of ids per request</p></li>
+<li><p><strong>embl_ids</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)"><em>str</em></a><em>, </em><em>iterable</em>) – list or single sequence id to retrieve</p></li>
+<li><p><strong>db</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)"><em>str</em></a>) – database from which retrieve the sequence data</p></li>
+<li><p><strong>contact</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)"><em>str</em></a>) – email contact to use as per EMBL guidlines</p></li>
+<li><p><strong>out_format</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)"><em>str</em></a>) – output format, depends on database</p></li>
+<li><p><strong>num_req</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.9)"><em>int</em></a>) – number of ids per request</p></li>
 </ul>
 </dd>
 <dt class="field-even">Returns</dt>
@@ -406,14 +409,14 @@ list depends by the number of ids in <em>embl_ids</em> and the value of
 <em>num_req</em>.</p>
 </dd>
 <dt class="field-odd">Return type</dt>
-<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.8)">list</a></p>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.9)">list</a></p>
 </dd>
 </dl>
 </dd></dl>
 
-<dl class="function">
+<dl class="py function">
 <dt id="mgkit.net.embl.get_sequences_by_ids">
-<code class="sig-prename descclassname">mgkit.net.embl.</code><code class="sig-name descname">get_sequences_by_ids</code><span class="sig-paren">(</span><em class="sig-param">embl_ids</em>, <em class="sig-param">contact=None</em>, <em class="sig-param">out_format='fasta'</em>, <em class="sig-param">num_req=10</em>, <em class="sig-param">embl_db='embl_cds'</em>, <em class="sig-param">strict=False</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/mgkit/net/embl.html#get_sequences_by_ids"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#mgkit.net.embl.get_sequences_by_ids" title="Permalink to this definition">¶</a></dt>
+<code class="sig-prename descclassname">mgkit.net.embl.</code><code class="sig-name descname">get_sequences_by_ids</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">embl_ids</span></em>, <em class="sig-param"><span class="n">contact</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">out_format</span><span class="o">=</span><span class="default_value">'fasta'</span></em>, <em class="sig-param"><span class="n">num_req</span><span class="o">=</span><span class="default_value">10</span></em>, <em class="sig-param"><span class="n">embl_db</span><span class="o">=</span><span class="default_value">'embl_cds'</span></em>, <em class="sig-param"><span class="n">strict</span><span class="o">=</span><span class="default_value">False</span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/mgkit/net/embl.html#get_sequences_by_ids"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#mgkit.net.embl.get_sequences_by_ids" title="Permalink to this definition">¶</a></dt>
 <dd><div class="versionchanged">
 <p><span class="versionmodified changed">Changed in version 0.3.4: </span>removed <em>compress</em> as it’s bases on the <cite>requests</cite> package</p>
 </div>
@@ -442,12 +445,12 @@ debug message</p></li>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>embl_ids</strong> (<em>iterable</em><em>, </em><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.8)"><em>str</em></a>) – list of ids to download</p></li>
-<li><p><strong>contact</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.8)"><em>str</em></a>) – email address to be passed in the query</p></li>
-<li><p><strong>format</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.8)"><em>str</em></a>) – format of the entry</p></li>
-<li><p><strong>num_req</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.8)"><em>int</em></a>) – number of entries to download with each request</p></li>
-<li><p><strong>embl_db</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.8)"><em>str</em></a>) – db to which the ids refer to</p></li>
-<li><p><strong>strict</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.8)"><em>bool</em></a>) – if True, a check on the number of entries retrieved is
+<li><p><strong>embl_ids</strong> (<em>iterable</em><em>, </em><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)"><em>str</em></a>) – list of ids to download</p></li>
+<li><p><strong>contact</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)"><em>str</em></a>) – email address to be passed in the query</p></li>
+<li><p><strong>format</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)"><em>str</em></a>) – format of the entry</p></li>
+<li><p><strong>num_req</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.9)"><em>int</em></a>) – number of entries to download with each request</p></li>
+<li><p><strong>embl_db</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)"><em>str</em></a>) – db to which the ids refer to</p></li>
+<li><p><strong>strict</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.9)"><em>bool</em></a>) – if True, a check on the number of entries retrieved is
 performed</p></li>
 </ul>
 </dd>
@@ -455,7 +458,7 @@ performed</p></li>
 <dd class="field-even"><p>the entries requested</p>
 </dd>
 <dt class="field-odd">Return type</dt>
-<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.8)">str</a></p>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)">str</a></p>
 </dd>
 <dt class="field-even">Raises</dt>
 <dd class="field-even"><ul class="simple">
@@ -495,11 +498,19 @@ restriction that’s temporary.</p>
 
   <div role="contentinfo">
     <p>
-        &copy; Copyright 2013-2015, Francesco Rubino
+        
+        &copy; Copyright 2013-2020, Francesco Rubino
 
     </p>
   </div>
-  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+    
+    
+    
+    Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a
+    
+    <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a>
+    
+    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
 
 </footer>
 
@@ -510,7 +521,6 @@ restriction that’s temporary.</p>
 
   </div>
   
-
 
   <script type="text/javascript">
       jQuery(function () {

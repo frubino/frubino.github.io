@@ -1,42 +1,43 @@
 
 
 <!DOCTYPE html>
-<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
-<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<html class="writer-html5" lang="en" >
 <head>
   <meta charset="utf-8">
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>mgkit.db.mongo module &mdash; MGKit: Metagenomic framework 0.5.1 documentation</title>
+  <title>mgkit.db.mongo module &mdash; MGKit: Metagenomic framework 0.5.3 documentation</title>
   
-
-  
-  
-  
-  
-
-  
-  <script type="text/javascript" src="../_static/js/modernizr.min.js"></script>
-  
-    
-      <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
-        <script type="text/javascript" src="../_static/jquery.js"></script>
-        <script type="text/javascript" src="../_static/underscore.js"></script>
-        <script type="text/javascript" src="../_static/doctools.js"></script>
-        <script type="text/javascript" src="../_static/language_data.js"></script>
-        <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
-        <script async="async" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
-        <script type="text/x-mathjax-config">MathJax.Hub.Config({"tex2jax": {"inlineMath": [["$", "$"], ["\\(", "\\)"]], "processEscapes": true, "ignoreClass": "document", "processClass": "math|output_area"}})</script>
-    
-    <script type="text/javascript" src="../_static/js/theme.js"></script>
-
-    
 
   
   <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
   <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
   <link rel="stylesheet" href="../_static/graphviz.css" type="text/css" />
+
+  
+  
+  
+  
+
+  
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/underscore.js"></script>
+        <script src="../_static/doctools.js"></script>
+        <script src="../_static/language_data.js"></script>
+        <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+        <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+        <script type="text/x-mathjax-config">MathJax.Hub.Config({"tex2jax": {"inlineMath": [["$", "$"], ["\\(", "\\)"]], "processEscapes": true, "ignoreClass": "document", "processClass": "math|output_area"}})</script>
+    
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+
+    
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
     <link rel="next" title="mgkit.filter package" href="mgkit.filter.html" />
@@ -54,7 +55,7 @@
           
 
           
-            <a href="../index.html" class="icon icon-home"> MGKit: Metagenomic framework
+            <a href="../index.html" class="icon icon-home" alt="Documentation Home"> MGKit: Metagenomic framework
           
 
           
@@ -64,7 +65,7 @@
             
             
               <div class="version">
-                0.5.1
+                0.5.3
               </div>
             
           
@@ -81,6 +82,7 @@
           
         </div>
 
+        
         <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
           
             
@@ -179,6 +181,7 @@
             
           
         </div>
+        
       </div>
     </nav>
 
@@ -217,7 +220,7 @@
 
   <ul class="wy-breadcrumbs">
     
-      <li><a href="../index.html">Docs</a> &raquo;</li>
+      <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
         
           <li><a href="../library.html">Library Reference</a> &raquo;</li>
         
@@ -338,25 +341,25 @@ of mappings, and the values the list of IDs the annoation maps to.</p>
 </tr>
 </tbody>
 </table>
-<dl class="class">
+<dl class="py class">
 <dt id="mgkit.db.mongo.GFFDB">
-<em class="property">class </em><code class="sig-prename descclassname">mgkit.db.mongo.</code><code class="sig-name descname">GFFDB</code><span class="sig-paren">(</span><em class="sig-param">db</em>, <em class="sig-param">collection</em>, <em class="sig-param">uri=None</em>, <em class="sig-param">timeout=5</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/mgkit/db/mongo.html#GFFDB"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#mgkit.db.mongo.GFFDB" title="Permalink to this definition">¶</a></dt>
-<dd><p>Bases: <a class="reference external" href="https://docs.python.org/3/library/functions.html#object" title="(in Python v3.8)"><code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></a></p>
+<em class="property">class </em><code class="sig-prename descclassname">mgkit.db.mongo.</code><code class="sig-name descname">GFFDB</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">db</span></em>, <em class="sig-param"><span class="n">collection</span></em>, <em class="sig-param"><span class="n">uri</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">timeout</span><span class="o">=</span><span class="default_value">5</span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/mgkit/db/mongo.html#GFFDB"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#mgkit.db.mongo.GFFDB" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference external" href="https://docs.python.org/3/library/functions.html#object" title="(in Python v3.9)"><code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></a></p>
 <div class="versionchanged">
 <p><span class="versionmodified changed">Changed in version 0.3.4: </span>added <em>timeout</em> parameter</p>
 </div>
 <p>Wrapper to a MongoDB connection/db. It is used to automate the convertion
 of MongoDB records into <a class="reference internal" href="mgkit.io.gff.html#mgkit.io.gff.Annotation" title="mgkit.io.gff.Annotation"><code class="xref py py-class docutils literal notranslate"><span class="pre">mgkit.io.gff.Annotation</span></code></a> instances.</p>
-<dl class="method">
+<dl class="py method">
 <dt id="mgkit.db.mongo.GFFDB.__getitem__">
-<code class="sig-name descname">__getitem__</code><span class="sig-paren">(</span><em class="sig-param">uid</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/mgkit/db/mongo.html#GFFDB.__getitem__"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#mgkit.db.mongo.GFFDB.__getitem__" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">__getitem__</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">uid</span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/mgkit/db/mongo.html#GFFDB.__getitem__"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#mgkit.db.mongo.GFFDB.__getitem__" title="Permalink to this definition">¶</a></dt>
 <dd><div class="versionadded">
 <p><span class="versionmodified added">New in version 0.3.1.</span></p>
 </div>
 <p>Retrieves an annotation from the DB by its <em>uid</em></p>
 </dd></dl>
 
-<dl class="method">
+<dl class="py method">
 <dt id="mgkit.db.mongo.GFFDB.__iter__">
 <code class="sig-name descname">__iter__</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/mgkit/db/mongo.html#GFFDB.__iter__"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#mgkit.db.mongo.GFFDB.__iter__" title="Permalink to this definition">¶</a></dt>
 <dd><div class="versionadded">
@@ -365,42 +368,42 @@ of MongoDB records into <a class="reference internal" href="mgkit.io.gff.html#mg
 <p>Iterates over all annotations</p>
 </dd></dl>
 
-<dl class="attribute">
+<dl class="py attribute">
 <dt id="mgkit.db.mongo.GFFDB.conn">
 <code class="sig-name descname">conn</code><em class="property"> = None</em><a class="headerlink" href="#mgkit.db.mongo.GFFDB.conn" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
-<dl class="method">
+<dl class="py method">
 <dt id="mgkit.db.mongo.GFFDB.convert_record">
-<code class="sig-name descname">convert_record</code><span class="sig-paren">(</span><em class="sig-param">record</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/mgkit/db/mongo.html#GFFDB.convert_record"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#mgkit.db.mongo.GFFDB.convert_record" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">convert_record</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">record</span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/mgkit/db/mongo.html#GFFDB.convert_record"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#mgkit.db.mongo.GFFDB.convert_record" title="Permalink to this definition">¶</a></dt>
 <dd><div class="versionchanged">
 <p><span class="versionmodified changed">Changed in version 0.3.1: </span>removes <em>lineage</em> from the attributes</p>
 </div>
 <p>Converts the record (a dictionary instance) to an Annotation</p>
 </dd></dl>
 
-<dl class="method">
+<dl class="py method">
 <dt id="mgkit.db.mongo.GFFDB.cursor">
-<code class="sig-name descname">cursor</code><span class="sig-paren">(</span><em class="sig-param">query=None</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/mgkit/db/mongo.html#GFFDB.cursor"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#mgkit.db.mongo.GFFDB.cursor" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">cursor</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">query</span><span class="o">=</span><span class="default_value">None</span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/mgkit/db/mongo.html#GFFDB.cursor"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#mgkit.db.mongo.GFFDB.cursor" title="Permalink to this definition">¶</a></dt>
 <dd><p>Returns a cursor for the query</p>
 </dd></dl>
 
-<dl class="attribute">
+<dl class="py attribute">
 <dt id="mgkit.db.mongo.GFFDB.db">
 <code class="sig-name descname">db</code><em class="property"> = None</em><a class="headerlink" href="#mgkit.db.mongo.GFFDB.db" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
-<dl class="method">
+<dl class="py method">
 <dt id="mgkit.db.mongo.GFFDB.find_annotation">
-<code class="sig-name descname">find_annotation</code><span class="sig-paren">(</span><em class="sig-param">query=None</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/mgkit/db/mongo.html#GFFDB.find_annotation"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#mgkit.db.mongo.GFFDB.find_annotation" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">find_annotation</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">query</span><span class="o">=</span><span class="default_value">None</span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/mgkit/db/mongo.html#GFFDB.find_annotation"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#mgkit.db.mongo.GFFDB.find_annotation" title="Permalink to this definition">¶</a></dt>
 <dd><p>Iterate over a cursor created using <em>query</em> and yields each record
 after converting it to a <a class="reference internal" href="mgkit.io.gff.html#mgkit.io.gff.Annotation" title="mgkit.io.gff.Annotation"><code class="xref py py-class docutils literal notranslate"><span class="pre">mgkit.io.gff.Annotation</span></code></a> instance,
 using <a class="reference internal" href="#mgkit.db.mongo.GFFDB.convert_record" title="mgkit.db.mongo.GFFDB.convert_record"><code class="xref py py-meth docutils literal notranslate"><span class="pre">mgkit.db.mongo.GFFDB.convert_record()</span></code></a>.</p>
 </dd></dl>
 
-<dl class="method">
+<dl class="py method">
 <dt id="mgkit.db.mongo.GFFDB.insert_many">
-<code class="sig-name descname">insert_many</code><span class="sig-paren">(</span><em class="sig-param">annotations</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/mgkit/db/mongo.html#GFFDB.insert_many"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#mgkit.db.mongo.GFFDB.insert_many" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">insert_many</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">annotations</span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/mgkit/db/mongo.html#GFFDB.insert_many"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#mgkit.db.mongo.GFFDB.insert_many" title="Permalink to this definition">¶</a></dt>
 <dd><div class="versionadded">
 <p><span class="versionmodified added">New in version 0.3.4.</span></p>
 </div>
@@ -411,21 +414,21 @@ using <a class="reference internal" href="#mgkit.db.mongo.GFFDB.convert_record" 
 </div>
 </dd></dl>
 
-<dl class="method">
+<dl class="py method">
 <dt id="mgkit.db.mongo.GFFDB.insert_one">
-<code class="sig-name descname">insert_one</code><span class="sig-paren">(</span><em class="sig-param">annotation</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/mgkit/db/mongo.html#GFFDB.insert_one"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#mgkit.db.mongo.GFFDB.insert_one" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">insert_one</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">annotation</span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/mgkit/db/mongo.html#GFFDB.insert_one"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#mgkit.db.mongo.GFFDB.insert_one" title="Permalink to this definition">¶</a></dt>
 <dd><div class="versionadded">
 <p><span class="versionmodified added">New in version 0.3.4.</span></p>
 </div>
 <p>Inserts an annotation into the DB</p>
 <dl class="field-list simple">
 <dt class="field-odd">Raises</dt>
-<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/exceptions.html#TypeError" title="(in Python v3.8)"><strong>TypeError</strong></a> – if the passed object is not an annotation</p>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/exceptions.html#TypeError" title="(in Python v3.9)"><strong>TypeError</strong></a> – if the passed object is not an annotation</p>
 </dd>
 </dl>
 </dd></dl>
 
-<dl class="method">
+<dl class="py method">
 <dt id="mgkit.db.mongo.GFFDB.items">
 <code class="sig-name descname">items</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/mgkit/db/mongo.html#GFFDB.items"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#mgkit.db.mongo.GFFDB.items" title="Permalink to this definition">¶</a></dt>
 <dd><div class="versionadded">
@@ -435,7 +438,7 @@ using <a class="reference internal" href="#mgkit.db.mongo.GFFDB.convert_record" 
 tuple (<em>annotation.uid</em>, <em>annotation</em>)</p>
 </dd></dl>
 
-<dl class="method">
+<dl class="py method">
 <dt id="mgkit.db.mongo.GFFDB.iteritems">
 <code class="sig-name descname">iteritems</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/mgkit/db/mongo.html#GFFDB.iteritems"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#mgkit.db.mongo.GFFDB.iteritems" title="Permalink to this definition">¶</a></dt>
 <dd><div class="versionadded">
@@ -444,7 +447,7 @@ tuple (<em>annotation.uid</em>, <em>annotation</em>)</p>
 <p>Alias for <a class="reference internal" href="#mgkit.db.mongo.GFFDB.items" title="mgkit.db.mongo.GFFDB.items"><code class="xref py py-meth docutils literal notranslate"><span class="pre">GFFDB.items()</span></code></a></p>
 </dd></dl>
 
-<dl class="method">
+<dl class="py method">
 <dt id="mgkit.db.mongo.GFFDB.itervalues">
 <code class="sig-name descname">itervalues</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/mgkit/db/mongo.html#GFFDB.itervalues"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#mgkit.db.mongo.GFFDB.itervalues" title="Permalink to this definition">¶</a></dt>
 <dd><div class="versionadded">
@@ -453,7 +456,7 @@ tuple (<em>annotation.uid</em>, <em>annotation</em>)</p>
 <p>Alias for <a class="reference internal" href="#mgkit.db.mongo.GFFDB.values" title="mgkit.db.mongo.GFFDB.values"><code class="xref py py-meth docutils literal notranslate"><span class="pre">GFFDB.values()</span></code></a></p>
 </dd></dl>
 
-<dl class="method">
+<dl class="py method">
 <dt id="mgkit.db.mongo.GFFDB.keys">
 <code class="sig-name descname">keys</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/mgkit/db/mongo.html#GFFDB.keys"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#mgkit.db.mongo.GFFDB.keys" title="Permalink to this definition">¶</a></dt>
 <dd><div class="versionadded">
@@ -462,7 +465,7 @@ tuple (<em>annotation.uid</em>, <em>annotation</em>)</p>
 <p>Iterates over all the <em>uid</em> in the db/collection</p>
 </dd></dl>
 
-<dl class="method">
+<dl class="py method">
 <dt id="mgkit.db.mongo.GFFDB.values">
 <code class="sig-name descname">values</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/mgkit/db/mongo.html#GFFDB.values"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#mgkit.db.mongo.GFFDB.values" title="Permalink to this definition">¶</a></dt>
 <dd><div class="versionadded">
@@ -495,11 +498,19 @@ tuple (<em>annotation.uid</em>, <em>annotation</em>)</p>
 
   <div role="contentinfo">
     <p>
-        &copy; Copyright 2013-2015, Francesco Rubino
+        
+        &copy; Copyright 2013-2020, Francesco Rubino
 
     </p>
   </div>
-  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+    
+    
+    
+    Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a
+    
+    <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a>
+    
+    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
 
 </footer>
 
@@ -510,7 +521,6 @@ tuple (<em>annotation.uid</em>, <em>annotation</em>)</p>
 
   </div>
   
-
 
   <script type="text/javascript">
       jQuery(function () {

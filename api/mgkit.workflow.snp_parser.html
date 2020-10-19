@@ -1,42 +1,43 @@
 
 
 <!DOCTYPE html>
-<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
-<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<html class="writer-html5" lang="en" >
 <head>
   <meta charset="utf-8">
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>mgkit.workflow.snp_parser module &mdash; MGKit: Metagenomic framework 0.5.1 documentation</title>
+  <title>mgkit.workflow.snp_parser module &mdash; MGKit: Metagenomic framework 0.5.3 documentation</title>
   
-
-  
-  
-  
-  
-
-  
-  <script type="text/javascript" src="../_static/js/modernizr.min.js"></script>
-  
-    
-      <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
-        <script type="text/javascript" src="../_static/jquery.js"></script>
-        <script type="text/javascript" src="../_static/underscore.js"></script>
-        <script type="text/javascript" src="../_static/doctools.js"></script>
-        <script type="text/javascript" src="../_static/language_data.js"></script>
-        <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
-        <script async="async" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
-        <script type="text/x-mathjax-config">MathJax.Hub.Config({"tex2jax": {"inlineMath": [["$", "$"], ["\\(", "\\)"]], "processEscapes": true, "ignoreClass": "document", "processClass": "math|output_area"}})</script>
-    
-    <script type="text/javascript" src="../_static/js/theme.js"></script>
-
-    
 
   
   <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
   <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
   <link rel="stylesheet" href="../_static/graphviz.css" type="text/css" />
+
+  
+  
+  
+  
+
+  
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/underscore.js"></script>
+        <script src="../_static/doctools.js"></script>
+        <script src="../_static/language_data.js"></script>
+        <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+        <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+        <script type="text/x-mathjax-config">MathJax.Hub.Config({"tex2jax": {"inlineMath": [["$", "$"], ["\\(", "\\)"]], "processEscapes": true, "ignoreClass": "document", "processClass": "math|output_area"}})</script>
+    
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+
+    
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
     <link rel="next" title="mgkit.workflow.taxon_utils module" href="mgkit.workflow.taxon_utils.html" />
@@ -54,7 +55,7 @@
           
 
           
-            <a href="../index.html" class="icon icon-home"> MGKit: Metagenomic framework
+            <a href="../index.html" class="icon icon-home" alt="Documentation Home"> MGKit: Metagenomic framework
           
 
           
@@ -64,7 +65,7 @@
             
             
               <div class="version">
-                0.5.1
+                0.5.3
               </div>
             
           
@@ -81,6 +82,7 @@
           
         </div>
 
+        
         <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
           
             
@@ -182,6 +184,7 @@
             
           
         </div>
+        
       </div>
     </nav>
 
@@ -220,7 +223,7 @@
 
   <ul class="wy-breadcrumbs">
     
-      <li><a href="../index.html">Docs</a> &raquo;</li>
+      <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
         
           <li><a href="../library.html">Library Reference</a> &raquo;</li>
         
@@ -299,70 +302,70 @@ bcftools</p>
 <div class="versionchanged">
 <p><span class="versionmodified changed">Changed in version 0.1.13: </span>reworked the internals and the classes used, including options -m and -s</p>
 </div>
-<dl class="function">
+<dl class="py function">
 <dt id="mgkit.workflow.snp_parser.check_snp_in_set">
-<code class="sig-prename descclassname">mgkit.workflow.snp_parser.</code><code class="sig-name descname">check_snp_in_set</code><span class="sig-paren">(</span><em class="sig-param">samples</em>, <em class="sig-param">snp_data</em>, <em class="sig-param">pos</em>, <em class="sig-param">change</em>, <em class="sig-param">annotations</em>, <em class="sig-param">seq</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/mgkit/workflow/snp_parser.html#check_snp_in_set"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#mgkit.workflow.snp_parser.check_snp_in_set" title="Permalink to this definition">¶</a></dt>
+<code class="sig-prename descclassname">mgkit.workflow.snp_parser.</code><code class="sig-name descname">check_snp_in_set</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">samples</span></em>, <em class="sig-param"><span class="n">snp_data</span></em>, <em class="sig-param"><span class="n">pos</span></em>, <em class="sig-param"><span class="n">change</span></em>, <em class="sig-param"><span class="n">annotations</span></em>, <em class="sig-param"><span class="n">seq</span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/mgkit/workflow/snp_parser.html#check_snp_in_set"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#mgkit.workflow.snp_parser.check_snp_in_set" title="Permalink to this definition">¶</a></dt>
 <dd><p>Used by <a class="reference internal" href="#mgkit.workflow.snp_parser.parse_vcf" title="mgkit.workflow.snp_parser.parse_vcf"><code class="xref py py-func docutils literal notranslate"><span class="pre">parse_vcf()</span></code></a> to check if a SNP</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>samples</strong> (<em>iterable</em>) – list of samples that contain the SNP</p></li>
-<li><p><strong>snp_data</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.8)"><em>dict</em></a>) – dictionary from <a class="reference internal" href="#mgkit.workflow.snp_parser.init_count_set" title="mgkit.workflow.snp_parser.init_count_set"><code class="xref py py-func docutils literal notranslate"><span class="pre">init_count_set()</span></code></a> with per
+<li><p><strong>snp_data</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.9)"><em>dict</em></a>) – dictionary from <a class="reference internal" href="#mgkit.workflow.snp_parser.init_count_set" title="mgkit.workflow.snp_parser.init_count_set"><code class="xref py py-func docutils literal notranslate"><span class="pre">init_count_set()</span></code></a> with per
 sample SNPs information</p></li>
 </ul>
 </dd>
 </dl>
 </dd></dl>
 
-<dl class="function">
+<dl class="py function">
 <dt id="mgkit.workflow.snp_parser.init_count_set">
-<code class="sig-prename descclassname">mgkit.workflow.snp_parser.</code><code class="sig-name descname">init_count_set</code><span class="sig-paren">(</span><em class="sig-param">annotations</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/mgkit/workflow/snp_parser.html#init_count_set"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#mgkit.workflow.snp_parser.init_count_set" title="Permalink to this definition">¶</a></dt>
+<code class="sig-prename descclassname">mgkit.workflow.snp_parser.</code><code class="sig-name descname">init_count_set</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">annotations</span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/mgkit/workflow/snp_parser.html#init_count_set"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#mgkit.workflow.snp_parser.init_count_set" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
-<dl class="function">
+<dl class="py function">
 <dt id="mgkit.workflow.snp_parser.main">
 <code class="sig-prename descclassname">mgkit.workflow.snp_parser.</code><code class="sig-name descname">main</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/mgkit/workflow/snp_parser.html#main"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#mgkit.workflow.snp_parser.main" title="Permalink to this definition">¶</a></dt>
 <dd><p>Main function</p>
 </dd></dl>
 
-<dl class="function">
+<dl class="py function">
 <dt id="mgkit.workflow.snp_parser.parse_vcf">
-<code class="sig-prename descclassname">mgkit.workflow.snp_parser.</code><code class="sig-name descname">parse_vcf</code><span class="sig-paren">(</span><em class="sig-param">vcf_file</em>, <em class="sig-param">snp_data</em>, <em class="sig-param">min_reads</em>, <em class="sig-param">min_af</em>, <em class="sig-param">min_qual</em>, <em class="sig-param">annotations</em>, <em class="sig-param">seqs</em>, <em class="sig-param">options</em>, <em class="sig-param">line_num=100000</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/mgkit/workflow/snp_parser.html#parse_vcf"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#mgkit.workflow.snp_parser.parse_vcf" title="Permalink to this definition">¶</a></dt>
+<code class="sig-prename descclassname">mgkit.workflow.snp_parser.</code><code class="sig-name descname">parse_vcf</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">vcf_file</span></em>, <em class="sig-param"><span class="n">snp_data</span></em>, <em class="sig-param"><span class="n">min_reads</span></em>, <em class="sig-param"><span class="n">min_af</span></em>, <em class="sig-param"><span class="n">min_qual</span></em>, <em class="sig-param"><span class="n">annotations</span></em>, <em class="sig-param"><span class="n">seqs</span></em>, <em class="sig-param"><span class="n">options</span></em>, <em class="sig-param"><span class="n">line_num</span><span class="o">=</span><span class="default_value">100000</span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/mgkit/workflow/snp_parser.html#parse_vcf"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#mgkit.workflow.snp_parser.parse_vcf" title="Permalink to this definition">¶</a></dt>
 <dd><p>Parse VCF file counts synonymous and non-synonymous SNPs</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>vcf_file</strong> (<em>file</em>) – file handle to a VCF file</p></li>
-<li><p><strong>snp_data</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.8)"><em>dict</em></a>) – dictionary from <a class="reference internal" href="#mgkit.workflow.snp_parser.init_count_set" title="mgkit.workflow.snp_parser.init_count_set"><code class="xref py py-func docutils literal notranslate"><span class="pre">init_count_set()</span></code></a> with per
+<li><p><strong>snp_data</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.9)"><em>dict</em></a>) – dictionary from <a class="reference internal" href="#mgkit.workflow.snp_parser.init_count_set" title="mgkit.workflow.snp_parser.init_count_set"><code class="xref py py-func docutils literal notranslate"><span class="pre">init_count_set()</span></code></a> with per
 sample SNPs information</p></li>
-<li><p><strong>min_reads</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.8)"><em>int</em></a>) – minimum number of reads to accept a SNP</p></li>
-<li><p><strong>min_af</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.8)"><em>float</em></a>) – minimum allele frequency to accept a SNP</p></li>
-<li><p><strong>min_qual</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.8)"><em>int</em></a>) – minimum quality (Phred score) to accept a SNP</p></li>
-<li><p><strong>annotations</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.8)"><em>dict</em></a>) – annotations grouped by their reference sequence</p></li>
-<li><p><strong>seqs</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.8)"><em>dict</em></a>) – reference sequences</p></li>
-<li><p><strong>line_num</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.8)"><em>int</em></a>) – the interval in number of lines at which progress
+<li><p><strong>min_reads</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.9)"><em>int</em></a>) – minimum number of reads to accept a SNP</p></li>
+<li><p><strong>min_af</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.9)"><em>float</em></a>) – minimum allele frequency to accept a SNP</p></li>
+<li><p><strong>min_qual</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.9)"><em>int</em></a>) – minimum quality (Phred score) to accept a SNP</p></li>
+<li><p><strong>annotations</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.9)"><em>dict</em></a>) – annotations grouped by their reference sequence</p></li>
+<li><p><strong>seqs</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.9)"><em>dict</em></a>) – reference sequences</p></li>
+<li><p><strong>line_num</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.9)"><em>int</em></a>) – the interval in number of lines at which progress
 will be printed</p></li>
 </ul>
 </dd>
 </dl>
 </dd></dl>
 
-<dl class="function">
+<dl class="py function">
 <dt id="mgkit.workflow.snp_parser.save_data">
-<code class="sig-prename descclassname">mgkit.workflow.snp_parser.</code><code class="sig-name descname">save_data</code><span class="sig-paren">(</span><em class="sig-param">output_file</em>, <em class="sig-param">snp_data</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/mgkit/workflow/snp_parser.html#save_data"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#mgkit.workflow.snp_parser.save_data" title="Permalink to this definition">¶</a></dt>
+<code class="sig-prename descclassname">mgkit.workflow.snp_parser.</code><code class="sig-name descname">save_data</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">output_file</span></em>, <em class="sig-param"><span class="n">snp_data</span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/mgkit/workflow/snp_parser.html#save_data"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#mgkit.workflow.snp_parser.save_data" title="Permalink to this definition">¶</a></dt>
 <dd><p>Pickle data structures to the disk.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>output_file</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.8)"><em>str</em></a>) – base name for pickle files</p></li>
-<li><p><strong>snp_data</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.8)"><em>dict</em></a>) – dictionary from <a class="reference internal" href="#mgkit.workflow.snp_parser.init_count_set" title="mgkit.workflow.snp_parser.init_count_set"><code class="xref py py-func docutils literal notranslate"><span class="pre">init_count_set()</span></code></a> with per
+<li><p><strong>output_file</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)"><em>str</em></a>) – base name for pickle files</p></li>
+<li><p><strong>snp_data</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.9)"><em>dict</em></a>) – dictionary from <a class="reference internal" href="#mgkit.workflow.snp_parser.init_count_set" title="mgkit.workflow.snp_parser.init_count_set"><code class="xref py py-func docutils literal notranslate"><span class="pre">init_count_set()</span></code></a> with per
 sample SNPs information</p></li>
 </ul>
 </dd>
 </dl>
 </dd></dl>
 
-<dl class="function">
+<dl class="py function">
 <dt id="mgkit.workflow.snp_parser.set_parser">
 <code class="sig-prename descclassname">mgkit.workflow.snp_parser.</code><code class="sig-name descname">set_parser</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/mgkit/workflow/snp_parser.html#set_parser"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#mgkit.workflow.snp_parser.set_parser" title="Permalink to this definition">¶</a></dt>
 <dd><p>Sets command line arguments parser</p>
@@ -391,11 +394,19 @@ sample SNPs information</p></li>
 
   <div role="contentinfo">
     <p>
-        &copy; Copyright 2013-2015, Francesco Rubino
+        
+        &copy; Copyright 2013-2020, Francesco Rubino
 
     </p>
   </div>
-  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+    
+    
+    
+    Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a
+    
+    <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a>
+    
+    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
 
 </footer>
 
@@ -406,7 +417,6 @@ sample SNPs information</p></li>
 
   </div>
   
-
 
   <script type="text/javascript">
       jQuery(function () {

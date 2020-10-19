@@ -1,42 +1,43 @@
 
 
 <!DOCTYPE html>
-<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
-<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<html class="writer-html5" lang="en" >
 <head>
   <meta charset="utf-8">
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>mgkit.utils.dictionary module &mdash; MGKit: Metagenomic framework 0.5.1 documentation</title>
+  <title>mgkit.utils.dictionary module &mdash; MGKit: Metagenomic framework 0.5.3 documentation</title>
   
-
-  
-  
-  
-  
-
-  
-  <script type="text/javascript" src="../_static/js/modernizr.min.js"></script>
-  
-    
-      <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
-        <script type="text/javascript" src="../_static/jquery.js"></script>
-        <script type="text/javascript" src="../_static/underscore.js"></script>
-        <script type="text/javascript" src="../_static/doctools.js"></script>
-        <script type="text/javascript" src="../_static/language_data.js"></script>
-        <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
-        <script async="async" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
-        <script type="text/x-mathjax-config">MathJax.Hub.Config({"tex2jax": {"inlineMath": [["$", "$"], ["\\(", "\\)"]], "processEscapes": true, "ignoreClass": "document", "processClass": "math|output_area"}})</script>
-    
-    <script type="text/javascript" src="../_static/js/theme.js"></script>
-
-    
 
   
   <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
   <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
   <link rel="stylesheet" href="../_static/graphviz.css" type="text/css" />
+
+  
+  
+  
+  
+
+  
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/underscore.js"></script>
+        <script src="../_static/doctools.js"></script>
+        <script src="../_static/language_data.js"></script>
+        <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+        <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+        <script type="text/x-mathjax-config">MathJax.Hub.Config({"tex2jax": {"inlineMath": [["$", "$"], ["\\(", "\\)"]], "processEscapes": true, "ignoreClass": "document", "processClass": "math|output_area"}})</script>
+    
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+
+    
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
     <link rel="next" title="mgkit.utils.sequence module" href="mgkit.utils.sequence.html" />
@@ -54,7 +55,7 @@
           
 
           
-            <a href="../index.html" class="icon icon-home"> MGKit: Metagenomic framework
+            <a href="../index.html" class="icon icon-home" alt="Documentation Home"> MGKit: Metagenomic framework
           
 
           
@@ -64,7 +65,7 @@
             
             
               <div class="version">
-                0.5.1
+                0.5.3
               </div>
             
           
@@ -81,6 +82,7 @@
           
         </div>
 
+        
         <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
           
             
@@ -179,6 +181,7 @@
             
           
         </div>
+        
       </div>
     </nav>
 
@@ -217,7 +220,7 @@
 
   <ul class="wy-breadcrumbs">
     
-      <li><a href="../index.html">Docs</a> &raquo;</li>
+      <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
         
           <li><a href="../library.html">Library Reference</a> &raquo;</li>
         
@@ -271,10 +274,10 @@
 <div class="section" id="module-mgkit.utils.dictionary">
 <span id="mgkit-utils-dictionary-module"></span><h1>mgkit.utils.dictionary module<a class="headerlink" href="#module-mgkit.utils.dictionary" title="Permalink to this headline">¶</a></h1>
 <p>Dictionary utils</p>
-<dl class="class">
+<dl class="py class">
 <dt id="mgkit.utils.dictionary.HDFDict">
 <em class="property">class </em><code class="sig-prename descclassname">mgkit.utils.dictionary.</code><code class="sig-name descname">HDFDict</code><span class="sig-paren">(</span><em class="sig-param">file_name</em>, <em class="sig-param">table</em>, <em class="sig-param">cast=&lt;class 'int'&gt;</em>, <em class="sig-param">cache=True</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/mgkit/utils/dictionary.html#HDFDict"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#mgkit.utils.dictionary.HDFDict" title="Permalink to this definition">¶</a></dt>
-<dd><p>Bases: <a class="reference external" href="https://docs.python.org/3/library/functions.html#object" title="(in Python v3.8)"><code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></a></p>
+<dd><p>Bases: <a class="reference external" href="https://docs.python.org/3/library/functions.html#object" title="(in Python v3.9)"><code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></a></p>
 <div class="versionchanged">
 <p><span class="versionmodified changed">Changed in version 0.3.3: </span>added <em>cache</em> in __init__</p>
 </div>
@@ -290,9 +293,9 @@ raised if the table is not in the file</p>
 </div>
 </dd></dl>
 
-<dl class="function">
+<dl class="py function">
 <dt id="mgkit.utils.dictionary.apply_func_to_values">
-<code class="sig-prename descclassname">mgkit.utils.dictionary.</code><code class="sig-name descname">apply_func_to_values</code><span class="sig-paren">(</span><em class="sig-param">dictionary</em>, <em class="sig-param">func</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/mgkit/utils/dictionary.html#apply_func_to_values"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#mgkit.utils.dictionary.apply_func_to_values" title="Permalink to this definition">¶</a></dt>
+<code class="sig-prename descclassname">mgkit.utils.dictionary.</code><code class="sig-name descname">apply_func_to_values</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">dictionary</span></em>, <em class="sig-param"><span class="n">func</span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/mgkit/utils/dictionary.html#apply_func_to_values"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#mgkit.utils.dictionary.apply_func_to_values" title="Permalink to this definition">¶</a></dt>
 <dd><div class="versionadded">
 <p><span class="versionmodified added">New in version 0.1.12.</span></p>
 </div>
@@ -301,7 +304,7 @@ element of the iterable, retuning a <em>set</em> of all transformed elements.</p
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>dictionary</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.8)"><em>dict</em></a>) – dictionary whose values are iterables</p></li>
+<li><p><strong>dictionary</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.9)"><em>dict</em></a>) – dictionary whose values are iterables</p></li>
 <li><p><strong>func</strong> (<em>func</em>) – function to apply to the dictionary values</p></li>
 </ul>
 </dd>
@@ -309,15 +312,15 @@ element of the iterable, retuning a <em>set</em> of all transformed elements.</p
 <dd class="field-even"><p>dictionary with transformed values</p>
 </dd>
 <dt class="field-odd">Return type</dt>
-<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.8)">dict</a></p>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.9)">dict</a></p>
 </dd>
 </dl>
 </dd></dl>
 
-<dl class="class">
+<dl class="py class">
 <dt id="mgkit.utils.dictionary.cache_dict_file">
-<em class="property">class </em><code class="sig-prename descclassname">mgkit.utils.dictionary.</code><code class="sig-name descname">cache_dict_file</code><span class="sig-paren">(</span><em class="sig-param">iterator</em>, <em class="sig-param">skip_lines=0</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/mgkit/utils/dictionary.html#cache_dict_file"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#mgkit.utils.dictionary.cache_dict_file" title="Permalink to this definition">¶</a></dt>
-<dd><p>Bases: <a class="reference external" href="https://docs.python.org/3/library/functions.html#object" title="(in Python v3.8)"><code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></a></p>
+<em class="property">class </em><code class="sig-prename descclassname">mgkit.utils.dictionary.</code><code class="sig-name descname">cache_dict_file</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">iterator</span></em>, <em class="sig-param"><span class="n">skip_lines</span><span class="o">=</span><span class="default_value">0</span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/mgkit/utils/dictionary.html#cache_dict_file"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#mgkit.utils.dictionary.cache_dict_file" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference external" href="https://docs.python.org/3/library/functions.html#object" title="(in Python v3.9)"><code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></a></p>
 <div class="versionadded">
 <p><span class="versionmodified added">New in version 0.3.0.</span></p>
 </div>
@@ -326,23 +329,23 @@ If the value is found in the internal dictionary (as the class behave), the
 correspondent value is returned, otherwise the iterator is advanced until
 the key is found.</p>
 <p class="rubric">Example</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">mgkit.io.blast</span> <span class="kn">import</span> <span class="n">parse_accession_taxa_table</span>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">mgkit.io.blast</span> <span class="kn">import</span> <span class="n">parse_accession_taxa_table</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">i</span> <span class="o">=</span> <span class="n">parse_accession_taxa_table</span><span class="p">(</span><span class="s1">&#39;nucl_gb.accession2taxid.gz&#39;</span><span class="p">,</span> <span class="n">key</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">d</span> <span class="o">=</span> <span class="n">cache_dict_file</span><span class="p">(</span><span class="n">i</span><span class="p">)</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">d</span><span class="p">[</span><span class="s1">&#39;AH001684&#39;</span><span class="p">]</span>
 <span class="go">4400</span>
 </pre></div>
 </div>
-<dl class="method">
+<dl class="py method">
 <dt id="mgkit.utils.dictionary.cache_dict_file.next">
 <code class="sig-name descname">next</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/mgkit/utils/dictionary.html#cache_dict_file.next"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#mgkit.utils.dictionary.cache_dict_file.next" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 </dd></dl>
 
-<dl class="function">
+<dl class="py function">
 <dt id="mgkit.utils.dictionary.combine_dict">
-<code class="sig-prename descclassname">mgkit.utils.dictionary.</code><code class="sig-name descname">combine_dict</code><span class="sig-paren">(</span><em class="sig-param">keydict</em>, <em class="sig-param">valuedict</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/mgkit/utils/dictionary.html#combine_dict"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#mgkit.utils.dictionary.combine_dict" title="Permalink to this definition">¶</a></dt>
+<code class="sig-prename descclassname">mgkit.utils.dictionary.</code><code class="sig-name descname">combine_dict</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">keydict</span></em>, <em class="sig-param"><span class="n">valuedict</span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/mgkit/utils/dictionary.html#combine_dict"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#mgkit.utils.dictionary.combine_dict" title="Permalink to this definition">¶</a></dt>
 <dd><p>Combine two dictionaries when the values of keydict are iterables. The
 combined dictionary has the same keys as keydict and the its values are
 sets containing all the values associated to keydict values in valuedict.</p>
@@ -357,9 +360,9 @@ v2 -> [t1, t2, .., tN]</p></object></div>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>keydict</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.8)"><em>dict</em></a>) – dictionary whose keys are the same as the returned
+<li><p><strong>keydict</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.9)"><em>dict</em></a>) – dictionary whose keys are the same as the returned
 dictionary</p></li>
-<li><p><strong>valuedict</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.8)"><em>dict</em></a>) – dictionary whose values are the same as the returned
+<li><p><strong>valuedict</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.9)"><em>dict</em></a>) – dictionary whose values are the same as the returned
 dictionary</p></li>
 </ul>
 </dd>
@@ -369,9 +372,9 @@ dictionary</p></li>
 </dl>
 </dd></dl>
 
-<dl class="function">
+<dl class="py function">
 <dt id="mgkit.utils.dictionary.combine_dict_one_value">
-<code class="sig-prename descclassname">mgkit.utils.dictionary.</code><code class="sig-name descname">combine_dict_one_value</code><span class="sig-paren">(</span><em class="sig-param">keydict</em>, <em class="sig-param">valuedict</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/mgkit/utils/dictionary.html#combine_dict_one_value"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#mgkit.utils.dictionary.combine_dict_one_value" title="Permalink to this definition">¶</a></dt>
+<code class="sig-prename descclassname">mgkit.utils.dictionary.</code><code class="sig-name descname">combine_dict_one_value</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">keydict</span></em>, <em class="sig-param"><span class="n">valuedict</span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/mgkit/utils/dictionary.html#combine_dict_one_value"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#mgkit.utils.dictionary.combine_dict_one_value" title="Permalink to this definition">¶</a></dt>
 <dd><p>Combine two dictionaries by the value of the keydict is used as a key in
 valuedict and the resulting dictionary is composed of keydict keys and
 valuedict values.</p>
@@ -380,9 +383,9 @@ that is key in valuedict.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>keydict</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.8)"><em>dict</em></a>) – dictionary whose keys are the same as the returned
+<li><p><strong>keydict</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.9)"><em>dict</em></a>) – dictionary whose keys are the same as the returned
 dictionary</p></li>
-<li><p><strong>valuedict</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.8)"><em>dict</em></a>) – dictionary whose values are the same as the returned
+<li><p><strong>valuedict</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.9)"><em>dict</em></a>) – dictionary whose values are the same as the returned
 dictionary</p></li>
 </ul>
 </dd>
@@ -392,9 +395,9 @@ dictionary</p></li>
 </dl>
 </dd></dl>
 
-<dl class="function">
+<dl class="py function">
 <dt id="mgkit.utils.dictionary.dict_to_text">
-<code class="sig-prename descclassname">mgkit.utils.dictionary.</code><code class="sig-name descname">dict_to_text</code><span class="sig-paren">(</span><em class="sig-param">stream</em>, <em class="sig-param">dictionary</em>, <em class="sig-param">header=None</em>, <em class="sig-param">comment=None</em>, <em class="sig-param">sep='\t'</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/mgkit/utils/dictionary.html#dict_to_text"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#mgkit.utils.dictionary.dict_to_text" title="Permalink to this definition">¶</a></dt>
+<code class="sig-prename descclassname">mgkit.utils.dictionary.</code><code class="sig-name descname">dict_to_text</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">stream</span></em>, <em class="sig-param"><span class="n">dictionary</span></em>, <em class="sig-param"><span class="n">header</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">comment</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">sep</span><span class="o">=</span><span class="default_value">'\t'</span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/mgkit/utils/dictionary.html#dict_to_text"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#mgkit.utils.dictionary.dict_to_text" title="Permalink to this definition">¶</a></dt>
 <dd><div class="versionadded">
 <p><span class="versionmodified added">New in version 0.4.4.</span></p>
 </div>
@@ -410,32 +413,32 @@ by more complex options, like JSON, etc.</p>
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>stream</strong> (<em>file</em>) – stream to write to, to output a string, use io.StringIO</p></li>
-<li><p><strong>dictionary</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.8)"><em>dict</em></a>) – dictionary to write</p></li>
+<li><p><strong>dictionary</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.9)"><em>dict</em></a>) – dictionary to write</p></li>
 <li><p><strong>header</strong> (<em>iterable</em>) – a tuple/list to be used as header</p></li>
-<li><p><strong>comment</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.8)"><em>str</em></a>) – a comment at the start of the file - ‘# ‘ will be
+<li><p><strong>comment</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)"><em>str</em></a>) – a comment at the start of the file - ‘# ‘ will be
 prepended to the value passed.</p></li>
-<li><p><strong>sep</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.8)"><em>str</em></a>) – column separator to use</p></li>
+<li><p><strong>sep</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)"><em>str</em></a>) – column separator to use</p></li>
 </ul>
 </dd>
 </dl>
 </dd></dl>
 
-<dl class="function">
+<dl class="py function">
 <dt id="mgkit.utils.dictionary.filter_nan">
-<code class="sig-prename descclassname">mgkit.utils.dictionary.</code><code class="sig-name descname">filter_nan</code><span class="sig-paren">(</span><em class="sig-param">ratios</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/mgkit/utils/dictionary.html#filter_nan"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#mgkit.utils.dictionary.filter_nan" title="Permalink to this definition">¶</a></dt>
+<code class="sig-prename descclassname">mgkit.utils.dictionary.</code><code class="sig-name descname">filter_nan</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">ratios</span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/mgkit/utils/dictionary.html#filter_nan"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#mgkit.utils.dictionary.filter_nan" title="Permalink to this definition">¶</a></dt>
 <dd><p>Returns a dictionary with the NaN values taken out</p>
 </dd></dl>
 
-<dl class="function">
+<dl class="py function">
 <dt id="mgkit.utils.dictionary.filter_ratios_by_numbers">
-<code class="sig-prename descclassname">mgkit.utils.dictionary.</code><code class="sig-name descname">filter_ratios_by_numbers</code><span class="sig-paren">(</span><em class="sig-param">ratios</em>, <em class="sig-param">min_num</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/mgkit/utils/dictionary.html#filter_ratios_by_numbers"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#mgkit.utils.dictionary.filter_ratios_by_numbers" title="Permalink to this definition">¶</a></dt>
+<code class="sig-prename descclassname">mgkit.utils.dictionary.</code><code class="sig-name descname">filter_ratios_by_numbers</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">ratios</span></em>, <em class="sig-param"><span class="n">min_num</span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/mgkit/utils/dictionary.html#filter_ratios_by_numbers"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#mgkit.utils.dictionary.filter_ratios_by_numbers" title="Permalink to this definition">¶</a></dt>
 <dd><p>Returns from a dictionary only the items for which the length of the
 iterables that is the value of the item, is equal or greater of min_num.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>ratios</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.8)"><em>dict</em></a>) – dictionary key-&gt;list</p></li>
-<li><p><strong>min_num</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.8)"><em>int</em></a>) – minimum number of elements in the value iterable</p></li>
+<li><p><strong>ratios</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.9)"><em>dict</em></a>) – dictionary key-&gt;list</p></li>
+<li><p><strong>min_num</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.9)"><em>int</em></a>) – minimum number of elements in the value iterable</p></li>
 </ul>
 </dd>
 <dt class="field-even">Return dict</dt>
@@ -444,16 +447,16 @@ iterables that is the value of the item, is equal or greater of min_num.</p>
 </dl>
 </dd></dl>
 
-<dl class="function">
+<dl class="py function">
 <dt id="mgkit.utils.dictionary.find_id_in_dict">
-<code class="sig-prename descclassname">mgkit.utils.dictionary.</code><code class="sig-name descname">find_id_in_dict</code><span class="sig-paren">(</span><em class="sig-param">s_id</em>, <em class="sig-param">s_dict</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/mgkit/utils/dictionary.html#find_id_in_dict"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#mgkit.utils.dictionary.find_id_in_dict" title="Permalink to this definition">¶</a></dt>
+<code class="sig-prename descclassname">mgkit.utils.dictionary.</code><code class="sig-name descname">find_id_in_dict</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">s_id</span></em>, <em class="sig-param"><span class="n">s_dict</span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/mgkit/utils/dictionary.html#find_id_in_dict"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#mgkit.utils.dictionary.find_id_in_dict" title="Permalink to this definition">¶</a></dt>
 <dd><p>Finds a value ‘s_id’ in a dictionary in which the values are iterables.
 Returns a list of keys that contain the value.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>s_id</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.8)"><em>dict</em></a>) – element to look for in the dictionary’s values</p></li>
-<li><p><strong>d</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#object" title="(in Python v3.8)"><em>object</em></a>) – dictionary to search in</p></li>
+<li><p><strong>s_id</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.9)"><em>dict</em></a>) – element to look for in the dictionary’s values</p></li>
+<li><p><strong>d</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#object" title="(in Python v3.9)"><em>object</em></a>) – dictionary to search in</p></li>
 </ul>
 </dd>
 <dt class="field-even">Return list</dt>
@@ -462,9 +465,9 @@ Returns a list of keys that contain the value.</p>
 </dl>
 </dd></dl>
 
-<dl class="function">
+<dl class="py function">
 <dt id="mgkit.utils.dictionary.link_ids">
-<code class="sig-prename descclassname">mgkit.utils.dictionary.</code><code class="sig-name descname">link_ids</code><span class="sig-paren">(</span><em class="sig-param">id_map</em>, <em class="sig-param">black_list=None</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/mgkit/utils/dictionary.html#link_ids"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#mgkit.utils.dictionary.link_ids" title="Permalink to this definition">¶</a></dt>
+<code class="sig-prename descclassname">mgkit.utils.dictionary.</code><code class="sig-name descname">link_ids</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">id_map</span></em>, <em class="sig-param"><span class="n">black_list</span><span class="o">=</span><span class="default_value">None</span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/mgkit/utils/dictionary.html#link_ids"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#mgkit.utils.dictionary.link_ids" title="Permalink to this definition">¶</a></dt>
 <dd><p>Given a dictionary whose values (iterables) can be linked back to other
 keys, it returns a dictionary in which the keys are the original keys and
 the values are sets of keys to which they can be linked.</p>
@@ -480,7 +483,7 @@ key3->[key1, key2]</p></object></div>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>id_map</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.8)"><em>dict</em></a>) – dictionary of keys to link</p></li>
+<li><p><strong>id_map</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.9)"><em>dict</em></a>) – dictionary of keys to link</p></li>
 <li><p><strong>black_list</strong> (<em>iterable</em>) – iterable of values to skip in making the links</p></li>
 </ul>
 </dd>
@@ -490,9 +493,9 @@ key3->[key1, key2]</p></object></div>
 </dl>
 </dd></dl>
 
-<dl class="function">
+<dl class="py function">
 <dt id="mgkit.utils.dictionary.merge_dictionaries">
-<code class="sig-prename descclassname">mgkit.utils.dictionary.</code><code class="sig-name descname">merge_dictionaries</code><span class="sig-paren">(</span><em class="sig-param">dicts</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/mgkit/utils/dictionary.html#merge_dictionaries"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#mgkit.utils.dictionary.merge_dictionaries" title="Permalink to this definition">¶</a></dt>
+<code class="sig-prename descclassname">mgkit.utils.dictionary.</code><code class="sig-name descname">merge_dictionaries</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">dicts</span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/mgkit/utils/dictionary.html#merge_dictionaries"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#mgkit.utils.dictionary.merge_dictionaries" title="Permalink to this definition">¶</a></dt>
 <dd><div class="versionadded">
 <p><span class="versionmodified added">New in version 0.3.1.</span></p>
 </div>
@@ -501,14 +504,14 @@ dictionary’s values are converted into sets, with the assumption that the
 values are one of the following: float, str, int, bool</p>
 </dd></dl>
 
-<dl class="function">
+<dl class="py function">
 <dt id="mgkit.utils.dictionary.reverse_mapping">
-<code class="sig-prename descclassname">mgkit.utils.dictionary.</code><code class="sig-name descname">reverse_mapping</code><span class="sig-paren">(</span><em class="sig-param">map_dict</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/mgkit/utils/dictionary.html#reverse_mapping"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#mgkit.utils.dictionary.reverse_mapping" title="Permalink to this definition">¶</a></dt>
+<code class="sig-prename descclassname">mgkit.utils.dictionary.</code><code class="sig-name descname">reverse_mapping</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">map_dict</span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/mgkit/utils/dictionary.html#reverse_mapping"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#mgkit.utils.dictionary.reverse_mapping" title="Permalink to this definition">¶</a></dt>
 <dd><p>Given a dictionary in the form: key-&gt;[v1, v2, .., vN], returns a dictionary
 in the form: v1-&gt;[key1, key2, .., keyN]</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><p><strong>map_dict</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.8)"><em>dict</em></a>) – dictionary to reverse</p>
+<dd class="field-odd"><p><strong>map_dict</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.9)"><em>dict</em></a>) – dictionary to reverse</p>
 </dd>
 <dt class="field-even">Return dict</dt>
 <dd class="field-even"><p>reversed dictionary</p>
@@ -516,7 +519,7 @@ in the form: v1-&gt;[key1, key2, .., keyN]</p>
 </dl>
 </dd></dl>
 
-<dl class="function">
+<dl class="py function">
 <dt id="mgkit.utils.dictionary.split_dictionary_by_value">
 <code class="sig-prename descclassname">mgkit.utils.dictionary.</code><code class="sig-name descname">split_dictionary_by_value</code><span class="sig-paren">(</span><em class="sig-param">value_dict</em>, <em class="sig-param">threshold</em>, <em class="sig-param">aggr_func=&lt;function median&gt;</em>, <em class="sig-param">key_filter=None</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/mgkit/utils/dictionary.html#split_dictionary_by_value"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#mgkit.utils.dictionary.split_dictionary_by_value" title="Permalink to this definition">¶</a></dt>
 <dd><p>Splits a dictionary, whose values are iterables, based on a threshold:</p>
@@ -531,7 +534,7 @@ threshold (second)</p></li>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>valuedict</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.8)"><em>dict</em></a>) – dictionary to be splitted</p></li>
+<li><p><strong>valuedict</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.9)"><em>dict</em></a>) – dictionary to be splitted</p></li>
 <li><p><strong>threshold</strong> (<em>number</em>) – must be comparable to threshold</p></li>
 <li><p><strong>aggr_func</strong> (<em>func</em>) – function used to aggregate the dictionary values</p></li>
 <li><p><strong>key_filter</strong> (<em>iterable</em>) – if specified, only these key will be in the
@@ -544,7 +547,7 @@ resulting dictionary</p></li>
 </dl>
 </dd></dl>
 
-<dl class="function">
+<dl class="py function">
 <dt id="mgkit.utils.dictionary.text_to_dict">
 <code class="sig-prename descclassname">mgkit.utils.dictionary.</code><code class="sig-name descname">text_to_dict</code><span class="sig-paren">(</span><em class="sig-param">stream</em>, <em class="sig-param">skip_lines=0</em>, <em class="sig-param">sep='\t'</em>, <em class="sig-param">key_index=0</em>, <em class="sig-param">value_index=1</em>, <em class="sig-param">key_func=&lt;class 'str'&gt;</em>, <em class="sig-param">value_func=&lt;class 'str'&gt;</em>, <em class="sig-param">encoding=None</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/mgkit/utils/dictionary.html#text_to_dict"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#mgkit.utils.dictionary.text_to_dict" title="Permalink to this definition">¶</a></dt>
 <dd><div class="versionadded">
@@ -558,13 +561,13 @@ columns can be chosen with <em>key_index</em> and <em>value_index</em>, respecti
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>stream</strong> (<em>file</em>) – stream that can be read as a file</p></li>
-<li><p><strong>skip_lines</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.8)"><em>int</em></a>) – number of lines to skip at the start of the file</p></li>
-<li><p><strong>sep</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.8)"><em>str</em></a>) – column separator to use</p></li>
-<li><p><strong>key_index</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.8)"><em>int</em></a>) – zero-based column number of keys</p></li>
-<li><p><strong>value_index</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.8)"><em>int</em></a>) – zero-based column number of values</p></li>
+<li><p><strong>skip_lines</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.9)"><em>int</em></a>) – number of lines to skip at the start of the file</p></li>
+<li><p><strong>sep</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)"><em>str</em></a>) – column separator to use</p></li>
+<li><p><strong>key_index</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.9)"><em>int</em></a>) – zero-based column number of keys</p></li>
+<li><p><strong>value_index</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.9)"><em>int</em></a>) – zero-based column number of values</p></li>
 <li><p><strong>key_func</strong> (<em>func</em>) – function to apply to the keys (defaults to <em>str</em>)</p></li>
 <li><p><strong>value_func</strong> (<em>func</em>) – function to apply to the values (defaults to <em>str</em>)</p></li>
-<li><p><strong>encoding</strong> (<a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.8)"><em>None</em></a><em>, </em><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.8)"><em>str</em></a>) – if <em>None</em> is passed, the file is assumed to be
+<li><p><strong>encoding</strong> (<a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.9)"><em>None</em></a><em>, </em><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)"><em>str</em></a>) – if <em>None</em> is passed, the file is assumed to be
 opened in text mode, otherwise the encoding of the file must be
 passed</p></li>
 </ul>
@@ -597,11 +600,19 @@ passed</p></li>
 
   <div role="contentinfo">
     <p>
-        &copy; Copyright 2013-2015, Francesco Rubino
+        
+        &copy; Copyright 2013-2020, Francesco Rubino
 
     </p>
   </div>
-  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+    
+    
+    
+    Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a
+    
+    <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a>
+    
+    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
 
 </footer>
 
@@ -612,7 +623,6 @@ passed</p></li>
 
   </div>
   
-
 
   <script type="text/javascript">
       jQuery(function () {

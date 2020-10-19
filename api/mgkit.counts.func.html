@@ -1,42 +1,43 @@
 
 
 <!DOCTYPE html>
-<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
-<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<html class="writer-html5" lang="en" >
 <head>
   <meta charset="utf-8">
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>mgkit.counts.func module &mdash; MGKit: Metagenomic framework 0.5.1 documentation</title>
+  <title>mgkit.counts.func module &mdash; MGKit: Metagenomic framework 0.5.3 documentation</title>
   
-
-  
-  
-  
-  
-
-  
-  <script type="text/javascript" src="../_static/js/modernizr.min.js"></script>
-  
-    
-      <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
-        <script type="text/javascript" src="../_static/jquery.js"></script>
-        <script type="text/javascript" src="../_static/underscore.js"></script>
-        <script type="text/javascript" src="../_static/doctools.js"></script>
-        <script type="text/javascript" src="../_static/language_data.js"></script>
-        <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
-        <script async="async" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
-        <script type="text/x-mathjax-config">MathJax.Hub.Config({"tex2jax": {"inlineMath": [["$", "$"], ["\\(", "\\)"]], "processEscapes": true, "ignoreClass": "document", "processClass": "math|output_area"}})</script>
-    
-    <script type="text/javascript" src="../_static/js/theme.js"></script>
-
-    
 
   
   <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
   <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
   <link rel="stylesheet" href="../_static/graphviz.css" type="text/css" />
+
+  
+  
+  
+  
+
+  
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/underscore.js"></script>
+        <script src="../_static/doctools.js"></script>
+        <script src="../_static/language_data.js"></script>
+        <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+        <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+        <script type="text/x-mathjax-config">MathJax.Hub.Config({"tex2jax": {"inlineMath": [["$", "$"], ["\\(", "\\)"]], "processEscapes": true, "ignoreClass": "document", "processClass": "math|output_area"}})</script>
+    
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+
+    
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
     <link rel="next" title="mgkit.counts.glm module" href="mgkit.counts.glm.html" />
@@ -54,7 +55,7 @@
           
 
           
-            <a href="../index.html" class="icon icon-home"> MGKit: Metagenomic framework
+            <a href="../index.html" class="icon icon-home" alt="Documentation Home"> MGKit: Metagenomic framework
           
 
           
@@ -64,7 +65,7 @@
             
             
               <div class="version">
-                0.5.1
+                0.5.3
               </div>
             
           
@@ -81,6 +82,7 @@
           
         </div>
 
+        
         <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
           
             
@@ -179,6 +181,7 @@
             
           
         </div>
+        
       </div>
     </nav>
 
@@ -217,7 +220,7 @@
 
   <ul class="wy-breadcrumbs">
     
-      <li><a href="../index.html">Docs</a> &raquo;</li>
+      <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
         
           <li><a href="../library.html">Library Reference</a> &raquo;</li>
         
@@ -274,9 +277,9 @@
 <p><span class="versionmodified added">New in version 0.1.13.</span></p>
 </div>
 <p>Misc functions for count data</p>
-<dl class="function">
+<dl class="py function">
 <dt id="mgkit.counts.func.batch_load_htseq_counts">
-<code class="sig-prename descclassname">mgkit.counts.func.</code><code class="sig-name descname">batch_load_htseq_counts</code><span class="sig-paren">(</span><em class="sig-param">count_files</em>, <em class="sig-param">samples=None</em>, <em class="sig-param">cut_name=None</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/mgkit/counts/func.html#batch_load_htseq_counts"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#mgkit.counts.func.batch_load_htseq_counts" title="Permalink to this definition">¶</a></dt>
+<code class="sig-prename descclassname">mgkit.counts.func.</code><code class="sig-name descname">batch_load_htseq_counts</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">count_files</span></em>, <em class="sig-param"><span class="n">samples</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">cut_name</span><span class="o">=</span><span class="default_value">None</span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/mgkit/counts/func.html#batch_load_htseq_counts"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#mgkit.counts.func.batch_load_htseq_counts" title="Permalink to this definition">¶</a></dt>
 <dd><p>Loads a list of htseq count result files and returns a DataFrame
 (IDxSAMPLE)</p>
 <p>The sample names are names are the file names if <em>samples</em> and <em>cut_name</em>
@@ -286,10 +289,10 @@ option in cases a string replace is enough.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>count_files</strong> (<em>file</em><em> or </em><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.8)"><em>str</em></a>) – file handle or string with file name</p></li>
+<li><p><strong>count_files</strong> (<em>file</em><em> or </em><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)"><em>str</em></a>) – file handle or string with file name</p></li>
 <li><p><strong>samples</strong> (<em>iterable</em>) – list of sample names, in the same order as
 <em>count_files</em></p></li>
-<li><p><strong>cut_name</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.8)"><em>str</em></a>) – string to delete from the the file names to get the
+<li><p><strong>cut_name</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)"><em>str</em></a>) – string to delete from the the file names to get the
 sample names</p></li>
 </ul>
 </dd>
@@ -302,9 +305,9 @@ sample names</p></li>
 </dl>
 </dd></dl>
 
-<dl class="function">
+<dl class="py function">
 <dt id="mgkit.counts.func.filter_counts">
-<code class="sig-prename descclassname">mgkit.counts.func.</code><code class="sig-name descname">filter_counts</code><span class="sig-paren">(</span><em class="sig-param">counts_iter</em>, <em class="sig-param">info_func</em>, <em class="sig-param">gfilters=None</em>, <em class="sig-param">tfilters=None</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/mgkit/counts/func.html#filter_counts"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#mgkit.counts.func.filter_counts" title="Permalink to this definition">¶</a></dt>
+<code class="sig-prename descclassname">mgkit.counts.func.</code><code class="sig-name descname">filter_counts</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">counts_iter</span></em>, <em class="sig-param"><span class="n">info_func</span></em>, <em class="sig-param"><span class="n">gfilters</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">tfilters</span><span class="o">=</span><span class="default_value">None</span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/mgkit/counts/func.html#filter_counts"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#mgkit.counts.func.filter_counts" title="Permalink to this definition">¶</a></dt>
 <dd><p>Returns counts that pass filters for each <em>uid</em> associated <em>gene_id</em> and
 <em>taxon_id</em>.</p>
 <dl class="field-list simple">
@@ -325,9 +328,9 @@ sample names</p></li>
 </dl>
 </dd></dl>
 
-<dl class="function">
+<dl class="py function">
 <dt id="mgkit.counts.func.from_gff">
-<code class="sig-prename descclassname">mgkit.counts.func.</code><code class="sig-name descname">from_gff</code><span class="sig-paren">(</span><em class="sig-param">annotations</em>, <em class="sig-param">samples</em>, <em class="sig-param">ann_func=None</em>, <em class="sig-param">sample_func=None</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/mgkit/counts/func.html#from_gff"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#mgkit.counts.func.from_gff" title="Permalink to this definition">¶</a></dt>
+<code class="sig-prename descclassname">mgkit.counts.func.</code><code class="sig-name descname">from_gff</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">annotations</span></em>, <em class="sig-param"><span class="n">samples</span></em>, <em class="sig-param"><span class="n">ann_func</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">sample_func</span><span class="o">=</span><span class="default_value">None</span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/mgkit/counts/func.html#from_gff"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#mgkit.counts.func.from_gff" title="Permalink to this definition">¶</a></dt>
 <dd><div class="versionadded">
 <p><span class="versionmodified added">New in version 0.3.1.</span></p>
 </div>
@@ -361,12 +364,12 @@ rows the annotation counts (unless mapped with <em>ann_func</em>)</p>
 <dl>
 <dt>Exmples:</dt><dd><p>Assuming we have a list of <em>annotations</em> and sample SAMPLE1 and SAMPLE2
 we can obtain the count table for all annotations with this</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">from_gff</span><span class="p">(</span><span class="n">annotations</span><span class="p">,</span> <span class="p">[</span><span class="s1">&#39;SAMPLE1&#39;</span><span class="p">,</span> <span class="s1">&#39;SAMPLE2&#39;</span><span class="p">])</span>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">from_gff</span><span class="p">(</span><span class="n">annotations</span><span class="p">,</span> <span class="p">[</span><span class="s1">&#39;SAMPLE1&#39;</span><span class="p">,</span> <span class="s1">&#39;SAMPLE2&#39;</span><span class="p">])</span>
 </pre></div>
 </div>
 <p>Assuming we want to group the samples, for example treatment1,
 treatment2 and control1, control2 into a MultiIndex DataFrame column</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">sample_func</span> <span class="o">=</span> <span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="p">(</span><span class="s1">&#39;T&#39;</span> <span class="k">if</span> <span class="n">x</span><span class="o">.</span><span class="n">startswith</span><span class="p">(</span><span class="s1">&#39;t&#39;</span><span class="p">)</span> <span class="k">else</span> <span class="s1">&#39;C&#39;</span><span class="p">,</span> <span class="n">x</span><span class="p">)</span>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">sample_func</span> <span class="o">=</span> <span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="p">(</span><span class="s1">&#39;T&#39;</span> <span class="k">if</span> <span class="n">x</span><span class="o">.</span><span class="n">startswith</span><span class="p">(</span><span class="s1">&#39;t&#39;</span><span class="p">)</span> <span class="k">else</span> <span class="s1">&#39;C&#39;</span><span class="p">,</span> <span class="n">x</span><span class="p">)</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">from_gff</span><span class="p">(</span><span class="n">annotations</span><span class="p">,</span> <span class="p">[</span><span class="s1">&#39;treatment1&#39;</span><span class="p">,</span> <span class="s1">&#39;treatment2&#39;</span><span class="p">,</span> <span class="s1">&#39;control1&#39;</span><span class="p">,</span>
 <span class="go">&#39;control2&#39;], sample_func=sample_func)</span>
 </pre></div>
@@ -375,7 +378,7 @@ treatment2 and control1, control2 into a MultiIndex DataFrame column</p>
 the <em>uid</em> that is the default, it can be mapped to the gene_id,
 taxon_id information that is included in the annotation, resulting in a
 MultiIndex index for the rows, with (gene_id, taxon_id) as key.</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">ann_func</span> <span class="o">=</span> <span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="p">[(</span><span class="n">x</span><span class="o">.</span><span class="n">gene_id</span><span class="p">,</span> <span class="n">x</span><span class="o">.</span><span class="n">taxon_id</span><span class="p">)]</span>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">ann_func</span> <span class="o">=</span> <span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="p">[(</span><span class="n">x</span><span class="o">.</span><span class="n">gene_id</span><span class="p">,</span> <span class="n">x</span><span class="o">.</span><span class="n">taxon_id</span><span class="p">)]</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">from_gff</span><span class="p">(</span><span class="n">annotations</span><span class="p">,</span> <span class="p">[</span><span class="s1">&#39;SAMPLE1&#39;</span><span class="p">,</span> <span class="s1">&#39;SAMPLE2&#39;</span><span class="p">],</span> <span class="n">ann_func</span><span class="o">=</span><span class="n">ann_func</span><span class="p">)</span>
 </pre></div>
 </div>
@@ -383,20 +386,20 @@ MultiIndex index for the rows, with (gene_id, taxon_id) as key.</p>
 </dl>
 </dd></dl>
 
-<dl class="function">
+<dl class="py function">
 <dt id="mgkit.counts.func.get_uid_info">
-<code class="sig-prename descclassname">mgkit.counts.func.</code><code class="sig-name descname">get_uid_info</code><span class="sig-paren">(</span><em class="sig-param">info_dict</em>, <em class="sig-param">uid</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/mgkit/counts/func.html#get_uid_info"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#mgkit.counts.func.get_uid_info" title="Permalink to this definition">¶</a></dt>
+<code class="sig-prename descclassname">mgkit.counts.func.</code><code class="sig-name descname">get_uid_info</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">info_dict</span></em>, <em class="sig-param"><span class="n">uid</span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/mgkit/counts/func.html#get_uid_info"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#mgkit.counts.func.get_uid_info" title="Permalink to this definition">¶</a></dt>
 <dd><p>Simple function to get a value from a dictionary of tuples
 (gene_id, taxon_id)</p>
 </dd></dl>
 
-<dl class="function">
+<dl class="py function">
 <dt id="mgkit.counts.func.get_uid_info_ann">
-<code class="sig-prename descclassname">mgkit.counts.func.</code><code class="sig-name descname">get_uid_info_ann</code><span class="sig-paren">(</span><em class="sig-param">annotations</em>, <em class="sig-param">uid</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/mgkit/counts/func.html#get_uid_info_ann"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#mgkit.counts.func.get_uid_info_ann" title="Permalink to this definition">¶</a></dt>
+<code class="sig-prename descclassname">mgkit.counts.func.</code><code class="sig-name descname">get_uid_info_ann</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">annotations</span></em>, <em class="sig-param"><span class="n">uid</span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/mgkit/counts/func.html#get_uid_info_ann"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#mgkit.counts.func.get_uid_info_ann" title="Permalink to this definition">¶</a></dt>
 <dd><p>Simple function to get a value from a dictionary of annotations</p>
 </dd></dl>
 
-<dl class="function">
+<dl class="py function">
 <dt id="mgkit.counts.func.load_counts_from_gff">
 <code class="sig-prename descclassname">mgkit.counts.func.</code><code class="sig-name descname">load_counts_from_gff</code><span class="sig-paren">(</span><em class="sig-param">annotations</em>, <em class="sig-param">elem_func=&lt;function &lt;lambda&gt;&gt;</em>, <em class="sig-param">sample_func=None</em>, <em class="sig-param">nozero=True</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/mgkit/counts/func.html#load_counts_from_gff"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#mgkit.counts.func.load_counts_from_gff" title="Permalink to this definition">¶</a></dt>
 <dd><div class="versionadded">
@@ -415,18 +418,18 @@ name (for the column, <em>sample_func</em>).</p>
 <li><p><strong>elem_func</strong> (<em>func</em>) – function that accepts an annotation and return a
 str/int for a Index or a tuple for a MultiIndex, defaults to
 returning the <em>uid</em> of the annotation</p></li>
-<li><p><strong>sample_func</strong> (<em>func</em><em>, </em><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.8)"><em>None</em></a>) – function that accepts the sample name and
+<li><p><strong>sample_func</strong> (<em>func</em><em>, </em><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.9)"><em>None</em></a>) – function that accepts the sample name and
 returns tuple for a MultiIndex. Defaults to <em>None</em> so no
 transformation is performed</p></li>
-<li><p><strong>nozero</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.8)"><em>bool</em></a>) – if <em>True</em>, annotations with no counts are skipped</p></li>
+<li><p><strong>nozero</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.9)"><em>bool</em></a>) – if <em>True</em>, annotations with no counts are skipped</p></li>
 </ul>
 </dd>
 </dl>
 </dd></dl>
 
-<dl class="function">
+<dl class="py function">
 <dt id="mgkit.counts.func.load_deseq2_results">
-<code class="sig-prename descclassname">mgkit.counts.func.</code><code class="sig-name descname">load_deseq2_results</code><span class="sig-paren">(</span><em class="sig-param">file_name</em>, <em class="sig-param">taxon_id=None</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/mgkit/counts/func.html#load_deseq2_results"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#mgkit.counts.func.load_deseq2_results" title="Permalink to this definition">¶</a></dt>
+<code class="sig-prename descclassname">mgkit.counts.func.</code><code class="sig-name descname">load_deseq2_results</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">file_name</span></em>, <em class="sig-param"><span class="n">taxon_id</span><span class="o">=</span><span class="default_value">None</span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/mgkit/counts/func.html#load_deseq2_results"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#mgkit.counts.func.load_deseq2_results" title="Permalink to this definition">¶</a></dt>
 <dd><div class="versionadded">
 <p><span class="versionmodified added">New in version 0.1.14.</span></p>
 </div>
@@ -434,7 +437,7 @@ transformation is performed</p></li>
 for concatenating multiple results from different taxonomic groups.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><p><strong>file_name</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.8)"><em>str</em></a>) – file name of the CSV</p>
+<dd class="field-odd"><p><strong>file_name</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)"><em>str</em></a>) – file name of the CSV</p>
 </dd>
 <dt class="field-even">Returns</dt>
 <dd class="field-even"><p>a MultiIndex DataFrame with the results</p>
@@ -445,7 +448,7 @@ for concatenating multiple results from different taxonomic groups.</p>
 </dl>
 </dd></dl>
 
-<dl class="function">
+<dl class="py function">
 <dt id="mgkit.counts.func.load_htseq_counts">
 <code class="sig-prename descclassname">mgkit.counts.func.</code><code class="sig-name descname">load_htseq_counts</code><span class="sig-paren">(</span><em class="sig-param">file_handle</em>, <em class="sig-param">conv_func=&lt;class 'int'&gt;</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/mgkit/counts/func.html#load_htseq_counts"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#mgkit.counts.func.load_htseq_counts" title="Permalink to this definition">¶</a></dt>
 <dd><div class="versionchanged">
@@ -455,7 +458,7 @@ for concatenating multiple results from different taxonomic groups.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>file_handle</strong> (<em>file</em><em> or </em><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.8)"><em>str</em></a>) – file handle or string with file name</p></li>
+<li><p><strong>file_handle</strong> (<em>file</em><em> or </em><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)"><em>str</em></a>) – file handle or string with file name</p></li>
 <li><p><strong>conv_func</strong> (<em>func</em>) – function to convert the number from string, defaults
 to <em>int</em>, but <em>float</em> can be used as well</p></li>
 </ul>
@@ -466,9 +469,9 @@ to <em>int</em>, but <em>float</em> can be used as well</p></li>
 </dl>
 </dd></dl>
 
-<dl class="function">
+<dl class="py function">
 <dt id="mgkit.counts.func.load_sample_counts">
-<code class="sig-prename descclassname">mgkit.counts.func.</code><code class="sig-name descname">load_sample_counts</code><span class="sig-paren">(</span><em class="sig-param">info_dict</em>, <em class="sig-param">counts_iter</em>, <em class="sig-param">taxonomy</em>, <em class="sig-param">inc_anc=None</em>, <em class="sig-param">rank=None</em>, <em class="sig-param">gene_map=None</em>, <em class="sig-param">ex_anc=None</em>, <em class="sig-param">include_higher=True</em>, <em class="sig-param">cached=True</em>, <em class="sig-param">uid_used=None</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/mgkit/counts/func.html#load_sample_counts"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#mgkit.counts.func.load_sample_counts" title="Permalink to this definition">¶</a></dt>
+<code class="sig-prename descclassname">mgkit.counts.func.</code><code class="sig-name descname">load_sample_counts</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">info_dict</span></em>, <em class="sig-param"><span class="n">counts_iter</span></em>, <em class="sig-param"><span class="n">taxonomy</span></em>, <em class="sig-param"><span class="n">inc_anc</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">rank</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">gene_map</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">ex_anc</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">include_higher</span><span class="o">=</span><span class="default_value">True</span></em>, <em class="sig-param"><span class="n">cached</span><span class="o">=</span><span class="default_value">True</span></em>, <em class="sig-param"><span class="n">uid_used</span><span class="o">=</span><span class="default_value">None</span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/mgkit/counts/func.html#load_sample_counts"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#mgkit.counts.func.load_sample_counts" title="Permalink to this definition">¶</a></dt>
 <dd><div class="versionchanged">
 <p><span class="versionmodified changed">Changed in version 0.1.14: </span>added <em>cached</em> argument</p>
 </div>
@@ -483,21 +486,21 @@ example of the usage of the above functions.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>info_dict</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.8)"><em>dict</em></a>) – dictionary that has <em>uid</em> as key and
+<li><p><strong>info_dict</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.9)"><em>dict</em></a>) – dictionary that has <em>uid</em> as key and
 <em>(gene_id, taxon_id)</em> as value. In alternative a function that
 accepts a <em>uid</em> as sole argument and returns <em>(gene_id, taxon_id)</em></p></li>
 <li><p><strong>counts_iter</strong> (<em>iterable</em>) – iterable that yields a <em>(uid, count)</em></p></li>
 <li><p><strong>taxonomy</strong> – taxonomy instance</p></li>
-<li><p><strong>inc_anc</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.8)"><em>int</em></a><em>, </em><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.8)"><em>list</em></a>) – ancestor taxa to include</p></li>
-<li><p><strong>rank</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.8)"><em>str</em></a>) – rank to which map the counts</p></li>
-<li><p><strong>gene_map</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.8)"><em>dict</em></a>) – dictionary with the gene mappings</p></li>
-<li><p><strong>ex_anc</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.8)"><em>int</em></a><em>, </em><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.8)"><em>list</em></a>) – ancestor taxa to exclude</p></li>
-<li><p><strong>include_higher</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.8)"><em>bool</em></a>) – if False, any rank different than the requested
+<li><p><strong>inc_anc</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.9)"><em>int</em></a><em>, </em><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.9)"><em>list</em></a>) – ancestor taxa to include</p></li>
+<li><p><strong>rank</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)"><em>str</em></a>) – rank to which map the counts</p></li>
+<li><p><strong>gene_map</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.9)"><em>dict</em></a>) – dictionary with the gene mappings</p></li>
+<li><p><strong>ex_anc</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.9)"><em>int</em></a><em>, </em><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.9)"><em>list</em></a>) – ancestor taxa to exclude</p></li>
+<li><p><strong>include_higher</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.9)"><em>bool</em></a>) – if False, any rank different than the requested
 one is discarded</p></li>
-<li><p><strong>cached</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.8)"><em>bool</em></a>) – if <em>True</em>, the function will use
+<li><p><strong>cached</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.9)"><em>bool</em></a>) – if <em>True</em>, the function will use
 <a class="reference internal" href="mgkit.simple_cache.html#mgkit.simple_cache.memoize" title="mgkit.simple_cache.memoize"><code class="xref py py-class docutils literal notranslate"><span class="pre">mgkit.simple_cache.memoize</span></code></a> to cache some of the functions
 used</p></li>
-<li><p><strong>uid_used</strong> (<a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.8)"><em>None</em></a><em>, </em><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.8)"><em>dict</em></a>) – an empty dictionary in which to store the <em>uid</em>
+<li><p><strong>uid_used</strong> (<a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.9)"><em>None</em></a><em>, </em><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.9)"><em>dict</em></a>) – an empty dictionary in which to store the <em>uid</em>
 that were assigned to each key of the returned pandas.Series. If
 <em>None</em>, no information is saved</p></li>
 </ul>
@@ -512,9 +515,9 @@ filtered and mapped counts</p>
 </dl>
 </dd></dl>
 
-<dl class="function">
+<dl class="py function">
 <dt id="mgkit.counts.func.load_sample_counts_to_genes">
-<code class="sig-prename descclassname">mgkit.counts.func.</code><code class="sig-name descname">load_sample_counts_to_genes</code><span class="sig-paren">(</span><em class="sig-param">info_func</em>, <em class="sig-param">counts_iter</em>, <em class="sig-param">taxonomy</em>, <em class="sig-param">inc_anc=None</em>, <em class="sig-param">gene_map=None</em>, <em class="sig-param">ex_anc=None</em>, <em class="sig-param">cached=True</em>, <em class="sig-param">uid_used=None</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/mgkit/counts/func.html#load_sample_counts_to_genes"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#mgkit.counts.func.load_sample_counts_to_genes" title="Permalink to this definition">¶</a></dt>
+<code class="sig-prename descclassname">mgkit.counts.func.</code><code class="sig-name descname">load_sample_counts_to_genes</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">info_func</span></em>, <em class="sig-param"><span class="n">counts_iter</span></em>, <em class="sig-param"><span class="n">taxonomy</span></em>, <em class="sig-param"><span class="n">inc_anc</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">gene_map</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">ex_anc</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">cached</span><span class="o">=</span><span class="default_value">True</span></em>, <em class="sig-param"><span class="n">uid_used</span><span class="o">=</span><span class="default_value">None</span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/mgkit/counts/func.html#load_sample_counts_to_genes"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#mgkit.counts.func.load_sample_counts_to_genes" title="Permalink to this definition">¶</a></dt>
 <dd><div class="versionadded">
 <p><span class="versionmodified added">New in version 0.1.14.</span></p>
 </div>
@@ -533,14 +536,14 @@ assumption on the first parameter. It is expected to return a
 parameter and and returns <em>(gene_id, taxon_id)</em> as value</p></li>
 <li><p><strong>counts_iter</strong> (<em>iterable</em>) – iterable that yields a <em>(uid, count)</em></p></li>
 <li><p><strong>taxonomy</strong> – taxonomy instance</p></li>
-<li><p><strong>inc_anc</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.8)"><em>int</em></a><em>, </em><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.8)"><em>list</em></a>) – ancestor taxa to include</p></li>
-<li><p><strong>rank</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.8)"><em>str</em></a>) – rank to which map the counts</p></li>
-<li><p><strong>gene_map</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.8)"><em>dict</em></a>) – dictionary with the gene mappings</p></li>
-<li><p><strong>ex_anc</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.8)"><em>int</em></a><em>, </em><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.8)"><em>list</em></a>) – ancestor taxa to exclude</p></li>
-<li><p><strong>cached</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.8)"><em>bool</em></a>) – if <em>True</em>, the function will use
+<li><p><strong>inc_anc</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.9)"><em>int</em></a><em>, </em><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.9)"><em>list</em></a>) – ancestor taxa to include</p></li>
+<li><p><strong>rank</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)"><em>str</em></a>) – rank to which map the counts</p></li>
+<li><p><strong>gene_map</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.9)"><em>dict</em></a>) – dictionary with the gene mappings</p></li>
+<li><p><strong>ex_anc</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.9)"><em>int</em></a><em>, </em><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.9)"><em>list</em></a>) – ancestor taxa to exclude</p></li>
+<li><p><strong>cached</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.9)"><em>bool</em></a>) – if <em>True</em>, the function will use
 <a class="reference internal" href="mgkit.simple_cache.html#mgkit.simple_cache.memoize" title="mgkit.simple_cache.memoize"><code class="xref py py-class docutils literal notranslate"><span class="pre">mgkit.simple_cache.memoize</span></code></a> to cache some of the functions
 used</p></li>
-<li><p><strong>uid_used</strong> (<a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.8)"><em>None</em></a><em>, </em><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.8)"><em>dict</em></a>) – an empty dictionary in which to store the <em>uid</em>
+<li><p><strong>uid_used</strong> (<a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.9)"><em>None</em></a><em>, </em><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.9)"><em>dict</em></a>) – an empty dictionary in which to store the <em>uid</em>
 that were assigned to each key of the returned pandas.Series. If
 <em>None</em>, no information is saved</p></li>
 </ul>
@@ -555,9 +558,9 @@ counts</p>
 </dl>
 </dd></dl>
 
-<dl class="function">
+<dl class="py function">
 <dt id="mgkit.counts.func.load_sample_counts_to_taxon">
-<code class="sig-prename descclassname">mgkit.counts.func.</code><code class="sig-name descname">load_sample_counts_to_taxon</code><span class="sig-paren">(</span><em class="sig-param">info_func</em>, <em class="sig-param">counts_iter</em>, <em class="sig-param">taxonomy</em>, <em class="sig-param">inc_anc=None</em>, <em class="sig-param">rank=None</em>, <em class="sig-param">ex_anc=None</em>, <em class="sig-param">include_higher=True</em>, <em class="sig-param">cached=True</em>, <em class="sig-param">uid_used=None</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/mgkit/counts/func.html#load_sample_counts_to_taxon"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#mgkit.counts.func.load_sample_counts_to_taxon" title="Permalink to this definition">¶</a></dt>
+<code class="sig-prename descclassname">mgkit.counts.func.</code><code class="sig-name descname">load_sample_counts_to_taxon</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">info_func</span></em>, <em class="sig-param"><span class="n">counts_iter</span></em>, <em class="sig-param"><span class="n">taxonomy</span></em>, <em class="sig-param"><span class="n">inc_anc</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">rank</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">ex_anc</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">include_higher</span><span class="o">=</span><span class="default_value">True</span></em>, <em class="sig-param"><span class="n">cached</span><span class="o">=</span><span class="default_value">True</span></em>, <em class="sig-param"><span class="n">uid_used</span><span class="o">=</span><span class="default_value">None</span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/mgkit/counts/func.html#load_sample_counts_to_taxon"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#mgkit.counts.func.load_sample_counts_to_taxon" title="Permalink to this definition">¶</a></dt>
 <dd><div class="versionadded">
 <p><span class="versionmodified added">New in version 0.1.14.</span></p>
 </div>
@@ -576,15 +579,15 @@ tuple.</p>
 parameter and and returns <em>(gene_id, taxon_id)</em> as value</p></li>
 <li><p><strong>counts_iter</strong> (<em>iterable</em>) – iterable that yields a <em>(uid, count)</em></p></li>
 <li><p><strong>taxonomy</strong> – taxonomy instance</p></li>
-<li><p><strong>inc_anc</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.8)"><em>int</em></a><em>, </em><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.8)"><em>list</em></a>) – ancestor taxa to include</p></li>
-<li><p><strong>rank</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.8)"><em>str</em></a>) – rank to which map the counts</p></li>
-<li><p><strong>ex_anc</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.8)"><em>int</em></a><em>, </em><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.8)"><em>list</em></a>) – ancestor taxa to exclude</p></li>
-<li><p><strong>include_higher</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.8)"><em>bool</em></a>) – if False, any rank different than the requested
+<li><p><strong>inc_anc</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.9)"><em>int</em></a><em>, </em><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.9)"><em>list</em></a>) – ancestor taxa to include</p></li>
+<li><p><strong>rank</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)"><em>str</em></a>) – rank to which map the counts</p></li>
+<li><p><strong>ex_anc</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.9)"><em>int</em></a><em>, </em><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.9)"><em>list</em></a>) – ancestor taxa to exclude</p></li>
+<li><p><strong>include_higher</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.9)"><em>bool</em></a>) – if False, any rank different than the requested
 one is discarded</p></li>
-<li><p><strong>cached</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.8)"><em>bool</em></a>) – if <em>True</em>, the function will use
+<li><p><strong>cached</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.9)"><em>bool</em></a>) – if <em>True</em>, the function will use
 <a class="reference internal" href="mgkit.simple_cache.html#mgkit.simple_cache.memoize" title="mgkit.simple_cache.memoize"><code class="xref py py-class docutils literal notranslate"><span class="pre">mgkit.simple_cache.memoize</span></code></a> to cache some of the functions
 used</p></li>
-<li><p><strong>uid_used</strong> (<a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.8)"><em>None</em></a><em>, </em><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.8)"><em>dict</em></a>) – an empty dictionary in which to store the <em>uid</em>
+<li><p><strong>uid_used</strong> (<a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.9)"><em>None</em></a><em>, </em><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.9)"><em>dict</em></a>) – an empty dictionary in which to store the <em>uid</em>
 that were assigned to each key of the returned pandas.Series. If
 <em>None</em>, no information is saved</p></li>
 </ul>
@@ -599,9 +602,9 @@ counts</p>
 </dl>
 </dd></dl>
 
-<dl class="function">
+<dl class="py function">
 <dt id="mgkit.counts.func.map_counts">
-<code class="sig-prename descclassname">mgkit.counts.func.</code><code class="sig-name descname">map_counts</code><span class="sig-paren">(</span><em class="sig-param">counts_iter</em>, <em class="sig-param">info_func</em>, <em class="sig-param">gmapper=None</em>, <em class="sig-param">tmapper=None</em>, <em class="sig-param">index=None</em>, <em class="sig-param">uid_used=None</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/mgkit/counts/func.html#map_counts"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#mgkit.counts.func.map_counts" title="Permalink to this definition">¶</a></dt>
+<code class="sig-prename descclassname">mgkit.counts.func.</code><code class="sig-name descname">map_counts</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">counts_iter</span></em>, <em class="sig-param"><span class="n">info_func</span></em>, <em class="sig-param"><span class="n">gmapper</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">tmapper</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">index</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">uid_used</span><span class="o">=</span><span class="default_value">None</span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/mgkit/counts/func.html#map_counts"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#mgkit.counts.func.map_counts" title="Permalink to this definition">¶</a></dt>
 <dd><div class="versionchanged">
 <p><span class="versionmodified changed">Changed in version 0.1.14: </span>added <em>index</em> parameter</p>
 </div>
@@ -621,10 +624,10 @@ true for the taxa.</p>
 of mapped IDs</p></li>
 <li><p><strong>tmapper</strong> (<em>func</em>) – fucntion that accepts a <em>taxon_id</em> and returns a new
 <em>taxon_id</em></p></li>
-<li><p><strong>index</strong> (<a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.8)"><em>None</em></a><em>, </em><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.8)"><em>str</em></a>) – if None, the index of the Series if
+<li><p><strong>index</strong> (<a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.9)"><em>None</em></a><em>, </em><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)"><em>str</em></a>) – if None, the index of the Series if
 <em>(gene_id, taxon_id)</em>, if a str, it can be either <em>gene</em> or
 <em>taxon</em>, to specify a single value</p></li>
-<li><p><strong>uid_used</strong> (<a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.8)"><em>None</em></a><em>, </em><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.8)"><em>dict</em></a>) – an empty dictionary in which to store the <em>uid</em>
+<li><p><strong>uid_used</strong> (<a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.9)"><em>None</em></a><em>, </em><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.9)"><em>dict</em></a>) – an empty dictionary in which to store the <em>uid</em>
 that were assigned to each key of the returned pandas.Series. If
 <em>None</em>, no information is saved</p></li>
 </ul>
@@ -639,9 +642,9 @@ mapped counts</p>
 </dl>
 </dd></dl>
 
-<dl class="function">
+<dl class="py function">
 <dt id="mgkit.counts.func.map_counts_to_category">
-<code class="sig-prename descclassname">mgkit.counts.func.</code><code class="sig-name descname">map_counts_to_category</code><span class="sig-paren">(</span><em class="sig-param">counts</em>, <em class="sig-param">gene_map</em>, <em class="sig-param">nomap=False</em>, <em class="sig-param">nomap_id='NOMAP'</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/mgkit/counts/func.html#map_counts_to_category"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#mgkit.counts.func.map_counts_to_category" title="Permalink to this definition">¶</a></dt>
+<code class="sig-prename descclassname">mgkit.counts.func.</code><code class="sig-name descname">map_counts_to_category</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">counts</span></em>, <em class="sig-param"><span class="n">gene_map</span></em>, <em class="sig-param"><span class="n">nomap</span><span class="o">=</span><span class="default_value">False</span></em>, <em class="sig-param"><span class="n">nomap_id</span><span class="o">=</span><span class="default_value">'NOMAP'</span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/mgkit/counts/func.html#map_counts_to_category"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#mgkit.counts.func.map_counts_to_category" title="Permalink to this definition">¶</a></dt>
 <dd><p>Used to map the counts from a certain gene identifier to another. Genes
 with no mappings are not counted, unless <em>nomap=True</em>, in which case they
 are counted as <em>nomap_id</em>.</p>
@@ -652,9 +655,9 @@ are counted as <em>nomap_id</em>.</p>
 being the gene_id and the second value the count for it</p></li>
 <li><p><strong>gene_map</strong> (<em>dictionary</em>) – a dictionary whose keys are the gene_id yield by
 <em>counts</em> and the values are iterable of mapping identifiers</p></li>
-<li><p><strong>nomap</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.8)"><em>bool</em></a>) – if False, counts for genes with no mappings in <em>gene_map</em>
+<li><p><strong>nomap</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.9)"><em>bool</em></a>) – if False, counts for genes with no mappings in <em>gene_map</em>
 are discarded, if True, they a counted as <em>nomap_id</em></p></li>
-<li><p><strong>nomap_id</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.8)"><em>str</em></a>) – name of the mapping for genes with no mappings</p></li>
+<li><p><strong>nomap_id</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)"><em>str</em></a>) – name of the mapping for genes with no mappings</p></li>
 </ul>
 </dd>
 <dt class="field-even">Returns</dt>
@@ -666,16 +669,16 @@ are discarded, if True, they a counted as <em>nomap_id</em></p></li>
 </dl>
 </dd></dl>
 
-<dl class="function">
+<dl class="py function">
 <dt id="mgkit.counts.func.map_gene_id_to_map">
-<code class="sig-prename descclassname">mgkit.counts.func.</code><code class="sig-name descname">map_gene_id_to_map</code><span class="sig-paren">(</span><em class="sig-param">gene_map</em>, <em class="sig-param">gene_id</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/mgkit/counts/func.html#map_gene_id_to_map"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#mgkit.counts.func.map_gene_id_to_map" title="Permalink to this definition">¶</a></dt>
+<code class="sig-prename descclassname">mgkit.counts.func.</code><code class="sig-name descname">map_gene_id_to_map</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">gene_map</span></em>, <em class="sig-param"><span class="n">gene_id</span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/mgkit/counts/func.html#map_gene_id_to_map"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#mgkit.counts.func.map_gene_id_to_map" title="Permalink to this definition">¶</a></dt>
 <dd><p>Function that extract a list of gene mappings from a dictionary and returns
 an empty list if the <em>gene_id</em> is not found.</p>
 </dd></dl>
 
-<dl class="function">
+<dl class="py function">
 <dt id="mgkit.counts.func.map_taxon_id_to_rank">
-<code class="sig-prename descclassname">mgkit.counts.func.</code><code class="sig-name descname">map_taxon_id_to_rank</code><span class="sig-paren">(</span><em class="sig-param">taxonomy</em>, <em class="sig-param">rank</em>, <em class="sig-param">taxon_id</em>, <em class="sig-param">include_higher=True</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/mgkit/counts/func.html#map_taxon_id_to_rank"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#mgkit.counts.func.map_taxon_id_to_rank" title="Permalink to this definition">¶</a></dt>
+<code class="sig-prename descclassname">mgkit.counts.func.</code><code class="sig-name descname">map_taxon_id_to_rank</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">taxonomy</span></em>, <em class="sig-param"><span class="n">rank</span></em>, <em class="sig-param"><span class="n">taxon_id</span></em>, <em class="sig-param"><span class="n">include_higher</span><span class="o">=</span><span class="default_value">True</span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/mgkit/counts/func.html#map_taxon_id_to_rank"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#mgkit.counts.func.map_taxon_id_to_rank" title="Permalink to this definition">¶</a></dt>
 <dd><p>Maps a <em>taxon_id</em> to the request taxon rank. Returns <em>None</em> if
 <em>include_higher</em> is False and the found rank is not the one requested.</p>
 <p>Internally uses <a class="reference internal" href="mgkit.taxon.html#mgkit.taxon.Taxonomy.get_ranked_taxon" title="mgkit.taxon.Taxonomy.get_ranked_taxon"><code class="xref py py-meth docutils literal notranslate"><span class="pre">mgkit.taxon.Taxonomy.get_ranked_taxon()</span></code></a></p>
@@ -683,9 +686,9 @@ an empty list if the <em>gene_id</em> is not found.</p>
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>taxonomy</strong> – taxonomy instance</p></li>
-<li><p><strong>rank</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.8)"><em>str</em></a>) – taxonomic rank requested</p></li>
-<li><p><strong>taxon_id</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.8)"><em>int</em></a>) – taxon_id to map</p></li>
-<li><p><strong>include_higher</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.8)"><em>bool</em></a>) – if False, any rank different than the requested
+<li><p><strong>rank</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)"><em>str</em></a>) – taxonomic rank requested</p></li>
+<li><p><strong>taxon_id</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.9)"><em>int</em></a>) – taxon_id to map</p></li>
+<li><p><strong>include_higher</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.9)"><em>bool</em></a>) – if False, any rank different than the requested
 one is discarded</p></li>
 </ul>
 </dd>
@@ -694,7 +697,7 @@ one is discarded</p></li>
 returned, otherwise <em>None</em> is returned</p>
 </dd>
 <dt class="field-odd">Return type</dt>
-<dd class="field-odd"><p>(<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.8)">int</a>, <a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.8)">None</a>)</p>
+<dd class="field-odd"><p>(<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.9)">int</a>, <a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.9)">None</a>)</p>
 </dd>
 </dl>
 </dd></dl>
@@ -721,11 +724,19 @@ returned, otherwise <em>None</em> is returned</p>
 
   <div role="contentinfo">
     <p>
-        &copy; Copyright 2013-2015, Francesco Rubino
+        
+        &copy; Copyright 2013-2020, Francesco Rubino
 
     </p>
   </div>
-  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+    
+    
+    
+    Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a
+    
+    <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a>
+    
+    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
 
 </footer>
 
@@ -736,7 +747,6 @@ returned, otherwise <em>None</em> is returned</p>
 
   </div>
   
-
 
   <script type="text/javascript">
       jQuery(function () {

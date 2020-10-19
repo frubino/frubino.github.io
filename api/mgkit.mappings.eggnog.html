@@ -1,42 +1,43 @@
 
 
 <!DOCTYPE html>
-<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
-<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<html class="writer-html5" lang="en" >
 <head>
   <meta charset="utf-8">
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>mgkit.mappings.eggnog module &mdash; MGKit: Metagenomic framework 0.5.1 documentation</title>
+  <title>mgkit.mappings.eggnog module &mdash; MGKit: Metagenomic framework 0.5.3 documentation</title>
   
-
-  
-  
-  
-  
-
-  
-  <script type="text/javascript" src="../_static/js/modernizr.min.js"></script>
-  
-    
-      <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
-        <script type="text/javascript" src="../_static/jquery.js"></script>
-        <script type="text/javascript" src="../_static/underscore.js"></script>
-        <script type="text/javascript" src="../_static/doctools.js"></script>
-        <script type="text/javascript" src="../_static/language_data.js"></script>
-        <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
-        <script async="async" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
-        <script type="text/x-mathjax-config">MathJax.Hub.Config({"tex2jax": {"inlineMath": [["$", "$"], ["\\(", "\\)"]], "processEscapes": true, "ignoreClass": "document", "processClass": "math|output_area"}})</script>
-    
-    <script type="text/javascript" src="../_static/js/theme.js"></script>
-
-    
 
   
   <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
   <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
   <link rel="stylesheet" href="../_static/graphviz.css" type="text/css" />
+
+  
+  
+  
+  
+
+  
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/underscore.js"></script>
+        <script src="../_static/doctools.js"></script>
+        <script src="../_static/language_data.js"></script>
+        <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+        <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+        <script type="text/x-mathjax-config">MathJax.Hub.Config({"tex2jax": {"inlineMath": [["$", "$"], ["\\(", "\\)"]], "processEscapes": true, "ignoreClass": "document", "processClass": "math|output_area"}})</script>
+    
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+
+    
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
     <link rel="next" title="mgkit.mappings.enzyme module" href="mgkit.mappings.enzyme.html" />
@@ -54,7 +55,7 @@
           
 
           
-            <a href="../index.html" class="icon icon-home"> MGKit: Metagenomic framework
+            <a href="../index.html" class="icon icon-home" alt="Documentation Home"> MGKit: Metagenomic framework
           
 
           
@@ -64,7 +65,7 @@
             
             
               <div class="version">
-                0.5.1
+                0.5.3
               </div>
             
           
@@ -81,6 +82,7 @@
           
         </div>
 
+        
         <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
           
             
@@ -179,6 +181,7 @@
             
           
         </div>
+        
       </div>
     </nav>
 
@@ -217,7 +220,7 @@
 
   <ul class="wy-breadcrumbs">
     
-      <li><a href="../index.html">Docs</a> &raquo;</li>
+      <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
         
           <li><a href="../library.html">Library Reference</a> &raquo;</li>
         
@@ -277,36 +280,36 @@
 <li><p>unify download of data from web</p></li>
 </ul>
 </div>
-<dl class="data">
+<dl class="py data">
 <dt id="mgkit.mappings.eggnog.EGGNOG_CAT">
 <code class="sig-prename descclassname">mgkit.mappings.eggnog.</code><code class="sig-name descname">EGGNOG_CAT</code><em class="property"> = {'A': 'RNA processing and modification', 'B': 'Chromatin structure and dynamics', 'C': 'Energy production and conversion', 'D': 'Cell cycle control, cell division, chromosome partitioning', 'E': 'Amino acid transport and metabolism', 'F': 'Nucleotide transport and metabolism', 'G': 'Carbohydrate transport and metabolism', 'H': 'Coenzyme transport and metabolism', 'I': 'Lipid transport and metabolism', 'J': 'Translation, ribosomal structure and biogenesis', 'K': 'Transcription', 'L': 'Replication, recombination and repair', 'M': 'Cell wall/membrane/envelope biogenesis', 'N': 'Cell motility', 'O': 'Posttranslational modification, protein turnover, chaperones', 'P': 'Inorganic ion transport and metabolism', 'Q': 'Secondary metabolites biosynthesis, transport and catabolism', 'R': 'General function prediction only', 'S': 'Function unknown', 'T': 'Signal transduction mechanisms', 'U': 'Intracellular trafficking, secretion, and vesicular transport', 'V': 'Defense mechanisms', 'W': 'Extracellular structures', 'Y': 'Nuclear structure', 'Z': 'Cytoskeleton'}</em><a class="headerlink" href="#mgkit.mappings.eggnog.EGGNOG_CAT" title="Permalink to this definition">¶</a></dt>
 <dd><p>Single letter functional categories</p>
 </dd></dl>
 
-<dl class="data">
+<dl class="py data">
 <dt id="mgkit.mappings.eggnog.EGGNOG_CAT_KEYS">
 <code class="sig-prename descclassname">mgkit.mappings.eggnog.</code><code class="sig-name descname">EGGNOG_CAT_KEYS</code><em class="property"> = (('J', 'A', 'K', 'L', 'B'), ('D', 'Y', 'V', 'T', 'M', 'N', 'Z', 'W', 'U', 'O'), ('C', 'G', 'E', 'F', 'H', 'I', 'P', 'Q'), ('R', 'S'))</em><a class="headerlink" href="#mgkit.mappings.eggnog.EGGNOG_CAT_KEYS" title="Permalink to this definition">¶</a></dt>
 <dd><p>Used to build map of broader categories (<a class="reference internal" href="#mgkit.mappings.eggnog.EGGNOG_CAT_NAMES" title="mgkit.mappings.eggnog.EGGNOG_CAT_NAMES"><code class="xref py py-data docutils literal notranslate"><span class="pre">EGGNOG_CAT_NAMES</span></code></a>) to more
 specific ones</p>
 </dd></dl>
 
-<dl class="data">
+<dl class="py data">
 <dt id="mgkit.mappings.eggnog.EGGNOG_CAT_MAP">
 <code class="sig-prename descclassname">mgkit.mappings.eggnog.</code><code class="sig-name descname">EGGNOG_CAT_MAP</code><em class="property"> = {'CELLULAR PROCESSES AND SIGNALING': ('D', 'Y', 'V', 'T', 'M', 'N', 'Z', 'W', 'U', 'O'), 'INFORMATION STORAGE AND PROCESSING': ('J', 'A', 'K', 'L', 'B'), 'METABOLISM': ('C', 'G', 'E', 'F', 'H', 'I', 'P', 'Q'), 'POORLY CHARACTERIZED': ('R', 'S')}</em><a class="headerlink" href="#mgkit.mappings.eggnog.EGGNOG_CAT_MAP" title="Permalink to this definition">¶</a></dt>
 <dd><p>Functional categories (broader, <a class="reference internal" href="#mgkit.mappings.eggnog.EGGNOG_CAT_NAMES" title="mgkit.mappings.eggnog.EGGNOG_CAT_NAMES"><code class="xref py py-data docutils literal notranslate"><span class="pre">EGGNOG_CAT_NAMES</span></code></a>) mappings to more
 specific one (<a class="reference internal" href="#mgkit.mappings.eggnog.EGGNOG_CAT" title="mgkit.mappings.eggnog.EGGNOG_CAT"><code class="xref py py-data docutils literal notranslate"><span class="pre">EGGNOG_CAT</span></code></a>).</p>
 </dd></dl>
 
-<dl class="data">
+<dl class="py data">
 <dt id="mgkit.mappings.eggnog.EGGNOG_CAT_NAMES">
 <code class="sig-prename descclassname">mgkit.mappings.eggnog.</code><code class="sig-name descname">EGGNOG_CAT_NAMES</code><em class="property"> = ('INFORMATION STORAGE AND PROCESSING', 'CELLULAR PROCESSES AND SIGNALING', 'METABOLISM', 'POORLY CHARACTERIZED')</em><a class="headerlink" href="#mgkit.mappings.eggnog.EGGNOG_CAT_NAMES" title="Permalink to this definition">¶</a></dt>
 <dd><p>Functional categories (broader)</p>
 </dd></dl>
 
-<dl class="class">
+<dl class="py class">
 <dt id="mgkit.mappings.eggnog.NOGInfo">
-<em class="property">class </em><code class="sig-prename descclassname">mgkit.mappings.eggnog.</code><code class="sig-name descname">NOGInfo</code><span class="sig-paren">(</span><em class="sig-param">members=None</em>, <em class="sig-param">funccat=None</em>, <em class="sig-param">description=None</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/mgkit/mappings/eggnog.html#NOGInfo"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#mgkit.mappings.eggnog.NOGInfo" title="Permalink to this definition">¶</a></dt>
-<dd><p>Bases: <a class="reference external" href="https://docs.python.org/3/library/functions.html#object" title="(in Python v3.8)"><code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></a></p>
+<em class="property">class </em><code class="sig-prename descclassname">mgkit.mappings.eggnog.</code><code class="sig-name descname">NOGInfo</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">members</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">funccat</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">description</span><span class="o">=</span><span class="default_value">None</span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/mgkit/mappings/eggnog.html#NOGInfo"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#mgkit.mappings.eggnog.NOGInfo" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference external" href="https://docs.python.org/3/library/functions.html#object" title="(in Python v3.9)"><code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></a></p>
 <div class="versionadded">
 <p><span class="versionmodified added">New in version 0.1.14.</span></p>
 </div>
@@ -318,66 +321,66 @@ specific one (<a class="reference internal" href="#mgkit.mappings.eggnog.EGGNOG_
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">load_description</span> <span class="ow">is</span> <span class="n">optional</span>
 </pre></div>
 </div>
-<dl class="method">
+<dl class="py method">
 <dt id="mgkit.mappings.eggnog.NOGInfo.get_gene_funccat">
-<code class="sig-name descname">get_gene_funccat</code><span class="sig-paren">(</span><em class="sig-param">gene_id</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/mgkit/mappings/eggnog.html#NOGInfo.get_gene_funccat"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#mgkit.mappings.eggnog.NOGInfo.get_gene_funccat" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">get_gene_funccat</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">gene_id</span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/mgkit/mappings/eggnog.html#NOGInfo.get_gene_funccat"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#mgkit.mappings.eggnog.NOGInfo.get_gene_funccat" title="Permalink to this definition">¶</a></dt>
 <dd><p>Returns the functional category (one letter, <a class="reference internal" href="#mgkit.mappings.eggnog.EGGNOG_CAT" title="mgkit.mappings.eggnog.EGGNOG_CAT"><code class="xref py py-data docutils literal notranslate"><span class="pre">EGGNOG_CAT</span></code></a> keys)
 for the requested eggNOG gene ID</p>
 </dd></dl>
 
-<dl class="method">
+<dl class="py method">
 <dt id="mgkit.mappings.eggnog.NOGInfo.get_gene_nog">
-<code class="sig-name descname">get_gene_nog</code><span class="sig-paren">(</span><em class="sig-param">gene_id</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/mgkit/mappings/eggnog.html#NOGInfo.get_gene_nog"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#mgkit.mappings.eggnog.NOGInfo.get_gene_nog" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">get_gene_nog</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">gene_id</span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/mgkit/mappings/eggnog.html#NOGInfo.get_gene_nog"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#mgkit.mappings.eggnog.NOGInfo.get_gene_nog" title="Permalink to this definition">¶</a></dt>
 <dd><p>Returns the COG/NOG ID of the requested eggNOG gene ID</p>
 </dd></dl>
 
-<dl class="method">
+<dl class="py method">
 <dt id="mgkit.mappings.eggnog.NOGInfo.get_nog_funccat">
-<code class="sig-name descname">get_nog_funccat</code><span class="sig-paren">(</span><em class="sig-param">nog_id</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/mgkit/mappings/eggnog.html#NOGInfo.get_nog_funccat"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#mgkit.mappings.eggnog.NOGInfo.get_nog_funccat" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">get_nog_funccat</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">nog_id</span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/mgkit/mappings/eggnog.html#NOGInfo.get_nog_funccat"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#mgkit.mappings.eggnog.NOGInfo.get_nog_funccat" title="Permalink to this definition">¶</a></dt>
 <dd><p>Returns the functional category (one letter, <a class="reference internal" href="#mgkit.mappings.eggnog.EGGNOG_CAT" title="mgkit.mappings.eggnog.EGGNOG_CAT"><code class="xref py py-data docutils literal notranslate"><span class="pre">EGGNOG_CAT</span></code></a> keys)
 for the requested eggNOG COG/NOG ID</p>
 </dd></dl>
 
-<dl class="method">
+<dl class="py method">
 <dt id="mgkit.mappings.eggnog.NOGInfo.get_nog_gencat">
-<code class="sig-name descname">get_nog_gencat</code><span class="sig-paren">(</span><em class="sig-param">nog_id</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/mgkit/mappings/eggnog.html#NOGInfo.get_nog_gencat"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#mgkit.mappings.eggnog.NOGInfo.get_nog_gencat" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">get_nog_gencat</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">nog_id</span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/mgkit/mappings/eggnog.html#NOGInfo.get_nog_gencat"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#mgkit.mappings.eggnog.NOGInfo.get_nog_gencat" title="Permalink to this definition">¶</a></dt>
 <dd><p>Returns the functional category (<a class="reference internal" href="#mgkit.mappings.eggnog.EGGNOG_CAT_NAMES" title="mgkit.mappings.eggnog.EGGNOG_CAT_NAMES"><code class="xref py py-data docutils literal notranslate"><span class="pre">EGGNOG_CAT_NAMES</span></code></a> keys)
 for the requested eggNOG COG/NOG IDs</p>
 </dd></dl>
 
-<dl class="method">
+<dl class="py method">
 <dt id="mgkit.mappings.eggnog.NOGInfo.get_nogs_funccat">
-<code class="sig-name descname">get_nogs_funccat</code><span class="sig-paren">(</span><em class="sig-param">nog_ids</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/mgkit/mappings/eggnog.html#NOGInfo.get_nogs_funccat"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#mgkit.mappings.eggnog.NOGInfo.get_nogs_funccat" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">get_nogs_funccat</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">nog_ids</span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/mgkit/mappings/eggnog.html#NOGInfo.get_nogs_funccat"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#mgkit.mappings.eggnog.NOGInfo.get_nogs_funccat" title="Permalink to this definition">¶</a></dt>
 <dd><p>Returns the functional categories for a list of COG/NOG IDs. Uses
 <a class="reference internal" href="#mgkit.mappings.eggnog.NOGInfo.get_nog_funccat" title="mgkit.mappings.eggnog.NOGInfo.get_nog_funccat"><code class="xref py py-meth docutils literal notranslate"><span class="pre">NOGInfo.get_nog_funccat()</span></code></a></p>
 </dd></dl>
 
-<dl class="method">
+<dl class="py method">
 <dt id="mgkit.mappings.eggnog.NOGInfo.load_description">
-<code class="sig-name descname">load_description</code><span class="sig-paren">(</span><em class="sig-param">file_handle</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/mgkit/mappings/eggnog.html#NOGInfo.load_description"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#mgkit.mappings.eggnog.NOGInfo.load_description" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">load_description</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">file_handle</span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/mgkit/mappings/eggnog.html#NOGInfo.load_description"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#mgkit.mappings.eggnog.NOGInfo.load_description" title="Permalink to this definition">¶</a></dt>
 <dd><p>Loads data from <em>NOG.description.txt.gz</em></p>
 <p><em>file_handle</em> can either an open file or a path</p>
 </dd></dl>
 
-<dl class="method">
+<dl class="py method">
 <dt id="mgkit.mappings.eggnog.NOGInfo.load_funccat">
-<code class="sig-name descname">load_funccat</code><span class="sig-paren">(</span><em class="sig-param">file_handle</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/mgkit/mappings/eggnog.html#NOGInfo.load_funccat"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#mgkit.mappings.eggnog.NOGInfo.load_funccat" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">load_funccat</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">file_handle</span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/mgkit/mappings/eggnog.html#NOGInfo.load_funccat"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#mgkit.mappings.eggnog.NOGInfo.load_funccat" title="Permalink to this definition">¶</a></dt>
 <dd><p>Loads data from <em>NOG.funccat.txt.gz</em></p>
 <p><em>file_handle</em> can either an open file or a path</p>
 </dd></dl>
 
-<dl class="method">
+<dl class="py method">
 <dt id="mgkit.mappings.eggnog.NOGInfo.load_members">
-<code class="sig-name descname">load_members</code><span class="sig-paren">(</span><em class="sig-param">file_handle</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/mgkit/mappings/eggnog.html#NOGInfo.load_members"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#mgkit.mappings.eggnog.NOGInfo.load_members" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">load_members</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">file_handle</span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/mgkit/mappings/eggnog.html#NOGInfo.load_members"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#mgkit.mappings.eggnog.NOGInfo.load_members" title="Permalink to this definition">¶</a></dt>
 <dd><p>Loads data from <em>NOG.members.txt.gz</em></p>
 <p><em>file_handle</em> can either an open file or a path</p>
 </dd></dl>
 
 </dd></dl>
 
-<dl class="function">
+<dl class="py function">
 <dt id="mgkit.mappings.eggnog.get_general_eggnog_cat">
-<code class="sig-prename descclassname">mgkit.mappings.eggnog.</code><code class="sig-name descname">get_general_eggnog_cat</code><span class="sig-paren">(</span><em class="sig-param">category</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/mgkit/mappings/eggnog.html#get_general_eggnog_cat"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#mgkit.mappings.eggnog.get_general_eggnog_cat" title="Permalink to this definition">¶</a></dt>
+<code class="sig-prename descclassname">mgkit.mappings.eggnog.</code><code class="sig-name descname">get_general_eggnog_cat</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">category</span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/mgkit/mappings/eggnog.html#get_general_eggnog_cat"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#mgkit.mappings.eggnog.get_general_eggnog_cat" title="Permalink to this definition">¶</a></dt>
 <dd><div class="versionadded">
 <p><span class="versionmodified added">New in version 0.1.14.</span></p>
 </div>
@@ -408,11 +411,19 @@ keys)</p>
 
   <div role="contentinfo">
     <p>
-        &copy; Copyright 2013-2015, Francesco Rubino
+        
+        &copy; Copyright 2013-2020, Francesco Rubino
 
     </p>
   </div>
-  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+    
+    
+    
+    Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a
+    
+    <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a>
+    
+    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
 
 </footer>
 
@@ -423,7 +434,6 @@ keys)</p>
 
   </div>
   
-
 
   <script type="text/javascript">
       jQuery(function () {

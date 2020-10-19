@@ -1,42 +1,43 @@
 
 
 <!DOCTYPE html>
-<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
-<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<html class="writer-html5" lang="en" >
 <head>
   <meta charset="utf-8">
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>mgkit.snps.funcs &mdash; MGKit: Metagenomic framework 0.5.1 documentation</title>
+  <title>mgkit.snps.funcs &mdash; MGKit: Metagenomic framework 0.5.3 documentation</title>
   
-
-  
-  
-  
-  
-
-  
-  <script type="text/javascript" src="../../../_static/js/modernizr.min.js"></script>
-  
-    
-      <script type="text/javascript" id="documentation_options" data-url_root="../../../" src="../../../_static/documentation_options.js"></script>
-        <script type="text/javascript" src="../../../_static/jquery.js"></script>
-        <script type="text/javascript" src="../../../_static/underscore.js"></script>
-        <script type="text/javascript" src="../../../_static/doctools.js"></script>
-        <script type="text/javascript" src="../../../_static/language_data.js"></script>
-        <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
-        <script async="async" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
-        <script type="text/x-mathjax-config">MathJax.Hub.Config({"tex2jax": {"inlineMath": [["$", "$"], ["\\(", "\\)"]], "processEscapes": true, "ignoreClass": "document", "processClass": "math|output_area"}})</script>
-    
-    <script type="text/javascript" src="../../../_static/js/theme.js"></script>
-
-    
 
   
   <link rel="stylesheet" href="../../../_static/css/theme.css" type="text/css" />
   <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
   <link rel="stylesheet" href="../../../_static/graphviz.css" type="text/css" />
+
+  
+  
+  
+  
+
+  
+  <!--[if lt IE 9]>
+    <script src="../../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../../../" src="../../../_static/documentation_options.js"></script>
+        <script src="../../../_static/jquery.js"></script>
+        <script src="../../../_static/underscore.js"></script>
+        <script src="../../../_static/doctools.js"></script>
+        <script src="../../../_static/language_data.js"></script>
+        <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+        <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+        <script type="text/x-mathjax-config">MathJax.Hub.Config({"tex2jax": {"inlineMath": [["$", "$"], ["\\(", "\\)"]], "processEscapes": true, "ignoreClass": "document", "processClass": "math|output_area"}})</script>
+    
+    <script type="text/javascript" src="../../../_static/js/theme.js"></script>
+
+    
     <link rel="index" title="Index" href="../../../genindex.html" />
     <link rel="search" title="Search" href="../../../search.html" /> 
 </head>
@@ -52,7 +53,7 @@
           
 
           
-            <a href="../../../index.html" class="icon icon-home"> MGKit: Metagenomic framework
+            <a href="../../../index.html" class="icon icon-home" alt="Documentation Home"> MGKit: Metagenomic framework
           
 
           
@@ -62,7 +63,7 @@
             
             
               <div class="version">
-                0.5.1
+                0.5.3
               </div>
             
           
@@ -79,6 +80,7 @@
           
         </div>
 
+        
         <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
           
             
@@ -100,6 +102,7 @@
             
           
         </div>
+        
       </div>
     </nav>
 
@@ -138,7 +141,7 @@
 
   <ul class="wy-breadcrumbs">
     
-      <li><a href="../../../index.html">Docs</a> &raquo;</li>
+      <li><a href="../../../index.html" class="icon icon-home"></a> &raquo;</li>
         
           <li><a href="../../index.html">Module code</a> &raquo;</li>
         
@@ -347,7 +350,8 @@
 
 <div class="viewcode-block" id="combine_sample_snps"><a class="viewcode-back" href="../../../api/mgkit.snps.funcs.html#mgkit.snps.funcs.combine_sample_snps">[docs]</a><span class="k">def</span> <span class="nf">combine_sample_snps</span><span class="p">(</span><span class="n">snps_data</span><span class="p">,</span> <span class="n">min_num</span><span class="p">,</span> <span class="n">filters</span><span class="p">,</span> <span class="n">index_type</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
                         <span class="n">gene_func</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">taxon_func</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">use_uid</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
-                        <span class="n">flag_values</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">haplotypes</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">store_uids</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
+                        <span class="n">flag_values</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">haplotypes</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">store_uids</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+                        <span class="n">partial_calc</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">partial_syn</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    .. versionchanged:: 0.2.2</span>
 <span class="sd">        added *use_uid* argument</span>
@@ -357,6 +361,9 @@
 
 <span class="sd">    .. versionchanged:: 0.4.0</span>
 <span class="sd">        added *store_uids*</span>
+<span class="sd">    </span>
+<span class="sd">    .. versionchanged:: 0.5.3</span>
+<span class="sd">        added *partial_calc* and *partial_type*</span>
 
 <span class="sd">    Combine a dictionary sample-&gt;gene_index-&gt;GeneSyn into a</span>
 <span class="sd">    :class:`pandas.DataFrame`. The dictionary is first filtered with the</span>
@@ -388,6 +395,11 @@
 <span class="sd">            True, the 0/0 case will be returned as 0 instead of NaN</span>
 <span class="sd">        store_uids (bool): if True a dictionary with the uid used for each</span>
 <span class="sd">            cell (e.g. gene/taxon/sample)</span>
+<span class="sd">        partial_calc (bool): if True, only pS or pN values will be calculated,</span>
+<span class="sd">            depending on the value of *partial_syn*</span>
+<span class="sd">        partial_syn (bool): if both *partial_calc* and this are True, only pS</span>
+<span class="sd">            values will be calculated. If this parameter is False, pN values</span>
+<span class="sd">            will be calculated</span>
 
 <span class="sd">    Returns:</span>
 <span class="sd">        DataFrame: :class:`pandas.DataFrame` with the pN/pS values for the</span>
@@ -405,6 +417,15 @@
 
     <span class="k">if</span> <span class="n">store_uids</span><span class="p">:</span>
         <span class="n">uids_dict</span> <span class="o">=</span> <span class="p">{}</span>
+    
+    <span class="k">if</span> <span class="n">flag_values</span><span class="p">:</span>
+        <span class="n">calc_method</span> <span class="o">=</span> <span class="s1">&#39;calc_ratio_flag&#39;</span>
+    <span class="k">if</span> <span class="n">partial_calc</span><span class="p">:</span>
+        <span class="k">if</span> <span class="n">partial_syn</span><span class="p">:</span>
+            <span class="n">calc_method</span> <span class="o">=</span> <span class="s1">&#39;calc_ps&#39;</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">calc_method</span> <span class="o">=</span> <span class="s1">&#39;calc_pn&#39;</span>
+        
 
     <span class="k">for</span> <span class="n">sample</span><span class="p">,</span> <span class="n">genes_dict</span> <span class="ow">in</span> <span class="n">viewitems</span><span class="p">(</span><span class="n">snps_data</span><span class="p">):</span>
 
@@ -460,7 +481,7 @@
         <span class="p">(</span>
             <span class="n">sample</span><span class="p">,</span>
             <span class="nb">dict</span><span class="p">(</span>
-                <span class="p">(</span><span class="n">key</span><span class="p">,</span> <span class="n">gene</span><span class="o">.</span><span class="n">calc_ratio_flag</span><span class="p">()</span> <span class="k">if</span> <span class="n">flag_values</span> <span class="k">else</span> <span class="n">gene</span><span class="o">.</span><span class="n">calc_ratio</span><span class="p">(</span><span class="n">haplotypes</span><span class="o">=</span><span class="n">haplotypes</span><span class="p">))</span>
+                <span class="p">(</span><span class="n">key</span><span class="p">,</span> <span class="nb">getattr</span><span class="p">(</span><span class="n">gene</span><span class="p">,</span> <span class="n">calc_method</span><span class="p">)()</span> <span class="k">if</span> <span class="p">(</span><span class="n">flag_values</span> <span class="ow">or</span> <span class="n">partial_calc</span><span class="p">)</span> <span class="k">else</span> <span class="n">gene</span><span class="o">.</span><span class="n">calc_ratio</span><span class="p">(</span><span class="n">haplotypes</span><span class="o">=</span><span class="n">haplotypes</span><span class="p">))</span>
                 <span class="k">for</span> <span class="n">key</span><span class="p">,</span> <span class="n">gene</span> <span class="ow">in</span> <span class="n">viewitems</span><span class="p">(</span><span class="n">row_dict</span><span class="p">)</span>
             <span class="p">)</span>
         <span class="p">)</span>
@@ -567,11 +588,19 @@
 
   <div role="contentinfo">
     <p>
-        &copy; Copyright 2013-2015, Francesco Rubino
+        
+        &copy; Copyright 2013-2020, Francesco Rubino
 
     </p>
   </div>
-  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+    
+    
+    
+    Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a
+    
+    <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a>
+    
+    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
 
 </footer>
 
@@ -582,7 +611,6 @@
 
   </div>
   
-
 
   <script type="text/javascript">
       jQuery(function () {
