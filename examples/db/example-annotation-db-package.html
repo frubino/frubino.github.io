@@ -7,7 +7,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>Examples of the mgkit.db package &mdash; MGKit: Metagenomic framework 0.5.3 documentation</title>
+  <title>Examples of the mgkit.db package &mdash; MGKit: Metagenomic framework 0.5.4 documentation</title>
   
 
   
@@ -65,7 +65,7 @@
             
             
               <div class="version">
-                0.5.3
+                0.5.4
               </div>
             
           
@@ -451,12 +451,12 @@ div.rendered_html tbody tr:hover {
 </pre></div>
 </div>
 <div class="input_area highlight-ipython2 notranslate"><div class="highlight"><pre>
-<span></span>from mgkit.io import gff
-import mgkit.net
-from mgkit.db import dbm
-from mgkit.db import mongo
-import mgkit.taxon
-import gzip
+<span></span><span class="kn">from</span> <span class="nn">mgkit.io</span> <span class="kn">import</span> <span class="n">gff</span>
+<span class="kn">import</span> <span class="nn">mgkit.net</span>
+<span class="kn">from</span> <span class="nn">mgkit.db</span> <span class="kn">import</span> <span class="n">dbm</span>
+<span class="kn">from</span> <span class="nn">mgkit.db</span> <span class="kn">import</span> <span class="n">mongo</span>
+<span class="kn">import</span> <span class="nn">mgkit.taxon</span>
+<span class="kn">import</span> <span class="nn">gzip</span>
 </pre></div>
 </div>
 </div>
@@ -468,11 +468,11 @@ import gzip
 </pre></div>
 </div>
 <div class="input_area highlight-ipython2 notranslate"><div class="highlight"><pre>
-<span></span># This will just load the data from the repository and save it in the same directory as
-# this notebook
-data = mgkit.net.url_read(&#39;https://bitbucket.org/setsuna80/mgkit/downloads/assembly.gff.gz&#39;)
-# The data is compressed
-open(&#39;assembly.gff.gz&#39;, &#39;w&#39;).write(data)
+<span></span><span class="c1"># This will just load the data from the repository and save it in the same directory as</span>
+<span class="c1"># this notebook</span>
+<span class="n">data</span> <span class="o">=</span> <span class="n">mgkit</span><span class="o">.</span><span class="n">net</span><span class="o">.</span><span class="n">url_read</span><span class="p">(</span><span class="s1">&#39;https://bitbucket.org/setsuna80/mgkit/downloads/assembly.gff.gz&#39;</span><span class="p">)</span>
+<span class="c1"># The data is compressed</span>
+<span class="nb">open</span><span class="p">(</span><span class="s1">&#39;assembly.gff.gz&#39;</span><span class="p">,</span> <span class="s1">&#39;w&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -485,11 +485,11 @@ open(&#39;assembly.gff.gz&#39;, &#39;w&#39;).write(data)
 </pre></div>
 </div>
 <div class="input_area highlight-ipython2 notranslate"><div class="highlight"><pre>
-<span></span># *mgkit.io.gff.parse_gff* can read compressed data, gzip, bz2 (also lzma on python3)
-annotations = {
-    annotation.uid: annotation
-    for annotation in gff.parse_gff(&#39;assembly.gff.gz&#39;)
-}
+<span></span><span class="c1"># *mgkit.io.gff.parse_gff* can read compressed data, gzip, bz2 (also lzma on python3)</span>
+<span class="n">annotations</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="n">annotation</span><span class="o">.</span><span class="n">uid</span><span class="p">:</span> <span class="n">annotation</span>
+    <span class="k">for</span> <span class="n">annotation</span> <span class="ow">in</span> <span class="n">gff</span><span class="o">.</span><span class="n">parse_gff</span><span class="p">(</span><span class="s1">&#39;assembly.gff.gz&#39;</span><span class="p">)</span>
+<span class="p">}</span>
 </pre></div>
 </div>
 </div>
@@ -499,10 +499,10 @@ annotations = {
 </pre></div>
 </div>
 <div class="input_area highlight-ipython2 notranslate"><div class="highlight"><pre>
-<span></span>annotation = annotations[&#39;d002b31c-1d78-438c-b8f9-aba791807724&#39;]
-print annotation
+<span></span><span class="n">annotation</span> <span class="o">=</span> <span class="n">annotations</span><span class="p">[</span><span class="s1">&#39;d002b31c-1d78-438c-b8f9-aba791807724&#39;</span><span class="p">]</span>
+<span class="nb">print</span> <span class="n">annotation</span>
 
-print annotation.uid, annotation.gene_id, annotation.taxon_id
+<span class="nb">print</span> <span class="n">annotation</span><span class="o">.</span><span class="n">uid</span><span class="p">,</span> <span class="n">annotation</span><span class="o">.</span><span class="n">gene_id</span><span class="p">,</span> <span class="n">annotation</span><span class="o">.</span><span class="n">taxon_id</span>
 </pre></div>
 </div>
 </div>
@@ -521,8 +521,8 @@ d002b31c-1d78-438c-b8f9-aba791807724 Q72QU2 2
 </pre></div>
 </div>
 <div class="input_area highlight-ipython2 notranslate"><div class="highlight"><pre>
-<span></span>print len(annotation), annotation.length
-print annotation.get_mappings()
+<span></span><span class="nb">print</span> <span class="nb">len</span><span class="p">(</span><span class="n">annotation</span><span class="p">),</span> <span class="n">annotation</span><span class="o">.</span><span class="n">length</span>
+<span class="nb">print</span> <span class="n">annotation</span><span class="o">.</span><span class="n">get_mappings</span><span class="p">()</span>
 </pre></div>
 </div>
 </div>
@@ -543,13 +543,13 @@ print annotation.get_mappings()
 </pre></div>
 </div>
 <div class="input_area highlight-ipython2 notranslate"><div class="highlight"><pre>
-<span></span># This will just load the data from the repository and save it in the same directory as
-# this notebook
-data = mgkit.net.url_read(
-    &quot;https://bitbucket.org/setsuna80/mgkit/downloads/taxonomy.pickle.gz&quot;
-)
-open(&#39;taxonomy.pickle.gz&#39;, &#39;w&#39;).write(data)
-del data
+<span></span><span class="c1"># This will just load the data from the repository and save it in the same directory as</span>
+<span class="c1"># this notebook</span>
+<span class="n">data</span> <span class="o">=</span> <span class="n">mgkit</span><span class="o">.</span><span class="n">net</span><span class="o">.</span><span class="n">url_read</span><span class="p">(</span>
+    <span class="s2">&quot;https://bitbucket.org/setsuna80/mgkit/downloads/taxonomy.pickle.gz&quot;</span>
+<span class="p">)</span>
+<span class="nb">open</span><span class="p">(</span><span class="s1">&#39;taxonomy.pickle.gz&#39;</span><span class="p">,</span> <span class="s1">&#39;w&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
+<span class="k">del</span> <span class="n">data</span>
 </pre></div>
 </div>
 </div>
@@ -558,8 +558,8 @@ del data
 </pre></div>
 </div>
 <div class="input_area highlight-ipython2 notranslate"><div class="highlight"><pre>
-<span></span># Using compress taxonomy files makes it slower to load
-taxonomy = mgkit.taxon.UniprotTaxonomy(&#39;taxonomy.pickle.gz&#39;)
+<span></span><span class="c1"># Using compress taxonomy files makes it slower to load</span>
+<span class="n">taxonomy</span> <span class="o">=</span> <span class="n">mgkit</span><span class="o">.</span><span class="n">taxon</span><span class="o">.</span><span class="n">UniprotTaxonomy</span><span class="p">(</span><span class="s1">&#39;taxonomy.pickle.gz&#39;</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -568,8 +568,8 @@ taxonomy = mgkit.taxon.UniprotTaxonomy(&#39;taxonomy.pickle.gz&#39;)
 </pre></div>
 </div>
 <div class="input_area highlight-ipython2 notranslate"><div class="highlight"><pre>
-<span></span># to find the Bacteoidales taxon identifier
-taxonomy.find_by_name(&#39;bacteroidales&#39;)
+<span></span><span class="c1"># to find the Bacteoidales taxon identifier</span>
+<span class="n">taxonomy</span><span class="o">.</span><span class="n">find_by_name</span><span class="p">(</span><span class="s1">&#39;bacteroidales&#39;</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -587,13 +587,13 @@ taxonomy.find_by_name(&#39;bacteroidales&#39;)
 </pre></div>
 </div>
 <div class="input_area highlight-ipython2 notranslate"><div class="highlight"><pre>
-<span></span># to find all the annotations that belong to the Order Bacteroidales
-count = 0
-for annotation in annotations.itervalues():
-    if mgkit.taxon.is_ancestor(taxonomy, annotation.taxon_id, 171549):
-        count += 1
-        print annotation.uid, annotation.gene_id
-print &quot;Number of annotation:&quot;, count
+<span></span><span class="c1"># to find all the annotations that belong to the Order Bacteroidales</span>
+<span class="n">count</span> <span class="o">=</span> <span class="mi">0</span>
+<span class="k">for</span> <span class="n">annotation</span> <span class="ow">in</span> <span class="n">annotations</span><span class="o">.</span><span class="n">itervalues</span><span class="p">():</span>
+    <span class="k">if</span> <span class="n">mgkit</span><span class="o">.</span><span class="n">taxon</span><span class="o">.</span><span class="n">is_ancestor</span><span class="p">(</span><span class="n">taxonomy</span><span class="p">,</span> <span class="n">annotation</span><span class="o">.</span><span class="n">taxon_id</span><span class="p">,</span> <span class="mi">171549</span><span class="p">):</span>
+        <span class="n">count</span> <span class="o">+=</span> <span class="mi">1</span>
+        <span class="nb">print</span> <span class="n">annotation</span><span class="o">.</span><span class="n">uid</span><span class="p">,</span> <span class="n">annotation</span><span class="o">.</span><span class="n">gene_id</span>
+<span class="nb">print</span> <span class="s2">&quot;Number of annotation:&quot;</span><span class="p">,</span> <span class="n">count</span>
 </pre></div>
 </div>
 </div>
@@ -647,11 +647,11 @@ Number of annotation: 37
 </pre></div>
 </div>
 <div class="input_area highlight-ipython2 notranslate"><div class="highlight"><pre>
-<span></span># to find out the Phyla represented in the annotations
-print set(
-    taxonomy.get_ranked_taxon(annotation.taxon_id, rank=&#39;phylum&#39;).s_name
-    for annotation in annotations.itervalues()
-)
+<span></span><span class="c1"># to find out the Phyla represented in the annotations</span>
+<span class="nb">print</span> <span class="nb">set</span><span class="p">(</span>
+    <span class="n">taxonomy</span><span class="o">.</span><span class="n">get_ranked_taxon</span><span class="p">(</span><span class="n">annotation</span><span class="o">.</span><span class="n">taxon_id</span><span class="p">,</span> <span class="n">rank</span><span class="o">=</span><span class="s1">&#39;phylum&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">s_name</span>
+    <span class="k">for</span> <span class="n">annotation</span> <span class="ow">in</span> <span class="n">annotations</span><span class="o">.</span><span class="n">itervalues</span><span class="p">()</span>
+<span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -668,9 +668,9 @@ set([&#39;arthropoda&#39;, &#39;microsporidia&#39;, &#39;korarchaeota&#39;, &#39
 </pre></div>
 </div>
 <div class="input_area highlight-ipython2 notranslate"><div class="highlight"><pre>
-<span></span># to get the lineage of the first annotations
-annotation = annotations[&#39;b97ead95-81a7-4caf-8d25-349ee6e276c1&#39;]
-print taxonomy[annotation.taxon_id].s_name, mgkit.taxon.get_lineage(taxonomy, annotation.taxon_id)
+<span></span><span class="c1"># to get the lineage of the first annotations</span>
+<span class="n">annotation</span> <span class="o">=</span> <span class="n">annotations</span><span class="p">[</span><span class="s1">&#39;b97ead95-81a7-4caf-8d25-349ee6e276c1&#39;</span><span class="p">]</span>
+<span class="nb">print</span> <span class="n">taxonomy</span><span class="p">[</span><span class="n">annotation</span><span class="o">.</span><span class="n">taxon_id</span><span class="p">]</span><span class="o">.</span><span class="n">s_name</span><span class="p">,</span> <span class="n">mgkit</span><span class="o">.</span><span class="n">taxon</span><span class="o">.</span><span class="n">get_lineage</span><span class="p">(</span><span class="n">taxonomy</span><span class="p">,</span> <span class="n">annotation</span><span class="o">.</span><span class="n">taxon_id</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -687,9 +687,9 @@ escherichia coli (strain k12) [131567, 2, 1224, 1236, 91347, 543, 561, 562]
 </pre></div>
 </div>
 <div class="input_area highlight-ipython2 notranslate"><div class="highlight"><pre>
-<span></span># to get the names, quickly
-annotation = annotations[&#39;b97ead95-81a7-4caf-8d25-349ee6e276c1&#39;]
-print taxonomy[annotation.taxon_id].s_name, mgkit.taxon.get_lineage(taxonomy, annotation.taxon_id, names=True)
+<span></span><span class="c1"># to get the names, quickly</span>
+<span class="n">annotation</span> <span class="o">=</span> <span class="n">annotations</span><span class="p">[</span><span class="s1">&#39;b97ead95-81a7-4caf-8d25-349ee6e276c1&#39;</span><span class="p">]</span>
+<span class="nb">print</span> <span class="n">taxonomy</span><span class="p">[</span><span class="n">annotation</span><span class="o">.</span><span class="n">taxon_id</span><span class="p">]</span><span class="o">.</span><span class="n">s_name</span><span class="p">,</span> <span class="n">mgkit</span><span class="o">.</span><span class="n">taxon</span><span class="o">.</span><span class="n">get_lineage</span><span class="p">(</span><span class="n">taxonomy</span><span class="p">,</span> <span class="n">annotation</span><span class="o">.</span><span class="n">taxon_id</span><span class="p">,</span> <span class="n">names</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -715,7 +715,7 @@ escherichia coli (strain k12) [&#39;cellular organisms&#39;, &#39;bacteria&#39;,
 </pre></div>
 </div>
 <div class="input_area highlight-ipython2 notranslate"><div class="highlight"><pre>
-<span></span>!get-gff-info dbm -d assembly-db assembly.gff.gz
+<span></span><span class="o">!</span>get-gff-info dbm -d assembly-db assembly.gff.gz
 </pre></div>
 </div>
 </div>
@@ -735,7 +735,7 @@ INFO - mgkit.io.gff: Loading GFF from file (assembly.gff.gz)
 </pre></div>
 </div>
 <div class="input_area highlight-ipython2 notranslate"><div class="highlight"><pre>
-<span></span>db = dbm.create_gff_dbm(annotations.itervalues(), &#39;assembly-db&#39;)
+<span></span><span class="n">db</span> <span class="o">=</span> <span class="n">dbm</span><span class="o">.</span><span class="n">create_gff_dbm</span><span class="p">(</span><span class="n">annotations</span><span class="o">.</span><span class="n">itervalues</span><span class="p">(),</span> <span class="s1">&#39;assembly-db&#39;</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -753,7 +753,7 @@ assembly-db
 </pre></div>
 </div>
 <div class="input_area highlight-ipython2 notranslate"><div class="highlight"><pre>
-<span></span>db[&#39;d002b31c-1d78-438c-b8f9-aba791807724&#39;]
+<span></span><span class="n">db</span><span class="p">[</span><span class="s1">&#39;d002b31c-1d78-438c-b8f9-aba791807724&#39;</span><span class="p">]</span>
 </pre></div>
 </div>
 </div>
@@ -772,8 +772,8 @@ assembly-db
 </pre></div>
 </div>
 <div class="input_area highlight-ipython2 notranslate"><div class="highlight"><pre>
-<span></span>db = dbm.GFFDB(&#39;assembly-db&#39;)
-db[&#39;d002b31c-1d78-438c-b8f9-aba791807724&#39;]
+<span></span><span class="n">db</span> <span class="o">=</span> <span class="n">dbm</span><span class="o">.</span><span class="n">GFFDB</span><span class="p">(</span><span class="s1">&#39;assembly-db&#39;</span><span class="p">)</span>
+<span class="n">db</span><span class="p">[</span><span class="s1">&#39;d002b31c-1d78-438c-b8f9-aba791807724&#39;</span><span class="p">]</span>
 </pre></div>
 </div>
 </div>
@@ -792,9 +792,9 @@ NODE_57290(-):1-87
 </pre></div>
 </div>
 <div class="input_area highlight-ipython2 notranslate"><div class="highlight"><pre>
-<span></span>for uid in db.db:
-    print uid, db[uid]
-    break
+<span></span><span class="k">for</span> <span class="n">uid</span> <span class="ow">in</span> <span class="n">db</span><span class="o">.</span><span class="n">db</span><span class="p">:</span>
+    <span class="nb">print</span> <span class="n">uid</span><span class="p">,</span> <span class="n">db</span><span class="p">[</span><span class="n">uid</span><span class="p">]</span>
+    <span class="k">break</span>
 </pre></div>
 </div>
 </div>
@@ -811,9 +811,9 @@ NODE_57290(-):1-87
 </pre></div>
 </div>
 <div class="input_area highlight-ipython2 notranslate"><div class="highlight"><pre>
-<span></span>for uid, annotation in db.iteritems():
-    print uid, annotation
-    break
+<span></span><span class="k">for</span> <span class="n">uid</span><span class="p">,</span> <span class="n">annotation</span> <span class="ow">in</span> <span class="n">db</span><span class="o">.</span><span class="n">iteritems</span><span class="p">():</span>
+    <span class="nb">print</span> <span class="n">uid</span><span class="p">,</span> <span class="n">annotation</span>
+    <span class="k">break</span>
 </pre></div>
 </div>
 </div>
@@ -837,7 +837,7 @@ NODE_57290(-):1-87
 </pre></div>
 </div>
 <div class="input_area highlight-ipython2 notranslate"><div class="highlight"><pre>
-<span></span>!gunzip -c assembly.gff.gz | get-gff-info mongodb | mongoimport --db test --collection gff --drop
+<span></span><span class="o">!</span>gunzip -c assembly.gff.gz <span class="p">|</span> get-gff-info mongodb <span class="p">|</span> mongoimport --db <span class="nb">test</span> --collection gff --drop
 </pre></div>
 </div>
 </div>
@@ -858,7 +858,7 @@ INFO - mgkit.io.gff: Loading GFF from file (&lt;stdin&gt;)
 </pre></div>
 </div>
 <div class="input_area highlight-ipython2 notranslate"><div class="highlight"><pre>
-<span></span>db = mongo.GFFDB(&#39;test&#39;, &#39;gff&#39;)
+<span></span><span class="n">db</span> <span class="o">=</span> <span class="n">mongo</span><span class="o">.</span><span class="n">GFFDB</span><span class="p">(</span><span class="s1">&#39;test&#39;</span><span class="p">,</span> <span class="s1">&#39;gff&#39;</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -867,9 +867,9 @@ INFO - mgkit.io.gff: Loading GFF from file (&lt;stdin&gt;)
 </pre></div>
 </div>
 <div class="input_area highlight-ipython2 notranslate"><div class="highlight"><pre>
-<span></span>for annotation in db.find_annotation():
-    print annotation.uid, annotation.gene_id
-    break
+<span></span><span class="k">for</span> <span class="n">annotation</span> <span class="ow">in</span> <span class="n">db</span><span class="o">.</span><span class="n">find_annotation</span><span class="p">():</span>
+    <span class="nb">print</span> <span class="n">annotation</span><span class="o">.</span><span class="n">uid</span><span class="p">,</span> <span class="n">annotation</span><span class="o">.</span><span class="n">gene_id</span>
+    <span class="k">break</span>
 </pre></div>
 </div>
 </div>
@@ -887,9 +887,9 @@ INFO - mgkit.io.gff: Loading GFF from file (&lt;stdin&gt;)
 </pre></div>
 </div>
 <div class="input_area highlight-ipython2 notranslate"><div class="highlight"><pre>
-<span></span># To look for all annotations that have the KO mapping to K01883
-for annotation in db.find_annotation({&#39;map.ko&#39;: &#39;K01883&#39;}):
-    print annotation
+<span></span><span class="c1"># To look for all annotations that have the KO mapping to K01883</span>
+<span class="k">for</span> <span class="n">annotation</span> <span class="ow">in</span> <span class="n">db</span><span class="o">.</span><span class="n">find_annotation</span><span class="p">({</span><span class="s1">&#39;map.ko&#39;</span><span class="p">:</span> <span class="s1">&#39;K01883&#39;</span><span class="p">}):</span>
+    <span class="nb">print</span> <span class="n">annotation</span>
 </pre></div>
 </div>
 </div>
@@ -939,11 +939,11 @@ NODE_16671(+):2-106
 </pre></div>
 </div>
 <div class="input_area highlight-ipython2 notranslate"><div class="highlight"><pre>
-<span></span># To look for all annotations that have the KO mapping to K01883 *AND*
-# the taxonomy was inferred from a blast to NCBI (see refinement of
-# taxonomy in theTutorial - Gene Prediction)
-for annotation in db.find_annotation({&#39;map.ko&#39;: &#39;K01883&#39;, &#39;taxon_db&#39;: &#39;NCBI-NT&#39;}):
-    print annotation
+<span></span><span class="c1"># To look for all annotations that have the KO mapping to K01883 *AND*</span>
+<span class="c1"># the taxonomy was inferred from a blast to NCBI (see refinement of</span>
+<span class="c1"># taxonomy in theTutorial - Gene Prediction)</span>
+<span class="k">for</span> <span class="n">annotation</span> <span class="ow">in</span> <span class="n">db</span><span class="o">.</span><span class="n">find_annotation</span><span class="p">({</span><span class="s1">&#39;map.ko&#39;</span><span class="p">:</span> <span class="s1">&#39;K01883&#39;</span><span class="p">,</span> <span class="s1">&#39;taxon_db&#39;</span><span class="p">:</span> <span class="s1">&#39;NCBI-NT&#39;</span><span class="p">}):</span>
+    <span class="nb">print</span> <span class="n">annotation</span>
 </pre></div>
 </div>
 </div>
@@ -965,9 +965,9 @@ NODE_40758(-):2-163
 </pre></div>
 </div>
 <div class="input_area highlight-ipython2 notranslate"><div class="highlight"><pre>
-<span></span># Finding all annotation from a specific taxon
-for annotation in db.find_annotation({&#39;taxon_id&#39;: 224911}):
-    print annotation
+<span></span><span class="c1"># Finding all annotation from a specific taxon</span>
+<span class="k">for</span> <span class="n">annotation</span> <span class="ow">in</span> <span class="n">db</span><span class="o">.</span><span class="n">find_annotation</span><span class="p">({</span><span class="s1">&#39;taxon_id&#39;</span><span class="p">:</span> <span class="mi">224911</span><span class="p">}):</span>
+    <span class="nb">print</span> <span class="n">annotation</span>
 </pre></div>
 </div>
 </div>
@@ -997,7 +997,7 @@ NODE_72294(-):3-95
 </pre></div>
 </div>
 <div class="input_area highlight-ipython2 notranslate"><div class="highlight"><pre>
-<span></span>!gunzip -c assembly.gff.gz | get-gff-info mongodb -t taxonomy.pickle.gz | mongoimport --db test --collection gff --drop
+<span></span><span class="o">!</span>gunzip -c assembly.gff.gz <span class="p">|</span> get-gff-info mongodb -t taxonomy.pickle.gz <span class="p">|</span> mongoimport --db <span class="nb">test</span> --collection gff --drop
 </pre></div>
 </div>
 </div>
@@ -1072,11 +1072,11 @@ INFO - mgkit.io.gff: Loading GFF from file (&lt;stdin&gt;)
 </pre></div>
 </div>
 <div class="input_area highlight-ipython2 notranslate"><div class="highlight"><pre>
-<span></span>count = 0
-for annotation in db.find_annotation({&#39;lineage&#39;: 171549}):
-    count += 1
-    print annotation
-print &quot;Number of annotation:&quot;, count
+<span></span><span class="n">count</span> <span class="o">=</span> <span class="mi">0</span>
+<span class="k">for</span> <span class="n">annotation</span> <span class="ow">in</span> <span class="n">db</span><span class="o">.</span><span class="n">find_annotation</span><span class="p">({</span><span class="s1">&#39;lineage&#39;</span><span class="p">:</span> <span class="mi">171549</span><span class="p">}):</span>
+    <span class="n">count</span> <span class="o">+=</span> <span class="mi">1</span>
+    <span class="nb">print</span> <span class="n">annotation</span>
+<span class="nb">print</span> <span class="s2">&quot;Number of annotation:&quot;</span><span class="p">,</span> <span class="n">count</span>
 </pre></div>
 </div>
 </div>

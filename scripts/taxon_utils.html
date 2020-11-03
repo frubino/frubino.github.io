@@ -7,7 +7,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>taxon-utils - Taxonomy Utilities &mdash; MGKit: Metagenomic framework 0.5.3 documentation</title>
+  <title>taxon-utils - Taxonomy Utilities &mdash; MGKit: Metagenomic framework 0.5.4 documentation</title>
   
 
   
@@ -65,7 +65,7 @@
             
             
               <div class="version">
-                0.5.3
+                0.5.4
               </div>
             
           
@@ -338,9 +338,15 @@ footprint when a great number of annotations are kept in memory.</p>
 <p>This command allows to print the taxonomy in a file created with MGKit. The
 default behaviour is to print the scientific name, taxon_id, rank and lineage
 (only ranked taxa) in a tab separated file (or standard output).</p>
+<div class="section" id="match-names">
+<h4>Match names<a class="headerlink" href="#match-names" title="Permalink to this headline">¶</a></h4>
 <p>Besides the option to change the column separator, it is possible to only
 print specific taxa (case insensitive search, but need the correct name) and
-print headers for the output table.</p>
+print headers for the output table. A partial and fuzzy search are performed,
+however these are only reported, unless option <cite>-p</cite> is passed.</p>
+<p>The lineage is printed only for the taxa requested, but all children can be
+included by using the <cite>-c</cite> option.</p>
+</div>
 </div>
 <div class="section" id="changes">
 <h3>Changes<a class="headerlink" href="#changes" title="Permalink to this headline">¶</a></h3>
@@ -485,6 +491,18 @@ Now it defaults to all components.</p>
 <dt id="cmdoption-taxon-utils-get-o">
 <code class="sig-name descname">-o</code><code class="sig-prename descclassname"></code><code class="sig-prename descclassname">, </code><code class="sig-name descname">--only-names</code><code class="sig-prename descclassname"> &lt;only_names&gt;</code><a class="headerlink" href="#cmdoption-taxon-utils-get-o" title="Permalink to this definition">¶</a></dt>
 <dd><p>Only get matched taxon names</p>
+</dd></dl>
+
+<dl class="std option">
+<dt id="cmdoption-taxon-utils-get-p">
+<code class="sig-name descname">-p</code><code class="sig-prename descclassname"></code><code class="sig-prename descclassname">, </code><code class="sig-name descname">--partial</code><code class="sig-prename descclassname"></code><a class="headerlink" href="#cmdoption-taxon-utils-get-p" title="Permalink to this definition">¶</a></dt>
+<dd><p>Use partial matches if any found (implies -o)</p>
+</dd></dl>
+
+<dl class="std option">
+<dt id="cmdoption-taxon-utils-get-c">
+<code class="sig-name descname">-c</code><code class="sig-prename descclassname"></code><code class="sig-prename descclassname">, </code><code class="sig-name descname">--include-children</code><code class="sig-prename descclassname"></code><a class="headerlink" href="#cmdoption-taxon-utils-get-c" title="Permalink to this definition">¶</a></dt>
+<dd><p>Include taxa that are children of the requested (implies -o)</p>
 </dd></dl>
 
 <p class="rubric">Arguments</p>

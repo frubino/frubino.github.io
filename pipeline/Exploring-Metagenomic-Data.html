@@ -7,7 +7,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>Tutorial - Exploring the Data &mdash; MGKit: Metagenomic framework 0.5.3 documentation</title>
+  <title>Tutorial - Exploring the Data &mdash; MGKit: Metagenomic framework 0.5.4 documentation</title>
   
 
   
@@ -65,7 +65,7 @@
             
             
               <div class="version">
-                0.5.3
+                0.5.4
               </div>
             
           
@@ -460,40 +460,40 @@ div.rendered_html tbody tr:hover {
 </pre></div>
 </div>
 <div class="input_area highlight-ipython2 notranslate"><div class="highlight"><pre>
-<span></span>from __future__ import print_function
+<span></span><span class="kn">from</span> <span class="nn">__future__</span> <span class="kn">import</span> <span class="n">print_function</span>
 
-#Python Standard Library
-import glob
-import pickle
-import sys
-import functools
-#External Dependencies (install via pip or anaconda)
+<span class="c1">#Python Standard Library</span>
+<span class="kn">import</span> <span class="nn">glob</span>
+<span class="kn">import</span> <span class="nn">pickle</span>
+<span class="kn">import</span> <span class="nn">sys</span>
+<span class="kn">import</span> <span class="nn">functools</span>
+<span class="c1">#External Dependencies (install via pip or anaconda)</span>
 
-# Check if running interactively or not
-import matplotlib as mpl # http://matplotlib.org
-# from:
-# http://stackoverflow.com/questions/15411967/how-can-i-check-if-code-is-executed-in-the-ipython-notebook
-# and
-# http://stackoverflow.com/questions/15455029/python-matplotlib-agg-vs-interactive-plotting-and-tight-layout
-import __main__ as main
-if hasattr(main, &#39;__file__&#39;):
-    # Non interactive, force the use of Agg backend instead
-    # of the default one
-    mpl.use(&#39;Agg&#39;)
+<span class="c1"># Check if running interactively or not</span>
+<span class="kn">import</span> <span class="nn">matplotlib</span> <span class="k">as</span> <span class="nn">mpl</span> <span class="c1"># http://matplotlib.org</span>
+<span class="c1"># from:</span>
+<span class="c1"># http://stackoverflow.com/questions/15411967/how-can-i-check-if-code-is-executed-in-the-ipython-notebook</span>
+<span class="c1"># and</span>
+<span class="c1"># http://stackoverflow.com/questions/15455029/python-matplotlib-agg-vs-interactive-plotting-and-tight-layout</span>
+<span class="kn">import</span> <span class="nn">__main__</span> <span class="k">as</span> <span class="nn">main</span>
+<span class="k">if</span> <span class="nb">hasattr</span><span class="p">(</span><span class="n">main</span><span class="p">,</span> <span class="s1">&#39;__file__&#39;</span><span class="p">):</span>
+    <span class="c1"># Non interactive, force the use of Agg backend instead</span>
+    <span class="c1"># of the default one</span>
+    <span class="n">mpl</span><span class="o">.</span><span class="n">use</span><span class="p">(</span><span class="s1">&#39;Agg&#39;</span><span class="p">)</span>
 
-import numpy # http://www.numpy.org
-import pandas # http://pandas.pydata.org
-import seaborn # http://stanford.edu/~mwaskom/software/seaborn/
-import scipy # http://www.scipy.org
-import matplotlib.pyplot as plt
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="c1"># http://www.numpy.org</span>
+<span class="kn">import</span> <span class="nn">pandas</span> <span class="c1"># http://pandas.pydata.org</span>
+<span class="kn">import</span> <span class="nn">seaborn</span> <span class="c1"># http://stanford.edu/~mwaskom/software/seaborn/</span>
+<span class="kn">import</span> <span class="nn">scipy</span> <span class="c1"># http://www.scipy.org</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
 
 
-#MGKit Import
-from mgkit.io import gff, fasta
-from mgkit.mappings import eggnog
-import mgkit.counts, mgkit.taxon, mgkit.snps, mgkit.plots
-import mgkit.snps
-import mgkit.mappings.enzyme
+<span class="c1">#MGKit Import</span>
+<span class="kn">from</span> <span class="nn">mgkit.io</span> <span class="kn">import</span> <span class="n">gff</span><span class="p">,</span> <span class="n">fasta</span>
+<span class="kn">from</span> <span class="nn">mgkit.mappings</span> <span class="kn">import</span> <span class="n">eggnog</span>
+<span class="kn">import</span> <span class="nn">mgkit.counts</span><span class="o">,</span> <span class="nn">mgkit.taxon</span><span class="o">,</span> <span class="nn">mgkit.snps</span><span class="o">,</span> <span class="nn">mgkit.plots</span>
+<span class="kn">import</span> <span class="nn">mgkit.snps</span>
+<span class="kn">import</span> <span class="nn">mgkit.mappings.enzyme</span>
 </pre></div>
 </div>
 </div>
@@ -511,7 +511,7 @@ import mgkit.mappings.enzyme
 </pre></div>
 </div>
 <div class="input_area highlight-ipython2 notranslate"><div class="highlight"><pre>
-<span></span>mgkit.logger.config_log()
+<span></span><span class="n">mgkit</span><span class="o">.</span><span class="n">logger</span><span class="o">.</span><span class="n">config_log</span><span class="p">()</span>
 </pre></div>
 </div>
 </div>
@@ -520,7 +520,7 @@ import mgkit.mappings.enzyme
 </pre></div>
 </div>
 <div class="input_area highlight-ipython2 notranslate"><div class="highlight"><pre>
-<span></span>mgkit.cite(sys.stdout)
+<span></span><span class="n">mgkit</span><span class="o">.</span><span class="n">cite</span><span class="p">(</span><span class="n">sys</span><span class="o">.</span><span class="n">stdout</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -557,8 +557,8 @@ Available at: http://figshare.com/articles/MGkit_Metagenomic_Framework_For_The_S
 </pre></div>
 </div>
 <div class="input_area highlight-ipython2 notranslate"><div class="highlight"><pre>
-<span></span># the following variable is used to indicate where the tutorial data is stored
-data_dir = &#39;tutorial-data/&#39;
+<span></span><span class="c1"># the following variable is used to indicate where the tutorial data is stored</span>
+<span class="n">data_dir</span> <span class="o">=</span> <span class="s1">&#39;tutorial-data/&#39;</span>
 </pre></div>
 </div>
 </div>
@@ -570,9 +570,9 @@ data_dir = &#39;tutorial-data/&#39;
 </pre></div>
 </div>
 <div class="input_area highlight-ipython2 notranslate"><div class="highlight"><pre>
-<span></span># Keeps a list of the count data file outputted by
-# htseq-count
-counts = glob.glob(&#39;{}*-counts.txt&#39;.format(data_dir))
+<span></span><span class="c1"># Keeps a list of the count data file outputted by</span>
+<span class="c1"># htseq-count</span>
+<span class="n">counts</span> <span class="o">=</span> <span class="n">glob</span><span class="o">.</span><span class="n">glob</span><span class="p">(</span><span class="s1">&#39;</span><span class="si">{}</span><span class="s1">*-counts.txt&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">data_dir</span><span class="p">))</span>
 </pre></div>
 </div>
 </div>
@@ -581,9 +581,9 @@ counts = glob.glob(&#39;{}*-counts.txt&#39;.format(data_dir))
 </pre></div>
 </div>
 <div class="input_area highlight-ipython2 notranslate"><div class="highlight"><pre>
-<span></span># This file contains the SNPs information and it is the output
-# of the snp_parser script
-snp_data = pickle.load(open(&#39;{}snp_data.pickle&#39;.format(data_dir), &#39;r&#39;))
+<span></span><span class="c1"># This file contains the SNPs information and it is the output</span>
+<span class="c1"># of the snp_parser script</span>
+<span class="n">snp_data</span> <span class="o">=</span> <span class="n">pickle</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="nb">open</span><span class="p">(</span><span class="s1">&#39;</span><span class="si">{}</span><span class="s1">snp_data.pickle&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">data_dir</span><span class="p">),</span> <span class="s1">&#39;r&#39;</span><span class="p">))</span>
 </pre></div>
 </div>
 </div>
@@ -592,10 +592,10 @@ snp_data = pickle.load(open(&#39;{}snp_data.pickle&#39;.format(data_dir), &#39;r
 </pre></div>
 </div>
 <div class="input_area highlight-ipython2 notranslate"><div class="highlight"><pre>
-<span></span># Taxonomy needs to be download beforehand. It is loaded into an an
-# instance of mgkit.taxon.UniprotTaxonomy. It is used in filtering
-# data and to map taxon IDs to different levels in the taxonomy
-taxonomy = mgkit.taxon.UniprotTaxonomy(&#39;{}/taxonomy.pickle&#39;.format(data_dir))
+<span></span><span class="c1"># Taxonomy needs to be download beforehand. It is loaded into an an</span>
+<span class="c1"># instance of mgkit.taxon.UniprotTaxonomy. It is used in filtering</span>
+<span class="c1"># data and to map taxon IDs to different levels in the taxonomy</span>
+<span class="n">taxonomy</span> <span class="o">=</span> <span class="n">mgkit</span><span class="o">.</span><span class="n">taxon</span><span class="o">.</span><span class="n">UniprotTaxonomy</span><span class="p">(</span><span class="s1">&#39;</span><span class="si">{}</span><span class="s1">/taxonomy.pickle&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">data_dir</span><span class="p">))</span>
 </pre></div>
 </div>
 </div>
@@ -612,10 +612,10 @@ taxonomy = mgkit.taxon.UniprotTaxonomy(&#39;{}/taxonomy.pickle&#39;.format(data_
 </pre></div>
 </div>
 <div class="input_area highlight-ipython2 notranslate"><div class="highlight"><pre>
-<span></span># Loads all annotations in a dictionary, with the unique ID (uid) as key
-# and the mgkit.io.gff.Annotation instance that represent the line in the
-# GFF file as value
-annotations = {x.uid: x for x in gff.parse_gff(&#39;{}assembly.uniprot.gff&#39;.format(data_dir))}
+<span></span><span class="c1"># Loads all annotations in a dictionary, with the unique ID (uid) as key</span>
+<span class="c1"># and the mgkit.io.gff.Annotation instance that represent the line in the</span>
+<span class="c1"># GFF file as value</span>
+<span class="n">annotations</span> <span class="o">=</span> <span class="p">{</span><span class="n">x</span><span class="o">.</span><span class="n">uid</span><span class="p">:</span> <span class="n">x</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">gff</span><span class="o">.</span><span class="n">parse_gff</span><span class="p">(</span><span class="s1">&#39;</span><span class="si">{}</span><span class="s1">assembly.uniprot.gff&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">data_dir</span><span class="p">))}</span>
 </pre></div>
 </div>
 </div>
@@ -633,8 +633,8 @@ annotations = {x.uid: x for x in gff.parse_gff(&#39;{}assembly.uniprot.gff&#39;.
 </pre></div>
 </div>
 <div class="input_area highlight-ipython2 notranslate"><div class="highlight"><pre>
-<span></span># Used to extract the sample ID from the count file names
-file_name_to_sample = lambda x: x.rsplit(&#39;/&#39;)[-1].split(&#39;-&#39;)[0]
+<span></span><span class="c1"># Used to extract the sample ID from the count file names</span>
+<span class="n">file_name_to_sample</span> <span class="o">=</span> <span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">x</span><span class="o">.</span><span class="n">rsplit</span><span class="p">(</span><span class="s1">&#39;/&#39;</span><span class="p">)[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">&#39;-&#39;</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span>
 </pre></div>
 </div>
 </div>
@@ -643,13 +643,13 @@ file_name_to_sample = lambda x: x.rsplit(&#39;/&#39;)[-1].split(&#39;-&#39;)[0]
 </pre></div>
 </div>
 <div class="input_area highlight-ipython2 notranslate"><div class="highlight"><pre>
-<span></span># Used to rename the DataFrame columns
-sample_names = {
-    &#39;SRR001326&#39;: &#39;50m&#39;,
-    &#39;SRR001325&#39;: &#39;01m&#39;,
-    &#39;SRR001323&#39;: &#39;32m&#39;,
-    &#39;SRR001322&#39;: &#39;16m&#39;
-}
+<span></span><span class="c1"># Used to rename the DataFrame columns</span>
+<span class="n">sample_names</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s1">&#39;SRR001326&#39;</span><span class="p">:</span> <span class="s1">&#39;50m&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;SRR001325&#39;</span><span class="p">:</span> <span class="s1">&#39;01m&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;SRR001323&#39;</span><span class="p">:</span> <span class="s1">&#39;32m&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;SRR001322&#39;</span><span class="p">:</span> <span class="s1">&#39;16m&#39;</span>
+<span class="p">}</span>
 </pre></div>
 </div>
 </div>
@@ -672,29 +672,29 @@ to any rank in mgkit.taxon.TAXON_RANKS, for example <em>genus</em>, <em>phylum</
 </pre></div>
 </div>
 <div class="input_area highlight-ipython2 notranslate"><div class="highlight"><pre>
-<span></span>taxa_counts = pandas.DataFrame({
-    # Get the sample names
-    file_name_to_sample(file_name): mgkit.counts.load_sample_counts_to_taxon(
-        # A function accept a uid as only parameter and returns only the
-        # gene_id and taxon_id, so we set it to a lambda that does
-        # exactly that
-        lambda x: (annotations[x].gene_id, annotations[x].taxon_id),
-        # An iterator that yields (uid, count) is needed and MGKit
-        # has a function that does that for htseq-count files.
-        # This can be adapted to any count data file format
-        mgkit.counts.load_htseq_counts(file_name),
-        # A mgkit.taxon.UniprotTaxonomy instance is necessary to filter
-        # the data and map it to a different rank
-        taxonomy,
-        # A taxonomic rank to map each taxon_id to. Must be lowercase
-        rank=&#39;order&#39;,
-        # If False, any taxon_id that can not be resolved at the taxonomic
-        # rank requested is excluded from the results
-        include_higher=False
-    )
-    # iterate over all count files
-    for file_name in counts
-})
+<span></span><span class="n">taxa_counts</span> <span class="o">=</span> <span class="n">pandas</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">({</span>
+    <span class="c1"># Get the sample names</span>
+    <span class="n">file_name_to_sample</span><span class="p">(</span><span class="n">file_name</span><span class="p">):</span> <span class="n">mgkit</span><span class="o">.</span><span class="n">counts</span><span class="o">.</span><span class="n">load_sample_counts_to_taxon</span><span class="p">(</span>
+        <span class="c1"># A function accept a uid as only parameter and returns only the</span>
+        <span class="c1"># gene_id and taxon_id, so we set it to a lambda that does</span>
+        <span class="c1"># exactly that</span>
+        <span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="p">(</span><span class="n">annotations</span><span class="p">[</span><span class="n">x</span><span class="p">]</span><span class="o">.</span><span class="n">gene_id</span><span class="p">,</span> <span class="n">annotations</span><span class="p">[</span><span class="n">x</span><span class="p">]</span><span class="o">.</span><span class="n">taxon_id</span><span class="p">),</span>
+        <span class="c1"># An iterator that yields (uid, count) is needed and MGKit</span>
+        <span class="c1"># has a function that does that for htseq-count files.</span>
+        <span class="c1"># This can be adapted to any count data file format</span>
+        <span class="n">mgkit</span><span class="o">.</span><span class="n">counts</span><span class="o">.</span><span class="n">load_htseq_counts</span><span class="p">(</span><span class="n">file_name</span><span class="p">),</span>
+        <span class="c1"># A mgkit.taxon.UniprotTaxonomy instance is necessary to filter</span>
+        <span class="c1"># the data and map it to a different rank</span>
+        <span class="n">taxonomy</span><span class="p">,</span>
+        <span class="c1"># A taxonomic rank to map each taxon_id to. Must be lowercase</span>
+        <span class="n">rank</span><span class="o">=</span><span class="s1">&#39;order&#39;</span><span class="p">,</span>
+        <span class="c1"># If False, any taxon_id that can not be resolved at the taxonomic</span>
+        <span class="c1"># rank requested is excluded from the results</span>
+        <span class="n">include_higher</span><span class="o">=</span><span class="kc">False</span>
+    <span class="p">)</span>
+    <span class="c1"># iterate over all count files</span>
+    <span class="k">for</span> <span class="n">file_name</span> <span class="ow">in</span> <span class="n">counts</span>
+<span class="p">})</span>
 </pre></div>
 </div>
 </div>
@@ -714,15 +714,15 @@ to any rank in mgkit.taxon.TAXON_RANKS, for example <em>genus</em>, <em>phylum</
 </pre></div>
 </div>
 <div class="input_area highlight-ipython2 notranslate"><div class="highlight"><pre>
-<span></span># This is an alternative if the counts are stored in the annotations
-# ann_func = functools.partial(
-#     taxonomy.get_ranked_id,
-#     rank=&#39;order&#39;,
-#     it=True,
-#     include_higher=False
-# )
-# taxa_counts = mgkit.counts.func.from_gff(annotations.values(), sample_names, ann_func=lambda x: ann_func(x.taxon_id))
-# taxa_counts = taxa_counts[taxa_counts.index.notnull()]
+<span></span><span class="c1"># This is an alternative if the counts are stored in the annotations</span>
+<span class="c1"># ann_func = functools.partial(</span>
+<span class="c1">#     taxonomy.get_ranked_id,</span>
+<span class="c1">#     rank=&#39;order&#39;,</span>
+<span class="c1">#     it=True,</span>
+<span class="c1">#     include_higher=False</span>
+<span class="c1"># )</span>
+<span class="c1"># taxa_counts = mgkit.counts.func.from_gff(annotations.values(), sample_names, ann_func=lambda x: ann_func(x.taxon_id))</span>
+<span class="c1"># taxa_counts = taxa_counts[taxa_counts.index.notnull()]</span>
 </pre></div>
 </div>
 </div>
@@ -734,8 +734,8 @@ to any rank in mgkit.taxon.TAXON_RANKS, for example <em>genus</em>, <em>phylum</
 </pre></div>
 </div>
 <div class="input_area highlight-ipython2 notranslate"><div class="highlight"><pre>
-<span></span># the DESeq method doesn&#39;t require information about the gene length
-taxa_counts = mgkit.counts.scale_deseq(taxa_counts)
+<span></span><span class="c1"># the DESeq method doesn&#39;t require information about the gene length</span>
+<span class="n">taxa_counts</span> <span class="o">=</span> <span class="n">mgkit</span><span class="o">.</span><span class="n">counts</span><span class="o">.</span><span class="n">scale_deseq</span><span class="p">(</span><span class="n">taxa_counts</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -755,10 +755,10 @@ taxa_counts = mgkit.counts.scale_deseq(taxa_counts)
 </pre></div>
 </div>
 <div class="input_area highlight-ipython2 notranslate"><div class="highlight"><pre>
-<span></span>taxa_counts = taxa_counts.rename(
-    index=lambda x: taxonomy[x].s_name,
-    columns=sample_names
-).sort_index(axis=&#39;columns&#39;)
+<span></span><span class="n">taxa_counts</span> <span class="o">=</span> <span class="n">taxa_counts</span><span class="o">.</span><span class="n">rename</span><span class="p">(</span>
+    <span class="n">index</span><span class="o">=</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">taxonomy</span><span class="p">[</span><span class="n">x</span><span class="p">]</span><span class="o">.</span><span class="n">s_name</span><span class="p">,</span>
+    <span class="n">columns</span><span class="o">=</span><span class="n">sample_names</span>
+<span class="p">)</span><span class="o">.</span><span class="n">sort_index</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="s1">&#39;columns&#39;</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -767,7 +767,7 @@ taxa_counts = mgkit.counts.scale_deseq(taxa_counts)
 </pre></div>
 </div>
 <div class="input_area highlight-ipython2 notranslate"><div class="highlight"><pre>
-<span></span>taxa_counts = taxa_counts.loc[taxa_counts.mean(axis=&#39;columns&#39;).sort_values(ascending=False).index]
+<span></span><span class="n">taxa_counts</span> <span class="o">=</span> <span class="n">taxa_counts</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">taxa_counts</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="s1">&#39;columns&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">sort_values</span><span class="p">(</span><span class="n">ascending</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span><span class="o">.</span><span class="n">index</span><span class="p">]</span>
 </pre></div>
 </div>
 </div>
@@ -776,9 +776,9 @@ taxa_counts = mgkit.counts.scale_deseq(taxa_counts)
 </pre></div>
 </div>
 <div class="input_area highlight-ipython2 notranslate"><div class="highlight"><pre>
-<span></span># the *describe* method of a pandas.Series or pandas.DataFrame
-# gives some insights into the data
-taxa_counts.describe()
+<span></span><span class="c1"># the *describe* method of a pandas.Series or pandas.DataFrame</span>
+<span class="c1"># gives some insights into the data</span>
+<span class="n">taxa_counts</span><span class="o">.</span><span class="n">describe</span><span class="p">()</span>
 </pre></div>
 </div>
 </div>
@@ -877,8 +877,8 @@ taxa_counts.describe()
 </pre></div>
 </div>
 <div class="input_area highlight-ipython2 notranslate"><div class="highlight"><pre>
-<span></span>#Save a CSV to disk, but Excel and other file formats are available
-taxa_counts.to_csv(&#39;{}taxa_counts.csv&#39;.format(data_dir))
+<span></span><span class="c1">#Save a CSV to disk, but Excel and other file formats are available</span>
+<span class="n">taxa_counts</span><span class="o">.</span><span class="n">to_csv</span><span class="p">(</span><span class="s1">&#39;</span><span class="si">{}</span><span class="s1">taxa_counts.csv&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">data_dir</span><span class="p">))</span>
 </pre></div>
 </div>
 </div>
@@ -887,8 +887,8 @@ taxa_counts.to_csv(&#39;{}taxa_counts.csv&#39;.format(data_dir))
 </pre></div>
 </div>
 <div class="input_area highlight-ipython2 notranslate"><div class="highlight"><pre>
-<span></span># This will give an idea of the counts for each order
-taxa_counts.head(n=10)
+<span></span><span class="c1"># This will give an idea of the counts for each order</span>
+<span class="n">taxa_counts</span><span class="o">.</span><span class="n">head</span><span class="p">(</span><span class="n">n</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -1009,43 +1009,43 @@ taxa_counts.head(n=10)
 </pre></div>
 </div>
 <div class="input_area highlight-ipython2 notranslate"><div class="highlight"><pre>
-<span></span># A matplotlib Figure instance and a single axis can be returned
-# by this MGKit function. It is an helper function, the axis is
-# needed to plot and the figure object to save the file to disk
-fig, ax = mgkit.plots.get_single_figure(figsize=(15, 10))
-# The return value of mgkit.plots.boxplot.boxplot_dataframe is
-# passed to the **_** special variable, as it is not needed and
-# it would be printed, otherwise
-_ = mgkit.plots.boxplot.boxplot_dataframe(
-    # The full dataframe can be passed
-    taxa_counts,
-    # this variable is used to tell the function
-    # which rows and in which order they need to
-    # be plot. In this case only the first 40 are
-    # plot
-    taxa_counts.index[:40],
-    # A matplotlib axis instance
-    ax,
-    # a dictionary with options related to the labels
-    # on both the X and Y axes. In this case it changes
-    # the size of the labels
-    fonts=dict(fontsize=14),
-    # The default is to use the same colors for all
-    # boxes. A dictionary can be passed to change this
-    # in this case, the &#39;hls&#39; palette from seaborn is
-    # used.
-    data_colours={
-        x: color
-        for x, color in zip(taxa_counts.index[:40], seaborn.color_palette(&#39;hls&#39;, 40))
-    }
-)
-# Adds labels to the axes
-ax.set_xlabel(&#39;Order&#39;, fontsize=16)
-ax.set_ylabel(&#39;Counts&#39;, fontsize=16)
-# Ensure the correct layout before writing to disk
-fig.set_tight_layout(True)
-# Saves a PDF file, or any other supported format by matplotlib
-fig.savefig(&#39;{}taxa_counts-boxplot_top40_taxa.pdf&#39;.format(data_dir))
+<span></span><span class="c1"># A matplotlib Figure instance and a single axis can be returned</span>
+<span class="c1"># by this MGKit function. It is an helper function, the axis is</span>
+<span class="c1"># needed to plot and the figure object to save the file to disk</span>
+<span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">mgkit</span><span class="o">.</span><span class="n">plots</span><span class="o">.</span><span class="n">get_single_figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">15</span><span class="p">,</span> <span class="mi">10</span><span class="p">))</span>
+<span class="c1"># The return value of mgkit.plots.boxplot.boxplot_dataframe is</span>
+<span class="c1"># passed to the **_** special variable, as it is not needed and</span>
+<span class="c1"># it would be printed, otherwise</span>
+<span class="n">_</span> <span class="o">=</span> <span class="n">mgkit</span><span class="o">.</span><span class="n">plots</span><span class="o">.</span><span class="n">boxplot</span><span class="o">.</span><span class="n">boxplot_dataframe</span><span class="p">(</span>
+    <span class="c1"># The full dataframe can be passed</span>
+    <span class="n">taxa_counts</span><span class="p">,</span>
+    <span class="c1"># this variable is used to tell the function</span>
+    <span class="c1"># which rows and in which order they need to</span>
+    <span class="c1"># be plot. In this case only the first 40 are</span>
+    <span class="c1"># plot</span>
+    <span class="n">taxa_counts</span><span class="o">.</span><span class="n">index</span><span class="p">[:</span><span class="mi">40</span><span class="p">],</span>
+    <span class="c1"># A matplotlib axis instance</span>
+    <span class="n">ax</span><span class="p">,</span>
+    <span class="c1"># a dictionary with options related to the labels</span>
+    <span class="c1"># on both the X and Y axes. In this case it changes</span>
+    <span class="c1"># the size of the labels</span>
+    <span class="n">fonts</span><span class="o">=</span><span class="nb">dict</span><span class="p">(</span><span class="n">fontsize</span><span class="o">=</span><span class="mi">14</span><span class="p">),</span>
+    <span class="c1"># The default is to use the same colors for all</span>
+    <span class="c1"># boxes. A dictionary can be passed to change this</span>
+    <span class="c1"># in this case, the &#39;hls&#39; palette from seaborn is</span>
+    <span class="c1"># used.</span>
+    <span class="n">data_colours</span><span class="o">=</span><span class="p">{</span>
+        <span class="n">x</span><span class="p">:</span> <span class="n">color</span>
+        <span class="k">for</span> <span class="n">x</span><span class="p">,</span> <span class="n">color</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="n">taxa_counts</span><span class="o">.</span><span class="n">index</span><span class="p">[:</span><span class="mi">40</span><span class="p">],</span> <span class="n">seaborn</span><span class="o">.</span><span class="n">color_palette</span><span class="p">(</span><span class="s1">&#39;hls&#39;</span><span class="p">,</span> <span class="mi">40</span><span class="p">))</span>
+    <span class="p">}</span>
+<span class="p">)</span>
+<span class="c1"># Adds labels to the axes</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s1">&#39;Order&#39;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">16</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s1">&#39;Counts&#39;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">16</span><span class="p">)</span>
+<span class="c1"># Ensure the correct layout before writing to disk</span>
+<span class="n">fig</span><span class="o">.</span><span class="n">set_tight_layout</span><span class="p">(</span><span class="kc">True</span><span class="p">)</span>
+<span class="c1"># Saves a PDF file, or any other supported format by matplotlib</span>
+<span class="n">fig</span><span class="o">.</span><span class="n">savefig</span><span class="p">(</span><span class="s1">&#39;</span><span class="si">{}</span><span class="s1">taxa_counts-boxplot_top40_taxa.pdf&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">data_dir</span><span class="p">))</span>
 </pre></div>
 </div>
 </div>
@@ -1079,26 +1079,26 @@ fig.savefig(&#39;{}taxa_counts-boxplot_top40_taxa.pdf&#39;.format(data_dir))
 </pre></div>
 </div>
 <div class="input_area highlight-ipython2 notranslate"><div class="highlight"><pre>
-<span></span>fig, ax = mgkit.plots.get_single_figure(figsize=(10, 10))
-# iterate over the columns, which are the samples and assign a color to each one
-for column, color in zip(taxa_counts.columns, seaborn.color_palette(&#39;Set1&#39;, len(taxa_counts.columns))):
-    seaborn.kdeplot(
-        # The data can transformed with the sqrt function of numpy
-        numpy.sqrt(taxa_counts[column]),
-        # Assign the color
-        color=color,
-        # Assign the label to the sample name to appear
-        # in the legend
-        label=column,
-        # Add a shade under the KDE function
-        shade=True
-    )
-# Adds a legend
-ax.legend()
-ax.set_xlabel(&#39;Counts&#39;, fontsize=16)
-ax.set_ylabel(&#39;Frequency&#39;, fontsize=16)
-fig.set_tight_layout(True)
-fig.savefig(&#39;{}taxa_counts-distribution_top40_taxa.pdf&#39;.format(data_dir))
+<span></span><span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">mgkit</span><span class="o">.</span><span class="n">plots</span><span class="o">.</span><span class="n">get_single_figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mi">10</span><span class="p">))</span>
+<span class="c1"># iterate over the columns, which are the samples and assign a color to each one</span>
+<span class="k">for</span> <span class="n">column</span><span class="p">,</span> <span class="n">color</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="n">taxa_counts</span><span class="o">.</span><span class="n">columns</span><span class="p">,</span> <span class="n">seaborn</span><span class="o">.</span><span class="n">color_palette</span><span class="p">(</span><span class="s1">&#39;Set1&#39;</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">taxa_counts</span><span class="o">.</span><span class="n">columns</span><span class="p">))):</span>
+    <span class="n">seaborn</span><span class="o">.</span><span class="n">kdeplot</span><span class="p">(</span>
+        <span class="c1"># The data can transformed with the sqrt function of numpy</span>
+        <span class="n">numpy</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">taxa_counts</span><span class="p">[</span><span class="n">column</span><span class="p">]),</span>
+        <span class="c1"># Assign the color</span>
+        <span class="n">color</span><span class="o">=</span><span class="n">color</span><span class="p">,</span>
+        <span class="c1"># Assign the label to the sample name to appear</span>
+        <span class="c1"># in the legend</span>
+        <span class="n">label</span><span class="o">=</span><span class="n">column</span><span class="p">,</span>
+        <span class="c1"># Add a shade under the KDE function</span>
+        <span class="n">shade</span><span class="o">=</span><span class="kc">True</span>
+    <span class="p">)</span>
+<span class="c1"># Adds a legend</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s1">&#39;Counts&#39;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">16</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s1">&#39;Frequency&#39;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">16</span><span class="p">)</span>
+<span class="n">fig</span><span class="o">.</span><span class="n">set_tight_layout</span><span class="p">(</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">fig</span><span class="o">.</span><span class="n">savefig</span><span class="p">(</span><span class="s1">&#39;</span><span class="si">{}</span><span class="s1">taxa_counts-distribution_top40_taxa.pdf&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">data_dir</span><span class="p">))</span>
 </pre></div>
 </div>
 </div>
@@ -1128,12 +1128,12 @@ fig.savefig(&#39;{}taxa_counts-distribution_top40_taxa.pdf&#39;.format(data_dir)
 </pre></div>
 </div>
 <div class="input_area highlight-ipython2 notranslate"><div class="highlight"><pre>
-<span></span># An heatmap can be created to provide information on the table
-clfig = seaborn.clustermap(taxa_counts.iloc[:40], cbar=True, cmap=&#39;Blues&#39;)
-clfig.fig.set_tight_layout(True)
-for text in clfig.ax_heatmap.get_yticklabels():
-    text.set_rotation(&#39;horizontal&#39;)
-clfig.savefig(&#39;{}taxa_counts-heatmap-top40.pdf&#39;.format(data_dir))
+<span></span><span class="c1"># An heatmap can be created to provide information on the table</span>
+<span class="n">clfig</span> <span class="o">=</span> <span class="n">seaborn</span><span class="o">.</span><span class="n">clustermap</span><span class="p">(</span><span class="n">taxa_counts</span><span class="o">.</span><span class="n">iloc</span><span class="p">[:</span><span class="mi">40</span><span class="p">],</span> <span class="n">cbar</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">cmap</span><span class="o">=</span><span class="s1">&#39;Blues&#39;</span><span class="p">)</span>
+<span class="n">clfig</span><span class="o">.</span><span class="n">fig</span><span class="o">.</span><span class="n">set_tight_layout</span><span class="p">(</span><span class="kc">True</span><span class="p">)</span>
+<span class="k">for</span> <span class="n">text</span> <span class="ow">in</span> <span class="n">clfig</span><span class="o">.</span><span class="n">ax_heatmap</span><span class="o">.</span><span class="n">get_yticklabels</span><span class="p">():</span>
+    <span class="n">text</span><span class="o">.</span><span class="n">set_rotation</span><span class="p">(</span><span class="s1">&#39;horizontal&#39;</span><span class="p">)</span>
+<span class="n">clfig</span><span class="o">.</span><span class="n">savefig</span><span class="p">(</span><span class="s1">&#39;</span><span class="si">{}</span><span class="s1">taxa_counts-heatmap-top40.pdf&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">data_dir</span><span class="p">))</span>
 </pre></div>
 </div>
 </div>
@@ -1169,7 +1169,7 @@ clfig.savefig(&#39;{}taxa_counts-heatmap-top40.pdf&#39;.format(data_dir))
 </pre></div>
 </div>
 <div class="input_area highlight-ipython2 notranslate"><div class="highlight"><pre>
-<span></span>eg = eggnog.NOGInfo()
+<span></span><span class="n">eg</span> <span class="o">=</span> <span class="n">eggnog</span><span class="o">.</span><span class="n">NOGInfo</span><span class="p">()</span>
 </pre></div>
 </div>
 </div>
@@ -1178,14 +1178,14 @@ clfig.savefig(&#39;{}taxa_counts-heatmap-top40.pdf&#39;.format(data_dir))
 </pre></div>
 </div>
 <div class="input_area highlight-ipython2 notranslate"><div class="highlight"><pre>
-<span></span>#Build mapping Uniprot IDs -&gt; eggNOG functional categories
-fc_map = {
-    # An Annotation instance provide a method to access the list of IDs for the
-    # specific mapping. For example eggnog mappings are store into the
-    # map_EGGNOG attribute
-    annotation.gene_id: eg.get_nogs_funccat(annotation.get_mapping(&#39;eggnog&#39;))
-    for annotation in annotations.itervalues()
-}
+<span></span><span class="c1">#Build mapping Uniprot IDs -&gt; eggNOG functional categories</span>
+<span class="n">fc_map</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="c1"># An Annotation instance provide a method to access the list of IDs for the</span>
+    <span class="c1"># specific mapping. For example eggnog mappings are store into the</span>
+    <span class="c1"># map_EGGNOG attribute</span>
+    <span class="n">annotation</span><span class="o">.</span><span class="n">gene_id</span><span class="p">:</span> <span class="n">eg</span><span class="o">.</span><span class="n">get_nogs_funccat</span><span class="p">(</span><span class="n">annotation</span><span class="o">.</span><span class="n">get_mapping</span><span class="p">(</span><span class="s1">&#39;eggnog&#39;</span><span class="p">))</span>
+    <span class="k">for</span> <span class="n">annotation</span> <span class="ow">in</span> <span class="n">annotations</span><span class="o">.</span><span class="n">itervalues</span><span class="p">()</span>
+<span class="p">}</span>
 </pre></div>
 </div>
 </div>
@@ -1194,12 +1194,12 @@ fc_map = {
 </pre></div>
 </div>
 <div class="input_area highlight-ipython2 notranslate"><div class="highlight"><pre>
-<span></span># Just a few to speed up the analysis, but other can be used
-# Should have been downloaded by the full tutorial script
-eg.load_members(&#39;{}COG.members.txt.gz&#39;.format(data_dir))
-eg.load_members(&#39;{}NOG.members.txt.gz&#39;.format(data_dir))
-eg.load_funccat(&#39;{}COG.funccat.txt.gz&#39;.format(data_dir))
-eg.load_funccat(&#39;{}NOG.funccat.txt.gz&#39;.format(data_dir))
+<span></span><span class="c1"># Just a few to speed up the analysis, but other can be used</span>
+<span class="c1"># Should have been downloaded by the full tutorial script</span>
+<span class="n">eg</span><span class="o">.</span><span class="n">load_members</span><span class="p">(</span><span class="s1">&#39;</span><span class="si">{}</span><span class="s1">COG.members.txt.gz&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">data_dir</span><span class="p">))</span>
+<span class="n">eg</span><span class="o">.</span><span class="n">load_members</span><span class="p">(</span><span class="s1">&#39;</span><span class="si">{}</span><span class="s1">NOG.members.txt.gz&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">data_dir</span><span class="p">))</span>
+<span class="n">eg</span><span class="o">.</span><span class="n">load_funccat</span><span class="p">(</span><span class="s1">&#39;</span><span class="si">{}</span><span class="s1">COG.funccat.txt.gz&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">data_dir</span><span class="p">))</span>
+<span class="n">eg</span><span class="o">.</span><span class="n">load_funccat</span><span class="p">(</span><span class="s1">&#39;</span><span class="si">{}</span><span class="s1">NOG.funccat.txt.gz&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">data_dir</span><span class="p">))</span>
 </pre></div>
 </div>
 </div>
@@ -1224,15 +1224,15 @@ eg.load_funccat(&#39;{}NOG.funccat.txt.gz&#39;.format(data_dir))
 </pre></div>
 </div>
 <div class="input_area highlight-ipython2 notranslate"><div class="highlight"><pre>
-<span></span>fc_counts = pandas.DataFrame({
-    file_name_to_sample(file_name): mgkit.counts.load_sample_counts_to_genes(
-        lambda x: (annotations[x].gene_id, annotations[x].taxon_id),
-        mgkit.counts.load_htseq_counts(file_name),
-        taxonomy,
-        gene_map=fc_map
-    )
-    for file_name in counts
-})
+<span></span><span class="n">fc_counts</span> <span class="o">=</span> <span class="n">pandas</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">({</span>
+    <span class="n">file_name_to_sample</span><span class="p">(</span><span class="n">file_name</span><span class="p">):</span> <span class="n">mgkit</span><span class="o">.</span><span class="n">counts</span><span class="o">.</span><span class="n">load_sample_counts_to_genes</span><span class="p">(</span>
+        <span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="p">(</span><span class="n">annotations</span><span class="p">[</span><span class="n">x</span><span class="p">]</span><span class="o">.</span><span class="n">gene_id</span><span class="p">,</span> <span class="n">annotations</span><span class="p">[</span><span class="n">x</span><span class="p">]</span><span class="o">.</span><span class="n">taxon_id</span><span class="p">),</span>
+        <span class="n">mgkit</span><span class="o">.</span><span class="n">counts</span><span class="o">.</span><span class="n">load_htseq_counts</span><span class="p">(</span><span class="n">file_name</span><span class="p">),</span>
+        <span class="n">taxonomy</span><span class="p">,</span>
+        <span class="n">gene_map</span><span class="o">=</span><span class="n">fc_map</span>
+    <span class="p">)</span>
+    <span class="k">for</span> <span class="n">file_name</span> <span class="ow">in</span> <span class="n">counts</span>
+<span class="p">})</span>
 </pre></div>
 </div>
 </div>
@@ -1255,10 +1255,10 @@ eg.load_funccat(&#39;{}NOG.funccat.txt.gz&#39;.format(data_dir))
 </pre></div>
 </div>
 <div class="input_area highlight-ipython2 notranslate"><div class="highlight"><pre>
-<span></span>fc_counts = mgkit.counts.scale_deseq(fc_counts).rename(
-    columns=sample_names,
-    index=eggnog.EGGNOG_CAT
-)
+<span></span><span class="n">fc_counts</span> <span class="o">=</span> <span class="n">mgkit</span><span class="o">.</span><span class="n">counts</span><span class="o">.</span><span class="n">scale_deseq</span><span class="p">(</span><span class="n">fc_counts</span><span class="p">)</span><span class="o">.</span><span class="n">rename</span><span class="p">(</span>
+    <span class="n">columns</span><span class="o">=</span><span class="n">sample_names</span><span class="p">,</span>
+    <span class="n">index</span><span class="o">=</span><span class="n">eggnog</span><span class="o">.</span><span class="n">EGGNOG_CAT</span>
+<span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -1267,7 +1267,7 @@ eg.load_funccat(&#39;{}NOG.funccat.txt.gz&#39;.format(data_dir))
 </pre></div>
 </div>
 <div class="input_area highlight-ipython2 notranslate"><div class="highlight"><pre>
-<span></span>fc_counts.describe()
+<span></span><span class="n">fc_counts</span><span class="o">.</span><span class="n">describe</span><span class="p">()</span>
 </pre></div>
 </div>
 </div>
@@ -1366,7 +1366,7 @@ eg.load_funccat(&#39;{}NOG.funccat.txt.gz&#39;.format(data_dir))
 </pre></div>
 </div>
 <div class="input_area highlight-ipython2 notranslate"><div class="highlight"><pre>
-<span></span>fc_counts
+<span></span><span class="n">fc_counts</span>
 </pre></div>
 </div>
 </div>
@@ -1570,8 +1570,8 @@ eg.load_funccat(&#39;{}NOG.funccat.txt.gz&#39;.format(data_dir))
 </pre></div>
 </div>
 <div class="input_area highlight-ipython2 notranslate"><div class="highlight"><pre>
-<span></span>#Save table to disk
-fc_counts.to_csv(&#39;{}fc_counts.csv&#39;.format(data_dir))
+<span></span><span class="c1">#Save table to disk</span>
+<span class="n">fc_counts</span><span class="o">.</span><span class="n">to_csv</span><span class="p">(</span><span class="s1">&#39;</span><span class="si">{}</span><span class="s1">fc_counts.csv&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">data_dir</span><span class="p">))</span>
 </pre></div>
 </div>
 </div>
@@ -1583,11 +1583,11 @@ fc_counts.to_csv(&#39;{}fc_counts.csv&#39;.format(data_dir))
 </pre></div>
 </div>
 <div class="input_area highlight-ipython2 notranslate"><div class="highlight"><pre>
-<span></span>clfig = seaborn.clustermap(fc_counts, cbar=True, cmap=&#39;Greens&#39;)
-clfig.fig.set_tight_layout(True)
-for text in clfig.ax_heatmap.get_yticklabels():
-    text.set_rotation(&#39;horizontal&#39;)
-clfig.savefig(&#39;{}fc_counts-heatmap.pdf&#39;.format(data_dir))
+<span></span><span class="n">clfig</span> <span class="o">=</span> <span class="n">seaborn</span><span class="o">.</span><span class="n">clustermap</span><span class="p">(</span><span class="n">fc_counts</span><span class="p">,</span> <span class="n">cbar</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">cmap</span><span class="o">=</span><span class="s1">&#39;Greens&#39;</span><span class="p">)</span>
+<span class="n">clfig</span><span class="o">.</span><span class="n">fig</span><span class="o">.</span><span class="n">set_tight_layout</span><span class="p">(</span><span class="kc">True</span><span class="p">)</span>
+<span class="k">for</span> <span class="n">text</span> <span class="ow">in</span> <span class="n">clfig</span><span class="o">.</span><span class="n">ax_heatmap</span><span class="o">.</span><span class="n">get_yticklabels</span><span class="p">():</span>
+    <span class="n">text</span><span class="o">.</span><span class="n">set_rotation</span><span class="p">(</span><span class="s1">&#39;horizontal&#39;</span><span class="p">)</span>
+<span class="n">clfig</span><span class="o">.</span><span class="n">savefig</span><span class="p">(</span><span class="s1">&#39;</span><span class="si">{}</span><span class="s1">fc_counts-heatmap.pdf&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">data_dir</span><span class="p">))</span>
 </pre></div>
 </div>
 </div>
@@ -1621,21 +1621,21 @@ clfig.savefig(&#39;{}fc_counts-heatmap.pdf&#39;.format(data_dir))
 </pre></div>
 </div>
 <div class="input_area highlight-ipython2 notranslate"><div class="highlight"><pre>
-<span></span>ec_map = {
-    # EC numbers are store into the EC attribute in a GFF file and
-    # an Annotation instance provide a get_ec method that returns
-    # a list. A level of specificity can be used to the mapping
-    # less specific, as it ranges from 1 to 4 included. Right
-    # now a list is returned, so it is a good idea to convert
-    # the list into a set so if any duplicate appears (as effect
-    # of the change in level) it won&#39;t inflate the number later.
-    # In later versions (0.2) a set will be returned instead of
-    # a list.
-    # We also want to remove any hanging &quot;.-&quot; to use the labels
-    # from expasy
-    annotation.gene_id: set(x.replace(&#39;.-&#39;, &#39;&#39;) for x in annotation.get_ec(level=2))
-    for annotation in annotations.itervalues()
-}
+<span></span><span class="n">ec_map</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="c1"># EC numbers are store into the EC attribute in a GFF file and</span>
+    <span class="c1"># an Annotation instance provide a get_ec method that returns</span>
+    <span class="c1"># a list. A level of specificity can be used to the mapping</span>
+    <span class="c1"># less specific, as it ranges from 1 to 4 included. Right</span>
+    <span class="c1"># now a list is returned, so it is a good idea to convert</span>
+    <span class="c1"># the list into a set so if any duplicate appears (as effect</span>
+    <span class="c1"># of the change in level) it won&#39;t inflate the number later.</span>
+    <span class="c1"># In later versions (0.2) a set will be returned instead of</span>
+    <span class="c1"># a list.</span>
+    <span class="c1"># We also want to remove any hanging &quot;.-&quot; to use the labels</span>
+    <span class="c1"># from expasy</span>
+    <span class="n">annotation</span><span class="o">.</span><span class="n">gene_id</span><span class="p">:</span> <span class="nb">set</span><span class="p">(</span><span class="n">x</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s1">&#39;.-&#39;</span><span class="p">,</span> <span class="s1">&#39;&#39;</span><span class="p">)</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">annotation</span><span class="o">.</span><span class="n">get_ec</span><span class="p">(</span><span class="n">level</span><span class="o">=</span><span class="mi">2</span><span class="p">))</span>
+    <span class="k">for</span> <span class="n">annotation</span> <span class="ow">in</span> <span class="n">annotations</span><span class="o">.</span><span class="n">itervalues</span><span class="p">()</span>
+<span class="p">}</span>
 </pre></div>
 </div>
 </div>
@@ -1644,17 +1644,17 @@ clfig.savefig(&#39;{}fc_counts-heatmap.pdf&#39;.format(data_dir))
 </pre></div>
 </div>
 <div class="input_area highlight-ipython2 notranslate"><div class="highlight"><pre>
-<span></span># The only difference with the functional categories is the mapping
-# used.
-ec_counts = pandas.DataFrame({
-    file_name_to_sample(file_name): mgkit.counts.load_sample_counts_to_genes(
-        lambda x: (annotations[x].gene_id, annotations[x].taxon_id),
-        mgkit.counts.load_htseq_counts(file_name),
-        taxonomy,
-        gene_map=ec_map
-    )
-    for file_name in counts
-})
+<span></span><span class="c1"># The only difference with the functional categories is the mapping</span>
+<span class="c1"># used.</span>
+<span class="n">ec_counts</span> <span class="o">=</span> <span class="n">pandas</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">({</span>
+    <span class="n">file_name_to_sample</span><span class="p">(</span><span class="n">file_name</span><span class="p">):</span> <span class="n">mgkit</span><span class="o">.</span><span class="n">counts</span><span class="o">.</span><span class="n">load_sample_counts_to_genes</span><span class="p">(</span>
+        <span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="p">(</span><span class="n">annotations</span><span class="p">[</span><span class="n">x</span><span class="p">]</span><span class="o">.</span><span class="n">gene_id</span><span class="p">,</span> <span class="n">annotations</span><span class="p">[</span><span class="n">x</span><span class="p">]</span><span class="o">.</span><span class="n">taxon_id</span><span class="p">),</span>
+        <span class="n">mgkit</span><span class="o">.</span><span class="n">counts</span><span class="o">.</span><span class="n">load_htseq_counts</span><span class="p">(</span><span class="n">file_name</span><span class="p">),</span>
+        <span class="n">taxonomy</span><span class="p">,</span>
+        <span class="n">gene_map</span><span class="o">=</span><span class="n">ec_map</span>
+    <span class="p">)</span>
+    <span class="k">for</span> <span class="n">file_name</span> <span class="ow">in</span> <span class="n">counts</span>
+<span class="p">})</span>
 </pre></div>
 </div>
 </div>
@@ -1674,10 +1674,10 @@ ec_counts = pandas.DataFrame({
 </pre></div>
 </div>
 <div class="input_area highlight-ipython2 notranslate"><div class="highlight"><pre>
-<span></span># This file contains the names of each enzyme class and can be downloaded
-# from ftp://ftp.expasy.org/databases/enzyme/enzclass.txt
-# It should be downloaded at the end of the tutorial script
-ec_names = mgkit.mappings.enzyme.parse_expasy_file(&#39;{}enzclass.txt&#39;.format(data_dir))
+<span></span><span class="c1"># This file contains the names of each enzyme class and can be downloaded</span>
+<span class="c1"># from ftp://ftp.expasy.org/databases/enzyme/enzclass.txt</span>
+<span class="c1"># It should be downloaded at the end of the tutorial script</span>
+<span class="n">ec_names</span> <span class="o">=</span> <span class="n">mgkit</span><span class="o">.</span><span class="n">mappings</span><span class="o">.</span><span class="n">enzyme</span><span class="o">.</span><span class="n">parse_expasy_file</span><span class="p">(</span><span class="s1">&#39;</span><span class="si">{}</span><span class="s1">enzclass.txt&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">data_dir</span><span class="p">))</span>
 </pre></div>
 </div>
 </div>
@@ -1686,19 +1686,19 @@ ec_names = mgkit.mappings.enzyme.parse_expasy_file(&#39;{}enzclass.txt&#39;.form
 </pre></div>
 </div>
 <div class="input_area highlight-ipython2 notranslate"><div class="highlight"><pre>
-<span></span># Rename columns and row. Rows will include the full label the enzyme class
-ec_counts = mgkit.counts.scale_deseq(ec_counts).rename(
-    index=lambda x: &quot;{} {} [EC {}.-]&quot;.format(
-        # A name of the second level doesn&#39;t include the first level
-        # definition, so if it is level 2, we add the level 1 label
-        &#39;&#39; if len(x) == 1 else ec_names[x[0]] + &quot; - &quot;,
-        # The EC label for the specific class (e.g. 3.2)
-        ec_names[x],
-        # The EC number
-        x
-    ),
-    columns=sample_names
-)
+<span></span><span class="c1"># Rename columns and row. Rows will include the full label the enzyme class</span>
+<span class="n">ec_counts</span> <span class="o">=</span> <span class="n">mgkit</span><span class="o">.</span><span class="n">counts</span><span class="o">.</span><span class="n">scale_deseq</span><span class="p">(</span><span class="n">ec_counts</span><span class="p">)</span><span class="o">.</span><span class="n">rename</span><span class="p">(</span>
+    <span class="n">index</span><span class="o">=</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="s2">&quot;</span><span class="si">{}</span><span class="s2"> </span><span class="si">{}</span><span class="s2"> [EC </span><span class="si">{}</span><span class="s2">.-]&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span>
+        <span class="c1"># A name of the second level doesn&#39;t include the first level</span>
+        <span class="c1"># definition, so if it is level 2, we add the level 1 label</span>
+        <span class="s1">&#39;&#39;</span> <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">x</span><span class="p">)</span> <span class="o">==</span> <span class="mi">1</span> <span class="k">else</span> <span class="n">ec_names</span><span class="p">[</span><span class="n">x</span><span class="p">[</span><span class="mi">0</span><span class="p">]]</span> <span class="o">+</span> <span class="s2">&quot; - &quot;</span><span class="p">,</span>
+        <span class="c1"># The EC label for the specific class (e.g. 3.2)</span>
+        <span class="n">ec_names</span><span class="p">[</span><span class="n">x</span><span class="p">],</span>
+        <span class="c1"># The EC number</span>
+        <span class="n">x</span>
+    <span class="p">),</span>
+    <span class="n">columns</span><span class="o">=</span><span class="n">sample_names</span>
+<span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -1707,7 +1707,7 @@ ec_counts = mgkit.counts.scale_deseq(ec_counts).rename(
 </pre></div>
 </div>
 <div class="input_area highlight-ipython2 notranslate"><div class="highlight"><pre>
-<span></span>plot_order = ec_counts.median(axis=1).sort_values(ascending=True, inplace=False).index
+<span></span><span class="n">plot_order</span> <span class="o">=</span> <span class="n">ec_counts</span><span class="o">.</span><span class="n">median</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span><span class="o">.</span><span class="n">sort_values</span><span class="p">(</span><span class="n">ascending</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">inplace</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span><span class="o">.</span><span class="n">index</span>
 </pre></div>
 </div>
 </div>
@@ -1716,7 +1716,7 @@ ec_counts = mgkit.counts.scale_deseq(ec_counts).rename(
 </pre></div>
 </div>
 <div class="input_area highlight-ipython2 notranslate"><div class="highlight"><pre>
-<span></span>ec_counts.describe()
+<span></span><span class="n">ec_counts</span><span class="o">.</span><span class="n">describe</span><span class="p">()</span>
 </pre></div>
 </div>
 </div>
@@ -1815,7 +1815,7 @@ ec_counts = mgkit.counts.scale_deseq(ec_counts).rename(
 </pre></div>
 </div>
 <div class="input_area highlight-ipython2 notranslate"><div class="highlight"><pre>
-<span></span>ec_counts
+<span></span><span class="n">ec_counts</span>
 </pre></div>
 </div>
 </div>
@@ -2271,7 +2271,7 @@ ec_counts = mgkit.counts.scale_deseq(ec_counts).rename(
 </pre></div>
 </div>
 <div class="input_area highlight-ipython2 notranslate"><div class="highlight"><pre>
-<span></span>ec_counts.to_csv(&#39;{}ec_counts.csv&#39;.format(data_dir))
+<span></span><span class="n">ec_counts</span><span class="o">.</span><span class="n">to_csv</span><span class="p">(</span><span class="s1">&#39;</span><span class="si">{}</span><span class="s1">ec_counts.csv&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">data_dir</span><span class="p">))</span>
 </pre></div>
 </div>
 </div>
@@ -2280,32 +2280,32 @@ ec_counts = mgkit.counts.scale_deseq(ec_counts).rename(
 </pre></div>
 </div>
 <div class="input_area highlight-ipython2 notranslate"><div class="highlight"><pre>
-<span></span>fig, ax = mgkit.plots.get_single_figure(figsize=(15, 12))
-_ = mgkit.plots.boxplot.boxplot_dataframe(
-    ec_counts,
-    plot_order,
-    ax,
-    # a dictionary with options related to the labels
-    # on both the X and Y axes. In this case it changes
-    # the size of the labels and the rotation - the default
-    # is &#39;vertical&#39;, as the box_vert=True by default
-    fonts=dict(fontsize=12, rotation=&#39;horizontal&#39;),
-    data_colours={
-        x: color
-        for x, color in zip(plot_order, seaborn.color_palette(&#39;hls&#39;, len(plot_order)))
-    },
-    # Changes the direction of the boxplot. The rotation of
-    # the labels must be set to &#39;horizontal&#39; in the *fonts*
-    # dictionary
-    box_vert=False
-)
-# Adds labels to the axes
-ax.set_xlabel(&#39;Counts&#39;, fontsize=16)
-ax.set_ylabel(&#39;Enzyme Class&#39;, fontsize=16)
-# Ensure the correct layout before writing to disk
-fig.set_tight_layout(True)
-# Saves a PDF file, or any other supported format by matplotlib
-fig.savefig(&#39;{}ec_counts-boxplot.pdf&#39;.format(data_dir))
+<span></span><span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">mgkit</span><span class="o">.</span><span class="n">plots</span><span class="o">.</span><span class="n">get_single_figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">15</span><span class="p">,</span> <span class="mi">12</span><span class="p">))</span>
+<span class="n">_</span> <span class="o">=</span> <span class="n">mgkit</span><span class="o">.</span><span class="n">plots</span><span class="o">.</span><span class="n">boxplot</span><span class="o">.</span><span class="n">boxplot_dataframe</span><span class="p">(</span>
+    <span class="n">ec_counts</span><span class="p">,</span>
+    <span class="n">plot_order</span><span class="p">,</span>
+    <span class="n">ax</span><span class="p">,</span>
+    <span class="c1"># a dictionary with options related to the labels</span>
+    <span class="c1"># on both the X and Y axes. In this case it changes</span>
+    <span class="c1"># the size of the labels and the rotation - the default</span>
+    <span class="c1"># is &#39;vertical&#39;, as the box_vert=True by default</span>
+    <span class="n">fonts</span><span class="o">=</span><span class="nb">dict</span><span class="p">(</span><span class="n">fontsize</span><span class="o">=</span><span class="mi">12</span><span class="p">,</span> <span class="n">rotation</span><span class="o">=</span><span class="s1">&#39;horizontal&#39;</span><span class="p">),</span>
+    <span class="n">data_colours</span><span class="o">=</span><span class="p">{</span>
+        <span class="n">x</span><span class="p">:</span> <span class="n">color</span>
+        <span class="k">for</span> <span class="n">x</span><span class="p">,</span> <span class="n">color</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="n">plot_order</span><span class="p">,</span> <span class="n">seaborn</span><span class="o">.</span><span class="n">color_palette</span><span class="p">(</span><span class="s1">&#39;hls&#39;</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">plot_order</span><span class="p">)))</span>
+    <span class="p">},</span>
+    <span class="c1"># Changes the direction of the boxplot. The rotation of</span>
+    <span class="c1"># the labels must be set to &#39;horizontal&#39; in the *fonts*</span>
+    <span class="c1"># dictionary</span>
+    <span class="n">box_vert</span><span class="o">=</span><span class="kc">False</span>
+<span class="p">)</span>
+<span class="c1"># Adds labels to the axes</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s1">&#39;Counts&#39;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">16</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s1">&#39;Enzyme Class&#39;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">16</span><span class="p">)</span>
+<span class="c1"># Ensure the correct layout before writing to disk</span>
+<span class="n">fig</span><span class="o">.</span><span class="n">set_tight_layout</span><span class="p">(</span><span class="kc">True</span><span class="p">)</span>
+<span class="c1"># Saves a PDF file, or any other supported format by matplotlib</span>
+<span class="n">fig</span><span class="o">.</span><span class="n">savefig</span><span class="p">(</span><span class="s1">&#39;</span><span class="si">{}</span><span class="s1">ec_counts-boxplot.pdf&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">data_dir</span><span class="p">))</span>
 </pre></div>
 </div>
 </div>
@@ -2347,9 +2347,9 @@ fig.savefig(&#39;{}ec_counts-boxplot.pdf&#39;.format(data_dir))
 </pre></div>
 </div>
 <div class="input_area highlight-ipython2 notranslate"><div class="highlight"><pre>
-<span></span># Sets the minimum coverage for an annotation to be
-# included into the table (defaults to 4)
-mgkit.consts.DEFAULT_SNP_FILTER[&#39;min_cov&#39;] = 2
+<span></span><span class="c1"># Sets the minimum coverage for an annotation to be</span>
+<span class="c1"># included into the table (defaults to 4)</span>
+<span class="n">mgkit</span><span class="o">.</span><span class="n">consts</span><span class="o">.</span><span class="n">DEFAULT_SNP_FILTER</span><span class="p">[</span><span class="s1">&#39;min_cov&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="mi">2</span>
 </pre></div>
 </div>
 </div>
@@ -2358,9 +2358,9 @@ mgkit.consts.DEFAULT_SNP_FILTER[&#39;min_cov&#39;] = 2
 </pre></div>
 </div>
 <div class="input_area highlight-ipython2 notranslate"><div class="highlight"><pre>
-<span></span># To get diversity estimates for taxa *mgkit.snps.conv_func.get_rank_dataframe* can be used
-# It is also imported and accesible from the *mgkit.snps* package
-pnps = mgkit.snps.get_rank_dataframe(snp_data, taxonomy, min_num=3, rank=&#39;order&#39;, index_type=&#39;taxon&#39;)
+<span></span><span class="c1"># To get diversity estimates for taxa *mgkit.snps.conv_func.get_rank_dataframe* can be used</span>
+<span class="c1"># It is also imported and accesible from the *mgkit.snps* package</span>
+<span class="n">pnps</span> <span class="o">=</span> <span class="n">mgkit</span><span class="o">.</span><span class="n">snps</span><span class="o">.</span><span class="n">get_rank_dataframe</span><span class="p">(</span><span class="n">snp_data</span><span class="p">,</span> <span class="n">taxonomy</span><span class="p">,</span> <span class="n">min_num</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span> <span class="n">rank</span><span class="o">=</span><span class="s1">&#39;order&#39;</span><span class="p">,</span> <span class="n">index_type</span><span class="o">=</span><span class="s1">&#39;taxon&#39;</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -2380,10 +2380,10 @@ pnps = mgkit.snps.get_rank_dataframe(snp_data, taxonomy, min_num=3, rank=&#39;or
 </pre></div>
 </div>
 <div class="input_area highlight-ipython2 notranslate"><div class="highlight"><pre>
-<span></span>pnps = pnps.rename(
-    columns=sample_names,
-    index=lambda x: taxonomy[x].s_name
-)
+<span></span><span class="n">pnps</span> <span class="o">=</span> <span class="n">pnps</span><span class="o">.</span><span class="n">rename</span><span class="p">(</span>
+    <span class="n">columns</span><span class="o">=</span><span class="n">sample_names</span><span class="p">,</span>
+    <span class="n">index</span><span class="o">=</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">taxonomy</span><span class="p">[</span><span class="n">x</span><span class="p">]</span><span class="o">.</span><span class="n">s_name</span>
+<span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -2392,7 +2392,7 @@ pnps = mgkit.snps.get_rank_dataframe(snp_data, taxonomy, min_num=3, rank=&#39;or
 </pre></div>
 </div>
 <div class="input_area highlight-ipython2 notranslate"><div class="highlight"><pre>
-<span></span>pnps.describe()
+<span></span><span class="n">pnps</span><span class="o">.</span><span class="n">describe</span><span class="p">()</span>
 </pre></div>
 </div>
 </div>
@@ -2491,7 +2491,7 @@ pnps = mgkit.snps.get_rank_dataframe(snp_data, taxonomy, min_num=3, rank=&#39;or
 </pre></div>
 </div>
 <div class="input_area highlight-ipython2 notranslate"><div class="highlight"><pre>
-<span></span>pnps
+<span></span><span class="n">pnps</span>
 </pre></div>
 </div>
 </div>
@@ -2962,7 +2962,7 @@ pnps = mgkit.snps.get_rank_dataframe(snp_data, taxonomy, min_num=3, rank=&#39;or
 </pre></div>
 </div>
 <div class="input_area highlight-ipython2 notranslate"><div class="highlight"><pre>
-<span></span>pnps.to_csv(&#39;{}pnps-taxa.csv&#39;.format(data_dir))
+<span></span><span class="n">pnps</span><span class="o">.</span><span class="n">to_csv</span><span class="p">(</span><span class="s1">&#39;</span><span class="si">{}</span><span class="s1">pnps-taxa.csv&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">data_dir</span><span class="p">))</span>
 </pre></div>
 </div>
 </div>
@@ -2971,25 +2971,25 @@ pnps = mgkit.snps.get_rank_dataframe(snp_data, taxonomy, min_num=3, rank=&#39;or
 </pre></div>
 </div>
 <div class="input_area highlight-ipython2 notranslate"><div class="highlight"><pre>
-<span></span>#sort the DataFrame to plot them by mean value
-plot_order = pnps.mean(axis=1).sort_values(inplace=False, ascending=False).index[:10]
+<span></span><span class="c1">#sort the DataFrame to plot them by mean value</span>
+<span class="n">plot_order</span> <span class="o">=</span> <span class="n">pnps</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span><span class="o">.</span><span class="n">sort_values</span><span class="p">(</span><span class="n">inplace</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">ascending</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span><span class="o">.</span><span class="n">index</span><span class="p">[:</span><span class="mi">10</span><span class="p">]</span>
 
-fig, ax = mgkit.plots.get_single_figure(figsize=(15, 10))
-_ = mgkit.plots.boxplot.boxplot_dataframe(
-    pnps,
-    plot_order,
-    ax,
-    fonts=dict(fontsize=14, rotation=&#39;horizontal&#39;),
-    data_colours={
-        x: color
-        for x, color in zip(plot_order, seaborn.color_palette(&#39;hls&#39;, len(pnps.index)))
-    },
-    box_vert=False
-)
-ax.set_xlabel(&#39;pN/pS&#39;, fontsize=16)
-ax.set_ylabel(&#39;Order&#39;, fontsize=16)
-fig.set_tight_layout(True)
-fig.savefig(&#39;{}pnps-taxa-boxplot.pdf&#39;.format(data_dir))
+<span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">mgkit</span><span class="o">.</span><span class="n">plots</span><span class="o">.</span><span class="n">get_single_figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">15</span><span class="p">,</span> <span class="mi">10</span><span class="p">))</span>
+<span class="n">_</span> <span class="o">=</span> <span class="n">mgkit</span><span class="o">.</span><span class="n">plots</span><span class="o">.</span><span class="n">boxplot</span><span class="o">.</span><span class="n">boxplot_dataframe</span><span class="p">(</span>
+    <span class="n">pnps</span><span class="p">,</span>
+    <span class="n">plot_order</span><span class="p">,</span>
+    <span class="n">ax</span><span class="p">,</span>
+    <span class="n">fonts</span><span class="o">=</span><span class="nb">dict</span><span class="p">(</span><span class="n">fontsize</span><span class="o">=</span><span class="mi">14</span><span class="p">,</span> <span class="n">rotation</span><span class="o">=</span><span class="s1">&#39;horizontal&#39;</span><span class="p">),</span>
+    <span class="n">data_colours</span><span class="o">=</span><span class="p">{</span>
+        <span class="n">x</span><span class="p">:</span> <span class="n">color</span>
+        <span class="k">for</span> <span class="n">x</span><span class="p">,</span> <span class="n">color</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="n">plot_order</span><span class="p">,</span> <span class="n">seaborn</span><span class="o">.</span><span class="n">color_palette</span><span class="p">(</span><span class="s1">&#39;hls&#39;</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">pnps</span><span class="o">.</span><span class="n">index</span><span class="p">)))</span>
+    <span class="p">},</span>
+    <span class="n">box_vert</span><span class="o">=</span><span class="kc">False</span>
+<span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s1">&#39;pN/pS&#39;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">16</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s1">&#39;Order&#39;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">16</span><span class="p">)</span>
+<span class="n">fig</span><span class="o">.</span><span class="n">set_tight_layout</span><span class="p">(</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">fig</span><span class="o">.</span><span class="n">savefig</span><span class="p">(</span><span class="s1">&#39;</span><span class="si">{}</span><span class="s1">pnps-taxa-boxplot.pdf&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">data_dir</span><span class="p">))</span>
 </pre></div>
 </div>
 </div>
@@ -3020,9 +3020,9 @@ fig.savefig(&#39;{}pnps-taxa-boxplot.pdf&#39;.format(data_dir))
 </pre></div>
 </div>
 <div class="input_area highlight-ipython2 notranslate"><div class="highlight"><pre>
-<span></span># To get diversity estimates of functions, *mgkit.snps.conv_func.get_gene_map_dataframe* can be used
-# This is available in the *mgkit.snps* package as well
-fc_pnps = mgkit.snps.get_gene_map_dataframe(snp_data, taxonomy, min_num=3, gene_map=fc_map, index_type=&#39;gene&#39;)
+<span></span><span class="c1"># To get diversity estimates of functions, *mgkit.snps.conv_func.get_gene_map_dataframe* can be used</span>
+<span class="c1"># This is available in the *mgkit.snps* package as well</span>
+<span class="n">fc_pnps</span> <span class="o">=</span> <span class="n">mgkit</span><span class="o">.</span><span class="n">snps</span><span class="o">.</span><span class="n">get_gene_map_dataframe</span><span class="p">(</span><span class="n">snp_data</span><span class="p">,</span> <span class="n">taxonomy</span><span class="p">,</span> <span class="n">min_num</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span> <span class="n">gene_map</span><span class="o">=</span><span class="n">fc_map</span><span class="p">,</span> <span class="n">index_type</span><span class="o">=</span><span class="s1">&#39;gene&#39;</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -3042,10 +3042,10 @@ fc_pnps = mgkit.snps.get_gene_map_dataframe(snp_data, taxonomy, min_num=3, gene_
 </pre></div>
 </div>
 <div class="input_area highlight-ipython2 notranslate"><div class="highlight"><pre>
-<span></span>fc_pnps = fc_pnps.rename(
-    columns=sample_names,
-    index=eggnog.EGGNOG_CAT
-)
+<span></span><span class="n">fc_pnps</span> <span class="o">=</span> <span class="n">fc_pnps</span><span class="o">.</span><span class="n">rename</span><span class="p">(</span>
+    <span class="n">columns</span><span class="o">=</span><span class="n">sample_names</span><span class="p">,</span>
+    <span class="n">index</span><span class="o">=</span><span class="n">eggnog</span><span class="o">.</span><span class="n">EGGNOG_CAT</span>
+<span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -3054,7 +3054,7 @@ fc_pnps = mgkit.snps.get_gene_map_dataframe(snp_data, taxonomy, min_num=3, gene_
 </pre></div>
 </div>
 <div class="input_area highlight-ipython2 notranslate"><div class="highlight"><pre>
-<span></span>fc_pnps.describe()
+<span></span><span class="n">fc_pnps</span><span class="o">.</span><span class="n">describe</span><span class="p">()</span>
 </pre></div>
 </div>
 </div>
@@ -3153,7 +3153,7 @@ fc_pnps = mgkit.snps.get_gene_map_dataframe(snp_data, taxonomy, min_num=3, gene_
 </pre></div>
 </div>
 <div class="input_area highlight-ipython2 notranslate"><div class="highlight"><pre>
-<span></span>fc_pnps
+<span></span><span class="n">fc_pnps</span>
 </pre></div>
 </div>
 </div>
@@ -3336,7 +3336,7 @@ fc_pnps = mgkit.snps.get_gene_map_dataframe(snp_data, taxonomy, min_num=3, gene_
 </pre></div>
 </div>
 <div class="input_area highlight-ipython2 notranslate"><div class="highlight"><pre>
-<span></span>fc_pnps.to_csv(&#39;{}pnps-fc.csv&#39;.format(data_dir))
+<span></span><span class="n">fc_pnps</span><span class="o">.</span><span class="n">to_csv</span><span class="p">(</span><span class="s1">&#39;</span><span class="si">{}</span><span class="s1">pnps-fc.csv&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">data_dir</span><span class="p">))</span>
 </pre></div>
 </div>
 </div>
@@ -3345,25 +3345,25 @@ fc_pnps = mgkit.snps.get_gene_map_dataframe(snp_data, taxonomy, min_num=3, gene_
 </pre></div>
 </div>
 <div class="input_area highlight-ipython2 notranslate"><div class="highlight"><pre>
-<span></span>#sort the DataFrame to plot them by median value
-plot_order = fc_pnps.mean(axis=1).sort_values(inplace=False, ascending=False).index
+<span></span><span class="c1">#sort the DataFrame to plot them by median value</span>
+<span class="n">plot_order</span> <span class="o">=</span> <span class="n">fc_pnps</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span><span class="o">.</span><span class="n">sort_values</span><span class="p">(</span><span class="n">inplace</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">ascending</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span><span class="o">.</span><span class="n">index</span>
 
-fig, ax = mgkit.plots.get_single_figure(figsize=(15, 10))
-_ = mgkit.plots.boxplot.boxplot_dataframe(
-    fc_pnps,
-    plot_order,
-    ax,
-    fonts=dict(fontsize=14, rotation=&#39;horizontal&#39;),
-    data_colours={
-        x: color
-        for x, color in zip(plot_order, seaborn.color_palette(&#39;hls&#39;, len(fc_pnps.index)))
-    },
-    box_vert=False
-)
-ax.set_xlabel(&#39;pN/pS&#39;, fontsize=16)
-ax.set_ylabel(&#39;Functional Category&#39;, fontsize=16)
-fig.set_tight_layout(True)
-fig.savefig(&#39;{}pnps-fc-boxplot.pdf&#39;.format(data_dir))
+<span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">mgkit</span><span class="o">.</span><span class="n">plots</span><span class="o">.</span><span class="n">get_single_figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">15</span><span class="p">,</span> <span class="mi">10</span><span class="p">))</span>
+<span class="n">_</span> <span class="o">=</span> <span class="n">mgkit</span><span class="o">.</span><span class="n">plots</span><span class="o">.</span><span class="n">boxplot</span><span class="o">.</span><span class="n">boxplot_dataframe</span><span class="p">(</span>
+    <span class="n">fc_pnps</span><span class="p">,</span>
+    <span class="n">plot_order</span><span class="p">,</span>
+    <span class="n">ax</span><span class="p">,</span>
+    <span class="n">fonts</span><span class="o">=</span><span class="nb">dict</span><span class="p">(</span><span class="n">fontsize</span><span class="o">=</span><span class="mi">14</span><span class="p">,</span> <span class="n">rotation</span><span class="o">=</span><span class="s1">&#39;horizontal&#39;</span><span class="p">),</span>
+    <span class="n">data_colours</span><span class="o">=</span><span class="p">{</span>
+        <span class="n">x</span><span class="p">:</span> <span class="n">color</span>
+        <span class="k">for</span> <span class="n">x</span><span class="p">,</span> <span class="n">color</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="n">plot_order</span><span class="p">,</span> <span class="n">seaborn</span><span class="o">.</span><span class="n">color_palette</span><span class="p">(</span><span class="s1">&#39;hls&#39;</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">fc_pnps</span><span class="o">.</span><span class="n">index</span><span class="p">)))</span>
+    <span class="p">},</span>
+    <span class="n">box_vert</span><span class="o">=</span><span class="kc">False</span>
+<span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s1">&#39;pN/pS&#39;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">16</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s1">&#39;Functional Category&#39;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">16</span><span class="p">)</span>
+<span class="n">fig</span><span class="o">.</span><span class="n">set_tight_layout</span><span class="p">(</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">fig</span><span class="o">.</span><span class="n">savefig</span><span class="p">(</span><span class="s1">&#39;</span><span class="si">{}</span><span class="s1">pnps-fc-boxplot.pdf&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">data_dir</span><span class="p">))</span>
 </pre></div>
 </div>
 </div>
@@ -3392,11 +3392,11 @@ fig.savefig(&#39;{}pnps-fc-boxplot.pdf&#39;.format(data_dir))
 </pre></div>
 </div>
 <div class="input_area highlight-ipython2 notranslate"><div class="highlight"><pre>
-<span></span>ec_map = {
-    # Using only the first level
-    annotation.gene_id: set(x.replace(&#39;.-&#39;, &#39;&#39;) for x in annotation.get_ec(level=1))
-    for annotation in annotations.itervalues()
-}
+<span></span><span class="n">ec_map</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="c1"># Using only the first level</span>
+    <span class="n">annotation</span><span class="o">.</span><span class="n">gene_id</span><span class="p">:</span> <span class="nb">set</span><span class="p">(</span><span class="n">x</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s1">&#39;.-&#39;</span><span class="p">,</span> <span class="s1">&#39;&#39;</span><span class="p">)</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">annotation</span><span class="o">.</span><span class="n">get_ec</span><span class="p">(</span><span class="n">level</span><span class="o">=</span><span class="mi">1</span><span class="p">))</span>
+    <span class="k">for</span> <span class="n">annotation</span> <span class="ow">in</span> <span class="n">annotations</span><span class="o">.</span><span class="n">itervalues</span><span class="p">()</span>
+<span class="p">}</span>
 </pre></div>
 </div>
 </div>
@@ -3405,7 +3405,7 @@ fig.savefig(&#39;{}pnps-fc-boxplot.pdf&#39;.format(data_dir))
 </pre></div>
 </div>
 <div class="input_area highlight-ipython2 notranslate"><div class="highlight"><pre>
-<span></span>ec_pnps = mgkit.snps.get_gene_map_dataframe(snp_data, taxonomy, min_num=3, gene_map=ec_map, index_type=&#39;gene&#39;)
+<span></span><span class="n">ec_pnps</span> <span class="o">=</span> <span class="n">mgkit</span><span class="o">.</span><span class="n">snps</span><span class="o">.</span><span class="n">get_gene_map_dataframe</span><span class="p">(</span><span class="n">snp_data</span><span class="p">,</span> <span class="n">taxonomy</span><span class="p">,</span> <span class="n">min_num</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span> <span class="n">gene_map</span><span class="o">=</span><span class="n">ec_map</span><span class="p">,</span> <span class="n">index_type</span><span class="o">=</span><span class="s1">&#39;gene&#39;</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -3425,19 +3425,19 @@ fig.savefig(&#39;{}pnps-fc-boxplot.pdf&#39;.format(data_dir))
 </pre></div>
 </div>
 <div class="input_area highlight-ipython2 notranslate"><div class="highlight"><pre>
-<span></span># Rename columns and row. Rows will include the full label the enzyme class
-ec_pnps = ec_pnps.rename(
-    index=lambda x: &quot;{} {} [EC {}.-]&quot;.format(
-        # A name of the second level doesn&#39;t include the first level
-        # definition, so if it is level 2, we add the level 1 label
-        &#39;&#39; if len(x) == 1 else ec_names[x[0]] + &quot; - &quot;,
-        # The EC label for the specific class (e.g. 3.2)
-        ec_names[x],
-        # The EC number
-        x
-    ),
-    columns=sample_names
-)
+<span></span><span class="c1"># Rename columns and row. Rows will include the full label the enzyme class</span>
+<span class="n">ec_pnps</span> <span class="o">=</span> <span class="n">ec_pnps</span><span class="o">.</span><span class="n">rename</span><span class="p">(</span>
+    <span class="n">index</span><span class="o">=</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="s2">&quot;</span><span class="si">{}</span><span class="s2"> </span><span class="si">{}</span><span class="s2"> [EC </span><span class="si">{}</span><span class="s2">.-]&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span>
+        <span class="c1"># A name of the second level doesn&#39;t include the first level</span>
+        <span class="c1"># definition, so if it is level 2, we add the level 1 label</span>
+        <span class="s1">&#39;&#39;</span> <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">x</span><span class="p">)</span> <span class="o">==</span> <span class="mi">1</span> <span class="k">else</span> <span class="n">ec_names</span><span class="p">[</span><span class="n">x</span><span class="p">[</span><span class="mi">0</span><span class="p">]]</span> <span class="o">+</span> <span class="s2">&quot; - &quot;</span><span class="p">,</span>
+        <span class="c1"># The EC label for the specific class (e.g. 3.2)</span>
+        <span class="n">ec_names</span><span class="p">[</span><span class="n">x</span><span class="p">],</span>
+        <span class="c1"># The EC number</span>
+        <span class="n">x</span>
+    <span class="p">),</span>
+    <span class="n">columns</span><span class="o">=</span><span class="n">sample_names</span>
+<span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -3446,7 +3446,7 @@ ec_pnps = ec_pnps.rename(
 </pre></div>
 </div>
 <div class="input_area highlight-ipython2 notranslate"><div class="highlight"><pre>
-<span></span>ec_pnps.describe()
+<span></span><span class="n">ec_pnps</span><span class="o">.</span><span class="n">describe</span><span class="p">()</span>
 </pre></div>
 </div>
 </div>
@@ -3545,7 +3545,7 @@ ec_pnps = ec_pnps.rename(
 </pre></div>
 </div>
 <div class="input_area highlight-ipython2 notranslate"><div class="highlight"><pre>
-<span></span>ec_pnps
+<span></span><span class="n">ec_pnps</span>
 </pre></div>
 </div>
 </div>
@@ -3609,7 +3609,7 @@ ec_pnps = ec_pnps.rename(
 </pre></div>
 </div>
 <div class="input_area highlight-ipython2 notranslate"><div class="highlight"><pre>
-<span></span>ec_pnps.to_csv(&#39;{}pnps-ec.csv&#39;.format(data_dir))
+<span></span><span class="n">ec_pnps</span><span class="o">.</span><span class="n">to_csv</span><span class="p">(</span><span class="s1">&#39;</span><span class="si">{}</span><span class="s1">pnps-ec.csv&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">data_dir</span><span class="p">))</span>
 </pre></div>
 </div>
 </div>
@@ -3618,25 +3618,25 @@ ec_pnps = ec_pnps.rename(
 </pre></div>
 </div>
 <div class="input_area highlight-ipython2 notranslate"><div class="highlight"><pre>
-<span></span>#sort the DataFrame to plot them by median value
-plot_order = ec_pnps.mean(axis=1).sort_values(inplace=False, ascending=False).index
+<span></span><span class="c1">#sort the DataFrame to plot them by median value</span>
+<span class="n">plot_order</span> <span class="o">=</span> <span class="n">ec_pnps</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span><span class="o">.</span><span class="n">sort_values</span><span class="p">(</span><span class="n">inplace</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">ascending</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span><span class="o">.</span><span class="n">index</span>
 
-fig, ax = mgkit.plots.get_single_figure(figsize=(15, 10))
-_ = mgkit.plots.boxplot.boxplot_dataframe(
-    ec_pnps,
-    plot_order,
-    ax,
-    fonts=dict(fontsize=14, rotation=&#39;horizontal&#39;),
-    data_colours={
-        x: color
-        for x, color in zip(plot_order, seaborn.color_palette(&#39;hls&#39;, len(plot_order)))
-    },
-    box_vert=False
-)
-ax.set_xlabel(&#39;pN/pS&#39;, fontsize=16)
-ax.set_ylabel(&#39;Enzyme Class&#39;, fontsize=16)
-fig.set_tight_layout(True)
-fig.savefig(&#39;{}pnps-ec-boxplot.pdf&#39;.format(data_dir))
+<span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">mgkit</span><span class="o">.</span><span class="n">plots</span><span class="o">.</span><span class="n">get_single_figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">15</span><span class="p">,</span> <span class="mi">10</span><span class="p">))</span>
+<span class="n">_</span> <span class="o">=</span> <span class="n">mgkit</span><span class="o">.</span><span class="n">plots</span><span class="o">.</span><span class="n">boxplot</span><span class="o">.</span><span class="n">boxplot_dataframe</span><span class="p">(</span>
+    <span class="n">ec_pnps</span><span class="p">,</span>
+    <span class="n">plot_order</span><span class="p">,</span>
+    <span class="n">ax</span><span class="p">,</span>
+    <span class="n">fonts</span><span class="o">=</span><span class="nb">dict</span><span class="p">(</span><span class="n">fontsize</span><span class="o">=</span><span class="mi">14</span><span class="p">,</span> <span class="n">rotation</span><span class="o">=</span><span class="s1">&#39;horizontal&#39;</span><span class="p">),</span>
+    <span class="n">data_colours</span><span class="o">=</span><span class="p">{</span>
+        <span class="n">x</span><span class="p">:</span> <span class="n">color</span>
+        <span class="k">for</span> <span class="n">x</span><span class="p">,</span> <span class="n">color</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="n">plot_order</span><span class="p">,</span> <span class="n">seaborn</span><span class="o">.</span><span class="n">color_palette</span><span class="p">(</span><span class="s1">&#39;hls&#39;</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">plot_order</span><span class="p">)))</span>
+    <span class="p">},</span>
+    <span class="n">box_vert</span><span class="o">=</span><span class="kc">False</span>
+<span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s1">&#39;pN/pS&#39;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">16</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s1">&#39;Enzyme Class&#39;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">16</span><span class="p">)</span>
+<span class="n">fig</span><span class="o">.</span><span class="n">set_tight_layout</span><span class="p">(</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">fig</span><span class="o">.</span><span class="n">savefig</span><span class="p">(</span><span class="s1">&#39;</span><span class="si">{}</span><span class="s1">pnps-ec-boxplot.pdf&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">data_dir</span><span class="p">))</span>
 </pre></div>
 </div>
 </div>

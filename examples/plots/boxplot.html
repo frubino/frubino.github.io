@@ -7,7 +7,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>Boxplots &mdash; MGKit: Metagenomic framework 0.5.3 documentation</title>
+  <title>Boxplots &mdash; MGKit: Metagenomic framework 0.5.4 documentation</title>
   
 
   
@@ -65,7 +65,7 @@
             
             
               <div class="version">
-                0.5.3
+                0.5.4
               </div>
             
           
@@ -450,10 +450,10 @@ div.rendered_html tbody tr:hover {
 </pre></div>
 </div>
 <div class="input_area highlight-ipython2 notranslate"><div class="highlight"><pre>
-<span></span>import mgkit.plots.boxplot
-import numpy
-import pandas
-import seaborn as sns
+<span></span><span class="kn">import</span> <span class="nn">mgkit.plots.boxplot</span>
+<span class="kn">import</span> <span class="nn">numpy</span>
+<span class="kn">import</span> <span class="nn">pandas</span>
+<span class="kn">import</span> <span class="nn">seaborn</span> <span class="k">as</span> <span class="nn">sns</span>
 </pre></div>
 </div>
 </div>
@@ -462,12 +462,12 @@ import seaborn as sns
 </pre></div>
 </div>
 <div class="input_area highlight-ipython2 notranslate"><div class="highlight"><pre>
-<span></span>nrows = 9
-ncols = 30
-data = pandas.DataFrame({
-    x: numpy.random.negative_binomial(1000, 0.05, size=nrows)
-    for x in xrange(ncols)
-})
+<span></span><span class="n">nrows</span> <span class="o">=</span> <span class="mi">9</span>
+<span class="n">ncols</span> <span class="o">=</span> <span class="mi">30</span>
+<span class="n">data</span> <span class="o">=</span> <span class="n">pandas</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">({</span>
+    <span class="n">x</span><span class="p">:</span> <span class="n">numpy</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">negative_binomial</span><span class="p">(</span><span class="mi">1000</span><span class="p">,</span> <span class="mf">0.05</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="n">nrows</span><span class="p">)</span>
+    <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">xrange</span><span class="p">(</span><span class="n">ncols</span><span class="p">)</span>
+<span class="p">})</span>
 </pre></div>
 </div>
 </div>
@@ -478,8 +478,8 @@ data = pandas.DataFrame({
 </pre></div>
 </div>
 <div class="input_area highlight-ipython2 notranslate"><div class="highlight"><pre>
-<span></span>fig, ax = mgkit.plots.get_single_figure(figsize=(30, 10))
-_ = mgkit.plots.boxplot.boxplot_dataframe(data, data.index, ax)
+<span></span><span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">mgkit</span><span class="o">.</span><span class="n">plots</span><span class="o">.</span><span class="n">get_single_figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">30</span><span class="p">,</span> <span class="mi">10</span><span class="p">))</span>
+<span class="n">_</span> <span class="o">=</span> <span class="n">mgkit</span><span class="o">.</span><span class="n">plots</span><span class="o">.</span><span class="n">boxplot</span><span class="o">.</span><span class="n">boxplot_dataframe</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">data</span><span class="o">.</span><span class="n">index</span><span class="p">,</span> <span class="n">ax</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -498,8 +498,8 @@ _ = mgkit.plots.boxplot.boxplot_dataframe(data, data.index, ax)
 </pre></div>
 </div>
 <div class="input_area highlight-ipython2 notranslate"><div class="highlight"><pre>
-<span></span>fig, ax = mgkit.plots.get_single_figure(figsize=(30, 10))
-_ = mgkit.plots.boxplot.boxplot_dataframe(data, data.index[::-1], ax)
+<span></span><span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">mgkit</span><span class="o">.</span><span class="n">plots</span><span class="o">.</span><span class="n">get_single_figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">30</span><span class="p">,</span> <span class="mi">10</span><span class="p">))</span>
+<span class="n">_</span> <span class="o">=</span> <span class="n">mgkit</span><span class="o">.</span><span class="n">plots</span><span class="o">.</span><span class="n">boxplot</span><span class="o">.</span><span class="n">boxplot_dataframe</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">data</span><span class="o">.</span><span class="n">index</span><span class="p">[::</span><span class="o">-</span><span class="mi">1</span><span class="p">],</span> <span class="n">ax</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -518,8 +518,8 @@ _ = mgkit.plots.boxplot.boxplot_dataframe(data, data.index[::-1], ax)
 </pre></div>
 </div>
 <div class="input_area highlight-ipython2 notranslate"><div class="highlight"><pre>
-<span></span>fig, ax = mgkit.plots.get_single_figure(figsize=(30, 10))
-_ = mgkit.plots.boxplot.boxplot_dataframe(data, data.index, ax, label_map={x: &#39;label {}&#39;.format(x) for x in data.index})
+<span></span><span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">mgkit</span><span class="o">.</span><span class="n">plots</span><span class="o">.</span><span class="n">get_single_figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">30</span><span class="p">,</span> <span class="mi">10</span><span class="p">))</span>
+<span class="n">_</span> <span class="o">=</span> <span class="n">mgkit</span><span class="o">.</span><span class="n">plots</span><span class="o">.</span><span class="n">boxplot</span><span class="o">.</span><span class="n">boxplot_dataframe</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">data</span><span class="o">.</span><span class="n">index</span><span class="p">,</span> <span class="n">ax</span><span class="p">,</span> <span class="n">label_map</span><span class="o">=</span><span class="p">{</span><span class="n">x</span><span class="p">:</span> <span class="s1">&#39;label </span><span class="si">{}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">x</span><span class="p">)</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">data</span><span class="o">.</span><span class="n">index</span><span class="p">})</span>
 </pre></div>
 </div>
 </div>
@@ -538,14 +538,14 @@ _ = mgkit.plots.boxplot.boxplot_dataframe(data, data.index, ax, label_map={x: &#
 </pre></div>
 </div>
 <div class="input_area highlight-ipython2 notranslate"><div class="highlight"><pre>
-<span></span>fig, ax = mgkit.plots.get_single_figure(figsize=(30, 10))
-_ = mgkit.plots.boxplot.boxplot_dataframe(
-    data,
-    data.index,
-    ax,
-    label_map={x: &#39;label {}&#39;.format(x) for x in data.index},
-    fonts=dict(fontsize=22, rotation=45)
-)
+<span></span><span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">mgkit</span><span class="o">.</span><span class="n">plots</span><span class="o">.</span><span class="n">get_single_figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">30</span><span class="p">,</span> <span class="mi">10</span><span class="p">))</span>
+<span class="n">_</span> <span class="o">=</span> <span class="n">mgkit</span><span class="o">.</span><span class="n">plots</span><span class="o">.</span><span class="n">boxplot</span><span class="o">.</span><span class="n">boxplot_dataframe</span><span class="p">(</span>
+    <span class="n">data</span><span class="p">,</span>
+    <span class="n">data</span><span class="o">.</span><span class="n">index</span><span class="p">,</span>
+    <span class="n">ax</span><span class="p">,</span>
+    <span class="n">label_map</span><span class="o">=</span><span class="p">{</span><span class="n">x</span><span class="p">:</span> <span class="s1">&#39;label </span><span class="si">{}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">x</span><span class="p">)</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">data</span><span class="o">.</span><span class="n">index</span><span class="p">},</span>
+    <span class="n">fonts</span><span class="o">=</span><span class="nb">dict</span><span class="p">(</span><span class="n">fontsize</span><span class="o">=</span><span class="mi">22</span><span class="p">,</span> <span class="n">rotation</span><span class="o">=</span><span class="mi">45</span><span class="p">)</span>
+<span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -564,15 +564,15 @@ _ = mgkit.plots.boxplot.boxplot_dataframe(
 </pre></div>
 </div>
 <div class="input_area highlight-ipython2 notranslate"><div class="highlight"><pre>
-<span></span>fig, ax = mgkit.plots.get_single_figure(figsize=(30, 10))
-_ = mgkit.plots.boxplot.boxplot_dataframe(
-    data,
-    data.index,
-    ax,
-    label_map={x: &#39;label {}&#39;.format(x) for x in data.index},
-    fonts=dict(fontsize=22, rotation=45),
-    fill_box=False
-)
+<span></span><span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">mgkit</span><span class="o">.</span><span class="n">plots</span><span class="o">.</span><span class="n">get_single_figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">30</span><span class="p">,</span> <span class="mi">10</span><span class="p">))</span>
+<span class="n">_</span> <span class="o">=</span> <span class="n">mgkit</span><span class="o">.</span><span class="n">plots</span><span class="o">.</span><span class="n">boxplot</span><span class="o">.</span><span class="n">boxplot_dataframe</span><span class="p">(</span>
+    <span class="n">data</span><span class="p">,</span>
+    <span class="n">data</span><span class="o">.</span><span class="n">index</span><span class="p">,</span>
+    <span class="n">ax</span><span class="p">,</span>
+    <span class="n">label_map</span><span class="o">=</span><span class="p">{</span><span class="n">x</span><span class="p">:</span> <span class="s1">&#39;label </span><span class="si">{}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">x</span><span class="p">)</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">data</span><span class="o">.</span><span class="n">index</span><span class="p">},</span>
+    <span class="n">fonts</span><span class="o">=</span><span class="nb">dict</span><span class="p">(</span><span class="n">fontsize</span><span class="o">=</span><span class="mi">22</span><span class="p">,</span> <span class="n">rotation</span><span class="o">=</span><span class="mi">45</span><span class="p">),</span>
+    <span class="n">fill_box</span><span class="o">=</span><span class="kc">False</span>
+<span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -591,16 +591,16 @@ _ = mgkit.plots.boxplot.boxplot_dataframe(
 </pre></div>
 </div>
 <div class="input_area highlight-ipython2 notranslate"><div class="highlight"><pre>
-<span></span>fig, ax = mgkit.plots.get_single_figure(figsize=(10, 10))
-_ = mgkit.plots.boxplot.boxplot_dataframe(
-    data,
-    data.index,
-    ax,
-    label_map={x: &#39;label {}&#39;.format(x) for x in data.index},
-    fonts=dict(fontsize=22, rotation=&#39;horizontal&#39;),
-    fill_box=True,
-    box_vert=False
-)
+<span></span><span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">mgkit</span><span class="o">.</span><span class="n">plots</span><span class="o">.</span><span class="n">get_single_figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mi">10</span><span class="p">))</span>
+<span class="n">_</span> <span class="o">=</span> <span class="n">mgkit</span><span class="o">.</span><span class="n">plots</span><span class="o">.</span><span class="n">boxplot</span><span class="o">.</span><span class="n">boxplot_dataframe</span><span class="p">(</span>
+    <span class="n">data</span><span class="p">,</span>
+    <span class="n">data</span><span class="o">.</span><span class="n">index</span><span class="p">,</span>
+    <span class="n">ax</span><span class="p">,</span>
+    <span class="n">label_map</span><span class="o">=</span><span class="p">{</span><span class="n">x</span><span class="p">:</span> <span class="s1">&#39;label </span><span class="si">{}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">x</span><span class="p">)</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">data</span><span class="o">.</span><span class="n">index</span><span class="p">},</span>
+    <span class="n">fonts</span><span class="o">=</span><span class="nb">dict</span><span class="p">(</span><span class="n">fontsize</span><span class="o">=</span><span class="mi">22</span><span class="p">,</span> <span class="n">rotation</span><span class="o">=</span><span class="s1">&#39;horizontal&#39;</span><span class="p">),</span>
+    <span class="n">fill_box</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+    <span class="n">box_vert</span><span class="o">=</span><span class="kc">False</span>
+<span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -619,20 +619,20 @@ _ = mgkit.plots.boxplot.boxplot_dataframe(
 </pre></div>
 </div>
 <div class="input_area highlight-ipython2 notranslate"><div class="highlight"><pre>
-<span></span>boxplot_colors = {
-    key: col
-    for key, col in zip(mgkit.plots.boxplot.DEFAULT_BOXPLOT_COLOURS, sns.color_palette(&#39;Dark2&#39;, len(mgkit.plots.boxplot.DEFAULT_BOXPLOT_COLOURS)))
-}
-fig, ax = mgkit.plots.get_single_figure(figsize=(30, 10))
-_ = mgkit.plots.boxplot.boxplot_dataframe(
-    data,
-    data.index,
-    ax,
-    label_map={x: &#39;label {}&#39;.format(x) for x in data.index},
-    fonts=dict(fontsize=22, rotation=45),
-    fill_box=True,
-    colours=boxplot_colors
-)
+<span></span><span class="n">boxplot_colors</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="n">key</span><span class="p">:</span> <span class="n">col</span>
+    <span class="k">for</span> <span class="n">key</span><span class="p">,</span> <span class="n">col</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="n">mgkit</span><span class="o">.</span><span class="n">plots</span><span class="o">.</span><span class="n">boxplot</span><span class="o">.</span><span class="n">DEFAULT_BOXPLOT_COLOURS</span><span class="p">,</span> <span class="n">sns</span><span class="o">.</span><span class="n">color_palette</span><span class="p">(</span><span class="s1">&#39;Dark2&#39;</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">mgkit</span><span class="o">.</span><span class="n">plots</span><span class="o">.</span><span class="n">boxplot</span><span class="o">.</span><span class="n">DEFAULT_BOXPLOT_COLOURS</span><span class="p">)))</span>
+<span class="p">}</span>
+<span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">mgkit</span><span class="o">.</span><span class="n">plots</span><span class="o">.</span><span class="n">get_single_figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">30</span><span class="p">,</span> <span class="mi">10</span><span class="p">))</span>
+<span class="n">_</span> <span class="o">=</span> <span class="n">mgkit</span><span class="o">.</span><span class="n">plots</span><span class="o">.</span><span class="n">boxplot</span><span class="o">.</span><span class="n">boxplot_dataframe</span><span class="p">(</span>
+    <span class="n">data</span><span class="p">,</span>
+    <span class="n">data</span><span class="o">.</span><span class="n">index</span><span class="p">,</span>
+    <span class="n">ax</span><span class="p">,</span>
+    <span class="n">label_map</span><span class="o">=</span><span class="p">{</span><span class="n">x</span><span class="p">:</span> <span class="s1">&#39;label </span><span class="si">{}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">x</span><span class="p">)</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">data</span><span class="o">.</span><span class="n">index</span><span class="p">},</span>
+    <span class="n">fonts</span><span class="o">=</span><span class="nb">dict</span><span class="p">(</span><span class="n">fontsize</span><span class="o">=</span><span class="mi">22</span><span class="p">,</span> <span class="n">rotation</span><span class="o">=</span><span class="mi">45</span><span class="p">),</span>
+    <span class="n">fill_box</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+    <span class="n">colours</span><span class="o">=</span><span class="n">boxplot_colors</span>
+<span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -651,17 +651,17 @@ _ = mgkit.plots.boxplot.boxplot_dataframe(
 </pre></div>
 </div>
 <div class="input_area highlight-ipython2 notranslate"><div class="highlight"><pre>
-<span></span>fig, ax = mgkit.plots.get_single_figure(figsize=(30, 10))
-_ = mgkit.plots.boxplot.boxplot_dataframe(
-    data,
-    data.index,
-    ax,
-    label_map={x: &#39;label {}&#39;.format(x) for x in data.index},
-    fonts=dict(fontsize=22, rotation=45),
-    fill_box=True,
-    colours=dict(medians=&#39;k&#39;),
-    data_colours={x: y for x, y in zip(data.index, sns.color_palette(&#39;hls&#39;, len(data.index)))}
-)
+<span></span><span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">mgkit</span><span class="o">.</span><span class="n">plots</span><span class="o">.</span><span class="n">get_single_figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">30</span><span class="p">,</span> <span class="mi">10</span><span class="p">))</span>
+<span class="n">_</span> <span class="o">=</span> <span class="n">mgkit</span><span class="o">.</span><span class="n">plots</span><span class="o">.</span><span class="n">boxplot</span><span class="o">.</span><span class="n">boxplot_dataframe</span><span class="p">(</span>
+    <span class="n">data</span><span class="p">,</span>
+    <span class="n">data</span><span class="o">.</span><span class="n">index</span><span class="p">,</span>
+    <span class="n">ax</span><span class="p">,</span>
+    <span class="n">label_map</span><span class="o">=</span><span class="p">{</span><span class="n">x</span><span class="p">:</span> <span class="s1">&#39;label </span><span class="si">{}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">x</span><span class="p">)</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">data</span><span class="o">.</span><span class="n">index</span><span class="p">},</span>
+    <span class="n">fonts</span><span class="o">=</span><span class="nb">dict</span><span class="p">(</span><span class="n">fontsize</span><span class="o">=</span><span class="mi">22</span><span class="p">,</span> <span class="n">rotation</span><span class="o">=</span><span class="mi">45</span><span class="p">),</span>
+    <span class="n">fill_box</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+    <span class="n">colours</span><span class="o">=</span><span class="nb">dict</span><span class="p">(</span><span class="n">medians</span><span class="o">=</span><span class="s1">&#39;k&#39;</span><span class="p">),</span>
+    <span class="n">data_colours</span><span class="o">=</span><span class="p">{</span><span class="n">x</span><span class="p">:</span> <span class="n">y</span> <span class="k">for</span> <span class="n">x</span><span class="p">,</span> <span class="n">y</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="n">data</span><span class="o">.</span><span class="n">index</span><span class="p">,</span> <span class="n">sns</span><span class="o">.</span><span class="n">color_palette</span><span class="p">(</span><span class="s1">&#39;hls&#39;</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">data</span><span class="o">.</span><span class="n">index</span><span class="p">)))}</span>
+<span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -680,33 +680,33 @@ _ = mgkit.plots.boxplot.boxplot_dataframe(
 </pre></div>
 </div>
 <div class="input_area highlight-ipython2 notranslate"><div class="highlight"><pre>
-<span></span>reload(mgkit.plots.boxplot)
-fig, ax = mgkit.plots.get_single_figure(figsize=(30, 10), dpi=300)
+<span></span><span class="n">reload</span><span class="p">(</span><span class="n">mgkit</span><span class="o">.</span><span class="n">plots</span><span class="o">.</span><span class="n">boxplot</span><span class="p">)</span>
+<span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">mgkit</span><span class="o">.</span><span class="n">plots</span><span class="o">.</span><span class="n">get_single_figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">30</span><span class="p">,</span> <span class="mi">10</span><span class="p">),</span> <span class="n">dpi</span><span class="o">=</span><span class="mi">300</span><span class="p">)</span>
 
-data_colours = {x: y for x, y in zip(data.index, sns.color_palette(&#39;Dark2&#39;, len(data.index)))}
+<span class="n">data_colours</span> <span class="o">=</span> <span class="p">{</span><span class="n">x</span><span class="p">:</span> <span class="n">y</span> <span class="k">for</span> <span class="n">x</span><span class="p">,</span> <span class="n">y</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="n">data</span><span class="o">.</span><span class="n">index</span><span class="p">,</span> <span class="n">sns</span><span class="o">.</span><span class="n">color_palette</span><span class="p">(</span><span class="s1">&#39;Dark2&#39;</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">data</span><span class="o">.</span><span class="n">index</span><span class="p">)))}</span>
 
-plot_data = mgkit.plots.boxplot.boxplot_dataframe(
-    data,
-    data.index,
-    ax,
-    label_map={x: &#39;label {}&#39;.format(x) for x in data.index},
-    fonts=dict(fontsize=22, rotation=45),
-    fill_box=False,
-    data_colours=data_colours,
-    box_vert=True
-)
+<span class="n">plot_data</span> <span class="o">=</span> <span class="n">mgkit</span><span class="o">.</span><span class="n">plots</span><span class="o">.</span><span class="n">boxplot</span><span class="o">.</span><span class="n">boxplot_dataframe</span><span class="p">(</span>
+    <span class="n">data</span><span class="p">,</span>
+    <span class="n">data</span><span class="o">.</span><span class="n">index</span><span class="p">,</span>
+    <span class="n">ax</span><span class="p">,</span>
+    <span class="n">label_map</span><span class="o">=</span><span class="p">{</span><span class="n">x</span><span class="p">:</span> <span class="s1">&#39;label </span><span class="si">{}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">x</span><span class="p">)</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">data</span><span class="o">.</span><span class="n">index</span><span class="p">},</span>
+    <span class="n">fonts</span><span class="o">=</span><span class="nb">dict</span><span class="p">(</span><span class="n">fontsize</span><span class="o">=</span><span class="mi">22</span><span class="p">,</span> <span class="n">rotation</span><span class="o">=</span><span class="mi">45</span><span class="p">),</span>
+    <span class="n">fill_box</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+    <span class="n">data_colours</span><span class="o">=</span><span class="n">data_colours</span><span class="p">,</span>
+    <span class="n">box_vert</span><span class="o">=</span><span class="kc">True</span>
+<span class="p">)</span>
 
-#note that box_vert must be the same in both boxplot_dataframe and add_values_to_boxplot. Their default is the opposite, now.
-mgkit.plots.boxplot.add_values_to_boxplot(
-    data,
-    ax,
-    plot_data,
-    data.index,
-    data_colours=data_colours,
-    s=600,
-    alpha=0.5,
-    box_vert=True
-)
+<span class="c1">#note that box_vert must be the same in both boxplot_dataframe and add_values_to_boxplot. Their default is the opposite, now.</span>
+<span class="n">mgkit</span><span class="o">.</span><span class="n">plots</span><span class="o">.</span><span class="n">boxplot</span><span class="o">.</span><span class="n">add_values_to_boxplot</span><span class="p">(</span>
+    <span class="n">data</span><span class="p">,</span>
+    <span class="n">ax</span><span class="p">,</span>
+    <span class="n">plot_data</span><span class="p">,</span>
+    <span class="n">data</span><span class="o">.</span><span class="n">index</span><span class="p">,</span>
+    <span class="n">data_colours</span><span class="o">=</span><span class="n">data_colours</span><span class="p">,</span>
+    <span class="n">s</span><span class="o">=</span><span class="mi">600</span><span class="p">,</span>
+    <span class="n">alpha</span><span class="o">=</span><span class="mf">0.5</span><span class="p">,</span>
+    <span class="n">box_vert</span><span class="o">=</span><span class="kc">True</span>
+<span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -725,47 +725,47 @@ mgkit.plots.boxplot.add_values_to_boxplot(
 </pre></div>
 </div>
 <div class="input_area highlight-ipython2 notranslate"><div class="highlight"><pre>
-<span></span>reload(mgkit.plots.boxplot)
-fig, ax = mgkit.plots.get_single_figure(figsize=(20, 10), dpi=300)
+<span></span><span class="n">reload</span><span class="p">(</span><span class="n">mgkit</span><span class="o">.</span><span class="n">plots</span><span class="o">.</span><span class="n">boxplot</span><span class="p">)</span>
+<span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">mgkit</span><span class="o">.</span><span class="n">plots</span><span class="o">.</span><span class="n">get_single_figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">20</span><span class="p">,</span> <span class="mi">10</span><span class="p">),</span> <span class="n">dpi</span><span class="o">=</span><span class="mi">300</span><span class="p">)</span>
 
-data_colours = {x: y for x, y in zip(data.index, sns.color_palette(&#39;Dark2&#39;, len(data.index)))}
+<span class="n">data_colours</span> <span class="o">=</span> <span class="p">{</span><span class="n">x</span><span class="p">:</span> <span class="n">y</span> <span class="k">for</span> <span class="n">x</span><span class="p">,</span> <span class="n">y</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="n">data</span><span class="o">.</span><span class="n">index</span><span class="p">,</span> <span class="n">sns</span><span class="o">.</span><span class="n">color_palette</span><span class="p">(</span><span class="s1">&#39;Dark2&#39;</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">data</span><span class="o">.</span><span class="n">index</span><span class="p">)))}</span>
 
-plot_data = mgkit.plots.boxplot.boxplot_dataframe(
-    data,
-    data.index,
-    ax,
-    label_map={x: &#39;label {}&#39;.format(x) for x in data.index},
-    fonts=dict(fontsize=22, rotation=45),
-    fill_box=False,
-    data_colours=data_colours,
-    box_vert=True
-)
+<span class="n">plot_data</span> <span class="o">=</span> <span class="n">mgkit</span><span class="o">.</span><span class="n">plots</span><span class="o">.</span><span class="n">boxplot</span><span class="o">.</span><span class="n">boxplot_dataframe</span><span class="p">(</span>
+    <span class="n">data</span><span class="p">,</span>
+    <span class="n">data</span><span class="o">.</span><span class="n">index</span><span class="p">,</span>
+    <span class="n">ax</span><span class="p">,</span>
+    <span class="n">label_map</span><span class="o">=</span><span class="p">{</span><span class="n">x</span><span class="p">:</span> <span class="s1">&#39;label </span><span class="si">{}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">x</span><span class="p">)</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">data</span><span class="o">.</span><span class="n">index</span><span class="p">},</span>
+    <span class="n">fonts</span><span class="o">=</span><span class="nb">dict</span><span class="p">(</span><span class="n">fontsize</span><span class="o">=</span><span class="mi">22</span><span class="p">,</span> <span class="n">rotation</span><span class="o">=</span><span class="mi">45</span><span class="p">),</span>
+    <span class="n">fill_box</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+    <span class="n">data_colours</span><span class="o">=</span><span class="n">data_colours</span><span class="p">,</span>
+    <span class="n">box_vert</span><span class="o">=</span><span class="kc">True</span>
+<span class="p">)</span>
 
-#note that box_vert must be the same in both boxplot_dataframe and add_values_to_boxplot. Their default is the opposite, now.
-mgkit.plots.boxplot.add_values_to_boxplot(
-    data,
-    ax,
-    plot_data,
-    data.index,
-    data_colours=data_colours,
-    s=600,
-    alpha=0.5,
-    box_vert=True
-)
-mgkit.plots.boxplot.add_significance_to_boxplot(
-    [
-        (0, 1),
-        (1, 3),
-        (2, 3),
-        (7, 8),
-        (4, 6)
-    ],
-    ax,
-    (21850, 21750),
-    box_vert=True,
-    fontsize=32
-)
-_ = ax.set_ylim(top=22500)
+<span class="c1">#note that box_vert must be the same in both boxplot_dataframe and add_values_to_boxplot. Their default is the opposite, now.</span>
+<span class="n">mgkit</span><span class="o">.</span><span class="n">plots</span><span class="o">.</span><span class="n">boxplot</span><span class="o">.</span><span class="n">add_values_to_boxplot</span><span class="p">(</span>
+    <span class="n">data</span><span class="p">,</span>
+    <span class="n">ax</span><span class="p">,</span>
+    <span class="n">plot_data</span><span class="p">,</span>
+    <span class="n">data</span><span class="o">.</span><span class="n">index</span><span class="p">,</span>
+    <span class="n">data_colours</span><span class="o">=</span><span class="n">data_colours</span><span class="p">,</span>
+    <span class="n">s</span><span class="o">=</span><span class="mi">600</span><span class="p">,</span>
+    <span class="n">alpha</span><span class="o">=</span><span class="mf">0.5</span><span class="p">,</span>
+    <span class="n">box_vert</span><span class="o">=</span><span class="kc">True</span>
+<span class="p">)</span>
+<span class="n">mgkit</span><span class="o">.</span><span class="n">plots</span><span class="o">.</span><span class="n">boxplot</span><span class="o">.</span><span class="n">add_significance_to_boxplot</span><span class="p">(</span>
+    <span class="p">[</span>
+        <span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">),</span>
+        <span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">3</span><span class="p">),</span>
+        <span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">),</span>
+        <span class="p">(</span><span class="mi">7</span><span class="p">,</span> <span class="mi">8</span><span class="p">),</span>
+        <span class="p">(</span><span class="mi">4</span><span class="p">,</span> <span class="mi">6</span><span class="p">)</span>
+    <span class="p">],</span>
+    <span class="n">ax</span><span class="p">,</span>
+    <span class="p">(</span><span class="mi">21850</span><span class="p">,</span> <span class="mi">21750</span><span class="p">),</span>
+    <span class="n">box_vert</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+    <span class="n">fontsize</span><span class="o">=</span><span class="mi">32</span>
+<span class="p">)</span>
+<span class="n">_</span> <span class="o">=</span> <span class="n">ax</span><span class="o">.</span><span class="n">set_ylim</span><span class="p">(</span><span class="n">top</span><span class="o">=</span><span class="mi">22500</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -783,35 +783,35 @@ _ = ax.set_ylim(top=22500)
 </pre></div>
 </div>
 <div class="input_area highlight-ipython2 notranslate"><div class="highlight"><pre>
-<span></span>reload(mgkit.plots.boxplot)
-fig, ax = mgkit.plots.get_single_figure(figsize=(20, 15), dpi=300)
+<span></span><span class="n">reload</span><span class="p">(</span><span class="n">mgkit</span><span class="o">.</span><span class="n">plots</span><span class="o">.</span><span class="n">boxplot</span><span class="p">)</span>
+<span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">mgkit</span><span class="o">.</span><span class="n">plots</span><span class="o">.</span><span class="n">get_single_figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">20</span><span class="p">,</span> <span class="mi">15</span><span class="p">),</span> <span class="n">dpi</span><span class="o">=</span><span class="mi">300</span><span class="p">)</span>
 
-data_colours = {x: y for x, y in zip(data.index, sns.color_palette(&#39;Set1&#39;, len(data.index)))}
+<span class="n">data_colours</span> <span class="o">=</span> <span class="p">{</span><span class="n">x</span><span class="p">:</span> <span class="n">y</span> <span class="k">for</span> <span class="n">x</span><span class="p">,</span> <span class="n">y</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="n">data</span><span class="o">.</span><span class="n">index</span><span class="p">,</span> <span class="n">sns</span><span class="o">.</span><span class="n">color_palette</span><span class="p">(</span><span class="s1">&#39;Set1&#39;</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">data</span><span class="o">.</span><span class="n">index</span><span class="p">)))}</span>
 
-plot_data = mgkit.plots.boxplot.boxplot_dataframe(
-    data,
-    data.index,
-    ax,
-    label_map={x: &#39;label {}&#39;.format(x) for x in data.index},
-    fonts=dict(fontsize=22, rotation=45),
-    fill_box=False,
-    data_colours=data_colours,
-    box_vert=False
-)
+<span class="n">plot_data</span> <span class="o">=</span> <span class="n">mgkit</span><span class="o">.</span><span class="n">plots</span><span class="o">.</span><span class="n">boxplot</span><span class="o">.</span><span class="n">boxplot_dataframe</span><span class="p">(</span>
+    <span class="n">data</span><span class="p">,</span>
+    <span class="n">data</span><span class="o">.</span><span class="n">index</span><span class="p">,</span>
+    <span class="n">ax</span><span class="p">,</span>
+    <span class="n">label_map</span><span class="o">=</span><span class="p">{</span><span class="n">x</span><span class="p">:</span> <span class="s1">&#39;label </span><span class="si">{}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">x</span><span class="p">)</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">data</span><span class="o">.</span><span class="n">index</span><span class="p">},</span>
+    <span class="n">fonts</span><span class="o">=</span><span class="nb">dict</span><span class="p">(</span><span class="n">fontsize</span><span class="o">=</span><span class="mi">22</span><span class="p">,</span> <span class="n">rotation</span><span class="o">=</span><span class="mi">45</span><span class="p">),</span>
+    <span class="n">fill_box</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+    <span class="n">data_colours</span><span class="o">=</span><span class="n">data_colours</span><span class="p">,</span>
+    <span class="n">box_vert</span><span class="o">=</span><span class="kc">False</span>
+<span class="p">)</span>
 
-#note that box_vert must be the same in both boxplot_dataframe and add_values_to_boxplot. Their default is the opposite, now.
-mgkit.plots.boxplot.add_values_to_boxplot(
-    data,
-    ax,
-    plot_data,
-    data.index,
-    data_colours=data_colours,
-    s=600,
-    alpha=0.5,
-    marker=&#39;|&#39;,
-    linewidth=8,
-    box_vert=False
-)
+<span class="c1">#note that box_vert must be the same in both boxplot_dataframe and add_values_to_boxplot. Their default is the opposite, now.</span>
+<span class="n">mgkit</span><span class="o">.</span><span class="n">plots</span><span class="o">.</span><span class="n">boxplot</span><span class="o">.</span><span class="n">add_values_to_boxplot</span><span class="p">(</span>
+    <span class="n">data</span><span class="p">,</span>
+    <span class="n">ax</span><span class="p">,</span>
+    <span class="n">plot_data</span><span class="p">,</span>
+    <span class="n">data</span><span class="o">.</span><span class="n">index</span><span class="p">,</span>
+    <span class="n">data_colours</span><span class="o">=</span><span class="n">data_colours</span><span class="p">,</span>
+    <span class="n">s</span><span class="o">=</span><span class="mi">600</span><span class="p">,</span>
+    <span class="n">alpha</span><span class="o">=</span><span class="mf">0.5</span><span class="p">,</span>
+    <span class="n">marker</span><span class="o">=</span><span class="s1">&#39;|&#39;</span><span class="p">,</span>
+    <span class="n">linewidth</span><span class="o">=</span><span class="mi">8</span><span class="p">,</span>
+    <span class="n">box_vert</span><span class="o">=</span><span class="kc">False</span>
+<span class="p">)</span>
 </pre></div>
 </div>
 </div>

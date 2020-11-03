@@ -7,7 +7,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>mgkit.taxon &mdash; MGKit: Metagenomic framework 0.5.3 documentation</title>
+  <title>mgkit.taxon &mdash; MGKit: Metagenomic framework 0.5.4 documentation</title>
   
 
   
@@ -63,7 +63,7 @@
             
             
               <div class="version">
-                0.5.3
+                0.5.4
               </div>
             
           
@@ -1147,6 +1147,15 @@
             <span class="k">del</span> <span class="bp">self</span><span class="o">.</span><span class="n">_taxa</span><span class="p">[</span><span class="n">taxon_id</span><span class="p">]</span>
 
         <span class="bp">self</span><span class="o">.</span><span class="n">_name_map</span> <span class="o">=</span> <span class="p">{}</span></div>
+    
+<div class="viewcode-block" id="Taxonomy.iter_ids"><a class="viewcode-back" href="../../api/mgkit.taxon.html#mgkit.taxon.Taxonomy.iter_ids">[docs]</a>    <span class="k">def</span> <span class="nf">iter_ids</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        .. versionadded:: 0.5.4</span>
+
+<span class="sd">        Iterates over the taxon IDs</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">for</span> <span class="n">taxon_id</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">_taxa</span><span class="p">:</span>
+            <span class="k">yield</span> <span class="n">taxon_id</span></div>
 
 <div class="viewcode-block" id="Taxonomy.__getitem__"><a class="viewcode-back" href="../../api/mgkit.taxon.html#mgkit.taxon.Taxonomy.__getitem__">[docs]</a>    <span class="k">def</span> <span class="fm">__getitem__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">taxon_id</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
@@ -1250,8 +1259,7 @@
 <span class="sd">    .. versionadded:: 0.1.13</span>
 
 <span class="sd">    Raised if no lowest common ancestor can be found in the taxonomy</span>
-<span class="sd">    &quot;&quot;&quot;</span>
-    <span class="k">pass</span></div>
+<span class="sd">    &quot;&quot;&quot;</span></div>
 
 
 <div class="viewcode-block" id="last_common_ancestor"><a class="viewcode-back" href="../../api/mgkit.taxon.html#mgkit.taxon.last_common_ancestor">[docs]</a><span class="k">def</span> <span class="nf">last_common_ancestor</span><span class="p">(</span><span class="n">taxonomy</span><span class="p">,</span> <span class="n">taxon_id1</span><span class="p">,</span> <span class="n">taxon_id2</span><span class="p">):</span>

@@ -7,7 +7,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>mgkit.workflow.taxon_utils module &mdash; MGKit: Metagenomic framework 0.5.3 documentation</title>
+  <title>mgkit.workflow.taxon_utils module &mdash; MGKit: Metagenomic framework 0.5.4 documentation</title>
   
 
   
@@ -65,7 +65,7 @@
             
             
               <div class="version">
-                0.5.3
+                0.5.4
               </div>
             
           
@@ -177,7 +177,10 @@
 </li>
 <li class="toctree-l3"><a class="reference internal" href="#filter-by-taxon">Filter by Taxon</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#convert-taxa-tables-to-hdf5">Convert Taxa Tables to HDF5</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#extract-taxonomy">Extract taxonomy</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#extract-taxonomy">Extract taxonomy</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#match-names">Match names</a></li>
+</ul>
+</li>
 <li class="toctree-l3"><a class="reference internal" href="#changes">Changes</a></li>
 </ul>
 </li>
@@ -396,9 +399,15 @@ footprint when a great number of annotations are kept in memory.</p>
 <p>This command allows to print the taxonomy in a file created with MGKit. The
 default behaviour is to print the scientific name, taxon_id, rank and lineage
 (only ranked taxa) in a tab separated file (or standard output).</p>
+<div class="section" id="match-names">
+<h3>Match names<a class="headerlink" href="#match-names" title="Permalink to this headline">¶</a></h3>
 <p>Besides the option to change the column separator, it is possible to only
 print specific taxa (case insensitive search, but need the correct name) and
-print headers for the output table.</p>
+print headers for the output table. A partial and fuzzy search are performed,
+however these are only reported, unless option <cite>-p</cite> is passed.</p>
+<p>The lineage is printed only for the taxa requested, but all children can be
+included by using the <cite>-c</cite> option.</p>
+</div>
 </div>
 <div class="section" id="changes">
 <h2>Changes<a class="headerlink" href="#changes" title="Permalink to this headline">¶</a></h2>
