@@ -7,7 +7,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>edit-gff - GFF Viewer and Editor &mdash; MGKit: Metagenomic framework 0.5.4 documentation</title>
+  <title>edit-gff - GFF Viewer and Editor &mdash; MGKit: Metagenomic framework 0.5.5 documentation</title>
   
 
   
@@ -65,7 +65,7 @@
             
             
               <div class="version">
-                0.5.4
+                0.5.5
               </div>
             
           
@@ -313,11 +313,16 @@ things must be noted:</p>
 second (1). The table may contains some headers, so the first N rows can be
 skipped with <cite>-r</cite>. Also, the field separator can be chosen, as well as only
 the edited annotation be printed (<cite>-o</cite> option).</p>
+<p>If there are comments in the file, for example lines starting with ‘#’, it is
+possible to specify the option <cite>-c ‘#’</cite> to skip those lines and avoid errors.</p>
 </div>
 <div class="section" id="changes">
 <h3>Changes<a class="headerlink" href="#changes" title="Permalink to this headline">¶</a></h3>
 <div class="versionadded">
 <p><span class="versionmodified added">New in version 0.4.4.</span></p>
+</div>
+<div class="versionchanged">
+<p><span class="versionmodified changed">Changed in version 0.5.5: </span>added <cite>-c</cite> option to <em>table</em> command</p>
 </div>
 </div>
 </div>
@@ -507,6 +512,12 @@ the whole file</p>
 <dt id="cmdoption-edit-gff-table-s">
 <code class="sig-name descname">-s</code><code class="sig-prename descclassname"></code><code class="sig-prename descclassname">, </code><code class="sig-name descname">--separator</code><code class="sig-prename descclassname"> &lt;separator&gt;</code><a class="headerlink" href="#cmdoption-edit-gff-table-s" title="Permalink to this definition">¶</a></dt>
 <dd><p>Fields separator, default to <cite>TAB</cite></p>
+</dd></dl>
+
+<dl class="std option">
+<dt id="cmdoption-edit-gff-table-c">
+<code class="sig-name descname">-c</code><code class="sig-prename descclassname"></code><code class="sig-prename descclassname">, </code><code class="sig-name descname">--comment</code><code class="sig-prename descclassname"> &lt;comment&gt;</code><a class="headerlink" href="#cmdoption-edit-gff-table-c" title="Permalink to this definition">¶</a></dt>
+<dd><p>Characters for comments in file (eg ‘#’). defaults to None</p>
 </dd></dl>
 
 <dl class="std option">

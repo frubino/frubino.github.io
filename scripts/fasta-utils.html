@@ -7,7 +7,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>fasta-utils - Fasta Utilities &mdash; MGKit: Metagenomic framework 0.5.4 documentation</title>
+  <title>fasta-utils - Fasta Utilities &mdash; MGKit: Metagenomic framework 0.5.5 documentation</title>
   
 
   
@@ -65,7 +65,7 @@
             
             
               <div class="version">
-                0.5.4
+                0.5.5
               </div>
             
           
@@ -253,6 +253,9 @@ with the changes made can be kept, using the <em>–table</em> option.</p>
 <div class="versionchanged">
 <p><span class="versionmodified changed">Changed in version 0.3.4: </span>ported to <em>click</em></p>
 </div>
+<div class="versionchanged">
+<p><span class="versionmodified changed">Changed in version 0.5.5: </span>added option <cite>-1</cite> to output only the forward/frame0 and <cite>-w</cite> to avoid wrap at 60 chars to the <em>translate</em> command</p>
+</div>
 </div>
 </div>
 <div class="section" id="options">
@@ -347,6 +350,28 @@ frames to [output-file]</p>
 </dd>
 <dt class="field-even">Options</dt>
 <dd class="field-even"><p>bac_plt|drs_mit|inv_mit|prt_mit|universal|vt_mit|yst_alt|yst_mit</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="std option">
+<dt id="cmdoption-fasta-utils-translate-1">
+<code class="sig-name descname">-1</code><code class="sig-prename descclassname"></code><code class="sig-prename descclassname">, </code><code class="sig-name descname">--one-seq</code><code class="sig-prename descclassname"></code><a class="headerlink" href="#cmdoption-fasta-utils-translate-1" title="Permalink to this definition">¶</a></dt>
+<dd><p>Only translate the sequence, instead of all 6 frames</p>
+<dl class="field-list simple">
+<dt class="field-odd">Default</dt>
+<dd class="field-odd"><p>False</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="std option">
+<dt id="cmdoption-fasta-utils-translate-w">
+<code class="sig-name descname">-w</code><code class="sig-prename descclassname"></code><code class="sig-prename descclassname">, </code><code class="sig-name descname">--no-wrap</code><code class="sig-prename descclassname"></code><a class="headerlink" href="#cmdoption-fasta-utils-translate-w" title="Permalink to this definition">¶</a></dt>
+<dd><p>Make a sequence use only 1 line (2 including header)</p>
+<dl class="field-list simple">
+<dt class="field-odd">Default</dt>
+<dd class="field-odd"><p>False</p>
 </dd>
 </dl>
 </dd></dl>

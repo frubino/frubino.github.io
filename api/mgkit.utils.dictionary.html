@@ -7,7 +7,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>mgkit.utils.dictionary module &mdash; MGKit: Metagenomic framework 0.5.4 documentation</title>
+  <title>mgkit.utils.dictionary module &mdash; MGKit: Metagenomic framework 0.5.5 documentation</title>
   
 
   
@@ -65,7 +65,7 @@
             
             
               <div class="version">
-                0.5.4
+                0.5.5
               </div>
             
           
@@ -549,9 +549,12 @@ resulting dictionary</p></li>
 
 <dl class="py function">
 <dt id="mgkit.utils.dictionary.text_to_dict">
-<code class="sig-prename descclassname">mgkit.utils.dictionary.</code><code class="sig-name descname">text_to_dict</code><span class="sig-paren">(</span><em class="sig-param">stream</em>, <em class="sig-param">skip_lines=0</em>, <em class="sig-param">sep='\t'</em>, <em class="sig-param">key_index=0</em>, <em class="sig-param">value_index=1</em>, <em class="sig-param">key_func=&lt;class 'str'&gt;</em>, <em class="sig-param">value_func=&lt;class 'str'&gt;</em>, <em class="sig-param">encoding=None</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/mgkit/utils/dictionary.html#text_to_dict"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#mgkit.utils.dictionary.text_to_dict" title="Permalink to this definition">¶</a></dt>
+<code class="sig-prename descclassname">mgkit.utils.dictionary.</code><code class="sig-name descname">text_to_dict</code><span class="sig-paren">(</span><em class="sig-param">stream</em>, <em class="sig-param">skip_lines=0</em>, <em class="sig-param">sep='\t'</em>, <em class="sig-param">key_index=0</em>, <em class="sig-param">value_index=1</em>, <em class="sig-param">key_func=&lt;class 'str'&gt;</em>, <em class="sig-param">value_func=&lt;class 'str'&gt;</em>, <em class="sig-param">encoding=None</em>, <em class="sig-param">skip_empty=False</em>, <em class="sig-param">skip_comment=None</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/mgkit/utils/dictionary.html#text_to_dict"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#mgkit.utils.dictionary.text_to_dict" title="Permalink to this definition">¶</a></dt>
 <dd><div class="versionadded">
 <p><span class="versionmodified added">New in version 0.4.4.</span></p>
+</div>
+<div class="versionchanged">
+<p><span class="versionmodified changed">Changed in version 0.5.5: </span>added <em>skip_comment</em> and <em>skip_empty</em></p>
 </div>
 <p>Reads a dictionary form a table file, the passed file is assumed to be
 opened as text, not binary - in which case you need to pass the encoding
@@ -570,6 +573,9 @@ columns can be chosen with <em>key_index</em> and <em>value_index</em>, respecti
 <li><p><strong>encoding</strong> (<a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.9)"><em>None</em></a><em>, </em><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)"><em>str</em></a>) – if <em>None</em> is passed, the file is assumed to be
 opened in text mode, otherwise the encoding of the file must be
 passed</p></li>
+<li><p><strong>skip_empty</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.9)"><em>bool</em></a>) – if True, an empty value will not be yielded</p></li>
+<li><p><strong>skip_comment</strong> (<a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.9)"><em>None</em></a><em>, </em><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)"><em>str</em></a>) – if a value other than None is passed, lines
+starting with this parameter value will be skipped</p></li>
 </ul>
 </dd>
 <dt class="field-even">Yields</dt>

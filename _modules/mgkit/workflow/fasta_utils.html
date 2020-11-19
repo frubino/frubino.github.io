@@ -7,7 +7,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>mgkit.workflow.fasta_utils &mdash; MGKit: Metagenomic framework 0.5.4 documentation</title>
+  <title>mgkit.workflow.fasta_utils &mdash; MGKit: Metagenomic framework 0.5.5 documentation</title>
   
 
   
@@ -63,7 +63,7 @@
             
             
               <div class="version">
-                0.5.4
+                0.5.5
               </div>
             
           
@@ -196,6 +196,9 @@
 <span class="sd">.. versionchanged:: 0.3.4</span>
 <span class="sd">    ported to *click*</span>
 
+<span class="sd">.. versionchanged:: 0.5.5</span>
+<span class="sd">    added option `-1` to output only the forward/frame0 and `-w` to avoid wrap at 60 chars to the *translate* command</span>
+
 <span class="sd">&quot;&quot;&quot;</span>
 
 <span class="kn">from</span> <span class="nn">__future__</span> <span class="kn">import</span> <span class="n">division</span>
@@ -270,12 +273,18 @@
 <span class="nd">@click</span><span class="o">.</span><span class="n">option</span><span class="p">(</span><span class="s1">&#39;-t&#39;</span><span class="p">,</span> <span class="s1">&#39;--trans-table&#39;</span><span class="p">,</span> <span class="n">default</span><span class="o">=</span><span class="s1">&#39;universal&#39;</span><span class="p">,</span> <span class="n">show_default</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
               <span class="nb">type</span><span class="o">=</span><span class="n">click</span><span class="o">.</span><span class="n">Choice</span><span class="p">([</span><span class="n">table_name</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span> <span class="k">for</span> <span class="n">table_name</span> <span class="ow">in</span> <span class="nb">dir</span><span class="p">(</span><span class="n">trans_tables</span><span class="p">)</span> <span class="k">if</span> <span class="ow">not</span> <span class="n">table_name</span><span class="o">.</span><span class="n">startswith</span><span class="p">(</span><span class="s1">&#39;_&#39;</span><span class="p">)]),</span>
               <span class="n">help</span><span class="o">=</span><span class="s1">&#39;translation table&#39;</span><span class="p">)</span>
+<span class="nd">@click</span><span class="o">.</span><span class="n">option</span><span class="p">(</span><span class="s1">&#39;-1&#39;</span><span class="p">,</span> <span class="s1">&#39;--one-seq&#39;</span><span class="p">,</span> <span class="n">default</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">is_flag</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">show_default</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+              <span class="n">help</span><span class="o">=</span><span class="s1">&#39;Only translate the sequence, instead of all 6 frames&#39;</span><span class="p">)</span>
+<span class="nd">@click</span><span class="o">.</span><span class="n">option</span><span class="p">(</span><span class="s1">&#39;-w&#39;</span><span class="p">,</span> <span class="s1">&#39;--no-wrap&#39;</span><span class="p">,</span> <span class="n">default</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">is_flag</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">show_default</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+              <span class="n">help</span><span class="o">=</span><span class="s1">&#39;Make a sequence use only 1 line (2 including header)&#39;</span><span class="p">)</span>
 <span class="nd">@click</span><span class="o">.</span><span class="n">option</span><span class="p">(</span><span class="s1">&#39;--progress&#39;</span><span class="p">,</span> <span class="n">default</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">is_flag</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
               <span class="n">help</span><span class="o">=</span><span class="s2">&quot;Shows Progress Bar&quot;</span><span class="p">)</span>
 <span class="nd">@click</span><span class="o">.</span><span class="n">argument</span><span class="p">(</span><span class="s1">&#39;fasta-file&#39;</span><span class="p">,</span> <span class="nb">type</span><span class="o">=</span><span class="n">click</span><span class="o">.</span><span class="n">File</span><span class="p">(</span><span class="s1">&#39;rb&#39;</span><span class="p">),</span> <span class="n">default</span><span class="o">=</span><span class="s1">&#39;-&#39;</span><span class="p">)</span>
 <span class="nd">@click</span><span class="o">.</span><span class="n">argument</span><span class="p">(</span><span class="s1">&#39;output-file&#39;</span><span class="p">,</span> <span class="nb">type</span><span class="o">=</span><span class="n">click</span><span class="o">.</span><span class="n">File</span><span class="p">(</span><span class="s1">&#39;wb&#39;</span><span class="p">),</span> <span class="n">default</span><span class="o">=</span><span class="s1">&#39;-&#39;</span><span class="p">)</span>
-<span class="k">def</span> <span class="nf">translate_command</span><span class="p">(</span><span class="n">verbose</span><span class="p">,</span> <span class="n">trans_table</span><span class="p">,</span> <span class="n">progress</span><span class="p">,</span> <span class="n">fasta_file</span><span class="p">,</span> <span class="n">output_file</span><span class="p">):</span>
+<span class="k">def</span> <span class="nf">translate_command</span><span class="p">(</span><span class="n">verbose</span><span class="p">,</span> <span class="n">trans_table</span><span class="p">,</span> <span class="n">one_seq</span><span class="p">,</span> <span class="n">no_wrap</span><span class="p">,</span> <span class="n">progress</span><span class="p">,</span> <span class="n">fasta_file</span><span class="p">,</span> <span class="n">output_file</span><span class="p">):</span>
     <span class="n">mgkit</span><span class="o">.</span><span class="n">logger</span><span class="o">.</span><span class="n">config_log</span><span class="p">(</span><span class="n">level</span><span class="o">=</span><span class="n">logging</span><span class="o">.</span><span class="n">DEBUG</span> <span class="k">if</span> <span class="n">verbose</span> <span class="k">else</span> <span class="n">logging</span><span class="o">.</span><span class="n">INFO</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">one_seq</span><span class="p">:</span>
+        <span class="n">LOG</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;Assuming the sequences are in the correct frame&quot;</span><span class="p">)</span>
     <span class="n">LOG</span><span class="o">.</span><span class="n">info</span><span class="p">(</span>
         <span class="s1">&#39;Writing to file (</span><span class="si">%s</span><span class="s1">)&#39;</span><span class="p">,</span>
         <span class="nb">getattr</span><span class="p">(</span><span class="n">output_file</span><span class="p">,</span> <span class="s1">&#39;name&#39;</span><span class="p">,</span> <span class="nb">repr</span><span class="p">(</span><span class="n">output_file</span><span class="p">))</span>
@@ -285,11 +294,22 @@
 
     <span class="n">iterator</span> <span class="o">=</span> <span class="n">fasta</span><span class="o">.</span><span class="n">load_fasta</span><span class="p">(</span><span class="n">fasta_file</span><span class="p">)</span>
 
-    <span class="n">iterator</span> <span class="o">=</span> <span class="n">tqdm</span><span class="p">(</span><span class="n">iterator</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">progress</span><span class="p">:</span>
+        <span class="n">iterator</span> <span class="o">=</span> <span class="n">tqdm</span><span class="p">(</span><span class="n">iterator</span><span class="p">)</span>
+    
+    <span class="k">if</span> <span class="n">no_wrap</span><span class="p">:</span>
+        <span class="n">LOG</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;No wrap at 60 chars for sequences&quot;</span><span class="p">)</span>
+        <span class="n">wrap</span> <span class="o">=</span> <span class="kc">None</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">wrap</span> <span class="o">=</span> <span class="mi">60</span>
 
     <span class="k">for</span> <span class="n">name</span><span class="p">,</span> <span class="n">seq</span> <span class="ow">in</span> <span class="n">iterator</span><span class="p">:</span>
-        <span class="k">for</span> <span class="n">new_header</span><span class="p">,</span> <span class="n">new_seq</span> <span class="ow">in</span> <span class="n">translate_seq</span><span class="p">(</span><span class="n">name</span><span class="p">,</span> <span class="n">seq</span><span class="p">,</span> <span class="n">trans_table</span><span class="p">):</span>
-            <span class="n">fasta</span><span class="o">.</span><span class="n">write_fasta_sequence</span><span class="p">(</span><span class="n">output_file</span><span class="p">,</span> <span class="n">new_header</span><span class="p">,</span> <span class="n">new_seq</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">one_seq</span><span class="p">:</span>
+            <span class="n">new_seq</span> <span class="o">=</span> <span class="n">translate_sequence</span><span class="p">(</span><span class="n">seq</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="n">trans_table</span><span class="p">,</span> <span class="kc">False</span><span class="p">)</span>
+            <span class="n">fasta</span><span class="o">.</span><span class="n">write_fasta_sequence</span><span class="p">(</span><span class="n">output_file</span><span class="p">,</span> <span class="n">name</span><span class="p">,</span> <span class="n">new_seq</span><span class="p">,</span> <span class="n">wrap</span><span class="o">=</span><span class="n">wrap</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">for</span> <span class="n">new_header</span><span class="p">,</span> <span class="n">new_seq</span> <span class="ow">in</span> <span class="n">translate_seq</span><span class="p">(</span><span class="n">name</span><span class="p">,</span> <span class="n">seq</span><span class="p">,</span> <span class="n">trans_table</span><span class="p">):</span>
+                <span class="n">fasta</span><span class="o">.</span><span class="n">write_fasta_sequence</span><span class="p">(</span><span class="n">output_file</span><span class="p">,</span> <span class="n">new_header</span><span class="p">,</span> <span class="n">new_seq</span><span class="p">,</span> <span class="n">wrap</span><span class="o">=</span><span class="n">wrap</span><span class="p">)</span>
 
 
 <span class="nd">@main</span><span class="o">.</span><span class="n">command</span><span class="p">(</span><span class="s1">&#39;uid&#39;</span><span class="p">,</span> <span class="n">help</span><span class="o">=</span><span class="s2">&quot;&quot;&quot;Changes each header of a FASTA file [file-file] to</span>
