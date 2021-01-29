@@ -1,96 +1,109 @@
 
-
 <!DOCTYPE html>
-<html class="writer-html5" lang="en" >
-<head>
-  <meta charset="utf-8">
-  
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  
-  <title>mgkit.workflow.fasta_utils module &mdash; MGKit: Metagenomic framework 0.5.5 documentation</title>
-  
 
-  
-  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
-  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
-  <link rel="stylesheet" href="../_static/graphviz.css" type="text/css" />
-
-  
-  
-  
-  
-
-  
-  <!--[if lt IE 9]>
-    <script src="../_static/js/html5shiv.min.js"></script>
-  <![endif]-->
-  
-    
-      <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
-        <script src="../_static/jquery.js"></script>
-        <script src="../_static/underscore.js"></script>
-        <script src="../_static/doctools.js"></script>
-        <script src="../_static/language_data.js"></script>
-        <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
-        <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
-        <script type="text/x-mathjax-config">MathJax.Hub.Config({"tex2jax": {"inlineMath": [["$", "$"], ["\\(", "\\)"]], "processEscapes": true, "ignoreClass": "document", "processClass": "math|output_area"}})</script>
-    
-    <script type="text/javascript" src="../_static/js/theme.js"></script>
-
-    
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>mgkit.workflow.fasta_utils module &#8212; MGKit: Metagenomic framework 0.5.5 documentation</title>
+    <link rel="stylesheet" href="../_static/alabaster.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../_static/graphviz.css" />
+    <script id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script src="../_static/language_data.js"></script>
+    <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script type="text/x-mathjax-config">MathJax.Hub.Config({"tex2jax": {"inlineMath": [["$", "$"], ["\\(", "\\)"]], "processEscapes": true, "ignoreClass": "document", "processClass": "math|output_area"}})</script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
     <link rel="next" title="mgkit.workflow.fastq_utils module" href="mgkit.workflow.fastq_utils.html" />
-    <link rel="prev" title="mgkit.workflow.extract_gff_info module" href="mgkit.workflow.extract_gff_info.html" /> 
-</head>
-
-<body class="wy-body-for-nav">
-
+    <link rel="prev" title="mgkit.workflow.extract_gff_info module" href="mgkit.workflow.extract_gff_info.html" />
    
-  <div class="wy-grid-for-nav">
-    
-    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
-      <div class="wy-side-scroll">
-        <div class="wy-side-nav-search" >
+  <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
+  </head><body>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
           
 
-          
-            <a href="../index.html" class="icon icon-home" alt="Documentation Home"> MGKit: Metagenomic framework
-          
-
-          
-          </a>
-
-          
+          <div class="body" role="main">
             
-            
-              <div class="version">
-                0.5.5
-              </div>
-            
-          
+  <div class="section" id="module-mgkit.workflow.fasta_utils">
+<span id="mgkit-workflow-fasta-utils-module"></span><h1>mgkit.workflow.fasta_utils module<a class="headerlink" href="#module-mgkit.workflow.fasta_utils" title="Permalink to this headline">¶</a></h1>
+<div class="versionadded">
+<p><span class="versionmodified added">New in version 0.3.0.</span></p>
+</div>
+<p>Scripts that includes some functionality to help use FASTA files with the
+framework</p>
+<div class="section" id="split-command">
+<h2>split command<a class="headerlink" href="#split-command" title="Permalink to this headline">¶</a></h2>
+<p>Used to split a fasta file into smaller fragments</p>
+</div>
+<div class="section" id="translate-command">
+<h2>translate command<a class="headerlink" href="#translate-command" title="Permalink to this headline">¶</a></h2>
+<p>Used to translate nucleotide sequences into amino acids.</p>
+</div>
+<div class="section" id="uid-command">
+<h2>uid command<a class="headerlink" href="#uid-command" title="Permalink to this headline">¶</a></h2>
+<p>Used to change a FASTA file headers to a unique ID. A table (tab separated)
+with the changes made can be kept, using the <em>–table</em> option.</p>
+</div>
+<div class="section" id="changes">
+<h2>Changes<a class="headerlink" href="#changes" title="Permalink to this headline">¶</a></h2>
+<div class="versionadded">
+<p><span class="versionmodified added">New in version 0.3.0.</span></p>
+</div>
+<div class="versionchanged">
+<p><span class="versionmodified changed">Changed in version 0.3.1: </span>added <em>translate</em> and <em>uid</em> command</p>
+</div>
+<div class="versionchanged">
+<p><span class="versionmodified changed">Changed in version 0.3.4: </span>ported to <em>click</em></p>
+</div>
+<div class="versionchanged">
+<p><span class="versionmodified changed">Changed in version 0.5.5: </span>added option <cite>-1</cite> to output only the forward/frame0 and <cite>-w</cite> to avoid wrap at 60 chars to the <em>translate</em> command</p>
+</div>
+<dl class="py function">
+<dt id="mgkit.workflow.fasta_utils.load_trans_table">
+<code class="sig-prename descclassname">mgkit.workflow.fasta_utils.</code><code class="sig-name descname">load_trans_table</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">table_name</span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/mgkit/workflow/fasta_utils.html#load_trans_table"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#mgkit.workflow.fasta_utils.load_trans_table" title="Permalink to this definition">¶</a></dt>
+<dd><p>Loads translation table</p>
+</dd></dl>
 
-          
-<div role="search">
-  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
-    <input type="text" name="q" placeholder="Search docs" />
-    <input type="hidden" name="check_keywords" value="yes" />
-    <input type="hidden" name="area" value="default" />
-  </form>
+<dl class="py function">
+<dt id="mgkit.workflow.fasta_utils.translate_seq">
+<code class="sig-prename descclassname">mgkit.workflow.fasta_utils.</code><code class="sig-name descname">translate_seq</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">name</span></em>, <em class="sig-param"><span class="n">seq</span></em>, <em class="sig-param"><span class="n">trans_table</span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/mgkit/workflow/fasta_utils.html#translate_seq"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#mgkit.workflow.fasta_utils.translate_seq" title="Permalink to this definition">¶</a></dt>
+<dd><p>Tranlates sequence into the 6 frames</p>
+</dd></dl>
+
+</div>
 </div>
 
+
+          </div>
           
         </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<h1 class="logo"><a href="../index.html">MGKit: Metagenomic framework</a></h1>
 
-        
-        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
-          
-            
-            
-              
-            
-            
-              <ul class="current">
+
+
+
+
+
+
+
+<h3>Navigation</h3>
+<ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="../introduction.html">Introduction</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../install.html">Installation</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../pipeline/index.html">Metagenomic Pipeline</a></li>
@@ -163,13 +176,7 @@
 <li class="toctree-l2"><a class="reference internal" href="mgkit.workflow.add_gff_info.html">mgkit.workflow.add_gff_info module</a></li>
 <li class="toctree-l2"><a class="reference internal" href="mgkit.workflow.blast2gff.html">mgkit.workflow.blast2gff module</a></li>
 <li class="toctree-l2"><a class="reference internal" href="mgkit.workflow.extract_gff_info.html">mgkit.workflow.extract_gff_info module</a></li>
-<li class="toctree-l2 current"><a class="current reference internal" href="#">mgkit.workflow.fasta_utils module</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="#split-command">split command</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#translate-command">translate command</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#uid-command">uid command</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#changes">Changes</a></li>
-</ul>
-</li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">mgkit.workflow.fasta_utils module</a></li>
 <li class="toctree-l2"><a class="reference internal" href="mgkit.workflow.fastq_utils.html">mgkit.workflow.fastq_utils module</a></li>
 <li class="toctree-l2"><a class="reference internal" href="mgkit.workflow.filter_gff.html">mgkit.workflow.filter_gff module</a></li>
 <li class="toctree-l2"><a class="reference internal" href="mgkit.workflow.hmmer2gff.html">mgkit.workflow.hmmer2gff module</a></li>
@@ -184,202 +191,57 @@
 <li class="toctree-l1"><a class="reference internal" href="../changes.html">Changes</a></li>
 </ul>
 
-            
-          
-        </div>
-        
-      </div>
-    </nav>
-
-    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
-
-      
-      <nav class="wy-nav-top" aria-label="top navigation">
-        
-          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
-          <a href="../index.html">MGKit: Metagenomic framework</a>
-        
-      </nav>
-
-
-      <div class="wy-nav-content">
-        
-        <div class="rst-content">
-        
-          
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<div role="navigation" aria-label="breadcrumbs navigation">
-
-  <ul class="wy-breadcrumbs">
-    
-      <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
-        
-          <li><a href="../library.html">Library Reference</a> &raquo;</li>
-        
-          <li><a href="mgkit.html">mgkit package</a> &raquo;</li>
-        
-          <li><a href="mgkit.workflow.html">mgkit.workflow package</a> &raquo;</li>
-        
-      <li>mgkit.workflow.fasta_utils module</li>
-    
-    
-      <li class="wy-breadcrumbs-aside">
-        
-            
-            <a href="../_sources/api/mgkit.workflow.fasta_utils.rst.txt" rel="nofollow"> View page source</a>
-          
-        
-      </li>
-    
-  </ul>
-
-  
-  <hr/>
+<div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="../index.html">Documentation overview</a><ul>
+  <li><a href="../library.html">Library Reference</a><ul>
+  <li><a href="mgkit.html">mgkit package</a><ul>
+  <li><a href="mgkit.workflow.html">mgkit.workflow package</a><ul>
+      <li>Previous: <a href="mgkit.workflow.extract_gff_info.html" title="previous chapter">mgkit.workflow.extract_gff_info module</a></li>
+      <li>Next: <a href="mgkit.workflow.fastq_utils.html" title="next chapter">mgkit.workflow.fastq_utils module</a></li>
+  </ul></li>
+  </ul></li>
+  </ul></li>
+  </ul></li>
+</ul>
 </div>
-          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
-           <div itemprop="articleBody">
-            
-  
-<style>
-/* CSS overrides for sphinx_rtd_theme */
-
-/* 24px margin */
-.nbinput.nblast.container,
-.nboutput.nblast.container {
-    margin-bottom: 19px;  /* padding has already 5px */
-}
-
-/* ... except between code cells! */
-.nblast.container + .nbinput.container {
-    margin-top: -19px;
-}
-
-.admonition > p:before {
-    margin-right: 4px;  /* make room for the exclamation icon */
-}
-
-/* Fix math alignment, see https://github.com/rtfd/sphinx_rtd_theme/pull/686 */
-.math {
-    text-align: unset;
-}
-</style>
-<div class="section" id="module-mgkit.workflow.fasta_utils">
-<span id="mgkit-workflow-fasta-utils-module"></span><h1>mgkit.workflow.fasta_utils module<a class="headerlink" href="#module-mgkit.workflow.fasta_utils" title="Permalink to this headline">¶</a></h1>
-<div class="versionadded">
-<p><span class="versionmodified added">New in version 0.3.0.</span></p>
-</div>
-<p>Scripts that includes some functionality to help use FASTA files with the
-framework</p>
-<div class="section" id="split-command">
-<h2>split command<a class="headerlink" href="#split-command" title="Permalink to this headline">¶</a></h2>
-<p>Used to split a fasta file into smaller fragments</p>
-</div>
-<div class="section" id="translate-command">
-<h2>translate command<a class="headerlink" href="#translate-command" title="Permalink to this headline">¶</a></h2>
-<p>Used to translate nucleotide sequences into amino acids.</p>
-</div>
-<div class="section" id="uid-command">
-<h2>uid command<a class="headerlink" href="#uid-command" title="Permalink to this headline">¶</a></h2>
-<p>Used to change a FASTA file headers to a unique ID. A table (tab separated)
-with the changes made can be kept, using the <em>–table</em> option.</p>
-</div>
-<div class="section" id="changes">
-<h2>Changes<a class="headerlink" href="#changes" title="Permalink to this headline">¶</a></h2>
-<div class="versionadded">
-<p><span class="versionmodified added">New in version 0.3.0.</span></p>
-</div>
-<div class="versionchanged">
-<p><span class="versionmodified changed">Changed in version 0.3.1: </span>added <em>translate</em> and <em>uid</em> command</p>
-</div>
-<div class="versionchanged">
-<p><span class="versionmodified changed">Changed in version 0.3.4: </span>ported to <em>click</em></p>
-</div>
-<div class="versionchanged">
-<p><span class="versionmodified changed">Changed in version 0.5.5: </span>added option <cite>-1</cite> to output only the forward/frame0 and <cite>-w</cite> to avoid wrap at 60 chars to the <em>translate</em> command</p>
-</div>
-<dl class="py function">
-<dt id="mgkit.workflow.fasta_utils.load_trans_table">
-<code class="sig-prename descclassname">mgkit.workflow.fasta_utils.</code><code class="sig-name descname">load_trans_table</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">table_name</span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/mgkit/workflow/fasta_utils.html#load_trans_table"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#mgkit.workflow.fasta_utils.load_trans_table" title="Permalink to this definition">¶</a></dt>
-<dd><p>Loads translation table</p>
-</dd></dl>
-
-<dl class="py function">
-<dt id="mgkit.workflow.fasta_utils.translate_seq">
-<code class="sig-prename descclassname">mgkit.workflow.fasta_utils.</code><code class="sig-name descname">translate_seq</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">name</span></em>, <em class="sig-param"><span class="n">seq</span></em>, <em class="sig-param"><span class="n">trans_table</span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/mgkit/workflow/fasta_utils.html#translate_seq"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#mgkit.workflow.fasta_utils.translate_seq" title="Permalink to this definition">¶</a></dt>
-<dd><p>Tranlates sequence into the 6 frames</p>
-</dd></dl>
-
-</div>
-</div>
-
-
-           </div>
-           
-          </div>
-          <footer>
-  
-    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
-      
-        <a href="mgkit.workflow.fastq_utils.html" class="btn btn-neutral float-right" title="mgkit.workflow.fastq_utils module" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
-      
-      
-        <a href="mgkit.workflow.extract_gff_info.html" class="btn btn-neutral float-left" title="mgkit.workflow.extract_gff_info module" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
-      
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="../search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" />
+      <input type="submit" value="Go" />
+    </form>
     </div>
-  
+</div>
+<script>$('#searchbox').show(0);</script>
 
-  <hr/>
 
-  <div role="contentinfo">
-    <p>
-        
-        &copy; Copyright 2013-2020, Francesco Rubino
 
-    </p>
-  </div>
-    
-    
-    
-    Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a
-    
-    <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a>
-    
-    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
 
-</footer>
+
+
+
 
         </div>
       </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &copy;2013-2020, Francesco Rubino.
+      
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 3.2.1</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.12</a>
+      
+      |
+      <a href="../_sources/api/mgkit.workflow.fasta_utils.rst.txt"
+          rel="nofollow">Page source</a>
+    </div>
 
-    </section>
-
-  </div>
-  
-
-  <script type="text/javascript">
-      jQuery(function () {
-          SphinxRtdTheme.Navigation.enable(true);
-      });
-  </script>
-
-  
-  
     
-   
 
-</body>
+    
+  </body>
 </html>

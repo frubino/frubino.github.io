@@ -1,295 +1,53 @@
 
-
 <!DOCTYPE html>
-<html class="writer-html5" lang="en" >
-<head>
-  <meta charset="utf-8">
-  
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  
-  <title>Changes &mdash; MGKit: Metagenomic framework 0.5.5 documentation</title>
-  
 
-  
-  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
-  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
-  <link rel="stylesheet" href="_static/graphviz.css" type="text/css" />
-
-  
-  
-  
-  
-
-  
-  <!--[if lt IE 9]>
-    <script src="_static/js/html5shiv.min.js"></script>
-  <![endif]-->
-  
-    
-      <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
-        <script src="_static/jquery.js"></script>
-        <script src="_static/underscore.js"></script>
-        <script src="_static/doctools.js"></script>
-        <script src="_static/language_data.js"></script>
-        <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
-        <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
-        <script type="text/x-mathjax-config">MathJax.Hub.Config({"tex2jax": {"inlineMath": [["$", "$"], ["\\(", "\\)"]], "processEscapes": true, "ignoreClass": "document", "processClass": "math|output_area"}})</script>
-    
-    <script type="text/javascript" src="_static/js/theme.js"></script>
-
-    
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Changes &#8212; MGKit: Metagenomic framework 0.5.5 documentation</title>
+    <link rel="stylesheet" href="_static/alabaster.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="_static/graphviz.css" />
+    <script id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+    <script src="_static/jquery.js"></script>
+    <script src="_static/underscore.js"></script>
+    <script src="_static/doctools.js"></script>
+    <script src="_static/language_data.js"></script>
+    <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script type="text/x-mathjax-config">MathJax.Hub.Config({"tex2jax": {"inlineMath": [["$", "$"], ["\\(", "\\)"]], "processEscapes": true, "ignoreClass": "document", "processClass": "math|output_area"}})</script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="prev" title="mgkit" href="api/modules.html" /> 
-</head>
-
-<body class="wy-body-for-nav">
-
+    <link rel="prev" title="mgkit" href="api/modules.html" />
    
-  <div class="wy-grid-for-nav">
-    
-    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
-      <div class="wy-side-scroll">
-        <div class="wy-side-nav-search" >
-          
-
-          
-            <a href="index.html" class="icon icon-home" alt="Documentation Home"> MGKit: Metagenomic framework
-          
-
-          
-          </a>
-
-          
-            
-            
-              <div class="version">
-                0.5.5
-              </div>
-            
-          
-
-          
-<div role="search">
-  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
-    <input type="text" name="q" placeholder="Search docs" />
-    <input type="hidden" name="check_keywords" value="yes" />
-    <input type="hidden" name="area" value="default" />
-  </form>
-</div>
-
-          
-        </div>
-
-        
-        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
-          
-            
-            
-              
-            
-            
-              <ul class="current">
-<li class="toctree-l1"><a class="reference internal" href="introduction.html">Introduction</a></li>
-<li class="toctree-l1"><a class="reference internal" href="install.html">Installation</a></li>
-<li class="toctree-l1"><a class="reference internal" href="pipeline/index.html">Metagenomic Pipeline</a></li>
-<li class="toctree-l1"><a class="reference internal" href="scripts/index.html">Scripts Details</a></li>
-<li class="toctree-l1"><a class="reference internal" href="examples/index.html">Example Notebooks</a></li>
-<li class="toctree-l1"><a class="reference internal" href="gff.html">MGKit GFF Specifications</a></li>
-<li class="toctree-l1"><a class="reference internal" href="library.html">Library Reference</a></li>
-<li class="toctree-l1 current"><a class="current reference internal" href="#">Changes</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="#id1">0.5.5</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="#changed">Changed</a></li>
-</ul>
-</li>
-<li class="toctree-l2"><a class="reference internal" href="#id2">0.5.4</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="#taxon-utils-get">taxon-utils get</a></li>
-</ul>
-</li>
-<li class="toctree-l2"><a class="reference internal" href="#id3">0.5.3</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#id4">0.5.2</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#id5">0.5.1</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#id6">0.5.0</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="#added">Added</a></li>
-</ul>
-</li>
-<li class="toctree-l2"><a class="reference internal" href="#id7">0.4.4</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="#id8">Added</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#id9">Changed</a></li>
-</ul>
-</li>
-<li class="toctree-l2"><a class="reference internal" href="#id10">0.4.3</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="#fixes">Fixes</a></li>
-</ul>
-</li>
-<li class="toctree-l2"><a class="reference internal" href="#id11">0.4.2</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="#id12">Added</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#id13">Changed</a></li>
-</ul>
-</li>
-<li class="toctree-l2"><a class="reference internal" href="#id14">0.4.1</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#id15">0.4.0</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="#id16">Added</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#id17">Changed</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#deprecated">Deprecated</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#tests">Tests</a></li>
-</ul>
-</li>
-<li class="toctree-l2"><a class="reference internal" href="#id18">0.3.4</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="#scripts">Scripts</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#python3">Python3</a></li>
-</ul>
-</li>
-<li class="toctree-l2"><a class="reference internal" href="#id19">0.3.3</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="#id20">Added</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#id21">Changed</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#id22">Deprecated</a></li>
-</ul>
-</li>
-<li class="toctree-l2"><a class="reference internal" href="#id23">0.3.2</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#id24">0.3.1</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="#id25">Added</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#id26">Changed</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#fixed">Fixed</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#id27">Deprecated</a></li>
-</ul>
-</li>
-<li class="toctree-l2"><a class="reference internal" href="#id28">0.3.0</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="#id29">Added</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#id30">Changed</a></li>
-</ul>
-</li>
-<li class="toctree-l2"><a class="reference internal" href="#id31">0.2.5</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="#id32">Changed</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#id33">Added</a></li>
-</ul>
-</li>
-<li class="toctree-l2"><a class="reference internal" href="#id34">0.2.4</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="#id35">Changed</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#id36">Fixed</a></li>
-</ul>
-</li>
-<li class="toctree-l2"><a class="reference internal" href="#id37">0.2.3</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="#id38">Added</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#id39">Changed</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#id40">Fixed</a></li>
-</ul>
-</li>
-<li class="toctree-l2"><a class="reference internal" href="#id41">0.2.2</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="#id42">Added</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#id43">Changed</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#removed">Removed</a></li>
-</ul>
-</li>
-<li class="toctree-l2"><a class="reference internal" href="#id44">0.2.1</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="#id45">Added</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#id46">Changed</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#id47">Deprecated</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#id48">Removed</a></li>
-</ul>
-</li>
-<li class="toctree-l2"><a class="reference internal" href="#id49">0.2.0</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#id50">0.1.16</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#id51">0.1.15</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#id52">0.1.14</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#id53">0.1.13</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#id54">0.1.12</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#id55">0.1.11</a></li>
-</ul>
-</li>
-</ul>
-
-            
-          
-        </div>
-        
-      </div>
-    </nav>
-
-    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
-
-      
-      <nav class="wy-nav-top" aria-label="top navigation">
-        
-          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
-          <a href="index.html">MGKit: Metagenomic framework</a>
-        
-      </nav>
-
-
-      <div class="wy-nav-content">
-        
-        <div class="rst-content">
-        
-          
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<div role="navigation" aria-label="breadcrumbs navigation">
-
-  <ul class="wy-breadcrumbs">
-    
-      <li><a href="index.html" class="icon icon-home"></a> &raquo;</li>
-        
-      <li>Changes</li>
-    
-    
-      <li class="wy-breadcrumbs-aside">
-        
-            
-            <a href="_sources/changes.rst.txt" rel="nofollow"> View page source</a>
-          
-        
-      </li>
-    
-  </ul>
-
+  <link rel="stylesheet" href="_static/custom.css" type="text/css" />
   
-  <hr/>
-</div>
-          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
-           <div itemprop="articleBody">
-            
   
-<style>
-/* CSS overrides for sphinx_rtd_theme */
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
 
-/* 24px margin */
-.nbinput.nblast.container,
-.nboutput.nblast.container {
-    margin-bottom: 19px;  /* padding has already 5px */
-}
+  </head><body>
+  
 
-/* ... except between code cells! */
-.nblast.container + .nbinput.container {
-    margin-top: -19px;
-}
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          
 
-.admonition > p:before {
-    margin-right: 4px;  /* make room for the exclamation icon */
-}
-
-/* Fix math alignment, see https://github.com/rtfd/sphinx_rtd_theme/pull/686 */
-.math {
-    text-align: unset;
-}
-</style>
-<div class="section" id="changes">
+          <div class="body" role="main">
+            
+  <div class="section" id="changes">
 <h1>Changes<a class="headerlink" href="#changes" title="Permalink to this headline">¶</a></h1>
 <div class="section" id="id1">
-<h2>0.5.5<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h2>
+<h2>0.5.6<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li><p>mgkit.net.uniprot tests have problems with upstream API and are skipped for now</p></li>
+<li><p>added option to <cite>taxon-utils lca</cite> to use the reference file to add base pair counts to the Krona output</p></li>
+<li><p>several bugfixes</p></li>
+</ul>
+</div>
+<div class="section" id="id2">
+<h2>0.5.5<a class="headerlink" href="#id2" title="Permalink to this headline">¶</a></h2>
 <ul class="simple">
 <li><p><cite>fasta-utils translate</cite> gained an option to translate the current frame of a sequence, assumes the sequences are ORFs</p></li>
 <li><p><cite>edit-gff table</cite> gained an option to skip comments, user can indicated the string for comments. For example <cite>-c ‘#’</cite> for comments starting with ‘#’</p></li>
@@ -301,8 +59,8 @@
 </ul>
 </div>
 </div>
-<div class="section" id="id2">
-<h2>0.5.4<a class="headerlink" href="#id2" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="id3">
+<h2>0.5.4<a class="headerlink" href="#id3" title="Permalink to this headline">¶</a></h2>
 <ul class="simple">
 <li><p>added <a class="reference internal" href="api/mgkit.taxon.html#mgkit.taxon.Taxonomy.iter_ids" title="mgkit.taxon.Taxonomy.iter_ids"><code class="xref py py-meth docutils literal notranslate"><span class="pre">mgkit.taxon.Taxonomy.iter_ids()</span></code></a> to iterate over Taxonomy, yielding Taxon IDs</p></li>
 <li><p>added options <cite>-p</cite> and <cite>-c</cite> to <cite>taxon-utils get</cite></p></li>
@@ -313,21 +71,21 @@
 <p>The <cite>-c</cite> option will output also all the taxa that are children of the passed names.</p>
 </div>
 </div>
-<div class="section" id="id3">
-<h2>0.5.3<a class="headerlink" href="#id3" title="Permalink to this headline">¶</a></h2>
-<ul class="simple">
-<li><p>Added parameters to support the partial pN/pS calculations to <cite>mgkit.snps.funcs.combine_sample_snps</cite></p></li>
-<li><p>Added options to pnps-gen script to output only pS or pN to script <cite>pnps-gen</cite></p></li>
-</ul>
-</div>
 <div class="section" id="id4">
-<h2>0.5.2<a class="headerlink" href="#id4" title="Permalink to this headline">¶</a></h2>
+<h2>0.5.3<a class="headerlink" href="#id4" title="Permalink to this headline">¶</a></h2>
 <ul class="simple">
-<li><p>Fixed a bug when using <em>–rank None</em> in <cite>pnps-gen</cite></p></li>
+<li><p>Added parameters to support the partial pN/pS calculations to <a class="reference internal" href="api/mgkit.snps.funcs.html#mgkit.snps.funcs.combine_sample_snps" title="mgkit.snps.funcs.combine_sample_snps"><code class="xref py py-func docutils literal notranslate"><span class="pre">mgkit.snps.funcs.combine_sample_snps()</span></code></a></p></li>
+<li><p>Added options to pnps-gen script to output only pS or pN to script <code class="docutils literal notranslate"><span class="pre">pnps-gen</span></code></p></li>
 </ul>
 </div>
 <div class="section" id="id5">
-<h2>0.5.1<a class="headerlink" href="#id5" title="Permalink to this headline">¶</a></h2>
+<h2>0.5.2<a class="headerlink" href="#id5" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li><p>Fixed a bug when using <em>–rank None</em> in <code class="docutils literal notranslate"><span class="pre">pnps-gen</span></code></p></li>
+</ul>
+</div>
+<div class="section" id="id6">
+<h2>0.5.1<a class="headerlink" href="#id6" title="Permalink to this headline">¶</a></h2>
 <ul class="simple">
 <li><p>get_gene_taxon_dataframe: changed: Changed in version 0.5.1: gene_map can be None, use_uid can be passed to the underline function</p></li>
 <li><p>added option to include the lineage as a string in <em>pnps-gen</em></p></li>
@@ -336,20 +94,20 @@
 <li><p>added option to make a different type of table in <em>pnps-gen rank</em></p></li>
 </ul>
 </div>
-<div class="section" id="id6">
-<h2>0.5.0<a class="headerlink" href="#id6" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="id7">
+<h2>0.5.0<a class="headerlink" href="#id7" title="Permalink to this headline">¶</a></h2>
 <div class="section" id="added">
 <h3>Added<a class="headerlink" href="#added" title="Permalink to this headline">¶</a></h3>
 <ul class="simple">
 <li><p><cite>taxon-utils get</cite> command to query a taxonomy file</p></li>
-<li><p><cite>pnps-gen</cite> to generate a table of pN/pS values</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">pnps-gen</span></code> to generate a table of pN/pS values</p></li>
 </ul>
 </div>
 </div>
-<div class="section" id="id7">
-<h2>0.4.4<a class="headerlink" href="#id7" title="Permalink to this headline">¶</a></h2>
 <div class="section" id="id8">
-<h3>Added<a class="headerlink" href="#id8" title="Permalink to this headline">¶</a></h3>
+<h2>0.4.4<a class="headerlink" href="#id8" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="id9">
+<h3>Added<a class="headerlink" href="#id9" title="Permalink to this headline">¶</a></h3>
 <ul class="simple">
 <li><p><a class="reference internal" href="api/mgkit.utils.dictionary.html#mgkit.utils.dictionary.dict_to_text" title="mgkit.utils.dictionary.dict_to_text"><code class="xref py py-func docutils literal notranslate"><span class="pre">mgkit.utils.dictionary.dict_to_text()</span></code></a> <a class="reference internal" href="api/mgkit.utils.dictionary.html#mgkit.utils.dictionary.text_to_dict" title="mgkit.utils.dictionary.text_to_dict"><code class="xref py py-func docutils literal notranslate"><span class="pre">mgkit.utils.dictionary.text_to_dict()</span></code></a> to read/write simple dictionary files (tables)</p></li>
 <li><p><em>filter-gff overlap</em> command, added option to not use the strand information in filtering the overlaps and also to make multiple iterations (max 10) to better remove overlaps</p></li>
@@ -357,8 +115,8 @@
 <li><p>a new script, <em>edit-gff</em> to view a GFF as table and perform general edits on it</p></li>
 </ul>
 </div>
-<div class="section" id="id9">
-<h3>Changed<a class="headerlink" href="#id9" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="id10">
+<h3>Changed<a class="headerlink" href="#id10" title="Permalink to this headline">¶</a></h3>
 <ul class="simple">
 <li><p><cite>download-ncbi-taxa.sh</cite> and <cite>download-uniprot-taxa.sh</cite> (<a class="reference internal" href="scripts/download-taxonomy.html#download-taxonomy"><span class="std std-ref">Download Taxonomy</span></a>): if a <cite>PROGBAR</cite> enviroment variable is set, the progress bar (default in <cite>wget</cite>) is used</p></li>
 <li><p>changed <a class="reference internal" href="api/mgkit.io.gff.html#mgkit.io.gff.Annotation.set_attr" title="mgkit.io.gff.Annotation.set_attr"><code class="xref py py-meth docutils literal notranslate"><span class="pre">mgkit.io.gff.Annotation.set_attr()</span></code></a> to allow changing standard attributes</p></li>
@@ -367,29 +125,29 @@
 </ul>
 </div>
 </div>
-<div class="section" id="id10">
-<h2>0.4.3<a class="headerlink" href="#id10" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="id11">
+<h2>0.4.3<a class="headerlink" href="#id11" title="Permalink to this headline">¶</a></h2>
 <div class="section" id="fixes">
 <h3>Fixes<a class="headerlink" href="#fixes" title="Permalink to this headline">¶</a></h3>
 <p><a class="reference internal" href="api/mgkit.align.html#mgkit.align.SamtoolsDepth" title="mgkit.align.SamtoolsDepth"><code class="xref py py-class docutils literal notranslate"><span class="pre">mgkit.align.SamtoolsDepth</span></code></a> in version 0.4.2 was using a <a class="reference external" href="https://docs.python.org/3/library/weakref.html#weakref.WeakValueDictionary" title="(in Python v3.9)"><code class="xref py py-class docutils literal notranslate"><span class="pre">weakref.WeakValueDictionary</span></code></a> to speed up the recovery of memory from the internal dictionary. In the tests on MacOS the memory was mostly kept, but on Linux when submitted as a job it seems to be freed instantly. This also impact the <cite>add-gff-info cov_samtools</cite> command, since it uses this class - it will run, but reports that the number of sequences not found in the samtools depth file is the same as the number of sequences in the GFF file.</p>
 </div>
 </div>
-<div class="section" id="id11">
-<h2>0.4.2<a class="headerlink" href="#id11" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="id12">
+<h2>0.4.2<a class="headerlink" href="#id12" title="Permalink to this headline">¶</a></h2>
 <ul class="simple">
 <li><p>Fixed reading of Expasy files. The reading was not changed to adopt Python3 conventions like the rest of the routines. Included a test that dowload the expasy file and parses it</p></li>
 <li><p>Optimisations of <cite>add-gff-info cov_samtools</cite> and the <a class="reference internal" href="api/mgkit.align.html#module-mgkit.align" title="mgkit.align"><code class="xref py py-mod docutils literal notranslate"><span class="pre">mgkit.align</span></code></a> routines used</p></li>
 </ul>
-<div class="section" id="id12">
-<h3>Added<a class="headerlink" href="#id12" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="id13">
+<h3>Added<a class="headerlink" href="#id13" title="Permalink to this headline">¶</a></h3>
 <ul class="simple">
 <li><p><a class="reference internal" href="api/mgkit.mappings.enzyme.html#mgkit.mappings.enzyme.parse_expasy_dat" title="mgkit.mappings.enzyme.parse_expasy_dat"><code class="xref py py-func docutils literal notranslate"><span class="pre">mgkit.mappings.enzyme.parse_expasy_dat()</span></code></a></p></li>
 <li><p><a class="reference internal" href="api/mgkit.align.html#mgkit.align.SamtoolsDepth.advance_file" title="mgkit.align.SamtoolsDepth.advance_file"><code class="xref py py-meth docutils literal notranslate"><span class="pre">mgkit.align.SamtoolsDepth.advance_file()</span></code></a></p></li>
 <li><p>option <cite>-m</cite> to calculate average coverage in <cite>add-gff-info cov_samtools</cite></p></li>
 </ul>
 </div>
-<div class="section" id="id13">
-<h3>Changed<a class="headerlink" href="#id13" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="id14">
+<h3>Changed<a class="headerlink" href="#id14" title="Permalink to this headline">¶</a></h3>
 <ul class="simple">
 <li><p>fix for detection of compressed files <a class="reference internal" href="api/mgkit.io.gff.html#mgkit.io.gff.parse_gff" title="mgkit.io.gff.parse_gff"><code class="xref py py-func docutils literal notranslate"><span class="pre">mgkit.io.gff.parse_gff()</span></code></a></p></li>
 <li><p>Fix for compressed files already opened in <a class="reference internal" href="api/mgkit.io.utils.html#mgkit.io.utils.open_file" title="mgkit.io.utils.open_file"><code class="xref py py-func docutils literal notranslate"><span class="pre">mgkit.io.utils.open_file()</span></code></a></p></li>
@@ -400,15 +158,15 @@
 </ul>
 </div>
 </div>
-<div class="section" id="id14">
-<h2>0.4.1<a class="headerlink" href="#id14" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="id15">
+<h2>0.4.1<a class="headerlink" href="#id15" title="Permalink to this headline">¶</a></h2>
 <p>Sanity checks for several mistakes, including never changed the Programming language version in the setup.py from 2.7. Tested installation under Python 3.6, with tox. Also removed the last bit of code using progressbar2.</p>
 </div>
-<div class="section" id="id15">
-<h2>0.4.0<a class="headerlink" href="#id15" title="Permalink to this headline">¶</a></h2>
-<p>This version was tested under Python 3.5, but the tests (with tox) were run also under Python 2.7. However, from the next release Python 2.7 will be removed gradually (as Python 2.7 won’t be supported/patched anymore from next year).</p>
 <div class="section" id="id16">
-<h3>Added<a class="headerlink" href="#id16" title="Permalink to this headline">¶</a></h3>
+<h2>0.4.0<a class="headerlink" href="#id16" title="Permalink to this headline">¶</a></h2>
+<p>This version was tested under Python 3.5, but the tests (with tox) were run also under Python 2.7. However, from the next release Python 2.7 will be removed gradually (as Python 2.7 won’t be supported/patched anymore from next year).</p>
+<div class="section" id="id17">
+<h3>Added<a class="headerlink" href="#id17" title="Permalink to this headline">¶</a></h3>
 <p>Added <cite>–progress</cite> option to several scripts</p>
 <p><a class="reference internal" href="api/mgkit.counts.glm.html#module-mgkit.counts.glm" title="mgkit.counts.glm"><code class="xref py py-mod docutils literal notranslate"><span class="pre">mgkit.counts.glm</span></code></a>:</p>
 <ul class="simple">
@@ -426,8 +184,8 @@
 <li><p><a class="reference internal" href="api/mgkit.taxon.html#mgkit.taxon.Taxonomy.is_ranked_below" title="mgkit.taxon.Taxonomy.is_ranked_below"><code class="xref py py-meth docutils literal notranslate"><span class="pre">mgkit.taxon.Taxonomy.is_ranked_below()</span></code></a></p></li>
 </ul>
 </div>
-<div class="section" id="id17">
-<h3>Changed<a class="headerlink" href="#id17" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="id18">
+<h3>Changed<a class="headerlink" href="#id18" title="Permalink to this headline">¶</a></h3>
 <p>Requires <cite>pandas</cite> version &gt;=0.24 because now a pandas.SparseArray is used for <cite>add-gff-info cov_samtools</cite>. Before, when reading the depth files from <strong>samtools</strong> the array for each sequence was kept in memory, while now only the ones in the GFF file are used.</p>
 <p><a class="reference internal" href="api/mgkit.align.html#module-mgkit.align" title="mgkit.align"><code class="xref py py-mod docutils literal notranslate"><span class="pre">mgkit.align</span></code></a>:</p>
 <ul class="simple">
@@ -466,8 +224,8 @@
 </div>
 </div>
 </div>
-<div class="section" id="id18">
-<h2>0.3.4<a class="headerlink" href="#id18" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="id19">
+<h2>0.3.4<a class="headerlink" href="#id19" title="Permalink to this headline">¶</a></h2>
 <p>General cleanup and testing release. Major changes:</p>
 <ul class="simple">
 <li><p>general moving to Python2 (2.7) and Python3 (3.5+) support, using the future package and when convenient checks for the version of python installed</p></li>
@@ -507,10 +265,10 @@
 <p>In general new projects will be worked on using Python 3.5 and the next releases will prioritise that (0.4.0 and later). If bugfixes are needed and Python 3 cannot be used, this version branch (0.3.x) will be used to fix bugs for users.</p>
 </div>
 </div>
-<div class="section" id="id19">
-<h2>0.3.3<a class="headerlink" href="#id19" title="Permalink to this headline">¶</a></h2>
 <div class="section" id="id20">
-<h3>Added<a class="headerlink" href="#id20" title="Permalink to this headline">¶</a></h3>
+<h2>0.3.3<a class="headerlink" href="#id20" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="id21">
+<h3>Added<a class="headerlink" href="#id21" title="Permalink to this headline">¶</a></h3>
 <ul class="simple">
 <li><p>module <a class="reference internal" href="api/mgkit.counts.glm.html#module-mgkit.counts.glm" title="mgkit.counts.glm"><code class="xref py py-mod docutils literal notranslate"><span class="pre">mgkit.counts.glm</span></code></a>, with functions used to help the fit of Generalised Linear Models (GLM)</p></li>
 <li><p><a class="reference internal" href="api/mgkit.io.fastq.html#mgkit.io.fastq.load_fastq_rename" title="mgkit.io.fastq.load_fastq_rename"><code class="xref py py-func docutils literal notranslate"><span class="pre">mgkit.io.fastq.load_fastq_rename()</span></code></a></p></li>
@@ -526,8 +284,8 @@
 <li><p><a class="reference internal" href="api/mgkit.net.uniprot.html#mgkit.net.uniprot.get_gene_info_iter" title="mgkit.net.uniprot.get_gene_info_iter"><code class="xref py py-func docutils literal notranslate"><span class="pre">mgkit.net.uniprot.get_gene_info_iter()</span></code></a></p></li>
 </ul>
 </div>
-<div class="section" id="id21">
-<h3>Changed<a class="headerlink" href="#id21" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="id22">
+<h3>Changed<a class="headerlink" href="#id22" title="Permalink to this headline">¶</a></h3>
 <ul class="simple">
 <li><p><a class="reference internal" href="api/mgkit.io.fastq.html#mgkit.io.fastq.write_fastq_sequence" title="mgkit.io.fastq.write_fastq_sequence"><code class="xref py py-func docutils literal notranslate"><span class="pre">mgkit.io.fastq.write_fastq_sequence()</span></code></a></p></li>
 <li><p>added <cite>seq_id</cite> as a special attribute to <a class="reference internal" href="api/mgkit.io.gff.html#mgkit.io.gff.Annotation.get_attr" title="mgkit.io.gff.Annotation.get_attr"><code class="xref py py-meth docutils literal notranslate"><span class="pre">mgkit.io.gff.Annotation.get_attr()</span></code></a></p></li>
@@ -537,22 +295,22 @@
 <li><p><cite>add-gff-info addtaxa -a</cite> now accept <cite>seq_id</cite> as lookup, to use output from <cite>taxon-utils lca</cite> (after cutting output)</p></li>
 </ul>
 </div>
-<div class="section" id="id22">
-<h3>Deprecated<a class="headerlink" href="#id22" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="id23">
+<h3>Deprecated<a class="headerlink" href="#id23" title="Permalink to this headline">¶</a></h3>
 <ul class="simple">
 <li><p><a class="reference internal" href="api/mgkit.io.fastq.html#mgkit.io.fastq.convert_seqid_to_old" title="mgkit.io.fastq.convert_seqid_to_old"><code class="xref py py-func docutils literal notranslate"><span class="pre">mgkit.io.fastq.convert_seqid_to_old()</span></code></a></p></li>
 </ul>
 </div>
 </div>
-<div class="section" id="id23">
-<h2>0.3.2<a class="headerlink" href="#id23" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="id24">
+<h2>0.3.2<a class="headerlink" href="#id24" title="Permalink to this headline">¶</a></h2>
 <p>Removed deprecated code</p>
 </div>
-<div class="section" id="id24">
-<h2>0.3.1<a class="headerlink" href="#id24" title="Permalink to this headline">¶</a></h2>
-<p>This release adds several scripts and commands. Successive releases 0.3.x releases will be used to fix bugs and refine the APIs and CLI. Most importantly, since the publishing of the first paper using the framework, the releases will go torward the removal of as much deprecated code as possible. At the same time, a general review of the code to be able to run on Python3 (probably via the <em>six</em> package) will start. The general idea is to reach as a full removal of legacy code in 0.4.0, while full Python3 compatibility is the aim of 0.5.0, which also means dropping dependencies that are not compatible with Python3.</p>
 <div class="section" id="id25">
-<h3>Added<a class="headerlink" href="#id25" title="Permalink to this headline">¶</a></h3>
+<h2>0.3.1<a class="headerlink" href="#id25" title="Permalink to this headline">¶</a></h2>
+<p>This release adds several scripts and commands. Successive releases 0.3.x releases will be used to fix bugs and refine the APIs and CLI. Most importantly, since the publishing of the first paper using the framework, the releases will go torward the removal of as much deprecated code as possible. At the same time, a general review of the code to be able to run on Python3 (probably via the <em>six</em> package) will start. The general idea is to reach as a full removal of legacy code in 0.4.0, while full Python3 compatibility is the aim of 0.5.0, which also means dropping dependencies that are not compatible with Python3.</p>
+<div class="section" id="id26">
+<h3>Added<a class="headerlink" href="#id26" title="Permalink to this headline">¶</a></h3>
 <ul class="simple">
 <li><p><code class="xref py py-func docutils literal notranslate"><span class="pre">mgkit.graphs.from_kgml()</span></code> to make a graph from a KGML file (allows for directionality)</p></li>
 <li><p><code class="xref py py-func docutils literal notranslate"><span class="pre">mgkit.graphs.add_module_compounds()</span></code>: updates a graph with compounds information as needed</p></li>
@@ -585,8 +343,8 @@
 <li><p><code class="xref py py-meth docutils literal notranslate"><span class="pre">mgkit.taxon.UniprotTaxonomy.add_taxon()</span></code>, <code class="xref py py-meth docutils literal notranslate"><span class="pre">mgkit.taxon.UniprotTaxonomy.add_lineage()</span></code> and <code class="xref py py-meth docutils literal notranslate"><span class="pre">mgkit.taxon.UniprotTaxonomy.drop_taxon()</span></code></p></li>
 </ul>
 </div>
-<div class="section" id="id26">
-<h3>Changed<a class="headerlink" href="#id26" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="id27">
+<h3>Changed<a class="headerlink" href="#id27" title="Permalink to this headline">¶</a></h3>
 <ul class="simple">
 <li><p>changed <em>domain</em> to <em>superkingdom</em> as for NCBI taxonomy in <code class="xref py py-meth docutils literal notranslate"><span class="pre">mgkit.taxon.UniprotTaxonomy.read_from_gtdb_taxonomy()</span></code></p></li>
 <li><p>updated scripts documentation to include installed but non advertised scripts (like <span class="xref std std-ref">translate_seq</span>)</p></li>
@@ -612,18 +370,18 @@
 <li><p>ondition when a blast output is empty, hence <em>lineno</em> is not initialised when a message is logged</p></li>
 </ul>
 </div>
-<div class="section" id="id27">
-<h3>Deprecated<a class="headerlink" href="#id27" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="id28">
+<h3>Deprecated<a class="headerlink" href="#id28" title="Permalink to this headline">¶</a></h3>
 <ul class="simple">
 <li><p><span class="xref std std-ref">translate_seq</span> will be removed in version 0.4.0, instead use the similar command in <a class="reference internal" href="scripts/fasta-utils.html#fasta-utils"><span class="std std-ref">fasta-utils - Fasta Utilities</span></a></p></li>
 </ul>
 </div>
 </div>
-<div class="section" id="id28">
-<h2>0.3.0<a class="headerlink" href="#id28" title="Permalink to this headline">¶</a></h2>
-<p>A lot of bugs were fixed in this release, especially for reading NCBI taxonomy and using the <em>msgpack</em> format to save a UniprotTaxonomy instance. Also added a tutorial for profiling a microbial community using MGKit and BLAST (<a class="reference internal" href="pipeline/blast2lca.html#blast2lca"><span class="std std-ref">Profile a Community with BLAST</span></a>)</p>
 <div class="section" id="id29">
-<h3>Added<a class="headerlink" href="#id29" title="Permalink to this headline">¶</a></h3>
+<h2>0.3.0<a class="headerlink" href="#id29" title="Permalink to this headline">¶</a></h2>
+<p>A lot of bugs were fixed in this release, especially for reading NCBI taxonomy and using the <em>msgpack</em> format to save a UniprotTaxonomy instance. Also added a tutorial for profiling a microbial community using MGKit and BLAST (<a class="reference internal" href="pipeline/blast2lca.html#blast2lca"><span class="std std-ref">Profile a Community with BLAST</span></a>)</p>
+<div class="section" id="id30">
+<h3>Added<a class="headerlink" href="#id30" title="Permalink to this headline">¶</a></h3>
 <ul class="simple">
 <li><p><a class="reference internal" href="api/mgkit.align.html#mgkit.align.read_samtools_depth" title="mgkit.align.read_samtools_depth"><code class="xref py py-func docutils literal notranslate"><span class="pre">mgkit.align.read_samtools_depth()</span></code></a> to read the samtools depth format iteratively (returns a generator)</p></li>
 <li><p><a class="reference internal" href="api/mgkit.align.html#mgkit.align.SamtoolsDepth" title="mgkit.align.SamtoolsDepth"><code class="xref py py-class docutils literal notranslate"><span class="pre">mgkit.align.SamtoolsDepth</span></code></a>, used to cache the samtools depth format, while requesting region coverage</p></li>
@@ -636,8 +394,8 @@
 <li><p>added options <em>-k</em> and <em>-kt</em> to <em>taxon_utils</em>, which outputs a file that can be used with Krona <em>ktImportText</em> (needs to use <em>-q</em> with this script)</p></li>
 </ul>
 </div>
-<div class="section" id="id30">
-<h3>Changed<a class="headerlink" href="#id30" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="id31">
+<h3>Changed<a class="headerlink" href="#id31" title="Permalink to this headline">¶</a></h3>
 <ul class="simple">
 <li><p>added <em>no_zero</em> parameter to <a class="reference internal" href="api/mgkit.io.blast.html#mgkit.io.blast.parse_accession_taxa_table" title="mgkit.io.blast.parse_accession_taxa_table"><code class="xref py py-func docutils literal notranslate"><span class="pre">mgkit.io.blast.parse_accession_taxa_table()</span></code></a></p></li>
 <li><p>changed behaviour of <a class="reference internal" href="api/mgkit.kegg.html#mgkit.kegg.KeggModule" title="mgkit.kegg.KeggModule"><code class="xref py py-class docutils literal notranslate"><span class="pre">mgkit.kegg.KeggModule</span></code></a> and some of its methods.</p></li>
@@ -647,10 +405,10 @@
 </ul>
 </div>
 </div>
-<div class="section" id="id31">
-<h2>0.2.5<a class="headerlink" href="#id31" title="Permalink to this headline">¶</a></h2>
 <div class="section" id="id32">
-<h3>Changed<a class="headerlink" href="#id32" title="Permalink to this headline">¶</a></h3>
+<h2>0.2.5<a class="headerlink" href="#id32" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="id33">
+<h3>Changed<a class="headerlink" href="#id33" title="Permalink to this headline">¶</a></h3>
 <ul class="simple">
 <li><p>added the <em>only_ranked</em> argument to <a class="reference internal" href="api/mgkit.taxon.html#mgkit.taxon.get_lineage" title="mgkit.taxon.get_lineage"><code class="xref py py-func docutils literal notranslate"><span class="pre">mgkit.taxon.get_lineage()</span></code></a></p></li>
 <li><p><em>add-gff-info addtaxa</em> (<a class="reference internal" href="scripts/add-gff-info.html#add-gff-info"><span class="std std-ref">add-gff-info - Add informations to GFF annotations</span></a>) doesn’t preload the GFF file if a dictionary is used instead of the taxa table</p></li>
@@ -658,8 +416,8 @@
 <li><p>added the <em>sequence</em> command to <em>filter-gff</em> (<a class="reference internal" href="scripts/filter-gff.html#filter-gff"><span class="std std-ref">filter-gff - Filter GFF annotations</span></a>), to filter all annotations on a per-sequence base, based on mean bitscore or other comparisons</p></li>
 </ul>
 </div>
-<div class="section" id="id33">
-<h3>Added<a class="headerlink" href="#id33" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="id34">
+<h3>Added<a class="headerlink" href="#id34" title="Permalink to this headline">¶</a></h3>
 <ul class="simple">
 <li><p>added <a class="reference internal" href="api/mgkit.counts.func.html#mgkit.counts.func.load_counts_from_gff" title="mgkit.counts.func.load_counts_from_gff"><code class="xref py py-func docutils literal notranslate"><span class="pre">mgkit.counts.func.load_counts_from_gff()</span></code></a></p></li>
 <li><p>added <a class="reference internal" href="api/mgkit.io.blast.html#mgkit.io.blast.parse_accession_taxa_table" title="mgkit.io.blast.parse_accession_taxa_table"><code class="xref py py-func docutils literal notranslate"><span class="pre">mgkit.io.blast.parse_accession_taxa_table()</span></code></a></p></li>
@@ -670,18 +428,18 @@
 </ul>
 </div>
 </div>
-<div class="section" id="id34">
-<h2>0.2.4<a class="headerlink" href="#id34" title="Permalink to this headline">¶</a></h2>
 <div class="section" id="id35">
-<h3>Changed<a class="headerlink" href="#id35" title="Permalink to this headline">¶</a></h3>
+<h2>0.2.4<a class="headerlink" href="#id35" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="id36">
+<h3>Changed<a class="headerlink" href="#id36" title="Permalink to this headline">¶</a></h3>
 <ul class="simple">
 <li><p><a class="reference internal" href="api/mgkit.utils.sequence.html#mgkit.utils.sequence.get_contigs_info" title="mgkit.utils.sequence.get_contigs_info"><code class="xref py py-func docutils literal notranslate"><span class="pre">mgkit.utils.sequence.get_contigs_info()</span></code></a> now accepts a dictionary name-&gt;seq or a list of sequences, besides a file name (r536)</p></li>
 <li><p><em>add-gff-info</em> <strong>counts</strong> command now removes trailing commas from the samples list</p></li>
 <li><p>the axes are turned off after the dendrogram is plo</p></li>
 </ul>
 </div>
-<div class="section" id="id36">
-<h3>Fixed<a class="headerlink" href="#id36" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="id37">
+<h3>Fixed<a class="headerlink" href="#id37" title="Permalink to this headline">¶</a></h3>
 <ul class="simple">
 <li><p>the <strong>snp_parser</strong> script requirements were set wrong in <em>setup.py</em> (r540)</p></li>
 <li><p>uncommented lines to download sample data to build documentation (r533)</p></li>
@@ -689,14 +447,14 @@
 </ul>
 </div>
 </div>
-<div class="section" id="id37">
-<h2>0.2.3<a class="headerlink" href="#id37" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="id38">
+<h2>0.2.3<a class="headerlink" href="#id38" title="Permalink to this headline">¶</a></h2>
 <p>The installation dependencies are more flexible, with only <em>numpy</em> as being <strong>required</strong>. To install every needed packages, you can use:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ pip install mgkit[full]
 </pre></div>
 </div>
-<div class="section" id="id38">
-<h3>Added<a class="headerlink" href="#id38" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="id39">
+<h3>Added<a class="headerlink" href="#id39" title="Permalink to this headline">¶</a></h3>
 <ul class="simple">
 <li><p>new option to pass the <em>query sequences</em> to <strong>blast2gff</strong>, this allows to add the correct frame of the annotation in the GFF</p></li>
 <li><p>added the attributes <em>evalue</em>, <em>subject_start</em> and <em>subject_end</em> to the output of <em>blast2gff</em>. The subject start and end position allow to understand on which frame of the <em>subject sequence</em> the match was found</p></li>
@@ -710,8 +468,8 @@
 <li><p>added a new exception, used internally when an additional dependency is needed</p></li>
 </ul>
 </div>
-<div class="section" id="id39">
-<h3>Changed<a class="headerlink" href="#id39" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="id40">
+<h3>Changed<a class="headerlink" href="#id40" title="Permalink to this headline">¶</a></h3>
 <ul>
 <li><p>using the NCBI taxonomy dump has two side effects:</p>
 <blockquote>
@@ -732,8 +490,8 @@
 <li><p><a class="reference internal" href="api/mgkit.io.gff.html#mgkit.io.gff.GenomicRange.__contains__" title="mgkit.io.gff.GenomicRange.__contains__"><code class="xref py py-meth docutils literal notranslate"><span class="pre">mgkit.io.gff.GenomicRange.__contains__()</span></code></a> now also accepts a tuple (start, end) or another GenomicRange instance</p></li>
 </ul>
 </div>
-<div class="section" id="id40">
-<h3>Fixed<a class="headerlink" href="#id40" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="id41">
+<h3>Fixed<a class="headerlink" href="#id41" title="Permalink to this headline">¶</a></h3>
 <ul class="simple">
 <li><p>a bug in the <em>gitaxa</em> (now <em>addtaxa</em>) command: when a taxon_id was not found in the table, the wrong <em>taxon_name</em> and <em>lineage</em> was inserted</p></li>
 <li><p>bug in <a class="reference internal" href="api/mgkit.snps.classes.html#mgkit.snps.classes.GeneSNP" title="mgkit.snps.classes.GeneSNP"><code class="xref py py-class docutils literal notranslate"><span class="pre">mgkit.snps.classes.GeneSNP</span></code></a> that prevented the correct addition of values</p></li>
@@ -742,10 +500,10 @@
 </ul>
 </div>
 </div>
-<div class="section" id="id41">
-<h2>0.2.2<a class="headerlink" href="#id41" title="Permalink to this headline">¶</a></h2>
 <div class="section" id="id42">
-<h3>Added<a class="headerlink" href="#id42" title="Permalink to this headline">¶</a></h3>
+<h2>0.2.2<a class="headerlink" href="#id42" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="id43">
+<h3>Added<a class="headerlink" href="#id43" title="Permalink to this headline">¶</a></h3>
 <ul>
 <li><p>new commands for the <strong>add-gff-info</strong> script (<a class="reference internal" href="scripts/add-gff-info.html#add-gff-info"><span class="std std-ref">add-gff-info - Add informations to GFF annotations</span></a>):</p>
 <blockquote>
@@ -762,8 +520,8 @@
 <li><p>added method to <a class="reference internal" href="api/mgkit.snps.classes.html#mgkit.snps.classes.RatioMixIn.calc_ratio_flag" title="mgkit.snps.classes.RatioMixIn.calc_ratio_flag"><code class="xref py py-class docutils literal notranslate"><span class="pre">mgkit.snps.classes.RatioMixIn.calc_ratio_flag</span></code></a> to calculate special cases of pN/pS</p></li>
 </ul>
 </div>
-<div class="section" id="id43">
-<h3>Changed<a class="headerlink" href="#id43" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="id44">
+<h3>Changed<a class="headerlink" href="#id44" title="Permalink to this headline">¶</a></h3>
 <ul class="simple">
 <li><p>added argument in functions of the <a class="reference internal" href="api/mgkit.snps.conv_func.html#module-mgkit.snps.conv_func" title="mgkit.snps.conv_func"><code class="xref py py-mod docutils literal notranslate"><span class="pre">mgkit.snps.conv_func</span></code></a> to bypass the default filters</p></li>
 <li><p>added <em>use_uid</em> argument to <a class="reference internal" href="api/mgkit.snps.funcs.html#mgkit.snps.funcs.combine_sample_snps" title="mgkit.snps.funcs.combine_sample_snps"><code class="xref py py-func docutils literal notranslate"><span class="pre">mgkit.snps.funcs.combine_sample_snps()</span></code></a> to use the <em>uid</em> instead of the <em>gene_id</em> when calculating pN/pS</p></li>
@@ -777,10 +535,10 @@
 </ul>
 </div>
 </div>
-<div class="section" id="id44">
-<h2>0.2.1<a class="headerlink" href="#id44" title="Permalink to this headline">¶</a></h2>
 <div class="section" id="id45">
-<h3>Added<a class="headerlink" href="#id45" title="Permalink to this headline">¶</a></h3>
+<h2>0.2.1<a class="headerlink" href="#id45" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="id46">
+<h3>Added<a class="headerlink" href="#id46" title="Permalink to this headline">¶</a></h3>
 <ul class="simple">
 <li><p>added <a class="reference internal" href="api/mgkit.db.mongo.html#module-mgkit.db.mongo" title="mgkit.db.mongo"><code class="xref py py-mod docutils literal notranslate"><span class="pre">mgkit.db.mongo</span></code></a></p></li>
 <li><p>added <a class="reference internal" href="api/mgkit.db.dbm.html#module-mgkit.db.dbm" title="mgkit.db.dbm"><code class="xref py py-mod docutils literal notranslate"><span class="pre">mgkit.db.dbm</span></code></a></p></li>
@@ -802,8 +560,8 @@
 <li><p>added example notebook for using GFF annotations and the <a class="reference internal" href="api/mgkit.db.dbm.html#module-mgkit.db.dbm" title="mgkit.db.dbm"><code class="xref py py-mod docutils literal notranslate"><span class="pre">mgkit.db.dbm</span></code></a>, <a class="reference internal" href="api/mgkit.db.mongo.html#module-mgkit.db.mongo" title="mgkit.db.mongo"><code class="xref py py-mod docutils literal notranslate"><span class="pre">mgkit.db.mongo</span></code></a> modules</p></li>
 </ul>
 </div>
-<div class="section" id="id46">
-<h3>Changed<a class="headerlink" href="#id46" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="id47">
+<h3>Changed<a class="headerlink" href="#id47" title="Permalink to this headline">¶</a></h3>
 <ul class="simple">
 <li><p><a class="reference internal" href="api/mgkit.io.blast.html#mgkit.io.blast.parse_uniprot_blast" title="mgkit.io.blast.parse_uniprot_blast"><code class="xref py py-func docutils literal notranslate"><span class="pre">mgkit.io.blast.parse_uniprot_blast()</span></code></a></p></li>
 <li><p><a class="reference internal" href="api/mgkit.io.gff.html#mgkit.io.gff.Annotation" title="mgkit.io.gff.Annotation"><code class="xref py py-class docutils literal notranslate"><span class="pre">mgkit.io.gff.Annotation</span></code></a></p></li>
@@ -815,22 +573,22 @@
 <li><p>changed tutorial notebook to specify the directory where the data is</p></li>
 </ul>
 </div>
-<div class="section" id="id47">
-<h3>Deprecated<a class="headerlink" href="#id47" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="id48">
+<h3>Deprecated<a class="headerlink" href="#id48" title="Permalink to this headline">¶</a></h3>
 <ul class="simple">
 <li><p><code class="xref py py-func docutils literal notranslate"><span class="pre">mgkit.filter.taxon.filter_taxonomy_by_lineage()</span></code></p></li>
 <li><p><code class="xref py py-func docutils literal notranslate"><span class="pre">mgkit.filter.taxon.filter_taxonomy_by_rank()</span></code></p></li>
 </ul>
 </div>
-<div class="section" id="id48">
-<h3>Removed<a class="headerlink" href="#id48" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="id49">
+<h3>Removed<a class="headerlink" href="#id49" title="Permalink to this headline">¶</a></h3>
 <ul class="simple">
 <li><p>removed old <cite>filter_gff</cite> script</p></li>
 </ul>
 </div>
 </div>
-<div class="section" id="id49">
-<h2>0.2.0<a class="headerlink" href="#id49" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="id50">
+<h2>0.2.0<a class="headerlink" href="#id50" title="Permalink to this headline">¶</a></h2>
 <ul class="simple">
 <li><p>added creation of wheel distribution</p></li>
 <li><p>changes to ensure compatibility with alter pandas versions</p></li>
@@ -848,8 +606,8 @@
 <li><p>fixed a few plot functions</p></li>
 </ul>
 </div>
-<div class="section" id="id50">
-<h2>0.1.16<a class="headerlink" href="#id50" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="id51">
+<h2>0.1.16<a class="headerlink" href="#id51" title="Permalink to this headline">¶</a></h2>
 <ul class="simple">
 <li><p>changed default parameter for <a class="reference internal" href="api/mgkit.plots.boxplot.html#mgkit.plots.boxplot.add_values_to_boxplot" title="mgkit.plots.boxplot.add_values_to_boxplot"><code class="xref py py-func docutils literal notranslate"><span class="pre">mgkit.plots.boxplot.add_values_to_boxplot()</span></code></a></p></li>
 <li><p>Added <em>include_only</em> filter option to the default snp filters <a class="reference internal" href="api/mgkit.consts.html#mgkit.consts.DEFAULT_SNP_FILTER" title="mgkit.consts.DEFAULT_SNP_FILTER"><code class="xref py py-data docutils literal notranslate"><span class="pre">mgkit.consts.DEFAULT_SNP_FILTER</span></code></a></p></li>
@@ -879,8 +637,8 @@
 <li><p>cleaned deprecated code, fixed imports, added tests and documentation</p></li>
 </ul>
 </div>
-<div class="section" id="id51">
-<h2>0.1.15<a class="headerlink" href="#id51" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="id52">
+<h2>0.1.15<a class="headerlink" href="#id52" title="Permalink to this headline">¶</a></h2>
 <ul class="simple">
 <li><p>changed name of <a class="reference internal" href="api/mgkit.taxon.html#mgkit.taxon.lowest_common_ancestor" title="mgkit.taxon.lowest_common_ancestor"><code class="xref py py-func docutils literal notranslate"><span class="pre">mgkit.taxon.lowest_common_ancestor()</span></code></a> to <a class="reference internal" href="api/mgkit.taxon.html#mgkit.taxon.last_common_ancestor" title="mgkit.taxon.last_common_ancestor"><code class="xref py py-func docutils literal notranslate"><span class="pre">mgkit.taxon.last_common_ancestor()</span></code></a>, the old function name points to the new one</p></li>
 <li><p>added <a class="reference internal" href="api/mgkit.counts.func.html#mgkit.counts.func.map_counts_to_category" title="mgkit.counts.func.map_counts_to_category"><code class="xref py py-func docutils literal notranslate"><span class="pre">mgkit.counts.func.map_counts_to_category()</span></code></a> to remap counts from one ID to another</p></li>
@@ -900,8 +658,8 @@
 <li><p>added <a class="reference internal" href="api/mgkit.io.gff.html#mgkit.io.gff.get_annotation_map" title="mgkit.io.gff.get_annotation_map"><code class="xref py py-func docutils literal notranslate"><span class="pre">mgkit.io.gff.get_annotation_map()</span></code></a></p></li>
 </ul>
 </div>
-<div class="section" id="id52">
-<h2>0.1.14<a class="headerlink" href="#id52" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="id53">
+<h2>0.1.14<a class="headerlink" href="#id53" title="Permalink to this headline">¶</a></h2>
 <ul class="simple">
 <li><p>added ipthon notebooks to the documentation. As of this version the included ones (in <cite>docs/source/examples</cite>) are for two plot modules. Also added a bash script to convert them into rst files to be included with the documentation. The <em>.rst</em> are not versioned, and they must be rebuild, meaning that one of the requirements for building the docs is to have <a class="reference external" href="http://ipython.org">IPython</a> installed with the notebook extension</p></li>
 <li><p>now importing some packages automatically import the subpackages as well</p></li>
@@ -922,8 +680,8 @@
 <li><p>fixes and improvements to documentation</p></li>
 </ul>
 </div>
-<div class="section" id="id53">
-<h2>0.1.13<a class="headerlink" href="#id53" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="id54">
+<h2>0.1.13<a class="headerlink" href="#id54" title="Permalink to this headline">¶</a></h2>
 <ul class="simple">
 <li><p>added counts package, including functions to load HTSeq-counts results and scaling</p></li>
 <li><p>added <a class="reference internal" href="api/mgkit.filter.taxon.html#mgkit.filter.taxon.filter_by_ancestor" title="mgkit.filter.taxon.filter_by_ancestor"><code class="xref py py-func docutils literal notranslate"><span class="pre">mgkit.filter.taxon.filter_by_ancestor()</span></code></a>, as a convenience function</p></li>
@@ -956,8 +714,8 @@
 <li><p>added possibility to use sorted GFF files as input for <strong>filter-gff</strong> to use less memory (the examples show how to use <em>sort</em> in Unix)</p></li>
 </ul>
 </div>
-<div class="section" id="id54">
-<h2>0.1.12<a class="headerlink" href="#id54" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="id55">
+<h2>0.1.12<a class="headerlink" href="#id55" title="Permalink to this headline">¶</a></h2>
 <ul class="simple">
 <li><p>added functions to elongate annotations, measure the coverage of them and diff GFF files in <a class="reference internal" href="api/mgkit.io.gff.html#module-mgkit.io.gff" title="mgkit.io.gff"><code class="xref py py-mod docutils literal notranslate"><span class="pre">mgkit.io.gff</span></code></a></p></li>
 <li><p>added ranges_length and union_ranges to <a class="reference internal" href="api/mgkit.utils.common.html#module-mgkit.utils.common" title="mgkit.utils.common"><code class="xref py py-mod docutils literal notranslate"><span class="pre">mgkit.utils.common</span></code></a></p></li>
@@ -979,8 +737,8 @@
 <li><p>added more tests</p></li>
 </ul>
 </div>
-<div class="section" id="id55">
-<h2>0.1.11<a class="headerlink" href="#id55" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="id56">
+<h2>0.1.11<a class="headerlink" href="#id56" title="Permalink to this headline">¶</a></h2>
 <ul class="simple">
 <li><p>removed <cite>rst2pdf</cite> for generating a PDF for documentation. Latex is preferred</p></li>
 <li><p>corrections to documentation and example script</p></li>
@@ -1001,57 +759,108 @@
 </div>
 
 
-           </div>
-           
           </div>
-          <footer>
-  
-    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
-      
-      
-        <a href="api/modules.html" class="btn btn-neutral float-left" title="mgkit" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
-      
+          
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<h1 class="logo"><a href="index.html">MGKit: Metagenomic framework</a></h1>
+
+
+
+
+
+
+
+
+<h3>Navigation</h3>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="introduction.html">Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="install.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="pipeline/index.html">Metagenomic Pipeline</a></li>
+<li class="toctree-l1"><a class="reference internal" href="scripts/index.html">Scripts Details</a></li>
+<li class="toctree-l1"><a class="reference internal" href="examples/index.html">Example Notebooks</a></li>
+<li class="toctree-l1"><a class="reference internal" href="gff.html">MGKit GFF Specifications</a></li>
+<li class="toctree-l1"><a class="reference internal" href="library.html">Library Reference</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Changes</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#id1">0.5.6</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#id2">0.5.5</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#id3">0.5.4</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#id4">0.5.3</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#id5">0.5.2</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#id6">0.5.1</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#id7">0.5.0</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#id8">0.4.4</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#id11">0.4.3</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#id12">0.4.2</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#id15">0.4.1</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#id16">0.4.0</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#id19">0.3.4</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#id20">0.3.3</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#id24">0.3.2</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#id25">0.3.1</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#id29">0.3.0</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#id32">0.2.5</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#id35">0.2.4</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#id38">0.2.3</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#id42">0.2.2</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#id45">0.2.1</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#id50">0.2.0</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#id51">0.1.16</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#id52">0.1.15</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#id53">0.1.14</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#id54">0.1.13</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#id55">0.1.12</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#id56">0.1.11</a></li>
+</ul>
+</li>
+</ul>
+
+<div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="index.html">Documentation overview</a><ul>
+      <li>Previous: <a href="api/modules.html" title="previous chapter">mgkit</a></li>
+  </ul></li>
+</ul>
+</div>
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" />
+      <input type="submit" value="Go" />
+    </form>
     </div>
-  
+</div>
+<script>$('#searchbox').show(0);</script>
 
-  <hr/>
 
-  <div role="contentinfo">
-    <p>
-        
-        &copy; Copyright 2013-2020, Francesco Rubino
 
-    </p>
-  </div>
-    
-    
-    
-    Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a
-    
-    <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a>
-    
-    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
 
-</footer>
+
+
+
 
         </div>
       </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &copy;2013-2020, Francesco Rubino.
+      
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 3.2.1</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.12</a>
+      
+      |
+      <a href="_sources/changes.rst.txt"
+          rel="nofollow">Page source</a>
+    </div>
 
-    </section>
-
-  </div>
-  
-
-  <script type="text/javascript">
-      jQuery(function () {
-          SphinxRtdTheme.Navigation.enable(true);
-      });
-  </script>
-
-  
-  
     
-   
 
-</body>
+    
+  </body>
 </html>

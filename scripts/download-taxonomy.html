@@ -1,96 +1,83 @@
 
-
 <!DOCTYPE html>
-<html class="writer-html5" lang="en" >
-<head>
-  <meta charset="utf-8">
-  
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  
-  <title>Download Taxonomy &mdash; MGKit: Metagenomic framework 0.5.5 documentation</title>
-  
 
-  
-  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
-  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
-  <link rel="stylesheet" href="../_static/graphviz.css" type="text/css" />
-
-  
-  
-  
-  
-
-  
-  <!--[if lt IE 9]>
-    <script src="../_static/js/html5shiv.min.js"></script>
-  <![endif]-->
-  
-    
-      <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
-        <script src="../_static/jquery.js"></script>
-        <script src="../_static/underscore.js"></script>
-        <script src="../_static/doctools.js"></script>
-        <script src="../_static/language_data.js"></script>
-        <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
-        <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
-        <script type="text/x-mathjax-config">MathJax.Hub.Config({"tex2jax": {"inlineMath": [["$", "$"], ["\\(", "\\)"]], "processEscapes": true, "ignoreClass": "document", "processClass": "math|output_area"}})</script>
-    
-    <script type="text/javascript" src="../_static/js/theme.js"></script>
-
-    
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Download Taxonomy &#8212; MGKit: Metagenomic framework 0.5.5 documentation</title>
+    <link rel="stylesheet" href="../_static/alabaster.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../_static/graphviz.css" />
+    <script id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script src="../_static/language_data.js"></script>
+    <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script type="text/x-mathjax-config">MathJax.Hub.Config({"tex2jax": {"inlineMath": [["$", "$"], ["\\(", "\\)"]], "processEscapes": true, "ignoreClass": "document", "processClass": "math|output_area"}})</script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
     <link rel="next" title="taxon-utils - Taxonomy Utilities" href="taxon_utils.html" />
-    <link rel="prev" title="snp_parser - SNPs analysis" href="snp_analysis.html" /> 
-</head>
-
-<body class="wy-body-for-nav">
-
+    <link rel="prev" title="snp_parser - SNPs analysis" href="snp_analysis.html" />
    
-  <div class="wy-grid-for-nav">
-    
-    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
-      <div class="wy-side-scroll">
-        <div class="wy-side-nav-search" >
+  <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
+  </head><body>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
           
 
-          
-            <a href="../index.html" class="icon icon-home" alt="Documentation Home"> MGKit: Metagenomic framework
-          
-
-          
-          </a>
-
-          
+          <div class="body" role="main">
             
-            
-              <div class="version">
-                0.5.5
-              </div>
-            
-          
-
-          
-<div role="search">
-  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
-    <input type="text" name="q" placeholder="Search docs" />
-    <input type="hidden" name="check_keywords" value="yes" />
-    <input type="hidden" name="area" value="default" />
-  </form>
+  <div class="section" id="download-taxonomy">
+<span id="id1"></span><h1>Download Taxonomy<a class="headerlink" href="#download-taxonomy" title="Permalink to this headline">¶</a></h1>
+<p>A bash script called <strong>download-taxonomy.sh</strong> is installed along with MGKit. This script download the relevant files from NCBI using <em>wget</em>, and save the taxonomy file that can be used with MGKit to a file called <strong>taxonomy.pickle</strong>.</p>
+<p>Since the script uses <em>wget</em> to download the file <a class="reference external" href="ftp://ftp.ncbi.nlm.nih.gov/pub/taxonomy/taxdump.tar.gz">taxdump.tar.gz</a>, if <em>wget</em> can’t be found, the scripts fails. To avoid this situation, the file can be downloaded in another way, and the script detects if the file exists, avoiding the call of <em>wget</em>.</p>
+<p>The script can also save the file with another file name, if this is passed when the script is invoked. if the file extension contains <em>.msgpack</em>, the <strong>msgpack</strong> module is used to write the taxonomy, otherwise <em>pickle</em> is used.</p>
+<p>The advantage of <em>msgpack</em> is faster read/write and better compression ratio; it needs an additional module (<a class="reference external" href="https://github.com/msgpack/msgpack-python">msgpack</a>) that is not installed by default.</p>
+</div>
+<div class="section" id="download-accession-taxonid">
+<h1>Download Accession/TaxonID<a class="headerlink" href="#download-accession-taxonid" title="Permalink to this headline">¶</a></h1>
+<p>There are 2 separate scripts to download these tables:</p>
+<blockquote>
+<div><ul class="simple">
+<li><p><cite>download-uniprot-taxa.sh</cite> will download a table for Uniprot databases</p></li>
+<li><p><cite>download-ncbi-taxa.sh</cite> for BLAST DBs from NCBI, by default for <em>nt</em>, but <em>nr</em> can be downloaded with <cite>download-ncbi-taxa.sh prot</cite></p></li>
+</ul>
+</div></blockquote>
+<p>In particular, <strong>nr</strong> refers to the protein database in NCBI, while <strong>nt</strong> refers to the nucleotidic one. Both Uniprot Swissprot and TrEMBL are downloaded by the first scripts.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Since version 0.4.4, if a PROGBAR enviroment variable is set, the progress bar (default in <cite>wget</cite>) is used, instead of the <em>dot</em> progress, which is more suitable for interactive use of the script</p>
+</div>
 </div>
 
+
+          </div>
           
         </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<h1 class="logo"><a href="../index.html">MGKit: Metagenomic framework</a></h1>
 
-        
-        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
-          
-            
-            
-              
-            
-            
-              <ul class="current">
+
+
+
+
+
+
+
+<h3>Navigation</h3>
+<ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="../introduction.html">Introduction</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../install.html">Installation</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../pipeline/index.html">Metagenomic Pipeline</a></li>
@@ -118,172 +105,53 @@
 <li class="toctree-l1"><a class="reference internal" href="../changes.html">Changes</a></li>
 </ul>
 
-            
-          
-        </div>
-        
-      </div>
-    </nav>
-
-    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
-
-      
-      <nav class="wy-nav-top" aria-label="top navigation">
-        
-          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
-          <a href="../index.html">MGKit: Metagenomic framework</a>
-        
-      </nav>
-
-
-      <div class="wy-nav-content">
-        
-        <div class="rst-content">
-        
-          
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<div role="navigation" aria-label="breadcrumbs navigation">
-
-  <ul class="wy-breadcrumbs">
-    
-      <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
-        
-          <li><a href="index.html">Scripts Details</a> &raquo;</li>
-        
-      <li>Download Taxonomy</li>
-    
-    
-      <li class="wy-breadcrumbs-aside">
-        
-            
-            <a href="../_sources/scripts/download-taxonomy.rst.txt" rel="nofollow"> View page source</a>
-          
-        
-      </li>
-    
-  </ul>
-
-  
-  <hr/>
-</div>
-          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
-           <div itemprop="articleBody">
-            
-  
-<style>
-/* CSS overrides for sphinx_rtd_theme */
-
-/* 24px margin */
-.nbinput.nblast.container,
-.nboutput.nblast.container {
-    margin-bottom: 19px;  /* padding has already 5px */
-}
-
-/* ... except between code cells! */
-.nblast.container + .nbinput.container {
-    margin-top: -19px;
-}
-
-.admonition > p:before {
-    margin-right: 4px;  /* make room for the exclamation icon */
-}
-
-/* Fix math alignment, see https://github.com/rtfd/sphinx_rtd_theme/pull/686 */
-.math {
-    text-align: unset;
-}
-</style>
-<div class="section" id="download-taxonomy">
-<span id="id1"></span><h1>Download Taxonomy<a class="headerlink" href="#download-taxonomy" title="Permalink to this headline">¶</a></h1>
-<p>A bash script called <strong>download-taxonomy.sh</strong> is installed along with MGKit. This script download the relevant files from NCBI using <em>wget</em>, and save the taxonomy file that can be used with MGKit to a file called <strong>taxonomy.pickle</strong>.</p>
-<p>Since the script uses <em>wget</em> to download the file <a class="reference external" href="ftp://ftp.ncbi.nlm.nih.gov/pub/taxonomy/taxdump.tar.gz">taxdump.tar.gz</a>, if <em>wget</em> can’t be found, the scripts fails. To avoid this situation, the file can be downloaded in another way, and the script detects if the file exists, avoiding the call of <em>wget</em>.</p>
-<p>The script can also save the file with another file name, if this is passed when the script is invoked. if the file extension contains <em>.msgpack</em>, the <strong>msgpack</strong> module is used to write the taxonomy, otherwise <em>pickle</em> is used.</p>
-<p>The advantage of <em>msgpack</em> is faster read/write and better compression ratio; it needs an additional module (<a class="reference external" href="https://github.com/msgpack/msgpack-python">msgpack</a>) that is not installed by default.</p>
-</div>
-<div class="section" id="download-accession-taxonid">
-<h1>Download Accession/TaxonID<a class="headerlink" href="#download-accession-taxonid" title="Permalink to this headline">¶</a></h1>
-<p>There are 2 separate scripts to download these tables:</p>
-<blockquote>
-<div><ul class="simple">
-<li><p><cite>download-uniprot-taxa.sh</cite> will download a table for Uniprot databases</p></li>
-<li><p><cite>download-ncbi-taxa.sh</cite> for BLAST DBs from NCBI, by default for <em>nt</em>, but <em>nr</em> can be downloaded with <cite>download-ncbi-taxa.sh prot</cite></p></li>
+<div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="../index.html">Documentation overview</a><ul>
+  <li><a href="index.html">Scripts Details</a><ul>
+      <li>Previous: <a href="snp_analysis.html" title="previous chapter">snp_parser - SNPs analysis</a></li>
+      <li>Next: <a href="taxon_utils.html" title="next chapter">taxon-utils - Taxonomy Utilities</a></li>
+  </ul></li>
+  </ul></li>
 </ul>
-</div></blockquote>
-<p>In particular, <strong>nr</strong> refers to the protein database in NCBI, while <strong>nt</strong> refers to the nucleotidic one. Both Uniprot Swissprot and TrEMBL are downloaded by the first scripts.</p>
-<div class="admonition note">
-<p class="admonition-title">Note</p>
-<p>Since version 0.4.4, if a PROGBAR enviroment variable is set, the progress bar (default in <cite>wget</cite>) is used, instead of the <em>dot</em> progress, which is more suitable for interactive use of the script</p>
 </div>
-</div>
-
-
-           </div>
-           
-          </div>
-          <footer>
-  
-    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
-      
-        <a href="taxon_utils.html" class="btn btn-neutral float-right" title="taxon-utils - Taxonomy Utilities" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
-      
-      
-        <a href="snp_analysis.html" class="btn btn-neutral float-left" title="snp_parser - SNPs analysis" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
-      
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="../search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" />
+      <input type="submit" value="Go" />
+    </form>
     </div>
-  
+</div>
+<script>$('#searchbox').show(0);</script>
 
-  <hr/>
 
-  <div role="contentinfo">
-    <p>
-        
-        &copy; Copyright 2013-2020, Francesco Rubino
 
-    </p>
-  </div>
-    
-    
-    
-    Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a
-    
-    <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a>
-    
-    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
 
-</footer>
+
+
+
 
         </div>
       </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &copy;2013-2020, Francesco Rubino.
+      
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 3.2.1</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.12</a>
+      
+      |
+      <a href="../_sources/scripts/download-taxonomy.rst.txt"
+          rel="nofollow">Page source</a>
+    </div>
 
-    </section>
-
-  </div>
-  
-
-  <script type="text/javascript">
-      jQuery(function () {
-          SphinxRtdTheme.Navigation.enable(true);
-      });
-  </script>
-
-  
-  
     
-   
 
-</body>
+    
+  </body>
 </html>
