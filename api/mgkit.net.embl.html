@@ -5,7 +5,7 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>mgkit.net.embl module &#8212; MGKit: Metagenomic framework 0.5.5 documentation</title>
+    <title>mgkit.net.embl module &#8212; MGKit: Metagenomic framework 0.5.7 documentation</title>
     <link rel="stylesheet" href="../_static/alabaster.css" type="text/css" />
     <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
     <link rel="stylesheet" type="text/css" href="../_static/graphviz.css" />
@@ -49,7 +49,7 @@
 <dl class="py exception">
 <dt id="mgkit.net.embl.EntryNotFound">
 <em class="property">exception </em><code class="sig-prename descclassname">mgkit.net.embl.</code><code class="sig-name descname">EntryNotFound</code><a class="reference internal" href="../_modules/mgkit/net/embl.html#EntryNotFound"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#mgkit.net.embl.EntryNotFound" title="Permalink to this definition">¶</a></dt>
-<dd><p>Bases: <a class="reference external" href="https://docs.python.org/3/library/exceptions.html#Exception" title="(in Python v3.9)"><code class="xref py py-class docutils literal notranslate"><span class="pre">Exception</span></code></a></p>
+<dd><p>Bases: <a class="reference external" href="https://docs.python.org/3/library/exceptions.html#Exception" title="(in Python v3.10)"><code class="xref py py-class docutils literal notranslate"><span class="pre">Exception</span></code></a></p>
 <p>Raised if at least one entry was not found by <a class="reference internal" href="#mgkit.net.embl.get_sequences_by_ids" title="mgkit.net.embl.get_sequences_by_ids"><code class="xref py py-func docutils literal notranslate"><span class="pre">get_sequences_by_ids()</span></code></a>.
 <a class="reference internal" href="#mgkit.net.embl.NOT_FOUND" title="mgkit.net.embl.NOT_FOUND"><code class="xref py py-data docutils literal notranslate"><span class="pre">NOT_FOUND</span></code></a> is used to check if any entry wasn’t downloaded.</p>
 </dd></dl>
@@ -76,7 +76,7 @@ least one entry wasn’t found.</p>
 <dl class="py exception">
 <dt id="mgkit.net.embl.NoEntryFound">
 <em class="property">exception </em><code class="sig-prename descclassname">mgkit.net.embl.</code><code class="sig-name descname">NoEntryFound</code><a class="reference internal" href="../_modules/mgkit/net/embl.html#NoEntryFound"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#mgkit.net.embl.NoEntryFound" title="Permalink to this definition">¶</a></dt>
-<dd><p>Bases: <a class="reference external" href="https://docs.python.org/3/library/exceptions.html#Exception" title="(in Python v3.9)"><code class="xref py py-class docutils literal notranslate"><span class="pre">Exception</span></code></a></p>
+<dd><p>Bases: <a class="reference external" href="https://docs.python.org/3/library/exceptions.html#Exception" title="(in Python v3.10)"><code class="xref py py-class docutils literal notranslate"><span class="pre">Exception</span></code></a></p>
 <p>Raised if no sequences where found by <a class="reference internal" href="#mgkit.net.embl.get_sequences_by_ids" title="mgkit.net.embl.get_sequences_by_ids"><code class="xref py py-func docutils literal notranslate"><span class="pre">get_sequences_by_ids()</span></code></a>, the
 check is based on the <a class="reference internal" href="#mgkit.net.embl.NONE_FOUND" title="mgkit.net.embl.NONE_FOUND"><code class="xref py py-data docutils literal notranslate"><span class="pre">NONE_FOUND</span></code></a> variable.</p>
 </dd></dl>
@@ -102,18 +102,18 @@ about the databases domains <a class="reference external" href="http://www.ebi.a
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>query</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)"><em>str</em></a>) – query for the search enging</p></li>
-<li><p><strong>domain</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)"><em>str</em></a>) – database domain to search</p></li>
-<li><p><strong>result</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)"><em>str</em></a>) – domain result requested</p></li>
-<li><p><strong>display</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)"><em>str</em></a>) – display option (format to retrieve the entries)</p></li>
-<li><p><strong>offset</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.9)"><em>int</em></a>) – the offset of the search results, defaults to the first</p></li>
-<li><p><strong>length</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.9)"><em>int</em></a>) – number of results to retrieve at the specified offset
+<li><p><strong>query</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.10)"><em>str</em></a>) – query for the search enging</p></li>
+<li><p><strong>domain</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.10)"><em>str</em></a>) – database domain to search</p></li>
+<li><p><strong>result</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.10)"><em>str</em></a>) – domain result requested</p></li>
+<li><p><strong>display</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.10)"><em>str</em></a>) – display option (format to retrieve the entries)</p></li>
+<li><p><strong>offset</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.10)"><em>int</em></a>) – the offset of the search results, defaults to the first</p></li>
+<li><p><strong>length</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.10)"><em>int</em></a>) – number of results to retrieve at the specified offset
 and the limit is automatically set a 100,000 records for query</p></li>
-<li><p><strong>contact</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)"><em>str</em></a>) – email of the user</p></li>
-<li><p><strong>download</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)"><em>str</em></a>) – type of response. Gzip responses are automatically
+<li><p><strong>contact</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.10)"><em>str</em></a>) – email of the user</p></li>
+<li><p><strong>download</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.10)"><em>str</em></a>) – type of response. Gzip responses are automatically
 decompressed</p></li>
-<li><p><strong>url</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)"><em>str</em></a>) – base URL for the resource</p></li>
-<li><p><strong>fields</strong> (<a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.9)"><em>None</em></a><em>, </em><em>iterable</em>) – must be an iterable of fields to be returned
+<li><p><strong>url</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.10)"><em>str</em></a>) – base URL for the resource</p></li>
+<li><p><strong>fields</strong> (<a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.10)"><em>None</em></a><em>, </em><em>iterable</em>) – must be an iterable of fields to be returned
 if display is set to <em>report</em></p></li>
 </ul>
 </dd>
@@ -121,7 +121,7 @@ if display is set to <em>report</em></p></li>
 <dd class="field-even"><p>the raw request</p>
 </dd>
 <dt class="field-odd">Return type</dt>
-<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)">str</a></p>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.10)">str</a></p>
 </dd>
 </dl>
 <p class="rubric">Examples</p>
@@ -161,11 +161,11 @@ output formats and the database available at the
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>embl_ids</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)"><em>str</em></a><em>, </em><em>iterable</em>) – list or single sequence id to retrieve</p></li>
-<li><p><strong>db</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)"><em>str</em></a>) – database from which retrieve the sequence data</p></li>
-<li><p><strong>contact</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)"><em>str</em></a>) – email contact to use as per EMBL guidlines</p></li>
-<li><p><strong>out_format</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)"><em>str</em></a>) – output format, depends on database</p></li>
-<li><p><strong>num_req</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.9)"><em>int</em></a>) – number of ids per request</p></li>
+<li><p><strong>embl_ids</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.10)"><em>str</em></a><em>, </em><em>iterable</em>) – list or single sequence id to retrieve</p></li>
+<li><p><strong>db</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.10)"><em>str</em></a>) – database from which retrieve the sequence data</p></li>
+<li><p><strong>contact</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.10)"><em>str</em></a>) – email contact to use as per EMBL guidlines</p></li>
+<li><p><strong>out_format</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.10)"><em>str</em></a>) – output format, depends on database</p></li>
+<li><p><strong>num_req</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.10)"><em>int</em></a>) – number of ids per request</p></li>
 </ul>
 </dd>
 <dt class="field-even">Returns</dt>
@@ -175,7 +175,7 @@ list depends by the number of ids in <em>embl_ids</em> and the value of
 <em>num_req</em>.</p>
 </dd>
 <dt class="field-odd">Return type</dt>
-<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.9)">list</a></p>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.10)">list</a></p>
 </dd>
 </dl>
 </dd></dl>
@@ -211,12 +211,12 @@ debug message</p></li>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>embl_ids</strong> (<em>iterable</em><em>, </em><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)"><em>str</em></a>) – list of ids to download</p></li>
-<li><p><strong>contact</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)"><em>str</em></a>) – email address to be passed in the query</p></li>
-<li><p><strong>format</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)"><em>str</em></a>) – format of the entry</p></li>
-<li><p><strong>num_req</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.9)"><em>int</em></a>) – number of entries to download with each request</p></li>
-<li><p><strong>embl_db</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)"><em>str</em></a>) – db to which the ids refer to</p></li>
-<li><p><strong>strict</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.9)"><em>bool</em></a>) – if True, a check on the number of entries retrieved is
+<li><p><strong>embl_ids</strong> (<em>iterable</em><em>, </em><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.10)"><em>str</em></a>) – list of ids to download</p></li>
+<li><p><strong>contact</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.10)"><em>str</em></a>) – email address to be passed in the query</p></li>
+<li><p><strong>format</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.10)"><em>str</em></a>) – format of the entry</p></li>
+<li><p><strong>num_req</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.10)"><em>int</em></a>) – number of entries to download with each request</p></li>
+<li><p><strong>embl_db</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.10)"><em>str</em></a>) – db to which the ids refer to</p></li>
+<li><p><strong>strict</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.10)"><em>bool</em></a>) – if True, a check on the number of entries retrieved is
 performed</p></li>
 </ul>
 </dd>
@@ -224,7 +224,7 @@ performed</p></li>
 <dd class="field-even"><p>the entries requested</p>
 </dd>
 <dt class="field-odd">Return type</dt>
-<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)">str</a></p>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.10)">str</a></p>
 </dd>
 <dt class="field-even">Raises</dt>
 <dd class="field-even"><ul class="simple">
@@ -332,13 +332,18 @@ restriction that’s temporary.</p>
 <li class="toctree-l2"><a class="reference internal" href="mgkit.utils.trans_tables.html">mgkit.utils.trans_tables module</a></li>
 <li class="toctree-l2"><a class="reference internal" href="mgkit.workflow.html">mgkit.workflow package</a></li>
 <li class="toctree-l2"><a class="reference internal" href="mgkit.workflow.add_gff_info.html">mgkit.workflow.add_gff_info module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mgkit.workflow.alg_utils.html">mgkit.workflow.alg_utils module</a></li>
 <li class="toctree-l2"><a class="reference internal" href="mgkit.workflow.blast2gff.html">mgkit.workflow.blast2gff module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mgkit.workflow.count_utils.html">mgkit.workflow.count_utils module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mgkit.workflow.dict_utils.html">mgkit.workflow.dict_utils module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mgkit.workflow.edit_gff.html">mgkit.workflow.edit_gff module</a></li>
 <li class="toctree-l2"><a class="reference internal" href="mgkit.workflow.extract_gff_info.html">mgkit.workflow.extract_gff_info module</a></li>
 <li class="toctree-l2"><a class="reference internal" href="mgkit.workflow.fasta_utils.html">mgkit.workflow.fasta_utils module</a></li>
 <li class="toctree-l2"><a class="reference internal" href="mgkit.workflow.fastq_utils.html">mgkit.workflow.fastq_utils module</a></li>
 <li class="toctree-l2"><a class="reference internal" href="mgkit.workflow.filter_gff.html">mgkit.workflow.filter_gff module</a></li>
 <li class="toctree-l2"><a class="reference internal" href="mgkit.workflow.hmmer2gff.html">mgkit.workflow.hmmer2gff module</a></li>
 <li class="toctree-l2"><a class="reference internal" href="mgkit.workflow.json2gff.html">mgkit.workflow.json2gff module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mgkit.workflow.pnps_gen.html">mgkit.workflow.pnps_gen module</a></li>
 <li class="toctree-l2"><a class="reference internal" href="mgkit.workflow.sampling_utils.html">mgkit.workflow.sampling_utils module</a></li>
 <li class="toctree-l2"><a class="reference internal" href="mgkit.workflow.snp_parser.html">mgkit.workflow.snp_parser module</a></li>
 <li class="toctree-l2"><a class="reference internal" href="mgkit.workflow.taxon_utils.html">mgkit.workflow.taxon_utils module</a></li>

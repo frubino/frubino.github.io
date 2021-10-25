@@ -5,7 +5,7 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>mgkit.snps.funcs module &#8212; MGKit: Metagenomic framework 0.5.5 documentation</title>
+    <title>mgkit.snps.funcs module &#8212; MGKit: Metagenomic framework 0.5.7 documentation</title>
     <link rel="stylesheet" href="../_static/alabaster.css" type="text/css" />
     <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
     <link rel="stylesheet" type="text/css" href="../_static/graphviz.css" />
@@ -52,7 +52,7 @@ dataset.</p>
 (gene-taxon)</p></li>
 <li><p><strong>taxonomy</strong> – <code class="xref py py-class docutils literal notranslate"><span class="pre">taxon.Taxonomy</span></code> instance with the full
 taxonomy</p></li>
-<li><p><strong>taxon_rank</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)"><em>str</em></a>) – taxon rank to limit the specifity of the taxa
+<li><p><strong>taxon_rank</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.10)"><em>str</em></a>) – taxon rank to limit the specifity of the taxa
 included</p></li>
 </ul>
 </dd>
@@ -85,12 +85,12 @@ filtered for each row having at least a <cite>min_num</cite> of not NaN values.<
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>snps_data</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.9)"><em>dict</em></a>) – dictionary with the <cite>GeneSNP</cite> instances</p></li>
-<li><p><strong>min_num</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.9)"><em>int</em></a>) – the minimum number of not NaN values necessary in a row
+<li><p><strong>snps_data</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.10)"><em>dict</em></a>) – dictionary with the <cite>GeneSNP</cite> instances</p></li>
+<li><p><strong>min_num</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.10)"><em>int</em></a>) – the minimum number of not NaN values necessary in a row
 to be returned</p></li>
 <li><p><strong>filters</strong> (<em>iterable</em>) – iterable containing filter functions, a list can be
 found in <a class="reference internal" href="mgkit.snps.filter.html#module-mgkit.snps.filter" title="mgkit.snps.filter"><code class="xref py py-mod docutils literal notranslate"><span class="pre">mgkit.snps.filter</span></code></a></p></li>
-<li><p><strong>index_type</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)"><em>str</em></a><em>, </em><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.9)"><em>None</em></a>) – if <cite>None</cite>, each row index for the DataFrame
+<li><p><strong>index_type</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.10)"><em>str</em></a><em>, </em><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.10)"><em>None</em></a>) – if <cite>None</cite>, each row index for the DataFrame
 will be a MultiIndex with <cite>gene</cite> and <cite>taxon</cite> as elements. If the
 equals ‘gene’, the row index will be gene based and if ‘taxon’ will
 be taxon based</p></li>
@@ -99,18 +99,18 @@ be taxon based</p></li>
 <li><p><strong>taxon_func</strong> (<em>func</em>) – a function to map a taxon_id to a list of IDs. See
 <code class="xref py py-mod docutils literal notranslate"><span class="pre">mapper.map_taxon_id_to_rank</span></code> or
 <code class="xref py py-mod docutils literal notranslate"><span class="pre">mapper.map_taxon_id_to_ancestor</span></code> for examples</p></li>
-<li><p><strong>use_uid</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.9)"><em>bool</em></a>) – if True, uses the <cite>GeneSNP.uid</cite> instead of
+<li><p><strong>use_uid</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.10)"><em>bool</em></a>) – if True, uses the <cite>GeneSNP.uid</cite> instead of
 <cite>GeneSNP.gene_id</cite></p></li>
-<li><p><strong>flag_values</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.9)"><em>bool</em></a>) – if True,
+<li><p><strong>flag_values</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.10)"><em>bool</em></a>) – if True,
 <code class="xref py py-meth docutils literal notranslate"><span class="pre">mgkit.snps.classes.GeneSNP.calc_ratio_flag()</span></code> will be used,
 instead of <code class="xref py py-meth docutils literal notranslate"><span class="pre">mgkit.snps.classes.GeneSNP.calc_ratio()</span></code></p></li>
-<li><p><strong>haplotypes</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.9)"><em>bool</em></a>) – if <em>flag_values</em> is False, and <em>haplotypes</em> is
+<li><p><strong>haplotypes</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.10)"><em>bool</em></a>) – if <em>flag_values</em> is False, and <em>haplotypes</em> is
 True, the 0/0 case will be returned as 0 instead of NaN</p></li>
-<li><p><strong>store_uids</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.9)"><em>bool</em></a>) – if True a dictionary with the uid used for each
+<li><p><strong>store_uids</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.10)"><em>bool</em></a>) – if True a dictionary with the uid used for each
 cell (e.g. gene/taxon/sample)</p></li>
-<li><p><strong>partial_calc</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.9)"><em>bool</em></a>) – if True, only pS or pN values will be calculated,
+<li><p><strong>partial_calc</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.10)"><em>bool</em></a>) – if True, only pS or pN values will be calculated,
 depending on the value of <em>partial_syn</em></p></li>
-<li><p><strong>partial_syn</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.9)"><em>bool</em></a>) – if both <em>partial_calc</em> and this are True, only pS
+<li><p><strong>partial_syn</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.10)"><em>bool</em></a>) – if both <em>partial_calc</em> and this are True, only pS
 values will be calculated. If this parameter is False, pN values
 will be calculated</p></li>
 </ul>
@@ -137,9 +137,9 @@ the return value is a tuple (DataFrame, dict)</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>snps_data</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.9)"><em>dict</em></a>) – dictionary with the instances of
+<li><p><strong>snps_data</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.10)"><em>dict</em></a>) – dictionary with the instances of
 <code class="xref py py-class docutils literal notranslate"><span class="pre">classes.GeneSNP</span></code></p></li>
-<li><p><strong>min_cov</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.9)"><em>int</em></a>) – minimum coverage required for the each instance to be
+<li><p><strong>min_cov</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.10)"><em>int</em></a>) – minimum coverage required for the each instance to be
 added</p></li>
 </ul>
 </dd>
@@ -148,7 +148,7 @@ added</p></li>
 used with <a class="reference internal" href="#mgkit.snps.funcs.combine_sample_snps" title="mgkit.snps.funcs.combine_sample_snps"><code class="xref py py-func docutils literal notranslate"><span class="pre">combine_sample_snps()</span></code></a></p>
 </dd>
 <dt class="field-odd">Return type</dt>
-<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.9)">dict</a></p>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.10)">dict</a></p>
 </dd>
 </dl>
 </dd></dl>
@@ -161,7 +161,7 @@ used with <a class="reference internal" href="#mgkit.snps.funcs.combine_sample_s
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>dataframe</strong> – instance of a rank matrix from <a class="reference internal" href="#mgkit.snps.funcs.build_rank_matrix" title="mgkit.snps.funcs.build_rank_matrix"><code class="xref py py-func docutils literal notranslate"><span class="pre">build_rank_matrix()</span></code></a></p></li>
-<li><p><strong>gene_map</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.9)"><em>dict</em></a>) – dictionary with the mapping</p></li>
+<li><p><strong>gene_map</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.10)"><em>dict</em></a>) – dictionary with the mapping</p></li>
 </ul>
 </dd>
 <dt class="field-even">Returns</dt>
@@ -179,10 +179,10 @@ return a list with the key in the sorted order.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>ratios</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.9)"><em>dict</em></a>) – dictionary instance id-&gt;iterable</p></li>
+<li><p><strong>ratios</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.10)"><em>dict</em></a>) – dictionary instance id-&gt;iterable</p></li>
 <li><p><strong>aggr_func</strong> (<em>function</em>) – any function returning a value that can be used
 as a key in sorting</p></li>
-<li><p><strong>reverse</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.9)"><em>bool</em></a>) – the default is ascending sorting (False), set to True
+<li><p><strong>reverse</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.10)"><em>bool</em></a>) – the default is ascending sorting (False), set to True
 to reverse key_filter: list of keys to use for ordering, if None, every
 key is used</p></li>
 </ul>
@@ -336,13 +336,18 @@ significant gene list is the result of
 <li class="toctree-l2"><a class="reference internal" href="mgkit.utils.trans_tables.html">mgkit.utils.trans_tables module</a></li>
 <li class="toctree-l2"><a class="reference internal" href="mgkit.workflow.html">mgkit.workflow package</a></li>
 <li class="toctree-l2"><a class="reference internal" href="mgkit.workflow.add_gff_info.html">mgkit.workflow.add_gff_info module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mgkit.workflow.alg_utils.html">mgkit.workflow.alg_utils module</a></li>
 <li class="toctree-l2"><a class="reference internal" href="mgkit.workflow.blast2gff.html">mgkit.workflow.blast2gff module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mgkit.workflow.count_utils.html">mgkit.workflow.count_utils module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mgkit.workflow.dict_utils.html">mgkit.workflow.dict_utils module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mgkit.workflow.edit_gff.html">mgkit.workflow.edit_gff module</a></li>
 <li class="toctree-l2"><a class="reference internal" href="mgkit.workflow.extract_gff_info.html">mgkit.workflow.extract_gff_info module</a></li>
 <li class="toctree-l2"><a class="reference internal" href="mgkit.workflow.fasta_utils.html">mgkit.workflow.fasta_utils module</a></li>
 <li class="toctree-l2"><a class="reference internal" href="mgkit.workflow.fastq_utils.html">mgkit.workflow.fastq_utils module</a></li>
 <li class="toctree-l2"><a class="reference internal" href="mgkit.workflow.filter_gff.html">mgkit.workflow.filter_gff module</a></li>
 <li class="toctree-l2"><a class="reference internal" href="mgkit.workflow.hmmer2gff.html">mgkit.workflow.hmmer2gff module</a></li>
 <li class="toctree-l2"><a class="reference internal" href="mgkit.workflow.json2gff.html">mgkit.workflow.json2gff module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mgkit.workflow.pnps_gen.html">mgkit.workflow.pnps_gen module</a></li>
 <li class="toctree-l2"><a class="reference internal" href="mgkit.workflow.sampling_utils.html">mgkit.workflow.sampling_utils module</a></li>
 <li class="toctree-l2"><a class="reference internal" href="mgkit.workflow.snp_parser.html">mgkit.workflow.snp_parser module</a></li>
 <li class="toctree-l2"><a class="reference internal" href="mgkit.workflow.taxon_utils.html">mgkit.workflow.taxon_utils module</a></li>

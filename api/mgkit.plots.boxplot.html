@@ -5,7 +5,7 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>mgkit.plots.boxplot module &#8212; MGKit: Metagenomic framework 0.5.5 documentation</title>
+    <title>mgkit.plots.boxplot module &#8212; MGKit: Metagenomic framework 0.5.7 documentation</title>
     <link rel="stylesheet" href="../_static/alabaster.css" type="text/css" />
     <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
     <link rel="stylesheet" type="text/css" href="../_static/graphviz.css" />
@@ -57,10 +57,10 @@
 each element of the tuple is the numerical index of the position of
 the significant boxplot</p></li>
 <li><p><strong>ax</strong> – an axis instance</p></li>
-<li><p><strong>pos</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#tuple" title="(in Python v3.9)"><em>tuple</em></a>) – the 2 values are the coordinates for the top line, and the
+<li><p><strong>pos</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#tuple" title="(in Python v3.10)"><em>tuple</em></a>) – the 2 values are the coordinates for the top line, and the
 the lowest bound for the whisker</p></li>
-<li><p><strong>box_vert</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.9)"><em>bool</em></a>) – if the boxplot is vertical</p></li>
-<li><p><strong>fontsize</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.9)"><em>float</em></a>) – size for the * (star)</p></li>
+<li><p><strong>box_vert</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.10)"><em>bool</em></a>) – if the boxplot is vertical</p></li>
+<li><p><strong>fontsize</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.10)"><em>float</em></a>) – size for the * (star)</p></li>
 </ul>
 </dd>
 </dl>
@@ -94,12 +94,12 @@ horizontal (<em>box_vert</em>). The default will change in a later version.</p>
 <li><p><strong>ax</strong> – an axis instance</p></li>
 <li><p><strong>plot_data</strong> – return value from <a class="reference internal" href="#mgkit.plots.boxplot.boxplot_dataframe" title="mgkit.plots.boxplot.boxplot_dataframe"><code class="xref py py-func docutils literal notranslate"><span class="pre">boxplot_dataframe()</span></code></a></p></li>
 <li><p><strong>plot_order</strong> (<em>iterable</em>) – row order used to plot the boxes</p></li>
-<li><p><strong>data_colours</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.9)"><em>dict</em></a>) – colors used for the values</p></li>
-<li><p><strong>alpha</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.9)"><em>float</em></a>) – alpha value for the colour</p></li>
-<li><p><strong>s</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.9)"><em>int</em></a>) – size of the marker drawn</p></li>
-<li><p><strong>marker</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)"><em>str</em></a>) – one of the accepted matplotlib markers</p></li>
-<li><p><strong>linewidth</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.9)"><em>float</em></a>) – width of the line used to draw the marker</p></li>
-<li><p><strong>box_vert</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.9)"><em>bool</em></a>) – specify if the original boxplot is vertical or not</p></li>
+<li><p><strong>data_colours</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.10)"><em>dict</em></a>) – colors used for the values</p></li>
+<li><p><strong>alpha</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.10)"><em>float</em></a>) – alpha value for the colour</p></li>
+<li><p><strong>s</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.10)"><em>int</em></a>) – size of the marker drawn</p></li>
+<li><p><strong>marker</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.10)"><em>str</em></a>) – one of the accepted matplotlib markers</p></li>
+<li><p><strong>linewidth</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.10)"><em>float</em></a>) – width of the line used to draw the marker</p></li>
+<li><p><strong>box_vert</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.10)"><em>bool</em></a>) – specify if the original boxplot is vertical or not</p></li>
 </ul>
 </dd>
 </dl>
@@ -126,19 +126,19 @@ row contains the values for each boxplot. An ax object is needed.</p>
 <li><p><strong>dataframe</strong> – dataframe to plot</p></li>
 <li><p><strong>plot_order</strong> (<em>iterable</em>) – row order used to plot the boxes</p></li>
 <li><p><strong>ax</strong> – an axis instance</p></li>
-<li><p><strong>label_map</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.9)"><em>dict</em></a>) – a map that converts the items in plot_order to a
+<li><p><strong>label_map</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.10)"><em>dict</em></a>) – a map that converts the items in plot_order to a
 label used on the plot X ax</p></li>
-<li><p><strong>fonts</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.9)"><em>dict</em></a>) – dictionary with properties for x axis labels,
+<li><p><strong>fonts</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.10)"><em>dict</em></a>) – dictionary with properties for x axis labels,
 <code class="xref py py-data docutils literal notranslate"><span class="pre">DEFAULT_BOXPLOT_FONTCONF</span></code> is used by default</p></li>
-<li><p><strong>fill_box</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.9)"><em>bool</em></a>) – if True each box is filled with the same colour of
+<li><p><strong>fill_box</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.10)"><em>bool</em></a>) – if True each box is filled with the same colour of
 its outline</p></li>
-<li><p><strong>colours</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.9)"><em>dict</em></a>) – dictionary with properties for each boxplot if
+<li><p><strong>colours</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.10)"><em>dict</em></a>) – dictionary with properties for each boxplot if
 data_colours is None, whi overrides box, whiskers and fliers. Defaults
 to <code class="xref py py-data docutils literal notranslate"><span class="pre">DEFAULT_BOXPLOT_COLOURS</span></code></p></li>
-<li><p><strong>data_colours</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.9)"><em>dict</em></a>) – dictionary of colours for each boxplot, a set of
+<li><p><strong>data_colours</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.10)"><em>dict</em></a>) – dictionary of colours for each boxplot, a set of
 colours can be obtained using func:<cite>map_taxon_to_colours</cite></p></li>
-<li><p><strong>box_vert</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.9)"><em>bool</em></a>) – if False the boxplots are drawn horizontally</p></li>
-<li><p><strong>widths</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.9)"><em>float</em></a>) – width (scalar or array) of the boxplots width(s)</p></li>
+<li><p><strong>box_vert</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.10)"><em>bool</em></a>) – if False the boxplots are drawn horizontally</p></li>
+<li><p><strong>widths</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.10)"><em>float</em></a>) – width (scalar or array) of the boxplots width(s)</p></li>
 </ul>
 </dd>
 <dt class="field-even">Returns</dt>
@@ -166,16 +166,16 @@ row contains the values for each boxplot. An axes object is needed.</p>
 <li><p><strong>dataframe</strong> – dataframe to plot</p></li>
 <li><p><strong>plot_order</strong> (<em>iterable</em>) – row order used to plot the boxes</p></li>
 <li><p><strong>axes</strong> – an axes instance</p></li>
-<li><p><strong>label_map</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.9)"><em>dict</em></a>) – a map that converts the items in plot_order to a
+<li><p><strong>label_map</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.10)"><em>dict</em></a>) – a map that converts the items in plot_order to a
 label used on the plot X axes</p></li>
-<li><p><strong>fonts</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.9)"><em>dict</em></a>) – dictionary with properties for x axis labels,
+<li><p><strong>fonts</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.10)"><em>dict</em></a>) – dictionary with properties for x axis labels,
 <code class="xref py py-data docutils literal notranslate"><span class="pre">DEFAULT_BOXPLOT_FONTCONF</span></code> is used by default</p></li>
-<li><p><strong>fill_box</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.9)"><em>bool</em></a>) – if True each box is filled with the same colour of
+<li><p><strong>fill_box</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.10)"><em>bool</em></a>) – if True each box is filled with the same colour of
 its outline</p></li>
-<li><p><strong>colours</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.9)"><em>dict</em></a>) – dictionary with properties for each boxplot if
+<li><p><strong>colours</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.10)"><em>dict</em></a>) – dictionary with properties for each boxplot if
 data_colours is None, whi overrides box, whiskers and fliers. Defaults
 to <code class="xref py py-data docutils literal notranslate"><span class="pre">DEFAULT_BOXPLOT_COLOURS</span></code></p></li>
-<li><p><strong>data_colours</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.9)"><em>dict</em></a>) – dictionary of colours for each boxplot, a set of
+<li><p><strong>data_colours</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.10)"><em>dict</em></a>) – dictionary of colours for each boxplot, a set of
 colours can be obtained using func:<cite>map_taxon_to_colours</cite></p></li>
 </ul>
 </dd>
@@ -275,13 +275,18 @@ colours can be obtained using func:<cite>map_taxon_to_colours</cite></p></li>
 <li class="toctree-l2"><a class="reference internal" href="mgkit.utils.trans_tables.html">mgkit.utils.trans_tables module</a></li>
 <li class="toctree-l2"><a class="reference internal" href="mgkit.workflow.html">mgkit.workflow package</a></li>
 <li class="toctree-l2"><a class="reference internal" href="mgkit.workflow.add_gff_info.html">mgkit.workflow.add_gff_info module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mgkit.workflow.alg_utils.html">mgkit.workflow.alg_utils module</a></li>
 <li class="toctree-l2"><a class="reference internal" href="mgkit.workflow.blast2gff.html">mgkit.workflow.blast2gff module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mgkit.workflow.count_utils.html">mgkit.workflow.count_utils module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mgkit.workflow.dict_utils.html">mgkit.workflow.dict_utils module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mgkit.workflow.edit_gff.html">mgkit.workflow.edit_gff module</a></li>
 <li class="toctree-l2"><a class="reference internal" href="mgkit.workflow.extract_gff_info.html">mgkit.workflow.extract_gff_info module</a></li>
 <li class="toctree-l2"><a class="reference internal" href="mgkit.workflow.fasta_utils.html">mgkit.workflow.fasta_utils module</a></li>
 <li class="toctree-l2"><a class="reference internal" href="mgkit.workflow.fastq_utils.html">mgkit.workflow.fastq_utils module</a></li>
 <li class="toctree-l2"><a class="reference internal" href="mgkit.workflow.filter_gff.html">mgkit.workflow.filter_gff module</a></li>
 <li class="toctree-l2"><a class="reference internal" href="mgkit.workflow.hmmer2gff.html">mgkit.workflow.hmmer2gff module</a></li>
 <li class="toctree-l2"><a class="reference internal" href="mgkit.workflow.json2gff.html">mgkit.workflow.json2gff module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mgkit.workflow.pnps_gen.html">mgkit.workflow.pnps_gen module</a></li>
 <li class="toctree-l2"><a class="reference internal" href="mgkit.workflow.sampling_utils.html">mgkit.workflow.sampling_utils module</a></li>
 <li class="toctree-l2"><a class="reference internal" href="mgkit.workflow.snp_parser.html">mgkit.workflow.snp_parser module</a></li>
 <li class="toctree-l2"><a class="reference internal" href="mgkit.workflow.taxon_utils.html">mgkit.workflow.taxon_utils module</a></li>

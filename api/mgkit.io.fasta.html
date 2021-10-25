@@ -5,7 +5,7 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>mgkit.io.fasta module &#8212; MGKit: Metagenomic framework 0.5.5 documentation</title>
+    <title>mgkit.io.fasta module &#8212; MGKit: Metagenomic framework 0.5.7 documentation</title>
     <link rel="stylesheet" href="../_static/alabaster.css" type="text/css" />
     <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
     <link rel="stylesheet" type="text/css" href="../_static/graphviz.css" />
@@ -50,7 +50,7 @@
 element is the name of the sequence and the second the sequence</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><p><strong>file_handle</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)"><em>str</em></a><em>, </em><em>file</em>) – fasta file to open; a file name or a file handle
+<dd class="field-odd"><p><strong>file_handle</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.10)"><em>str</em></a><em>, </em><em>file</em>) – fasta file to open; a file name or a file handle
 is expected</p>
 </dd>
 <dt class="field-even">Yields</dt>
@@ -79,7 +79,7 @@ the sequence</p>
 basic information about the sequences.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><p><strong>file_handle</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)"><em>str</em></a><em>, </em><em>file</em>) – passed to <a class="reference internal" href="#mgkit.io.fasta.load_fasta" title="mgkit.io.fasta.load_fasta"><code class="xref py py-func docutils literal notranslate"><span class="pre">load_fasta()</span></code></a></p>
+<dd class="field-odd"><p><strong>file_handle</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.10)"><em>str</em></a><em>, </em><em>file</em>) – passed to <a class="reference internal" href="#mgkit.io.fasta.load_fasta" title="mgkit.io.fasta.load_fasta"><code class="xref py py-func docutils literal notranslate"><span class="pre">load_fasta()</span></code></a></p>
 </dd>
 <dt class="field-even">Yields</dt>
 <dd class="field-even"><p><em>dict</em> – dictionary with the information contained in the header, the last
@@ -110,10 +110,10 @@ the first space (BLAST behaviour).</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>file_handle</strong> (<em>file</em><em>, </em><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)"><em>str</em></a>) – fasta file with the input sequences</p></li>
-<li><p><strong>name_mask</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)"><em>str</em></a>) – file name template for the splitted files, more
+<li><p><strong>file_handle</strong> (<em>file</em><em>, </em><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.10)"><em>str</em></a>) – fasta file with the input sequences</p></li>
+<li><p><strong>name_mask</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.10)"><em>str</em></a>) – file name template for the splitted files, more
 informations are found in <code class="xref py py-func docutils literal notranslate"><span class="pre">mgkit.io.split_write()</span></code></p></li>
-<li><p><strong>num_files</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.9)"><em>int</em></a>) – number of files in which to distribute the sequences</p></li>
+<li><p><strong>num_files</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.10)"><em>int</em></a>) – number of files in which to distribute the sequences</p></li>
 </ul>
 </dd>
 </dl>
@@ -128,9 +128,9 @@ will be opened using <em>write_mode</em>.</p>
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>file_handle</strong> – file handle or string.</p></li>
-<li><p><strong>name</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)"><em>str</em></a>) – header to write for the sequence</p></li>
-<li><p><strong>seq</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)"><em>str</em></a>) – sequence to write</p></li>
-<li><p><strong>wrap</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.9)"><em>int</em></a>) – int for the line wrapping. If None, the sequence will be
+<li><p><strong>name</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.10)"><em>str</em></a>) – header to write for the sequence</p></li>
+<li><p><strong>seq</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.10)"><em>str</em></a>) – sequence to write</p></li>
+<li><p><strong>wrap</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.10)"><em>int</em></a>) – int for the line wrapping. If None, the sequence will be
 written in a single line</p></li>
 </ul>
 </dd>
@@ -181,7 +181,7 @@ written in a single line</p></li>
 <li class="toctree-l2"><a class="reference internal" href="mgkit.filter.reads.html">mgkit.filter.reads module</a></li>
 <li class="toctree-l2"><a class="reference internal" href="mgkit.filter.taxon.html">mgkit.filter.taxon module</a></li>
 <li class="toctree-l2"><a class="reference internal" href="mgkit.graphs.html">mgkit.graphs module</a></li>
-<li class="toctree-l2 current"><a class="reference internal" href="mgkit.io.html">mgkit.io package</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mgkit.io.html">mgkit.io package</a></li>
 <li class="toctree-l2"><a class="reference internal" href="mgkit.io.blast.html">mgkit.io.blast module</a></li>
 <li class="toctree-l2 current"><a class="current reference internal" href="#">mgkit.io.fasta module</a></li>
 <li class="toctree-l2"><a class="reference internal" href="mgkit.io.fastq.html">mgkit.io.fastq module</a></li>
@@ -227,13 +227,18 @@ written in a single line</p></li>
 <li class="toctree-l2"><a class="reference internal" href="mgkit.utils.trans_tables.html">mgkit.utils.trans_tables module</a></li>
 <li class="toctree-l2"><a class="reference internal" href="mgkit.workflow.html">mgkit.workflow package</a></li>
 <li class="toctree-l2"><a class="reference internal" href="mgkit.workflow.add_gff_info.html">mgkit.workflow.add_gff_info module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mgkit.workflow.alg_utils.html">mgkit.workflow.alg_utils module</a></li>
 <li class="toctree-l2"><a class="reference internal" href="mgkit.workflow.blast2gff.html">mgkit.workflow.blast2gff module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mgkit.workflow.count_utils.html">mgkit.workflow.count_utils module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mgkit.workflow.dict_utils.html">mgkit.workflow.dict_utils module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mgkit.workflow.edit_gff.html">mgkit.workflow.edit_gff module</a></li>
 <li class="toctree-l2"><a class="reference internal" href="mgkit.workflow.extract_gff_info.html">mgkit.workflow.extract_gff_info module</a></li>
 <li class="toctree-l2"><a class="reference internal" href="mgkit.workflow.fasta_utils.html">mgkit.workflow.fasta_utils module</a></li>
 <li class="toctree-l2"><a class="reference internal" href="mgkit.workflow.fastq_utils.html">mgkit.workflow.fastq_utils module</a></li>
 <li class="toctree-l2"><a class="reference internal" href="mgkit.workflow.filter_gff.html">mgkit.workflow.filter_gff module</a></li>
 <li class="toctree-l2"><a class="reference internal" href="mgkit.workflow.hmmer2gff.html">mgkit.workflow.hmmer2gff module</a></li>
 <li class="toctree-l2"><a class="reference internal" href="mgkit.workflow.json2gff.html">mgkit.workflow.json2gff module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mgkit.workflow.pnps_gen.html">mgkit.workflow.pnps_gen module</a></li>
 <li class="toctree-l2"><a class="reference internal" href="mgkit.workflow.sampling_utils.html">mgkit.workflow.sampling_utils module</a></li>
 <li class="toctree-l2"><a class="reference internal" href="mgkit.workflow.snp_parser.html">mgkit.workflow.snp_parser module</a></li>
 <li class="toctree-l2"><a class="reference internal" href="mgkit.workflow.taxon_utils.html">mgkit.workflow.taxon_utils module</a></li>

@@ -5,7 +5,7 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>mgkit.workflow.snp_parser module &#8212; MGKit: Metagenomic framework 0.5.5 documentation</title>
+    <title>mgkit.workflow.snp_parser module &#8212; MGKit: Metagenomic framework 0.5.7 documentation</title>
     <link rel="stylesheet" href="../_static/alabaster.css" type="text/css" />
     <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
     <link rel="stylesheet" type="text/css" href="../_static/graphviz.css" />
@@ -39,6 +39,13 @@
             
   <div class="section" id="module-mgkit.workflow.snp_parser">
 <span id="mgkit-workflow-snp-parser-module"></span><h1>mgkit.workflow.snp_parser module<a class="headerlink" href="#module-mgkit.workflow.snp_parser" title="Permalink to this headline">¶</a></h1>
+<div class="deprecated">
+<p><span class="versionmodified deprecated">Deprecated since version 0.5.7: </span>This script is deprecated now, use <cite>pnps-gen vcf</cite> instead</p>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>if you need to use the script, install HTSeq</p>
+</div>
 <p>This script parses results of SNPs analysis from any tool for SNP calling <a class="footnote-reference brackets" href="#id2" id="id1">1</a>
 and integrates them into a format that can be later used for other scripts in
 the pipeline.</p>
@@ -73,7 +80,7 @@ bcftools</p>
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>samples</strong> (<em>iterable</em>) – list of samples that contain the SNP</p></li>
-<li><p><strong>snp_data</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.9)"><em>dict</em></a>) – dictionary from <a class="reference internal" href="#mgkit.workflow.snp_parser.init_count_set" title="mgkit.workflow.snp_parser.init_count_set"><code class="xref py py-func docutils literal notranslate"><span class="pre">init_count_set()</span></code></a> with per
+<li><p><strong>snp_data</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.10)"><em>dict</em></a>) – dictionary from <a class="reference internal" href="#mgkit.workflow.snp_parser.init_count_set" title="mgkit.workflow.snp_parser.init_count_set"><code class="xref py py-func docutils literal notranslate"><span class="pre">init_count_set()</span></code></a> with per
 sample SNPs information</p></li>
 </ul>
 </dd>
@@ -99,14 +106,14 @@ sample SNPs information</p></li>
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>vcf_file</strong> (<em>file</em>) – file handle to a VCF file</p></li>
-<li><p><strong>snp_data</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.9)"><em>dict</em></a>) – dictionary from <a class="reference internal" href="#mgkit.workflow.snp_parser.init_count_set" title="mgkit.workflow.snp_parser.init_count_set"><code class="xref py py-func docutils literal notranslate"><span class="pre">init_count_set()</span></code></a> with per
+<li><p><strong>snp_data</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.10)"><em>dict</em></a>) – dictionary from <a class="reference internal" href="#mgkit.workflow.snp_parser.init_count_set" title="mgkit.workflow.snp_parser.init_count_set"><code class="xref py py-func docutils literal notranslate"><span class="pre">init_count_set()</span></code></a> with per
 sample SNPs information</p></li>
-<li><p><strong>min_reads</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.9)"><em>int</em></a>) – minimum number of reads to accept a SNP</p></li>
-<li><p><strong>min_af</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.9)"><em>float</em></a>) – minimum allele frequency to accept a SNP</p></li>
-<li><p><strong>min_qual</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.9)"><em>int</em></a>) – minimum quality (Phred score) to accept a SNP</p></li>
-<li><p><strong>annotations</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.9)"><em>dict</em></a>) – annotations grouped by their reference sequence</p></li>
-<li><p><strong>seqs</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.9)"><em>dict</em></a>) – reference sequences</p></li>
-<li><p><strong>line_num</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.9)"><em>int</em></a>) – the interval in number of lines at which progress
+<li><p><strong>min_reads</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.10)"><em>int</em></a>) – minimum number of reads to accept a SNP</p></li>
+<li><p><strong>min_af</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.10)"><em>float</em></a>) – minimum allele frequency to accept a SNP</p></li>
+<li><p><strong>min_qual</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.10)"><em>int</em></a>) – minimum quality (Phred score) to accept a SNP</p></li>
+<li><p><strong>annotations</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.10)"><em>dict</em></a>) – annotations grouped by their reference sequence</p></li>
+<li><p><strong>seqs</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.10)"><em>dict</em></a>) – reference sequences</p></li>
+<li><p><strong>line_num</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.10)"><em>int</em></a>) – the interval in number of lines at which progress
 will be printed</p></li>
 </ul>
 </dd>
@@ -120,8 +127,8 @@ will be printed</p></li>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>output_file</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)"><em>str</em></a>) – base name for pickle files</p></li>
-<li><p><strong>snp_data</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.9)"><em>dict</em></a>) – dictionary from <a class="reference internal" href="#mgkit.workflow.snp_parser.init_count_set" title="mgkit.workflow.snp_parser.init_count_set"><code class="xref py py-func docutils literal notranslate"><span class="pre">init_count_set()</span></code></a> with per
+<li><p><strong>output_file</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.10)"><em>str</em></a>) – base name for pickle files</p></li>
+<li><p><strong>snp_data</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.10)"><em>dict</em></a>) – dictionary from <a class="reference internal" href="#mgkit.workflow.snp_parser.init_count_set" title="mgkit.workflow.snp_parser.init_count_set"><code class="xref py py-func docutils literal notranslate"><span class="pre">init_count_set()</span></code></a> with per
 sample SNPs information</p></li>
 </ul>
 </dd>
@@ -225,13 +232,18 @@ sample SNPs information</p></li>
 <li class="toctree-l2"><a class="reference internal" href="mgkit.utils.trans_tables.html">mgkit.utils.trans_tables module</a></li>
 <li class="toctree-l2"><a class="reference internal" href="mgkit.workflow.html">mgkit.workflow package</a></li>
 <li class="toctree-l2"><a class="reference internal" href="mgkit.workflow.add_gff_info.html">mgkit.workflow.add_gff_info module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mgkit.workflow.alg_utils.html">mgkit.workflow.alg_utils module</a></li>
 <li class="toctree-l2"><a class="reference internal" href="mgkit.workflow.blast2gff.html">mgkit.workflow.blast2gff module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mgkit.workflow.count_utils.html">mgkit.workflow.count_utils module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mgkit.workflow.dict_utils.html">mgkit.workflow.dict_utils module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mgkit.workflow.edit_gff.html">mgkit.workflow.edit_gff module</a></li>
 <li class="toctree-l2"><a class="reference internal" href="mgkit.workflow.extract_gff_info.html">mgkit.workflow.extract_gff_info module</a></li>
 <li class="toctree-l2"><a class="reference internal" href="mgkit.workflow.fasta_utils.html">mgkit.workflow.fasta_utils module</a></li>
 <li class="toctree-l2"><a class="reference internal" href="mgkit.workflow.fastq_utils.html">mgkit.workflow.fastq_utils module</a></li>
 <li class="toctree-l2"><a class="reference internal" href="mgkit.workflow.filter_gff.html">mgkit.workflow.filter_gff module</a></li>
 <li class="toctree-l2"><a class="reference internal" href="mgkit.workflow.hmmer2gff.html">mgkit.workflow.hmmer2gff module</a></li>
 <li class="toctree-l2"><a class="reference internal" href="mgkit.workflow.json2gff.html">mgkit.workflow.json2gff module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mgkit.workflow.pnps_gen.html">mgkit.workflow.pnps_gen module</a></li>
 <li class="toctree-l2"><a class="reference internal" href="mgkit.workflow.sampling_utils.html">mgkit.workflow.sampling_utils module</a></li>
 <li class="toctree-l2 current"><a class="current reference internal" href="#">mgkit.workflow.snp_parser module</a></li>
 <li class="toctree-l2"><a class="reference internal" href="mgkit.workflow.taxon_utils.html">mgkit.workflow.taxon_utils module</a></li>

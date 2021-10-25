@@ -5,7 +5,7 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>mgkit.utils.dictionary &#8212; MGKit: Metagenomic framework 0.5.5 documentation</title>
+    <title>mgkit.utils.dictionary &#8212; MGKit: Metagenomic framework 0.5.7 documentation</title>
     <link rel="stylesheet" href="../../../_static/alabaster.css" type="text/css" />
     <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
     <link rel="stylesheet" type="text/css" href="../../../_static/graphviz.css" />
@@ -42,8 +42,13 @@
 <span class="sd">&quot;&quot;&quot;</span>
 <span class="kn">from</span> <span class="nn">builtins</span> <span class="kn">import</span> <span class="nb">range</span>
 <span class="kn">import</span> <span class="nn">logging</span>
+<span class="kn">import</span> <span class="nn">pathlib</span>
+<span class="kn">import</span> <span class="nn">collections</span>
+<span class="kn">import</span> <span class="nn">json</span>
 <span class="kn">from</span> <span class="nn">future.utils</span> <span class="kn">import</span> <span class="n">viewitems</span><span class="p">,</span> <span class="n">viewkeys</span>
 <span class="kn">import</span> <span class="nn">numpy</span>
+<span class="kn">from</span> <span class="nn">tqdm</span> <span class="kn">import</span> <span class="n">tqdm</span>
+
 <span class="kn">import</span> <span class="nn">pandas</span>
 
 <span class="n">LOG</span> <span class="o">=</span> <span class="n">logging</span><span class="o">.</span><span class="n">getLogger</span><span class="p">(</span><span class="vm">__name__</span><span class="p">)</span>
@@ -438,12 +443,15 @@
 
 <div class="viewcode-block" id="text_to_dict"><a class="viewcode-back" href="../../../api/mgkit.utils.dictionary.html#mgkit.utils.dictionary.text_to_dict">[docs]</a><span class="k">def</span> <span class="nf">text_to_dict</span><span class="p">(</span><span class="n">stream</span><span class="p">,</span> <span class="n">skip_lines</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">sep</span><span class="o">=</span><span class="s1">&#39;</span><span class="se">\t</span><span class="s1">&#39;</span><span class="p">,</span> <span class="n">key_index</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">value_index</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span>
                  <span class="n">key_func</span><span class="o">=</span><span class="nb">str</span><span class="p">,</span> <span class="n">value_func</span><span class="o">=</span><span class="nb">str</span><span class="p">,</span> <span class="n">encoding</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">skip_empty</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
-                 <span class="n">skip_comment</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+                 <span class="n">skip_comment</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">verbose</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    .. versionadded:: 0.4.4</span>
 
 <span class="sd">    .. versionchanged:: 0.5.5</span>
 <span class="sd">        added *skip_comment* and *skip_empty*</span>
+
+<span class="sd">    .. versionchanged::0.5.7</span>
+<span class="sd">        added *verbose* parameter</span>
 
 <span class="sd">    Reads a dictionary form a table file, the passed file is assumed to be</span>
 <span class="sd">    opened as text, not binary - in which case you need to pass the encoding</span>
@@ -464,6 +472,7 @@
 <span class="sd">        skip_empty (bool): if True, an empty value will not be yielded</span>
 <span class="sd">        skip_comment (None, str): if a value other than None is passed, lines</span>
 <span class="sd">            starting with this parameter value will be skipped</span>
+<span class="sd">        verbose (bool): if True logs informations about the file read</span>
 
 <span class="sd">    Yields:</span>
 <span class="sd">        tuple: the keys and values that can be passed to *dict*</span>
@@ -483,7 +492,8 @@
         <span class="n">line</span> <span class="o">=</span> <span class="n">line</span><span class="o">.</span><span class="n">rstrip</span><span class="p">(</span><span class="s1">&#39;</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">)</span>
 
         <span class="c1"># line empty, so skip</span>
-        <span class="k">if</span> <span class="p">(</span><span class="ow">not</span> <span class="n">line</span><span class="p">)</span> <span class="ow">or</span> <span class="p">((</span><span class="n">skip_comment</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">)</span> <span class="ow">and</span> <span class="n">line</span><span class="o">.</span><span class="n">startswith</span><span class="p">(</span><span class="n">skip_comment</span><span class="p">)):</span>
+        <span class="k">if</span> <span class="p">(</span><span class="ow">not</span> <span class="n">line</span><span class="p">)</span> <span class="ow">or</span> <span class="p">((</span><span class="n">skip_comment</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">)</span> <span class="ow">and</span> \
+                <span class="n">line</span><span class="o">.</span><span class="n">startswith</span><span class="p">(</span><span class="n">skip_comment</span><span class="p">)):</span>
             <span class="k">continue</span>
 
         <span class="n">line</span> <span class="o">=</span> <span class="n">line</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="n">sep</span><span class="p">)</span>
@@ -495,8 +505,9 @@
 
         <span class="n">count</span> <span class="o">+=</span> <span class="mi">1</span>
         <span class="k">yield</span> <span class="n">key</span><span class="p">,</span> <span class="n">value</span>
-    
-    <span class="n">LOG</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;Used </span><span class="si">%d</span><span class="s2"> lines out of </span><span class="si">%d</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">count</span><span class="p">,</span> <span class="n">index</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span></div>
+
+    <span class="k">if</span> <span class="n">verbose</span><span class="p">:</span>
+        <span class="n">LOG</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;Used </span><span class="si">%d</span><span class="s2"> lines out of </span><span class="si">%d</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">count</span><span class="p">,</span> <span class="n">index</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span></div>
 </pre></div>
 
           </div>

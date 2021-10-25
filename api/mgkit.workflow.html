@@ -5,7 +5,7 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>mgkit.workflow package &#8212; MGKit: Metagenomic framework 0.5.5 documentation</title>
+    <title>mgkit.workflow package &#8212; MGKit: Metagenomic framework 0.5.7 documentation</title>
     <link rel="stylesheet" href="../_static/alabaster.css" type="text/css" />
     <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
     <link rel="stylesheet" type="text/css" href="../_static/graphviz.css" />
@@ -53,13 +53,39 @@
 <li class="toctree-l2"><a class="reference internal" href="mgkit.workflow.add_gff_info.html#adding-count-data">Adding Count Data</a></li>
 <li class="toctree-l2"><a class="reference internal" href="mgkit.workflow.add_gff_info.html#adding-taxonomy-from-a-table">Adding Taxonomy from a Table</a></li>
 <li class="toctree-l2"><a class="reference internal" href="mgkit.workflow.add_gff_info.html#adding-information-from-pfam">Adding information from Pfam</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mgkit.workflow.add_gff_info.html#adding-information-about-bins">Adding information about Bins</a></li>
 <li class="toctree-l2"><a class="reference internal" href="mgkit.workflow.add_gff_info.html#changes">Changes</a></li>
 </ul>
 </li>
+<li class="toctree-l1"><a class="reference internal" href="mgkit.workflow.alg_utils.html">mgkit.workflow.alg_utils module</a></li>
 <li class="toctree-l1"><a class="reference internal" href="mgkit.workflow.blast2gff.html">mgkit.workflow.blast2gff module</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="mgkit.workflow.blast2gff.html#uniprot">Uniprot</a></li>
 <li class="toctree-l2"><a class="reference internal" href="mgkit.workflow.blast2gff.html#blastdb">BlastDB</a></li>
 <li class="toctree-l2"><a class="reference internal" href="mgkit.workflow.blast2gff.html#changes">Changes</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="mgkit.workflow.count_utils.html">mgkit.workflow.count_utils module</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="mgkit.workflow.count_utils.html#map-count-table-to-genes">Map Count Table to Genes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mgkit.workflow.count_utils.html#concatenate-parquet-files">Concatenate Parquet Files</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mgkit.workflow.count_utils.html#convert-parquet-into-csv">Convert Parquet into CSV</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mgkit.workflow.count_utils.html#changes">Changes</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="mgkit.workflow.dict_utils.html">mgkit.workflow.dict_utils module</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="mgkit.workflow.dict_utils.html#dictionary-utilities">Dictionary Utilities</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mgkit.workflow.dict_utils.html#split">Split</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mgkit.workflow.dict_utils.html#reverse-dictionary">Reverse Dictionary</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mgkit.workflow.dict_utils.html#changes">Changes</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="mgkit.workflow.edit_gff.html">mgkit.workflow.edit_gff module</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="mgkit.workflow.edit_gff.html#print-attributes-in-a-gff-file">Print Attributes in a GFF file</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mgkit.workflow.edit_gff.html#view-gff">View GFF</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mgkit.workflow.edit_gff.html#change-or-add-attributes">Change or Add Attributes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mgkit.workflow.edit_gff.html#remove-attributes">Remove Attributes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mgkit.workflow.edit_gff.html#table">Table</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mgkit.workflow.edit_gff.html#rename">Rename</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mgkit.workflow.edit_gff.html#changes">Changes</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="mgkit.workflow.extract_gff_info.html">mgkit.workflow.extract_gff_info module</a><ul>
@@ -76,6 +102,9 @@
 <li class="toctree-l2"><a class="reference internal" href="mgkit.workflow.fasta_utils.html#split-command">split command</a></li>
 <li class="toctree-l2"><a class="reference internal" href="mgkit.workflow.fasta_utils.html#translate-command">translate command</a></li>
 <li class="toctree-l2"><a class="reference internal" href="mgkit.workflow.fasta_utils.html#uid-command">uid command</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mgkit.workflow.fasta_utils.html#filter">filter</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mgkit.workflow.fasta_utils.html#info">info</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mgkit.workflow.fasta_utils.html#rename">rename</a></li>
 <li class="toctree-l2"><a class="reference internal" href="mgkit.workflow.fasta_utils.html#changes">Changes</a></li>
 </ul>
 </li>
@@ -98,6 +127,14 @@
 </li>
 <li class="toctree-l1"><a class="reference internal" href="mgkit.workflow.json2gff.html">mgkit.workflow.json2gff module</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="mgkit.workflow.json2gff.html#mongodb-command">mongodb command</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="mgkit.workflow.pnps_gen.html">mgkit.workflow.pnps_gen module</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="mgkit.workflow.pnps_gen.html#calculates-pn-ps-values">Calculates pN/pS values</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mgkit.workflow.pnps_gen.html#parse-vcf-files">Parse VCF Files</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mgkit.workflow.pnps_gen.html#calculate-rank-pn-ps">Calculate Rank pN/pS</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mgkit.workflow.pnps_gen.html#calculate-gene-rank-pn-ps">Calculate Gene/Rank pN/pS</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mgkit.workflow.pnps_gen.html#changes">Changes</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="mgkit.workflow.sampling_utils.html">mgkit.workflow.sampling_utils module</a><ul>
@@ -124,6 +161,10 @@
 <li class="toctree-l2"><a class="reference internal" href="mgkit.workflow.taxon_utils.html#convert-taxa-tables-to-hdf5">Convert Taxa Tables to HDF5</a></li>
 <li class="toctree-l2"><a class="reference internal" href="mgkit.workflow.taxon_utils.html#extract-taxonomy">Extract taxonomy</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="mgkit.workflow.taxon_utils.html#match-names">Match names</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="mgkit.workflow.taxon_utils.html#import-taxonomy">Import Taxonomy</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="mgkit.workflow.taxon_utils.html#phylophlan">PhyloPhlan</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="mgkit.workflow.taxon_utils.html#changes">Changes</a></li>
@@ -227,13 +268,18 @@
 <li class="toctree-l2"><a class="reference internal" href="mgkit.utils.trans_tables.html">mgkit.utils.trans_tables module</a></li>
 <li class="toctree-l2 current"><a class="current reference internal" href="#">mgkit.workflow package</a></li>
 <li class="toctree-l2"><a class="reference internal" href="mgkit.workflow.add_gff_info.html">mgkit.workflow.add_gff_info module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mgkit.workflow.alg_utils.html">mgkit.workflow.alg_utils module</a></li>
 <li class="toctree-l2"><a class="reference internal" href="mgkit.workflow.blast2gff.html">mgkit.workflow.blast2gff module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mgkit.workflow.count_utils.html">mgkit.workflow.count_utils module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mgkit.workflow.dict_utils.html">mgkit.workflow.dict_utils module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mgkit.workflow.edit_gff.html">mgkit.workflow.edit_gff module</a></li>
 <li class="toctree-l2"><a class="reference internal" href="mgkit.workflow.extract_gff_info.html">mgkit.workflow.extract_gff_info module</a></li>
 <li class="toctree-l2"><a class="reference internal" href="mgkit.workflow.fasta_utils.html">mgkit.workflow.fasta_utils module</a></li>
 <li class="toctree-l2"><a class="reference internal" href="mgkit.workflow.fastq_utils.html">mgkit.workflow.fastq_utils module</a></li>
 <li class="toctree-l2"><a class="reference internal" href="mgkit.workflow.filter_gff.html">mgkit.workflow.filter_gff module</a></li>
 <li class="toctree-l2"><a class="reference internal" href="mgkit.workflow.hmmer2gff.html">mgkit.workflow.hmmer2gff module</a></li>
 <li class="toctree-l2"><a class="reference internal" href="mgkit.workflow.json2gff.html">mgkit.workflow.json2gff module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mgkit.workflow.pnps_gen.html">mgkit.workflow.pnps_gen module</a></li>
 <li class="toctree-l2"><a class="reference internal" href="mgkit.workflow.sampling_utils.html">mgkit.workflow.sampling_utils module</a></li>
 <li class="toctree-l2"><a class="reference internal" href="mgkit.workflow.snp_parser.html">mgkit.workflow.snp_parser module</a></li>
 <li class="toctree-l2"><a class="reference internal" href="mgkit.workflow.taxon_utils.html">mgkit.workflow.taxon_utils module</a></li>
