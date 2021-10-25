@@ -5,7 +5,7 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>MGKit GFF Specifications &#8212; MGKit: Metagenomic framework 0.5.5 documentation</title>
+    <title>MGKit GFF Specifications &#8212; MGKit: Metagenomic framework 0.5.7 documentation</title>
     <link rel="stylesheet" href="_static/alabaster.css" type="text/css" />
     <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
     <link rel="stylesheet" type="text/css" href="_static/graphviz.css" />
@@ -63,35 +63,39 @@ Python dictionary when an annotation is loaded into an <code class="xref py py-c
 </tr>
 </thead>
 <tbody>
-<tr class="row-even"><th class="stub"><p>gene_id</p></th>
+<tr class="row-even"><th class="stub"><p>seq_id</p></th>
+<td><p>string</p></td>
+<td><p>the sequence of the annotation (header in FASTA files)</p></td>
+</tr>
+<tr class="row-odd"><th class="stub"><p>gene_id</p></th>
 <td><p>any string</p></td>
 <td><p>used to identify the gene predicted</p></td>
 </tr>
-<tr class="row-odd"><th class="stub"><p>db</p></th>
+<tr class="row-even"><th class="stub"><p>db</p></th>
 <td><p>any string, like UNIPROT-SP, UNIPROT-TR, NCBI-NT</p></td>
 <td><p>identifies the database used to make the gene_id prediction</p></td>
 </tr>
-<tr class="row-even"><th class="stub"><p>taxon_db</p></th>
+<tr class="row-odd"><th class="stub"><p>taxon_db</p></th>
 <td><p>any string, like UNIPROT-SP, UNIPROT-TR, NCBI-NT</p></td>
 <td><p>identifies the database used to make the taxon_id prediction</p></td>
 </tr>
-<tr class="row-odd"><th class="stub"><p>dbq</p></th>
+<tr class="row-even"><th class="stub"><p>dbq</p></th>
 <td><p>integer</p></td>
 <td><p>identifies the quality of the database, used when filtering annotations</p></td>
 </tr>
-<tr class="row-even"><th class="stub"><p>taxon_id</p></th>
+<tr class="row-odd"><th class="stub"><p>taxon_id</p></th>
 <td><p>integer</p></td>
 <td><p>identifies the annotation taxon, NCBI taxonomy is used</p></td>
 </tr>
-<tr class="row-odd"><th class="stub"><p>uid</p></th>
+<tr class="row-even"><th class="stub"><p>uid</p></th>
 <td><p>string</p></td>
-<td><p>unique identifier for the annotation, any string is accepted but a value is assigned by using <a class="reference external" href="https://docs.python.org/3/library/uuid.html#uuid.uuid4" title="(in Python v3.9)"><code class="xref py py-func docutils literal notranslate"><span class="pre">uuid.uuid4()</span></code></a></p></td>
+<td><p>unique identifier for the annotation, any string is accepted but a value is assigned by using <a class="reference external" href="https://docs.python.org/3/library/uuid.html#uuid.uuid4" title="(in Python v3.10)"><code class="xref py py-func docutils literal notranslate"><span class="pre">uuid.uuid4()</span></code></a></p></td>
 </tr>
-<tr class="row-even"><th class="stub"><p>cov and {any}_cov</p></th>
+<tr class="row-odd"><th class="stub"><p>cov and {any}_cov</p></th>
 <td><p>integer</p></td>
 <td><p>coverage for the annotation over all samples, keys ending with <em>_cov</em> indicates coverage for each sample</p></td>
 </tr>
-<tr class="row-odd"><th class="stub"><p>exp_syn, exp_nonsyn</p></th>
+<tr class="row-even"><th class="stub"><p>exp_syn, exp_nonsyn</p></th>
 <td><p>integer</p></td>
 <td><p>used for expected number of synonymous and non-synonymous changes for the annotation</p></td>
 </tr>
@@ -143,6 +147,11 @@ Python dictionary when an annotation is loaded into an <code class="xref py py-c
 <td><p>float</p></td>
 <td><p>Stores the count data for a sample (e.g. fpkms_Sample1)</p></td>
 <td><p>used by script <cite>add-gff-info</cite></p></td>
+</tr>
+<tr class="row-even"><th class="stub"><p>FC</p></th>
+<td><p>string (no spaces)</p></td>
+<td><p>each character is a Functional Category in eggNOG (e.g. FJO are 3 different categories)</p></td>
+<td><p>used by <a class="reference internal" href="api/mgkit.io.gff.html#mgkit.io.gff.Annotation.get_fc" title="mgkit.io.gff.Annotation.get_fc"><code class="xref py py-meth docutils literal notranslate"><span class="pre">mgkit.io.gff.Annotation.get_fc()</span></code></a></p></td>
 </tr>
 </tbody>
 </table>

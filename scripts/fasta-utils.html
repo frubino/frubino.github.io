@@ -5,7 +5,7 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>fasta-utils - Fasta Utilities &#8212; MGKit: Metagenomic framework 0.5.5 documentation</title>
+    <title>fasta-utils - Fasta Utilities &#8212; MGKit: Metagenomic framework 0.5.7 documentation</title>
     <link rel="stylesheet" href="../_static/alabaster.css" type="text/css" />
     <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
     <link rel="stylesheet" type="text/css" href="../_static/graphviz.css" />
@@ -59,6 +59,20 @@ framework</p>
 <p>Used to change a FASTA file headers to a unique ID. A table (tab separated)
 with the changes made can be kept, using the <em>–table</em> option.</p>
 </div>
+<div class="section" id="filter">
+<h3>filter<a class="headerlink" href="#filter" title="Permalink to this headline">¶</a></h3>
+<p>Used to filter a FASTA file by length and also for sequence/header if a pattern is contained.
+A list of headers to keep can be passed using the <cite>-f</cite> option.</p>
+</div>
+<div class="section" id="info">
+<h3>info<a class="headerlink" href="#info" title="Permalink to this headline">¶</a></h3>
+<p>Gets information about a FASTA file, prints seq_id (trimmed at first space), length
+and hash (default sha1) and optionally the sequence, GC content and in GFF format if wanted.</p>
+</div>
+<div class="section" id="rename">
+<h3>rename<a class="headerlink" href="#rename" title="Permalink to this headline">¶</a></h3>
+<p>Renames the headers of a FASTA file, appending a random suffix and an optional prefix</p>
+</div>
 <div class="section" id="changes">
 <h3>Changes<a class="headerlink" href="#changes" title="Permalink to this headline">¶</a></h3>
 <div class="versionadded">
@@ -72,6 +86,9 @@ with the changes made can be kept, using the <em>–table</em> option.</p>
 </div>
 <div class="versionchanged">
 <p><span class="versionmodified changed">Changed in version 0.5.5: </span>added option <cite>-1</cite> to output only the forward/frame0 and <cite>-w</cite> to avoid wrap at 60 chars to the <em>translate</em> command</p>
+</div>
+<div class="versionchanged">
+<p><span class="versionmodified changed">Changed in version 0.5.7: </span>added <cite>filter</cite> and <cite>info</cite> commands for simple fasta file filtering and info</p>
 </div>
 </div>
 </div>
@@ -95,6 +112,209 @@ with the changes made can be kept, using the <em>–table</em> option.</p>
 <code class="sig-name descname">--cite</code><code class="sig-prename descclassname"></code><a class="headerlink" href="#cmdoption-fasta-utils-cite" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
+<div class="section" id="fasta-utils-filter">
+<h4>filter<a class="headerlink" href="#fasta-utils-filter" title="Permalink to this headline">¶</a></h4>
+<p>Filters a FASTA file [file-file]</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>fasta-utils filter <span class="o">[</span>OPTIONS<span class="o">]</span> <span class="o">[</span>FASTA_FILE<span class="o">]</span> <span class="o">[</span>OUTPUT_FILE<span class="o">]</span>
+</pre></div>
+</div>
+<p class="rubric">Options</p>
+<dl class="std option">
+<dt id="cmdoption-fasta-utils-filter-v">
+<code class="sig-name descname">-v</code><code class="sig-prename descclassname"></code><code class="sig-prename descclassname">, </code><code class="sig-name descname">--verbose</code><code class="sig-prename descclassname"></code><a class="headerlink" href="#cmdoption-fasta-utils-filter-v" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="std option">
+<dt id="cmdoption-fasta-utils-filter-len-gt">
+<code class="sig-name descname">--len-gt</code><code class="sig-prename descclassname"> &lt;len_gt&gt;</code><a class="headerlink" href="#cmdoption-fasta-utils-filter-len-gt" title="Permalink to this definition">¶</a></dt>
+<dd><p>Keeps sequences whose length is greater than</p>
+</dd></dl>
+
+<dl class="std option">
+<dt id="cmdoption-fasta-utils-filter-len-lt">
+<code class="sig-name descname">--len-lt</code><code class="sig-prename descclassname"> &lt;len_lt&gt;</code><a class="headerlink" href="#cmdoption-fasta-utils-filter-len-lt" title="Permalink to this definition">¶</a></dt>
+<dd><p>Keeps sequences whose length is less than</p>
+</dd></dl>
+
+<dl class="std option">
+<dt id="cmdoption-fasta-utils-filter-header-contains">
+<code class="sig-name descname">--header-contains</code><code class="sig-prename descclassname"> &lt;header_contains&gt;</code><a class="headerlink" href="#cmdoption-fasta-utils-filter-header-contains" title="Permalink to this definition">¶</a></dt>
+<dd><p>Keeps sequences whose header contains the string</p>
+</dd></dl>
+
+<dl class="std option">
+<dt id="cmdoption-fasta-utils-filter-seq-pattern">
+<code class="sig-name descname">--seq-pattern</code><code class="sig-prename descclassname"> &lt;seq_pattern&gt;</code><a class="headerlink" href="#cmdoption-fasta-utils-filter-seq-pattern" title="Permalink to this definition">¶</a></dt>
+<dd><p>Keeps sequences that contains the string</p>
+</dd></dl>
+
+<dl class="std option">
+<dt id="cmdoption-fasta-utils-filter-f">
+<code class="sig-name descname">-f</code><code class="sig-prename descclassname"></code><code class="sig-prename descclassname">, </code><code class="sig-name descname">--header-file</code><code class="sig-prename descclassname"> &lt;header_file&gt;</code><a class="headerlink" href="#cmdoption-fasta-utils-filter-f" title="Permalink to this definition">¶</a></dt>
+<dd><p>Keep only sequences contained in file list</p>
+</dd></dl>
+
+<dl class="std option">
+<dt id="cmdoption-fasta-utils-filter-w">
+<code class="sig-name descname">-w</code><code class="sig-prename descclassname"></code><code class="sig-prename descclassname">, </code><code class="sig-name descname">--wrap</code><code class="sig-prename descclassname"></code><a class="headerlink" href="#cmdoption-fasta-utils-filter-w" title="Permalink to this definition">¶</a></dt>
+<dd><p>Wraps the output sequences to 60 characters</p>
+</dd></dl>
+
+<dl class="std option">
+<dt id="cmdoption-fasta-utils-filter-s">
+<code class="sig-name descname">-s</code><code class="sig-prename descclassname"></code><code class="sig-prename descclassname">, </code><code class="sig-name descname">--trim-tail</code><code class="sig-prename descclassname"></code><a class="headerlink" href="#cmdoption-fasta-utils-filter-s" title="Permalink to this definition">¶</a></dt>
+<dd><p>Removes header information after first space</p>
+</dd></dl>
+
+<p class="rubric">Arguments</p>
+<dl class="std option">
+<dt id="cmdoption-fasta-utils-filter-arg-FASTA_FILE">
+<code class="sig-name descname">FASTA_FILE</code><code class="sig-prename descclassname"></code><a class="headerlink" href="#cmdoption-fasta-utils-filter-arg-FASTA_FILE" title="Permalink to this definition">¶</a></dt>
+<dd><p>Optional argument</p>
+</dd></dl>
+
+<dl class="std option">
+<dt id="cmdoption-fasta-utils-filter-arg-OUTPUT_FILE">
+<code class="sig-name descname">OUTPUT_FILE</code><code class="sig-prename descclassname"></code><a class="headerlink" href="#cmdoption-fasta-utils-filter-arg-OUTPUT_FILE" title="Permalink to this definition">¶</a></dt>
+<dd><p>Optional argument</p>
+</dd></dl>
+
+</div>
+<div class="section" id="fasta-utils-info">
+<h4>info<a class="headerlink" href="#fasta-utils-info" title="Permalink to this headline">¶</a></h4>
+<p>Gets information of FASTA file [file-file]</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>fasta-utils info <span class="o">[</span>OPTIONS<span class="o">]</span> <span class="o">[</span>FASTA_FILE<span class="o">]</span> <span class="o">[</span>OUTPUT_FILE<span class="o">]</span>
+</pre></div>
+</div>
+<p class="rubric">Options</p>
+<dl class="std option">
+<dt id="cmdoption-fasta-utils-info-v">
+<code class="sig-name descname">-v</code><code class="sig-prename descclassname"></code><code class="sig-prename descclassname">, </code><code class="sig-name descname">--verbose</code><code class="sig-prename descclassname"></code><a class="headerlink" href="#cmdoption-fasta-utils-info-v" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="std option">
+<dt id="cmdoption-fasta-utils-info-h">
+<code class="sig-name descname">-h</code><code class="sig-prename descclassname"></code><code class="sig-prename descclassname">, </code><code class="sig-name descname">--header</code><code class="sig-prename descclassname"></code><a class="headerlink" href="#cmdoption-fasta-utils-info-h" title="Permalink to this definition">¶</a></dt>
+<dd><p>Prints header</p>
+</dd></dl>
+
+<dl class="std option">
+<dt id="cmdoption-fasta-utils-info-s">
+<code class="sig-name descname">-s</code><code class="sig-prename descclassname"></code><code class="sig-prename descclassname">, </code><code class="sig-name descname">--include-seq</code><code class="sig-prename descclassname"></code><a class="headerlink" href="#cmdoption-fasta-utils-info-s" title="Permalink to this definition">¶</a></dt>
+<dd><p>Includes the sequence</p>
+</dd></dl>
+
+<dl class="std option">
+<dt id="cmdoption-fasta-utils-info-r">
+<code class="sig-name descname">-r</code><code class="sig-prename descclassname"></code><code class="sig-prename descclassname">, </code><code class="sig-name descname">--no-rename</code><code class="sig-prename descclassname"></code><a class="headerlink" href="#cmdoption-fasta-utils-info-r" title="Permalink to this definition">¶</a></dt>
+<dd><p>Do not split sequence name at first space</p>
+</dd></dl>
+
+<dl class="std option">
+<dt id="cmdoption-fasta-utils-info-a">
+<code class="sig-name descname">-a</code><code class="sig-prename descclassname"></code><code class="sig-prename descclassname">, </code><code class="sig-name descname">--hash-type</code><code class="sig-prename descclassname"> &lt;hash_type&gt;</code><a class="headerlink" href="#cmdoption-fasta-utils-info-a" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Default</dt>
+<dd class="field-odd"><p>sha1</p>
+</dd>
+<dt class="field-even">Options</dt>
+<dd class="field-even"><p>sha1|md5|sha256</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="std option">
+<dt id="cmdoption-fasta-utils-info-g">
+<code class="sig-name descname">-g</code><code class="sig-prename descclassname"></code><code class="sig-prename descclassname">, </code><code class="sig-name descname">--out-gff</code><code class="sig-prename descclassname"></code><a class="headerlink" href="#cmdoption-fasta-utils-info-g" title="Permalink to this definition">¶</a></dt>
+<dd><p>Outputs a GFF file</p>
+<dl class="field-list simple">
+<dt class="field-odd">Default</dt>
+<dd class="field-odd"><p>False</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="std option">
+<dt id="cmdoption-fasta-utils-info-gc">
+<code class="sig-name descname">-gc</code><code class="sig-prename descclassname"></code><code class="sig-prename descclassname">, </code><code class="sig-name descname">--gc-content</code><code class="sig-prename descclassname"></code><a class="headerlink" href="#cmdoption-fasta-utils-info-gc" title="Permalink to this definition">¶</a></dt>
+<dd><p>Includes the GC Content</p>
+<dl class="field-list simple">
+<dt class="field-odd">Default</dt>
+<dd class="field-odd"><p>False</p>
+</dd>
+</dl>
+</dd></dl>
+
+<p class="rubric">Arguments</p>
+<dl class="std option">
+<dt id="cmdoption-fasta-utils-info-arg-FASTA_FILE">
+<code class="sig-name descname">FASTA_FILE</code><code class="sig-prename descclassname"></code><a class="headerlink" href="#cmdoption-fasta-utils-info-arg-FASTA_FILE" title="Permalink to this definition">¶</a></dt>
+<dd><p>Optional argument</p>
+</dd></dl>
+
+<dl class="std option">
+<dt id="cmdoption-fasta-utils-info-arg-OUTPUT_FILE">
+<code class="sig-name descname">OUTPUT_FILE</code><code class="sig-prename descclassname"></code><a class="headerlink" href="#cmdoption-fasta-utils-info-arg-OUTPUT_FILE" title="Permalink to this definition">¶</a></dt>
+<dd><p>Optional argument</p>
+</dd></dl>
+
+</div>
+<div class="section" id="fasta-utils-rename">
+<h4>rename<a class="headerlink" href="#fasta-utils-rename" title="Permalink to this headline">¶</a></h4>
+<p>Rename Sequence headers of FASTA file [file-file]
+Adds 2 possible elements to the sequence header, separated by a
+character 1) a suffix (random string of characters) and 2) a prefix
+(optional).</p>
+<p>The character used as separator should be a ‘|’ (default), ‘#’ or other
+character that is not truncated in other software (space is).</p>
+<p>In fact, this script will truncate the header at the first space</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>fasta-utils rename <span class="o">[</span>OPTIONS<span class="o">]</span> <span class="o">[</span>FASTA_FILE<span class="o">]</span> <span class="o">[</span>OUTPUT_FILE<span class="o">]</span>
+</pre></div>
+</div>
+<p class="rubric">Options</p>
+<dl class="std option">
+<dt id="cmdoption-fasta-utils-rename-v">
+<code class="sig-name descname">-v</code><code class="sig-prename descclassname"></code><code class="sig-prename descclassname">, </code><code class="sig-name descname">--verbose</code><code class="sig-prename descclassname"></code><a class="headerlink" href="#cmdoption-fasta-utils-rename-v" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="std option">
+<dt id="cmdoption-fasta-utils-rename-p">
+<code class="sig-name descname">-p</code><code class="sig-prename descclassname"></code><code class="sig-prename descclassname">, </code><code class="sig-name descname">--prefix</code><code class="sig-prename descclassname"> &lt;prefix&gt;</code><a class="headerlink" href="#cmdoption-fasta-utils-rename-p" title="Permalink to this definition">¶</a></dt>
+<dd><p>Adds a prefix to the header</p>
+</dd></dl>
+
+<dl class="std option">
+<dt id="cmdoption-fasta-utils-rename-f">
+<code class="sig-name descname">-f</code><code class="sig-prename descclassname"></code><code class="sig-prename descclassname">, </code><code class="sig-name descname">--file-name</code><code class="sig-prename descclassname"></code><a class="headerlink" href="#cmdoption-fasta-utils-rename-f" title="Permalink to this definition">¶</a></dt>
+<dd><p>Adds filename as prefix (Useful for adding the file name</p>
+</dd></dl>
+
+<dl class="std option">
+<dt id="cmdoption-fasta-utils-rename-s">
+<code class="sig-name descname">-s</code><code class="sig-prename descclassname"></code><code class="sig-prename descclassname">, </code><code class="sig-name descname">--separator</code><code class="sig-prename descclassname"> &lt;separator&gt;</code><a class="headerlink" href="#cmdoption-fasta-utils-rename-s" title="Permalink to this definition">¶</a></dt>
+<dd><p>Separator for the elements of the new header</p>
+</dd></dl>
+
+<dl class="std option">
+<dt id="cmdoption-fasta-utils-rename-l">
+<code class="sig-name descname">-l</code><code class="sig-prename descclassname"></code><code class="sig-prename descclassname">, </code><code class="sig-name descname">--suffix-len</code><code class="sig-prename descclassname"> &lt;suffix_len&gt;</code><a class="headerlink" href="#cmdoption-fasta-utils-rename-l" title="Permalink to this definition">¶</a></dt>
+<dd><p>Number of random characters to use</p>
+</dd></dl>
+
+<p class="rubric">Arguments</p>
+<dl class="std option">
+<dt id="cmdoption-fasta-utils-rename-arg-FASTA_FILE">
+<code class="sig-name descname">FASTA_FILE</code><code class="sig-prename descclassname"></code><a class="headerlink" href="#cmdoption-fasta-utils-rename-arg-FASTA_FILE" title="Permalink to this definition">¶</a></dt>
+<dd><p>Optional argument</p>
+</dd></dl>
+
+<dl class="std option">
+<dt id="cmdoption-fasta-utils-rename-arg-OUTPUT_FILE">
+<code class="sig-name descname">OUTPUT_FILE</code><code class="sig-prename descclassname"></code><a class="headerlink" href="#cmdoption-fasta-utils-rename-arg-OUTPUT_FILE" title="Permalink to this definition">¶</a></dt>
+<dd><p>Optional argument</p>
+</dd></dl>
+
+</div>
 <div class="section" id="fasta-utils-split">
 <h4>split<a class="headerlink" href="#fasta-utils-split" title="Permalink to this headline">¶</a></h4>
 <p>Splits a FASTA file [fasta-file] in a number of

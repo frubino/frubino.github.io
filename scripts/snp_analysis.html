@@ -5,7 +5,7 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>snp_parser - SNPs analysis &#8212; MGKit: Metagenomic framework 0.5.5 documentation</title>
+    <title>snp_parser - SNPs analysis &#8212; MGKit: Metagenomic framework 0.5.7 documentation</title>
     <link rel="stylesheet" href="../_static/alabaster.css" type="text/css" />
     <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
     <link rel="stylesheet" type="text/css" href="../_static/graphviz.css" />
@@ -124,6 +124,13 @@ helps to paralellise later steps</p>
 </div>
 <div class="section" id="module-mgkit.workflow.snp_parser">
 <span id="script-reference"></span><h2>Script Reference<a class="headerlink" href="#module-mgkit.workflow.snp_parser" title="Permalink to this headline">¶</a></h2>
+<div class="deprecated">
+<p><span class="versionmodified deprecated">Deprecated since version 0.5.7: </span>This script is deprecated now, use <cite>pnps-gen vcf</cite> instead</p>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>if you need to use the script, install HTSeq</p>
+</div>
 <p>This script parses results of SNPs analysis from any tool for SNP calling <a class="footnote-reference brackets" href="#id4" id="id3">2</a>
 and integrates them into a format that can be later used for other scripts in
 the pipeline.</p>
@@ -154,10 +161,10 @@ bcftools</p>
 </div>
 <div class="section" id="options">
 <h2>Options<a class="headerlink" href="#options" title="Permalink to this headline">¶</a></h2>
-<p><p>SNPs analysis, requires a vcf file and SNPDat results</p>
+<p><p>DEPRECATED, use <cite>pnps-gen vcf</cite> SNPs analysis, requires a vcf file</p>
 </p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">usage</span><span class="p">:</span> <span class="n">snp_parser</span> <span class="p">[</span><span class="o">-</span><span class="n">h</span><span class="p">]</span> <span class="p">[</span><span class="o">-</span><span class="n">o</span> <span class="n">OUTPUT_FILE</span><span class="p">]</span> <span class="p">[</span><span class="o">-</span><span class="n">q</span> <span class="n">MIN_QUAL</span><span class="p">]</span> <span class="p">[</span><span class="o">-</span><span class="n">f</span> <span class="n">MIN_FREQ</span><span class="p">]</span> <span class="p">[</span><span class="o">-</span><span class="n">r</span> <span class="n">MIN_READS</span><span class="p">]</span> <span class="o">-</span><span class="n">g</span> <span class="n">GFF_FILE</span> <span class="o">-</span><span class="n">p</span> <span class="n">VCF_FILE</span> <span class="o">-</span><span class="n">a</span> <span class="n">REFERENCE</span> <span class="o">-</span><span class="n">m</span> <span class="n">SAMPLES_ID</span> <span class="p">[</span><span class="o">-</span><span class="n">c</span> <span class="n">COV_SUFF</span><span class="p">]</span> <span class="p">[</span><span class="o">-</span><span class="n">s</span><span class="p">]</span> <span class="p">[</span><span class="o">-</span><span class="n">v</span> <span class="o">|</span> <span class="o">--</span><span class="n">quiet</span><span class="p">]</span>
-                  <span class="p">[</span><span class="o">--</span><span class="n">cite</span><span class="p">]</span> <span class="p">[</span><span class="o">--</span><span class="n">manual</span><span class="p">]</span> <span class="p">[</span><span class="o">--</span><span class="n">version</span><span class="p">]</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">usage</span><span class="p">:</span> <span class="n">snp_parser</span> <span class="p">[</span><span class="o">-</span><span class="n">h</span><span class="p">]</span> <span class="p">[</span><span class="o">-</span><span class="n">o</span> <span class="n">OUTPUT_FILE</span><span class="p">]</span> <span class="p">[</span><span class="o">-</span><span class="n">q</span> <span class="n">MIN_QUAL</span><span class="p">]</span> <span class="p">[</span><span class="o">-</span><span class="n">f</span> <span class="n">MIN_FREQ</span><span class="p">]</span> <span class="p">[</span><span class="o">-</span><span class="n">r</span> <span class="n">MIN_READS</span><span class="p">]</span> <span class="o">-</span><span class="n">g</span> <span class="n">GFF_FILE</span> <span class="o">-</span><span class="n">p</span> <span class="n">VCF_FILE</span> <span class="o">-</span><span class="n">a</span> <span class="n">REFERENCE</span> <span class="o">-</span><span class="n">m</span> <span class="n">SAMPLES_ID</span> <span class="p">[</span><span class="o">-</span><span class="n">c</span> <span class="n">COV_SUFF</span><span class="p">]</span> <span class="p">[</span><span class="o">-</span><span class="n">s</span><span class="p">]</span>
+                  <span class="p">[</span><span class="o">-</span><span class="n">v</span> <span class="o">|</span> <span class="o">--</span><span class="n">quiet</span><span class="p">]</span> <span class="p">[</span><span class="o">--</span><span class="n">cite</span><span class="p">]</span> <span class="p">[</span><span class="o">--</span><span class="n">manual</span><span class="p">]</span> <span class="p">[</span><span class="o">--</span><span class="n">version</span><span class="p">]</span>
 </pre></div>
 </div>
 <div class="section" id="Named Arguments">
