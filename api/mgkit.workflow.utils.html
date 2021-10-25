@@ -5,7 +5,7 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>mgkit.workflow.utils module &#8212; MGKit: Metagenomic framework 0.5.5 documentation</title>
+    <title>mgkit.workflow.utils module &#8212; MGKit: Metagenomic framework 0.5.7 documentation</title>
     <link rel="stylesheet" href="../_static/alabaster.css" type="text/css" />
     <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
     <link rel="stylesheet" type="text/css" href="../_static/graphviz.css" />
@@ -43,7 +43,7 @@
 <dl class="py class">
 <dt id="mgkit.workflow.utils.CiteAction">
 <em class="property">class </em><code class="sig-prename descclassname">mgkit.workflow.utils.</code><code class="sig-name descname">CiteAction</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">option_strings</span></em>, <em class="sig-param"><span class="n">dest</span><span class="o">=</span><span class="default_value">'==SUPPRESS=='</span></em>, <em class="sig-param"><span class="n">default</span><span class="o">=</span><span class="default_value">'==SUPPRESS=='</span></em>, <em class="sig-param"><span class="n">help</span><span class="o">=</span><span class="default_value">'Show citation for the framework'</span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/mgkit/workflow/utils.html#CiteAction"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#mgkit.workflow.utils.CiteAction" title="Permalink to this definition">¶</a></dt>
-<dd><p>Bases: <a class="reference external" href="https://docs.python.org/3/library/argparse.html#argparse.Action" title="(in Python v3.9)"><code class="xref py py-class docutils literal notranslate"><span class="pre">argparse.Action</span></code></a></p>
+<dd><p>Bases: <a class="reference external" href="https://docs.python.org/3/library/argparse.html#argparse.Action" title="(in Python v3.10)"><code class="xref py py-class docutils literal notranslate"><span class="pre">argparse.Action</span></code></a></p>
 <p>Argparse action to print the citation, using the <a class="reference internal" href="mgkit.html#mgkit.cite" title="mgkit.cite"><code class="xref py py-func docutils literal notranslate"><span class="pre">mgkit.cite()</span></code></a>
 function.</p>
 </dd></dl>
@@ -51,7 +51,7 @@ function.</p>
 <dl class="py class">
 <dt id="mgkit.workflow.utils.PrintManAction">
 <em class="property">class </em><code class="sig-prename descclassname">mgkit.workflow.utils.</code><code class="sig-name descname">PrintManAction</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">option_strings</span></em>, <em class="sig-param"><span class="n">dest</span><span class="o">=</span><span class="default_value">'==SUPPRESS=='</span></em>, <em class="sig-param"><span class="n">default</span><span class="o">=</span><span class="default_value">'==SUPPRESS=='</span></em>, <em class="sig-param"><span class="n">help</span><span class="o">=</span><span class="default_value">'Show the script manual'</span></em>, <em class="sig-param"><span class="n">manual</span><span class="o">=</span><span class="default_value">''</span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/mgkit/workflow/utils.html#PrintManAction"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#mgkit.workflow.utils.PrintManAction" title="Permalink to this definition">¶</a></dt>
-<dd><p>Bases: <a class="reference external" href="https://docs.python.org/3/library/argparse.html#argparse.Action" title="(in Python v3.9)"><code class="xref py py-class docutils literal notranslate"><span class="pre">argparse.Action</span></code></a></p>
+<dd><p>Bases: <a class="reference external" href="https://docs.python.org/3/library/argparse.html#argparse.Action" title="(in Python v3.10)"><code class="xref py py-class docutils literal notranslate"><span class="pre">argparse.Action</span></code></a></p>
 <div class="versionadded">
 <p><span class="versionmodified added">New in version 0.2.6.</span></p>
 </div>
@@ -168,13 +168,18 @@ function.</p>
 <li class="toctree-l2"><a class="reference internal" href="mgkit.utils.trans_tables.html">mgkit.utils.trans_tables module</a></li>
 <li class="toctree-l2"><a class="reference internal" href="mgkit.workflow.html">mgkit.workflow package</a></li>
 <li class="toctree-l2"><a class="reference internal" href="mgkit.workflow.add_gff_info.html">mgkit.workflow.add_gff_info module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mgkit.workflow.alg_utils.html">mgkit.workflow.alg_utils module</a></li>
 <li class="toctree-l2"><a class="reference internal" href="mgkit.workflow.blast2gff.html">mgkit.workflow.blast2gff module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mgkit.workflow.count_utils.html">mgkit.workflow.count_utils module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mgkit.workflow.dict_utils.html">mgkit.workflow.dict_utils module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mgkit.workflow.edit_gff.html">mgkit.workflow.edit_gff module</a></li>
 <li class="toctree-l2"><a class="reference internal" href="mgkit.workflow.extract_gff_info.html">mgkit.workflow.extract_gff_info module</a></li>
 <li class="toctree-l2"><a class="reference internal" href="mgkit.workflow.fasta_utils.html">mgkit.workflow.fasta_utils module</a></li>
 <li class="toctree-l2"><a class="reference internal" href="mgkit.workflow.fastq_utils.html">mgkit.workflow.fastq_utils module</a></li>
 <li class="toctree-l2"><a class="reference internal" href="mgkit.workflow.filter_gff.html">mgkit.workflow.filter_gff module</a></li>
 <li class="toctree-l2"><a class="reference internal" href="mgkit.workflow.hmmer2gff.html">mgkit.workflow.hmmer2gff module</a></li>
 <li class="toctree-l2"><a class="reference internal" href="mgkit.workflow.json2gff.html">mgkit.workflow.json2gff module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mgkit.workflow.pnps_gen.html">mgkit.workflow.pnps_gen module</a></li>
 <li class="toctree-l2"><a class="reference internal" href="mgkit.workflow.sampling_utils.html">mgkit.workflow.sampling_utils module</a></li>
 <li class="toctree-l2"><a class="reference internal" href="mgkit.workflow.snp_parser.html">mgkit.workflow.snp_parser module</a></li>
 <li class="toctree-l2"><a class="reference internal" href="mgkit.workflow.taxon_utils.html">mgkit.workflow.taxon_utils module</a></li>

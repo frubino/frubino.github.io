@@ -5,7 +5,7 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>mgkit.counts.func module &#8212; MGKit: Metagenomic framework 0.5.5 documentation</title>
+    <title>mgkit.counts.func module &#8212; MGKit: Metagenomic framework 0.5.7 documentation</title>
     <link rel="stylesheet" href="../_static/alabaster.css" type="text/css" />
     <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
     <link rel="stylesheet" type="text/css" href="../_static/graphviz.css" />
@@ -55,10 +55,10 @@ option in cases a string replace is enough.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>count_files</strong> (<em>file</em><em> or </em><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)"><em>str</em></a>) – file handle or string with file name</p></li>
+<li><p><strong>count_files</strong> (<em>file</em><em> or </em><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.10)"><em>str</em></a>) – file handle or string with file name</p></li>
 <li><p><strong>samples</strong> (<em>iterable</em>) – list of sample names, in the same order as
 <em>count_files</em></p></li>
-<li><p><strong>cut_name</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)"><em>str</em></a>) – string to delete from the the file names to get the
+<li><p><strong>cut_name</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.10)"><em>str</em></a>) – string to delete from the the file names to get the
 sample names</p></li>
 </ul>
 </dd>
@@ -184,10 +184,10 @@ name (for the column, <em>sample_func</em>).</p>
 <li><p><strong>elem_func</strong> (<em>func</em>) – function that accepts an annotation and return a
 str/int for a Index or a tuple for a MultiIndex, defaults to
 returning the <em>uid</em> of the annotation</p></li>
-<li><p><strong>sample_func</strong> (<em>func</em><em>, </em><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.9)"><em>None</em></a>) – function that accepts the sample name and
+<li><p><strong>sample_func</strong> (<em>func</em><em>, </em><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.10)"><em>None</em></a>) – function that accepts the sample name and
 returns tuple for a MultiIndex. Defaults to <em>None</em> so no
 transformation is performed</p></li>
-<li><p><strong>nozero</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.9)"><em>bool</em></a>) – if <em>True</em>, annotations with no counts are skipped</p></li>
+<li><p><strong>nozero</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.10)"><em>bool</em></a>) – if <em>True</em>, annotations with no counts are skipped</p></li>
 </ul>
 </dd>
 </dl>
@@ -203,7 +203,7 @@ transformation is performed</p></li>
 for concatenating multiple results from different taxonomic groups.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><p><strong>file_name</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)"><em>str</em></a>) – file name of the CSV</p>
+<dd class="field-odd"><p><strong>file_name</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.10)"><em>str</em></a>) – file name of the CSV</p>
 </dd>
 <dt class="field-even">Returns</dt>
 <dd class="field-even"><p>a MultiIndex DataFrame with the results</p>
@@ -224,7 +224,7 @@ for concatenating multiple results from different taxonomic groups.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>file_handle</strong> (<em>file</em><em> or </em><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)"><em>str</em></a>) – file handle or string with file name</p></li>
+<li><p><strong>file_handle</strong> (<em>file</em><em> or </em><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.10)"><em>str</em></a>) – file handle or string with file name</p></li>
 <li><p><strong>conv_func</strong> (<em>func</em>) – function to convert the number from string, defaults
 to <em>int</em>, but <em>float</em> can be used as well</p></li>
 </ul>
@@ -252,21 +252,21 @@ example of the usage of the above functions.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>info_dict</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.9)"><em>dict</em></a>) – dictionary that has <em>uid</em> as key and
+<li><p><strong>info_dict</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.10)"><em>dict</em></a>) – dictionary that has <em>uid</em> as key and
 <em>(gene_id, taxon_id)</em> as value. In alternative a function that
 accepts a <em>uid</em> as sole argument and returns <em>(gene_id, taxon_id)</em></p></li>
 <li><p><strong>counts_iter</strong> (<em>iterable</em>) – iterable that yields a <em>(uid, count)</em></p></li>
 <li><p><strong>taxonomy</strong> – taxonomy instance</p></li>
-<li><p><strong>inc_anc</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.9)"><em>int</em></a><em>, </em><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.9)"><em>list</em></a>) – ancestor taxa to include</p></li>
-<li><p><strong>rank</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)"><em>str</em></a>) – rank to which map the counts</p></li>
-<li><p><strong>gene_map</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.9)"><em>dict</em></a>) – dictionary with the gene mappings</p></li>
-<li><p><strong>ex_anc</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.9)"><em>int</em></a><em>, </em><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.9)"><em>list</em></a>) – ancestor taxa to exclude</p></li>
-<li><p><strong>include_higher</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.9)"><em>bool</em></a>) – if False, any rank different than the requested
+<li><p><strong>inc_anc</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.10)"><em>int</em></a><em>, </em><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.10)"><em>list</em></a>) – ancestor taxa to include</p></li>
+<li><p><strong>rank</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.10)"><em>str</em></a>) – rank to which map the counts</p></li>
+<li><p><strong>gene_map</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.10)"><em>dict</em></a>) – dictionary with the gene mappings</p></li>
+<li><p><strong>ex_anc</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.10)"><em>int</em></a><em>, </em><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.10)"><em>list</em></a>) – ancestor taxa to exclude</p></li>
+<li><p><strong>include_higher</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.10)"><em>bool</em></a>) – if False, any rank different than the requested
 one is discarded</p></li>
-<li><p><strong>cached</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.9)"><em>bool</em></a>) – if <em>True</em>, the function will use
+<li><p><strong>cached</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.10)"><em>bool</em></a>) – if <em>True</em>, the function will use
 <a class="reference internal" href="mgkit.simple_cache.html#mgkit.simple_cache.memoize" title="mgkit.simple_cache.memoize"><code class="xref py py-class docutils literal notranslate"><span class="pre">mgkit.simple_cache.memoize</span></code></a> to cache some of the functions
 used</p></li>
-<li><p><strong>uid_used</strong> (<a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.9)"><em>None</em></a><em>, </em><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.9)"><em>dict</em></a>) – an empty dictionary in which to store the <em>uid</em>
+<li><p><strong>uid_used</strong> (<a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.10)"><em>None</em></a><em>, </em><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.10)"><em>dict</em></a>) – an empty dictionary in which to store the <em>uid</em>
 that were assigned to each key of the returned pandas.Series. If
 <em>None</em>, no information is saved</p></li>
 </ul>
@@ -302,14 +302,14 @@ assumption on the first parameter. It is expected to return a
 parameter and and returns <em>(gene_id, taxon_id)</em> as value</p></li>
 <li><p><strong>counts_iter</strong> (<em>iterable</em>) – iterable that yields a <em>(uid, count)</em></p></li>
 <li><p><strong>taxonomy</strong> – taxonomy instance</p></li>
-<li><p><strong>inc_anc</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.9)"><em>int</em></a><em>, </em><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.9)"><em>list</em></a>) – ancestor taxa to include</p></li>
-<li><p><strong>rank</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)"><em>str</em></a>) – rank to which map the counts</p></li>
-<li><p><strong>gene_map</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.9)"><em>dict</em></a>) – dictionary with the gene mappings</p></li>
-<li><p><strong>ex_anc</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.9)"><em>int</em></a><em>, </em><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.9)"><em>list</em></a>) – ancestor taxa to exclude</p></li>
-<li><p><strong>cached</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.9)"><em>bool</em></a>) – if <em>True</em>, the function will use
+<li><p><strong>inc_anc</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.10)"><em>int</em></a><em>, </em><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.10)"><em>list</em></a>) – ancestor taxa to include</p></li>
+<li><p><strong>rank</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.10)"><em>str</em></a>) – rank to which map the counts</p></li>
+<li><p><strong>gene_map</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.10)"><em>dict</em></a>) – dictionary with the gene mappings</p></li>
+<li><p><strong>ex_anc</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.10)"><em>int</em></a><em>, </em><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.10)"><em>list</em></a>) – ancestor taxa to exclude</p></li>
+<li><p><strong>cached</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.10)"><em>bool</em></a>) – if <em>True</em>, the function will use
 <a class="reference internal" href="mgkit.simple_cache.html#mgkit.simple_cache.memoize" title="mgkit.simple_cache.memoize"><code class="xref py py-class docutils literal notranslate"><span class="pre">mgkit.simple_cache.memoize</span></code></a> to cache some of the functions
 used</p></li>
-<li><p><strong>uid_used</strong> (<a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.9)"><em>None</em></a><em>, </em><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.9)"><em>dict</em></a>) – an empty dictionary in which to store the <em>uid</em>
+<li><p><strong>uid_used</strong> (<a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.10)"><em>None</em></a><em>, </em><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.10)"><em>dict</em></a>) – an empty dictionary in which to store the <em>uid</em>
 that were assigned to each key of the returned pandas.Series. If
 <em>None</em>, no information is saved</p></li>
 </ul>
@@ -345,15 +345,15 @@ tuple.</p>
 parameter and and returns <em>(gene_id, taxon_id)</em> as value</p></li>
 <li><p><strong>counts_iter</strong> (<em>iterable</em>) – iterable that yields a <em>(uid, count)</em></p></li>
 <li><p><strong>taxonomy</strong> – taxonomy instance</p></li>
-<li><p><strong>inc_anc</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.9)"><em>int</em></a><em>, </em><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.9)"><em>list</em></a>) – ancestor taxa to include</p></li>
-<li><p><strong>rank</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)"><em>str</em></a>) – rank to which map the counts</p></li>
-<li><p><strong>ex_anc</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.9)"><em>int</em></a><em>, </em><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.9)"><em>list</em></a>) – ancestor taxa to exclude</p></li>
-<li><p><strong>include_higher</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.9)"><em>bool</em></a>) – if False, any rank different than the requested
+<li><p><strong>inc_anc</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.10)"><em>int</em></a><em>, </em><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.10)"><em>list</em></a>) – ancestor taxa to include</p></li>
+<li><p><strong>rank</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.10)"><em>str</em></a>) – rank to which map the counts</p></li>
+<li><p><strong>ex_anc</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.10)"><em>int</em></a><em>, </em><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.10)"><em>list</em></a>) – ancestor taxa to exclude</p></li>
+<li><p><strong>include_higher</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.10)"><em>bool</em></a>) – if False, any rank different than the requested
 one is discarded</p></li>
-<li><p><strong>cached</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.9)"><em>bool</em></a>) – if <em>True</em>, the function will use
+<li><p><strong>cached</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.10)"><em>bool</em></a>) – if <em>True</em>, the function will use
 <a class="reference internal" href="mgkit.simple_cache.html#mgkit.simple_cache.memoize" title="mgkit.simple_cache.memoize"><code class="xref py py-class docutils literal notranslate"><span class="pre">mgkit.simple_cache.memoize</span></code></a> to cache some of the functions
 used</p></li>
-<li><p><strong>uid_used</strong> (<a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.9)"><em>None</em></a><em>, </em><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.9)"><em>dict</em></a>) – an empty dictionary in which to store the <em>uid</em>
+<li><p><strong>uid_used</strong> (<a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.10)"><em>None</em></a><em>, </em><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.10)"><em>dict</em></a>) – an empty dictionary in which to store the <em>uid</em>
 that were assigned to each key of the returned pandas.Series. If
 <em>None</em>, no information is saved</p></li>
 </ul>
@@ -390,10 +390,10 @@ true for the taxa.</p>
 of mapped IDs</p></li>
 <li><p><strong>tmapper</strong> (<em>func</em>) – fucntion that accepts a <em>taxon_id</em> and returns a new
 <em>taxon_id</em></p></li>
-<li><p><strong>index</strong> (<a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.9)"><em>None</em></a><em>, </em><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)"><em>str</em></a>) – if None, the index of the Series if
+<li><p><strong>index</strong> (<a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.10)"><em>None</em></a><em>, </em><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.10)"><em>str</em></a>) – if None, the index of the Series if
 <em>(gene_id, taxon_id)</em>, if a str, it can be either <em>gene</em> or
 <em>taxon</em>, to specify a single value</p></li>
-<li><p><strong>uid_used</strong> (<a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.9)"><em>None</em></a><em>, </em><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.9)"><em>dict</em></a>) – an empty dictionary in which to store the <em>uid</em>
+<li><p><strong>uid_used</strong> (<a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.10)"><em>None</em></a><em>, </em><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.10)"><em>dict</em></a>) – an empty dictionary in which to store the <em>uid</em>
 that were assigned to each key of the returned pandas.Series. If
 <em>None</em>, no information is saved</p></li>
 </ul>
@@ -421,9 +421,9 @@ are counted as <em>nomap_id</em>.</p>
 being the gene_id and the second value the count for it</p></li>
 <li><p><strong>gene_map</strong> (<em>dictionary</em>) – a dictionary whose keys are the gene_id yield by
 <em>counts</em> and the values are iterable of mapping identifiers</p></li>
-<li><p><strong>nomap</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.9)"><em>bool</em></a>) – if False, counts for genes with no mappings in <em>gene_map</em>
+<li><p><strong>nomap</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.10)"><em>bool</em></a>) – if False, counts for genes with no mappings in <em>gene_map</em>
 are discarded, if True, they a counted as <em>nomap_id</em></p></li>
-<li><p><strong>nomap_id</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)"><em>str</em></a>) – name of the mapping for genes with no mappings</p></li>
+<li><p><strong>nomap_id</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.10)"><em>str</em></a>) – name of the mapping for genes with no mappings</p></li>
 </ul>
 </dd>
 <dt class="field-even">Returns</dt>
@@ -452,9 +452,9 @@ an empty list if the <em>gene_id</em> is not found.</p>
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>taxonomy</strong> – taxonomy instance</p></li>
-<li><p><strong>rank</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)"><em>str</em></a>) – taxonomic rank requested</p></li>
-<li><p><strong>taxon_id</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.9)"><em>int</em></a>) – taxon_id to map</p></li>
-<li><p><strong>include_higher</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.9)"><em>bool</em></a>) – if False, any rank different than the requested
+<li><p><strong>rank</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.10)"><em>str</em></a>) – taxonomic rank requested</p></li>
+<li><p><strong>taxon_id</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.10)"><em>int</em></a>) – taxon_id to map</p></li>
+<li><p><strong>include_higher</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.10)"><em>bool</em></a>) – if False, any rank different than the requested
 one is discarded</p></li>
 </ul>
 </dd>
@@ -463,7 +463,7 @@ one is discarded</p></li>
 returned, otherwise <em>None</em> is returned</p>
 </dd>
 <dt class="field-odd">Return type</dt>
-<dd class="field-odd"><p>(<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.9)">int</a>, <a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.9)">None</a>)</p>
+<dd class="field-odd"><p>(<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.10)">int</a>, <a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.10)">None</a>)</p>
 </dd>
 </dl>
 </dd></dl>
@@ -498,7 +498,7 @@ returned, otherwise <em>None</em> is returned</p>
 <li class="toctree-l2"><a class="reference internal" href="mgkit.html">mgkit package</a></li>
 <li class="toctree-l2"><a class="reference internal" href="mgkit.align.html">mgkit.align module</a></li>
 <li class="toctree-l2"><a class="reference internal" href="mgkit.consts.html">mgkit.consts module</a></li>
-<li class="toctree-l2 current"><a class="reference internal" href="mgkit.counts.html">mgkit.counts package</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mgkit.counts.html">mgkit.counts package</a></li>
 <li class="toctree-l2 current"><a class="current reference internal" href="#">mgkit.counts.func module</a></li>
 <li class="toctree-l2"><a class="reference internal" href="mgkit.counts.glm.html">mgkit.counts.glm module</a></li>
 <li class="toctree-l2"><a class="reference internal" href="mgkit.counts.scaling.html">mgkit.counts.scaling module</a></li>
@@ -558,13 +558,18 @@ returned, otherwise <em>None</em> is returned</p>
 <li class="toctree-l2"><a class="reference internal" href="mgkit.utils.trans_tables.html">mgkit.utils.trans_tables module</a></li>
 <li class="toctree-l2"><a class="reference internal" href="mgkit.workflow.html">mgkit.workflow package</a></li>
 <li class="toctree-l2"><a class="reference internal" href="mgkit.workflow.add_gff_info.html">mgkit.workflow.add_gff_info module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mgkit.workflow.alg_utils.html">mgkit.workflow.alg_utils module</a></li>
 <li class="toctree-l2"><a class="reference internal" href="mgkit.workflow.blast2gff.html">mgkit.workflow.blast2gff module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mgkit.workflow.count_utils.html">mgkit.workflow.count_utils module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mgkit.workflow.dict_utils.html">mgkit.workflow.dict_utils module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mgkit.workflow.edit_gff.html">mgkit.workflow.edit_gff module</a></li>
 <li class="toctree-l2"><a class="reference internal" href="mgkit.workflow.extract_gff_info.html">mgkit.workflow.extract_gff_info module</a></li>
 <li class="toctree-l2"><a class="reference internal" href="mgkit.workflow.fasta_utils.html">mgkit.workflow.fasta_utils module</a></li>
 <li class="toctree-l2"><a class="reference internal" href="mgkit.workflow.fastq_utils.html">mgkit.workflow.fastq_utils module</a></li>
 <li class="toctree-l2"><a class="reference internal" href="mgkit.workflow.filter_gff.html">mgkit.workflow.filter_gff module</a></li>
 <li class="toctree-l2"><a class="reference internal" href="mgkit.workflow.hmmer2gff.html">mgkit.workflow.hmmer2gff module</a></li>
 <li class="toctree-l2"><a class="reference internal" href="mgkit.workflow.json2gff.html">mgkit.workflow.json2gff module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mgkit.workflow.pnps_gen.html">mgkit.workflow.pnps_gen module</a></li>
 <li class="toctree-l2"><a class="reference internal" href="mgkit.workflow.sampling_utils.html">mgkit.workflow.sampling_utils module</a></li>
 <li class="toctree-l2"><a class="reference internal" href="mgkit.workflow.snp_parser.html">mgkit.workflow.snp_parser module</a></li>
 <li class="toctree-l2"><a class="reference internal" href="mgkit.workflow.taxon_utils.html">mgkit.workflow.taxon_utils module</a></li>

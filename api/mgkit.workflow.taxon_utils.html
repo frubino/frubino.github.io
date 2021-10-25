@@ -5,7 +5,7 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>mgkit.workflow.taxon_utils module &#8212; MGKit: Metagenomic framework 0.5.5 documentation</title>
+    <title>mgkit.workflow.taxon_utils module &#8212; MGKit: Metagenomic framework 0.5.7 documentation</title>
     <link rel="stylesheet" href="../_static/alabaster.css" type="text/css" />
     <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
     <link rel="stylesheet" type="text/css" href="../_static/graphviz.css" />
@@ -157,7 +157,20 @@ footprint when a great number of annotations are kept in memory.</p>
 <h2>Extract taxonomy<a class="headerlink" href="#extract-taxonomy" title="Permalink to this headline">¶</a></h2>
 <p>This command allows to print the taxonomy in a file created with MGKit. The
 default behaviour is to print the scientific name, taxon_id, rank and lineage
-(only ranked taxa) in a tab separated file (or standard output).</p>
+(only ranked taxa) in a tab separated file (or standard output). IDs can also
+be passed along with names:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>taxon-utils get -i <span class="m">2147</span> -o prevotella -i <span class="m">3688</span> -i <span class="m">1485</span> -o methanobrevibacter taxonomy.msgpack
+
+INFO - mgkit.taxon: Loading taxonomy from file taxonomy.msgpack
+Acholeplasma    <span class="m">2147</span>    genus   Bacteria<span class="p">;</span>Tenericutes<span class="p">;</span>Mollicutes<span class="p">;</span>Acholeplasmatales<span class="p">;</span>Acholeplasmataceae<span class="p">;</span>Acholeplasma
+Prevotella      <span class="m">838</span>     genus   Bacteria<span class="p">;</span>Bacteroidetes<span class="p">;</span>Bacteroidia<span class="p">;</span>Bacteroidales<span class="p">;</span>Prevotellaceae<span class="p">;</span>Prevotella
+Salicaceae      <span class="m">3688</span>    family  Eukaryota<span class="p">;</span>Viridiplantae<span class="p">;</span>Streptophyta<span class="p">;</span>Magnoliopsida<span class="p">;</span>Malpighiales<span class="p">;</span>Salicaceae
+Methanobrevibacter      <span class="m">2172</span>    genus   Archaea<span class="p">;</span>Euryarchaeota<span class="p">;</span>Methanobacteria<span class="p">;</span>Methanobacteriales<span class="p">;</span>Methanobacteriaceae<span class="p">;</span>Methanobrevibacter
+Clostridium     <span class="m">1485</span>    genus   Bacteria<span class="p">;</span>Firmicutes<span class="p">;</span>Clostridia<span class="p">;</span>Clostridiales<span class="p">;</span>Clostridiaceae<span class="p">;</span>Clostridium
+</pre></div>
+</div>
+<p>The taxa separator can be changed from <strong>;</strong> with <cite>-x</cite> and common names instead of scientific names
+can be used with the <cite>-a</cite> option.</p>
 <div class="section" id="match-names">
 <h3>Match names<a class="headerlink" href="#match-names" title="Permalink to this headline">¶</a></h3>
 <p>Besides the option to change the column separator, it is possible to only
@@ -168,8 +181,22 @@ however these are only reported, unless option <cite>-p</cite> is passed.</p>
 included by using the <cite>-c</cite> option.</p>
 </div>
 </div>
+<div class="section" id="import-taxonomy">
+<h2>Import Taxonomy<a class="headerlink" href="#import-taxonomy" title="Permalink to this headline">¶</a></h2>
+<p>The <cite>import</cite> command allows the use of taxonomies other than NCBI and write a file that can be
+used with other scripts. At the moment only PhyloPhlan is supported.</p>
+<div class="section" id="phylophlan">
+<h3>PhyloPhlan<a class="headerlink" href="#phylophlan" title="Permalink to this headline">¶</a></h3>
+<p>Tested with version 3 of the script, the taxonomy file name is similar to <cite>SGB.Sep20.txt.bz2</cite>.
+The file contains also NCBI IDs for known taxa and those will be kept. The IDs created
+for non-NCBI taxa will be <em>negative</em> integers, to distinguish them.</p>
+</div>
+</div>
 <div class="section" id="changes">
 <h2>Changes<a class="headerlink" href="#changes" title="Permalink to this headline">¶</a></h2>
+<div class="versionchanged">
+<p><span class="versionmodified changed">Changed in version 0.5.7: </span>added <em>–only-ids</em> <em>-x</em> and <em>-a</em> option to <em>get</em> command. Added <em>import</em> command</p>
+</div>
 <div class="versionchanged">
 <p><span class="versionmodified changed">Changed in version 0.5.0: </span>added <em>get</em> command to taxon-utils to print the taxonomy or search in it</p>
 </div>
@@ -201,7 +228,7 @@ Now it defaults to all components.</p>
 
 <dl class="py function">
 <dt id="mgkit.workflow.taxon_utils.output_taxon_line">
-<code class="sig-prename descclassname">mgkit.workflow.taxon_utils.</code><code class="sig-name descname">output_taxon_line</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">taxonomy</span></em>, <em class="sig-param"><span class="n">taxon_id</span></em>, <em class="sig-param"><span class="n">sep</span><span class="o">=</span><span class="default_value">'\t'</span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/mgkit/workflow/taxon_utils.html#output_taxon_line"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#mgkit.workflow.taxon_utils.output_taxon_line" title="Permalink to this definition">¶</a></dt>
+<code class="sig-prename descclassname">mgkit.workflow.taxon_utils.</code><code class="sig-name descname">output_taxon_line</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">taxonomy</span></em>, <em class="sig-param"><span class="n">taxon_id</span></em>, <em class="sig-param"><span class="n">sep</span><span class="o">=</span><span class="default_value">'\t'</span></em>, <em class="sig-param"><span class="n">use_cname</span><span class="o">=</span><span class="default_value">False</span></em>, <em class="sig-param"><span class="n">taxonomy_sep</span><span class="o">=</span><span class="default_value">';'</span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/mgkit/workflow/taxon_utils.html#output_taxon_line"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#mgkit.workflow.taxon_utils.output_taxon_line" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="py function">
@@ -335,13 +362,18 @@ Now it defaults to all components.</p>
 <li class="toctree-l2"><a class="reference internal" href="mgkit.utils.trans_tables.html">mgkit.utils.trans_tables module</a></li>
 <li class="toctree-l2"><a class="reference internal" href="mgkit.workflow.html">mgkit.workflow package</a></li>
 <li class="toctree-l2"><a class="reference internal" href="mgkit.workflow.add_gff_info.html">mgkit.workflow.add_gff_info module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mgkit.workflow.alg_utils.html">mgkit.workflow.alg_utils module</a></li>
 <li class="toctree-l2"><a class="reference internal" href="mgkit.workflow.blast2gff.html">mgkit.workflow.blast2gff module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mgkit.workflow.count_utils.html">mgkit.workflow.count_utils module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mgkit.workflow.dict_utils.html">mgkit.workflow.dict_utils module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mgkit.workflow.edit_gff.html">mgkit.workflow.edit_gff module</a></li>
 <li class="toctree-l2"><a class="reference internal" href="mgkit.workflow.extract_gff_info.html">mgkit.workflow.extract_gff_info module</a></li>
 <li class="toctree-l2"><a class="reference internal" href="mgkit.workflow.fasta_utils.html">mgkit.workflow.fasta_utils module</a></li>
 <li class="toctree-l2"><a class="reference internal" href="mgkit.workflow.fastq_utils.html">mgkit.workflow.fastq_utils module</a></li>
 <li class="toctree-l2"><a class="reference internal" href="mgkit.workflow.filter_gff.html">mgkit.workflow.filter_gff module</a></li>
 <li class="toctree-l2"><a class="reference internal" href="mgkit.workflow.hmmer2gff.html">mgkit.workflow.hmmer2gff module</a></li>
 <li class="toctree-l2"><a class="reference internal" href="mgkit.workflow.json2gff.html">mgkit.workflow.json2gff module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mgkit.workflow.pnps_gen.html">mgkit.workflow.pnps_gen module</a></li>
 <li class="toctree-l2"><a class="reference internal" href="mgkit.workflow.sampling_utils.html">mgkit.workflow.sampling_utils module</a></li>
 <li class="toctree-l2"><a class="reference internal" href="mgkit.workflow.snp_parser.html">mgkit.workflow.snp_parser module</a></li>
 <li class="toctree-l2 current"><a class="current reference internal" href="#">mgkit.workflow.taxon_utils module</a></li>

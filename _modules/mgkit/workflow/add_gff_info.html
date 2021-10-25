@@ -5,7 +5,7 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>mgkit.workflow.add_gff_info &#8212; MGKit: Metagenomic framework 0.5.5 documentation</title>
+    <title>mgkit.workflow.add_gff_info &#8212; MGKit: Metagenomic framework 0.5.7 documentation</title>
     <link rel="stylesheet" href="../../../_static/alabaster.css" type="text/css" />
     <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
     <link rel="stylesheet" type="text/css" href="../../../_static/graphviz.css" />
@@ -237,8 +237,44 @@
 <span class="sd">attribute (defaults to *ID*). if no description is found for the family, a</span>
 <span class="sd">warning message is logged.</span>
 
+<span class="sd">Adding information about Bins</span>
+<span class="sd">*****************************</span>
+
+<span class="sd">.. warning::</span>
+<span class="sd">    The taxonomy used must have been created using the `taxon-utils import` command</span>
+<span class="sd">    on the same DB the results is based upon. At the moment, only PhyloPhlan is</span>
+<span class="sd">    supported</span>
+
+<span class="sd">The script needs to know to which Bin the annotation belongs to, which can be</span>
+<span class="sd">defined at the moment in 3 different ways (the priority given is in reverse order):</span>
+
+<span class="sd">    * passing the Bin ID defined in the first column of PhyloPhlan results</span>
+<span class="sd">    * pass the attribute in the GFF file that contains the Bin ID</span>
+<span class="sd">    * the seq_id (FASTA headers) contain the Bin ID</span>
+
+<span class="sd">The first way to operate relies on `-i` to indicate the exact bin_id to use. This can</span>
+<span class="sd">only be passed once, so the whole input GFF will set to that Bin ID.</span>
+
+<span class="sd">The secondo option `-a` relies on an attribute being set in the GFF, this can be used</span>
+<span class="sd">if annotations in the GFF file comes from different Bins</span>
+
+<span class="sd">The third option `-h` relies on the fact that the sequences were renames in a way that</span>
+<span class="sd">can help find the Bin ID. It relies on the sequences being renamed by `fasta-utils rename`</span>
+<span class="sd">in a form similar to NCBI. By default expects something like this as `seq_id`:</span>
+
+<span class="sd">    BinID.fa|contig_1221|xXAS</span>
+
+<span class="sd">The script will split the header `-s &#39;|&#39;`, then picking the first element `-x 0` and</span>
+<span class="sd">finally replacing `-e .fa` from it::</span>
+
+<span class="sd">    BinID.fa|contig_1221|xXAS -&gt; BinID.fa -&gt; BinID</span>
+
+
 <span class="sd">Changes</span>
 <span class="sd">*******</span>
+
+<span class="sd">.. versionchanged:: 0.5.7</span>
+<span class="sd">    added *bins* command and `--manual` option to script</span>
 
 <span class="sd">.. versionchanged:: 0.4.2</span>
 <span class="sd">    added *-m* option for *cov_samtools* command, to calculate the average</span>
@@ -293,7 +329,7 @@
 
 <span class="sd">.. versionadded:: 0.1.12</span>
 <span class="sd">&quot;&quot;&quot;</span>
-<span class="kn">from</span> <span class="nn">__future__</span> <span class="kn">import</span> <span class="n">division</span>
+<span class="kn">from</span> <span class="nn">__future__</span> <span class="kn">import</span> <span class="n">annotations</span><span class="p">,</span> <span class="n">division</span>
 <span class="kn">from</span> <span class="nn">builtins</span> <span class="kn">import</span> <span class="nb">zip</span>
 <span class="kn">from</span> <span class="nn">future.utils</span> <span class="kn">import</span> <span class="n">viewitems</span>
 <span class="kn">import</span> <span class="nn">logging</span>
@@ -321,9 +357,21 @@
 <span class="n">LOG</span> <span class="o">=</span> <span class="n">logging</span><span class="o">.</span><span class="n">getLogger</span><span class="p">(</span><span class="vm">__name__</span><span class="p">)</span>
 
 
+<div class="viewcode-block" id="manual_callback"><a class="viewcode-back" href="../../../api/mgkit.workflow.add_gff_info.html#mgkit.workflow.add_gff_info.manual_callback">[docs]</a><span class="k">def</span> <span class="nf">manual_callback</span><span class="p">(</span><span class="n">ctx</span><span class="p">,</span> <span class="n">param</span><span class="p">,</span> <span class="n">value</span><span class="p">):</span>
+    <span class="k">if</span> <span class="ow">not</span> <span class="n">value</span> <span class="ow">or</span> <span class="n">ctx</span><span class="o">.</span><span class="n">resilient_parsing</span><span class="p">:</span>
+        <span class="k">return</span>
+    <span class="n">click</span><span class="o">.</span><span class="n">echo_via_pager</span><span class="p">(</span><span class="vm">__doc__</span><span class="p">)</span>
+    <span class="n">ctx</span><span class="o">.</span><span class="n">exit</span><span class="p">()</span></div>
+
+
+<span class="n">manual_option</span> <span class="o">=</span> <span class="n">click</span><span class="o">.</span><span class="n">option</span><span class="p">(</span><span class="s1">&#39;--manual&#39;</span><span class="p">,</span> <span class="n">is_flag</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">callback</span><span class="o">=</span><span class="n">manual_callback</span><span class="p">,</span>
+                           <span class="n">expose_value</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">is_eager</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+
+
 <span class="nd">@click</span><span class="o">.</span><span class="n">group</span><span class="p">()</span>
 <span class="nd">@click</span><span class="o">.</span><span class="n">version_option</span><span class="p">()</span>
 <span class="nd">@utils</span><span class="o">.</span><span class="n">cite_option</span>
+<span class="nd">@manual_option</span>
 <span class="k">def</span> <span class="nf">main</span><span class="p">():</span>
     <span class="s2">&quot;Main function&quot;</span>
     <span class="k">pass</span>
@@ -639,8 +687,7 @@
         <span class="n">annotation</span><span class="o">.</span><span class="n">to_file</span><span class="p">(</span><span class="n">output_file</span><span class="p">)</span>
 
 
-<span class="nd">@main</span><span class="o">.</span><span class="n">command</span><span class="p">(</span><span class="s1">&#39;unipfile&#39;</span><span class="p">,</span> <span class="n">help</span><span class="o">=</span><span class="s2">&quot;&quot;&quot;Adds expected synonymous and non-synonymous</span>
-<span class="s2">              changes information&quot;&quot;&quot;</span><span class="p">)</span>
+<span class="nd">@main</span><span class="o">.</span><span class="n">command</span><span class="p">(</span><span class="s1">&#39;unipfile&#39;</span><span class="p">,</span> <span class="n">help</span><span class="o">=</span><span class="s2">&quot;&quot;&quot;Adds Uniprot gene information from a file&quot;&quot;&quot;</span><span class="p">)</span>
 <span class="nd">@click</span><span class="o">.</span><span class="n">option</span><span class="p">(</span><span class="s1">&#39;-v&#39;</span><span class="p">,</span> <span class="s1">&#39;--verbose&#39;</span><span class="p">,</span> <span class="n">is_flag</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
 <span class="nd">@click</span><span class="o">.</span><span class="n">option</span><span class="p">(</span><span class="s1">&#39;-i&#39;</span><span class="p">,</span> <span class="s1">&#39;--mapping-file&#39;</span><span class="p">,</span> <span class="n">default</span><span class="o">=</span><span class="s1">&#39;idmapping.dat.gz&#39;</span><span class="p">,</span> <span class="n">required</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
               <span class="n">help</span><span class="o">=</span><span class="s2">&quot;Uniprot mapping file&quot;</span><span class="p">)</span>
@@ -828,7 +875,10 @@
         <span class="nb">getattr</span><span class="p">(</span><span class="n">output_file</span><span class="p">,</span> <span class="s1">&#39;name&#39;</span><span class="p">,</span> <span class="nb">repr</span><span class="p">(</span><span class="n">output_file</span><span class="p">))</span>
     <span class="p">)</span>
 
+    <span class="n">LOG</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;Using (</span><span class="si">%s</span><span class="s2">) as key&quot;</span><span class="p">,</span> <span class="n">gene_attr</span><span class="p">)</span>
+
     <span class="k">if</span> <span class="p">(</span><span class="n">gene_taxon_table</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">)</span> <span class="ow">and</span> <span class="p">(</span><span class="ow">not</span> <span class="n">cache_table</span><span class="p">):</span>
+        <span class="n">LOG</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;Caching Annotations&quot;</span><span class="p">)</span>
         <span class="n">annotations</span> <span class="o">=</span> <span class="p">[]</span>
         <span class="n">gene_ids</span> <span class="o">=</span> <span class="nb">set</span><span class="p">()</span>
 
@@ -849,6 +899,7 @@
             <span class="p">)</span>
         <span class="p">)</span>
     <span class="k">elif</span> <span class="p">(</span><span class="n">gene_taxon_table</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">)</span> <span class="ow">and</span> <span class="n">cache_table</span><span class="p">:</span>
+        <span class="n">LOG</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;Caching Table File&quot;</span><span class="p">)</span>
         <span class="n">annotations</span> <span class="o">=</span> <span class="n">gff</span><span class="o">.</span><span class="n">parse_gff</span><span class="p">(</span><span class="n">input_file</span><span class="p">)</span>
         <span class="n">gene_ids</span> <span class="o">=</span> <span class="n">cache_dict_file</span><span class="p">(</span>
             <span class="n">blast</span><span class="o">.</span><span class="n">parse_accession_taxa_table</span><span class="p">(</span>
@@ -859,6 +910,7 @@
             <span class="p">)</span>
         <span class="p">)</span>
     <span class="k">elif</span> <span class="n">hdf_table</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="n">LOG</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;Using HDF5 Table (</span><span class="si">%s</span><span class="s2">) from file </span><span class="si">%s</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">hdf_table</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">hdf_table</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
         <span class="k">try</span><span class="p">:</span>
             <span class="n">gene_ids</span> <span class="o">=</span> <span class="n">HDFDict</span><span class="p">(</span><span class="n">hdf_table</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">hdf_table</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>
         <span class="k">except</span> <span class="ne">ValueError</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
@@ -874,6 +926,7 @@
         <span class="n">gene_ids</span> <span class="o">=</span> <span class="p">{}</span>
 
     <span class="k">if</span> <span class="p">(</span><span class="n">dictionary</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">)</span> <span class="ow">and</span> <span class="p">(</span><span class="n">hdf_table</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">):</span>
+        <span class="n">LOG</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;Using dictionary, will take precedence over table&quot;</span><span class="p">)</span>
         <span class="n">dict_file</span> <span class="o">=</span> <span class="n">open_file</span><span class="p">(</span><span class="n">dictionary</span><span class="p">,</span> <span class="s1">&#39;r&#39;</span><span class="p">)</span>
         <span class="k">if</span> <span class="s1">&#39;.json&#39;</span> <span class="ow">in</span> <span class="n">dictionary</span><span class="p">:</span>
             <span class="n">gene_ids</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="n">json</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="n">dict_file</span><span class="p">))</span>
@@ -1075,6 +1128,109 @@
 
     <span class="n">LOG</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s1">&#39;Writing annotations to file (</span><span class="si">%r</span><span class="s1">)&#39;</span><span class="p">,</span> <span class="n">output_file</span><span class="p">)</span>
     <span class="k">for</span> <span class="n">annotation</span> <span class="ow">in</span> <span class="n">itertools</span><span class="o">.</span><span class="n">chain</span><span class="p">(</span><span class="o">*</span><span class="n">annotations</span><span class="o">.</span><span class="n">values</span><span class="p">()):</span>
+        <span class="n">annotation</span><span class="o">.</span><span class="n">to_file</span><span class="p">(</span><span class="n">output_file</span><span class="p">)</span>
+
+
+<div class="viewcode-block" id="phylophlan_results_parser"><a class="viewcode-back" href="../../../api/mgkit.workflow.add_gff_info.html#mgkit.workflow.add_gff_info.phylophlan_results_parser">[docs]</a><span class="k">def</span> <span class="nf">phylophlan_results_parser</span><span class="p">(</span><span class="n">pp_results</span><span class="p">,</span> <span class="n">idx_line</span><span class="o">=</span><span class="mi">1</span><span class="p">):</span>
+    <span class="n">bins_info</span> <span class="o">=</span> <span class="p">{}</span>
+    <span class="k">for</span> <span class="n">line</span> <span class="ow">in</span> <span class="nb">open</span><span class="p">(</span><span class="n">pp_results</span><span class="p">):</span>
+        <span class="k">if</span> <span class="n">line</span><span class="o">.</span><span class="n">startswith</span><span class="p">(</span><span class="s1">&#39;#&#39;</span><span class="p">):</span>
+            <span class="k">continue</span>
+        <span class="n">line</span> <span class="o">=</span> <span class="n">line</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">&#39;</span><span class="se">\t</span><span class="s1">&#39;</span><span class="p">)</span>
+        <span class="n">bin_id</span> <span class="o">=</span> <span class="n">line</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+        <span class="n">sgb_id</span><span class="p">,</span> <span class="n">rank</span><span class="p">,</span> <span class="n">lineage</span><span class="p">,</span> <span class="n">avg_dist</span> <span class="o">=</span> <span class="n">line</span><span class="p">[</span><span class="n">idx_line</span><span class="p">]</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">&#39;:&#39;</span><span class="p">)</span>
+        <span class="n">bins_info</span><span class="p">[</span><span class="n">bin_id</span><span class="p">]</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">(</span>
+            <span class="n">pp_sgb_id</span><span class="o">=</span><span class="n">sgb_id</span><span class="p">,</span>
+            <span class="n">pp_rank</span><span class="o">=</span><span class="n">rank</span><span class="p">,</span>
+            <span class="n">pp_lineage</span><span class="o">=</span><span class="n">lineage</span><span class="p">,</span>
+            <span class="n">pp_avg_dist</span><span class="o">=</span><span class="n">avg_dist</span>
+        <span class="p">)</span>
+    <span class="k">return</span> <span class="n">bins_info</span></div>
+
+
+<div class="viewcode-block" id="add_bin_information"><a class="viewcode-back" href="../../../api/mgkit.workflow.add_gff_info.html#mgkit.workflow.add_gff_info.add_bin_information">[docs]</a><span class="k">def</span> <span class="nf">add_bin_information</span><span class="p">(</span><span class="n">annotation</span><span class="p">,</span> <span class="n">bin_info</span><span class="p">,</span> <span class="n">taxon_id</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    .. versionadded:: 0.5.7</span>
+
+<span class="sd">    Adds bin information to the GFF annotation</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">annotation</span><span class="o">.</span><span class="n">attr</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="n">bin_info</span><span class="p">)</span>
+    <span class="n">annotation</span><span class="o">.</span><span class="n">taxon_id</span> <span class="o">=</span> <span class="n">taxon_id</span></div>
+
+
+<span class="nd">@main</span><span class="o">.</span><span class="n">command</span><span class="p">(</span><span class="s1">&#39;bins&#39;</span><span class="p">,</span> <span class="n">help</span><span class="o">=</span><span class="s2">&quot;&quot;&quot;Adds information about bins&quot;&quot;&quot;</span><span class="p">)</span>
+<span class="nd">@click</span><span class="o">.</span><span class="n">option</span><span class="p">(</span><span class="s1">&#39;-v&#39;</span><span class="p">,</span> <span class="s1">&#39;--verbose&#39;</span><span class="p">,</span> <span class="n">is_flag</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="nd">@click</span><span class="o">.</span><span class="n">option</span><span class="p">(</span><span class="s1">&#39;-t&#39;</span><span class="p">,</span> <span class="s1">&#39;--taxonomy&#39;</span><span class="p">,</span> <span class="nb">type</span><span class="o">=</span><span class="n">click</span><span class="o">.</span><span class="n">Path</span><span class="p">(</span><span class="n">exists</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">readable</span><span class="o">=</span><span class="kc">True</span><span class="p">),</span>
+                <span class="n">default</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">required</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">help</span><span class="o">=</span><span class="s1">&#39;Taxonomy file&#39;</span><span class="p">)</span>
+<span class="nd">@click</span><span class="o">.</span><span class="n">option</span><span class="p">(</span><span class="s1">&#39;-r&#39;</span><span class="p">,</span> <span class="s1">&#39;--bins-results&#39;</span><span class="p">,</span> <span class="nb">type</span><span class="o">=</span><span class="n">click</span><span class="o">.</span><span class="n">Path</span><span class="p">(</span><span class="n">exists</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">readable</span><span class="o">=</span><span class="kc">True</span><span class="p">),</span>
+                <span class="n">default</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">required</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">help</span><span class="o">=</span><span class="s1">&#39;Bins taxonomy results&#39;</span><span class="p">)</span>
+<span class="nd">@click</span><span class="o">.</span><span class="n">option</span><span class="p">(</span><span class="s1">&#39;-y&#39;</span><span class="p">,</span> <span class="s1">&#39;--results-type&#39;</span><span class="p">,</span> <span class="nb">type</span><span class="o">=</span><span class="n">click</span><span class="o">.</span><span class="n">Choice</span><span class="p">([</span><span class="s1">&#39;phylophlan&#39;</span><span class="p">]),</span>
+              <span class="n">default</span><span class="o">=</span><span class="s1">&#39;phylophlan&#39;</span><span class="p">,</span> <span class="n">show_default</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">help</span><span class="o">=</span><span class="s1">&#39;Software used&#39;</span><span class="p">)</span>
+<span class="nd">@click</span><span class="o">.</span><span class="n">option</span><span class="p">(</span><span class="s1">&#39;-i&#39;</span><span class="p">,</span> <span class="s1">&#39;--bin-id&#39;</span><span class="p">,</span> <span class="n">default</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="nb">type</span><span class="o">=</span><span class="n">click</span><span class="o">.</span><span class="n">STRING</span><span class="p">,</span>
+                <span class="n">show_default</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">help</span><span class="o">=</span><span class="s2">&quot;Bin ID from PhyloPhlan results to use&quot;</span><span class="p">)</span>
+<span class="nd">@click</span><span class="o">.</span><span class="n">option</span><span class="p">(</span><span class="s1">&#39;-a&#39;</span><span class="p">,</span> <span class="s1">&#39;--bin-attribute&#39;</span><span class="p">,</span> <span class="n">default</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">show_default</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+                <span class="n">help</span><span class="o">=</span><span class="s2">&quot;The Bin ID is stored as attribute in the annotation&quot;</span><span class="p">)</span>
+<span class="nd">@click</span><span class="o">.</span><span class="n">option</span><span class="p">(</span><span class="s1">&#39;-h&#39;</span><span class="p">,</span> <span class="s1">&#39;--header-bin&#39;</span><span class="p">,</span> <span class="n">default</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">is_flag</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+                <span class="n">help</span><span class="o">=</span><span class="s2">&quot;The Bin ID is stored as part of the FASTA header&quot;</span><span class="p">)</span>
+<span class="nd">@click</span><span class="o">.</span><span class="n">option</span><span class="p">(</span><span class="s1">&#39;-e&#39;</span><span class="p">,</span> <span class="s1">&#39;--header-replace&#39;</span><span class="p">,</span> <span class="n">default</span><span class="o">=</span><span class="s1">&#39;.fa&#39;</span><span class="p">,</span> <span class="n">show_default</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+                <span class="n">help</span><span class="o">=</span><span class="s1">&#39;String to replace in the FASTA header&#39;</span><span class="p">)</span>
+<span class="nd">@click</span><span class="o">.</span><span class="n">option</span><span class="p">(</span><span class="s1">&#39;-s&#39;</span><span class="p">,</span> <span class="s1">&#39;--header-separator&#39;</span><span class="p">,</span> <span class="n">default</span><span class="o">=</span><span class="s1">&#39;|&#39;</span><span class="p">,</span> <span class="n">show_default</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+                <span class="n">help</span><span class="o">=</span><span class="s1">&#39;Separator for FASTA header items&#39;</span><span class="p">)</span>
+<span class="nd">@click</span><span class="o">.</span><span class="n">option</span><span class="p">(</span><span class="s1">&#39;-x&#39;</span><span class="p">,</span> <span class="s1">&#39;--header-index&#39;</span><span class="p">,</span> <span class="n">default</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">show_default</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="nb">type</span><span class="o">=</span><span class="n">click</span><span class="o">.</span><span class="n">INT</span><span class="p">,</span>
+                <span class="n">help</span><span class="o">=</span><span class="s1">&#39;Index for item to use in FASTA header&#39;</span><span class="p">)</span>
+<span class="nd">@click</span><span class="o">.</span><span class="n">option</span><span class="p">(</span><span class="s1">&#39;-s&#39;</span><span class="p">,</span> <span class="s1">&#39;--ignore-missing-bin&#39;</span><span class="p">,</span> <span class="n">default</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">is_flag</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+                <span class="n">help</span><span class="o">=</span><span class="s1">&#39;Bins not found will have an ID set&#39;</span><span class="p">)</span>
+<span class="nd">@click</span><span class="o">.</span><span class="n">argument</span><span class="p">(</span><span class="s1">&#39;input-file&#39;</span><span class="p">,</span> <span class="nb">type</span><span class="o">=</span><span class="n">click</span><span class="o">.</span><span class="n">File</span><span class="p">(</span><span class="s1">&#39;rb&#39;</span><span class="p">,</span> <span class="n">lazy</span><span class="o">=</span><span class="kc">False</span><span class="p">),</span> <span class="n">default</span><span class="o">=</span><span class="s1">&#39;-&#39;</span><span class="p">)</span>
+<span class="nd">@click</span><span class="o">.</span><span class="n">argument</span><span class="p">(</span><span class="s1">&#39;output-file&#39;</span><span class="p">,</span> <span class="nb">type</span><span class="o">=</span><span class="n">click</span><span class="o">.</span><span class="n">File</span><span class="p">(</span><span class="s1">&#39;wb&#39;</span><span class="p">,</span> <span class="n">lazy</span><span class="o">=</span><span class="kc">False</span><span class="p">),</span> <span class="n">default</span><span class="o">=</span><span class="s1">&#39;-&#39;</span><span class="p">)</span>
+<span class="k">def</span> <span class="nf">bins_command</span><span class="p">(</span><span class="n">verbose</span><span class="p">,</span> <span class="n">taxonomy</span><span class="p">,</span> <span class="n">bins_results</span><span class="p">,</span> <span class="n">results_type</span><span class="p">,</span> <span class="n">bin_id</span><span class="p">,</span> <span class="n">bin_attribute</span><span class="p">,</span>
+                <span class="n">header_bin</span><span class="p">,</span> <span class="n">header_replace</span><span class="p">,</span> <span class="n">header_separator</span><span class="p">,</span> <span class="n">header_index</span><span class="p">,</span> 
+                <span class="n">ignore_missing_bin</span><span class="p">,</span> <span class="n">input_file</span><span class="p">,</span> <span class="n">output_file</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    .. versionadded:: 0.5.7</span>
+
+<span class="sd">    Adds information about bins, in particular about the taxonomy</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">logger</span><span class="o">.</span><span class="n">config_log</span><span class="p">(</span><span class="n">level</span><span class="o">=</span><span class="n">logging</span><span class="o">.</span><span class="n">DEBUG</span> <span class="k">if</span> <span class="n">verbose</span> <span class="k">else</span> <span class="n">logging</span><span class="o">.</span><span class="n">INFO</span><span class="p">)</span>
+
+    <span class="n">LOG</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s1">&#39;Adding Taxonomic Information&#39;</span><span class="p">)</span>
+    <span class="n">taxonomy</span> <span class="o">=</span> <span class="n">taxon</span><span class="o">.</span><span class="n">Taxonomy</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="n">taxonomy</span><span class="p">))</span>
+
+    <span class="k">if</span> <span class="n">results_type</span> <span class="o">==</span> <span class="s1">&#39;phylophlan&#39;</span><span class="p">:</span>
+        <span class="n">LOG</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s1">&#39;Using Phylophlan Results&#39;</span><span class="p">)</span>
+        <span class="n">taxonomy</span><span class="o">.</span><span class="n">gen_alt_map</span><span class="p">()</span>
+        <span class="n">bins_info</span> <span class="o">=</span> <span class="n">phylophlan_results_parser</span><span class="p">(</span><span class="n">bins_results</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">ignore_missing_bin</span><span class="p">:</span>
+            <span class="n">bins_info</span><span class="p">[</span><span class="s1">&#39;NoBin&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">(</span>
+                <span class="n">pp_sgb_id</span><span class="o">=</span><span class="s1">&#39;NoID&#39;</span><span class="p">,</span>
+                <span class="n">pp_rank</span><span class="o">=</span><span class="s1">&#39;none&#39;</span><span class="p">,</span>
+                <span class="n">pp_lineage</span><span class="o">=</span><span class="s2">&quot;Unknown&quot;</span><span class="p">,</span>
+            <span class="p">)</span>
+    
+    <span class="n">annotations</span> <span class="o">=</span> <span class="n">gff</span><span class="o">.</span><span class="n">parse_gff</span><span class="p">(</span><span class="n">input_file</span><span class="p">,</span> <span class="n">strict</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+
+    <span class="k">for</span> <span class="n">annotation</span> <span class="ow">in</span> <span class="n">annotations</span><span class="p">:</span>
+        <span class="k">if</span> <span class="n">bin_attribute</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="k">try</span><span class="p">:</span>
+                <span class="n">bin_id</span> <span class="o">=</span> <span class="n">annotation</span><span class="o">.</span><span class="n">get_attr</span><span class="p">(</span><span class="n">bin_attribute</span><span class="p">)</span>
+            <span class="k">except</span> <span class="n">gff</span><span class="o">.</span><span class="n">AttributeNotFound</span><span class="p">:</span>
+                <span class="n">LOG</span><span class="o">.</span><span class="n">critical</span><span class="p">(</span><span class="s2">&quot;Attribute (</span><span class="si">%s</span><span class="s2">) not found&quot;</span><span class="p">,</span> <span class="n">bin_attribute</span><span class="p">)</span>
+                <span class="n">bin_id</span> <span class="o">=</span> <span class="kc">None</span>
+        
+        <span class="k">if</span> <span class="n">header_bin</span><span class="p">:</span>
+            <span class="n">bin_id</span> <span class="o">=</span> <span class="n">annotation</span><span class="o">.</span><span class="n">seq_id</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="n">header_separator</span><span class="p">)[</span><span class="n">header_index</span><span class="p">]</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="n">header_replace</span><span class="p">,</span> <span class="s1">&#39;&#39;</span><span class="p">)</span>
+
+        <span class="k">if</span> <span class="n">bin_id</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">bins_info</span><span class="p">:</span>
+            <span class="k">if</span> <span class="n">ignore_missing_bin</span><span class="p">:</span>
+                <span class="n">bin_id</span> <span class="o">=</span> <span class="s1">&#39;NoBin&#39;</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="n">utils</span><span class="o">.</span><span class="n">exit_script</span><span class="p">(</span><span class="s2">&quot;Bin ID (</span><span class="si">%s</span><span class="s2">) not found in Results File&quot;</span> <span class="o">%</span> <span class="n">bin_id</span><span class="p">,</span> <span class="mi">4</span><span class="p">)</span>
+
+        <span class="n">taxon_id</span> <span class="o">=</span> <span class="n">taxonomy</span><span class="o">.</span><span class="n">get_by_lineage</span><span class="p">(</span><span class="n">bins_info</span><span class="p">[</span><span class="n">bin_id</span><span class="p">][</span><span class="s1">&#39;pp_sgb_id&#39;</span><span class="p">])</span>
+        <span class="n">add_bin_information</span><span class="p">(</span><span class="n">annotation</span><span class="p">,</span> <span class="n">bins_info</span><span class="p">[</span><span class="n">bin_id</span><span class="p">],</span> <span class="n">taxon_id</span><span class="p">)</span>
+
+        <span class="k">if</span> <span class="n">bin_attribute</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">annotation</span><span class="o">.</span><span class="n">set_attr</span><span class="p">(</span><span class="s1">&#39;bin_id&#39;</span><span class="p">,</span> <span class="n">bin_id</span><span class="p">)</span>
+
         <span class="n">annotation</span><span class="o">.</span><span class="n">to_file</span><span class="p">(</span><span class="n">output_file</span><span class="p">)</span>
 </pre></div>
 

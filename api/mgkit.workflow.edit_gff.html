@@ -1,0 +1,321 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>mgkit.workflow.edit_gff module &#8212; MGKit: Metagenomic framework 0.5.7 documentation</title>
+    <link rel="stylesheet" href="../_static/alabaster.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../_static/graphviz.css" />
+    <script id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script src="../_static/language_data.js"></script>
+    <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script type="text/x-mathjax-config">MathJax.Hub.Config({"tex2jax": {"inlineMath": [["$", "$"], ["\\(", "\\)"]], "processEscapes": true, "ignoreClass": "document", "processClass": "math|output_area"}})</script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="mgkit.workflow.extract_gff_info module" href="mgkit.workflow.extract_gff_info.html" />
+    <link rel="prev" title="mgkit.workflow.dict_utils module" href="mgkit.workflow.dict_utils.html" />
+   
+  <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
+  </head><body>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          
+
+          <div class="body" role="main">
+            
+  <div class="section" id="module-mgkit.workflow.edit_gff">
+<span id="mgkit-workflow-edit-gff-module"></span><h1>mgkit.workflow.edit_gff module<a class="headerlink" href="#module-mgkit.workflow.edit_gff" title="Permalink to this headline">¶</a></h1>
+<p>Script to edit GFF files</p>
+<div class="section" id="print-attributes-in-a-gff-file">
+<h2>Print Attributes in a GFF file<a class="headerlink" href="#print-attributes-in-a-gff-file" title="Permalink to this headline">¶</a></h2>
+<p>By default reads the first 10 lines of a GFF file and prints all attributes
+present in the file sorted. Not all annotations may have the same set of
+attributes, so a higher number of lines may be necessary to be read.</p>
+</div>
+<div class="section" id="view-gff">
+<h2>View GFF<a class="headerlink" href="#view-gff" title="Permalink to this headline">¶</a></h2>
+<p>Used to print the content of a GFF file as a table (more output formats will be
+added later).</p>
+<p>The attributes printed are passed with <cite>-a</cite>, one attribute at a time. For
+example:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">edit</span><span class="o">-</span><span class="n">gff</span> <span class="n">view</span> <span class="o">-</span><span class="n">a</span> <span class="n">uid</span> <span class="n">test</span><span class="o">.</span><span class="n">gff</span>
+</pre></div>
+</div>
+<p>will print <cite>uid</cite> for all annotations. Multiple attributes can be passed, like:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">edit</span><span class="o">-</span><span class="n">gff</span> <span class="n">view</span> <span class="o">-</span><span class="n">a</span> <span class="n">uid</span> <span class="o">-</span><span class="n">a</span> <span class="n">taxon_id</span> <span class="n">test</span><span class="o">.</span><span class="n">gff</span>
+</pre></div>
+</div>
+<p>that will print a table with <cite>uid</cite> and <cite>taxon_id</cite> of each annotation.</p>
+<p>The default behaviour is to print only annotations that have all the attributes
+requested. This can be changed by using the <cite>-k</cite> options and the fields that
+were not found are empty strings.</p>
+<p>An header can be printed with the <cite>-h</cite> option.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>the order of the fields in the table is the same as the order of the
+attributes passed with <cite>-a</cite></p>
+</div>
+</div>
+<div class="section" id="change-or-add-attributes">
+<h2>Change or Add Attributes<a class="headerlink" href="#change-or-add-attributes" title="Permalink to this headline">¶</a></h2>
+<p>Add or changes annotations in a GFF files with the specified attributes.</p>
+<p>The attributes and the values are passed with the <cite>-a</cite> option, for example
+to set all annotations <cite>taxon_id</cite> to 2, you can pass <cite>-a taxon_id 2</cite>. Multiple
+attributes can be set by passing multiple options. For example:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">edit</span><span class="o">-</span><span class="n">gff</span> <span class="n">add</span> <span class="o">-</span><span class="n">a</span> <span class="n">taxon_id</span> <span class="mi">2</span> <span class="o">-</span><span class="n">a</span> <span class="n">taxon_db</span> <span class="n">CUSTOM</span> <span class="n">test</span><span class="o">.</span><span class="n">gff</span>
+</pre></div>
+</div>
+<p>will set the <cite>taxon_id</cite> to 2 and the <cite>taxon_db</cite> to CUSTOM for all annotations.</p>
+<p>The default behaviour is to not change an attribute already set in an
+annotation, but this can be changed by passing the <cite>-w</cite> option. Moreover,
+only edited annotations can be output with <cite>-o</cite>.</p>
+<p>To change attributes on a subset of the annotations, a file can be passed with
+the <cite>-f</cite> options, which contains one <cite>uid</cite> per line. Only annotations that
+match a <cite>uid</cite> in that list are edited.</p>
+</div>
+<div class="section" id="remove-attributes">
+<h2>Remove Attributes<a class="headerlink" href="#remove-attributes" title="Permalink to this headline">¶</a></h2>
+<p>Removes a list of attributes in a GFF file. Only attributes in the last column
+of a GFF file (fields separated by a ‘;’) can be removed. Attributes are passed
+with the <cite>-a</cite> option followed by one attribute. Multiple <cite>-a attribute</cite> options
+can be passed.</p>
+<p>To remove attributes on a subset of the annotations, a file can be passed with
+the <cite>-f</cite> options, which contains one <cite>uid</cite> per line. Only annotations that
+match a <cite>uid</cite> in that list are edited.</p>
+</div>
+<div class="section" id="table">
+<h2>Table<a class="headerlink" href="#table" title="Permalink to this headline">¶</a></h2>
+<p>Similar to the <em>add</em> command and with similar functions as <em>add-gff-info
+addtaxa</em>, it allows the adding/changing of attributes from a table file.</p>
+<p>The user defines 2 attributes in a GFF annotation, the <em>key</em> and the
+<em>attribute</em>. The <em>key</em> is used to find if an annotation is to be modified and
+the <em>attribute</em> is set for that annotation with the value in the table. For
+example a table:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">GENE001</span><span class="p">,</span><span class="mf">1.1</span><span class="o">.</span><span class="mf">3.3</span>
+<span class="n">GENE002</span><span class="p">,</span><span class="mf">1.2</span><span class="o">.</span><span class="mf">3.3</span>
+</pre></div>
+</div>
+<p>If <em>key</em> chosen is <em>gene_id</em> and <em>attribute</em> is <em>EC</em>, the GFF will be scanned
+for annotation that have the <em>gene_id</em> equal to <em>GENE001</em> and set the
+<em>attribute</em> <em>EC</em> to <em>1.1.3.3</em> and similarly for the second row.</p>
+<p>The table can have multiple fields, but only 2 can be loaded, the <em>key</em> and
+<em>attribute</em> in the options. The 2 fields are loaded into a python dictionary,
+with the key and attribute being respectively the key and value in it. So 2
+things must be noted:</p>
+<blockquote>
+<div><ol class="arabic simple">
+<li><p>duplicates keys will be overwritten (only last one remains)</p></li>
+<li><p>the entire fields are first loaded, which can take up a lot of RAM</p></li>
+</ol>
+</div></blockquote>
+<p>The default is for the key to be the first field (0) and the attribute is the
+second (1). The table may contains some headers, so the first N rows can be
+skipped with <cite>-r</cite>. Also, the field separator can be chosen, as well as only
+the edited annotation be printed (<cite>-o</cite> option).</p>
+<p>If there are comments in the file, for example lines starting with ‘#’, it is
+possible to specify the option <cite>-c ‘#’</cite> to skip those lines and avoid errors.</p>
+</div>
+<div class="section" id="rename">
+<h2>Rename<a class="headerlink" href="#rename" title="Permalink to this headline">¶</a></h2>
+<p>The command <cite>rename</cite> allows to change attribute names, by passing the attributes:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ edit-gff rename -a taxo_ID taxon_id input.gff output.gff
+</pre></div>
+</div>
+<p>Will rename all instances of the attribute <cite>taxo_ID</cite> to <cite>taxon_id</cite>. Between the
+old and new attribute names, a space must be put.</p>
+<p>By default, the command won’t stop execution if an attribute is not found, it will
+just silently continue. Using <cite>-s</cite> will force the script to stop if one of the
+attributes passed is not found.</p>
+</div>
+<div class="section" id="changes">
+<h2>Changes<a class="headerlink" href="#changes" title="Permalink to this headline">¶</a></h2>
+<div class="versionadded">
+<p><span class="versionmodified added">New in version 0.4.4.</span></p>
+</div>
+<div class="versionchanged">
+<p><span class="versionmodified changed">Changed in version 0.5.5: </span>added <cite>-c</cite> option to <em>table</em> command</p>
+</div>
+<div class="versionchanged">
+<p><span class="versionmodified changed">Changed in version 0.5.7: </span>added <em>rename</em> command and added options to <em>table</em></p>
+</div>
+</div>
+</div>
+
+
+          </div>
+          
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<h1 class="logo"><a href="../index.html">MGKit: Metagenomic framework</a></h1>
+
+
+
+
+
+
+
+
+<h3>Navigation</h3>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../introduction.html">Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../install.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../pipeline/index.html">Metagenomic Pipeline</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../scripts/index.html">Scripts Details</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../examples/index.html">Example Notebooks</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../gff.html">MGKit GFF Specifications</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../library.html">Library Reference</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="mgkit.html">mgkit package</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mgkit.align.html">mgkit.align module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mgkit.consts.html">mgkit.consts module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mgkit.counts.html">mgkit.counts package</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mgkit.counts.func.html">mgkit.counts.func module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mgkit.counts.glm.html">mgkit.counts.glm module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mgkit.counts.scaling.html">mgkit.counts.scaling module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mgkit.db.html">mgkit.db package</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mgkit.db.dbm.html">mgkit.db.dbm module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mgkit.db.mongo.html">mgkit.db.mongo module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mgkit.filter.html">mgkit.filter package</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mgkit.filter.common.html">mgkit.filter.common module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mgkit.filter.gff.html">mgkit.filter.gff module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mgkit.filter.lists.html">mgkit.filter.lists module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mgkit.filter.reads.html">mgkit.filter.reads module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mgkit.filter.taxon.html">mgkit.filter.taxon module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mgkit.graphs.html">mgkit.graphs module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mgkit.io.html">mgkit.io package</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mgkit.io.blast.html">mgkit.io.blast module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mgkit.io.fasta.html">mgkit.io.fasta module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mgkit.io.fastq.html">mgkit.io.fastq module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mgkit.io.gff.html">mgkit.io.gff module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mgkit.io.glimmer.html">mgkit.io.glimmer module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mgkit.io.snpdat.html">mgkit.io.snpdat module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mgkit.io.uniprot.html">mgkit.io.uniprot module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mgkit.io.utils.html">mgkit.io.utils module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mgkit.kegg.html">mgkit.kegg module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mgkit.logger.html">mgkit.logger module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mgkit.mappings.html">mgkit.mappings package</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mgkit.mappings.cazy.html">mgkit.mappings.cazy module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mgkit.mappings.eggnog.html">mgkit.mappings.eggnog module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mgkit.mappings.enzyme.html">mgkit.mappings.enzyme module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mgkit.mappings.go.html">mgkit.mappings.go module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mgkit.mappings.pandas_map.html">mgkit.mappings.pandas_map module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mgkit.mappings.taxon.html">mgkit.mappings.taxon module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mgkit.mappings.utils.html">mgkit.mappings.utils module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mgkit.net.html">mgkit.net package</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mgkit.net.embl.html">mgkit.net.embl module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mgkit.net.pfam.html">mgkit.net.pfam module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mgkit.net.uniprot.html">mgkit.net.uniprot module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mgkit.net.utils.html">mgkit.net.utils module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mgkit.plots.html">mgkit.plots package</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mgkit.plots.abund.html">mgkit.plots.abund module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mgkit.plots.boxplot.html">mgkit.plots.boxplot module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mgkit.plots.colors.html">mgkit.plots.colors module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mgkit.plots.heatmap.html">mgkit.plots.heatmap module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mgkit.plots.unused.html">mgkit.plots.unused module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mgkit.plots.utils.html">mgkit.plots.utils module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mgkit.simple_cache.html">mgkit.simple_cache module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mgkit.snps.html">mgkit.snps package</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mgkit.snps.classes.html">mgkit.snps.classes module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mgkit.snps.conv_func.html">mgkit.snps.conv_func module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mgkit.snps.filter.html">mgkit.snps.filter module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mgkit.snps.funcs.html">mgkit.snps.funcs module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mgkit.snps.mapper.html">mgkit.snps.mapper module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mgkit.taxon.html">mgkit.taxon module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mgkit.utils.html">mgkit.utils package</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mgkit.utils.common.html">mgkit.utils.common module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mgkit.utils.dictionary.html">mgkit.utils.dictionary module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mgkit.utils.sequence.html">mgkit.utils.sequence module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mgkit.utils.trans_tables.html">mgkit.utils.trans_tables module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mgkit.workflow.html">mgkit.workflow package</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mgkit.workflow.add_gff_info.html">mgkit.workflow.add_gff_info module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mgkit.workflow.alg_utils.html">mgkit.workflow.alg_utils module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mgkit.workflow.blast2gff.html">mgkit.workflow.blast2gff module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mgkit.workflow.count_utils.html">mgkit.workflow.count_utils module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mgkit.workflow.dict_utils.html">mgkit.workflow.dict_utils module</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">mgkit.workflow.edit_gff module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mgkit.workflow.extract_gff_info.html">mgkit.workflow.extract_gff_info module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mgkit.workflow.fasta_utils.html">mgkit.workflow.fasta_utils module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mgkit.workflow.fastq_utils.html">mgkit.workflow.fastq_utils module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mgkit.workflow.filter_gff.html">mgkit.workflow.filter_gff module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mgkit.workflow.hmmer2gff.html">mgkit.workflow.hmmer2gff module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mgkit.workflow.json2gff.html">mgkit.workflow.json2gff module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mgkit.workflow.pnps_gen.html">mgkit.workflow.pnps_gen module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mgkit.workflow.sampling_utils.html">mgkit.workflow.sampling_utils module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mgkit.workflow.snp_parser.html">mgkit.workflow.snp_parser module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mgkit.workflow.taxon_utils.html">mgkit.workflow.taxon_utils module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mgkit.workflow.utils.html">mgkit.workflow.utils module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="modules.html">mgkit</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../changes.html">Changes</a></li>
+</ul>
+
+<div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="../index.html">Documentation overview</a><ul>
+  <li><a href="../library.html">Library Reference</a><ul>
+  <li><a href="mgkit.html">mgkit package</a><ul>
+  <li><a href="mgkit.workflow.html">mgkit.workflow package</a><ul>
+      <li>Previous: <a href="mgkit.workflow.dict_utils.html" title="previous chapter">mgkit.workflow.dict_utils module</a></li>
+      <li>Next: <a href="mgkit.workflow.extract_gff_info.html" title="next chapter">mgkit.workflow.extract_gff_info module</a></li>
+  </ul></li>
+  </ul></li>
+  </ul></li>
+  </ul></li>
+</ul>
+</div>
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="../search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" />
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script>$('#searchbox').show(0);</script>
+
+
+
+
+
+
+
+
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &copy;2013-2020, Francesco Rubino.
+      
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 3.2.1</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.12</a>
+      
+      |
+      <a href="../_sources/api/mgkit.workflow.edit_gff.rst.txt"
+          rel="nofollow">Page source</a>
+    </div>
+
+    
+
+    
+  </body>
+</html>

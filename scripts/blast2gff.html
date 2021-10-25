@@ -5,7 +5,7 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>blast2gff - Convert BLAST output to GFF &#8212; MGKit: Metagenomic framework 0.5.5 documentation</title>
+    <title>blast2gff - Convert BLAST output to GFF &#8212; MGKit: Metagenomic framework 0.5.7 documentation</title>
     <link rel="stylesheet" href="../_static/alabaster.css" type="text/css" />
     <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
     <link rel="stylesheet" type="text/css" href="../_static/graphviz.css" />
@@ -115,6 +115,9 @@ the options of later changing the <em>gene_id</em> in the output GFF if necessar
 <div class="section" id="changes">
 <h3>Changes<a class="headerlink" href="#changes" title="Permalink to this headline">¶</a></h3>
 <div class="versionchanged">
+<p><span class="versionmodified changed">Changed in version 0.5.7: </span>in command <em>blastdb</em> if the fasta file is passed, the query coverage is calculated</p>
+</div>
+<div class="versionchanged">
 <p><span class="versionmodified changed">Changed in version 0.3.4: </span>using <em>click</em> instead of <em>argparse</em></p>
 </div>
 <div class="versionchanged">
@@ -223,7 +226,7 @@ outputs a GFF file [gff-file]</p>
 <dl class="std option">
 <dt id="cmdoption-blast2gff-blastdb-a">
 <code class="sig-name descname">-a</code><code class="sig-prename descclassname"></code><code class="sig-prename descclassname">, </code><code class="sig-name descname">--fasta-file</code><code class="sig-prename descclassname"> &lt;fasta_file&gt;</code><a class="headerlink" href="#cmdoption-blast2gff-blastdb-a" title="Permalink to this definition">¶</a></dt>
-<dd><p>Optional FASTA file with the query sequences</p>
+<dd><p>Optional FASTA file with the query sequences, if passed, query coverage is calculated</p>
 </dd></dl>
 
 <dl class="std option">

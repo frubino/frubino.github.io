@@ -5,7 +5,7 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>pnps-gen - pN/pS Table Generation &#8212; MGKit: Metagenomic framework 0.5.5 documentation</title>
+    <title>pnps-gen - pN/pS Table Generation &#8212; MGKit: Metagenomic framework 0.5.7 documentation</title>
     <link rel="stylesheet" href="../_static/alabaster.css" type="text/css" />
     <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
     <link rel="stylesheet" type="text/css" href="../_static/graphviz.css" />
@@ -43,8 +43,13 @@
 <span id="overview"></span><h2>Overview<a class="headerlink" href="#module-mgkit.workflow.pnps_gen" title="Permalink to this headline">¶</a></h2>
 <div class="section" id="calculates-pn-ps-values">
 <h3>Calculates pN/pS values<a class="headerlink" href="#calculates-pn-ps-values" title="Permalink to this headline">¶</a></h3>
-<p>This script calculates pN/pS using the data produced by the script
-<span class="xref std std-ref">snp_parser</span>. The result table is a CSV file.</p>
+<p>This script calculates pN/pS using the data produced by the script <cite>vcf</cite>
+command. The result table is a CSV file.</p>
+</div>
+<div class="section" id="parse-vcf-files">
+<h3>Parse VCF Files<a class="headerlink" href="#parse-vcf-files" title="Permalink to this headline">¶</a></h3>
+<p>The <cite>vcf</cite> command will parse a VCF file to produce the pickle file that is used
+to calculate the pN/pS.</p>
 </div>
 <div class="section" id="calculate-rank-pn-ps">
 <h3>Calculate Rank pN/pS<a class="headerlink" href="#calculate-rank-pn-ps" title="Permalink to this headline">¶</a></h3>
@@ -103,6 +108,9 @@ pN/pS for each line in the GFF file.</p>
 <div class="section" id="changes">
 <h3>Changes<a class="headerlink" href="#changes" title="Permalink to this headline">¶</a></h3>
 <div class="versionchanged">
+<p><span class="versionmodified changed">Changed in version 0.5.7: </span>added <em>vcf</em> command to parse VCF files and generate data for the script</p>
+</div>
+<div class="versionchanged">
 <p><span class="versionmodified changed">Changed in version 0.5.1: </span>bug fix</p>
 </div>
 <div class="versionchanged">
@@ -140,7 +148,7 @@ does not require the GFF file, they are embedded into the <em>.pickle</em> file<
 <div class="section" id="pnps-gen-full">
 <h4>full<a class="headerlink" href="#pnps-gen-full" title="Permalink to this headline">¶</a></h4>
 <p>Calculates pN/pS</p>
-<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>pnps-gen full <span class="o">[</span>OPTIONS<span class="o">]</span> <span class="o">[</span>TXT_FILE<span class="o">]</span>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>pnps-gen full <span class="o">[</span>OPTIONS<span class="o">]</span> OUTPUT_FILE
 </pre></div>
 </div>
 <p class="rubric">Options</p>
@@ -166,11 +174,8 @@ does not require the GFF file, they are embedded into the <em>.pickle</em> file<
 <code class="sig-name descname">-r</code><code class="sig-prename descclassname"></code><code class="sig-prename descclassname">, </code><code class="sig-name descname">--rank</code><code class="sig-prename descclassname"> &lt;rank&gt;</code><a class="headerlink" href="#cmdoption-pnps-gen-full-r" title="Permalink to this definition">¶</a></dt>
 <dd><p>Taxonomic rank</p>
 <dl class="field-list simple">
-<dt class="field-odd">Default</dt>
-<dd class="field-odd"><p>order</p>
-</dd>
-<dt class="field-even">Options</dt>
-<dd class="field-even"><p>superkingdom|kingdom|phylum|class|order|family|genus|species|None</p>
+<dt class="field-odd">Options</dt>
+<dd class="field-odd"><p>superkingdom|kingdom|phylum|class|order|family|genus|species|None</p>
 </dd>
 </dl>
 </dd></dl>
@@ -199,13 +204,8 @@ does not require the GFF file, they are embedded into the <em>.pickle</em> file<
 
 <dl class="std option">
 <dt id="cmdoption-pnps-gen-full-i">
-<code class="sig-name descname">-i</code><code class="sig-prename descclassname"></code><code class="sig-prename descclassname">, </code><code class="sig-name descname">--taxon_ids</code><code class="sig-prename descclassname"> &lt;taxon_ids&gt;</code><a class="headerlink" href="#cmdoption-pnps-gen-full-i" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">-i</code><code class="sig-prename descclassname"></code><code class="sig-prename descclassname">, </code><code class="sig-name descname">--taxon-ids</code><code class="sig-prename descclassname"> &lt;taxon_ids&gt;</code><a class="headerlink" href="#cmdoption-pnps-gen-full-i" title="Permalink to this definition">¶</a></dt>
 <dd><p>Taxon IDs to include</p>
-<dl class="field-list simple">
-<dt class="field-odd">Default</dt>
-<dd class="field-odd"><p>2</p>
-</dd>
-</dl>
 </dd></dl>
 
 <dl class="std option">
@@ -253,6 +253,17 @@ does not require the GFF file, they are embedded into the <em>.pickle</em> file<
 </dd></dl>
 
 <dl class="std option">
+<dt id="cmdoption-pnps-gen-full-e">
+<code class="sig-name descname">-e</code><code class="sig-prename descclassname"></code><code class="sig-prename descclassname">, </code><code class="sig-name descname">--parquet</code><code class="sig-prename descclassname"></code><a class="headerlink" href="#cmdoption-pnps-gen-full-e" title="Permalink to this definition">¶</a></dt>
+<dd><p>Output a Parquet file instead of CSV</p>
+<dl class="field-list simple">
+<dt class="field-odd">Default</dt>
+<dd class="field-odd"><p>False</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="std option">
 <dt id="cmdoption-pnps-gen-full-ps">
 <code class="sig-name descname">-ps</code><code class="sig-prename descclassname"></code><code class="sig-prename descclassname">, </code><code class="sig-name descname">--only-ps</code><code class="sig-prename descclassname"></code><a class="headerlink" href="#cmdoption-pnps-gen-full-ps" title="Permalink to this definition">¶</a></dt>
 <dd><p>Only calculate pS values</p>
@@ -276,9 +287,9 @@ does not require the GFF file, they are embedded into the <em>.pickle</em> file<
 
 <p class="rubric">Arguments</p>
 <dl class="std option">
-<dt id="cmdoption-pnps-gen-full-arg-TXT_FILE">
-<code class="sig-name descname">TXT_FILE</code><code class="sig-prename descclassname"></code><a class="headerlink" href="#cmdoption-pnps-gen-full-arg-TXT_FILE" title="Permalink to this definition">¶</a></dt>
-<dd><p>Optional argument</p>
+<dt id="cmdoption-pnps-gen-full-arg-OUTPUT_FILE">
+<code class="sig-name descname">OUTPUT_FILE</code><code class="sig-prename descclassname"></code><a class="headerlink" href="#cmdoption-pnps-gen-full-arg-OUTPUT_FILE" title="Permalink to this definition">¶</a></dt>
+<dd><p>Required argument</p>
 </dd></dl>
 
 </div>
@@ -402,6 +413,220 @@ does not require the GFF file, they are embedded into the <em>.pickle</em> file<
 <dt id="cmdoption-pnps-gen-rank-arg-TXT_FILE">
 <code class="sig-name descname">TXT_FILE</code><code class="sig-prename descclassname"></code><a class="headerlink" href="#cmdoption-pnps-gen-rank-arg-TXT_FILE" title="Permalink to this definition">¶</a></dt>
 <dd><p>Optional argument</p>
+</dd></dl>
+
+</div>
+<div class="section" id="pnps-gen-vcf">
+<h4>vcf<a class="headerlink" href="#pnps-gen-vcf" title="Permalink to this headline">¶</a></h4>
+<p>parse a VCF file and a GFF file to produce the
+data used for <cite>pnps-gen</cite></p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>pnps-gen vcf <span class="o">[</span>OPTIONS<span class="o">]</span> <span class="o">[</span>VCF_FILE<span class="o">]</span> OUTPUT_FILE
+</pre></div>
+</div>
+<p class="rubric">Options</p>
+<dl class="std option">
+<dt id="cmdoption-pnps-gen-vcf-v">
+<code class="sig-name descname">-v</code><code class="sig-prename descclassname"></code><code class="sig-prename descclassname">, </code><code class="sig-name descname">--verbose</code><code class="sig-prename descclassname"></code><a class="headerlink" href="#cmdoption-pnps-gen-vcf-v" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="std option">
+<dt id="cmdoption-pnps-gen-vcf-ft">
+<code class="sig-name descname">-ft</code><code class="sig-prename descclassname"></code><code class="sig-prename descclassname">, </code><code class="sig-name descname">--feature</code><code class="sig-prename descclassname"> &lt;feature&gt;</code><a class="headerlink" href="#cmdoption-pnps-gen-vcf-ft" title="Permalink to this definition">¶</a></dt>
+<dd><p>Feature to use in the GFF file</p>
+<dl class="field-list simple">
+<dt class="field-odd">Default</dt>
+<dd class="field-odd"><p>CDS</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="std option">
+<dt id="cmdoption-pnps-gen-vcf-g">
+<code class="sig-name descname">-g</code><code class="sig-prename descclassname"></code><code class="sig-prename descclassname">, </code><code class="sig-name descname">--gff-file</code><code class="sig-prename descclassname"> &lt;gff_file&gt;</code><a class="headerlink" href="#cmdoption-pnps-gen-vcf-g" title="Permalink to this definition">¶</a></dt>
+<dd><p><strong>Required</strong> GFF file to use</p>
+</dd></dl>
+
+<dl class="std option">
+<dt id="cmdoption-pnps-gen-vcf-a">
+<code class="sig-name descname">-a</code><code class="sig-prename descclassname"></code><code class="sig-prename descclassname">, </code><code class="sig-name descname">--fasta-file</code><code class="sig-prename descclassname"> &lt;fasta_file&gt;</code><a class="headerlink" href="#cmdoption-pnps-gen-vcf-a" title="Permalink to this definition">¶</a></dt>
+<dd><p><strong>Required</strong> Reference file (FASTA) for the GFF</p>
+</dd></dl>
+
+<dl class="std option">
+<dt id="cmdoption-pnps-gen-vcf-q">
+<code class="sig-name descname">-q</code><code class="sig-prename descclassname"></code><code class="sig-prename descclassname">, </code><code class="sig-name descname">--min-qual</code><code class="sig-prename descclassname"> &lt;min_qual&gt;</code><a class="headerlink" href="#cmdoption-pnps-gen-vcf-q" title="Permalink to this definition">¶</a></dt>
+<dd><p>Minimum quality for SNPs (Phred score)</p>
+<dl class="field-list simple">
+<dt class="field-odd">Default</dt>
+<dd class="field-odd"><p>30</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="std option">
+<dt id="cmdoption-pnps-gen-vcf-f">
+<code class="sig-name descname">-f</code><code class="sig-prename descclassname"></code><code class="sig-prename descclassname">, </code><code class="sig-name descname">--min-freq</code><code class="sig-prename descclassname"> &lt;min_freq&gt;</code><a class="headerlink" href="#cmdoption-pnps-gen-vcf-f" title="Permalink to this definition">¶</a></dt>
+<dd><p>Minimum allele frequency</p>
+<dl class="field-list simple">
+<dt class="field-odd">Default</dt>
+<dd class="field-odd"><p>0.01</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="std option">
+<dt id="cmdoption-pnps-gen-vcf-r">
+<code class="sig-name descname">-r</code><code class="sig-prename descclassname"></code><code class="sig-prename descclassname">, </code><code class="sig-name descname">--min-reads</code><code class="sig-prename descclassname"> &lt;min_reads&gt;</code><a class="headerlink" href="#cmdoption-pnps-gen-vcf-r" title="Permalink to this definition">¶</a></dt>
+<dd><p>Minimum number of reads to accept the SNP</p>
+<dl class="field-list simple">
+<dt class="field-odd">Default</dt>
+<dd class="field-odd"><p>4</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="std option">
+<dt id="cmdoption-pnps-gen-vcf-m">
+<code class="sig-name descname">-m</code><code class="sig-prename descclassname"></code><code class="sig-prename descclassname">, </code><code class="sig-name descname">--sample-ids</code><code class="sig-prename descclassname"> &lt;sample_ids&gt;</code><a class="headerlink" href="#cmdoption-pnps-gen-vcf-m" title="Permalink to this definition">¶</a></dt>
+<dd><p>the ids of the samples used in the analysis,
+must be the same as in the GFF file</p>
+</dd></dl>
+
+<dl class="std option">
+<dt id="cmdoption-pnps-gen-vcf-n">
+<code class="sig-name descname">-n</code><code class="sig-prename descclassname"></code><code class="sig-prename descclassname">, </code><code class="sig-name descname">--num-lines</code><code class="sig-prename descclassname"> &lt;num_lines&gt;</code><a class="headerlink" href="#cmdoption-pnps-gen-vcf-n" title="Permalink to this definition">¶</a></dt>
+<dd><p>Number of VCF lines after which printing status</p>
+<dl class="field-list simple">
+<dt class="field-odd">Default</dt>
+<dd class="field-odd"><p>100000</p>
+</dd>
+</dl>
+</dd></dl>
+
+<p class="rubric">Arguments</p>
+<dl class="std option">
+<dt id="cmdoption-pnps-gen-vcf-arg-VCF_FILE">
+<code class="sig-name descname">VCF_FILE</code><code class="sig-prename descclassname"></code><a class="headerlink" href="#cmdoption-pnps-gen-vcf-arg-VCF_FILE" title="Permalink to this definition">¶</a></dt>
+<dd><p>Optional argument</p>
+</dd></dl>
+
+<dl class="std option">
+<dt id="cmdoption-pnps-gen-vcf-arg-OUTPUT_FILE">
+<code class="sig-name descname">OUTPUT_FILE</code><code class="sig-prename descclassname"></code><a class="headerlink" href="#cmdoption-pnps-gen-vcf-arg-OUTPUT_FILE" title="Permalink to this definition">¶</a></dt>
+<dd><p>Required argument</p>
+</dd></dl>
+
+</div>
+<div class="section" id="pnps-gen-vcf-alt">
+<h4>vcf_alt<a class="headerlink" href="#pnps-gen-vcf-alt" title="Permalink to this headline">¶</a></h4>
+<p>parse a VCF file and a GFF file to produce the
+data used for <cite>pnps-gen</cite>, uses file a list for sample coverage
+instead of taking information from the GFF file</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>pnps-gen vcf_alt <span class="o">[</span>OPTIONS<span class="o">]</span> <span class="o">[</span>VCF_FILE<span class="o">]</span> OUTPUT_FILE
+</pre></div>
+</div>
+<p class="rubric">Options</p>
+<dl class="std option">
+<dt id="cmdoption-pnps-gen-vcf_alt-v">
+<code class="sig-name descname">-v</code><code class="sig-prename descclassname"></code><code class="sig-prename descclassname">, </code><code class="sig-name descname">--verbose</code><code class="sig-prename descclassname"></code><a class="headerlink" href="#cmdoption-pnps-gen-vcf_alt-v" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="std option">
+<dt id="cmdoption-pnps-gen-vcf_alt-ft">
+<code class="sig-name descname">-ft</code><code class="sig-prename descclassname"></code><code class="sig-prename descclassname">, </code><code class="sig-name descname">--feature</code><code class="sig-prename descclassname"> &lt;feature&gt;</code><a class="headerlink" href="#cmdoption-pnps-gen-vcf_alt-ft" title="Permalink to this definition">¶</a></dt>
+<dd><p>Feature to use in the GFF file</p>
+<dl class="field-list simple">
+<dt class="field-odd">Default</dt>
+<dd class="field-odd"><p>CDS</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="std option">
+<dt id="cmdoption-pnps-gen-vcf_alt-g">
+<code class="sig-name descname">-g</code><code class="sig-prename descclassname"></code><code class="sig-prename descclassname">, </code><code class="sig-name descname">--gff-file</code><code class="sig-prename descclassname"> &lt;gff_file&gt;</code><a class="headerlink" href="#cmdoption-pnps-gen-vcf_alt-g" title="Permalink to this definition">¶</a></dt>
+<dd><p><strong>Required</strong> GFF file to use</p>
+</dd></dl>
+
+<dl class="std option">
+<dt id="cmdoption-pnps-gen-vcf_alt-a">
+<code class="sig-name descname">-a</code><code class="sig-prename descclassname"></code><code class="sig-prename descclassname">, </code><code class="sig-name descname">--fasta-file</code><code class="sig-prename descclassname"> &lt;fasta_file&gt;</code><a class="headerlink" href="#cmdoption-pnps-gen-vcf_alt-a" title="Permalink to this definition">¶</a></dt>
+<dd><p><strong>Required</strong> Reference file (FASTA) for the GFF</p>
+</dd></dl>
+
+<dl class="std option">
+<dt id="cmdoption-pnps-gen-vcf_alt-q">
+<code class="sig-name descname">-q</code><code class="sig-prename descclassname"></code><code class="sig-prename descclassname">, </code><code class="sig-name descname">--min-qual</code><code class="sig-prename descclassname"> &lt;min_qual&gt;</code><a class="headerlink" href="#cmdoption-pnps-gen-vcf_alt-q" title="Permalink to this definition">¶</a></dt>
+<dd><p>Minimum quality for SNPs (Phred score)</p>
+<dl class="field-list simple">
+<dt class="field-odd">Default</dt>
+<dd class="field-odd"><p>30</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="std option">
+<dt id="cmdoption-pnps-gen-vcf_alt-f">
+<code class="sig-name descname">-f</code><code class="sig-prename descclassname"></code><code class="sig-prename descclassname">, </code><code class="sig-name descname">--min-freq</code><code class="sig-prename descclassname"> &lt;min_freq&gt;</code><a class="headerlink" href="#cmdoption-pnps-gen-vcf_alt-f" title="Permalink to this definition">¶</a></dt>
+<dd><p>Minimum allele frequency</p>
+<dl class="field-list simple">
+<dt class="field-odd">Default</dt>
+<dd class="field-odd"><p>0.01</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="std option">
+<dt id="cmdoption-pnps-gen-vcf_alt-r">
+<code class="sig-name descname">-r</code><code class="sig-prename descclassname"></code><code class="sig-prename descclassname">, </code><code class="sig-name descname">--min-reads</code><code class="sig-prename descclassname"> &lt;min_reads&gt;</code><a class="headerlink" href="#cmdoption-pnps-gen-vcf_alt-r" title="Permalink to this definition">¶</a></dt>
+<dd><p>Minimum number of reads to accept the SNP</p>
+<dl class="field-list simple">
+<dt class="field-odd">Default</dt>
+<dd class="field-odd"><p>4</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="std option">
+<dt id="cmdoption-pnps-gen-vcf_alt-n">
+<code class="sig-name descname">-n</code><code class="sig-prename descclassname"></code><code class="sig-prename descclassname">, </code><code class="sig-name descname">--num-lines</code><code class="sig-prename descclassname"> &lt;num_lines&gt;</code><a class="headerlink" href="#cmdoption-pnps-gen-vcf_alt-n" title="Permalink to this definition">¶</a></dt>
+<dd><p>Number of VCF lines after which printing status</p>
+<dl class="field-list simple">
+<dt class="field-odd">Default</dt>
+<dd class="field-odd"><p>100000</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="std option">
+<dt id="cmdoption-pnps-gen-vcf_alt-l">
+<code class="sig-name descname">-l</code><code class="sig-prename descclassname"></code><code class="sig-prename descclassname">, </code><code class="sig-name descname">--sample-file</code><code class="sig-prename descclassname"> &lt;sample_file&gt;</code><a class="headerlink" href="#cmdoption-pnps-gen-vcf_alt-l" title="Permalink to this definition">¶</a></dt>
+<dd><p><strong>Required</strong> File with list of coverage files and sample names (TAB separated)</p>
+</dd></dl>
+
+<dl class="std option">
+<dt id="cmdoption-pnps-gen-vcf_alt-s">
+<code class="sig-name descname">-s</code><code class="sig-prename descclassname"></code><code class="sig-prename descclassname">, </code><code class="sig-name descname">--file-list</code><code class="sig-prename descclassname"> &lt;file_list&gt;</code><a class="headerlink" href="#cmdoption-pnps-gen-vcf_alt-s" title="Permalink to this definition">¶</a></dt>
+<dd><p>File with list of VCF files (one per line)</p>
+</dd></dl>
+
+<dl class="std option">
+<dt id="cmdoption-pnps-gen-vcf_alt-u">
+<code class="sig-name descname">-u</code><code class="sig-prename descclassname"></code><code class="sig-prename descclassname">, </code><code class="sig-name descname">--uid-map</code><code class="sig-prename descclassname"> &lt;uid_map&gt;</code><a class="headerlink" href="#cmdoption-pnps-gen-vcf_alt-u" title="Permalink to this definition">¶</a></dt>
+<dd><p>Only load annotations from a specific map file</p>
+</dd></dl>
+
+<p class="rubric">Arguments</p>
+<dl class="std option">
+<dt id="cmdoption-pnps-gen-vcf_alt-arg-VCF_FILE">
+<code class="sig-name descname">VCF_FILE</code><code class="sig-prename descclassname"></code><a class="headerlink" href="#cmdoption-pnps-gen-vcf_alt-arg-VCF_FILE" title="Permalink to this definition">¶</a></dt>
+<dd><p>Optional argument</p>
+</dd></dl>
+
+<dl class="std option">
+<dt id="cmdoption-pnps-gen-vcf_alt-arg-OUTPUT_FILE">
+<code class="sig-name descname">OUTPUT_FILE</code><code class="sig-prename descclassname"></code><a class="headerlink" href="#cmdoption-pnps-gen-vcf_alt-arg-OUTPUT_FILE" title="Permalink to this definition">¶</a></dt>
+<dd><p>Required argument</p>
 </dd></dl>
 
 </div>

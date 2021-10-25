@@ -5,7 +5,7 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>mgkit.workflow.snp_parser &#8212; MGKit: Metagenomic framework 0.5.5 documentation</title>
+    <title>mgkit.workflow.snp_parser &#8212; MGKit: Metagenomic framework 0.5.7 documentation</title>
     <link rel="stylesheet" href="../../../_static/alabaster.css" type="text/css" />
     <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
     <link rel="stylesheet" type="text/css" href="../../../_static/graphviz.css" />
@@ -37,6 +37,13 @@
             
   <h1>Source code for mgkit.workflow.snp_parser</h1><div class="highlight"><pre>
 <span></span><span class="sd">&quot;&quot;&quot;</span>
+
+<span class="sd">.. deprecated:: 0.5.7</span>
+<span class="sd">    This script is deprecated now, use `pnps-gen vcf` instead</span>
+
+<span class="sd">.. note::</span>
+<span class="sd">    if you need to use the script, install HTSeq</span>
+
 <span class="sd">This script parses results of SNPs analysis from any tool for SNP calling [#]_</span>
 <span class="sd">and integrates them into a format that can be later used for other scripts in</span>
 <span class="sd">the pipeline.</span>
@@ -68,14 +75,14 @@
 
 <span class="kn">from</span> <span class="nn">__future__</span> <span class="kn">import</span> <span class="n">division</span>
 <span class="kn">from</span> <span class="nn">builtins</span> <span class="kn">import</span> <span class="nb">zip</span>
-<span class="kn">import</span> <span class="nn">HTSeq</span>
 <span class="kn">import</span> <span class="nn">logging</span>
 <span class="kn">import</span> <span class="nn">argparse</span>
+<span class="kn">import</span> <span class="nn">pickle</span>
+<span class="kn">import</span> <span class="nn">HTSeq</span>
 <span class="kn">from</span> <span class="nn">.</span> <span class="kn">import</span> <span class="n">utils</span>
 <span class="kn">from</span> <span class="nn">..io</span> <span class="kn">import</span> <span class="n">gff</span><span class="p">,</span> <span class="n">compressed_handle</span><span class="p">,</span> <span class="n">fasta</span>
 <span class="kn">from</span> <span class="nn">..</span> <span class="kn">import</span> <span class="n">logger</span>
 <span class="kn">from</span> <span class="nn">..snps.classes</span> <span class="kn">import</span> <span class="n">GeneSNP</span><span class="p">,</span> <span class="n">SNPType</span>
-<span class="kn">import</span> <span class="nn">pickle</span>
 
 
 <span class="n">LOG</span> <span class="o">=</span> <span class="n">logging</span><span class="o">.</span><span class="n">getLogger</span><span class="p">(</span><span class="vm">__name__</span><span class="p">)</span>
@@ -86,7 +93,7 @@
 <span class="sd">    Sets command line arguments parser</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="n">parser</span> <span class="o">=</span> <span class="n">argparse</span><span class="o">.</span><span class="n">ArgumentParser</span><span class="p">(</span>
-        <span class="n">description</span><span class="o">=</span><span class="s1">&#39;SNPs analysis, requires a vcf file and SNPDat results&#39;</span><span class="p">,</span>
+        <span class="n">description</span><span class="o">=</span><span class="s1">&#39;DEPRECATED, use `pnps-gen vcf` SNPs analysis, requires a vcf file&#39;</span><span class="p">,</span>
         <span class="n">formatter_class</span><span class="o">=</span><span class="n">argparse</span><span class="o">.</span><span class="n">ArgumentDefaultsHelpFormatter</span>
     <span class="p">)</span>
     <span class="n">parser</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span>
@@ -400,10 +407,6 @@
     <span class="p">)</span>
 
     <span class="n">save_data</span><span class="p">(</span><span class="n">options</span><span class="o">.</span><span class="n">output_file</span><span class="p">,</span> <span class="n">snp_data</span><span class="p">)</span></div>
-
-
-<span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s1">&#39;__main__&#39;</span><span class="p">:</span>
-    <span class="n">main</span><span class="p">()</span>
 </pre></div>
 
           </div>
